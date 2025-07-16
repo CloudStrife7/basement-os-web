@@ -36,13 +36,6 @@
         flex-direction: column;
     }
     
-    @media (max-width: 768px) {
-        .terminal {
-            border: none;
-            height: 100vh;
-        }
-    }
-    
     .scanline {
         position: absolute;
         top: 0;
@@ -52,6 +45,7 @@
         background: rgba(0, 255, 0, 0.1);
         animation: scanline 2s linear infinite;
         pointer-events: none;
+        z-index: 10;
     }
     
     @keyframes scanline {
@@ -59,26 +53,41 @@
         100% { top: 100%; }
     }
     
+    .controls {
+        background: rgba(0, 0, 0, 0.9);
+        padding: 8px;
+        border-bottom: 1px solid #00ff00;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+        z-index: 100;
+    }
+    
+    .controls button {
+        background: #000;
+        color: #00ff00;
+        border: 1px solid #00ff00;
+        padding: 6px 12px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+    
+    .controls button:hover {
+        background: #00ff00;
+        color: #000;
+    }
+    
     .screen {
-        width: 100%;
         flex: 1;
         padding: 20px;
         white-space: pre-wrap;
         font-size: 12px;
         line-height: 1.1;
         overflow-y: auto;
-        position: relative;
         background: rgba(0, 20, 0, 0.8);
-    }
-    
-    @media (max-width: 768px) {
-        .screen {
-            height: auto;
-            flex: 1;
-            padding: 10px;
-            font-size: 10px;
-            padding-top: 10px;
-        }
     }
     
     .cursor {
@@ -111,61 +120,6 @@
         color: #ffaa00;
     }
     
-    .controls {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        z-index: 1000;
-        background: rgba(0, 0, 0, 0.9);
-        padding: 8px;
-        border: 1px solid #00ff00;
-        border-radius: 4px;
-        max-width: calc(100vw - 20px);
-        font-size: 10px;
-    }
-    
-    @media (max-width: 768px) {
-        .controls {
-            position: relative;
-            top: 0;
-            right: 0;
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 10px;
-            border-radius: 0;
-            border-left: none;
-            border-right: none;
-        }
-    }
-    
-    .controls button {
-        background: #000;
-        color: #00ff00;
-        border: 1px solid #00ff00;
-        padding: 4px 8px;
-        margin: 2px;
-        cursor: pointer;
-        font-family: inherit;
-        font-size: 9px;
-        white-space: nowrap;
-    }
-    
-    @media (max-width: 768px) {
-        .controls button {
-            padding: 6px 10px;
-            margin: 3px;
-            font-size: 10px;
-            flex: 0 0 auto;
-        }
-    }
-    
-    .controls button:hover {
-        background: #00ff00;
-        color: #000;
-    }
-    
     .boot-screen {
         color: #00aaff;
     }
@@ -176,6 +130,30 @@
     
     .achievement {
         color: #ff00ff;
+    }
+    
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+        .terminal {
+            border: none;
+        }
+        
+        .controls {
+            padding: 6px;
+            gap: 3px;
+        }
+        
+        .controls button {
+            padding: 8px 10px;
+            font-size: 9px;
+            flex: 1 1 auto;
+            min-width: 80px;
+        }
+        
+        .screen {
+            padding: 15px;
+            font-size: 10px;
+        }
     }
 </style>
 ```
@@ -221,19 +199,12 @@
     // Initialize terminal
     window.onload = function() {
         console.log('🖥️ Basement OS Web Terminal v27 starting...');
-        console.log('🔧 Debug mode enabled');
         startBootSequence();
         startCursorBlink();
         fetchData();
         
         // Auto-refresh data every 10 seconds
         setInterval(fetchData, CONFIG.updateInterval);
-        
-        // Add click event listeners for debugging
-        console.log('🎮 Adding button event listeners');
-        document.addEventListener('click', function(e) {
-            console.log('Click detected on:', e.target);
-        });
     };
 
     function startBootSequence() {
@@ -289,11 +260,7 @@ Loading complete. Starting Basement OS…
     }
 
     function showDashboard() {
-        console.log('🖥️ showDashboard called, bootComplete:', bootComplete);
-        if (!bootComplete) {
-            console.log('❌ Boot not complete, forcing dashboard anyway');
-            bootComplete = true; // Force enable for debugging
-        }
+        console.log('📊 Showing dashboard');
         
         const now = new Date();
         const time = now.toLocaleTimeString('en-US', {hour12: true});
@@ -338,11 +305,7 @@ C:\BASEMENT> <span class="cursor">█</span>`;
     }
 
     function showStats() {
-        console.log('📊 showStats called, bootComplete:', bootComplete);
-        if (!bootComplete) {
-            console.log('❌ Boot not complete, forcing stats anyway');
-            bootComplete = true;
-        }
+        console.log('📊 Showing stats');
         
         const content = `═══════════════════════════════════════════════════════════════════════════════
 ```
@@ -382,11 +345,7 @@ C:\BASEMENT> <span class="cursor">█</span>`;
     }
 
     function showChangelog() {
-        console.log('📝 showChangelog called, bootComplete:', bootComplete);
-        if (!bootComplete) {
-            console.log('❌ Boot not complete, forcing changelog anyway');
-            bootComplete = true;
-        }
+        console.log('📝 Showing changelog');
         
         const content = `═══════════════════════════════════════════════════════════════════════════════
 ```
@@ -437,11 +396,7 @@ C:\BASEMENT> <span class="cursor">█</span>`;
     }
 
     function showHallOfFame() {
-        console.log('🏆 showHallOfFame called, bootComplete:', bootComplete);
-        if (!bootComplete) {
-            console.log('❌ Boot not complete, forcing hall of fame anyway');
-            bootComplete = true;
-        }
+        console.log('🏆 Showing hall of fame');
         
         const content = `═══════════════════════════════════════════════════════════════════════════════
                    <span class="header">SUPPORTER HALL OF FAME</span>
@@ -482,11 +437,7 @@ C:\BASEMENT> <span class="cursor">█</span>`;
     }
 
     function showLeaderboard() {
-        console.log('🥇 showLeaderboard called, bootComplete:', bootComplete);
-        if (!bootComplete) {
-            console.log('❌ Boot not complete, forcing leaderboard anyway');
-            bootComplete = true;
-        }
+        console.log('🥇 Showing leaderboard');
         
         const content = `═══════════════════════════════════════════════════════════════════════════════
 ```
