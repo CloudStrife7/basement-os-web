@@ -32,6 +32,15 @@
         border: 2px solid #333;
         position: relative;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    @media (max-width: 768px) {
+        .terminal {
+            border: none;
+            height: 100vh;
+        }
     }
     
     .scanline {
@@ -52,7 +61,7 @@
     
     .screen {
         width: 100%;
-        height: 100%;
+        flex: 1;
         padding: 20px;
         white-space: pre-wrap;
         font-size: 12px;
@@ -60,6 +69,16 @@
         overflow-y: auto;
         position: relative;
         background: rgba(0, 20, 0, 0.8);
+    }
+    
+    @media (max-width: 768px) {
+        .screen {
+            height: auto;
+            flex: 1;
+            padding: 10px;
+            font-size: 10px;
+            padding-top: 10px;
+        }
     }
     
     .cursor {
@@ -97,21 +116,49 @@
         top: 10px;
         right: 10px;
         z-index: 1000;
-        background: rgba(0, 0, 0, 0.8);
-        padding: 10px;
-        border: 1px solid #333;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 8px;
+        border: 1px solid #00ff00;
         border-radius: 4px;
+        max-width: calc(100vw - 20px);
+        font-size: 10px;
+    }
+    
+    @media (max-width: 768px) {
+        .controls {
+            position: relative;
+            top: 0;
+            right: 0;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 10px;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+        }
     }
     
     .controls button {
         background: #000;
         color: #00ff00;
         border: 1px solid #00ff00;
-        padding: 5px 10px;
+        padding: 4px 8px;
         margin: 2px;
         cursor: pointer;
         font-family: inherit;
-        font-size: 10px;
+        font-size: 9px;
+        white-space: nowrap;
+    }
+    
+    @media (max-width: 768px) {
+        .controls button {
+            padding: 6px 10px;
+            margin: 3px;
+            font-size: 10px;
+            flex: 0 0 auto;
+        }
     }
     
     .controls button:hover {
@@ -151,12 +198,14 @@
 ```
 <script>
     // Configuration - Update these URLs to match your GitHub Pages
-const CONFIG = {
-    githubDataUrl: 'https://cloudstrife7.github.io/basement-os-mobile/current_activity.json',
-    githubHistoryUrl: 'https://cloudstrife7.github.io/basement-os-mobile/activity_log.json',
-    weatherApiUrl: 'https://cloudstrife7.github.io/DOS-Terminal/api/weather/current.json',
-    friendsList: ['BestBuddy', 'VRChatPal', 'RegularHangout'] // Your actual friends
-};
+    const CONFIG = {
+        githubDataUrl: 'https://cloudstrife7.github.io/basement-os-mobile/current_activity.json',
+        githubHistoryUrl: 'https://cloudstrife7.github.io/basement-os-mobile/activity_log.json',
+        weatherApiUrl: 'https://cloudstrife7.github.io/DOS-Terminal/api/weather/current.json',
+        updateInterval: 10000, // 10 seconds
+        autoCycleInterval: 10000, // 10 seconds per screen
+        friendsList: ['BestBuddy', 'VRChatPal', 'RegularHangout'] // Your friends list
+    };
 
     // Terminal state
     let currentScreen = 0;
@@ -172,12 +221,19 @@ const CONFIG = {
     // Initialize terminal
     window.onload = function() {
         console.log('🖥️ Basement OS Web Terminal v27 starting...');
+        console.log('🔧 Debug mode enabled');
         startBootSequence();
         startCursorBlink();
         fetchData();
         
         // Auto-refresh data every 10 seconds
         setInterval(fetchData, CONFIG.updateInterval);
+        
+        // Add click event listeners for debugging
+        console.log('🎮 Adding button event listeners');
+        document.addEventListener('click', function(e) {
+            console.log('Click detected on:', e.target);
+        });
     };
 
     function startBootSequence() {
@@ -233,7 +289,11 @@ Loading complete. Starting Basement OS…
     }
 
     function showDashboard() {
-        if (!bootComplete) return;
+        console.log('🖥️ showDashboard called, bootComplete:', bootComplete);
+        if (!bootComplete) {
+            console.log('❌ Boot not complete, forcing dashboard anyway');
+            bootComplete = true; // Force enable for debugging
+        }
         
         const now = new Date();
         const time = now.toLocaleTimeString('en-US', {hour12: true});
@@ -278,7 +338,11 @@ C:\BASEMENT> <span class="cursor">█</span>`;
     }
 
     function showStats() {
-        if (!bootComplete) return;
+        console.log('📊 showStats called, bootComplete:', bootComplete);
+        if (!bootComplete) {
+            console.log('❌ Boot not complete, forcing stats anyway');
+            bootComplete = true;
+        }
         
         const content = `═══════════════════════════════════════════════════════════════════════════════
 ```
@@ -318,7 +382,11 @@ C:\BASEMENT> <span class="cursor">█</span>`;
     }
 
     function showChangelog() {
-        if (!bootComplete) return;
+        console.log('📝 showChangelog called, bootComplete:', bootComplete);
+        if (!bootComplete) {
+            console.log('❌ Boot not complete, forcing changelog anyway');
+            bootComplete = true;
+        }
         
         const content = `═══════════════════════════════════════════════════════════════════════════════
 ```
@@ -369,7 +437,11 @@ C:\BASEMENT> <span class="cursor">█</span>`;
     }
 
     function showHallOfFame() {
-        if (!bootComplete) return;
+        console.log('🏆 showHallOfFame called, bootComplete:', bootComplete);
+        if (!bootComplete) {
+            console.log('❌ Boot not complete, forcing hall of fame anyway');
+            bootComplete = true;
+        }
         
         const content = `═══════════════════════════════════════════════════════════════════════════════
                    <span class="header">SUPPORTER HALL OF FAME</span>
@@ -410,7 +482,11 @@ C:\BASEMENT> <span class="cursor">█</span>`;
     }
 
     function showLeaderboard() {
-        if (!bootComplete) return;
+        console.log('🥇 showLeaderboard called, bootComplete:', bootComplete);
+        if (!bootComplete) {
+            console.log('❌ Boot not complete, forcing leaderboard anyway');
+            bootComplete = true;
+        }
         
         const content = `═══════════════════════════════════════════════════════════════════════════════
 ```
