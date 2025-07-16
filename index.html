@@ -151,14 +151,12 @@
 ```
 <script>
     // Configuration - Update these URLs to match your GitHub Pages
-    const CONFIG = {
-        githubDataUrl: 'https://cloudstrife7.github.io/basement-os-mobile/current_activity.json',
-        githubHistoryUrl: 'https://cloudstrife7.github.io/basement-os-mobile/activity_log.json',
-        weatherApiUrl: 'https://cloudstrife7.github.io/DOS-Terminal/api/weather/current.json',
-        updateInterval: 10000, // 10 seconds
-        autoCycleInterval: 10000, // 10 seconds per screen
-        friendsList: ['BestBuddy', 'VRChatPal', 'RegularHangout'] // Your friends list
-    };
+const CONFIG = {
+    githubDataUrl: 'https://cloudstrife7.github.io/basement-os-mobile/current_activity.json',
+    githubHistoryUrl: 'https://cloudstrife7.github.io/basement-os-mobile/activity_log.json',
+    weatherApiUrl: 'https://cloudstrife7.github.io/DOS-Terminal/api/weather/current.json',
+    friendsList: ['BestBuddy', 'VRChatPal', 'RegularHangout'] // Your actual friends
+};
 
     // Terminal state
     let currentScreen = 0;
