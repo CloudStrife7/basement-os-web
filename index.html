@@ -52,6 +52,29 @@
             --search-highlight: #ffff00;
         }
 
+        /* HUMANLAYER (Pink, Black, White - inspired by humanlayer.dev) */
+        [data-theme="humanlayer"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-terminal: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-dim: #888888;
+            --accent-primary: #ff3e8a;
+            --accent-secondary: #ff6b9d;
+            --accent-alert: #ffb347;
+            --accent-error: #ff4757;
+            --accent-link: #ff3e8a;
+            --accent-milestone: #ff3e8a;
+            --border-color: #333333;
+            --scanline-color: rgba(255, 62, 138, 0.02);
+            --cursor-color: #ff3e8a;
+            --selection-bg: #ff3e8a;
+            --selection-text: #000000;
+            --tooltip-bg: #1a1a1a;
+            --search-highlight: #ff6b9d;
+        }
+
         /* FRAMER DARK */
         [data-theme="framer-dark"] {
             --bg-primary: #0d1117;
@@ -961,6 +984,7 @@
                     <label for="theme-select">THEME:</label>
                     <select id="theme-select" onchange="setTheme(this.value)">
                         <option value="high-contrast">High Contrast</option>
+                        <option value="humanlayer">HumanLayer</option>
                         <option value="framer-dark">Framer Dark</option>
                         <option value="framer-light">Framer Light</option>
                         <option value="solarized-dark">Solarized Dark</option>
@@ -1319,7 +1343,7 @@
         // ═══════════════════════════════════════════════════════════════════
 
         const THEMES = [
-            'high-contrast', 'framer-dark', 'framer-light',
+            'high-contrast', 'humanlayer', 'framer-dark', 'framer-light',
             'solarized-dark', 'solarized-light', 'catppuccin',
             'monokai', 'gruvbox-dark', 'gruvbox-light',
             'rose-pine', 'rose-pine-dawn', 'rose-pine-moon', 'cappuccino'
