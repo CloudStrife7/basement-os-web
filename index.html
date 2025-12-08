@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BASEMENT OS v2.1 | Lower Level 2.0</title>
-    <meta name="description" content="Basement OS - A nostalgic DOS terminal experience from Lower Level 2.0 VRChat world">
+    <title>BASEMENT OS | Lower Level 2.0 Dev Blog</title>
+    <meta name="description" content="Basement OS - An interactive dev blog for the Lower Level 2.0 VRChat world project">
 
     <!-- Prevent FOUC (Flash of Unstyled Content) -->
     <script>
@@ -19,9 +19,7 @@
 
         /* ═══════════════════════════════════════════════════════════════════
            THEME ENGINE - CSS Variables (HumanLayer-style)
-           13 Themes: high-contrast, framer-dark, framer-light, solarized-dark,
-           solarized-light, catppuccin, monokai, gruvbox-dark, gruvbox-light,
-           rose-pine, rose-pine-dawn, rose-pine-moon, cappuccino
+           Default: High Contrast (black bg, white text, green highlights)
         ═══════════════════════════════════════════════════════════════════ */
 
         :root {
@@ -31,7 +29,7 @@
             --transition-speed: 0.3s;
         }
 
-        /* HIGH CONTRAST (Default - Maximum readability) */
+        /* HIGH CONTRAST (Default - black bg, white text, green highlights) */
         [data-theme="high-contrast"] {
             --bg-primary: #000000;
             --bg-secondary: #0a0a0a;
@@ -44,11 +42,14 @@
             --accent-alert: #ff6600;
             --accent-error: #ff0000;
             --accent-link: #00ffff;
+            --accent-milestone: #00ff00;
             --border-color: #ffffff;
             --scanline-color: rgba(255, 255, 255, 0.03);
             --cursor-color: #ffffff;
             --selection-bg: #ffffff;
             --selection-text: #000000;
+            --tooltip-bg: #1a1a1a;
+            --search-highlight: #ffff00;
         }
 
         /* FRAMER DARK */
@@ -64,11 +65,14 @@
             --accent-alert: #d29922;
             --accent-error: #f85149;
             --accent-link: #58a6ff;
+            --accent-milestone: #3fb950;
             --border-color: #30363d;
             --scanline-color: rgba(88, 166, 255, 0.02);
             --cursor-color: #58a6ff;
             --selection-bg: #58a6ff;
             --selection-text: #0d1117;
+            --tooltip-bg: #21262d;
+            --search-highlight: #f0883e;
         }
 
         /* FRAMER LIGHT */
@@ -84,11 +88,14 @@
             --accent-alert: #9a6700;
             --accent-error: #cf222e;
             --accent-link: #0969da;
+            --accent-milestone: #1a7f37;
             --border-color: #d0d7de;
             --scanline-color: rgba(9, 105, 218, 0.02);
             --cursor-color: #0969da;
             --selection-bg: #0969da;
             --selection-text: #ffffff;
+            --tooltip-bg: #f6f8fa;
+            --search-highlight: #fff8c5;
         }
 
         /* SOLARIZED DARK */
@@ -104,11 +111,14 @@
             --accent-alert: #cb4b16;
             --accent-error: #dc322f;
             --accent-link: #268bd2;
+            --accent-milestone: #859900;
             --border-color: #073642;
             --scanline-color: rgba(133, 153, 0, 0.02);
             --cursor-color: #859900;
             --selection-bg: #073642;
             --selection-text: #93a1a1;
+            --tooltip-bg: #073642;
+            --search-highlight: #b58900;
         }
 
         /* SOLARIZED LIGHT */
@@ -124,11 +134,14 @@
             --accent-alert: #cb4b16;
             --accent-error: #dc322f;
             --accent-link: #268bd2;
+            --accent-milestone: #859900;
             --border-color: #eee8d5;
             --scanline-color: rgba(133, 153, 0, 0.02);
             --cursor-color: #859900;
             --selection-bg: #eee8d5;
             --selection-text: #657b83;
+            --tooltip-bg: #eee8d5;
+            --search-highlight: #b58900;
         }
 
         /* CATPPUCCIN (Mocha) */
@@ -144,11 +157,14 @@
             --accent-alert: #fab387;
             --accent-error: #f38ba8;
             --accent-link: #89b4fa;
+            --accent-milestone: #a6e3a1;
             --border-color: #45475a;
             --scanline-color: rgba(166, 227, 161, 0.02);
             --cursor-color: #a6e3a1;
             --selection-bg: #45475a;
             --selection-text: #cdd6f4;
+            --tooltip-bg: #313244;
+            --search-highlight: #f9e2af;
         }
 
         /* MONOKAI */
@@ -164,11 +180,14 @@
             --accent-alert: #fd971f;
             --accent-error: #f92672;
             --accent-link: #66d9ef;
+            --accent-milestone: #a6e22e;
             --border-color: #49483e;
             --scanline-color: rgba(166, 226, 46, 0.02);
             --cursor-color: #a6e22e;
             --selection-bg: #49483e;
             --selection-text: #f8f8f2;
+            --tooltip-bg: #3e3d32;
+            --search-highlight: #e6db74;
         }
 
         /* GRUVBOX DARK */
@@ -184,11 +203,14 @@
             --accent-alert: #fe8019;
             --accent-error: #fb4934;
             --accent-link: #83a598;
+            --accent-milestone: #b8bb26;
             --border-color: #504945;
             --scanline-color: rgba(184, 187, 38, 0.02);
             --cursor-color: #b8bb26;
             --selection-bg: #504945;
             --selection-text: #ebdbb2;
+            --tooltip-bg: #3c3836;
+            --search-highlight: #fabd2f;
         }
 
         /* GRUVBOX LIGHT */
@@ -204,11 +226,14 @@
             --accent-alert: #af3a03;
             --accent-error: #9d0006;
             --accent-link: #076678;
+            --accent-milestone: #79740e;
             --border-color: #d5c4a1;
             --scanline-color: rgba(121, 116, 14, 0.02);
             --cursor-color: #79740e;
             --selection-bg: #d5c4a1;
             --selection-text: #3c3836;
+            --tooltip-bg: #ebdbb2;
+            --search-highlight: #b57614;
         }
 
         /* ROSE PINE */
@@ -224,11 +249,14 @@
             --accent-alert: #ea9a97;
             --accent-error: #eb6f92;
             --accent-link: #9ccfd8;
+            --accent-milestone: #31748f;
             --border-color: #26233a;
             --scanline-color: rgba(49, 116, 143, 0.02);
             --cursor-color: #31748f;
             --selection-bg: #26233a;
             --selection-text: #e0def4;
+            --tooltip-bg: #1f1d2e;
+            --search-highlight: #f6c177;
         }
 
         /* ROSE PINE DAWN */
@@ -244,11 +272,14 @@
             --accent-alert: #d7827e;
             --accent-error: #b4637a;
             --accent-link: #56949f;
+            --accent-milestone: #286983;
             --border-color: #f2e9de;
             --scanline-color: rgba(40, 105, 131, 0.02);
             --cursor-color: #286983;
             --selection-bg: #f2e9de;
             --selection-text: #575279;
+            --tooltip-bg: #fffaf3;
+            --search-highlight: #ea9d34;
         }
 
         /* ROSE PINE MOON */
@@ -264,11 +295,14 @@
             --accent-alert: #ea9a97;
             --accent-error: #eb6f92;
             --accent-link: #9ccfd8;
+            --accent-milestone: #3e8fb0;
             --border-color: #393552;
             --scanline-color: rgba(62, 143, 176, 0.02);
             --cursor-color: #3e8fb0;
             --selection-bg: #393552;
             --selection-text: #e0def4;
+            --tooltip-bg: #2a273f;
+            --search-highlight: #f6c177;
         }
 
         /* CAPPUCCINO */
@@ -284,11 +318,14 @@
             --accent-alert: #d4813d;
             --accent-error: #c75643;
             --accent-link: #7eb8b0;
+            --accent-milestone: #c9a86c;
             --border-color: #4d4232;
             --scanline-color: rgba(201, 168, 108, 0.02);
             --cursor-color: #c9a86c;
             --selection-bg: #4d4232;
             --selection-text: #e8dcc8;
+            --tooltip-bg: #3d3222;
+            --search-highlight: #e8b84a;
         }
 
         /* ═══════════════════════════════════════════════════════════════════
@@ -310,7 +347,7 @@
             color: var(--text-primary);
             font-family: var(--font-mono);
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.7;
             min-height: 100vh;
             transition: background var(--transition-speed), color var(--transition-speed);
         }
@@ -431,6 +468,52 @@
         }
 
         /* ═══════════════════════════════════════════════════════════════════
+           SEARCH BAR
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .search-container {
+            background: var(--bg-secondary);
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .search-container.active {
+            display: block;
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 10px 15px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .search-input:focus {
+            outline: 1px solid var(--accent-primary);
+        }
+
+        .search-results {
+            margin-top: 10px;
+            color: var(--text-dim);
+            font-size: 12px;
+        }
+
+        .search-highlight {
+            background: var(--search-highlight);
+            color: var(--bg-primary);
+            padding: 0 2px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
            BOOT SCREEN
         ═══════════════════════════════════════════════════════════════════ */
 
@@ -455,32 +538,6 @@
         .boot-warn { color: var(--accent-alert); }
         .boot-error { color: var(--accent-error); }
         .boot-info { color: var(--accent-link); }
-
-        /* ═══════════════════════════════════════════════════════════════════
-           MAIN CONTENT AREA
-        ═══════════════════════════════════════════════════════════════════ */
-
-        .terminal-content {
-            padding: 20px;
-            display: none;
-        }
-
-        .terminal-content.active {
-            display: block;
-        }
-
-        .section-header {
-            color: var(--accent-secondary);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-
-        .separator {
-            color: var(--border-color);
-            margin: 15px 0;
-        }
 
         /* ═══════════════════════════════════════════════════════════════════
            NAVIGATION MENU
@@ -530,111 +587,17 @@
         }
 
         /* ═══════════════════════════════════════════════════════════════════
-           DIRECTORY LISTING (DOS Style)
+           MAIN CONTENT
         ═══════════════════════════════════════════════════════════════════ */
 
-        .dir-listing {
-            margin: 20px 0;
+        .terminal-content {
+            padding: 20px;
+            display: none;
         }
 
-        .dir-header {
-            color: var(--text-dim);
-            margin-bottom: 10px;
+        .terminal-content.active {
+            display: block;
         }
-
-        .dir-item {
-            display: flex;
-            padding: 5px 0;
-            cursor: pointer;
-            transition: background 0.1s;
-        }
-
-        .dir-item:hover {
-            background: var(--bg-secondary);
-        }
-
-        .dir-item.selected {
-            background: var(--accent-primary);
-            color: var(--bg-primary);
-        }
-
-        .dir-type {
-            width: 80px;
-            color: var(--accent-link);
-        }
-
-        .dir-name {
-            width: 200px;
-            color: var(--text-primary);
-        }
-
-        .dir-desc {
-            flex: 1;
-            color: var(--text-dim);
-        }
-
-        .dir-item.selected .dir-type,
-        .dir-item.selected .dir-name,
-        .dir-item.selected .dir-desc {
-            color: var(--bg-primary);
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════
-           STATUS BAR
-        ═══════════════════════════════════════════════════════════════════ */
-
-        .status-bar {
-            background: var(--bg-secondary);
-            padding: 10px 15px;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-            font-size: 12px;
-        }
-
-        .status-item {
-            color: var(--text-dim);
-        }
-
-        .status-value {
-            color: var(--accent-primary);
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════
-           PROMPT LINE
-        ═══════════════════════════════════════════════════════════════════ */
-
-        .prompt-line {
-            padding: 15px 20px;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-        }
-
-        .prompt {
-            color: var(--accent-primary);
-            margin-right: 10px;
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 10px;
-            height: 18px;
-            background: var(--cursor-color);
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════
-           CONTENT SECTIONS
-        ═══════════════════════════════════════════════════════════════════ */
 
         .content-section {
             display: none;
@@ -644,13 +607,169 @@
             display: block;
         }
 
-        .ascii-header {
-            color: var(--accent-primary);
-            font-size: 12px;
-            line-height: 1.2;
+        .section-header {
+            color: var(--accent-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
             margin-bottom: 20px;
-            overflow-x: auto;
+            font-size: 16px;
         }
+
+        .separator {
+            color: var(--border-color);
+            margin: 15px 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           TOOLTIP DEFINITIONS
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .term {
+            color: var(--accent-primary);
+            border-bottom: 1px dotted var(--accent-primary);
+            cursor: help;
+            position: relative;
+        }
+
+        .term:hover .tooltip,
+        .term:focus .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--tooltip-bg);
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            max-width: 300px;
+            white-space: normal;
+            z-index: 100;
+            transition: opacity 0.2s;
+            margin-bottom: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--border-color);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           DEVLOG / BLOG ENTRIES
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .devlog-toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .devlog-toc h3 {
+            color: var(--accent-secondary);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .devlog-toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .devlog-toc li {
+            padding: 5px 0;
+            border-bottom: 1px dotted var(--border-color);
+        }
+
+        .devlog-toc a {
+            color: var(--accent-link);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .devlog-toc a:hover {
+            color: var(--accent-primary);
+        }
+
+        .devlog-toc .date {
+            color: var(--text-dim);
+            font-size: 12px;
+        }
+
+        .devlog-entry {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .devlog-entry:last-child {
+            border-bottom: none;
+        }
+
+        .devlog-date {
+            color: var(--text-dim);
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .devlog-title {
+            color: var(--text-primary);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .devlog-title.milestone {
+            color: var(--accent-milestone);
+        }
+
+        .devlog-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .devlog-content p {
+            margin-bottom: 15px;
+        }
+
+        .devlog-tags {
+            margin-top: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--bg-secondary);
+            color: var(--text-dim);
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            margin-right: 5px;
+        }
+
+        .tag.milestone {
+            background: var(--accent-milestone);
+            color: var(--bg-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           INFO CARDS
+        ═══════════════════════════════════════════════════════════════════ */
 
         .info-grid {
             display: grid;
@@ -702,6 +821,55 @@
         }
 
         /* ═══════════════════════════════════════════════════════════════════
+           STATUS BAR & PROMPT
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .prompt-line {
+            padding: 15px 20px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .prompt {
+            color: var(--accent-primary);
+            margin-right: 10px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background: var(--cursor-color);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .status-bar {
+            background: var(--bg-secondary);
+            padding: 10px 15px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .status-item {
+            color: var(--text-dim);
+        }
+
+        .status-value {
+            color: var(--accent-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
            RESPONSIVE / MOBILE
         ═══════════════════════════════════════════════════════════════════ */
 
@@ -726,27 +894,14 @@
             .boot-screen,
             .terminal-content {
                 padding: 15px;
-                font-size: 12px;
-            }
-
-            .ascii-header {
-                font-size: 8px;
-            }
-
-            .dir-item {
-                flex-direction: column;
-                padding: 10px 5px;
-            }
-
-            .dir-type,
-            .dir-name {
-                width: 100%;
+                font-size: 13px;
             }
 
             .nav-btn {
                 flex: 1;
-                min-width: 100px;
+                min-width: 80px;
                 text-align: center;
+                padding: 10px 8px;
             }
 
             .info-grid {
@@ -757,6 +912,19 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
+
+            .tooltip {
+                position: fixed;
+                bottom: auto;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                max-width: 90vw;
+            }
+
+            .tooltip::after {
+                display: none;
+            }
         }
 
         /* ═══════════════════════════════════════════════════════════════════
@@ -765,6 +933,7 @@
 
         .hidden { display: none !important; }
         .text-primary { color: var(--accent-primary); }
+        .text-milestone { color: var(--accent-milestone); }
         .text-secondary { color: var(--accent-secondary); }
         .text-alert { color: var(--accent-alert); }
         .text-error { color: var(--accent-error); }
@@ -787,7 +956,7 @@
                     <span class="window-btn btn-minimize"></span>
                     <span class="window-btn btn-maximize"></span>
                 </div>
-                <div class="terminal-title">BASEMENT OS v2.1</div>
+                <div class="terminal-title">BASEMENT OS</div>
                 <div class="theme-selector">
                     <label for="theme-select">THEME:</label>
                     <select id="theme-select" onchange="setTheme(this.value)">
@@ -810,22 +979,27 @@
 
             <!-- Navigation Menu (hidden during boot) -->
             <nav class="nav-menu" id="nav-menu">
-                <button class="nav-btn active" onclick="showSection('dashboard')">
-                    <span class="type">&lt;SYS&gt;</span> DASHBOARD
+                <button class="nav-btn active" onclick="showSection('devlog')">
+                    <span class="type">&lt;LOG&gt;</span> DEVLOG
                 </button>
                 <button class="nav-btn" onclick="showSection('about')">
                     <span class="type">&lt;DIR&gt;</span> ABOUT
                 </button>
-                <button class="nav-btn" onclick="showSection('features')">
-                    <span class="type">&lt;EXE&gt;</span> FEATURES
-                </button>
-                <button class="nav-btn" onclick="showSection('changelog')">
-                    <span class="type">&lt;LOG&gt;</span> CHANGELOG
-                </button>
                 <button class="nav-btn" onclick="showSection('links')">
                     <span class="type">&lt;NET&gt;</span> LINKS
                 </button>
+                <button class="nav-btn" onclick="toggleSearch()">
+                    <span class="type">&lt;CMD&gt;</span> SEARCH
+                </button>
             </nav>
+
+            <!-- Search Bar -->
+            <div class="search-container" id="search-container">
+                <input type="text" class="search-input" id="search-input"
+                       placeholder="Search devlog entries..."
+                       oninput="performSearch(this.value)">
+                <div class="search-results" id="search-results"></div>
+            </div>
 
             <!-- Boot Screen -->
             <div class="boot-screen" id="boot-screen"></div>
@@ -833,76 +1007,171 @@
             <!-- Main Content -->
             <div class="terminal-content" id="main-content">
 
-                <!-- Dashboard Section -->
-                <div class="content-section active" id="section-dashboard">
-<pre class="ascii-header">
- ██████╗  █████╗ ███████╗███████╗███╗   ███╗███████╗███╗   ██╗████████╗
- ██╔══██╗██╔══██╗██╔════╝██╔════╝████╗ ████║██╔════╝████╗  ██║╚══██╔══╝
- ██████╔╝███████║███████╗█████╗  ██╔████╔██║█████╗  ██╔██╗ ██║   ██║
- ██╔══██╗██╔══██║╚════██║██╔══╝  ██║╚██╔╝██║██╔══╝  ██║╚██╗██║   ██║
- ██████╔╝██║  ██║███████║███████╗██║ ╚═╝ ██║███████╗██║ ╚████║   ██║
- ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝
-                           ██████╗ ███████╗
-                          ██╔═══██╗██╔════╝
-                          ██║   ██║███████╗
-                          ██║   ██║╚════██║
-                          ╚██████╔╝███████║
-                           ╚═════╝ ╚══════╝  v2.1
-</pre>
-                    <p class="text-secondary mb-2">Welcome to the Lower Level 2.0 Web Terminal</p>
+                <!-- Devlog Section -->
+                <div class="content-section active" id="section-devlog">
+                    <h2 class="section-header">C:\BASEMENT\DEVLOG.TXT</h2>
 
-                    <div class="separator">════════════════════════════════════════════════════════════════════</div>
+                    <!-- Table of Contents -->
+                    <div class="devlog-toc">
+                        <h3>[ Table of Contents ]</h3>
+                        <ul>
+                            <li>
+                                <a href="#entry-2025-12-07">
+                                    <span>Basement OS Web Terminal Launch</span>
+                                    <span class="date">2025-12-07</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#entry-2025-12-06">
+                                    <span class="text-milestone">MILESTONE: Closed-Loop Agent System</span>
+                                    <span class="date">2025-12-06</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#entry-2025-11-15">
+                                    <span>Terminal Menu System Complete</span>
+                                    <span class="date">2025-11-15</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#entry-2025-10-20">
+                                    <span class="text-milestone">MILESTONE: Achievement System Overhaul</span>
+                                    <span class="date">2025-10-20</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
-                    <h2 class="section-header">SYSTEM STATUS</h2>
+                    <!-- Devlog Entries -->
+                    <div class="devlog-entries">
+                        <article class="devlog-entry" id="entry-2025-12-07" data-searchable>
+                            <div class="devlog-date">December 7, 2025</div>
+                            <h3 class="devlog-title">Basement OS Web Terminal Launch</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    I finally got the web terminal up and running! This has been on my mind for a while -
+                                    having a way to interact with Basement OS outside of VRChat. The idea is to mirror
+                                    what you'd see on the CRT monitor in the basement, but accessible from any browser.
+                                </p>
+                                <p>
+                                    Took some inspiration from
+                                    <span class="term" tabindex="0">HumanLayer's<span class="tooltip">A company building tools for AI agents that need human oversight</span></span>
+                                    blog - they have this clean theming system I really liked. Implemented 13 different
+                                    color themes, but keeping High Contrast as the default because readability comes first.
+                                </p>
+                                <p>
+                                    The boot sequence mirrors what happens in the actual VRChat world. When you approach
+                                    the terminal in the basement, you see the same POST checks and loading messages.
+                                    It's all about that nostalgic 2000s feel.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">web</span>
+                                <span class="tag">ui</span>
+                                <span class="tag">theming</span>
+                            </div>
+                        </article>
 
-                    <div class="info-grid">
-                        <div class="info-card">
-                            <h3>[ VRChat World ]</h3>
-                            <div class="stat-row">
-                                <span class="stat-label">Status</span>
-                                <span class="stat-value">ONLINE</span>
+                        <article class="devlog-entry" id="entry-2025-12-06" data-searchable>
+                            <div class="devlog-date">December 6, 2025</div>
+                            <h3 class="devlog-title milestone">MILESTONE: Closed-Loop Agent System</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    This is a big one. I've been working with
+                                    <span class="term" tabindex="0">Claude Code<span class="tooltip">An AI coding assistant by Anthropic that can read, write, and execute code autonomously</span></span>
+                                    to build out the Basement OS kernel, and we finally cracked the automation problem.
+                                </p>
+                                <p>
+                                    The issue with
+                                    <span class="term" tabindex="0">UdonSharp<span class="tooltip">A C# to Udon compiler that lets you write VRChat scripts in familiar C# syntax instead of visual programming</span></span>
+                                    is that you can't just write code - you need Unity to generate .asset files,
+                                    attach them to GameObjects, and compile everything. Previously this meant constant
+                                    back-and-forth with the human (me) clicking buttons in Unity.
+                                </p>
+                                <p>
+                                    Now with
+                                    <span class="term" tabindex="0">Unity MCP<span class="tooltip">Model Context Protocol - a way for AI agents to communicate with Unity Editor directly</span></span>,
+                                    Claude can do the full loop: write the script, trigger compilation, check for errors,
+                                    attach to GameObjects, enter Play mode, and verify everything works. No human
+                                    intervention needed.
+                                </p>
+                                <p>
+                                    The
+                                    <span class="term" tabindex="0">hub-spoke architecture<span class="tooltip">A design pattern where a central 'hub' (DT_Core) routes messages to multiple 'spoke' components (apps)</span></span>
+                                    is working beautifully. DT_Core handles all the hardware stuff (screen, input, audio),
+                                    and apps in /BIN/ just do their thing without worrying about low-level details.
+                                </p>
                             </div>
-                            <div class="stat-row">
-                                <span class="stat-label">Platform</span>
-                                <span class="stat-value">PC VR + Quest</span>
+                            <div class="devlog-tags">
+                                <span class="tag milestone">MILESTONE</span>
+                                <span class="tag">architecture</span>
+                                <span class="tag">automation</span>
+                                <span class="tag">ai</span>
                             </div>
-                            <div class="stat-row">
-                                <span class="stat-label">Version</span>
-                                <span class="stat-value">2.1.0</span>
-                            </div>
-                        </div>
+                        </article>
 
-                        <div class="info-card">
-                            <h3>[ Achievement System ]</h3>
-                            <div class="stat-row">
-                                <span class="stat-label">Total</span>
-                                <span class="stat-value">19 Achievements</span>
+                        <article class="devlog-entry" id="entry-2025-11-15" data-searchable>
+                            <div class="devlog-date">November 15, 2025</div>
+                            <h3 class="devlog-title">Terminal Menu System Complete</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Replaced the old auto-cycling display with an actual interactive menu. Players can
+                                    now use their movement controls to navigate up/down through options and select with
+                                    the interact button.
+                                </p>
+                                <p>
+                                    Had to implement player immobilization when they're at the terminal - otherwise
+                                    pressing up/down would move your avatar AND the cursor. Using
+                                    <span class="term" tabindex="0">VRCStation<span class="tooltip">A VRChat component that locks a player in place and captures their input</span></span>
+                                    for this, which also solves the "walking away mid-interaction" problem.
+                                </p>
+                                <p>
+                                    Also extracted the weather module into its own script. The terminal now pulls
+                                    real-time weather data from my
+                                    <span class="term" tabindex="0">GitHub Pages<span class="tooltip">Free static website hosting from GitHub - I use it to serve weather data as JSON</span></span>
+                                    endpoint and displays it in the header. When it's actually raining in Fond du Lac,
+                                    you'll see rain in the basement too.
+                                </p>
                             </div>
-                            <div class="stat-row">
-                                <span class="stat-label">Gamerscore</span>
-                                <span class="stat-value">420G</span>
+                            <div class="devlog-tags">
+                                <span class="tag">terminal</span>
+                                <span class="tag">input</span>
+                                <span class="tag">weather</span>
                             </div>
-                            <div class="stat-row">
-                                <span class="stat-label">Storage</span>
-                                <span class="stat-value">PlayerData API</span>
-                            </div>
-                        </div>
+                        </article>
 
-                        <div class="info-card">
-                            <h3>[ Weather Integration ]</h3>
-                            <div class="stat-row">
-                                <span class="stat-label">API</span>
-                                <span class="stat-value">GitHub Pages</span>
+                        <article class="devlog-entry" id="entry-2025-10-20" data-searchable>
+                            <div class="devlog-date">October 20, 2025</div>
+                            <h3 class="devlog-title milestone">MILESTONE: Achievement System Overhaul</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Finally finished the Xbox 360-style achievement system! 19 achievements worth
+                                    420G total (nice). The notifications pop up just like they did on the 360 -
+                                    that satisfying <em>bloop</em> sound and the sliding banner.
+                                </p>
+                                <p>
+                                    Using VRChat's
+                                    <span class="term" tabindex="0">PlayerData API<span class="tooltip">VRChat's persistence system that saves player data across sessions - limited to basic types like int, float, string</span></span>
+                                    for persistence. This was tricky because you can't use fancy C# features in
+                                    <span class="term" tabindex="0">UdonSharp<span class="tooltip">A C# to Udon compiler - no generics, no LINQ, no async, no try/catch</span></span> -
+                                    no List&lt;T&gt;, no Dictionary, no LINQ. Everything's done with arrays and
+                                    careful indexing.
+                                </p>
+                                <p>
+                                    The
+                                    <span class="term" tabindex="0">FIFO queue<span class="tooltip">First-In-First-Out - notifications appear in the order they were earned, like a live feed</span></span>
+                                    for notifications took a few iterations. Originally had a priority system but
+                                    it felt weird when achievements popped up out of order. The chronological
+                                    approach matches the "basement live feed" vibe I was going for.
+                                </p>
                             </div>
-                            <div class="stat-row">
-                                <span class="stat-label">Location</span>
-                                <span class="stat-value">Fond du Lac, WI</span>
+                            <div class="devlog-tags">
+                                <span class="tag milestone">MILESTONE</span>
+                                <span class="tag">achievements</span>
+                                <span class="tag">persistence</span>
+                                <span class="tag">xbox</span>
                             </div>
-                            <div class="stat-row">
-                                <span class="stat-label">Sync</span>
-                                <span class="stat-value">Real-time</span>
-                            </div>
-                        </div>
+                        </article>
                     </div>
                 </div>
 
@@ -910,115 +1179,63 @@
                 <div class="content-section" id="section-about">
                     <h2 class="section-header">C:\BASEMENT\ABOUT.TXT</h2>
 
-                    <p class="mb-2">
-                        <span class="text-primary">Lower Level 2.0</span> is a nostalgic 2000s basement gaming
-                        VRChat world featuring an interactive DOS terminal system called
-                        <span class="text-secondary">Basement OS</span>.
-                    </p>
+                    <div class="devlog-content">
+                        <p>
+                            Hey, I'm <span class="text-primary">CloudStrife7</span>. This is my dev blog for
+                            <span class="text-milestone">Lower Level 2.0</span> - a VRChat world I've been building
+                            that recreates a 2000s basement gaming setup.
+                        </p>
+                        <p>
+                            The project started as a simple hangout space but evolved into something more ambitious.
+                            Now it's got an Xbox 360-style achievement system, a fully interactive DOS terminal
+                            (that's Basement OS), real-time weather integration, and a bunch of nostalgic touches.
+                        </p>
+                        <p>
+                            I use this blog to document my progress, share technical solutions, and explain the
+                            weird workarounds needed when working with
+                            <span class="term" tabindex="0">UdonSharp<span class="tooltip">VRChat's scripting system - a subset of C# with many limitations</span></span>.
+                            If you're building VRChat worlds, hopefully some of this is useful.
+                        </p>
+                    </div>
 
                     <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
-                    <h3 class="text-secondary mb-1">THE EXPERIENCE</h3>
-                    <p class="text-dim mb-2">
-                        Step into a virtual basement straight from the early 2000s. Complete with
-                        wood-paneled walls, vintage gaming setups, and an old CRT monitor running
-                        Basement OS - your gateway to achievements, stats, and basement lore.
-                    </p>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>[ Tech Stack ]</h3>
+                            <div class="stat-row">
+                                <span class="stat-label">Engine</span>
+                                <span class="stat-value">Unity 2022.3.22f1</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">SDK</span>
+                                <span class="stat-value">VRChat SDK 3.8.2+</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Scripting</span>
+                                <span class="stat-value">UdonSharp</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">UI</span>
+                                <span class="stat-value">TextMeshPro</span>
+                            </div>
+                        </div>
 
-                    <h3 class="text-secondary mb-1">TECH STACK</h3>
-                    <div class="info-card">
-                        <div class="stat-row">
-                            <span class="stat-label">Engine</span>
-                            <span class="stat-value">Unity 2022.3.22f1</span>
+                        <div class="info-card">
+                            <h3>[ Stats ]</h3>
+                            <div class="stat-row">
+                                <span class="stat-label">Achievements</span>
+                                <span class="stat-value">19 (420G)</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Platform</span>
+                                <span class="stat-value">PC VR + Quest</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Status</span>
+                                <span class="stat-value">Active Development</span>
+                            </div>
                         </div>
-                        <div class="stat-row">
-                            <span class="stat-label">SDK</span>
-                            <span class="stat-value">VRChat SDK 3.8.2+</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Scripting</span>
-                            <span class="stat-value">UdonSharp</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">UI</span>
-                            <span class="stat-value">TextMeshPro</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Features Section -->
-                <div class="content-section" id="section-features">
-                    <h2 class="section-header">C:\BASEMENT\FEATURES\DIR</h2>
-
-                    <div class="dir-listing">
-                        <div class="dir-header">
-                            Directory of C:\BASEMENT\FEATURES
-                        </div>
-                        <div class="dir-item">
-                            <span class="dir-type">&lt;SYS&gt;</span>
-                            <span class="dir-name">BASEMENT_OS</span>
-                            <span class="dir-desc">Interactive 80x24 DOS terminal with menu navigation</span>
-                        </div>
-                        <div class="dir-item">
-                            <span class="dir-type">&lt;ACH&gt;</span>
-                            <span class="dir-name">XBOX_ACHIEVEMENTS</span>
-                            <span class="dir-desc">19 achievements (420G) with Xbox 360-style notifications</span>
-                        </div>
-                        <div class="dir-item">
-                            <span class="dir-type">&lt;NET&gt;</span>
-                            <span class="dir-name">WEATHER_API</span>
-                            <span class="dir-desc">Real-time weather with dynamic rain shaders</span>
-                        </div>
-                        <div class="dir-item">
-                            <span class="dir-type">&lt;DAT&gt;</span>
-                            <span class="dir-name">PLAYER_DATA</span>
-                            <span class="dir-desc">Persistent stats via VRChat PlayerData API</span>
-                        </div>
-                        <div class="dir-item">
-                            <span class="dir-type">&lt;OPT&gt;</span>
-                            <span class="dir-name">QUEST_SUPPORT</span>
-                            <span class="dir-desc">Cross-platform optimization for Meta Quest</span>
-                        </div>
-                        <div class="dir-item">
-                            <span class="dir-type">&lt;HUB&gt;</span>
-                            <span class="dir-name">EVENT_SYSTEM</span>
-                            <span class="dir-desc">Hub-spoke architecture for network sync</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Changelog Section -->
-                <div class="content-section" id="section-changelog">
-                    <h2 class="section-header">C:\BASEMENT\CHANGELOG.LOG</h2>
-
-                    <div class="mb-2">
-                        <p class="text-secondary">[2025-12-07] v2.1 - Basement OS Kernel</p>
-                        <ul class="text-dim" style="list-style: none; padding-left: 20px;">
-                            <li>+ Implemented closed-loop autonomous agent system</li>
-                            <li>+ Hub-spoke architecture (DT_Core -> Apps)</li>
-                            <li>+ Modular app system (/BIN/, /LIB/, /CORE/)</li>
-                            <li>+ Theme library with DOS phosphor aesthetic</li>
-                        </ul>
-                    </div>
-
-                    <div class="mb-2">
-                        <p class="text-secondary">[2025-11-15] v2.0 - Terminal Menu System</p>
-                        <ul class="text-dim" style="list-style: none; padding-left: 20px;">
-                            <li>+ Interactive menu navigation</li>
-                            <li>+ Weather module extraction</li>
-                            <li>+ Player immobilization during interaction</li>
-                            <li>+ Heavy rain achievement trigger</li>
-                        </ul>
-                    </div>
-
-                    <div class="mb-2">
-                        <p class="text-secondary">[2025-10-20] v1.5 - Achievement Overhaul</p>
-                        <ul class="text-dim" style="list-style: none; padding-left: 20px;">
-                            <li>+ FIFO notification queue</li>
-                            <li>+ Role-based notification icons</li>
-                            <li>+ PlayerData persistence</li>
-                            <li>+ Network-synced achievements</li>
-                        </ul>
                     </div>
                 </div>
 
@@ -1034,7 +1251,7 @@
                                     github.com/CloudStrife7/LL2PCVR
                                 </a>
                             </p>
-                            <p class="text-dim mt-1">Source code and documentation</p>
+                            <p class="text-dim mt-1">Source code, docs, and issues</p>
                         </div>
 
                         <div class="info-card">
@@ -1054,17 +1271,17 @@
                                     Weather Endpoint
                                 </a>
                             </p>
-                            <p class="text-dim mt-1">Real-time weather data feed</p>
+                            <p class="text-dim mt-1">Real-time weather JSON feed</p>
                         </div>
 
                         <div class="info-card">
-                            <h3>[ Documentation ]</h3>
+                            <h3>[ This Blog's Source ]</h3>
                             <p>
-                                <a href="https://github.com/CloudStrife7/LL2PCVR/blob/main/README.md" class="link" target="_blank">
-                                    Project README
+                                <a href="https://github.com/CloudStrife7/basement-os-web" class="link" target="_blank">
+                                    basement-os-web
                                 </a>
                             </p>
-                            <p class="text-dim mt-1">Setup and architecture guide</p>
+                            <p class="text-dim mt-1">The code behind this site</p>
                         </div>
                     </div>
                 </div>
@@ -1085,14 +1302,14 @@
                     TIME: <span class="status-value" id="clock">00:00:00</span>
                 </span>
                 <span class="status-item">
-                    VER: <span class="status-value">BASEMENT OS v2.1</span>
+                    SYS: <span class="status-value">BASEMENT OS</span>
                 </span>
             </div>
         </div>
 
         <!-- Footer -->
         <footer style="text-align: center; padding: 20px; color: var(--text-dim); font-size: 12px;">
-            <p>&copy; 2025 Lower Level Devs | <a href="https://github.com/CloudStrife7" class="link">CloudStrife7</a></p>
+            <p>&copy; 2025 <a href="https://github.com/CloudStrife7" class="link">CloudStrife7</a> | Lower Level 2.0</p>
         </footer>
     </div>
 
@@ -1127,28 +1344,24 @@
         const BOOT_SEQUENCE = [
             { text: '════════════════════════════════════════════════════════════════════', delay: 0 },
             { text: '', delay: 50 },
-            { text: 'BASEMENT OS v2.1 (Web Terminal)', delay: 100, class: 'text-secondary' },
-            { text: '(C) 2025 Lower Level Devs', delay: 150, class: 'text-dim' },
+            { text: 'BASEMENT OS (Web Terminal)', delay: 100, class: 'text-secondary' },
+            { text: '(C) 2025 CloudStrife7', delay: 150, class: 'text-dim' },
             { text: '', delay: 200 },
             { text: '════════════════════════════════════════════════════════════════════', delay: 250 },
             { text: '', delay: 300 },
             { text: 'POST: Power-On Self Test...', delay: 400 },
             { text: '  Checking BIOS.................... OK', delay: 600, class: 'boot-ok' },
             { text: '  Memory Test: 640K................ OK', delay: 800, class: 'boot-ok' },
-            { text: '  Keyboard Controller.............. OK', delay: 1000, class: 'boot-ok' },
-            { text: '  Display Adapter.................. OK', delay: 1200, class: 'boot-ok' },
-            { text: '', delay: 1300 },
-            { text: 'Loading System Components...', delay: 1500 },
-            { text: '  Initializing Web Interface....... OK', delay: 1700, class: 'boot-ok' },
-            { text: '  Loading Theme Engine............. OK', delay: 1900, class: 'boot-ok' },
-            { text: '  Connecting to GitHub Pages....... OK', delay: 2100, class: 'boot-ok' },
-            { text: '  Loading Achievement Database..... OK', delay: 2300, class: 'boot-ok' },
-            { text: '  Syncing Weather Data............. OK', delay: 2500, class: 'boot-ok' },
-            { text: '  Mounting Virtual Drives.......... OK', delay: 2700, class: 'boot-ok' },
-            { text: '', delay: 2800 },
-            { text: '════════════════════════════════════════════════════════════════════', delay: 2900 },
-            { text: 'Boot sequence complete. Starting BASEMENT OS...', delay: 3100, class: 'boot-info' },
-            { text: '════════════════════════════════════════════════════════════════════', delay: 3300 },
+            { text: '  Display Adapter.................. OK', delay: 1000, class: 'boot-ok' },
+            { text: '', delay: 1100 },
+            { text: 'Loading Devlog...', delay: 1300 },
+            { text: '  Connecting to GitHub............. OK', delay: 1500, class: 'boot-ok' },
+            { text: '  Loading blog entries............. OK', delay: 1700, class: 'boot-ok' },
+            { text: '  Initializing search.............. OK', delay: 1900, class: 'boot-ok' },
+            { text: '', delay: 2000 },
+            { text: '════════════════════════════════════════════════════════════════════', delay: 2100 },
+            { text: 'Boot complete. Welcome to Basement OS.', delay: 2300, class: 'boot-info' },
+            { text: '════════════════════════════════════════════════════════════════════', delay: 2500 },
         ];
 
         let bootIndex = 0;
@@ -1171,7 +1384,6 @@
                     : 500;
                 setTimeout(runBootSequence, nextDelay);
             } else {
-                // Boot complete - show main content
                 setTimeout(() => {
                     bootScreen.style.display = 'none';
                     document.getElementById('main-content').classList.add('active');
@@ -1185,22 +1397,69 @@
         // ═══════════════════════════════════════════════════════════════════
 
         function showSection(sectionId) {
-            // Hide all sections
             document.querySelectorAll('.content-section').forEach(s => {
                 s.classList.remove('active');
             });
 
-            // Show selected section
             const section = document.getElementById('section-' + sectionId);
             if (section) {
                 section.classList.add('active');
             }
 
-            // Update nav buttons
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.closest('.nav-btn').classList.add('active');
+            if (event && event.target) {
+                event.target.closest('.nav-btn').classList.add('active');
+            }
+
+            // Close search when navigating
+            document.getElementById('search-container').classList.remove('active');
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // SEARCH
+        // ═══════════════════════════════════════════════════════════════════
+
+        function toggleSearch() {
+            const container = document.getElementById('search-container');
+            container.classList.toggle('active');
+            if (container.classList.contains('active')) {
+                document.getElementById('search-input').focus();
+            }
+        }
+
+        function performSearch(query) {
+            const resultsDiv = document.getElementById('search-results');
+            if (!query || query.length < 2) {
+                resultsDiv.innerHTML = '';
+                return;
+            }
+
+            const entries = document.querySelectorAll('.devlog-entry');
+            let matches = 0;
+
+            entries.forEach(entry => {
+                const content = entry.textContent.toLowerCase();
+                const queryLower = query.toLowerCase();
+
+                if (content.includes(queryLower)) {
+                    matches++;
+                    entry.style.display = 'block';
+                } else {
+                    entry.style.display = 'none';
+                }
+            });
+
+            resultsDiv.innerHTML = matches > 0
+                ? `Found ${matches} matching ${matches === 1 ? 'entry' : 'entries'}`
+                : 'No matches found';
+
+            // Show devlog section when searching
+            if (matches > 0) {
+                showSection('devlog');
+                document.querySelectorAll('.nav-btn')[0].classList.add('active');
+            }
         }
 
         // ═══════════════════════════════════════════════════════════════════
@@ -1217,28 +1476,52 @@
         // KEYBOARD NAVIGATION
         // ═══════════════════════════════════════════════════════════════════
 
-        const SECTIONS = ['dashboard', 'about', 'features', 'changelog', 'links'];
-        let currentSectionIndex = 0;
-
         document.addEventListener('keydown', (e) => {
-            // Only handle after boot complete
-            if (!document.getElementById('main-content').classList.contains('active')) return;
+            // Ctrl+K or / to open search
+            if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && document.activeElement.tagName !== 'INPUT')) {
+                e.preventDefault();
+                toggleSearch();
+            }
 
-            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                e.preventDefault();
-                currentSectionIndex = (currentSectionIndex - 1 + SECTIONS.length) % SECTIONS.length;
-                navigateToSection(currentSectionIndex);
-            } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                e.preventDefault();
-                currentSectionIndex = (currentSectionIndex + 1) % SECTIONS.length;
-                navigateToSection(currentSectionIndex);
+            // Escape to close search
+            if (e.key === 'Escape') {
+                document.getElementById('search-container').classList.remove('active');
             }
         });
 
-        function navigateToSection(index) {
-            const buttons = document.querySelectorAll('.nav-btn');
-            buttons[index].click();
-        }
+        // ═══════════════════════════════════════════════════════════════════
+        // TOOLTIP MOBILE SUPPORT
+        // ═══════════════════════════════════════════════════════════════════
+
+        document.querySelectorAll('.term').forEach(term => {
+            term.addEventListener('click', function(e) {
+                // Toggle tooltip visibility on mobile
+                const tooltip = this.querySelector('.tooltip');
+                if (tooltip) {
+                    const isVisible = tooltip.style.visibility === 'visible';
+                    // Hide all other tooltips
+                    document.querySelectorAll('.tooltip').forEach(t => {
+                        t.style.visibility = 'hidden';
+                        t.style.opacity = '0';
+                    });
+                    // Toggle this one
+                    if (!isVisible) {
+                        tooltip.style.visibility = 'visible';
+                        tooltip.style.opacity = '1';
+                    }
+                }
+            });
+        });
+
+        // Close tooltips when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.term')) {
+                document.querySelectorAll('.tooltip').forEach(t => {
+                    t.style.visibility = 'hidden';
+                    t.style.opacity = '0';
+                });
+            }
+        });
 
         // ═══════════════════════════════════════════════════════════════════
         // INITIALIZATION
@@ -1249,7 +1532,6 @@
             updateClock();
             setInterval(updateClock, 1000);
 
-            // Check for skip boot param
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('skipboot') === 'true') {
                 document.getElementById('boot-screen').style.display = 'none';
