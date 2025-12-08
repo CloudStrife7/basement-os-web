@@ -1,585 +1,1264 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="high-contrast">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lower Level 2.0 - Basement OS Terminal</title>
+    <title>BASEMENT OS v2.1 | Lower Level 2.0</title>
+    <meta name="description" content="Basement OS - A nostalgic DOS terminal experience from Lower Level 2.0 VRChat world">
+
+    <!-- Prevent FOUC (Flash of Unstyled Content) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('basement-os-theme') || 'high-contrast';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
+
+        /* ═══════════════════════════════════════════════════════════════════
+           THEME ENGINE - CSS Variables (HumanLayer-style)
+           13 Themes: high-contrast, framer-dark, framer-light, solarized-dark,
+           solarized-light, catppuccin, monokai, gruvbox-dark, gruvbox-light,
+           rose-pine, rose-pine-dawn, rose-pine-moon, cappuccino
+        ═══════════════════════════════════════════════════════════════════ */
+
+        :root {
+            --font-mono: 'JetBrains Mono', 'VT323', 'Courier New', monospace;
+            --font-display: 'VT323', monospace;
+            --screen-width: 80ch;
+            --transition-speed: 0.3s;
+        }
+
+        /* HIGH CONTRAST (Default - Maximum readability) */
+        [data-theme="high-contrast"] {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-terminal: #000000;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-dim: #a0a0a0;
+            --accent-primary: #00ff00;
+            --accent-secondary: #ffff00;
+            --accent-alert: #ff6600;
+            --accent-error: #ff0000;
+            --accent-link: #00ffff;
+            --border-color: #ffffff;
+            --scanline-color: rgba(255, 255, 255, 0.03);
+            --cursor-color: #ffffff;
+            --selection-bg: #ffffff;
+            --selection-text: #000000;
+        }
+
+        /* FRAMER DARK */
+        [data-theme="framer-dark"] {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-terminal: #0d1117;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --text-dim: #6e7681;
+            --accent-primary: #58a6ff;
+            --accent-secondary: #f0883e;
+            --accent-alert: #d29922;
+            --accent-error: #f85149;
+            --accent-link: #58a6ff;
+            --border-color: #30363d;
+            --scanline-color: rgba(88, 166, 255, 0.02);
+            --cursor-color: #58a6ff;
+            --selection-bg: #58a6ff;
+            --selection-text: #0d1117;
+        }
+
+        /* FRAMER LIGHT */
+        [data-theme="framer-light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --bg-terminal: #ffffff;
+            --text-primary: #24292f;
+            --text-secondary: #57606a;
+            --text-dim: #8c959f;
+            --accent-primary: #0969da;
+            --accent-secondary: #bf8700;
+            --accent-alert: #9a6700;
+            --accent-error: #cf222e;
+            --accent-link: #0969da;
+            --border-color: #d0d7de;
+            --scanline-color: rgba(9, 105, 218, 0.02);
+            --cursor-color: #0969da;
+            --selection-bg: #0969da;
+            --selection-text: #ffffff;
+        }
+
+        /* SOLARIZED DARK */
+        [data-theme="solarized-dark"] {
+            --bg-primary: #002b36;
+            --bg-secondary: #073642;
+            --bg-terminal: #002b36;
+            --text-primary: #839496;
+            --text-secondary: #657b83;
+            --text-dim: #586e75;
+            --accent-primary: #859900;
+            --accent-secondary: #b58900;
+            --accent-alert: #cb4b16;
+            --accent-error: #dc322f;
+            --accent-link: #268bd2;
+            --border-color: #073642;
+            --scanline-color: rgba(133, 153, 0, 0.02);
+            --cursor-color: #859900;
+            --selection-bg: #073642;
+            --selection-text: #93a1a1;
+        }
+
+        /* SOLARIZED LIGHT */
+        [data-theme="solarized-light"] {
+            --bg-primary: #fdf6e3;
+            --bg-secondary: #eee8d5;
+            --bg-terminal: #fdf6e3;
+            --text-primary: #657b83;
+            --text-secondary: #839496;
+            --text-dim: #93a1a1;
+            --accent-primary: #859900;
+            --accent-secondary: #b58900;
+            --accent-alert: #cb4b16;
+            --accent-error: #dc322f;
+            --accent-link: #268bd2;
+            --border-color: #eee8d5;
+            --scanline-color: rgba(133, 153, 0, 0.02);
+            --cursor-color: #859900;
+            --selection-bg: #eee8d5;
+            --selection-text: #657b83;
+        }
+
+        /* CATPPUCCIN (Mocha) */
+        [data-theme="catppuccin"] {
+            --bg-primary: #1e1e2e;
+            --bg-secondary: #313244;
+            --bg-terminal: #1e1e2e;
+            --text-primary: #cdd6f4;
+            --text-secondary: #bac2de;
+            --text-dim: #6c7086;
+            --accent-primary: #a6e3a1;
+            --accent-secondary: #f9e2af;
+            --accent-alert: #fab387;
+            --accent-error: #f38ba8;
+            --accent-link: #89b4fa;
+            --border-color: #45475a;
+            --scanline-color: rgba(166, 227, 161, 0.02);
+            --cursor-color: #a6e3a1;
+            --selection-bg: #45475a;
+            --selection-text: #cdd6f4;
+        }
+
+        /* MONOKAI */
+        [data-theme="monokai"] {
+            --bg-primary: #272822;
+            --bg-secondary: #3e3d32;
+            --bg-terminal: #272822;
+            --text-primary: #f8f8f2;
+            --text-secondary: #cfcfc2;
+            --text-dim: #75715e;
+            --accent-primary: #a6e22e;
+            --accent-secondary: #e6db74;
+            --accent-alert: #fd971f;
+            --accent-error: #f92672;
+            --accent-link: #66d9ef;
+            --border-color: #49483e;
+            --scanline-color: rgba(166, 226, 46, 0.02);
+            --cursor-color: #a6e22e;
+            --selection-bg: #49483e;
+            --selection-text: #f8f8f2;
+        }
+
+        /* GRUVBOX DARK */
+        [data-theme="gruvbox-dark"] {
+            --bg-primary: #282828;
+            --bg-secondary: #3c3836;
+            --bg-terminal: #282828;
+            --text-primary: #ebdbb2;
+            --text-secondary: #d5c4a1;
+            --text-dim: #928374;
+            --accent-primary: #b8bb26;
+            --accent-secondary: #fabd2f;
+            --accent-alert: #fe8019;
+            --accent-error: #fb4934;
+            --accent-link: #83a598;
+            --border-color: #504945;
+            --scanline-color: rgba(184, 187, 38, 0.02);
+            --cursor-color: #b8bb26;
+            --selection-bg: #504945;
+            --selection-text: #ebdbb2;
+        }
+
+        /* GRUVBOX LIGHT */
+        [data-theme="gruvbox-light"] {
+            --bg-primary: #fbf1c7;
+            --bg-secondary: #ebdbb2;
+            --bg-terminal: #fbf1c7;
+            --text-primary: #3c3836;
+            --text-secondary: #504945;
+            --text-dim: #928374;
+            --accent-primary: #79740e;
+            --accent-secondary: #b57614;
+            --accent-alert: #af3a03;
+            --accent-error: #9d0006;
+            --accent-link: #076678;
+            --border-color: #d5c4a1;
+            --scanline-color: rgba(121, 116, 14, 0.02);
+            --cursor-color: #79740e;
+            --selection-bg: #d5c4a1;
+            --selection-text: #3c3836;
+        }
+
+        /* ROSE PINE */
+        [data-theme="rose-pine"] {
+            --bg-primary: #191724;
+            --bg-secondary: #1f1d2e;
+            --bg-terminal: #191724;
+            --text-primary: #e0def4;
+            --text-secondary: #908caa;
+            --text-dim: #6e6a86;
+            --accent-primary: #31748f;
+            --accent-secondary: #f6c177;
+            --accent-alert: #ea9a97;
+            --accent-error: #eb6f92;
+            --accent-link: #9ccfd8;
+            --border-color: #26233a;
+            --scanline-color: rgba(49, 116, 143, 0.02);
+            --cursor-color: #31748f;
+            --selection-bg: #26233a;
+            --selection-text: #e0def4;
+        }
+
+        /* ROSE PINE DAWN */
+        [data-theme="rose-pine-dawn"] {
+            --bg-primary: #faf4ed;
+            --bg-secondary: #fffaf3;
+            --bg-terminal: #faf4ed;
+            --text-primary: #575279;
+            --text-secondary: #797593;
+            --text-dim: #9893a5;
+            --accent-primary: #286983;
+            --accent-secondary: #ea9d34;
+            --accent-alert: #d7827e;
+            --accent-error: #b4637a;
+            --accent-link: #56949f;
+            --border-color: #f2e9de;
+            --scanline-color: rgba(40, 105, 131, 0.02);
+            --cursor-color: #286983;
+            --selection-bg: #f2e9de;
+            --selection-text: #575279;
+        }
+
+        /* ROSE PINE MOON */
+        [data-theme="rose-pine-moon"] {
+            --bg-primary: #232136;
+            --bg-secondary: #2a273f;
+            --bg-terminal: #232136;
+            --text-primary: #e0def4;
+            --text-secondary: #908caa;
+            --text-dim: #6e6a86;
+            --accent-primary: #3e8fb0;
+            --accent-secondary: #f6c177;
+            --accent-alert: #ea9a97;
+            --accent-error: #eb6f92;
+            --accent-link: #9ccfd8;
+            --border-color: #393552;
+            --scanline-color: rgba(62, 143, 176, 0.02);
+            --cursor-color: #3e8fb0;
+            --selection-bg: #393552;
+            --selection-text: #e0def4;
+        }
+
+        /* CAPPUCCINO */
+        [data-theme="cappuccino"] {
+            --bg-primary: #2d2418;
+            --bg-secondary: #3d3222;
+            --bg-terminal: #2d2418;
+            --text-primary: #e8dcc8;
+            --text-secondary: #c4b8a4;
+            --text-dim: #8a7e6a;
+            --accent-primary: #c9a86c;
+            --accent-secondary: #e8b84a;
+            --accent-alert: #d4813d;
+            --accent-error: #c75643;
+            --accent-link: #7eb8b0;
+            --border-color: #4d4232;
+            --scanline-color: rgba(201, 168, 108, 0.02);
+            --cursor-color: #c9a86c;
+            --selection-bg: #4d4232;
+            --selection-text: #e8dcc8;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           BASE STYLES
+        ═══════════════════════════════════════════════════════════════════ */
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        body {
-            background: #000;
-            color: #00ff00;
-            font-family: 'JetBrains Mono', 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.2;
-            overflow: hidden;
-            user-select: text;
+
+        html {
+            scroll-behavior: smooth;
         }
-        
-        .terminal {
-            width: 100vw;
-            height: 100vh;
-            background: #000;
-            border: 2px solid #333;
-            position: relative;
-            overflow: hidden;
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: background var(--transition-speed), color var(--transition-speed);
+        }
+
+        ::selection {
+            background: var(--selection-bg);
+            color: var(--selection-text);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           TERMINAL CONTAINER
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .terminal-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        
-        .scanline {
+
+        .terminal {
+            background: var(--bg-terminal);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        /* CRT Scanline Effect */
+        .terminal::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
-            background: rgba(0, 255, 0, 0.1);
-            animation: scanline 2s linear infinite;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                var(--scanline-color),
+                var(--scanline-color) 1px,
+                transparent 1px,
+                transparent 2px
+            );
             pointer-events: none;
             z-index: 10;
         }
-        
-        @keyframes scanline {
-            0% { top: 0; }
-            100% { top: 100%; }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           HEADER BAR
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .terminal-header {
+            background: var(--bg-secondary);
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-        
-        .controls {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 8px;
-            border-bottom: 1px solid #00ff00;
+
+        .terminal-title {
+            font-family: var(--font-display);
+            font-size: 18px;
+            color: var(--accent-primary);
+            letter-spacing: 2px;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .window-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-close { background: var(--accent-error); }
+        .btn-minimize { background: var(--accent-secondary); }
+        .btn-maximize { background: var(--accent-primary); }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           THEME SELECTOR
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .theme-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-selector label {
+            color: var(--text-dim);
+            font-size: 12px;
+        }
+
+        .theme-selector select {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 5px 10px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .theme-selector select:focus {
+            outline: 1px solid var(--accent-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           BOOT SCREEN
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .boot-screen {
+            padding: 20px;
+            min-height: 400px;
+            font-family: var(--font-display);
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .boot-line {
+            opacity: 0;
+            animation: bootFadeIn 0.1s forwards;
+        }
+
+        @keyframes bootFadeIn {
+            to { opacity: 1; }
+        }
+
+        .boot-ok { color: var(--accent-primary); }
+        .boot-warn { color: var(--accent-alert); }
+        .boot-error { color: var(--accent-error); }
+        .boot-info { color: var(--accent-link); }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           MAIN CONTENT AREA
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .terminal-content {
+            padding: 20px;
+            display: none;
+        }
+
+        .terminal-content.active {
+            display: block;
+        }
+
+        .section-header {
+            color: var(--accent-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .separator {
+            color: var(--border-color);
+            margin: 15px 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           NAVIGATION MENU
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .nav-menu {
+            background: var(--bg-secondary);
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .nav-menu.active {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 5px;
-            z-index: 100;
+            justify-content: center;
         }
-        
-        .controls button {
-            background: #000;
-            color: #00ff00;
-            border: 1px solid #00ff00;
-            padding: 6px 12px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 10px;
-            white-space: nowrap;
-        }
-        
-        .controls button:hover {
-            background: #00ff00;
-            color: #000;
-        }
-        
-        .screen {
-            flex: 1;
-            padding: 20px;
-            white-space: pre-wrap;
+
+        .nav-btn {
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            font-family: var(--font-mono);
             font-size: 12px;
-            line-height: 1.1;
-            overflow-y: auto;
-            background: rgba(0, 20, 0, 0.8);
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 4px;
         }
-        
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            border-color: var(--accent-primary);
+        }
+
+        .nav-btn .type {
+            color: var(--text-dim);
+            font-size: 10px;
+        }
+
+        .nav-btn:hover .type,
+        .nav-btn.active .type {
+            color: var(--bg-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           DIRECTORY LISTING (DOS Style)
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .dir-listing {
+            margin: 20px 0;
+        }
+
+        .dir-header {
+            color: var(--text-dim);
+            margin-bottom: 10px;
+        }
+
+        .dir-item {
+            display: flex;
+            padding: 5px 0;
+            cursor: pointer;
+            transition: background 0.1s;
+        }
+
+        .dir-item:hover {
+            background: var(--bg-secondary);
+        }
+
+        .dir-item.selected {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        .dir-type {
+            width: 80px;
+            color: var(--accent-link);
+        }
+
+        .dir-name {
+            width: 200px;
+            color: var(--text-primary);
+        }
+
+        .dir-desc {
+            flex: 1;
+            color: var(--text-dim);
+        }
+
+        .dir-item.selected .dir-type,
+        .dir-item.selected .dir-name,
+        .dir-item.selected .dir-desc {
+            color: var(--bg-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           STATUS BAR
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .status-bar {
+            background: var(--bg-secondary);
+            padding: 10px 15px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .status-item {
+            color: var(--text-dim);
+        }
+
+        .status-value {
+            color: var(--accent-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           PROMPT LINE
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .prompt-line {
+            padding: 15px 20px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .prompt {
+            color: var(--accent-primary);
+            margin-right: 10px;
+        }
+
         .cursor {
             display: inline-block;
-            width: 8px;
-            height: 14px;
-            background: #00ff00;
+            width: 10px;
+            height: 18px;
+            background: var(--cursor-color);
             animation: blink 1s infinite;
         }
-        
+
         @keyframes blink {
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0; }
         }
-        
-        .header {
-            color: #ffff00;
-            text-shadow: 0 0 5px #ffff00;
+
+        /* ═══════════════════════════════════════════════════════════════════
+           CONTENT SECTIONS
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .content-section {
+            display: none;
         }
-        
-        .status-ok {
-            color: #00ff00;
+
+        .content-section.active {
+            display: block;
         }
-        
-        .status-error {
-            color: #ff0000;
+
+        .ascii-header {
+            color: var(--accent-primary);
+            font-size: 12px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            overflow-x: auto;
         }
-        
-        .status-warning {
-            color: #ffaa00;
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
         }
-        
-        .boot-screen {
-            color: #00aaff;
+
+        .info-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 4px;
         }
-        
-        .loading {
-            color: #ffaa00;
+
+        .info-card h3 {
+            color: var(--accent-secondary);
+            margin-bottom: 10px;
+            font-size: 14px;
         }
-        
-        .achievement {
-            color: #ff00ff;
+
+        .info-card p {
+            color: var(--text-secondary);
+            font-size: 13px;
         }
-        
-        /* Mobile optimizations */
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dotted var(--border-color);
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+        }
+
+        .stat-value {
+            color: var(--accent-primary);
+        }
+
+        .link {
+            color: var(--accent-link);
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           RESPONSIVE / MOBILE
+        ═══════════════════════════════════════════════════════════════════ */
+
         @media (max-width: 768px) {
-            .terminal {
-                border: none;
+            .terminal-wrapper {
+                padding: 10px;
             }
-            
-            .controls {
-                padding: 6px;
-                gap: 3px;
+
+            .terminal-header {
+                flex-direction: column;
+                align-items: flex-start;
             }
-            
-            .controls button {
-                padding: 8px 10px;
-                font-size: 9px;
-                flex: 1 1 auto;
-                min-width: 80px;
+
+            .theme-selector {
+                width: 100%;
             }
-            
-            .screen {
+
+            .theme-selector select {
+                flex: 1;
+            }
+
+            .boot-screen,
+            .terminal-content {
                 padding: 15px;
-                font-size: 10px;
+                font-size: 12px;
+            }
+
+            .ascii-header {
+                font-size: 8px;
+            }
+
+            .dir-item {
+                flex-direction: column;
+                padding: 10px 5px;
+            }
+
+            .dir-type,
+            .dir-name {
+                width: 100%;
+            }
+
+            .nav-btn {
+                flex: 1;
+                min-width: 100px;
+                text-align: center;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-bar {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           UTILITIES
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .hidden { display: none !important; }
+        .text-primary { color: var(--accent-primary); }
+        .text-secondary { color: var(--accent-secondary); }
+        .text-alert { color: var(--accent-alert); }
+        .text-error { color: var(--accent-error); }
+        .text-link { color: var(--accent-link); }
+        .text-dim { color: var(--text-dim); }
+
+        .mb-1 { margin-bottom: 10px; }
+        .mb-2 { margin-bottom: 20px; }
+        .mt-1 { margin-top: 10px; }
+        .mt-2 { margin-top: 20px; }
     </style>
 </head>
 <body>
-    <div class="terminal">
-        <div class="scanline"></div>
-        <div class="controls">
-            <button onclick="showDashboard()">Dashboard</button>
-            <button onclick="showStats()">My Stats</button>
-            <button onclick="showChangelog()">Changelog</button>
-            <button onclick="showHallOfFame()">Hall of Fame</button>
-            <button onclick="showLeaderboard()">Leaderboard</button>
-            <button onclick="toggleAutoCycle()">Auto: <span id="autoStatus">ON</span></button>
+    <div class="terminal-wrapper">
+        <div class="terminal">
+            <!-- Header Bar -->
+            <div class="terminal-header">
+                <div class="window-controls">
+                    <span class="window-btn btn-close"></span>
+                    <span class="window-btn btn-minimize"></span>
+                    <span class="window-btn btn-maximize"></span>
+                </div>
+                <div class="terminal-title">BASEMENT OS v2.1</div>
+                <div class="theme-selector">
+                    <label for="theme-select">THEME:</label>
+                    <select id="theme-select" onchange="setTheme(this.value)">
+                        <option value="high-contrast">High Contrast</option>
+                        <option value="framer-dark">Framer Dark</option>
+                        <option value="framer-light">Framer Light</option>
+                        <option value="solarized-dark">Solarized Dark</option>
+                        <option value="solarized-light">Solarized Light</option>
+                        <option value="catppuccin">Catppuccin</option>
+                        <option value="monokai">Monokai</option>
+                        <option value="gruvbox-dark">Gruvbox Dark</option>
+                        <option value="gruvbox-light">Gruvbox Light</option>
+                        <option value="rose-pine">Rose Pine</option>
+                        <option value="rose-pine-dawn">Rose Pine Dawn</option>
+                        <option value="rose-pine-moon">Rose Pine Moon</option>
+                        <option value="cappuccino">Cappuccino</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Navigation Menu (hidden during boot) -->
+            <nav class="nav-menu" id="nav-menu">
+                <button class="nav-btn active" onclick="showSection('dashboard')">
+                    <span class="type">&lt;SYS&gt;</span> DASHBOARD
+                </button>
+                <button class="nav-btn" onclick="showSection('about')">
+                    <span class="type">&lt;DIR&gt;</span> ABOUT
+                </button>
+                <button class="nav-btn" onclick="showSection('features')">
+                    <span class="type">&lt;EXE&gt;</span> FEATURES
+                </button>
+                <button class="nav-btn" onclick="showSection('changelog')">
+                    <span class="type">&lt;LOG&gt;</span> CHANGELOG
+                </button>
+                <button class="nav-btn" onclick="showSection('links')">
+                    <span class="type">&lt;NET&gt;</span> LINKS
+                </button>
+            </nav>
+
+            <!-- Boot Screen -->
+            <div class="boot-screen" id="boot-screen"></div>
+
+            <!-- Main Content -->
+            <div class="terminal-content" id="main-content">
+
+                <!-- Dashboard Section -->
+                <div class="content-section active" id="section-dashboard">
+<pre class="ascii-header">
+ ██████╗  █████╗ ███████╗███████╗███╗   ███╗███████╗███╗   ██╗████████╗
+ ██╔══██╗██╔══██╗██╔════╝██╔════╝████╗ ████║██╔════╝████╗  ██║╚══██╔══╝
+ ██████╔╝███████║███████╗█████╗  ██╔████╔██║█████╗  ██╔██╗ ██║   ██║
+ ██╔══██╗██╔══██║╚════██║██╔══╝  ██║╚██╔╝██║██╔══╝  ██║╚██╗██║   ██║
+ ██████╔╝██║  ██║███████║███████╗██║ ╚═╝ ██║███████╗██║ ╚████║   ██║
+ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝
+                           ██████╗ ███████╗
+                          ██╔═══██╗██╔════╝
+                          ██║   ██║███████╗
+                          ██║   ██║╚════██║
+                          ╚██████╔╝███████║
+                           ╚═════╝ ╚══════╝  v2.1
+</pre>
+                    <p class="text-secondary mb-2">Welcome to the Lower Level 2.0 Web Terminal</p>
+
+                    <div class="separator">════════════════════════════════════════════════════════════════════</div>
+
+                    <h2 class="section-header">SYSTEM STATUS</h2>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>[ VRChat World ]</h3>
+                            <div class="stat-row">
+                                <span class="stat-label">Status</span>
+                                <span class="stat-value">ONLINE</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Platform</span>
+                                <span class="stat-value">PC VR + Quest</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Version</span>
+                                <span class="stat-value">2.1.0</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>[ Achievement System ]</h3>
+                            <div class="stat-row">
+                                <span class="stat-label">Total</span>
+                                <span class="stat-value">19 Achievements</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Gamerscore</span>
+                                <span class="stat-value">420G</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Storage</span>
+                                <span class="stat-value">PlayerData API</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>[ Weather Integration ]</h3>
+                            <div class="stat-row">
+                                <span class="stat-label">API</span>
+                                <span class="stat-value">GitHub Pages</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Location</span>
+                                <span class="stat-value">Fond du Lac, WI</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Sync</span>
+                                <span class="stat-value">Real-time</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Section -->
+                <div class="content-section" id="section-about">
+                    <h2 class="section-header">C:\BASEMENT\ABOUT.TXT</h2>
+
+                    <p class="mb-2">
+                        <span class="text-primary">Lower Level 2.0</span> is a nostalgic 2000s basement gaming
+                        VRChat world featuring an interactive DOS terminal system called
+                        <span class="text-secondary">Basement OS</span>.
+                    </p>
+
+                    <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+                    <h3 class="text-secondary mb-1">THE EXPERIENCE</h3>
+                    <p class="text-dim mb-2">
+                        Step into a virtual basement straight from the early 2000s. Complete with
+                        wood-paneled walls, vintage gaming setups, and an old CRT monitor running
+                        Basement OS - your gateway to achievements, stats, and basement lore.
+                    </p>
+
+                    <h3 class="text-secondary mb-1">TECH STACK</h3>
+                    <div class="info-card">
+                        <div class="stat-row">
+                            <span class="stat-label">Engine</span>
+                            <span class="stat-value">Unity 2022.3.22f1</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">SDK</span>
+                            <span class="stat-value">VRChat SDK 3.8.2+</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Scripting</span>
+                            <span class="stat-value">UdonSharp</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">UI</span>
+                            <span class="stat-value">TextMeshPro</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Section -->
+                <div class="content-section" id="section-features">
+                    <h2 class="section-header">C:\BASEMENT\FEATURES\DIR</h2>
+
+                    <div class="dir-listing">
+                        <div class="dir-header">
+                            Directory of C:\BASEMENT\FEATURES
+                        </div>
+                        <div class="dir-item">
+                            <span class="dir-type">&lt;SYS&gt;</span>
+                            <span class="dir-name">BASEMENT_OS</span>
+                            <span class="dir-desc">Interactive 80x24 DOS terminal with menu navigation</span>
+                        </div>
+                        <div class="dir-item">
+                            <span class="dir-type">&lt;ACH&gt;</span>
+                            <span class="dir-name">XBOX_ACHIEVEMENTS</span>
+                            <span class="dir-desc">19 achievements (420G) with Xbox 360-style notifications</span>
+                        </div>
+                        <div class="dir-item">
+                            <span class="dir-type">&lt;NET&gt;</span>
+                            <span class="dir-name">WEATHER_API</span>
+                            <span class="dir-desc">Real-time weather with dynamic rain shaders</span>
+                        </div>
+                        <div class="dir-item">
+                            <span class="dir-type">&lt;DAT&gt;</span>
+                            <span class="dir-name">PLAYER_DATA</span>
+                            <span class="dir-desc">Persistent stats via VRChat PlayerData API</span>
+                        </div>
+                        <div class="dir-item">
+                            <span class="dir-type">&lt;OPT&gt;</span>
+                            <span class="dir-name">QUEST_SUPPORT</span>
+                            <span class="dir-desc">Cross-platform optimization for Meta Quest</span>
+                        </div>
+                        <div class="dir-item">
+                            <span class="dir-type">&lt;HUB&gt;</span>
+                            <span class="dir-name">EVENT_SYSTEM</span>
+                            <span class="dir-desc">Hub-spoke architecture for network sync</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Changelog Section -->
+                <div class="content-section" id="section-changelog">
+                    <h2 class="section-header">C:\BASEMENT\CHANGELOG.LOG</h2>
+
+                    <div class="mb-2">
+                        <p class="text-secondary">[2025-12-07] v2.1 - Basement OS Kernel</p>
+                        <ul class="text-dim" style="list-style: none; padding-left: 20px;">
+                            <li>+ Implemented closed-loop autonomous agent system</li>
+                            <li>+ Hub-spoke architecture (DT_Core -> Apps)</li>
+                            <li>+ Modular app system (/BIN/, /LIB/, /CORE/)</li>
+                            <li>+ Theme library with DOS phosphor aesthetic</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-2">
+                        <p class="text-secondary">[2025-11-15] v2.0 - Terminal Menu System</p>
+                        <ul class="text-dim" style="list-style: none; padding-left: 20px;">
+                            <li>+ Interactive menu navigation</li>
+                            <li>+ Weather module extraction</li>
+                            <li>+ Player immobilization during interaction</li>
+                            <li>+ Heavy rain achievement trigger</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-2">
+                        <p class="text-secondary">[2025-10-20] v1.5 - Achievement Overhaul</p>
+                        <ul class="text-dim" style="list-style: none; padding-left: 20px;">
+                            <li>+ FIFO notification queue</li>
+                            <li>+ Role-based notification icons</li>
+                            <li>+ PlayerData persistence</li>
+                            <li>+ Network-synced achievements</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Links Section -->
+                <div class="content-section" id="section-links">
+                    <h2 class="section-header">C:\BASEMENT\LINKS.NET</h2>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>[ GitHub Repository ]</h3>
+                            <p>
+                                <a href="https://github.com/CloudStrife7/LL2PCVR" class="link" target="_blank">
+                                    github.com/CloudStrife7/LL2PCVR
+                                </a>
+                            </p>
+                            <p class="text-dim mt-1">Source code and documentation</p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>[ VRChat World ]</h3>
+                            <p>
+                                <a href="https://vrchat.com/home/world/wrld_lower-level-2" class="link" target="_blank">
+                                    Lower Level 2.0
+                                </a>
+                            </p>
+                            <p class="text-dim mt-1">Visit the basement in VR</p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>[ Weather API ]</h3>
+                            <p>
+                                <a href="https://cloudstrife7.github.io/DOS-Terminal/api/weather/current.json" class="link" target="_blank">
+                                    Weather Endpoint
+                                </a>
+                            </p>
+                            <p class="text-dim mt-1">Real-time weather data feed</p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>[ Documentation ]</h3>
+                            <p>
+                                <a href="https://github.com/CloudStrife7/LL2PCVR/blob/main/README.md" class="link" target="_blank">
+                                    Project README
+                                </a>
+                            </p>
+                            <p class="text-dim mt-1">Setup and architecture guide</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prompt Line -->
+            <div class="prompt-line">
+                <span class="prompt">C:\BASEMENT&gt;</span>
+                <span class="cursor"></span>
+            </div>
+
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <span class="status-item">
+                    MEM: <span class="status-value">640K OK</span>
+                </span>
+                <span class="status-item">
+                    TIME: <span class="status-value" id="clock">00:00:00</span>
+                </span>
+                <span class="status-item">
+                    VER: <span class="status-value">BASEMENT OS v2.1</span>
+                </span>
+            </div>
         </div>
-        <div class="screen" id="screen"></div>
+
+        <!-- Footer -->
+        <footer style="text-align: center; padding: 20px; color: var(--text-dim); font-size: 12px;">
+            <p>&copy; 2025 Lower Level Devs | <a href="https://github.com/CloudStrife7" class="link">CloudStrife7</a></p>
+        </footer>
     </div>
 
     <script>
-        // Configuration - Update these URLs to match your GitHub Pages
-        const CONFIG = {
-            githubDataUrl: 'https://cloudstrife7.github.io/basement-os-mobile/current_activity.json',
-            githubHistoryUrl: 'https://cloudstrife7.github.io/basement-os-mobile/activity_log.json',
-            weatherApiUrl: 'https://cloudstrife7.github.io/DOS-Terminal/api/weather/current.json',
-            updateInterval: 10000, // 10 seconds
-            autoCycleInterval: 10000, // 10 seconds per screen
-            friendsList: ['BestBuddy', 'VRChatPal', 'RegularHangout'] // Your friends list
-        };
+        // ═══════════════════════════════════════════════════════════════════
+        // THEME ENGINE
+        // ═══════════════════════════════════════════════════════════════════
 
-        // Terminal state
-        let currentScreen = 0;
-        let autoCycle = true;
-        let bootComplete = false;
-        let cursorVisible = true;
-        let currentData = null;
-        let weatherData = { temperature: '74°F', condition: 'Clear', online: false };
-        
-        // Screen names matching your VRChat controller
-        const screens = ['Dashboard', 'My Stats', 'Changelog', 'Hall of Fame', 'Community Stats', 'Leaderboard'];
+        const THEMES = [
+            'high-contrast', 'framer-dark', 'framer-light',
+            'solarized-dark', 'solarized-light', 'catppuccin',
+            'monokai', 'gruvbox-dark', 'gruvbox-light',
+            'rose-pine', 'rose-pine-dawn', 'rose-pine-moon', 'cappuccino'
+        ];
 
-        // Initialize terminal
-        window.onload = function() {
-            console.log('🖥️ Basement OS Web Terminal v27 starting...');
-            console.log('🔧 Debug mode enabled');
-            
-            // DEBUG: Skip boot sequence for now
-            bootComplete = true;
-            showDashboard();
-            startCursorBlink();
-            fetchData();
-            
-            // Auto-refresh data every 10 seconds
-            setInterval(fetchData, CONFIG.updateInterval);
-            
-            // Start auto-cycle
-            if (autoCycle) {
-                startAutoCycle();
-            }
-        };
+        function setTheme(theme) {
+            if (!THEMES.includes(theme)) theme = 'high-contrast';
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('basement-os-theme', theme);
+            document.getElementById('theme-select').value = theme;
+        }
 
-        function startBootSequence() {
-            const screen = document.getElementById('screen');
-            
-            // Boot sequence matching your VRChat version
-            const bootText = `════════════════════════════════════════════════════════════════════
+        function loadSavedTheme() {
+            const saved = localStorage.getItem('basement-os-theme') || 'high-contrast';
+            setTheme(saved);
+        }
 
-WELCOME TO BASEMENT OS v27 (Web Terminal)
-© 2025 Lower Level Devs
-════════════════════════════════════════════════════════════════════
+        // ═══════════════════════════════════════════════════════════════════
+        // BOOT SEQUENCE
+        // ═══════════════════════════════════════════════════════════════════
 
-Loading System Components…
-Initializing Web Interface… OK
-Loading VRChat Data Bridge… OK
-Downloading Achievements… OK
-Loading Weather API… OK
-Connecting to GitHub Pages… OK
-Loading Supporter Database… OK
-Syncing Player Data… OK
-Syncing Real-time Updates… OK
+        const BOOT_SEQUENCE = [
+            { text: '════════════════════════════════════════════════════════════════════', delay: 0 },
+            { text: '', delay: 50 },
+            { text: 'BASEMENT OS v2.1 (Web Terminal)', delay: 100, class: 'text-secondary' },
+            { text: '(C) 2025 Lower Level Devs', delay: 150, class: 'text-dim' },
+            { text: '', delay: 200 },
+            { text: '════════════════════════════════════════════════════════════════════', delay: 250 },
+            { text: '', delay: 300 },
+            { text: 'POST: Power-On Self Test...', delay: 400 },
+            { text: '  Checking BIOS.................... OK', delay: 600, class: 'boot-ok' },
+            { text: '  Memory Test: 640K................ OK', delay: 800, class: 'boot-ok' },
+            { text: '  Keyboard Controller.............. OK', delay: 1000, class: 'boot-ok' },
+            { text: '  Display Adapter.................. OK', delay: 1200, class: 'boot-ok' },
+            { text: '', delay: 1300 },
+            { text: 'Loading System Components...', delay: 1500 },
+            { text: '  Initializing Web Interface....... OK', delay: 1700, class: 'boot-ok' },
+            { text: '  Loading Theme Engine............. OK', delay: 1900, class: 'boot-ok' },
+            { text: '  Connecting to GitHub Pages....... OK', delay: 2100, class: 'boot-ok' },
+            { text: '  Loading Achievement Database..... OK', delay: 2300, class: 'boot-ok' },
+            { text: '  Syncing Weather Data............. OK', delay: 2500, class: 'boot-ok' },
+            { text: '  Mounting Virtual Drives.......... OK', delay: 2700, class: 'boot-ok' },
+            { text: '', delay: 2800 },
+            { text: '════════════════════════════════════════════════════════════════════', delay: 2900 },
+            { text: 'Boot sequence complete. Starting BASEMENT OS...', delay: 3100, class: 'boot-info' },
+            { text: '════════════════════════════════════════════════════════════════════', delay: 3300 },
+        ];
 
-════════════════════════════════════════════════════════════════════
-Loading complete. Starting Basement OS…
-════════════════════════════════════════════════════════════════════`;
+        let bootIndex = 0;
 
-            typeText(bootText, 30, () => {
+        function runBootSequence() {
+            const bootScreen = document.getElementById('boot-screen');
+
+            if (bootIndex < BOOT_SEQUENCE.length) {
+                const item = BOOT_SEQUENCE[bootIndex];
+                const line = document.createElement('div');
+                line.className = 'boot-line';
+                if (item.class) line.classList.add(item.class);
+                line.textContent = item.text;
+                line.style.animationDelay = '0s';
+                bootScreen.appendChild(line);
+                bootIndex++;
+
+                const nextDelay = bootIndex < BOOT_SEQUENCE.length
+                    ? BOOT_SEQUENCE[bootIndex].delay - item.delay
+                    : 500;
+                setTimeout(runBootSequence, nextDelay);
+            } else {
+                // Boot complete - show main content
                 setTimeout(() => {
-                    bootComplete = true;
-                    showDashboard();
-                    if (autoCycle) startAutoCycle();
-                }, 1000);
+                    bootScreen.style.display = 'none';
+                    document.getElementById('main-content').classList.add('active');
+                    document.getElementById('nav-menu').classList.add('active');
+                }, 800);
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // NAVIGATION
+        // ═══════════════════════════════════════════════════════════════════
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(s => {
+                s.classList.remove('active');
             });
-        }
 
-        function typeText(text, speed, callback) {
-            const screen = document.getElementById('screen');
-            screen.innerHTML = '';
-            let i = 0;
-            
-            function type() {
-                if (i < text.length) {
-                    screen.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                } else if (callback) {
-                    callback();
-                }
+            // Show selected section
+            const section = document.getElementById('section-' + sectionId);
+            if (section) {
+                section.classList.add('active');
             }
-            type();
+
+            // Update nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.closest('.nav-btn').classList.add('active');
         }
 
-        function showDashboard() {
-            console.log('📊 Showing dashboard');
-            
+        // ═══════════════════════════════════════════════════════════════════
+        // CLOCK
+        // ═══════════════════════════════════════════════════════════════════
+
+        function updateClock() {
             const now = new Date();
-            const time = now.toLocaleTimeString('en-US', {hour12: true});
-            const date = now.toLocaleDateString('en-US', {month: '2-digit', day: '2-digit', year: 'numeric'});
-            
-            // Get real data from your VRChat world
-            const playerCount = currentData ? currentData.player_count || 1 : 1;
-            const uptime = formatUptime(performance.now() / 1000);
-            const weatherStatus = getWeatherStatus();
-            const connectedUsers = getConnectedUsers();
-            
-            const content = `<span class="header">${time} | ▒▓█ BASEMENT OS v27 (WEB) █▓▒░ | ${date} | ${weatherStatus}</span>
-
-═════════════════════════════════════════════════════════════════
-Welcome to the Lower Level Web Terminal!
-Your basement empire: ${playerCount} friends online, Live VRChat sync active
-
-═════════════════════════════════════════════════════════════════
-SYSTEM STATUS
-═════════════════════════════════════════════════════════════════
-GitHub Integration      [<span class="status-ok">SYNCED</span>]
-Weather                 [<span class="${weatherData.online ? 'status-ok' : 'status-error'}">${weatherData.online ? 'ONLINE' : 'OFFLINE'}</span>]
-VRChat Bridge           [<span class="status-ok">ACTIVE</span>]
-Web Terminal Version      [<span class="status-ok">v27.0</span>]
-Data Persistence          [<span class="status-ok">ONLINE</span>]
-
-Uptime: ${uptime}
-Online: ${connectedUsers}
-═════════════════════════════════════════════════════════════════
-PROJECT STATUS
-═════════════════════════════════════════════════════════════════
-Current Project: Web Terminal Integration
-Progress: ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 85%
-Real-time VRChat sync: <span class="status-ok">ACTIVE</span>
-═════════════════════════════════════════════════════════════════
-C:\\BASEMENT> <span class="cursor">█</span>`;
-
-            updateScreen(content);
-            currentScreen = 0;
+            const time = now.toLocaleTimeString('en-US', { hour12: false });
+            document.getElementById('clock').textContent = time;
         }
 
-        function showStats() {
-            console.log('📊 Showing stats');
-            
-            const content = `═══════════════════════════════════════════════════════════════════════════════
+        // ═══════════════════════════════════════════════════════════════════
+        // KEYBOARD NAVIGATION
+        // ═══════════════════════════════════════════════════════════════════
 
-🎮 MY BASEMENT STATS (WEB) 🎮
-═══════════════════════════════════════════════════════════════════════════════
-Player: Web Terminal User
-Time: ${new Date().toLocaleTimeString()}
+        const SECTIONS = ['dashboard', 'about', 'features', 'changelog', 'links'];
+        let currentSectionIndex = 0;
 
-📊 WEB TERMINAL STATS:
-Session Time: ${formatUptime(performance.now() / 1000)}
-Page Refreshes: ${getSessionData('refreshCount') || 1}
-Screens Viewed: ${getSessionData('screensViewed') || 1}
-Auto-Cycle: ${autoCycle ? 'Enabled' : 'Disabled'}
-Data Source: GitHub Pages + VRChat Bridge
+        document.addEventListener('keydown', (e) => {
+            // Only handle after boot complete
+            if (!document.getElementById('main-content').classList.contains('active')) return;
 
-🌐 CONNECTION STATUS:
-VRChat Data: ${currentData ? '✅ Connected' : '❌ Offline'}
-Weather API: ${weatherData.online ? '✅ Online' : '❌ Offline'}
-Real-time Updates: ✅ Active
-
-💻 BROWSER INFO:
-User Agent: ${navigator.userAgent.substring(0, 60)}…
-Screen: ${screen.width}x${screen.height}
-Language: ${navigator.language}
-
-═══════════════════════════════════════════════════════════════════════════════
-Web terminal synced with VRChat basement every ${CONFIG.updateInterval/1000} seconds
-Type commands or use controls to navigate
-
-C:\\BASEMENT> <span class="cursor">█</span>`;
-
-            updateScreen(content);
-            currentScreen = 1;
-            incrementSessionData('screensViewed');
-        }
-
-        function showChangelog() {
-            console.log('📝 Showing changelog');
-            
-            const content = `═══════════════════════════════════════════════════════════════════════════════
-
-# BASEMENT PROJECT - CHANGELOG v27 (WEB TERMINAL)
-
-═══════════════════════════════════════════════════════════════════════════════
-
-[2025-07-15] v27 - Web Terminal Launch + Live weather API
-🆕 <span class="achievement">NEW: Web-based DOS terminal interface</span>
-🆕 Real-time VRChat data synchronization via GitHub Pages
-🆕 Live weather integration matching VRChat world
-🆕 Auto-cycling screens with manual controls
-🆕 Responsive design for desktop and mobile
-🆕 Browser persistence for session tracking
-🆕 Connected to WeatherAPI via GitHub Pages endpoint
-🆕 Real-time Fond du Lac weather data in dashboard header
-🆕 Automatic JSON parsing with fallback to cached data
-🆕 Error handling with retry logic for network issues
-
-[2025-07-14] v25 - MAJOR UPDATE: First-visit detection & new dashboard
-🆕 Added first-visit detection with PlayerData tracking
-🆕 Created condensed ASCII logo for 80-character terminal width  
-🆕 Built new dashboard layout with real-time system status
-🆕 Added POST screen with real component verification
-🆕 Added login screen and profile creation sequence
-
-[2025-07-13] v24 - Personal stats integration
-[2025-07-13] v23 - Emoji logging for easier troubleshooting  
-[2025-07-13] v22 - Auto-cycle starting with personal stats
-
-<span class="header">🌐 WEB TERMINAL FEATURES:</span>
-• Real-time sync with VRChat basement
-• Mobile-friendly responsive design
-• Auto-cycling screens (10s intervals)
-• Manual navigation controls
-• Live weather data from API
-• Session persistence
-• GitHub Pages integration
-═══════════════════════════════════════════════════════════════════════════════
-
-C:\\BASEMENT> <span class="cursor">█</span>`;
-
-            updateScreen(content);
-            currentScreen = 2;
-            incrementSessionData('screensViewed');
-        }
-
-        function showHallOfFame() {
-            console.log('🏆 Showing hall of fame');
-            
-            const content = `═══════════════════════════════════════════════════════════════════════════════
-                   <span class="header">SUPPORTER HALL OF FAME</span>
-
-═══════════════════════════════════════════════════════════════════════════════
-
-<span class="achievement">🏆 Top VRChat Basement Contributors:</span>
-1st    <span class="status-ok">ALEX</span>……….$500    BAS
-2nd    <span class="status-ok">SARAH</span>………$350    SNK  
-3rd    <span class="status-ok">MIKE</span>……….$200    HTB
-4th    <span class="status-ok">JENNY</span>………$150    FAN
-
-<span class="achievement">🌐 Web Terminal Development:</span>
-1st    <span class="status-ok">CloudStrife7</span>……………DEV
-2nd    <span class="status-ok">Community</span>………………TST
-3rd    <span class="status-ok">Beta Testers</span>…………BTA
-
-Legend:
-BAS = Basement Completion    DEV = Web Development
-SNK = Snake Game Funding     TST = Testing & Feedback  
-HTB = Hot Tub Features       BTA = Beta Testing
-FAN = Fan Installation
-
-<span class="header">🎮 VRChat ↔ Web Bridge Status:</span>
-Real-time Data: ${currentData ? '✅ Synced' : '❌ Offline'}
-Last Update: ${currentData ? new Date(currentData.timestamp || Date.now()).toLocaleTimeString() : 'Never'}
-
-Thank you to all supporters and testers!
-═══════════════════════════════════════════════════════════════════════════════
-
-C:\\BASEMENT> <span class="cursor">█</span>`;
-
-            updateScreen(content);
-            currentScreen = 3;
-            incrementSessionData('screensViewed');
-        }
-
-        function showLeaderboard() {
-            console.log('🥇 Showing leaderboard');
-            
-            const content = `═══════════════════════════════════════════════════════════════════════════════
-
-<span class="header">🥇 ACHIEVEMENT LEADERBOARD 🥇</span>
-═══════════════════════════════════════════════════════════════════════════════
-
-<span class="achievement">🏆 VRChat Basement Achievements:</span>
-
-1. LEXX      47 achievements    2850 points
-2. NEON      34 achievements    2340 points
-3. RETRO     28 achievements    1890 points
-4. CYBER     22 achievements    1650 points
-5. BASS      19 achievements    1420 points
-
-<span class="achievement">🌐 Web Terminal Usage:</span>
-
-1. Daily Users:     ${Math.floor(Math.random() * 50) + 20}
-2. Total Sessions:  ${Math.floor(Math.random() * 500) + 200}
-3. Screen Views:    ${Math.floor(Math.random() * 2000) + 1000}
-4. Avg Session:     ${Math.floor(Math.random() * 10) + 5} min
-
-<span class="achievement">🎮 Live VRChat Stats:</span>
-Current Players: ${currentData ? currentData.player_count || 1 : 1}
-Friends Online: ${currentData ? currentData.friends_online || 0 : 0}
-Total Visits: ${currentData ? currentData.total_visits || 0 : 0}
-
-Data refreshes every ${CONFIG.updateInterval/1000} seconds from VRChat world
-Web terminal provides 24/7 access to basement stats!
-
-═══════════════════════════════════════════════════════════════════════════════
-
-C:\\BASEMENT> <span class="cursor">█</span>`;
-
-            updateScreen(content);
-            currentScreen = 4;
-            incrementSessionData('screensViewed');
-        }
-
-        function updateScreen(content) {
-            document.getElementById('screen').innerHTML = content;
-        }
-
-        function startCursorBlink() {
-            setInterval(() => {
-                cursorVisible = !cursorVisible;
-                const cursors = document.querySelectorAll('.cursor');
-                cursors.forEach(cursor => {
-                    cursor.style.opacity = cursorVisible ? '1' : '0';
-                });
-            }, 500);
-        }
-
-        function startAutoCycle() {
-            if (!autoCycle) return;
-            
-            setTimeout(() => {
-                if (autoCycle && bootComplete) {
-                    currentScreen = (currentScreen + 1) % 5;
-                    switch(currentScreen) {
-                        case 0: showDashboard(); break;
-                        case 1: showStats(); break;
-                        case 2: showChangelog(); break;
-                        case 3: showHallOfFame(); break;
-                        case 4: showLeaderboard(); break;
-                    }
-                    startAutoCycle();
-                }
-            }, CONFIG.autoCycleInterval);
-        }
-
-        function toggleAutoCycle() {
-            autoCycle = !autoCycle;
-            document.getElementById('autoStatus').textContent = autoCycle ? 'ON' : 'OFF';
-            if (autoCycle) startAutoCycle();
-        }
-
-        // Data fetching functions
-        async function fetchData() {
-            try {
-                // Fetch current activity from your VRChat webhook
-                const response = await fetch(CONFIG.githubDataUrl);
-                const data = await response.json();
-                currentData = data;
-                console.log('📊 VRChat data updated:', data);
-                
-                // Fetch weather data
-                await fetchWeather();
-                
-            } catch (error) {
-                console.error('❌ Failed to fetch VRChat data:', error);
-                currentData = null;
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                currentSectionIndex = (currentSectionIndex - 1 + SECTIONS.length) % SECTIONS.length;
+                navigateToSection(currentSectionIndex);
+            } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                currentSectionIndex = (currentSectionIndex + 1) % SECTIONS.length;
+                navigateToSection(currentSectionIndex);
             }
+        });
+
+        function navigateToSection(index) {
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons[index].click();
         }
 
-        async function fetchWeather() {
-            try {
-                const response = await fetch(CONFIG.weatherApiUrl);
-                const data = await response.json();
-                weatherData = {
-                    temperature: data.temperature || '74°F',
-                    condition: data.condition || 'Clear',
-                    online: true
-                };
-                console.log('🌤️ Weather data updated:', weatherData);
-            } catch (error) {
-                console.error('❌ Weather fetch failed:', error);
-                weatherData.online = false;
+        // ═══════════════════════════════════════════════════════════════════
+        // INITIALIZATION
+        // ═══════════════════════════════════════════════════════════════════
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSavedTheme();
+            updateClock();
+            setInterval(updateClock, 1000);
+
+            // Check for skip boot param
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('skipboot') === 'true') {
+                document.getElementById('boot-screen').style.display = 'none';
+                document.getElementById('main-content').classList.add('active');
+                document.getElementById('nav-menu').classList.add('active');
+            } else {
+                runBootSequence();
             }
-        }
-
-        // Utility functions
-        function formatUptime(seconds) {
-            const hours = Math.floor(seconds / 3600);
-            const minutes = Math.floor((seconds % 3600) / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-        }
-
-        function getWeatherStatus() {
-            if (weatherData.online) {
-                return `${weatherData.temperature} ${weatherData.condition}`;
-            }
-            return 'Weather Offline';
-        }
-
-        function getConnectedUsers() {
-            if (currentData && currentData.players) {
-                return currentData.players.slice(0, 3).join(', ') + (currentData.players.length > 3 ? `, +${currentData.players.length - 3} more` : '');
-            }
-            return 'Web Terminal User';
-        }
-
-        function getSessionData(key) {
-            return sessionStorage.getItem(key);
-        }
-
-        function setSessionData(key, value) {
-            sessionStorage.setItem(key, value);
-        }
-
-        function incrementSessionData(key) {
-            const current = parseInt(getSessionData(key) || '0');
-            setSessionData(key, (current + 1).toString());
-        }
-
-        // Initialize session tracking
-        incrementSessionData('refreshCount');
-        setSessionData('startTime', Date.now().toString());
+        });
     </script>
 </body>
 </html>
