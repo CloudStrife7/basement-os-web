@@ -1238,7 +1238,7 @@
                                     to all major scripts. The AchievementTracker alone went from zero documentation to fully annotated with parameter descriptions and usage examples.
                                 </p>
                                 <p>
-                                    Also started setting up project automation - automatic UdonSharp validation before commits, organized GitHub issues with story points, and established milestones. Claude acting as project manager is weird but effective.
+                                    Also started setting up project automation - automatic UdonSharp validation before commits, organized GitHub issues with story points, and established milestones. Treating Claude like a jr developer is really showing how much leadership and project management coordination I have in this area.
                                 </p>
                                 <a href="Manual Change Logs and Images/images/Claude Code Jam Session November/Adding Doc Strings 2025-11-07 180219.png" target="_blank">
                                     <img src="Manual Change Logs and Images/images/Claude Code Jam Session November/Adding Doc Strings 2025-11-07 180219.png" alt="Adding XML docstrings with Claude Code" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
@@ -1266,22 +1266,19 @@
                             <h3 class="devlog-title">Terminal Menu System Complete</h3>
                             <div class="devlog-content">
                                 <p>
-                                    Replaced the old auto-cycling display with an actual interactive menu. Players can
-                                    now use their movement controls to navigate up/down through options and select with
-                                    the interact button.
+                                    In a development instance I ran a POC that replaces the original auto-cycling display with an actual interactive menu. Players could use their movement controls to navigate up/down through options and select with the interact button.
                                 </p>
                                 <p>
-                                    Had to implement player immobilization when they're at the terminal - otherwise
-                                    pressing up/down would move your avatar AND the cursor. Using
+                                    Had to implement player immobilization when they're at the terminal - otherwise pressing up/down would move your avatar AND the cursor. Using
                                     <span class="term" tabindex="0">VRCStation<span class="tooltip">A VRChat component that locks a player in place and captures their input</span></span>
-                                    for this, which also solves the "walking away mid-interaction" problem.
+                                    for this also solves the "walking away mid-interaction" problem.
                                 </p>
                                 <p>
                                     Also extracted the weather module into its own script. The terminal now pulls
                                     real-time weather data from my
                                     <span class="term" tabindex="0">GitHub Pages<span class="tooltip">Free static website hosting from GitHub - I use it to serve weather data as JSON</span></span>
                                     endpoint and displays it in the header. When it's actually raining in Fond du Lac,
-                                    you'll see rain in the basement too.
+                                    you'll see rain in the basement too once I figure out how to re-bake the lighting with the shader enabled windows.
                                 </p>
                             </div>
                             <div class="devlog-tags">
@@ -1299,9 +1296,7 @@
                             <h3 class="devlog-title milestone">MILESTONE: Achievement System Overhaul</h3>
                             <div class="devlog-content">
                                 <p>
-                                    Finally finished the Xbox 360-style achievement system! 19 achievements worth
-                                    420G total (nice). The notifications pop up just like they did on the 360 -
-                                    that satisfying <em>bloop</em> sound and the sliding banner.
+                                    Finally finished the Xbox 360-style achievement system! 19 achievements worth 420G implemented out of 1,000G leaves plenty of room for expansion with future ideas. This matches the original Xbox 360 gamer score point structure. The notifications pop up just like they did on the 360 - that satisfying sound effect and the animated banner!
                                 </p>
                                 <p>
                                     Using VRChat's
@@ -1338,10 +1333,7 @@
                                     Opened Lower Level 2.0 to the public! Had about 8 friends show up for the launch. Watching the achievement notifications pop as people joined was incredibly satisfying - exactly the vibe I was going for.
                                 </p>
                                 <p>
-                                    Everything worked smoothly - notifications, persistence, the DOS terminal. One visitor triggered the "Thundery Outbreaks" achievement by joining during actual stormy weather in Wisconsin.
-                                </p>
-                                <p>
-                                    Best moment: someone said it felt like hanging out in my actual basement circa 2007. Mission accomplished.
+                                    Everything worked smoothly - notifications, persistence, the DOS terminal.
                                 </p>
                                 <a href="Manual Change Logs and Images/images/August 2025/VRChat_2025-08-10_20-58-06.405_2560x1440 launch party.png" target="_blank">
                                     <img src="Manual Change Logs and Images/images/August 2025/VRChat_2025-08-10_20-58-06.405_2560x1440 launch party.png" alt="Launch party screenshot with 8 friends" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
@@ -1368,7 +1360,7 @@
                                     The terminal displays current conditions and when it's actually raining outside, the basement windows show rain effects.
                                 </p>
                                 <p>
-                                    Added a weather-based achievement: "Thundery Outbreaks" unlocks when you visit during a thunderstorm. The rain shader was tricky to get working on Quest without tanking framerate, but caching the weather API calls every 10 minutes solved it.
+                                    Rain shader source: [PLACEHOLDER - Please specify the rain shader source (Unity Asset Store, GitHub repo, custom made, etc.)]
                                 </p>
                                 <a href="Manual Change Logs and Images/images/August 2025/'Thunderyoutbreaksinnearby' Screenshot 2025-08-07 195825.jpg" target="_blank">
                                     <img src="Manual Change Logs and Images/images/August 2025/'Thunderyoutbreaksinnearby' Screenshot 2025-08-07 195825.jpg" alt="Thundery outbreaks weather condition" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
@@ -1393,9 +1385,6 @@
                             <div class="devlog-content">
                                 <p>
                                     Finished designing custom icons for all 19 achievements using Photopea.com. Referenced actual Xbox 360 achievement art to match that 2000s gaming aesthetic.
-                                </p>
-                                <p>
-                                    Each tier has a distinct visual style: bronze medallions for early achievements, silver for mid-tier, gold for high-tier, and platinum for the legendary 250-visit milestone.
                                 </p>
                                 <a href="Manual Change Logs and Images/images/360 Icons/Photo Jul 26 2025, 9 17 32 PM.png" target="_blank">
                                     <img src="Manual Change Logs and Images/images/360 Icons/Photo Jul 26 2025, 9 17 32 PM.png" alt="Achievement icon sketches" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
