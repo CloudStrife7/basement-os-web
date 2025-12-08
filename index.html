@@ -790,6 +790,12 @@
             color: var(--bg-primary);
         }
 
+        .tag.tech {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            font-weight: bold;
+        }
+
         /* ═══════════════════════════════════════════════════════════════════
            INFO CARDS
         ═══════════════════════════════════════════════════════════════════ */
@@ -1006,6 +1012,9 @@
                 <button class="nav-btn active" onclick="showSection('devlog')">
                     <span class="type">&lt;LOG&gt;</span> DEVLOG
                 </button>
+                <button class="nav-btn" onclick="showSection('skills')">
+                    <span class="type">&lt;AI&gt;</span> SKILLS
+                </button>
                 <button class="nav-btn" onclick="showSection('about')">
                     <span class="type">&lt;DIR&gt;</span> ABOUT
                 </button>
@@ -1052,6 +1061,18 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="#entry-2025-11-29">
+                                    <span>Symbolic Games POC</span>
+                                    <span class="date">2025-11-29</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#entry-2025-11-07">
+                                    <span class="text-milestone">MILESTONE: Claude Code + Documentation Sprint</span>
+                                    <span class="date">2025-11-07</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="#entry-2025-11-15">
                                     <span>Terminal Menu System Complete</span>
                                     <span class="date">2025-11-15</span>
@@ -1061,6 +1082,42 @@
                                 <a href="#entry-2025-10-20">
                                     <span class="text-milestone">MILESTONE: Achievement System Overhaul</span>
                                     <span class="date">2025-10-20</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#entry-2025-08-10">
+                                    <span class="text-milestone">MILESTONE: World Launch Party</span>
+                                    <span class="date">2025-08-10</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#entry-2025-08-07">
+                                    <span>Weather System + Rain Shaders</span>
+                                    <span class="date">2025-08-07</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#entry-2025-07-26">
+                                    <span>Achievement Icon Design</span>
+                                    <span class="date">2025-07-26</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#entry-2025-07-19">
+                                    <span>Multi-TV Broadcasting System</span>
+                                    <span class="date">2025-07-19</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#entry-2025-07-13">
+                                    <span class="text-milestone">MILESTONE: VRChat PlayerData Persistence</span>
+                                    <span class="date">2025-07-13</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#entry-2025-07-10">
+                                    <span>First Achievement Unlocked</span>
+                                    <span class="date">2025-07-10</span>
                                 </a>
                             </li>
                         </ul>
@@ -1093,6 +1150,9 @@
                                 <span class="tag">web</span>
                                 <span class="tag">ui</span>
                                 <span class="tag">theming</span>
+                                <span class="tag tech">JavaScript</span>
+                                <span class="tag tech">CSS Variables</span>
+                                <span class="tag tech">GitHub Pages</span>
                             </div>
                         </article>
 
@@ -1131,6 +1191,63 @@
                                 <span class="tag">architecture</span>
                                 <span class="tag">automation</span>
                                 <span class="tag">ai</span>
+                                <span class="tag tech">Unity MCP</span>
+                                <span class="tag tech">Claude Code</span>
+                                <span class="tag tech">Agent Swarm</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-11-29" data-searchable>
+                            <div class="devlog-date">November 29, 2025</div>
+                            <h3 class="devlog-title">Symbolic Games POC</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Experimented with terminal-based games using unicode characters instead of sprites. Built breakout and pong prototypes that render using block characters.
+                                </p>
+                                <img src="Manual Change Logs and Images/images/Claude Code Jam Session November/11-29-25 Symbolic Rendering Engine WORKING.png" alt="Symbolic rendering engine working" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <img src="Manual Change Logs and Images/images/Claude Code Jam Session November/Symbolic Breakout .png" alt="Symbolic breakout game" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <p>
+                                    Interesting concept, but after testing found sprites are significantly less resource-intensive on Quest. Keeping the code for reference but won't ship in prod.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">terminal</span>
+                                <span class="tag">games</span>
+                                <span class="tag">optimization</span>
+                                <span class="tag tech">TextMeshPro</span>
+                                <span class="tag tech">UdonSharp</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-11-07" data-searchable>
+                            <div class="devlog-date">November 7, 2025</div>
+                            <h3 class="devlog-title milestone">MILESTONE: Claude Code + Documentation Sprint</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Started my first serious session with
+                                    <span class="term" tabindex="0">Claude Code<span class="tooltip">Anthropic's AI coding assistant with direct file access and terminal execution</span></span>
+                                    - this is a game changer. Instead of copying code snippets back and forth, Claude can directly read my project files, write code, and even help with git commits.
+                                </p>
+                                <img src="Manual Change Logs and Images/images/Claude Code Jam Session November/Adding Doc Strings 2025-11-07 180219.png" alt="Adding XML docstrings with Claude Code" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <img src="Manual Change Logs and Images/images/Claude Code Jam Session November/first upload using git.png" alt="First git upload with Claude Code" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <p>
+                                    Spent the session adding comprehensive
+                                    <span class="term" tabindex="0">XML docstrings<span class="tooltip">Documentation comments that describe what each method does - helps both humans and AI understand code</span></span>
+                                    to all major scripts. The AchievementTracker alone went from zero documentation to fully annotated with parameter descriptions and usage examples.
+                                </p>
+                                <img src="Manual Change Logs and Images/images/Claude Code Jam Session November/organizing issues using github and roadmap.png" alt="GitHub issue organization" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <p>
+                                    Also started setting up project automation - automatic UdonSharp validation before commits, organized GitHub issues with story points, and established milestones. Claude acting as project manager is weird but effective.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag milestone">MILESTONE</span>
+                                <span class="tag">documentation</span>
+                                <span class="tag">automation</span>
+                                <span class="tag">ai</span>
+                                <span class="tag tech">Claude Code</span>
+                                <span class="tag tech">GitHub</span>
+                                <span class="tag tech">Git</span>
                             </div>
                         </article>
 
@@ -1161,6 +1278,9 @@
                                 <span class="tag">terminal</span>
                                 <span class="tag">input</span>
                                 <span class="tag">weather</span>
+                                <span class="tag tech">VRCStation</span>
+                                <span class="tag tech">UdonSharp</span>
+                                <span class="tag tech">GitHub Pages API</span>
                             </div>
                         </article>
 
@@ -1194,8 +1314,389 @@
                                 <span class="tag">achievements</span>
                                 <span class="tag">persistence</span>
                                 <span class="tag">xbox</span>
+                                <span class="tag tech">VRChat PlayerData API</span>
+                                <span class="tag tech">UdonSharp</span>
+                                <span class="tag tech">TextMeshPro</span>
                             </div>
                         </article>
+
+                        <article class="devlog-entry" id="entry-2025-08-10" data-searchable>
+                            <div class="devlog-date">August 10, 2025</div>
+                            <h3 class="devlog-title milestone">MILESTONE: World Launch Party</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Opened Lower Level 2.0 to the public! Had about 8 friends show up for the launch. Watching the achievement notifications pop as people joined was incredibly satisfying - exactly the vibe I was going for.
+                                </p>
+                                <img src="Manual Change Logs and Images/images/August 2025/VRChat_2025-08-10_20-58-06.405_2560x1440 launch party.png" alt="Launch party screenshot with 8 friends" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <img src="Manual Change Logs and Images/images/August 2025/hangout verified.jpg" alt="Achievement notifications during launch" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <p>
+                                    Everything worked smoothly - notifications, persistence, the DOS terminal. One visitor triggered the "Thundery Outbreaks" achievement by joining during actual stormy weather in Wisconsin.
+                                </p>
+                                <p>
+                                    Best moment: someone said it felt like hanging out in my actual basement circa 2007. Mission accomplished.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag milestone">MILESTONE</span>
+                                <span class="tag">launch</span>
+                                <span class="tag">social</span>
+                                <span class="tag tech">VRChat</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-08-07" data-searchable>
+                            <div class="devlog-date">August 7, 2025</div>
+                            <h3 class="devlog-title">Weather System + Rain Shaders</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Integrated real-time weather from Fond du Lac, WI using a
+                                    <span class="term" tabindex="0">GitHub Pages JSON endpoint<span class="tooltip">Free static file hosting - I update a JSON file with current weather and VRChat fetches it</span></span>.
+                                    The terminal displays current conditions and when it's actually raining outside, the basement windows show rain effects.
+                                </p>
+                                <img src="Manual Change Logs and Images/images/August 2025/'Thunderyoutbreaksinnearby' Screenshot 2025-08-07 195825.jpg" alt="Thundery outbreaks weather condition" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <img src="Manual Change Logs and Images/images/July 2025/working weather.png" alt="Weather system working on terminal" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <p>
+                                    Added a weather-based achievement: "Thundery Outbreaks" unlocks when you visit during a thunderstorm. The rain shader was tricky to get working on Quest without tanking framerate, but caching the weather API calls every 10 minutes solved it.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">weather</span>
+                                <span class="tag">api</span>
+                                <span class="tag">shaders</span>
+                                <span class="tag tech">GitHub Pages</span>
+                                <span class="tag tech">VRCUrlLoader</span>
+                                <span class="tag tech">UdonSharp</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-07-26" data-searchable>
+                            <div class="devlog-date">July 26, 2025</div>
+                            <h3 class="devlog-title">Achievement Icon Design</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Finished designing custom icons for all 19 achievements. Drew them on my iPad using reference from actual Xbox 360 achievement art - trying to match that 2000s gaming aesthetic.
+                                </p>
+                                <img src="Manual Change Logs and Images/images/360 Icons/Photo Jul 26 2025, 9 17 32 PM.png" alt="Achievement icon sketches" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <img src="Manual Change Logs and Images/images/July 2025/Custom Icons.jpg" alt="Custom achievement icons in Unity" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <p>
+                                    Each tier has a distinct visual style: bronze medallions for early achievements, silver for mid-tier, gold for high-tier, and platinum for the legendary 250-visit milestone.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">art</span>
+                                <span class="tag">ui</span>
+                                <span class="tag">achievements</span>
+                                <span class="tag tech">Procreate</span>
+                                <span class="tag tech">Unity</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-07-19" data-searchable>
+                            <div class="devlog-date">July 19, 2025</div>
+                            <h3 class="devlog-title">Multi-TV Broadcasting System</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Got notifications working on all 3 TVs simultaneously! The NotificationEventHub broadcasts to each display independently, so everyone in the basement sees achievements pop regardless of which room they're in.
+                                </p>
+                                <img src="Manual Change Logs and Images/images/July 2025/Notifications working on 3 Tvs!!!.jpg" alt="Notifications working on all 3 TVs" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <img src="Manual Change Logs and Images/images/July 2025/Multiple TVs.jpg" alt="Multi-TV setup in basement" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <p>
+                                    Each TV maintains its own FIFO queue and animation timing. Had to be careful with the ProTV prefab integration - it uses a different Canvas setup than standard UI.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">notifications</span>
+                                <span class="tag">ui</span>
+                                <span class="tag">networking</span>
+                                <span class="tag tech">UdonSharp</span>
+                                <span class="tag tech">ProTV</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-07-13" data-searchable>
+                            <div class="devlog-date">July 13, 2025</div>
+                            <h3 class="devlog-title milestone">MILESTONE: VRChat PlayerData Persistence</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Finally got VRChat's
+                                    <span class="term" tabindex="0">PlayerData API<span class="tooltip">VRChat's cloud persistence system - stores int/float/string values per player across sessions</span></span>
+                                    working! Visit counts now persist between sessions. This took way longer than expected because of UdonSharp's limitations.
+                                </p>
+                                <img src="Manual Change Logs and Images/images/July 2025/Persistence Working.jpg" alt="PlayerData persistence working" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <img src="Manual Change Logs and Images/images/July 2025/tracking 3 visits.png" alt="Successfully tracking 3 visits" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <p>
+                                    Can't use Dictionary or List in UdonSharp, so I'm tracking players with parallel arrays. Not elegant, but it works. Successfully tested with 3 visits - data persists across world reloads.
+                                </p>
+                                <p>
+                                    The 11-hour debugging marathon was worth it. This is the foundation for the entire achievement system.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag milestone">MILESTONE</span>
+                                <span class="tag">persistence</span>
+                                <span class="tag">vrchat</span>
+                                <span class="tag">udonsharp</span>
+                                <span class="tag tech">VRChat PlayerData API</span>
+                                <span class="tag tech">UdonSharp</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-07-10" data-searchable>
+                            <div class="devlog-date">July 10, 2025</div>
+                            <h3 class="devlog-title">First Achievement Unlocked</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    First achievement notification popped in-world today! "First Time Visitor" - the notification banner slides in from the right with that Xbox 360 bloop sound. Feels exactly like it did on the 360.
+                                </p>
+                                <img src="Manual Change Logs and Images/images/July 2025/First Welcome Message in prod 7 10 25.png" alt="First achievement notification in production" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <img src="Manual Change Logs and Images/images/July 2025/first achievement unlocked 7 10 25.png" alt="First achievement unlocked screenshot" style="max-width: 100%; border: 1px solid var(--border-color); margin: 10px 0;">
+                                <p>
+                                    The FIFO queue, animation timing, and sound cues all working together. This is the moment I've been building toward since starting this project.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">achievements</span>
+                                <span class="tag">ui</span>
+                                <span class="tag">audio</span>
+                                <span class="tag tech">UdonSharp</span>
+                                <span class="tag tech">VRChat SDK</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- AI Skills Section -->
+                <div class="content-section" id="section-skills">
+                    <h2 class="section-header">C:\BASEMENT\AI_SKILLS.DIR</h2>
+
+                    <div class="devlog-content">
+                        <p>
+                            AI tools and techniques I've learned and applied throughout this project. Each skill includes
+                            how I used it and links to relevant devlog entries.
+                        </p>
+                    </div>
+
+                    <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Claude Code ]
+                                    <span class="tooltip">AI coding assistant with direct file access. Used for: automated documentation, code generation, git workflow, and project management. Reduced manual coding time by ~60%.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Autonomous coding agent that reads/writes files, executes terminal commands, and manages git workflow.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> XML docstring generation, UdonSharp validation, automated commits, issue tracking
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-11-07" class="link" onclick="showSection('devlog')">→ Nov 7: First Integration</a><br>
+                                <a href="#entry-2025-12-06" class="link" onclick="showSection('devlog')">→ Dec 6: Closed-Loop System</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Unity MCP (Model Context Protocol) ]
+                                    <span class="tooltip">Protocol that lets AI agents communicate with Unity Editor directly. Used to: compile scripts, attach components, enter play mode, and read console errors - all without human intervention.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Bridge between AI agents and Unity Editor for full automation loop.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Automated UdonSharp compilation, component attachment, play mode testing, console error detection
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-12-06" class="link" onclick="showSection('devlog')">→ Dec 6: Breakthrough Achievement</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Agent Swarms ]
+                                    <span class="tooltip">Multiple AI agents working in parallel on different tasks. Used to: simultaneously update documentation, validate code, run tests, and commit changes - reducing iteration time from hours to minutes.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Parallel AI agents handling different aspects of development simultaneously.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Parallel code review, multi-file refactoring, concurrent testing, distributed documentation
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-12-06" class="link" onclick="showSection('devlog')">→ Dec 6: Implementation Details</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Prompt Engineering ]
+                                    <span class="tooltip">Crafting effective AI prompts to get consistent, accurate results. Key learnings: context windows, few-shot examples, constraint specification, and iterative refinement. Created custom CLAUDE.md with 1000+ lines of project-specific instructions.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Designing prompts and system instructions for reliable AI-assisted development.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> UdonSharp constraint documentation, code review checklists, automated validation rules
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-11-07" class="link" onclick="showSection('devlog')">→ Nov 7: Documentation Strategy</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ API Integration (VRChat PlayerData) ]
+                                    <span class="tooltip">Working within UdonSharp constraints (no generics, no LINQ) to implement cloud persistence. Learned: parallel array patterns, edge case handling, async data caching, and Quest optimization (5-second cache vs per-frame reads).</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Cloud persistence API with severe language constraints.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Achievement tracking, visit persistence, leaderboard data, cross-session state
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-07-13" class="link" onclick="showSection('devlog')">→ Jul 13: 11-Hour Debug Marathon</a><br>
+                                <a href="#entry-2025-10-20" class="link" onclick="showSection('devlog')">→ Oct 20: Full System Working</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ GitHub Actions & Automation ]
+                                    <span class="tooltip">Automated workflows triggered by git events. Set up: pre-commit UdonSharp validation, automatic issue labeling, changelog generation, and deployment pipelines. Prevents broken commits from reaching repo.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                CI/CD pipeline for VRChat world development.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Pre-commit validation, automated testing, issue management, deployment
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-11-07" class="link" onclick="showSection('devlog')">→ Nov 7: Initial Setup</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Real-Time API Integration ]
+                                    <span class="tooltip">GitHub Pages as free API endpoint for weather data. Learned: CORS handling, JSON parsing in UdonSharp, platform-specific caching (Quest: 10min, PC: 2min), and graceful degradation when API fails.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Live weather data fetched from custom JSON endpoint.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Dynamic weather display, rain shader triggers, weather-based achievements
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-08-07" class="link" onclick="showSection('devlog')">→ Aug 7: Weather System Launch</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Spec-Driven Development (SDD) ]
+                                    <span class="tooltip">Writing detailed specifications before coding. Prevents scope creep and gives AI clear requirements. Used Gemini to analyze 2000+ line spec and generate architectural recommendations before writing any code.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Specification-first approach with AI analysis before implementation.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Basement OS v2.1 architecture, terminal module system, hub-spoke pattern design
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-12-06" class="link" onclick="showSection('devlog')">→ Dec 6: Architecture Design</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Test-Driven Development (TDD) ]
+                                    <span class="tooltip">Writing tests before implementation code. In Unity/UdonSharp context: used [ContextMenu] test methods and manual test scenarios. Caught edge cases in achievement logic before production deployment.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Test-first methodology adapted for UdonSharp constraints.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Achievement unlock logic, network sync validation, edge case detection
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-07-13" class="link" onclick="showSection('devlog')">→ Jul 13: Persistence Testing</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Documentation as Code ]
+                                    <span class="tooltip">Treating documentation with same rigor as source code - version control, automated generation, validation. Claude Code generated 3000+ lines of XML docstrings, keeping docs in sync with code changes automatically.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Automated documentation generation and maintenance.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> XML docstrings, architecture diagrams, API references, troubleshooting guides
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-11-07" class="link" onclick="showSection('devlog')">→ Nov 7: Documentation Sprint</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Hub-Spoke Architecture ]
+                                    <span class="tooltip">Centralized core (hub) with modular components (spokes). DT_Core handles hardware I/O; apps in /BIN/ focus on logic. Enables independent development, easier testing, and clean separation of concerns.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Modular system design pattern for complex applications.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Basement OS kernel, terminal apps, notification routing, event broadcasting
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-12-06" class="link" onclick="showSection('devlog')">→ Dec 6: Architecture Implementation</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Constraint-Based Problem Solving ]
+                                    <span class="tooltip">Working within severe language limitations (no List, no LINQ, no exceptions). Key skill: pattern recognition from other constrained environments (embedded systems, old C standards). Developed workarounds: parallel arrays for key-value storage, manual bounds checking instead of exceptions.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Creative solutions within UdonSharp's C# subset limitations.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Data structure workarounds, control flow patterns, memory management
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-07-13" class="link" onclick="showSection('devlog')">→ Jul 13: Persistence Workarounds</a><br>
+                                <a href="#entry-2025-10-20" class="link" onclick="showSection('devlog')">→ Oct 20: FIFO Queue Implementation</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
@@ -1492,7 +1993,7 @@
 
         function updateClock() {
             const now = new Date();
-            const time = now.toLocaleTimeString('en-US', { hour12: false });
+            const time = now.toLocaleTimeString('en-US', { hour12: true });
             document.getElementById('clock').textContent = time;
         }
 
