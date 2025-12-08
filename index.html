@@ -1327,16 +1327,16 @@
                         <ul>
                             <li class="toc-year">
                                 <div class="toc-year-header" onclick="toggleTOCYear(this)">
-                                    <span class="toc-year-toggle">▼</span>
+                                    <span class="toc-year-toggle">▶</span>
                                     <span>2025 (14 entries)</span>
                                 </div>
-                                <div class="toc-year-content">
+                                <div class="toc-year-content collapsed">
                                     <div class="toc-month">
                                         <div class="toc-month-header" onclick="toggleTOCMonth(this)">
-                                            <span class="toc-month-toggle">▼</span>
+                                            <span class="toc-month-toggle">▶</span>
                                             <span>December</span>
                                         </div>
-                                        <div class="toc-month-entries">
+                                        <div class="toc-month-entries collapsed">
                                             <div class="toc-entry">
                                                 <a href="#entry-2025-12-07">
                                                     <span><span class="milestone-badge">★</span> Full Stack AI Workflow - The Complete System</span>
@@ -1365,10 +1365,10 @@
                                     </div>
                                     <div class="toc-month">
                                         <div class="toc-month-header" onclick="toggleTOCMonth(this)">
-                                            <span class="toc-month-toggle">▼</span>
+                                            <span class="toc-month-toggle">▶</span>
                                             <span>November</span>
                                         </div>
-                                        <div class="toc-month-entries">
+                                        <div class="toc-month-entries collapsed">
                                             <div class="toc-entry">
                                                 <a href="#entry-2025-11-29">
                                                     <span>Symbolic Games POC</span>
@@ -1391,10 +1391,10 @@
                                     </div>
                                     <div class="toc-month">
                                         <div class="toc-month-header" onclick="toggleTOCMonth(this)">
-                                            <span class="toc-month-toggle">▼</span>
+                                            <span class="toc-month-toggle">▶</span>
                                             <span>October</span>
                                         </div>
-                                        <div class="toc-month-entries">
+                                        <div class="toc-month-entries collapsed">
                                             <div class="toc-entry">
                                                 <a href="#entry-2025-10-20">
                                                     <span><span class="milestone-badge">★</span> Achievement System Overhaul</span>
@@ -1405,10 +1405,10 @@
                                     </div>
                                     <div class="toc-month">
                                         <div class="toc-month-header" onclick="toggleTOCMonth(this)">
-                                            <span class="toc-month-toggle">▼</span>
+                                            <span class="toc-month-toggle">▶</span>
                                             <span>August</span>
                                         </div>
-                                        <div class="toc-month-entries">
+                                        <div class="toc-month-entries collapsed">
                                             <div class="toc-entry">
                                                 <a href="#entry-2025-08-10">
                                                     <span><span class="milestone-badge">★</span> World Launch Party</span>
@@ -1425,10 +1425,10 @@
                                     </div>
                                     <div class="toc-month">
                                         <div class="toc-month-header" onclick="toggleTOCMonth(this)">
-                                            <span class="toc-month-toggle">▼</span>
+                                            <span class="toc-month-toggle">▶</span>
                                             <span>July</span>
                                         </div>
-                                        <div class="toc-month-entries">
+                                        <div class="toc-month-entries collapsed">
                                             <div class="toc-entry">
                                                 <a href="#entry-2025-07-26">
                                                     <span>Achievement Icon Design</span>
@@ -2566,7 +2566,10 @@
             const images = document.querySelectorAll('.devlog-content img');
 
             images.forEach((img, index) => {
-                img.addEventListener('click', function() {
+                img.addEventListener('click', function(e) {
+                    // Prevent opening image in new tab
+                    e.preventDefault();
+
                     // Get all images in the same article
                     const article = this.closest('.devlog-entry');
                     lightboxImages = Array.from(article.querySelectorAll('.devlog-content img'));
@@ -2574,6 +2577,14 @@
 
                     showLightbox();
                 });
+
+                // Also prevent the parent <a> tag from navigating
+                const parentLink = img.closest('a');
+                if (parentLink) {
+                    parentLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+                    });
+                }
             });
 
             // Close lightbox
