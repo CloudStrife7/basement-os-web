@@ -973,6 +973,45 @@
         .mb-2 { margin-bottom: 20px; }
         .mt-1 { margin-top: 10px; }
         .mt-2 { margin-top: 20px; }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           AI DISCLOSURE BANNER
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .ai-disclosure {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent-primary);
+            padding: 12px 15px;
+            margin: 0 0 20px 0;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            border-radius: 2px;
+        }
+
+        .ai-disclosure-header {
+            color: var(--accent-primary);
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .ai-disclosure-content {
+            color: var(--text-dim);
+        }
+
+        .ai-disclosure a {
+            color: var(--accent-link);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent-link);
+        }
+
+        .ai-disclosure a:hover {
+            color: var(--accent-primary);
+            border-bottom-color: var(--accent-primary);
+        }
     </style>
 </head>
 <body>
@@ -1032,6 +1071,14 @@
                        placeholder="Search devlog entries..."
                        oninput="performSearch(this.value)">
                 <div class="search-results" id="search-results"></div>
+            </div>
+
+            <!-- AI Workflow Disclosure -->
+            <div class="ai-disclosure" id="ai-disclosure" style="display: none;">
+                <div class="ai-disclosure-header">[ AI-ASSISTED DEVELOPMENT ]</div>
+                <div class="ai-disclosure-content">
+                    This devlog documents my learning journey with AI-assisted workflows. All content is generated using AI tools with active human oversight, review, and approval. I'm the architect and decision-maker - AI is my development team. Learn more about my methodology in <a href="#entry-2025-12-06" onclick="showSection('devlog')">the December 6th entry</a> or view <a href="https://github.com/CloudStrife7/basement-os-web/issues/11" target="_blank">Issue #11</a> for the full mission statement.
+                </div>
             </div>
 
             <!-- Boot Screen -->
@@ -1936,6 +1983,7 @@
                     bootScreen.style.display = 'none';
                     document.getElementById('main-content').classList.add('active');
                     document.getElementById('nav-menu').classList.add('active');
+                    document.getElementById('ai-disclosure').style.display = 'block';
                 }, 800);
             }
         }
@@ -2085,6 +2133,7 @@
                 document.getElementById('boot-screen').style.display = 'none';
                 document.getElementById('main-content').classList.add('active');
                 document.getElementById('nav-menu').classList.add('active');
+                document.getElementById('ai-disclosure').style.display = 'block';
             } else {
                 runBootSequence();
             }
