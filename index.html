@@ -1097,7 +1097,7 @@
                         <ul>
                             <li>
                                 <a href="#entry-2025-12-07">
-                                    <span>Basement OS Web Terminal Launch</span>
+                                    <span class="text-milestone">MILESTONE: Full Stack AI Workflow - The Complete System</span>
                                     <span class="date">2025-12-07</span>
                                 </a>
                             </li>
@@ -1180,32 +1180,47 @@
                     <div class="devlog-entries">
                         <article class="devlog-entry" id="entry-2025-12-07" data-searchable>
                             <div class="devlog-date">December 7, 2025</div>
-                            <h3 class="devlog-title">Basement OS Web Terminal Launch</h3>
+                            <h3 class="devlog-title milestone">MILESTONE: Full Stack AI Workflow - The Complete System</h3>
                             <div class="devlog-content">
                                 <p>
-                                    I finally got the web terminal up and running! This has been on my mind for a while -
-                                    having a way to interact with Basement OS outside of VRChat. The idea is to mirror
-                                    what you'd see on the CRT monitor in the basement, but accessible from any browser.
+                                    Two breakthroughs in one day. This is the moment everything clicked.
                                 </p>
                                 <p>
-                                    Took some inspiration from
-                                    <span class="term" tabindex="0">HumanLayer's<span class="tooltip">A company building tools for AI agents that need human oversight</span></span>
-                                    blog - they have this clean theming system I really liked. Implemented 13 different
-                                    color themes, but keeping High Contrast as the default because readability comes first.
+                                    <strong>Morning - The Assembly Line:</strong> Launched my first
+                                    <span class="term" tabindex="0">agent swarm<span class="tooltip">Multiple AI agents working in parallel on different tasks simultaneously</span></span>
+                                    with custom <code>agent.md</code> persona files. Nine specialized agents building different Basement OS modules simultaneously - DT_Core, DT_Shell, DT_Theme, weather app, GitHub app, each with injected expertise. This is horizontal scaling - volume without sacrificing architecture.
+                                </p>
+                                <a href="images/2025/12/agent-swarm-first-time-dec7.png" target="_blank">
+                                    <img src="images/2025/12/agent-swarm-first-time-dec7.png" alt="First agent swarm with 9 parallel agents and custom agent.md files" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <p>
+                                    <strong>The Gap:</strong> Agents could write perfect code, but Unity wouldn't compile it. Files sat on disk, ignored. I was still manually clicking "Compile" in the Inspector. The automation loop was broken.
                                 </p>
                                 <p>
-                                    The boot sequence mirrors what happens in the actual VRChat world. When you approach
-                                    the terminal in the basement, you see the same POST checks and loading messages.
-                                    It's all about that nostalgic 2000s feel.
+                                    <strong>Afternoon - The Missing Link:</strong> Found <code>UdonSharpAssetRepair.cs</code> - the linchpin I'd been missing. This utility script forces Unity to acknowledge programmatically-written files, generates the .asset files, and triggers compilation. It's the bridge between "AI writes code" and "Unity actually runs it."
+                                </p>
+                                <a href="images/2025/12/full-automation-udonsharp-asset-repair-dec7.png" target="_blank">
+                                    <img src="images/2025/12/full-automation-udonsharp-asset-repair-dec7.png" alt="Full automation achieved with UdonSharpAssetRepair as the missing link" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <p>
+                                    <strong>The Complete System:</strong> Now Claude writes code → triggers UdonSharpAssetRepair → Unity compiles → enters Play mode → reads console logs → fixes errors → repeats. Zero human intervention. The swarm builds the car fast (volume). The automation pipeline ensures it doesn't explode when you turn the key (quality assurance).
+                                </p>
+                                <p>
+                                    <strong>The Learning:</strong> This is tooling engineering. The swarm was impressive, but useless without the testing loop. UdonSharpAssetRepair is a 200-line script that unlocks millions of dollars in productivity. Finding these linchpins - the small pieces that complete the system - that's the skill companies pay for.
+                                </p>
+                                <p>
+                                    <strong>Why It Matters:</strong> I went from "AI-assisted developer" to "AI workflow architect." The difference? I'm not just using tools - I'm building the automation that makes the tools useful. That's the career transition I'm chasing.
                                 </p>
                             </div>
                             <div class="devlog-tags">
-                                <span class="tag">web</span>
-                                <span class="tag">ui</span>
-                                <span class="tag">theming</span>
-                                <span class="tag tech">JavaScript</span>
-                                <span class="tag tech">CSS Variables</span>
-                                <span class="tag tech">GitHub Pages</span>
+                                <span class="tag milestone">MILESTONE</span>
+                                <span class="tag">automation</span>
+                                <span class="tag">architecture</span>
+                                <span class="tag">ai</span>
+                                <span class="tag tech">Agent Swarm</span>
+                                <span class="tag tech">Unity MCP</span>
+                                <span class="tag tech">UdonSharpAssetRepair</span>
+                                <span class="tag tech">Claude Code</span>
                             </div>
                         </article>
 
