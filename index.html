@@ -702,38 +702,152 @@
             padding: 15px;
             margin-bottom: 20px;
             border-radius: 4px;
+            max-height: 500px;
+            overflow-y: auto;
         }
 
         .devlog-toc h3 {
             color: var(--accent-secondary);
             margin-bottom: 10px;
             font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toc-controls {
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+
+        .toc-controls button {
+            background: none;
+            border: none;
+            color: var(--accent-link);
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: 2px 6px;
+            margin-left: 5px;
+        }
+
+        .toc-controls button:hover {
+            color: var(--accent-primary);
         }
 
         .devlog-toc ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
-        .devlog-toc li {
+        .toc-year {
+            margin-bottom: 8px;
+        }
+
+        .toc-year-header {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
             padding: 5px 0;
-            border-bottom: 1px dotted var(--border-color);
+            color: var(--accent-secondary);
+            font-weight: bold;
+            font-size: 13px;
+            user-select: none;
         }
 
-        .devlog-toc a {
+        .toc-year-header:hover {
+            color: var(--accent-primary);
+        }
+
+        .toc-year-toggle {
+            margin-right: 8px;
+            width: 12px;
+            display: inline-block;
+        }
+
+        .toc-year-content {
+            padding-left: 20px;
+            border-left: 1px solid var(--border-color);
+            margin-left: 6px;
+        }
+
+        .toc-year-content.collapsed {
+            display: none;
+        }
+
+        .toc-month {
+            margin-bottom: 8px;
+        }
+
+        .toc-month-header {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 3px 0;
+            color: var(--text-secondary);
+            font-size: 12px;
+            user-select: none;
+        }
+
+        .toc-month-header:hover {
+            color: var(--accent-primary);
+        }
+
+        .toc-month-toggle {
+            margin-right: 8px;
+            width: 12px;
+            display: inline-block;
+        }
+
+        .toc-month-entries {
+            padding-left: 20px;
+            margin-top: 3px;
+        }
+
+        .toc-month-entries.collapsed {
+            display: none;
+        }
+
+        .toc-entry {
+            padding: 3px 0;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toc-entry::before {
+            content: '├─';
+            color: var(--border-color);
+            margin-right: 6px;
+        }
+
+        .toc-entry:last-child::before {
+            content: '└─';
+        }
+
+        .toc-entry a {
             color: var(--accent-link);
             text-decoration: none;
+            flex: 1;
             display: flex;
             justify-content: space-between;
         }
 
-        .devlog-toc a:hover {
+        .toc-entry a:hover {
             color: var(--accent-primary);
         }
 
-        .devlog-toc .date {
+        .toc-entry .milestone-badge {
+            color: var(--accent-milestone);
+            margin-right: 4px;
+            font-weight: bold;
+        }
+
+        .toc-entry .date {
             color: var(--text-dim);
-            font-size: 12px;
+            font-size: 11px;
+            margin-left: 8px;
         }
 
         .devlog-entry {
@@ -1203,91 +1317,145 @@
 
                     <!-- Table of Contents -->
                     <div class="devlog-toc">
-                        <h3>[ Table of Contents ]</h3>
+                        <h3>
+                            [ Table of Contents ]
+                            <div class="toc-controls">
+                                <button onclick="expandAllTOC()">Expand All</button>
+                                <button onclick="collapseAllTOC()">Collapse All</button>
+                            </div>
+                        </h3>
                         <ul>
-                            <li>
-                                <a href="#entry-2025-12-07">
-                                    <span class="text-milestone">MILESTONE: Full Stack AI Workflow - The Complete System</span>
-                                    <span class="date">2025-12-07</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#entry-2025-12-06">
-                                    <span class="text-milestone">MILESTONE: Closed-Loop Agent System</span>
-                                    <span class="date">2025-12-06</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#entry-2025-12-06-terminal">
-                                    <span>Meta-Review: Terminal 2.1 Spec Quality</span>
-                                    <span class="date">2025-12-06</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#entry-2025-12-03">
-                                    <span>Refactoring CLAUDE.md</span>
-                                    <span class="date">2025-12-03</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#entry-2025-11-29">
-                                    <span>Symbolic Games POC</span>
-                                    <span class="date">2025-11-29</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#entry-2025-11-07">
-                                    <span class="text-milestone">MILESTONE: Claude Code + Documentation Sprint</span>
-                                    <span class="date">2025-11-07</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#entry-2025-11-15">
-                                    <span>Terminal Menu System Complete</span>
-                                    <span class="date">2025-11-15</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#entry-2025-10-20">
-                                    <span class="text-milestone">MILESTONE: Achievement System Overhaul</span>
-                                    <span class="date">2025-10-20</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#entry-2025-08-10">
-                                    <span class="text-milestone">MILESTONE: World Launch Party</span>
-                                    <span class="date">2025-08-10</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#entry-2025-08-07">
-                                    <span>Weather System + Rain Shaders</span>
-                                    <span class="date">2025-08-07</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#entry-2025-07-26">
-                                    <span>Achievement Icon Design</span>
-                                    <span class="date">2025-07-26</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#entry-2025-07-19">
-                                    <span>Multi-TV Broadcasting System</span>
-                                    <span class="date">2025-07-19</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#entry-2025-07-13">
-                                    <span class="text-milestone">MILESTONE: VRChat PlayerData Persistence</span>
-                                    <span class="date">2025-07-13</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#entry-2025-07-10">
-                                    <span>First Achievement Unlocked</span>
-                                    <span class="date">2025-07-10</span>
-                                </a>
+                            <li class="toc-year">
+                                <div class="toc-year-header" onclick="toggleTOCYear(this)">
+                                    <span class="toc-year-toggle">▼</span>
+                                    <span>2025 (14 entries)</span>
+                                </div>
+                                <div class="toc-year-content">
+                                    <div class="toc-month">
+                                        <div class="toc-month-header" onclick="toggleTOCMonth(this)">
+                                            <span class="toc-month-toggle">▼</span>
+                                            <span>December</span>
+                                        </div>
+                                        <div class="toc-month-entries">
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-12-07">
+                                                    <span><span class="milestone-badge">★</span> Full Stack AI Workflow - The Complete System</span>
+                                                    <span class="date">07</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-12-06">
+                                                    <span><span class="milestone-badge">★</span> Closed-Loop Agent System</span>
+                                                    <span class="date">06</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-12-06-terminal">
+                                                    <span>Meta-Review: Terminal 2.1 Spec Quality</span>
+                                                    <span class="date">06</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-12-03">
+                                                    <span>Refactoring CLAUDE.md</span>
+                                                    <span class="date">03</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="toc-month">
+                                        <div class="toc-month-header" onclick="toggleTOCMonth(this)">
+                                            <span class="toc-month-toggle">▼</span>
+                                            <span>November</span>
+                                        </div>
+                                        <div class="toc-month-entries">
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-11-29">
+                                                    <span>Symbolic Games POC</span>
+                                                    <span class="date">29</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-11-15">
+                                                    <span>Terminal Menu System Complete</span>
+                                                    <span class="date">15</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-11-07">
+                                                    <span><span class="milestone-badge">★</span> Claude Code + Documentation Sprint</span>
+                                                    <span class="date">07</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="toc-month">
+                                        <div class="toc-month-header" onclick="toggleTOCMonth(this)">
+                                            <span class="toc-month-toggle">▼</span>
+                                            <span>October</span>
+                                        </div>
+                                        <div class="toc-month-entries">
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-10-20">
+                                                    <span><span class="milestone-badge">★</span> Achievement System Overhaul</span>
+                                                    <span class="date">20</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="toc-month">
+                                        <div class="toc-month-header" onclick="toggleTOCMonth(this)">
+                                            <span class="toc-month-toggle">▼</span>
+                                            <span>August</span>
+                                        </div>
+                                        <div class="toc-month-entries">
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-08-10">
+                                                    <span><span class="milestone-badge">★</span> World Launch Party</span>
+                                                    <span class="date">10</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-08-07">
+                                                    <span>Weather System + Rain Shaders</span>
+                                                    <span class="date">07</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="toc-month">
+                                        <div class="toc-month-header" onclick="toggleTOCMonth(this)">
+                                            <span class="toc-month-toggle">▼</span>
+                                            <span>July</span>
+                                        </div>
+                                        <div class="toc-month-entries">
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-07-26">
+                                                    <span>Achievement Icon Design</span>
+                                                    <span class="date">26</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-07-19">
+                                                    <span>Multi-TV Broadcasting System</span>
+                                                    <span class="date">19</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-07-13">
+                                                    <span><span class="milestone-badge">★</span> VRChat PlayerData Persistence</span>
+                                                    <span class="date">13</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-07-10">
+                                                    <span>First Achievement Unlocked</span>
+                                                    <span class="date">10</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -2330,6 +2498,54 @@
                 });
             }
         });
+
+        // ═══════════════════════════════════════════════════════════════════
+        // TABLE OF CONTENTS TREE
+        // ═══════════════════════════════════════════════════════════════════
+
+        function toggleTOCYear(element) {
+            const content = element.nextElementSibling;
+            const toggle = element.querySelector('.toc-year-toggle');
+
+            if (content.classList.contains('collapsed')) {
+                content.classList.remove('collapsed');
+                toggle.textContent = '▼';
+            } else {
+                content.classList.add('collapsed');
+                toggle.textContent = '▶';
+            }
+        }
+
+        function toggleTOCMonth(element) {
+            const content = element.nextElementSibling;
+            const toggle = element.querySelector('.toc-month-toggle');
+
+            if (content.classList.contains('collapsed')) {
+                content.classList.remove('collapsed');
+                toggle.textContent = '▼';
+            } else {
+                content.classList.add('collapsed');
+                toggle.textContent = '▶';
+            }
+        }
+
+        function expandAllTOC() {
+            document.querySelectorAll('.toc-year-content, .toc-month-entries').forEach(el => {
+                el.classList.remove('collapsed');
+            });
+            document.querySelectorAll('.toc-year-toggle, .toc-month-toggle').forEach(toggle => {
+                toggle.textContent = '▼';
+            });
+        }
+
+        function collapseAllTOC() {
+            document.querySelectorAll('.toc-year-content, .toc-month-entries').forEach(el => {
+                el.classList.add('collapsed');
+            });
+            document.querySelectorAll('.toc-year-toggle, .toc-month-toggle').forEach(toggle => {
+                toggle.textContent = '▶';
+            });
+        }
 
         // ═══════════════════════════════════════════════════════════════════
         // LIGHTBOX IMAGE VIEWER
