@@ -1108,6 +1108,12 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="#entry-2025-12-03">
+                                    <span>Refactoring CLAUDE.md</span>
+                                    <span class="date">2025-12-03</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="#entry-2025-11-29">
                                     <span>Symbolic Games POC</span>
                                     <span class="date">2025-11-29</span>
@@ -1238,6 +1244,40 @@
                                 <span class="tag tech">Unity MCP</span>
                                 <span class="tag tech">Claude Code</span>
                                 <span class="tag tech">Agent Swarm</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-12-03" data-searchable>
+                            <div class="devlog-date">December 3, 2025</div>
+                            <h3 class="devlog-title">Refactoring CLAUDE.md</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    A coworker sent me
+                                    <a href="https://www.humanlayer.dev/blog/writing-a-good-claude-md" target="_blank">HumanLayer's guide to writing good CLAUDE.md files</a>,
+                                    and I couldn't help myself - had to try it immediately.
+                                </p>
+                                <p>
+                                    Opened Claude Opus and fed it my entire 953-line CLAUDE.md for review, citing the HumanLayer article as the comparison benchmark. "How does mine stack up against their recommendations?"
+                                </p>
+                                <p>
+                                    Opus came back with a refactor plan: too many instructions causing "instruction-following decay," embedded code examples getting stale, mixed universal and task-specific rules. The solution? Modular structure - keep CLAUDE.md lean (~150 lines) and create reference documents in <code>Docs/Reference/</code> that Claude can pull when needed.
+                                </p>
+                                <a href="images/2025/12/claude-md-refactor-opus-dec3.png" target="_blank">
+                                    <img src="images/2025/12/claude-md-refactor-opus-dec3.png" alt="Claude Opus refactor analysis showing before/after comparison" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <p>
+                                    This is how I learn best. Read something interesting, apply it immediately while it's fresh. No analysis paralysis, just iteration. By the end of the session, I had a new doc structure that made every future Claude conversation more effective.
+                                </p>
+                                <p>
+                                    Meta-learning: using AI to improve how you work with AI. That's leverage.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">documentation</span>
+                                <span class="tag">meta-learning</span>
+                                <span class="tag">ai</span>
+                                <span class="tag tech">Claude Opus</span>
+                                <span class="tag tech">Claude Code</span>
                             </div>
                         </article>
 
