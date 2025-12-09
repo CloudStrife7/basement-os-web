@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASEMENT OS Business Cards | Synthwave Edition</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
+
+        /* ═══════════════════════════════════════════════════════════════════
+           GLOBAL STYLES - SYNTHWAVE THEME
+        ═══════════════════════════════════════════════════════════════════ */
+
+        :root {
+            /* Synthwave Color Palette */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-terminal: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-dim: #888888;
+            --accent-primary: #ff3e8a;
+            --accent-secondary: #ff6b9d;
+            --accent-alert: #ffb347;
+            --accent-error: #ff4757;
+            --accent-link: #ffffff;
+            --accent-milestone: #ff3e8a;
+            --border-color: #333333;
+            --scanline-color: rgba(255, 62, 138, 0.02);
+            --cursor-color: #ff3e8a;
+
+            /* Fonts */
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+            --font-display: 'VT323', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Background grid effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(0deg, transparent 24%, rgba(255, 62, 138, 0.05) 25%, rgba(255, 62, 138, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 62, 138, 0.05) 75%, rgba(255, 62, 138, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255, 62, 138, 0.05) 25%, rgba(255, 62, 138, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 62, 138, 0.05) 75%, rgba(255, 62, 138, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .page-title {
+            font-family: var(--font-display);
+            font-size: 48px;
+            color: var(--accent-primary);
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--accent-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .cards-container {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           BUSINESS CARD BASE STYLES
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .card {
+            width: 3.5in;
+            height: 2in;
+            background: var(--bg-terminal);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow:
+                0 0 30px rgba(0, 0, 0, 0.5),
+                0 0 60px rgba(255, 62, 138, 0.2),
+                inset 0 0 0 1px rgba(255, 62, 138, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.6),
+                0 0 80px rgba(255, 62, 138, 0.4),
+                inset 0 0 0 1px rgba(255, 62, 138, 0.2);
+        }
+
+        /* Scanline effect */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(255, 62, 138, 0.03) 0px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* macOS-style window buttons */
+        .window-controls {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .window-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+        }
+
+        .window-button.close { background: #ff5f56; }
+        .window-button.minimize { background: #ffbd2e; }
+        .window-button.maximize { background: #27c93f; }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           FRONT CARD - BOOT SEQUENCE STYLE
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .card-front {
+            padding: 40px 24px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .boot-header {
+            font-family: var(--font-display);
+            font-size: 28px;
+            color: var(--accent-primary);
+            margin-bottom: 16px;
+            text-shadow: 0 0 8px var(--accent-primary);
+            letter-spacing: 1px;
+        }
+
+        .boot-lines {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 11px;
+            line-height: 1.3;
+        }
+
+        .boot-line {
+            opacity: 0;
+            animation: bootFadeIn 0.3s forwards;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        @keyframes bootFadeIn {
+            to { opacity: 1; }
+        }
+
+        .boot-line:nth-child(1) { animation-delay: 0.1s; }
+        .boot-line:nth-child(2) { animation-delay: 0.3s; }
+        .boot-line:nth-child(3) { animation-delay: 0.5s; }
+        .boot-line:nth-child(4) { animation-delay: 0.7s; }
+        .boot-line:nth-child(5) { animation-delay: 0.9s; }
+        .boot-line:nth-child(6) { animation-delay: 1.1s; }
+        .boot-line:nth-child(7) { animation-delay: 1.3s; }
+        .boot-line:nth-child(8) { animation-delay: 1.5s; }
+
+        .boot-ok {
+            color: var(--accent-primary);
+        }
+
+        .boot-warn {
+            color: var(--accent-alert);
+        }
+
+        .boot-info {
+            color: var(--accent-link);
+        }
+
+        .boot-prompt {
+            color: var(--text-dim);
+            font-size: 10px;
+            margin-top: 12px;
+            opacity: 0;
+            animation: bootFadeIn 0.3s forwards 1.7s;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 14px;
+            background: var(--cursor-color);
+            margin-left: 4px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           BACK CARD - PROFESSIONAL INFO DISPLAY
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .card-back {
+            padding: 40px 24px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 12px;
+        }
+
+        .name {
+            font-family: var(--font-display);
+            font-size: 36px;
+            color: var(--accent-primary);
+            text-shadow: 0 0 10px var(--accent-primary);
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+
+        .title {
+            font-size: 16px;
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .divider {
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--accent-primary) 20%,
+                var(--accent-primary) 80%,
+                transparent
+            );
+            margin: 8px 0;
+            box-shadow: 0 0 4px var(--accent-primary);
+        }
+
+        .website {
+            font-size: 14px;
+            color: var(--accent-link);
+            font-weight: 700;
+            margin-top: 8px;
+            text-decoration: none;
+            padding: 6px 16px;
+            border: 1px solid var(--accent-primary);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: rgba(255, 62, 138, 0.1);
+        }
+
+        .website:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            box-shadow: 0 0 15px var(--accent-primary);
+        }
+
+        .corner-accent {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            opacity: 0.3;
+        }
+
+        .corner-accent.top-left {
+            top: 0;
+            left: 0;
+            border-top: 2px solid var(--accent-primary);
+            border-left: 2px solid var(--accent-primary);
+        }
+
+        .corner-accent.bottom-right {
+            bottom: 0;
+            right: 0;
+            border-bottom: 2px solid var(--accent-primary);
+            border-right: 2px solid var(--accent-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           RESPONSIVE DESIGN
+        ═══════════════════════════════════════════════════════════════════ */
+
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .card {
+                width: 90vw;
+                max-width: 500px;
+                height: auto;
+                aspect-ratio: 1.75 / 1;
+            }
+
+            .page-title {
+                font-size: 32px;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           PRINT STYLES
+        ═══════════════════════════════════════════════════════════════════ */
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            body::before {
+                display: none;
+            }
+
+            .page-title {
+                display: none;
+            }
+
+            .cards-container {
+                gap: 0.25in;
+            }
+
+            .card {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+
+            .card:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="page-title">// BASEMENT_OS.BUSINESS_CARDS</h1>
+
+    <div class="cards-container">
+        <!-- FRONT CARD: Boot Sequence Style -->
+        <div class="card card-front">
+            <div class="window-controls">
+                <div class="window-button close"></div>
+                <div class="window-button minimize"></div>
+                <div class="window-button maximize"></div>
+            </div>
+
+            <div>
+                <div class="boot-header">BASEMENT OS</div>
+                <div class="boot-lines">
+                    <div class="boot-line">POST: Power-On Self Test...</div>
+                    <div class="boot-line boot-ok">  Checking BIOS.................... OK</div>
+                    <div class="boot-line boot-ok">  Creativity Module................ OK</div>
+                    <div class="boot-line boot-ok">  Bot Swarm Initializing........... OK</div>
+                    <div class="boot-line">Loading Developer Profile...</div>
+                    <div class="boot-line boot-ok">  Unity Engine..................... OK</div>
+                    <div class="boot-line boot-ok">  AI Systems....................... OK</div>
+                    <div class="boot-line boot-info">Boot complete. Ready to create.</div>
+                </div>
+            </div>
+
+            <div class="boot-prompt">
+                C:\BASEMENT&gt;<span class="cursor"></span>
+            </div>
+        </div>
+
+        <!-- BACK CARD: Professional Info -->
+        <div class="card card-back">
+            <div class="window-controls">
+                <div class="window-button close"></div>
+                <div class="window-button minimize"></div>
+                <div class="window-button maximize"></div>
+            </div>
+
+            <div class="corner-accent top-left"></div>
+            <div class="corner-accent bottom-right"></div>
+
+            <div class="name">ZACH WAGNER</div>
+            <div class="title">AI Unity Dev</div>
+            <div class="subtitle">Developer, Artist</div>
+
+            <div class="divider"></div>
+
+            <a href="https://basementos.com" class="website">BasementOS.com</a>
+        </div>
+    </div>
+</body>
+</html>
