@@ -373,6 +373,23 @@
             line-height: 1.7;
             min-height: 100vh;
             transition: background var(--transition-speed), color var(--transition-speed);
+            position: relative;
+        }
+
+        /* Background grid effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(0deg, transparent 24%, rgba(255, 62, 138, 0.05) 25%, rgba(255, 62, 138, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 62, 138, 0.05) 75%, rgba(255, 62, 138, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255, 62, 138, 0.05) 25%, rgba(255, 62, 138, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 62, 138, 0.05) 75%, rgba(255, 62, 138, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
         }
 
         ::selection {
