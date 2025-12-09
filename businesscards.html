@@ -94,6 +94,22 @@
             z-index: 1;
         }
 
+        .card-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-label {
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         /* ═══════════════════════════════════════════════════════════════════
            BUSINESS CARD BASE STYLES
         ═══════════════════════════════════════════════════════════════════ */
@@ -440,47 +456,51 @@
 
     <div class="cards-container">
         <!-- FRONT CARD: DOS Footer/Terminal Style -->
-        <div class="card card-front">
-            <div class="window-controls">
-                <div class="window-button close"></div>
-                <div class="window-button minimize"></div>
-                <div class="window-button maximize"></div>
-            </div>
-
-            <div class="front-header-section">
-                <div class="dos-header">BASEMENT OS</div>
-                <div class="terminal-label">&lt;TERMINAL&gt;</div>
-            </div>
-
-            <div class="dos-content">
-                <div class="dos-lines">
-                    <div class="dos-line">BIOS Ver <span class="dos-value">2.0</span></div>
-                    <div class="dos-line">CPU: <span class="dos-value">Creativity Core</span></div>
-                    <div class="dos-line">RAM: <span class="dos-value">Infinite Ideas</span></div>
-                    <div class="dos-line">GPU: <span class="dos-value">Unity Renderer</span></div>
-                    <div class="dos-line">AI: <span class="dos-value">Claude Integrated</span></div>
+        <div class="card-wrapper">
+            <div class="card card-front">
+                <div class="window-controls">
+                    <div class="window-button close"></div>
+                    <div class="window-button minimize"></div>
+                    <div class="window-button maximize"></div>
                 </div>
 
-                <div class="dos-prompt">
-                    C:\BASEMENT&gt;<span class="cursor"></span>
+                <div class="front-header-section">
+                    <div class="dos-header">BASEMENT OS</div>
+                    <div class="terminal-label">&lt;TERMINAL&gt;</div>
+                </div>
+
+                <div class="dos-content">
+                    <div class="dos-lines">
+                        <div class="dos-line">BIOS Ver <span class="dos-value">2.0</span></div>
+                        <div class="dos-line">CPU: <span class="dos-value">Creativity Core</span></div>
+                        <div class="dos-line">RAM: <span class="dos-value">Infinite Ideas</span></div>
+                        <div class="dos-line">GPU: <span class="dos-value">Unity Renderer</span></div>
+                        <div class="dos-line">AI: <span class="dos-value">Claude Integrated</span></div>
+                    </div>
+
+                    <div class="dos-prompt">
+                        C:\BASEMENT&gt;<span class="cursor"></span>
+                    </div>
+                </div>
+
+                <div class="dos-status-bar">
+                    <span class="status-item">
+                        MEM: <span class="status-value">640K OK</span>
+                    </span>
+                    <span class="status-item">
+                        TIME: <span class="status-value" id="clock">00:00:00</span>
+                    </span>
+                    <span class="status-item">
+                        SYS: <span class="status-value">BASEMENT OS</span>
+                    </span>
                 </div>
             </div>
-
-            <div class="dos-status-bar">
-                <span class="status-item">
-                    MEM: <span class="status-value">640K OK</span>
-                </span>
-                <span class="status-item">
-                    TIME: <span class="status-value" id="clock">00:00:00</span>
-                </span>
-                <span class="status-item">
-                    SYS: <span class="status-value">BASEMENT OS</span>
-                </span>
-            </div>
+            <div class="card-label">FRONT</div>
         </div>
 
         <!-- BACK CARD: Mini AI Skills Page -->
-        <div class="card card-back">
+        <div class="card-wrapper">
+            <div class="card card-back">
             <div class="window-controls">
                 <div class="window-button close"></div>
                 <div class="window-button minimize"></div>
@@ -529,6 +549,8 @@
                     <div class="contact-info">Why Build it? Because I can.</div>
                 </div>
             </div>
+            </div>
+            <div class="card-label">BACK</div>
         </div>
     </div>
 
