@@ -165,19 +165,41 @@
         ═══════════════════════════════════════════════════════════════════ */
 
         .card-front {
-            padding: 36px 20px 18px 20px;
+            padding: 36px 0 18px 0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
+        .front-header-section {
+            background: rgba(30, 30, 30, 0.8);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 6px 20px;
+            margin: -6px 0 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .dos-header {
             font-family: var(--font-display);
-            font-size: 24px;
+            font-size: 20px;
             color: var(--accent-primary);
-            margin-bottom: 10px;
             text-shadow: 0 0 8px var(--accent-primary);
             letter-spacing: 1px;
+        }
+
+        .terminal-label {
+            font-family: var(--font-mono);
+            font-size: 8px;
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+
+        .dos-content {
+            padding: 0 20px;
+            flex: 1;
         }
 
         .dos-lines {
@@ -226,9 +248,9 @@
             justify-content: space-between;
             font-size: 8px;
             color: var(--text-dim);
-            padding-top: 8px;
+            padding: 8px 20px 0 20px;
             border-top: 1px solid var(--border-color);
-            margin-top: 6px;
+            margin: 6px 0 0 0;
         }
 
         .status-item {
@@ -247,7 +269,7 @@
         ═══════════════════════════════════════════════════════════════════ */
 
         .card-back {
-            padding: 36px 16px 16px 16px;
+            padding: 36px 0 16px 0;
             display: flex;
             flex-direction: column;
             gap: 6px;
@@ -257,11 +279,19 @@
             background: rgba(30, 30, 30, 0.8);
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
-            padding: 6px 8px;
+            padding: 6px 16px;
             margin: -6px 0 6px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .skills-content {
+            padding: 0 16px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
         .skills-header {
@@ -416,8 +446,12 @@
                 <div class="window-button maximize"></div>
             </div>
 
-            <div>
+            <div class="front-header-section">
                 <div class="dos-header">BASEMENT OS</div>
+                <div class="terminal-label">&lt;TERMINAL&gt;</div>
+            </div>
+
+            <div class="dos-content">
                 <div class="dos-lines">
                     <div class="dos-line">BIOS Ver <span class="dos-value">2.0</span></div>
                     <div class="dos-line">Boot Device: <span class="dos-value">HDD-0</span></div>
@@ -427,24 +461,22 @@
                     <div class="dos-line">AI: <span class="dos-value">Claude Integrated</span></div>
                     <div class="dos-line">Status: <span class="dos-value">READY</span></div>
                 </div>
-            </div>
 
-            <div>
                 <div class="dos-prompt">
                     C:\BASEMENT&gt;<span class="cursor"></span>
                 </div>
+            </div>
 
-                <div class="dos-status-bar">
-                    <span class="status-item">
-                        MEM: <span class="status-value">640K OK</span>
-                    </span>
-                    <span class="status-item">
-                        TIME: <span class="status-value" id="clock">00:00:00</span>
-                    </span>
-                    <span class="status-item">
-                        SYS: <span class="status-value">BASEMENT OS</span>
-                    </span>
-                </div>
+            <div class="dos-status-bar">
+                <span class="status-item">
+                    MEM: <span class="status-value">640K OK</span>
+                </span>
+                <span class="status-item">
+                    TIME: <span class="status-value" id="clock">00:00:00</span>
+                </span>
+                <span class="status-item">
+                    SYS: <span class="status-value">BASEMENT OS</span>
+                </span>
             </div>
         </div>
 
@@ -461,52 +493,54 @@
                 <div class="ai-skills-label">&lt;AI&gt; SKILLS</div>
             </div>
 
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <div class="skill-name">Unity Dev</div>
-                    <div class="skill-desc">Game engines & VR</div>
+            <div class="skills-content">
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-name">Unity Dev</div>
+                        <div class="skill-desc">Game engines & VR</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">C# / UdonSharp</div>
+                        <div class="skill-desc">VRChat scripting</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">AI Integration</div>
+                        <div class="skill-desc">Claude Code & MCP</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">Agent Swarms</div>
+                        <div class="skill-desc">Parallel AI tasks</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">API Design</div>
+                        <div class="skill-desc">Cloud persistence</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">3D Art</div>
+                        <div class="skill-desc">Modeling & shaders</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">UI/UX Design</div>
+                        <div class="skill-desc">Interactive systems</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">Git Workflow</div>
+                        <div class="skill-desc">CI/CD automation</div>
+                    </div>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-name">C# / UdonSharp</div>
-                    <div class="skill-desc">VRChat scripting</div>
+                <div class="contact-section">
+                    <div class="contact-name">AI Unity Dev</div>
+                    <div class="contact-info">Developer | Artist</div>
+                    <a href="https://basementos.com" class="website-link">BasementOS.com</a>
                 </div>
-
-                <div class="skill-item">
-                    <div class="skill-name">AI Integration</div>
-                    <div class="skill-desc">Claude Code & MCP</div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-name">Agent Swarms</div>
-                    <div class="skill-desc">Parallel AI tasks</div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-name">API Design</div>
-                    <div class="skill-desc">Cloud persistence</div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-name">3D Art</div>
-                    <div class="skill-desc">Modeling & shaders</div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-name">UI/UX Design</div>
-                    <div class="skill-desc">Interactive systems</div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-name">Git Workflow</div>
-                    <div class="skill-desc">CI/CD automation</div>
-                </div>
-            </div>
-
-            <div class="contact-section">
-                <div class="contact-name">AI Unity Dev</div>
-                <div class="contact-info">Developer | Artist</div>
-                <a href="https://basementos.com" class="website-link">BasementOS.com</a>
             </div>
         </div>
     </div>
