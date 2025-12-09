@@ -153,12 +153,13 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            border: 1px solid rgba(0, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
         }
 
-        .window-button.close { background: #ff5f56; }
-        .window-button.minimize { background: #ffbd2e; }
-        .window-button.maximize { background: #27c93f; }
+        .window-button.close { background: var(--accent-error); }
+        .window-button.minimize { background: var(--accent-secondary); }
+        .window-button.maximize { background: var(--accent-primary); }
 
         /* ═══════════════════════════════════════════════════════════════════
            FRONT CARD - DOS FOOTER STYLE (Terminal Status Bar)
@@ -192,7 +193,7 @@
 
         .terminal-label {
             font-family: var(--font-mono);
-            font-size: 8px;
+            font-size: 11px;
             color: var(--text-secondary);
             font-weight: 700;
         }
@@ -304,7 +305,7 @@
 
         .ai-skills-label {
             font-family: var(--font-mono);
-            font-size: 8px;
+            font-size: 11px;
             color: var(--text-secondary);
             font-weight: 700;
         }
