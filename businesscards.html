@@ -253,13 +253,30 @@
             gap: 6px;
         }
 
+        .header-section {
+            background: rgba(30, 30, 30, 0.8);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 6px 8px;
+            margin: -6px 0 6px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .skills-header {
             font-family: var(--font-display);
-            font-size: 20px;
+            font-size: 18px;
             color: var(--accent-primary);
             text-shadow: 0 0 8px var(--accent-primary);
             letter-spacing: 1px;
-            margin-bottom: 2px;
+        }
+
+        .ai-skills-label {
+            font-family: var(--font-mono);
+            font-size: 8px;
+            color: var(--text-secondary);
+            font-weight: 700;
         }
 
         .skills-grid {
@@ -439,7 +456,10 @@
                 <div class="window-button maximize"></div>
             </div>
 
-            <div class="skills-header">ZACH WAGNER</div>
+            <div class="header-section">
+                <div class="skills-header">ZACH WAGNER</div>
+                <div class="ai-skills-label">&lt;AI&gt; SKILLS</div>
+            </div>
 
             <div class="skills-grid">
                 <div class="skill-item">
