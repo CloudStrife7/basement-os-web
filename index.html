@@ -2383,10 +2383,54 @@
 
                     <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
-                    <h3 style="margin-top: 20px; margin-bottom: 15px;">Project Direction</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>[ Tech Stack ]</h3>
+                            <div class="stat-row">
+                                <span class="stat-label">Engine</span>
+                                <span class="stat-value">Unity 2022.3.22f1</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">SDK</span>
+                                <span class="stat-value">VRChat SDK 3.8.2+</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Scripting</span>
+                                <span class="stat-value">UdonSharp</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Platform</span>
+                                <span class="stat-value">PC VR + Quest</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Status</span>
+                                <span class="stat-value">Active Development</span>
+                            </div>
+                        </div>
 
-                    <div class="devlog-content">
-                        <p>Lower Level 2.0 continues to serve as a proving ground for my ongoing transition from traditional development to structured, AI-assisted workflows. Each new feature informs the next iteration of my methodology, improving how humans and AI collaborate on complex, interactive VR/XR environments.</p>
+                        <div class="info-card">
+                            <h3>[ Lower Level Stats ]</h3>
+                            <div class="stat-row">
+                                <span class="stat-label">Total Visits</span>
+                                <span class="stat-value" id="stat-visits">Loading...</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Total Favorites</span>
+                                <span class="stat-value" id="stat-favorites">--</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Popularity</span>
+                                <span class="stat-value" id="stat-popularity">--</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Last Updated</span>
+                                <span class="stat-value" id="stat-updated">--</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">First Uploaded</span>
+                                <span class="stat-value" id="stat-created">--</span>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -2871,7 +2915,16 @@ document.addEventListener("DOMContentLoaded", function() {
     // 2. The VRChat Public API Key (Standard public key for read-only access)
     const apiKey = "JlE5Jldo5Jibnk5O5hTx6XVqsJyIkZVd";
 
-    // 3. Construct the URL with CORS Proxies (with fallback)
+    // 3. Cached fallback data (last known good values)
+    const cachedStats = {
+        visits: 770,
+        favorites: 25,
+        popularity: 42,
+        updated_at: "2025-12-09T00:00:00.000Z",
+        created_at: "2024-07-08T00:00:00.000Z"
+    };
+
+    // 4. Construct the URL with CORS Proxies (with fallback)
     const targetUrl = `https://api.vrchat.cloud/api/1/worlds/${worldId}?apiKey=${apiKey}`;
 
     // Try multiple CORS proxies in case one fails
@@ -2899,35 +2952,52 @@ document.addEventListener("DOMContentLoaded", function() {
         throw new Error('All proxies failed');
     }
 
+    function updateStats(worldData) {
+        // Helper to format numbers with commas (e.g., 1,234)
+        const formatNum = (num) => new Intl.NumberFormat().format(num);
+
+        // Helper to format dates (e.g., 12/9/2025)
+        const formatDate = (dateString) => {
+            const date = new Date(dateString);
+            return date.toLocaleDateString();
+        };
+
+        // --- Update The Stats Card ---
+        document.getElementById("stat-visits").textContent = formatNum(worldData.visits);
+        document.getElementById("stat-favorites").textContent = formatNum(worldData.favorites);
+        document.getElementById("stat-popularity").textContent = formatNum(worldData.popularity);
+        document.getElementById("stat-updated").textContent = formatDate(worldData.updated_at);
+        document.getElementById("stat-created").textContent = formatDate(worldData.created_at);
+
+        // --- Update The Intro Page ---
+        const introVisits = document.getElementById("stat-visits-intro");
+        if (introVisits) introVisits.textContent = formatNum(worldData.visits) + "+";
+    }
+
     fetchWithFallback(corsProxies)
         .then(worldData => {
-            // Helper to format numbers with commas (e.g., 1,234)
-            const formatNum = (num) => new Intl.NumberFormat().format(num);
-
-            // Helper to format dates (e.g., 12/9/2025)
-            const formatDate = (dateString) => {
-                const date = new Date(dateString);
-                return date.toLocaleDateString();
-            };
-
-            // --- Update The Stats Card ---
-            document.getElementById("stat-visits").textContent = formatNum(worldData.visits);
-            document.getElementById("stat-favorites").textContent = formatNum(worldData.favorites);
-            document.getElementById("stat-popularity").textContent = formatNum(worldData.popularity);
-            document.getElementById("stat-updated").textContent = formatDate(worldData.updated_at);
-            document.getElementById("stat-created").textContent = formatDate(worldData.created_at);
-
-            // --- Update The Summary Paragraphs ---
-            // Adds a "+" sign to match your writing style (e.g., "688+")
-            document.getElementById("stat-visits-summary").textContent = formatNum(worldData.visits) + "+";
-            // Also update intro page if element exists
-            const introVisits = document.getElementById("stat-visits-intro");
-            if (introVisits) introVisits.textContent = formatNum(worldData.visits) + "+";
+            // Cache successful fetch to localStorage
+            localStorage.setItem('vrchat-stats-cache', JSON.stringify(worldData));
+            localStorage.setItem('vrchat-stats-timestamp', Date.now());
+            updateStats(worldData);
         })
         .catch(error => {
             console.error('Error fetching VRChat stats:', error);
-            // Optional: Set fallback text if it fails
-            document.getElementById("stat-visits").textContent = "Offline";
+            // Try to use cached data from localStorage
+            const cachedData = localStorage.getItem('vrchat-stats-cache');
+            if (cachedData) {
+                try {
+                    const parsedCache = JSON.parse(cachedData);
+                    console.log('Using cached stats from localStorage');
+                    updateStats(parsedCache);
+                    return;
+                } catch (e) {
+                    console.error('Failed to parse cached data');
+                }
+            }
+            // Fall back to hardcoded cached stats
+            console.log('Using hardcoded fallback stats');
+            updateStats(cachedStats);
         });
 });
 </script>
