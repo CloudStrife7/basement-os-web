@@ -6,7 +6,6 @@
     <title>BASEMENT OS | Lower Level 2.0 Dev Blog</title>
     <meta name="description" content="Basement OS - An interactive dev blog for the Lower Level 2.0 VRChat world project">
 
-    <!-- Prevent FOUC (Flash of Unstyled Content) -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('basement-os-theme') || 'synthwave';
@@ -668,6 +667,73 @@
         }
 
         /* ═══════════════════════════════════════════════════════════════════
+           NEW LANDING PAGE SECTIONS
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .mission-statement {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent-primary);
+            padding: 15px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+        }
+
+        .latest-update {
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-milestone);
+            padding: 15px;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .quick-overview {
+            margin-bottom: 20px;
+        }
+
+        .nav-routing {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .routing-header {
+            color: var(--accent-secondary);
+            border-bottom: 1px dotted var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-family: var(--font-display);
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .routing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .routing-section strong {
+            display: block;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .routing-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .routing-section li {
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
            TOOLTIP DEFINITIONS
         ═══════════════════════════════════════════════════════════════════ */
 
@@ -1265,7 +1331,6 @@
 <body>
     <div class="terminal-wrapper">
         <div class="terminal">
-            <!-- Header Bar -->
             <div class="terminal-header">
                 <div class="window-controls">
                     <span class="window-btn btn-close"></span>
@@ -1294,7 +1359,6 @@
                 </div>
             </div>
 
-            <!-- Navigation Menu (hidden during boot) -->
             <nav class="nav-menu" id="nav-menu">
                 <button class="nav-btn active" onclick="showSection('devlog')">
                     <span class="type">&lt;LOG&gt;</span> DEVLOG
@@ -1313,7 +1377,6 @@
                 </button>
             </nav>
 
-            <!-- Search Bar -->
             <div class="search-container" id="search-container">
                 <input type="text" class="search-input" id="search-input"
                        placeholder="Search devlog entries..."
@@ -1321,7 +1384,6 @@
                 <div class="search-results" id="search-results"></div>
             </div>
 
-            <!-- AI Workflow Disclosure -->
             <div class="ai-disclosure" id="ai-disclosure" style="display: none;">
                 <div class="ai-disclosure-header">[  NEXT-GEN AI DEVLOG  ]</div>
                 <div class="ai-disclosure-content">
@@ -1329,17 +1391,62 @@
                 </div>
             </div>
 
-            <!-- Boot Screen -->
             <div class="boot-screen" id="boot-screen"></div>
 
-            <!-- Main Content -->
             <div class="terminal-content" id="main-content">
 
-                <!-- Devlog Section -->
                 <div class="content-section active" id="section-devlog">
                     <h2 class="section-header">C:\BASEMENT\DEVLOG.TXT</h2>
 
-                    <!-- Table of Contents -->
+                    <div class="mission-statement">
+                        <p>I'm documenting my transition from traditional development to AI-assisted workflows through a real VRChat project. This site tracks methodology evolution, authentic failures, and transferable frameworks for human-AI collaboration. Whether you're here for technical insights, career transition guidance, or just following a friend's journey - welcome to the basement.</p>
+                    </div>
+
+                    <div class="latest-update">
+                        <strong>December 7, 2025</strong> - Breakthrough: Full Stack AI Workflow achieved with 9-agent swarm + UdonSharpAssetRepair discovery. The missing automation link that completes the development loop. <a href="#entry-2025-12-07" class="link">→ Read the milestone</a>
+                    </div>
+
+                    <div class="quick-overview info-card">
+                        <p>Started with a simple VRChat basement world. Evolved into systematic AI-assisted development methodology. Built 19 Xbox 360-style achievements, interactive DOS terminal, and real-time weather integration - all while documenting the human-AI collaboration process. 688+ visits, public release in 64 days. Now transitioning to AI team at work using these proven workflows.</p>
+                    </div>
+
+                    <div class="nav-routing">
+                        <h3 class="routing-header">[ NEW HERE? START WITH... ]</h3>
+                        <div class="routing-grid">
+                            <div class="routing-section">
+                                <strong>🤖 Interested in AI Methodology?</strong>
+                                <ul>
+                                    <li><a href="#entry-2025-12-07" class="link">→ December 7: Full Stack AI Workflow</a></li>
+                                    <li><a href="javascript:showSection('skills')" class="link">→ AI Skills Directory</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="routing-section">
+                                <strong>🎮 Curious About VRChat Development?</strong>
+                                <ul>
+                                    <li><a href="#entry-2025-07-13" class="link">→ July 13: VRChat PlayerData Persistence</a></li>
+                                    <li><a href="#entry-2025-10-20" class="link">→ October 20: Achievement System Overhaul</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="routing-section">
+                                <strong>📈 Want the Complete Journey?</strong>
+                                <ul>
+                                    <li><a href="#entry-2025-07-10" class="link">→ July 10: First Achievement</a></li>
+                                    <li><a href="#entry-2025-12-07" class="link">→ December 7: Full Stack AI</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="routing-section">
+                                <strong>🤝 Looking to Collaborate?</strong>
+                                <ul>
+                                    <li><a href="javascript:showSection('about')" class="link">→ Working with Me</a></li>
+                                    <li><a href="javascript:showSection('links')" class="link">→ Get Involved</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="devlog-toc">
                         <h3>
                             [ Table of Contents ]
@@ -1484,7 +1591,6 @@
                         </ul>
                     </div>
 
-                    <!-- Devlog Entries -->
                     <div class="devlog-entries">
                         <article class="devlog-entry" id="entry-2025-12-07" data-searchable>
                             <div class="devlog-date">December 7, 2025</div>
@@ -1670,7 +1776,7 @@
                             <h3 class="devlog-title milestone">MILESTONE: Claude Code + Documentation Sprint</h3>
                             <div class="devlog-content">
                                 <p>
-                                    Started my first serious session with
+                                    Started my first session with
                                     <span class="term" tabindex="0">Claude Code<span class="tooltip">Anthropic's AI coding assistant with direct file access and terminal execution</span></span>
                                     - this is a game changer. Instead of copying code snippets back and forth, Claude can directly read my project files, write code, and even help with git commits.
                                 </p>
@@ -1930,7 +2036,6 @@
                     </div>
                 </div>
 
-                <!-- AI Skills Section -->
                 <div class="content-section" id="section-skills">
                     <h2 class="section-header">C:\BASEMENT\AI_SKILLS.DIR</h2>
 
@@ -2164,7 +2269,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- About Section -->
                 <div class="content-section" id="section-about">
                     <h2 class="section-header">C:\BASEMENT\ABOUT.TXT</h2>
                     <div class="devlog-content">
@@ -2182,6 +2286,35 @@
                         <p>
                             This devlog documents my learning journey with AI-assisted workflows. All content is generated using AI tools with active human oversight, review, and approval. I'm the architect and decision-maker - AI is my development team. Learn more about my methodology in the DEVLOG section, or view my <a href="https://github.com/CloudStrife7/basement-os-web/issues/11" target="_blank">full mission statement</a>.
                         </p>
+                    </div>
+
+                    <div class="info-card mb-2">
+                        <h3>[ WORKING WITH ME ]</h3>
+
+                        <div class="mb-2">
+                            <strong>My Collaboration Style:</strong>
+                            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 5px;">
+                                <li>Documentation-first: Every session gets a summary, every decision gets recorded</li>
+                                <li>AI-assisted but human-led: I architect, AI executes, I review and iterate</li>
+                                <li>Break overwhelming projects into manageable pieces</li>
+                                <li>Transparent about failures: Pivots and mistakes are valuable learning content</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-2">
+                            <strong>How I Work with AI:</strong>
+                            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 5px;">
+                                <li>Systematic prompting with project-specific context</li>
+                                <li>Agent swarms for parallel development streams</li>
+                                <li>Human-in-the-loop for all major decisions</li>
+                                <li>Closed-loop testing with automated validation</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <strong>Current Focus:</strong>
+                            <p style="margin-top: 5px;">Basement OS terminal modernization, Terminal Tales interactive fiction, quest optimization workflows</p>
+                        </div>
                     </div>
 
                     <div class="separator">────────────────────────────────────────────────────────────────────</div>
@@ -2225,7 +2358,6 @@
                     </div>
                 </div>
 
-                <!-- Links Section -->
                 <div class="content-section" id="section-links">
                     <h2 class="section-header">C:\BASEMENT\LINKS.NET</h2>
 
@@ -2273,13 +2405,11 @@
                 </div>
             </div>
 
-            <!-- Prompt Line -->
             <div class="prompt-line">
                 <span class="prompt">C:\BASEMENT&gt;</span>
                 <span class="cursor"></span>
             </div>
 
-            <!-- Status Bar -->
             <div class="status-bar">
                 <span class="status-item">
                     MEM: <span class="status-value">640K OK</span>
@@ -2293,13 +2423,11 @@
             </div>
         </div>
 
-        <!-- Footer -->
         <footer style="text-align: center; padding: 20px; color: var(--text-dim); font-size: 12px;">
             <p>&copy; 2025 <a href="https://github.com/CloudStrife7" class="link">CloudStrife7</a> | Lower Level 2.0</p>
         </footer>
     </div>
 
-    <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
         <button class="lightbox-close" id="lightbox-close">✕</button>
         <button class="lightbox-nav lightbox-prev" id="lightbox-prev">‹</button>
