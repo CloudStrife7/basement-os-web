@@ -476,10 +476,14 @@
         .btn-minimize {
             background: var(--accent-secondary);
             transition: all 0.3s ease;
+            position: relative;
         }
         .btn-minimize:hover {
             box-shadow: 0 0 10px var(--accent-secondary);
             transform: scale(1.2);
+        }
+        .btn-minimize:active {
+            transform: scale(1.1);
         }
         .btn-maximize { background: var(--accent-primary); }
 
@@ -780,6 +784,42 @@
             transform: translateX(-50%);
             border: 6px solid transparent;
             border-top-color: var(--border-color);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           INTRO PAGE QUICK LINKS
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .quick-links {
+            margin-top: 20px;
+        }
+
+        .quick-links p {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .quick-links ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+
+        .quick-links ul li {
+            margin: 8px 0;
+            padding-left: 10px;
+        }
+
+        .quick-links a {
+            color: var(--accent-link);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .quick-links a:hover {
+            color: var(--accent-primary);
+            text-decoration: underline;
         }
 
         /* ═══════════════════════════════════════════════════════════════════
@@ -1360,7 +1400,10 @@
             </div>
 
             <nav class="nav-menu" id="nav-menu">
-                <button class="nav-btn active" onclick="showSection('devlog')">
+                <button class="nav-btn active" onclick="showSection('intro')">
+                    <span class="type">&lt;BOOT&gt;</span> INTRO
+                </button>
+                <button class="nav-btn" onclick="showSection('devlog')">
                     <span class="type">&lt;LOG&gt;</span> DEVLOG
                 </button>
                 <button class="nav-btn" onclick="showSection('skills')">
@@ -1395,7 +1438,53 @@
 
             <div class="terminal-content" id="main-content">
 
-                <div class="content-section active" id="section-devlog">
+                <!-- Intro Section -->
+                <div class="content-section active" id="section-intro">
+                    <h2 class="section-header">C:\BASEMENT\INTRO.TXT</h2>
+
+                    <div class="devlog-entry">
+                        <h3>Welcome to BASEMENT OS</h3>
+
+                        <p>
+                            I'm documenting my transition from traditional development to AI-assisted workflows through a real VRChat project. This site tracks methodology evolution, authentic failures, and transferable frameworks for human-AI collaboration. Whether you're here for technical insights, career transition guidance, or just following a friend's journey - welcome to the basement.
+                        </p>
+
+                        <p>
+                            It all started with a VRChat basement world. What was created to connect friends has evolved into systematic AI-assisted development methodology. Built 19 Xbox 360-style achievements, interactive DOS terminal, and real-time weather integration - all while documenting the human-AI collaboration process. 770+ Total visits and counting. I am leveraging my IT background to drive AI initiatives at work, actively upskilling to move from RPA Operations into a dedicated AI development position.
+                        </p>
+
+                        <h3>[ NEW HERE? START WITH... ]</h3>
+
+                        <div class="quick-links">
+                            <p><strong>🤖 Interested in AI Methodology?</strong></p>
+                            <ul>
+                                <li>→ <a href="#entry-2025-12-07" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2025-12-07', 100); return false;">December 7: Full Stack AI Workflow</a></li>
+                                <li>→ <a href="#" onclick="showSection('skills'); return false;">AI Skills Directory</a></li>
+                            </ul>
+
+                            <p><strong>🎮 Curious About VRChat Development?</strong></p>
+                            <ul>
+                                <li>→ <a href="#entry-2024-07-13" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2024-07-13', 100); return false;">July 13: VRChat PlayerData Persistence</a></li>
+                                <li>→ <a href="#entry-2024-10-20" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2024-10-20', 100); return false;">October 20: Achievement System Overhaul</a></li>
+                            </ul>
+
+                            <p><strong>📈 Want the Complete Journey?</strong></p>
+                            <ul>
+                                <li>→ <a href="#entry-2024-07-10" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2024-07-10', 100); return false;">July 10: First Achievement</a></li>
+                                <li>→ <a href="#entry-2025-12-07" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2025-12-07', 100); return false;">December 7: Full Stack AI</a></li>
+                            </ul>
+
+                            <p><strong>🤝 Looking to Collaborate?</strong></p>
+                            <ul>
+                                <li>→ <a href="#" onclick="showSection('about'); return false;">Working with Me</a></li>
+                                <li>→ <a href="#" onclick="showSection('links'); return false;">Get Involved</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Devlog Section -->
+                <div class="content-section" id="section-devlog">
                     <h2 class="section-header">C:\BASEMENT\DEVLOG.TXT</h2>
 
                     <div class="mission-statement">
