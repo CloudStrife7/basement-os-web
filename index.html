@@ -452,6 +452,16 @@
             gap: 10px;
         }
 
+        .terminal-footer {
+            background: var(--bg-secondary);
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 12px;
+            margin-top: 20px;
+        }
+
         .terminal-title {
             font-family: var(--font-display);
             font-size: 18px;
@@ -1442,43 +1452,48 @@
                 <div class="content-section active" id="section-intro">
                     <h2 class="section-header">C:\BASEMENT\INTRO.TXT</h2>
 
-                    <div class="devlog-entry">
-                        <h3>Welcome to BASEMENT OS</h3>
+                    <div class="mission-statement">
+                        <p>I'm documenting my transition from traditional development to AI-assisted workflows through a real VRChat project. This site tracks methodology evolution, authentic failures, and transferable frameworks for human-AI collaboration. Whether you're here for technical insights, career transition guidance, or just following a friend's journey - welcome to the basement.</p>
+                    </div>
 
-                        <p>
-                            I'm documenting my transition from traditional development to AI-assisted workflows through a real VRChat project. This site tracks methodology evolution, authentic failures, and transferable frameworks for human-AI collaboration. Whether you're here for technical insights, career transition guidance, or just following a friend's journey - welcome to the basement.
-                        </p>
+                    <div class="quick-overview info-card">
+                        <p>It all started with a VRChat basement world. What was created to connect friends has evolved into systematic AI-assisted development methodology. Built 19 Xbox 360-style achievements, interactive DOS terminal, and real-time weather integration - all while documenting the human-AI collaboration process. <span id="stat-visits-intro">770+</span> Total visits and counting. I am leveraging my IT background to drive AI initiatives at work, actively upskilling to move from RPA Operations into a dedicated AI development position.</p>
+                    </div>
 
-                        <p>
-                            It all started with a VRChat basement world. What was created to connect friends has evolved into systematic AI-assisted development methodology. Built 19 Xbox 360-style achievements, interactive DOS terminal, and real-time weather integration - all while documenting the human-AI collaboration process. 770+ Total visits and counting. I am leveraging my IT background to drive AI initiatives at work, actively upskilling to move from RPA Operations into a dedicated AI development position.
-                        </p>
+                    <div class="nav-routing">
+                        <h3 class="routing-header">[ NEW HERE? START WITH... ]</h3>
+                        <div class="routing-grid">
+                            <div class="routing-section">
+                                <strong>🤖 Interested in AI Methodology?</strong>
+                                <ul>
+                                    <li><a href="#entry-2025-12-07" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2025-12-07', 100); return false;" class="link">→ December 7: Full Stack AI Workflow</a></li>
+                                    <li><a href="javascript:showSection('skills')" class="link">→ AI Skills Directory</a></li>
+                                </ul>
+                            </div>
 
-                        <h3>[ NEW HERE? START WITH... ]</h3>
+                            <div class="routing-section">
+                                <strong>🎮 Curious About VRChat Development?</strong>
+                                <ul>
+                                    <li><a href="#entry-2024-07-13" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2024-07-13', 100); return false;" class="link">→ July 13: VRChat PlayerData Persistence</a></li>
+                                    <li><a href="#entry-2024-10-20" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2024-10-20', 100); return false;" class="link">→ October 20: Achievement System Overhaul</a></li>
+                                </ul>
+                            </div>
 
-                        <div class="quick-links">
-                            <p><strong>🤖 Interested in AI Methodology?</strong></p>
-                            <ul>
-                                <li>→ <a href="#entry-2025-12-07" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2025-12-07', 100); return false;">December 7: Full Stack AI Workflow</a></li>
-                                <li>→ <a href="#" onclick="showSection('skills'); return false;">AI Skills Directory</a></li>
-                            </ul>
+                            <div class="routing-section">
+                                <strong>📈 Want the Complete Journey?</strong>
+                                <ul>
+                                    <li><a href="#entry-2024-07-10" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2024-07-10', 100); return false;" class="link">→ July 10: First Achievement</a></li>
+                                    <li><a href="#entry-2025-12-07" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2025-12-07', 100); return false;" class="link">→ December 7: Full Stack AI</a></li>
+                                </ul>
+                            </div>
 
-                            <p><strong>🎮 Curious About VRChat Development?</strong></p>
-                            <ul>
-                                <li>→ <a href="#entry-2024-07-13" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2024-07-13', 100); return false;">July 13: VRChat PlayerData Persistence</a></li>
-                                <li>→ <a href="#entry-2024-10-20" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2024-10-20', 100); return false;">October 20: Achievement System Overhaul</a></li>
-                            </ul>
-
-                            <p><strong>📈 Want the Complete Journey?</strong></p>
-                            <ul>
-                                <li>→ <a href="#entry-2024-07-10" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2024-07-10', 100); return false;">July 10: First Achievement</a></li>
-                                <li>→ <a href="#entry-2025-12-07" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2025-12-07', 100); return false;">December 7: Full Stack AI</a></li>
-                            </ul>
-
-                            <p><strong>🤝 Looking to Collaborate?</strong></p>
-                            <ul>
-                                <li>→ <a href="#" onclick="showSection('about'); return false;">Working with Me</a></li>
-                                <li>→ <a href="#" onclick="showSection('links'); return false;">Get Involved</a></li>
-                            </ul>
+                            <div class="routing-section">
+                                <strong>🤝 Looking to Collaborate?</strong>
+                                <ul>
+                                    <li><a href="javascript:showSection('about')" class="link">→ Working with Me</a></li>
+                                    <li><a href="javascript:showSection('links')" class="link">→ Get Involved</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2510,8 +2525,8 @@
             </div>
         </div>
 
-        <footer style="text-align: center; padding: 15px; background: var(--bg-secondary); border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 12px; margin-top: 20px;">
-    <p>&copy; 2025 <a href="https://github.com/CloudStrife7" class="link">CloudStrife7</a> | Lower Level 2.0</p>
+        <footer class="terminal-footer">
+            <p>&copy; 2025 <a href="https://github.com/CloudStrife7" class="link">CloudStrife7</a> | Lower Level 2.0</p>
         </footer>
     </div>
 
@@ -2971,9 +2986,12 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("stat-updated").textContent = formatDate(worldData.updated_at);
             document.getElementById("stat-created").textContent = formatDate(worldData.created_at);
 
-            // --- Update The Summary Paragraph ---
+            // --- Update The Summary Paragraphs ---
             // Adds a "+" sign to match your writing style (e.g., "688+")
             document.getElementById("stat-visits-summary").textContent = formatNum(worldData.visits) + "+";
+            // Also update intro page if element exists
+            const introVisits = document.getElementById("stat-visits-intro");
+            if (introVisits) introVisits.textContent = formatNum(worldData.visits) + "+";
         })
         .catch(error => {
             console.error('Error fetching VRChat stats:', error);
