@@ -2921,24 +2921,40 @@
 document.addEventListener("DOMContentLoaded", function() {
     // 1. Your World ID
     const worldId = "wrld_7302897c-be0f-4037-ac67-76f0ea065c2b";
-    
+
     // 2. The VRChat Public API Key (Standard public key for read-only access)
     const apiKey = "JlE5Jldo5Jibnk5O5hTx6XVqsJyIkZVd";
 
-    // 3. Construct the URL with a CORS Proxy to bypass browser restrictions
+    // 3. Construct the URL with CORS Proxies (with fallback)
     const targetUrl = `https://api.vrchat.cloud/api/1/worlds/${worldId}?apiKey=${apiKey}`;
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
 
-    fetch(proxyUrl)
-        .then(response => {
-            if (!response.ok) throw new Error('Network response was not ok');
-            return response.json();
-        })
-        .then(data => {
-            // The proxy wraps the actual response in a "contents" field
-            // We need to parse that string back into JSON
-            const worldData = JSON.parse(data.contents);
+    // Try multiple CORS proxies in case one fails
+    const corsProxies = [
+        `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`,
+        `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`,
+        `https://cors-anywhere.herokuapp.com/${targetUrl}`
+    ];
 
+    async function fetchWithFallback(proxies) {
+        for (let i = 0; i < proxies.length; i++) {
+            try {
+                const response = await fetch(proxies[i]);
+                if (!response.ok) continue;
+
+                const data = await response.json();
+                // Handle different proxy response formats
+                const worldData = data.contents ? JSON.parse(data.contents) : data;
+                return worldData;
+            } catch (e) {
+                console.log(`Proxy ${i + 1} failed, trying next...`);
+                continue;
+            }
+        }
+        throw new Error('All proxies failed');
+    }
+
+    fetchWithFallback(corsProxies)
+        .then(worldData => {
             // Helper to format numbers with commas (e.g., 1,234)
             const formatNum = (num) => new Intl.NumberFormat().format(num);
 
