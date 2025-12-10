@@ -711,7 +711,7 @@
             filter: brightness(1.1) contrast(1.15);
         }
 
-        /* Scanline overlay */
+        /* Scanline overlay - strengthened for retro CRT effect */
         .crt-screen::before {
             content: '';
             position: absolute;
@@ -721,8 +721,8 @@
             height: 100%;
             background: repeating-linear-gradient(
                 0deg,
-                rgba(0, 0, 0, 0.15) 0px,
-                rgba(0, 0, 0, 0.15) 1px,
+                rgba(0, 0, 0, 0.35) 0px,
+                rgba(0, 0, 0, 0.35) 1px,
                 transparent 1px,
                 transparent 2px
             );
@@ -1514,6 +1514,12 @@
                     <div class="mission-statement">
                         <h3>Lower Level 2.0 — A VRChat Basement Reimagined Through AI-Assisted Development</h3>
                         <p>Lower Level 2.0 is my ongoing experiment in applying AI-assisted workflows to real VRChat world development. What began as a nostalgic 2000s-inspired basement scene has evolved into a fully interactive environment powered by systems-level thinking, continuous iteration, and AI-enhanced tooling.</p>
+                    </div>
+
+                    <div class="info-card" style="margin-bottom: 20px;">
+                        <p><strong>// SYSTEM NOTE:</strong></p>
+                        <p>To be clear—I didn't use AI to build the walls or the 3D furniture; I commissioned the 3D model base providing detailed plans to recreate the basement I hung out in in college.</p>
+                        <p>I worked with AI to install a sort of smart home system, and make the basement 'alive'. The physical 3D space was a commissioned asset was a great canvas. What I built in with AI was the logic—the interactive terminal, the networking, and the systems that actually create a living, breathing place.</p>
                     </div>
 
                     <div class="crt-screen" onclick="openLightbox('https://i.imgur.com/N8da6pU.jpeg')">
