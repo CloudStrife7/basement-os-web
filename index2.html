@@ -1407,8 +1407,7 @@
                     </div>
 
                     <div class="quick-overview info-card">
-                        <p>Started with a simple VRChat basement world. Evolved into systematic AI-assisted development methodology. Built 19 Xbox 360-style achievements, interactive DOS terminal, and real-time weather integration - all while documenting the human-AI collaboration process. 688+ visits, public release in 64 days. Now transitioning to AI team at work using these proven workflows.</p>
-                    </div>
+                    <p>It all started with a VRChat basement world. What was created to connect friends has evolved into systematic AI-assisted development methodology. Built 19 Xbox 360-style achievements, interactive DOS terminal, and real-time weather integration - all while documenting the human-AI collaboration process. <span id="stat-visits-summary">688+</span> Total visits and counting.  I am leveraging my IT background to drive AI initiatives at work, actively upskilling to move from RPA Operations into a dedicated AI development position.</p>                    </div>
 
                     <div class="nav-routing">
                         <h3 class="routing-header">[ NEW HERE? START WITH... ]</h3>
@@ -2829,5 +2828,54 @@
             }
         });
     </script>
+            <script>
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. Your World ID
+    const worldId = "wrld_7302897c-be0f-4037-ac67-76f0ea065c2b";
+    
+    // 2. The VRChat Public API Key (Standard public key for read-only access)
+    const apiKey = "JlE5Jldo5Jibnk5O5hTx6XVqsJyIkZVd";
+
+    // 3. Construct the URL with a CORS Proxy to bypass browser restrictions
+    const targetUrl = `https://api.vrchat.cloud/api/1/worlds/${worldId}?apiKey=${apiKey}`;
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+
+    fetch(proxyUrl)
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(data => {
+            // The proxy wraps the actual response in a "contents" field
+            // We need to parse that string back into JSON
+            const worldData = JSON.parse(data.contents);
+
+            // Helper to format numbers with commas (e.g., 1,234)
+            const formatNum = (num) => new Intl.NumberFormat().format(num);
+
+            // Helper to format dates (e.g., 12/9/2025)
+            const formatDate = (dateString) => {
+                const date = new Date(dateString);
+                return date.toLocaleDateString();
+            };
+
+            // --- Update The Stats Card ---
+            document.getElementById("stat-visits").textContent = formatNum(worldData.visits);
+            document.getElementById("stat-favorites").textContent = formatNum(worldData.favorites);
+            document.getElementById("stat-popularity").textContent = formatNum(worldData.popularity);
+            document.getElementById("stat-updated").textContent = formatDate(worldData.updated_at);
+            document.getElementById("stat-created").textContent = formatDate(worldData.created_at);
+
+            // --- Update The Summary Paragraph ---
+            // Adds a "+" sign to match your writing style (e.g., "688+")
+            document.getElementById("stat-visits-summary").textContent = formatNum(worldData.visits) + "+";
+        })
+        .catch(error => {
+            console.error('Error fetching VRChat stats:', error);
+            // Optional: Set fallback text if it fails
+            document.getElementById("stat-visits").textContent = "Offline";
+        });
+});
+</script>
 </body>
 </html>
