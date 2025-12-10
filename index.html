@@ -1413,14 +1413,14 @@
                 <button class="nav-btn active" onclick="showSection('intro')">
                     <span class="type">&lt;BOOT&gt;</span> INTRO
                 </button>
+                <button class="nav-btn" onclick="showSection('about')">
+                    <span class="type">&lt;DIR&gt;</span> ABOUT
+                </button>
                 <button class="nav-btn" onclick="showSection('devlog')">
                     <span class="type">&lt;LOG&gt;</span> DEVLOG
                 </button>
                 <button class="nav-btn" onclick="showSection('skills')">
                     <span class="type">&lt;AI&gt;</span> SKILLS
-                </button>
-                <button class="nav-btn" onclick="showSection('about')">
-                    <span class="type">&lt;DIR&gt;</span> ABOUT
                 </button>
                 <button class="nav-btn" onclick="showSection('links')">
                     <span class="type">&lt;NET&gt;</span> LINKS
@@ -1453,11 +1453,9 @@
                     <h2 class="section-header">C:\BASEMENT\INTRO.TXT</h2>
 
                     <div class="mission-statement">
-                        <p>I'm documenting my transition from traditional development to AI-assisted workflows through a real VRChat project. This site tracks methodology evolution, authentic failures, and transferable frameworks for human-AI collaboration.</p>
-                    </div>
-
-                    <div class="quick-overview info-card">
-                        <p>What started as a VRChat basement world has evolved into systematic AI-assisted methodology. Built 19 Xbox 360-style achievements, interactive DOS terminal, and real-time weather integration. <span id="stat-visits-intro">770+</span> visits and counting.</p>
+                        <h3>Lower Level 2.0 — A VRChat Basement Reimagined Through AI-Assisted Development</h3>
+                        <p>Lower Level 2.0 is my ongoing experiment in applying AI-assisted workflows to real VRChat world development. What began as a nostalgic 2000s-inspired basement scene has evolved into a fully interactive environment powered by systems-level thinking, continuous iteration, and AI-enhanced tooling.</p>
+                        <p>Visitors can explore a world that blends retro charm with modern VR features: a functional DOS-style terminal running its own "Basement OS", Xbox 360-style achievements, real-time weather integration, and persistent progress tracking powered by VRChat's PlayerData API. The project has now surpassed <span id="stat-visits-intro">770+</span> visits, continuing to evolve as I refine the underlying methods behind its development.</p>
                     </div>
 
                     <div class="nav-routing">
@@ -2330,93 +2328,70 @@
                 </div>
                 <div class="content-section" id="section-about">
                     <h2 class="section-header">C:\BASEMENT\ABOUT.TXT</h2>
+
                     <div class="devlog-content">
-                        <p>Hey, I'm Zach. As the architect of <strong>BasementOS</strong>, I use this devlog to document the technical challenges and AI-assisted workflows behind the <strong>Lower Level 2.0</strong> VRChat world. What started as a virtual homelab has evolved into a complex, interactive environment, and I use this space to share the UdonSharp solutions, specific workarounds, and unique methodologies used to build it.</p>
-                        <p>I'm leveraging my IT background to drive AI initiatives at work, actively upskilling to move from RPA Operations into a dedicated AI development position.</p>
+                        <p>Lower Level 2.0 continues to serve as a proving ground for my ongoing transition from traditional development to structured, AI-assisted workflows. Each new feature informs the next iteration of my methodology, improving how humans and AI collaborate on complex, interactive VR/XR environments.</p>
                     </div>
 
-                    <div class="info-card mb-2">
-                        <h3>[ WORKING WITH ME ]</h3>
+                    <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
-                        <div class="mb-2">
-                            <strong>My Collaboration Style:</strong>
-                            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 5px;">
-                                <li>Documentation-first: Every session gets a summary, every decision gets recorded</li>
-                                <li>AI-assisted but human-led: I architect, AI executes, I review and iterate</li>
-                                <li>Break overwhelming projects into manageable pieces</li>
-                                <li>Transparent about failures: Pivots and mistakes are valuable learning content</li>
+                    <h3 style="margin-top: 20px; margin-bottom: 15px;">Core Features</h3>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>[ Achievement System (Xbox 360-Inspired) ]</h3>
+                            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 8px;">
+                                <li>19 achievements across Visit, Time, and Activity categories</li>
+                                <li>Total of 420 Gamerscore</li>
+                                <li>Persistent tracking through PlayerData</li>
+                                <li>Seven role-based notification tiers with custom icons and sounds</li>
+                                <li>Anti-spam logic using edge detection and persistent flags</li>
                             </ul>
                         </div>
 
-                        <div class="mb-2">
-                            <strong>How I Work with AI:</strong>
-                            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 5px;">
-                                <li>Systematic prompting with project-specific context</li>
-                                <li>Agent swarms for parallel development streams</li>
-                                <li>Human-in-the-loop for all major decisions</li>
-                                <li>Closed-loop testing with automated validation</li>
+                        <div class="info-card">
+                            <h3>[ Basement OS v29.1 — Interactive DOS Terminal ]</h3>
+                            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 8px;">
+                                <li>9-page menu with arrow-key navigation</li>
+                                <li>Auto-generated changelog pulled directly from Git commits</li>
+                                <li>Real-time stats: weather, player count, uptime, and session data</li>
+                                <li>Remote content loading from GitHub Pages via domain whitelisting</li>
                             </ul>
                         </div>
 
-                        <div>
-                            <strong>Current Focus:</strong>
-                            <p style="margin-top: 5px;">Basement OS terminal modernization, Terminal Tales interactive fiction, quest optimization workflows</p>
+                        <div class="info-card">
+                            <h3>[ Live Weather Integration ]</h3>
+                            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 8px;">
+                                <li>Dynamic weather powered by an external API</li>
+                                <li>Rain shader on basement windows</li>
+                                <li>Weather-based achievements (e.g., Heavy Rain)</li>
+                                <li>Optimized caching: 2 minutes on PC VR, 10 minutes on Quest</li>
+                                <li>Support for seven atmospheric conditions</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>[ Network-Synced Notifications ]</h3>
+                            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 8px;">
+                                <li>FIFO queue system for chronological ordering (max 100 items)</li>
+                                <li>Smooth fade animations and icon alternation</li>
+                                <li>Multiplayer broadcasting via UdonSynced variables</li>
+                                <li>Role-aware personalization for visitors</li>
+                            </ul>
                         </div>
                     </div>
 
                     <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
-                   <div class="info-grid">
-    <div class="info-card">
-        <h3>[ Tech Stack ]</h3>
-        <div class="stat-row">
-            <span class="stat-label">Engine</span>
-            <span class="stat-value">Unity 2022.3.22f1</span>
-        </div>
-        <div class="stat-row">
-            <span class="stat-label">SDK</span>
-            <span class="stat-value">VRChat SDK 3.8.2+</span>
-        </div>
-        <div class="stat-row">
-            <span class="stat-label">Scripting</span>
-            <span class="stat-value">UdonSharp</span>
-        </div>
-        <div class="stat-row">
-            <span class="stat-label">Platform</span>
-            <span class="stat-value">PC VR + Quest</span>
-        </div>
-        <div class="stat-row">
-            <span class="stat-label">Status</span>
-            <span class="stat-value">Active Development</span>
-        </div>
-    </div>
+                    <h3 style="margin-top: 20px; margin-bottom: 15px;">Project Direction</h3>
 
-    <div class="info-card">
-        <h3>[ Lower Level Stats ]</h3>
-        <div class="stat-row">
-            <span class="stat-label">Total Visits</span>
-            <span class="stat-value" id="stat-visits">Loading...</span>
-        </div>
-        <div class="stat-row">
-            <span class="stat-label">Total Favorites</span>
-            <span class="stat-value" id="stat-favorites">--</span>
-        </div>
-        <div class="stat-row">
-            <span class="stat-label">Popularity</span>
-            <span class="stat-value" id="stat-popularity">--</span>
-        </div>
-        <div class="stat-row">
-            <span class="stat-label">Last Updated</span>
-            <span class="stat-value" id="stat-updated">--</span>
-        </div>
-        <div class="stat-row">
-            <span class="stat-label">First Uploaded</span>
-            <span class="stat-value" id="stat-created">--</span>
-        </div>
-    </div>
-</div>
+                    <div class="devlog-content">
+                        <p>Lower Level 2.0 continues to serve as a proving ground for my ongoing transition from traditional development to structured, AI-assisted workflows. Each new feature informs the next iteration of my methodology, improving how humans and AI collaborate on complex, interactive VR/XR environments.</p>
+                    </div>
 
-</div> </div> </div> <div class="content-section" id="section-links">
+                </div>
+
+                <div class="content-section" id="section-links">
                     <h2 class="section-header">C:\BASEMENT\LINKS.NET</h2>
 
                     <div class="info-grid">
