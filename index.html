@@ -711,7 +711,7 @@
             filter: brightness(1.1) contrast(1.15);
         }
 
-        /* Scanline overlay - strengthened for retro CRT effect */
+        /* Scanline overlay */
         .crt-screen::before {
             content: '';
             position: absolute;
@@ -721,8 +721,8 @@
             height: 100%;
             background: repeating-linear-gradient(
                 0deg,
-                rgba(0, 0, 0, 0.35) 0px,
-                rgba(0, 0, 0, 0.35) 1px,
+                rgba(0, 0, 0, 0.15) 0px,
+                rgba(0, 0, 0, 0.15) 1px,
                 transparent 1px,
                 transparent 2px
             );
