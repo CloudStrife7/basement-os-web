@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TerminalShell from '../../components/TerminalShell.astro';
+import DevlogEntry from '../../components/DevlogEntry.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('devlog');
+  return posts.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout title={`BASEMENT OS | ${entry.data.title}`}>
+  <TerminalShell activeSection="devlog">
+    <div class="content-section active">
+        <!-- Render the entry using the component which handles title/date/tags/content -->
+        <DevlogEntry entry={entry} />
+    </div>
+  </TerminalShell>
+</BaseLayout>

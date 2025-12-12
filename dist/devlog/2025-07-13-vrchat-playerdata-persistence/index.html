@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="en" data-theme="synthwave"> <head><meta charset="UTF-8"><meta name="description" content="Basement OS - An interactive dev blog for the Lower Level 2.0 VRChat world project"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.16.5"><title>BASEMENT OS | VRChat PlayerData Persistence</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js"></script><script>
+            // Immediately invoked function to set the theme before FOUC
+            (function() {
+                try {
+                    const savedTheme = localStorage.getItem('basement-os-theme') || 'synthwave';
+                    document.documentElement.setAttribute('data-theme', savedTheme);
+                } catch (e) {
+                    console.error('Theme detection failed', e);
+                }
+            })();
+        </script><link rel="stylesheet" href="/_astro/about.rP9snlJv.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><style>[data-astro-transition-scope="astro-gqvf4sjz-1"] { view-transition-name: astro-gqvf4sjz-1; }@layer astro { ::view-transition-old(astro-gqvf4sjz-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-gqvf4sjz-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-gqvf4sjz-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-gqvf4sjz-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-gqvf4sjz-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-gqvf4sjz-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-gqvf4sjz-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-gqvf4sjz-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-gqvf4sjz-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-gqvf4sjz-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-gqvf4sjz-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-gqvf4sjz-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body>  <div class="terminal-wrapper"> <div class="terminal"> <!-- Header --> <div class="terminal-header"> <div class="window-controls"> <span class="window-btn btn-close" id="btn-reboot" title="Reboot Me!"></span> <a href="/businesscards.html" class="window-btn btn-minimize" title="Back to Business Cards" style="display:block"></a> <span class="window-btn btn-maximize"></span> </div> <div class="terminal-title">BASEMENT OS</div> <div class="theme-selector"> <label for="theme-select">THEME:</label> <select id="theme-select"> <option value="high-contrast">High Contrast</option> <option value="synthwave">Synthwave</option> <option value="framer-dark">Framer Dark</option> <option value="framer-light">Framer Light</option> <option value="solarized-dark">Solarized Dark</option> <option value="solarized-light">Solarized Light</option> <option value="catppuccin">Catppuccin</option> <option value="monokai">Monokai</option> <option value="gruvbox-dark">Gruvbox Dark</option> <option value="gruvbox-light">Gruvbox Light</option> <option value="rose-pine">Rose Pine</option> <option value="rose-pine-dawn">Rose Pine Dawn</option> <option value="rose-pine-moon">Rose Pine Moon</option> <option value="cappuccino">Cappuccino</option> </select> </div> </div> <!-- Navigation --> <nav class="nav-menu active" id="nav-menu"> <a href="/" class="nav-btn "> <span class="type">&lt;BOOT&gt;</span> INTRO
+</a> <a href="/about" class="nav-btn "> <span class="type">&lt;DIR&gt;</span> ABOUT
+</a> <a href="/devlog" class="nav-btn active"> <span class="type">&lt;LOG&gt;</span> DEVLOG
+</a> <a href="/skills" class="nav-btn "> <span class="type">&lt;AI&gt;</span> SKILLS
+</a> <a href="/links" class="nav-btn "> <span class="type">&lt;NET&gt;</span> LINKS
+</a> <button class="nav-btn" id="search-toggle"> <span class="type">&lt;CMD&gt;</span> SEARCH
+</button> </nav> <!-- Search Overlay --> <div class="search-container" id="search-container"> <input type="text" class="search-input" id="search-input" placeholder="Search database..." autocomplete="off"> <div class="search-results" id="search-results"></div> </div> <!-- AI Disclosure --> <div class="ai-disclosure" id="ai-disclosure"> <div class="ai-disclosure-header">[ NEXT-GEN AI DEVLOG ]</div> <div class="ai-disclosure-content">
+Content Generated by Developer-Led AI Workflows. Reviewed by a Human-In-the-Loop.
+</div> </div> <!-- Boot Screen --> <div class="boot-screen" id="boot-screen" style="display:none"></div> <!-- Shutdown Screen --> <div id="shutdown-screen"> <div class="shutdown-msg-1">Please wait while your computer shuts down...</div> <div class="shutdown-msg-2" style="color: #ff3e8a;">IT'S NOW SAFE TO TURN OFF YOUR COMPUTER</div> </div> <!-- Main Content Slot --> <div class="terminal-content active" id="main-content" data-astro-transition-scope="astro-gqvf4sjz-1">  <div class="content-section active"> <!-- Render the entry using the component which handles title/date/tags/content --> <article class="devlog-entry" id="entry-2025-07-13-vrchat-playerdata-persistence" data-searchable> <div class="devlog-date">July 12, 2025</div> <h3 class="devlog-title milestone"> <span class="milestone-badge">★</span> VRChat PlayerData Persistence </h3> <div class="devlog-content"> <p>Finally got VRChat’s <a href="https://docs.vrchat.com/docs/player-persistence">PlayerData API</a> working! Visit counts now persist between sessions. This took way longer than expected because of UdonSharp’s limitations.</p>
+<p>Can’t use Dictionary or List in UdonSharp, so I’m tracking players with parallel arrays. Not elegant, but it works. Successfully tested with 3 visits - data persists across world reloads.</p>
+<p>The 11-hour debugging marathon was worth it. This is the foundation for the entire achievement system.</p>
+<p>[![PlayerData persistence working](/Manual Change Logs and Images/images/July 2025/Persistence Working.jpg)](/Manual Change Logs and Images/images/July 2025/Persistence Working.jpg)</p>
+<p>[![Successfully tracking 3 visits](/Manual Change Logs and Images/images/July 2025/tracking 3 visits.png)](/Manual Change Logs and Images/images/July 2025/tracking 3 visits.png)</p> </div> <!-- Tags removed temporarily --> </article> </div>  </div> <!-- Prompt & Status Bar --> <div class="prompt-line"> <span class="prompt">C:\BASEMENT&gt;</span> <span class="cursor"></span> </div> <div class="status-bar"> <span class="status-item">
+MEM: <span class="status-value">640K OK</span> </span> <span class="status-item">
+TIME: <span class="status-value" id="clock">00:00:00</span> </span> <span class="status-item">
+SYS: <span class="status-value">BASEMENT OS</span> </span> </div> </div> <footer class="terminal-footer"> <p>&copy; 2025 <a href="https://github.com/CloudStrife7" class="link">CloudStrife7</a> | Lower Level 2.0</p> </footer> </div> <script type="module" src="/_astro/TerminalShell.astro_astro_type_script_index_0_lang.DDugnI7h.js"></script>  </body></html>

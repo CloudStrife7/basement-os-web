@@ -1,0 +1,31 @@
+---
+import { type CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'devlog'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+// Format date: "December 7, 2025"
+const formattedDate = entry.data.date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+const isMilestone = entry.data.type === 'milestone';
+---
+
+<article class="devlog-entry" id={`entry-${entry.slug}`} data-searchable>
+  <div class="devlog-date">{formattedDate}</div>
+  <h3 class={`devlog-title ${isMilestone ? 'milestone' : ''}`}>
+    {isMilestone && <span class="milestone-badge">★</span>}
+    {entry.data.title}
+  </h3>
+  <div class="devlog-content">
+    <Content />
+  </div>
+  <!-- Tags removed temporarily -->
+</article>

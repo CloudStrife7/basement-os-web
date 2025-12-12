@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TerminalShell from '../../components/TerminalShell.astro';
+import DevlogEntry from '../../components/DevlogEntry.astro';
+import DevlogTOC from '../../components/DevlogTOC.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('devlog')).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout title="BASEMENT OS | Devlog">
+  <TerminalShell activeSection="devlog">
+    <div class="content-section active">
+      <h2 class="section-header">C:\BASEMENT\DEVLOG.LOG</h2>
+      
+      <DevlogTOC posts={posts} />
+
+      <div class="devlog-feed">
+        {posts.map((post) => (
+          <DevlogEntry entry={post} />
+        ))}
+      </div>
+    </div>
+  </TerminalShell>
+</BaseLayout>

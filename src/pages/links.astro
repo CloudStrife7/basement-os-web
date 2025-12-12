@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TerminalShell from '../components/TerminalShell.astro';
+---
+
+<BaseLayout title="BASEMENT OS | Links">
+  <TerminalShell activeSection="links">
+    <div class="content-section active">
+      <h2 class="section-header">C:\BASEMENT\LINKS.NET</h2>
+
+      <div class="info-grid">
+        <div class="info-card">
+            <h3>[ GitHub Repository ]</h3>
+            <p>
+                <a href="https://github.com/CloudStrife7/LL2PCVR" class="link" target="_blank">
+                    github.com/CloudStrife7/LL2PCVR
+                </a>
+            </p>
+            <p class="text-dim mt-1">Source code, docs, and issues</p>
+        </div>
+
+        <div class="info-card">
+            <h3>[ VRChat World ]</h3>
+            <p>
+                <a href="https://vrchat.com/home/launch?worldId=wrld_7302897c-be0f-4037-ac67-76f0ea065c2b" class="link" target="_blank">
+                    Lower Level 2.0
+                </a>
+            </p>
+            <p class="text-dim mt-1">Visit the basement in VR</p>
+        </div>
+
+        <div class="info-card">
+            <h3>[ Weather API ]</h3>
+            <p>
+                <a href="https://cloudstrife7.github.io/DOS-Terminal/api/weather/current.json" class="link" target="_blank">
+                    Weather Endpoint
+                </a>
+            </p>
+            <p class="text-dim mt-1">Real-time weather JSON feed</p>
+        </div>
+
+        <div class="info-card">
+            <h3>[ This Blog's Source ]</h3>
+            <p>
+                <a href="https://github.com/CloudStrife7/basement-os-web" class="link" target="_blank">
+                    basement-os-web
+                </a>
+            </p>
+            <p class="text-dim mt-1">The code behind this site</p>
+        </div>
+      </div>
+    </div>
+  </TerminalShell>
+</BaseLayout>
+

@@ -1,0 +1,3097 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="synthwave">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASEMENT OS | Lower Level 2.0 Dev Blog</title>
+    <meta name="description" content="Basement OS - An interactive dev blog for the Lower Level 2.0 VRChat world project">
+
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('basement-os-theme') || 'synthwave';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
+
+        /* ═══════════════════════════════════════════════════════════════════
+           THEME ENGINE - CSS Variables (HumanLayer-style)
+           Default: High Contrast (black bg, white text, green highlights)
+        ═══════════════════════════════════════════════════════════════════ */
+
+        :root {
+            --font-mono: 'JetBrains Mono', 'VT323', 'Courier New', monospace;
+            --font-display: 'VT323', monospace;
+            --screen-width: 80ch;
+            --transition-speed: 0.3s;
+        }
+
+        /* HIGH CONTRAST (Default - black bg, white text, green highlights) */
+        [data-theme="high-contrast"] {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-terminal: #000000;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-dim: #a0a0a0;
+            --accent-primary: #00ff00;
+            --accent-secondary: #ffff00;
+            --accent-alert: #ff6600;
+            --accent-error: #ff0000;
+            --accent-link: #00ffff;
+            --accent-milestone: #00ff00;
+            --border-color: #ffffff;
+            --scanline-color: rgba(255, 255, 255, 0.03);
+            --cursor-color: #ffffff;
+            --selection-bg: #ffffff;
+            --selection-text: #000000;
+            --tooltip-bg: #1a1a1a;
+            --search-highlight: #ffff00;
+        }
+
+        /* SYNTHWAVE (Pink, Black, White - retro 80s aesthetic) */
+        [data-theme="synthwave"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-terminal: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-dim: #888888;
+            --accent-primary: #ff3e8a;
+            --accent-secondary: #ff6b9d;
+            --accent-alert: #ffb347;
+            --accent-error: #ff4757;
+            --accent-link: #ffffff;
+            --accent-milestone: #ff3e8a;
+            --border-color: #333333;
+            --scanline-color: rgba(255, 62, 138, 0.02);
+            --cursor-color: #ff3e8a;
+            --selection-bg: #ff3e8a;
+            --selection-text: #000000;
+            --tooltip-bg: #1a1a1a;
+            --search-highlight: #ff6b9d;
+        }
+
+        /* FRAMER DARK */
+        [data-theme="framer-dark"] {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-terminal: #0d1117;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --text-dim: #6e7681;
+            --accent-primary: #58a6ff;
+            --accent-secondary: #f0883e;
+            --accent-alert: #d29922;
+            --accent-error: #f85149;
+            --accent-link: #58a6ff;
+            --accent-milestone: #3fb950;
+            --border-color: #30363d;
+            --scanline-color: rgba(88, 166, 255, 0.02);
+            --cursor-color: #58a6ff;
+            --selection-bg: #58a6ff;
+            --selection-text: #0d1117;
+            --tooltip-bg: #21262d;
+            --search-highlight: #f0883e;
+        }
+
+        /* FRAMER LIGHT */
+        [data-theme="framer-light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --bg-terminal: #ffffff;
+            --text-primary: #24292f;
+            --text-secondary: #57606a;
+            --text-dim: #8c959f;
+            --accent-primary: #0969da;
+            --accent-secondary: #bf8700;
+            --accent-alert: #9a6700;
+            --accent-error: #cf222e;
+            --accent-link: #0969da;
+            --accent-milestone: #1a7f37;
+            --border-color: #d0d7de;
+            --scanline-color: rgba(9, 105, 218, 0.02);
+            --cursor-color: #0969da;
+            --selection-bg: #0969da;
+            --selection-text: #ffffff;
+            --tooltip-bg: #f6f8fa;
+            --search-highlight: #fff8c5;
+        }
+
+        /* SOLARIZED DARK */
+        [data-theme="solarized-dark"] {
+            --bg-primary: #002b36;
+            --bg-secondary: #073642;
+            --bg-terminal: #002b36;
+            --text-primary: #839496;
+            --text-secondary: #657b83;
+            --text-dim: #586e75;
+            --accent-primary: #859900;
+            --accent-secondary: #b58900;
+            --accent-alert: #cb4b16;
+            --accent-error: #dc322f;
+            --accent-link: #268bd2;
+            --accent-milestone: #859900;
+            --border-color: #073642;
+            --scanline-color: rgba(133, 153, 0, 0.02);
+            --cursor-color: #859900;
+            --selection-bg: #073642;
+            --selection-text: #93a1a1;
+            --tooltip-bg: #073642;
+            --search-highlight: #b58900;
+        }
+
+        /* SOLARIZED LIGHT */
+        [data-theme="solarized-light"] {
+            --bg-primary: #fdf6e3;
+            --bg-secondary: #eee8d5;
+            --bg-terminal: #fdf6e3;
+            --text-primary: #657b83;
+            --text-secondary: #839496;
+            --text-dim: #93a1a1;
+            --accent-primary: #859900;
+            --accent-secondary: #b58900;
+            --accent-alert: #cb4b16;
+            --accent-error: #dc322f;
+            --accent-link: #268bd2;
+            --accent-milestone: #859900;
+            --border-color: #eee8d5;
+            --scanline-color: rgba(133, 153, 0, 0.02);
+            --cursor-color: #859900;
+            --selection-bg: #eee8d5;
+            --selection-text: #657b83;
+            --tooltip-bg: #eee8d5;
+            --search-highlight: #b58900;
+        }
+
+        /* CATPPUCCIN (Mocha) */
+        [data-theme="catppuccin"] {
+            --bg-primary: #1e1e2e;
+            --bg-secondary: #313244;
+            --bg-terminal: #1e1e2e;
+            --text-primary: #cdd6f4;
+            --text-secondary: #bac2de;
+            --text-dim: #6c7086;
+            --accent-primary: #a6e3a1;
+            --accent-secondary: #f9e2af;
+            --accent-alert: #fab387;
+            --accent-error: #f38ba8;
+            --accent-link: #89b4fa;
+            --accent-milestone: #a6e3a1;
+            --border-color: #45475a;
+            --scanline-color: rgba(166, 227, 161, 0.02);
+            --cursor-color: #a6e3a1;
+            --selection-bg: #45475a;
+            --selection-text: #cdd6f4;
+            --tooltip-bg: #313244;
+            --search-highlight: #f9e2af;
+        }
+
+        /* MONOKAI */
+        [data-theme="monokai"] {
+            --bg-primary: #272822;
+            --bg-secondary: #3e3d32;
+            --bg-terminal: #272822;
+            --text-primary: #f8f8f2;
+            --text-secondary: #cfcfc2;
+            --text-dim: #75715e;
+            --accent-primary: #a6e22e;
+            --accent-secondary: #e6db74;
+            --accent-alert: #fd971f;
+            --accent-error: #f92672;
+            --accent-link: #66d9ef;
+            --accent-milestone: #a6e22e;
+            --border-color: #49483e;
+            --scanline-color: rgba(166, 226, 46, 0.02);
+            --cursor-color: #a6e22e;
+            --selection-bg: #49483e;
+            --selection-text: #f8f8f2;
+            --tooltip-bg: #3e3d32;
+            --search-highlight: #e6db74;
+        }
+
+        /* GRUVBOX DARK */
+        [data-theme="gruvbox-dark"] {
+            --bg-primary: #282828;
+            --bg-secondary: #3c3836;
+            --bg-terminal: #282828;
+            --text-primary: #ebdbb2;
+            --text-secondary: #d5c4a1;
+            --text-dim: #928374;
+            --accent-primary: #b8bb26;
+            --accent-secondary: #fabd2f;
+            --accent-alert: #fe8019;
+            --accent-error: #fb4934;
+            --accent-link: #83a598;
+            --accent-milestone: #b8bb26;
+            --border-color: #504945;
+            --scanline-color: rgba(184, 187, 38, 0.02);
+            --cursor-color: #b8bb26;
+            --selection-bg: #504945;
+            --selection-text: #ebdbb2;
+            --tooltip-bg: #3c3836;
+            --search-highlight: #fabd2f;
+        }
+
+        /* GRUVBOX LIGHT */
+        [data-theme="gruvbox-light"] {
+            --bg-primary: #fbf1c7;
+            --bg-secondary: #ebdbb2;
+            --bg-terminal: #fbf1c7;
+            --text-primary: #3c3836;
+            --text-secondary: #504945;
+            --text-dim: #928374;
+            --accent-primary: #79740e;
+            --accent-secondary: #b57614;
+            --accent-alert: #af3a03;
+            --accent-error: #9d0006;
+            --accent-link: #076678;
+            --accent-milestone: #79740e;
+            --border-color: #d5c4a1;
+            --scanline-color: rgba(121, 116, 14, 0.02);
+            --cursor-color: #79740e;
+            --selection-bg: #d5c4a1;
+            --selection-text: #3c3836;
+            --tooltip-bg: #ebdbb2;
+            --search-highlight: #b57614;
+        }
+
+        /* ROSE PINE */
+        [data-theme="rose-pine"] {
+            --bg-primary: #191724;
+            --bg-secondary: #1f1d2e;
+            --bg-terminal: #191724;
+            --text-primary: #e0def4;
+            --text-secondary: #908caa;
+            --text-dim: #6e6a86;
+            --accent-primary: #31748f;
+            --accent-secondary: #f6c177;
+            --accent-alert: #ea9a97;
+            --accent-error: #eb6f92;
+            --accent-link: #9ccfd8;
+            --accent-milestone: #31748f;
+            --border-color: #26233a;
+            --scanline-color: rgba(49, 116, 143, 0.02);
+            --cursor-color: #31748f;
+            --selection-bg: #26233a;
+            --selection-text: #e0def4;
+            --tooltip-bg: #1f1d2e;
+            --search-highlight: #f6c177;
+        }
+
+        /* ROSE PINE DAWN */
+        [data-theme="rose-pine-dawn"] {
+            --bg-primary: #faf4ed;
+            --bg-secondary: #fffaf3;
+            --bg-terminal: #faf4ed;
+            --text-primary: #575279;
+            --text-secondary: #797593;
+            --text-dim: #9893a5;
+            --accent-primary: #286983;
+            --accent-secondary: #ea9d34;
+            --accent-alert: #d7827e;
+            --accent-error: #b4637a;
+            --accent-link: #56949f;
+            --accent-milestone: #286983;
+            --border-color: #f2e9de;
+            --scanline-color: rgba(40, 105, 131, 0.02);
+            --cursor-color: #286983;
+            --selection-bg: #f2e9de;
+            --selection-text: #575279;
+            --tooltip-bg: #fffaf3;
+            --search-highlight: #ea9d34;
+        }
+
+        /* ROSE PINE MOON */
+        [data-theme="rose-pine-moon"] {
+            --bg-primary: #232136;
+            --bg-secondary: #2a273f;
+            --bg-terminal: #232136;
+            --text-primary: #e0def4;
+            --text-secondary: #908caa;
+            --text-dim: #6e6a86;
+            --accent-primary: #3e8fb0;
+            --accent-secondary: #f6c177;
+            --accent-alert: #ea9a97;
+            --accent-error: #eb6f92;
+            --accent-link: #9ccfd8;
+            --accent-milestone: #3e8fb0;
+            --border-color: #393552;
+            --scanline-color: rgba(62, 143, 176, 0.02);
+            --cursor-color: #3e8fb0;
+            --selection-bg: #393552;
+            --selection-text: #e0def4;
+            --tooltip-bg: #2a273f;
+            --search-highlight: #f6c177;
+        }
+
+        /* CAPPUCCINO */
+        [data-theme="cappuccino"] {
+            --bg-primary: #2d2418;
+            --bg-secondary: #3d3222;
+            --bg-terminal: #2d2418;
+            --text-primary: #e8dcc8;
+            --text-secondary: #c4b8a4;
+            --text-dim: #8a7e6a;
+            --accent-primary: #c9a86c;
+            --accent-secondary: #e8b84a;
+            --accent-alert: #d4813d;
+            --accent-error: #c75643;
+            --accent-link: #7eb8b0;
+            --accent-milestone: #c9a86c;
+            --border-color: #4d4232;
+            --scanline-color: rgba(201, 168, 108, 0.02);
+            --cursor-color: #c9a86c;
+            --selection-bg: #4d4232;
+            --selection-text: #e8dcc8;
+            --tooltip-bg: #3d3222;
+            --search-highlight: #e8b84a;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           BASE STYLES
+        ═══════════════════════════════════════════════════════════════════ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.7;
+            min-height: 100vh;
+            transition: background var(--transition-speed), color var(--transition-speed);
+            position: relative;
+        }
+
+        /* Background grid effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(0deg, transparent 24%, rgba(255, 62, 138, 0.05) 25%, rgba(255, 62, 138, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 62, 138, 0.05) 75%, rgba(255, 62, 138, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255, 62, 138, 0.05) 25%, rgba(255, 62, 138, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 62, 138, 0.05) 75%, rgba(255, 62, 138, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        ::selection {
+            background: var(--selection-bg);
+            color: var(--selection-text);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           TERMINAL CONTAINER
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .terminal-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .terminal {
+            background: var(--bg-terminal);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        /* CRT Scanline Effect */
+        .terminal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                var(--scanline-color),
+                var(--scanline-color) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           HEADER BAR
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .terminal-header {
+            background: var(--bg-secondary);
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .terminal-footer {
+            background: var(--bg-secondary);
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 12px;
+            margin-top: 20px;
+        }
+
+        .terminal-title {
+            font-family: var(--font-display);
+            font-size: 18px;
+            color: var(--accent-primary);
+            letter-spacing: 2px;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .window-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-close { background: var(--accent-error); }
+        .btn-minimize {
+            background: var(--accent-secondary);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .btn-minimize:hover {
+            box-shadow: 0 0 10px var(--accent-secondary);
+            transform: scale(1.2);
+        }
+        .btn-minimize:active {
+            transform: scale(1.1);
+        }
+        .btn-maximize { background: var(--accent-primary); }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           THEME SELECTOR
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .theme-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-selector label {
+            color: var(--text-dim);
+            font-size: 12px;
+        }
+
+        .theme-selector select {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 5px 10px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .theme-selector select:focus {
+            outline: 1px solid var(--accent-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           SEARCH BAR
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .search-container {
+            background: var(--bg-secondary);
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .search-container.active {
+            display: block;
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 10px 15px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .search-input:focus {
+            outline: 1px solid var(--accent-primary);
+        }
+
+        .search-results {
+            margin-top: 10px;
+            color: var(--text-dim);
+            font-size: 12px;
+        }
+
+        .search-highlight {
+            background: var(--search-highlight);
+            color: var(--bg-primary);
+            padding: 0 2px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           BOOT SCREEN
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .boot-screen {
+            padding: 20px;
+            min-height: 400px;
+            font-family: var(--font-display);
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .boot-line {
+            opacity: 0;
+            animation: bootFadeIn 0.1s forwards;
+        }
+
+        @keyframes bootFadeIn {
+            to { opacity: 1; }
+        }
+
+        .boot-ok { color: var(--accent-primary); }
+        .boot-warn { color: var(--accent-alert); }
+        .boot-error { color: var(--accent-error); }
+        .boot-info { color: var(--accent-link); }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           NAVIGATION MENU
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .nav-menu {
+            background: var(--bg-secondary);
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .nav-menu.active {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            border-color: var(--accent-primary);
+        }
+
+        .nav-btn .type {
+            color: var(--text-dim);
+            font-size: 10px;
+        }
+
+        .nav-btn:hover .type,
+        .nav-btn.active .type {
+            color: var(--bg-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           MAIN CONTENT
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .terminal-content {
+            padding: 0 20px 20px 20px;
+            display: none;
+        }
+
+        .terminal-content.active {
+            display: block;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-header {
+            color: var(--accent-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .separator {
+            color: var(--border-color);
+            margin: 15px 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           NEW LANDING PAGE SECTIONS
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .mission-statement {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent-primary);
+            padding: 15px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+        }
+
+        /* CRT Screen Effect for Images */
+        .crt-screen {
+            position: relative;
+            display: inline-block;
+            max-width: 100%;
+            margin: 20px 0;
+            border: 2px solid var(--border-color);
+            background: #000;
+            cursor: pointer;
+        }
+
+        .crt-screen img {
+            display: block;
+            width: 100%;
+            height: auto;
+            filter: brightness(1.1) contrast(1.15);
+        }
+
+        /* Scanline overlay */
+        .crt-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15) 0px,
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Vignette effect */
+        .crt-screen::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                ellipse at center,
+                transparent 0%,
+                transparent 60%,
+                rgba(0, 0, 0, 0.3) 100%
+            );
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .crt-screen:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .latest-update {
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-milestone);
+            padding: 15px;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .quick-overview {
+            margin-bottom: 20px;
+        }
+
+        .nav-routing {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .routing-header {
+            color: var(--accent-secondary);
+            border-bottom: 1px dotted var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-family: var(--font-display);
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .routing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .routing-section strong {
+            display: block;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .routing-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .routing-section li {
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           TOOLTIP DEFINITIONS
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .term {
+            color: var(--accent-primary);
+            border-bottom: 1px dotted var(--accent-primary);
+            cursor: help;
+            position: relative;
+        }
+
+        .term:hover .tooltip,
+        .term:focus .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--tooltip-bg);
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            max-width: 300px;
+            white-space: normal;
+            z-index: 100;
+            transition: opacity 0.2s;
+            margin-bottom: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--border-color);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           INTRO PAGE QUICK LINKS
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .quick-links {
+            margin-top: 20px;
+        }
+
+        .quick-links p {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .quick-links ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+
+        .quick-links ul li {
+            margin: 8px 0;
+            padding-left: 10px;
+        }
+
+        .quick-links a {
+            color: var(--accent-link);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .quick-links a:hover {
+            color: var(--accent-primary);
+            text-decoration: underline;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           DEVLOG / BLOG ENTRIES
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .devlog-toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .devlog-toc h3 {
+            color: var(--accent-secondary);
+            margin-bottom: 10px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toc-controls {
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+
+        .toc-controls button {
+            background: none;
+            border: none;
+            color: var(--accent-link);
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: 2px 6px;
+            margin-left: 5px;
+        }
+
+        .toc-controls button:hover {
+            color: var(--accent-primary);
+        }
+
+        .devlog-toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-year {
+            margin-bottom: 8px;
+        }
+
+        .toc-year-header {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px 0;
+            color: var(--accent-secondary);
+            font-weight: bold;
+            font-size: 13px;
+            user-select: none;
+        }
+
+        .toc-year-header:hover {
+            color: var(--accent-primary);
+        }
+
+        .toc-year-toggle {
+            margin-right: 8px;
+            width: 12px;
+            display: inline-block;
+        }
+
+        .toc-year-content {
+            padding-left: 20px;
+            border-left: 1px solid var(--border-color);
+            margin-left: 6px;
+        }
+
+        .toc-year-content.collapsed {
+            display: none;
+        }
+
+        .toc-month {
+            margin-bottom: 8px;
+        }
+
+        .toc-month-header {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 3px 0;
+            color: var(--text-secondary);
+            font-size: 12px;
+            user-select: none;
+        }
+
+        .toc-month-header:hover {
+            color: var(--accent-primary);
+        }
+
+        .toc-month-toggle {
+            margin-right: 8px;
+            width: 12px;
+            display: inline-block;
+        }
+
+        .toc-month-entries {
+            padding-left: 20px;
+            margin-top: 3px;
+        }
+
+        .toc-month-entries.collapsed {
+            display: none;
+        }
+
+        .toc-entry {
+            padding: 3px 0;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toc-entry::before {
+            content: '├─';
+            color: var(--border-color);
+            margin-right: 6px;
+        }
+
+        .toc-entry:last-child::before {
+            content: '└─';
+        }
+
+        .toc-entry a {
+            color: var(--accent-link);
+            text-decoration: none;
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .toc-entry a:hover {
+            color: var(--accent-primary);
+        }
+
+        .toc-entry .milestone-badge {
+            color: var(--accent-milestone);
+            margin-right: 4px;
+            font-weight: bold;
+        }
+
+        .toc-entry .date {
+            color: var(--text-dim);
+            font-size: 11px;
+            margin-left: 8px;
+        }
+
+        .devlog-entry {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .devlog-entry:last-child {
+            border-bottom: none;
+        }
+
+        .devlog-date {
+            color: var(--text-dim);
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .devlog-title {
+            color: var(--text-primary);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .devlog-title.milestone {
+            color: var(--accent-milestone);
+        }
+
+        .devlog-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .devlog-content p {
+            margin-bottom: 15px;
+        }
+
+        .devlog-tags {
+            margin-top: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--bg-secondary);
+            color: var(--text-dim);
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            margin-right: 5px;
+        }
+
+        .tag.milestone {
+            background: var(--accent-milestone);
+            color: var(--bg-primary);
+        }
+
+        .tag.tech {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            font-weight: bold;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           INFO CARDS
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .info-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .info-card h3 {
+            color: var(--accent-secondary);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .info-card p {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dotted var(--border-color);
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+        }
+
+        .stat-value {
+            color: var(--accent-primary);
+        }
+
+        .link {
+            color: var(--accent-link);
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           STATUS BAR & PROMPT
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .prompt-line {
+            padding: 15px 20px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .prompt {
+            color: var(--accent-primary);
+            margin-right: 10px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background: var(--cursor-color);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .status-bar {
+            background: var(--bg-secondary);
+            padding: 10px 15px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .status-item {
+            color: var(--text-dim);
+        }
+
+        .status-value {
+            color: var(--accent-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           RESPONSIVE / MOBILE
+        ═══════════════════════════════════════════════════════════════════ */
+
+        @media (max-width: 768px) {
+            .terminal-wrapper {
+                padding: 10px;
+            }
+
+            .terminal-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .theme-selector {
+                width: 100%;
+            }
+
+            .theme-selector select {
+                flex: 1;
+            }
+
+            .boot-screen,
+            .terminal-content {
+                padding: 0 15px 15px 15px;
+                font-size: 13px;
+            }
+
+            .nav-btn {
+                flex: 1;
+                min-width: 80px;
+                text-align: center;
+                padding: 10px 8px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .tooltip {
+                position: fixed;
+                bottom: auto;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                max-width: 90vw;
+            }
+
+            .tooltip::after {
+                display: none;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           UTILITIES
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .hidden { display: none !important; }
+        .text-primary { color: var(--accent-primary); }
+        .text-milestone { color: var(--accent-milestone); }
+        .text-secondary { color: var(--accent-secondary); }
+        .text-alert { color: var(--accent-alert); }
+        .text-error { color: var(--accent-error); }
+        .text-link { color: var(--accent-link); }
+        .text-dim { color: var(--text-dim); }
+
+        .mb-1 { margin-bottom: 10px; }
+        .mb-2 { margin-bottom: 20px; }
+        .mt-1 { margin-top: 10px; }
+        .mt-2 { margin-top: 20px; }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           AI DISCLOSURE BANNER
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .ai-disclosure {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent-primary);
+            padding: 12px 15px;
+            margin: 0 0 20px 0;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            border-radius: 2px;
+        }
+
+        .ai-disclosure-header {
+            color: var(--accent-primary);
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .ai-disclosure-content {
+            color: var(--text-dim);
+        }
+
+        .ai-disclosure a {
+            color: var(--accent-link);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent-link);
+        }
+
+        .ai-disclosure a:hover {
+            color: var(--accent-primary);
+            border-bottom-color: var(--accent-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           LIGHTBOX
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border: 2px solid var(--accent-primary);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            border: none;
+            padding: 10px 20px;
+            font-family: var(--font-mono);
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10001;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .lightbox-close:hover {
+            background: var(--accent-secondary);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            border: none;
+            padding: 20px 15px;
+            font-family: var(--font-mono);
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10001;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--accent-secondary);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            border-radius: 4px;
+            z-index: 10001;
+        }
+
+        /* Make images clickable */
+        .devlog-content img {
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .devlog-content img:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-wrapper">
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="window-controls">
+                    <span class="window-btn btn-close"></span>
+                    <span class="window-btn btn-minimize" title="You found an Easter Egg!" onclick="window.location.href='businesscards.html'"></span>
+                    <span class="window-btn btn-maximize"></span>
+                </div>
+                <div class="terminal-title">BASEMENT OS</div>
+                <div class="theme-selector">
+                    <label for="theme-select">THEME:</label>
+                    <select id="theme-select" onchange="setTheme(this.value)">
+                        <option value="high-contrast">High Contrast</option>
+                        <option value="synthwave">Synthwave</option>
+                        <option value="framer-dark">Framer Dark</option>
+                        <option value="framer-light">Framer Light</option>
+                        <option value="solarized-dark">Solarized Dark</option>
+                        <option value="solarized-light">Solarized Light</option>
+                        <option value="catppuccin">Catppuccin</option>
+                        <option value="monokai">Monokai</option>
+                        <option value="gruvbox-dark">Gruvbox Dark</option>
+                        <option value="gruvbox-light">Gruvbox Light</option>
+                        <option value="rose-pine">Rose Pine</option>
+                        <option value="rose-pine-dawn">Rose Pine Dawn</option>
+                        <option value="rose-pine-moon">Rose Pine Moon</option>
+                        <option value="cappuccino">Cappuccino</option>
+                    </select>
+                </div>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
+                <button class="nav-btn active" onclick="showSection('intro')">
+                    <span class="type">&lt;BOOT&gt;</span> INTRO
+                </button>
+                <button class="nav-btn" onclick="showSection('about')">
+                    <span class="type">&lt;DIR&gt;</span> ABOUT
+                </button>
+                <button class="nav-btn" onclick="showSection('devlog')">
+                    <span class="type">&lt;LOG&gt;</span> DEVLOG
+                </button>
+                <button class="nav-btn" onclick="showSection('skills')">
+                    <span class="type">&lt;AI&gt;</span> SKILLS
+                </button>
+                <button class="nav-btn" onclick="showSection('links')">
+                    <span class="type">&lt;NET&gt;</span> LINKS
+                </button>
+                <button class="nav-btn" onclick="toggleSearch()">
+                    <span class="type">&lt;CMD&gt;</span> SEARCH
+                </button>
+            </nav>
+
+            <div class="search-container" id="search-container">
+                <input type="text" class="search-input" id="search-input"
+                       placeholder="Search devlog entries..."
+                       oninput="performSearch(this.value)">
+                <div class="search-results" id="search-results"></div>
+            </div>
+
+            <div class="ai-disclosure" id="ai-disclosure" style="display: none;">
+                <div class="ai-disclosure-header">[  NEXT-GEN AI DEVLOG  ]</div>
+                <div class="ai-disclosure-content">
+                    Content Generated by Developer-Led AI Workflows. Reviewed by a Human-In-the-Loop.
+                </div>
+            </div>
+
+            <div class="boot-screen" id="boot-screen"></div>
+
+            <div class="terminal-content" id="main-content">
+
+                <!-- Intro Section -->
+                <div class="content-section active" id="section-intro">
+                    <h2 class="section-header">C:\BASEMENT\INTRO.TXT</h2>
+
+                    <div class="mission-statement">
+                        <h3>Lower Level 2.0 — A VRChat Basement Reimagined Through AI-Assisted Development</h3>
+                        <p>Lower Level 2.0 is my ongoing experiment in applying AI-assisted workflows to real VRChat world development. What began as a nostalgic 2000s-inspired basement scene has evolved into a fully interactive environment powered by systems-level thinking, continuous iteration, and AI-enhanced tooling.</p>
+                    </div>
+
+                    <div class="info-card" style="margin-bottom: 20px;">
+                        <p><strong>// SYSTEM NOTE:</strong></p>
+                        <p>To be clear—I didn't use AI to build the walls or the 3D furniture; I commissioned the 3D model base providing detailed plans to recreate the basement I hung out in in college.</p>
+                        <p>I worked with AI to install a sort of smart home system, and make the basement 'alive'. The physical 3D space was a commissioned asset was a great canvas. What I built in with AI was the logic—the interactive terminal, the networking, and the systems that actually create a living, breathing place.</p>
+                    </div>
+
+                    <div class="crt-screen" onclick="openLightbox('https://i.imgur.com/N8da6pU.jpeg')">
+                        <img src="https://i.imgur.com/N8da6pU.jpeg" alt="Lower Level 2.0 VRChat Basement World" loading="lazy">
+                    </div>
+
+                    <div class="nav-routing">
+                        <h3 class="routing-header">[ NEW HERE? START WITH... ]</h3>
+                        <div class="routing-grid">
+                            <div class="routing-section">
+                                <strong>🤖 Interested in AI Methodology?</strong>
+                                <ul>
+                                    <li><a href="#entry-2025-12-07" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2025-12-07', 100); return false;" class="link">→ December 7: Full Stack AI Workflow</a></li>
+                                    <li><a href="javascript:showSection('skills')" class="link">→ AI Skills Directory</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="routing-section">
+                                <strong>🎮 Curious About VRChat Development?</strong>
+                                <ul>
+                                    <li><a href="#entry-2024-07-13" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2024-07-13', 100); return false;" class="link">→ July 13: VRChat PlayerData Persistence</a></li>
+                                    <li><a href="#entry-2024-10-20" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2024-10-20', 100); return false;" class="link">→ October 20: Achievement System Overhaul</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="routing-section">
+                                <strong>📈 Want the Complete Journey?</strong>
+                                <ul>
+                                    <li><a href="#entry-2024-07-10" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2024-07-10', 100); return false;" class="link">→ July 10: First Achievement</a></li>
+                                    <li><a href="#entry-2025-12-07" onclick="showSection('devlog'); setTimeout(() => window.location.hash = 'entry-2025-12-07', 100); return false;" class="link">→ December 7: Full Stack AI</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="routing-section">
+                                <strong>🤝 Looking to Collaborate?</strong>
+                                <ul>
+                                    <li><a href="javascript:showSection('about')" class="link">→ Working with Me</a></li>
+                                    <li><a href="javascript:showSection('links')" class="link">→ Get Involved</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Devlog Section -->
+                <div class="content-section" id="section-devlog">
+                    <h2 class="section-header">C:\BASEMENT\DEVLOG.TXT</h2>
+
+                    <div class="latest-update">
+                        <strong>December 7, 2025</strong> - Breakthrough: Full Stack AI Workflow achieved with 9-agent swarm + UdonSharpAssetRepair discovery. The missing automation link that completes the development loop. <a href="#entry-2025-12-07" class="link">→ Read the milestone</a>
+                    </div>
+
+                    <div class="devlog-toc">
+                        <h3>
+                            [ Table of Contents ]
+                            <div class="toc-controls">
+                                <button onclick="expandAllTOC()">Expand All</button>
+                                <button onclick="collapseAllTOC()">Collapse All</button>
+                            </div>
+                        </h3>
+                        <ul>
+                            <li class="toc-year">
+                                <div class="toc-year-header" onclick="toggleTOCYear(this)">
+                                    <span class="toc-year-toggle">▶</span>
+                                    <span>2025 (14 entries)</span>
+                                </div>
+                                <div class="toc-year-content collapsed">
+                                    <div class="toc-month">
+                                        <div class="toc-month-header" onclick="toggleTOCMonth(this)">
+                                            <span class="toc-month-toggle">▶</span>
+                                            <span>December</span>
+                                        </div>
+                                        <div class="toc-month-entries collapsed">
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-12-07">
+                                                    <span><span class="milestone-badge">★</span> Full Stack AI Workflow - The Complete System</span>
+                                                    <span class="date">07</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-12-06">
+                                                    <span><span class="milestone-badge">★</span> Closed-Loop Agent System</span>
+                                                    <span class="date">06</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-12-06-terminal">
+                                                    <span>Meta-Review: Terminal 2.1 Spec Quality</span>
+                                                    <span class="date">06</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-12-03">
+                                                    <span>Refactoring CLAUDE.md</span>
+                                                    <span class="date">03</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="toc-month">
+                                        <div class="toc-month-header" onclick="toggleTOCMonth(this)">
+                                            <span class="toc-month-toggle">▶</span>
+                                            <span>November</span>
+                                        </div>
+                                        <div class="toc-month-entries collapsed">
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-11-29">
+                                                    <span>Symbolic Games POC</span>
+                                                    <span class="date">29</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-11-15">
+                                                    <span>Terminal Menu System Complete</span>
+                                                    <span class="date">15</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-11-07">
+                                                    <span><span class="milestone-badge">★</span> Claude Code + Documentation Sprint</span>
+                                                    <span class="date">07</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="toc-month">
+                                        <div class="toc-month-header" onclick="toggleTOCMonth(this)">
+                                            <span class="toc-month-toggle">▶</span>
+                                            <span>October</span>
+                                        </div>
+                                        <div class="toc-month-entries collapsed">
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-10-20">
+                                                    <span><span class="milestone-badge">★</span> Achievement System Overhaul</span>
+                                                    <span class="date">20</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="toc-month">
+                                        <div class="toc-month-header" onclick="toggleTOCMonth(this)">
+                                            <span class="toc-month-toggle">▶</span>
+                                            <span>August</span>
+                                        </div>
+                                        <div class="toc-month-entries collapsed">
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-08-10">
+                                                    <span><span class="milestone-badge">★</span> World Launch Party</span>
+                                                    <span class="date">10</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-08-07">
+                                                    <span>Weather System + Rain Shaders</span>
+                                                    <span class="date">07</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="toc-month">
+                                        <div class="toc-month-header" onclick="toggleTOCMonth(this)">
+                                            <span class="toc-month-toggle">▶</span>
+                                            <span>July</span>
+                                        </div>
+                                        <div class="toc-month-entries collapsed">
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-07-26">
+                                                    <span>Achievement Icon Design</span>
+                                                    <span class="date">26</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-07-19">
+                                                    <span>Multi-TV Broadcasting System</span>
+                                                    <span class="date">19</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-07-13">
+                                                    <span><span class="milestone-badge">★</span> VRChat PlayerData Persistence</span>
+                                                    <span class="date">13</span>
+                                                </a>
+                                            </div>
+                                            <div class="toc-entry">
+                                                <a href="#entry-2025-07-10">
+                                                    <span>First Achievement Unlocked</span>
+                                                    <span class="date">10</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="devlog-entries">
+                        <article class="devlog-entry" id="entry-2025-12-07" data-searchable>
+                            <div class="devlog-date">December 7, 2025</div>
+                            <h3 class="devlog-title milestone">MILESTONE: Full Stack AI Workflow - The Complete System</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Two breakthroughs in one day. This is the moment everything clicked.
+                                </p>
+                                <p>
+                                    <strong>Morning - The Assembly Line:</strong> Launched my first
+                                    <span class="term" tabindex="0">agent swarm<span class="tooltip">Multiple AI agents working in parallel on different tasks simultaneously</span></span>
+                                    with custom <code>agent.md</code> persona files. Nine specialized agents building different Basement OS modules simultaneously - DT_Core, DT_Shell, DT_Theme, weather app, GitHub app, each with injected expertise. This is horizontal scaling - volume without sacrificing architecture.
+                                </p>
+                                <a href="images/2025/12/agent-swarm-first-time-dec7.png" target="_blank">
+                                    <img src="images/2025/12/agent-swarm-first-time-dec7.png" alt="First agent swarm with 9 parallel agents and custom agent.md files" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <p>
+                                    <strong>The Gap:</strong> Agents could write perfect code, but Unity wouldn't compile it. Files sat on disk, ignored. I was still manually clicking "Compile" in the Inspector. The automation loop was broken.
+                                </p>
+                                <p>
+                                    <strong>Afternoon - The Missing Link:</strong> Found <code>UdonSharpAssetRepair.cs</code> - the linchpin I'd been missing. This utility script forces Unity to acknowledge programmatically-written files, generates the .asset files, and triggers compilation. It's the bridge between "AI writes code" and "Unity actually runs it."
+                                </p>
+                                <a href="images/2025/12/full-automation-udonsharp-asset-repair-dec7.png" target="_blank">
+                                    <img src="images/2025/12/full-automation-udonsharp-asset-repair-dec7.png" alt="Full automation achieved with UdonSharpAssetRepair as the missing link" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <a href="images/2025/12/autonomous-agent-workflow-dec7.png" target="_blank">
+                                    <img src="images/2025/12/autonomous-agent-workflow-dec7.png" alt="Creating comprehensive SOP documentation for autonomous agent workflow" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <a href="images/2025/12/closed-loop-complete-dec7.png" target="_blank">
+                                    <img src="images/2025/12/closed-loop-complete-dec7.png" alt="Documentation complete - CLOSED_LOOP_AGENT_SYSTEM.md and system files" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <p>
+                                    <strong>The Complete System:</strong> Now Claude writes code → triggers UdonSharpAssetRepair → Unity compiles → enters Play mode → reads console logs → fixes errors → repeats. Zero human intervention. The swarm builds the car fast (volume). The automation pipeline ensures it doesn't explode when you turn the key (quality assurance).
+                                </p>
+                                <p>
+                                    <strong>The Learning:</strong> This is tooling engineering. The swarm was impressive, but useless without the testing loop. UdonSharpAssetRepair is a 200-line script that unlocks millions of dollars in productivity. Finding these linchpins - the small pieces that complete the system - that's the skill companies pay for.
+                                </p>
+                                <p>
+                                    <strong>Why It Matters:</strong> I went from "AI-assisted developer" to "AI workflow architect." The difference? I'm not just using tools - I'm building the automation that makes the tools useful. That's the career transition I'm chasing.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag milestone">MILESTONE</span>
+                                <span class="tag">automation</span>
+                                <span class="tag">architecture</span>
+                                <span class="tag">ai</span>
+                                <span class="tag tech">Agent Swarm</span>
+                                <span class="tag tech">Unity MCP</span>
+                                <span class="tag tech">UdonSharpAssetRepair</span>
+                                <span class="tag tech">Claude Code</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-12-06" data-searchable>
+                            <div class="devlog-date">December 6, 2025</div>
+                            <h3 class="devlog-title milestone">MILESTONE: Closed-Loop Agent System</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    This is a big one. I've been working with
+                                    <span class="term" tabindex="0">Claude Code<span class="tooltip">An AI coding assistant by Anthropic that can read, write, and execute code autonomously</span></span>
+                                    to build out the Basement OS kernel, and we finally cracked the automation problem.
+                                </p>
+                                <p>
+                                    <strong>The Problem:</strong> With
+                                    <span class="term" tabindex="0">UdonSharp<span class="tooltip">A C# to Udon compiler that lets you write VRChat scripts in familiar C# syntax instead of visual programming</span></span>,
+                                    AI can write perfect code that won't run. Unity needs to generate .asset files, attach them to GameObjects, and compile everything. My first two attempts failed because Claude would generate code with no way to test it. I was still the button-clicker.
+                                </p>
+                                <p>
+                                    <strong>The Solution:</strong>
+                                    <span class="term" tabindex="0">Unity MCP<span class="tooltip">Model Context Protocol - a way for AI agents to communicate with Unity Editor directly</span></span>
+                                    gave Claude hands. Now it does the full loop: write script → trigger compilation → check errors → attach to GameObjects → enter Play mode → verify. Zero human intervention.
+                                </p>
+                                <p>
+                                    <strong>The Learning:</strong> This taught me that real automation isn't about speed - it's about eliminating the feedback loop. I went from "human as button-clicker" to "human as architect." That's the leadership transfer I'm after. As
+                                    <a href="https://www.humanlayer.dev/blog/writing-a-good-claude-md" target="_blank">HumanLayer puts it</a>, good AI tooling is about leveraging stateless functions correctly.
+                                </p>
+                                <p>
+                                    <strong>Why It Matters:</strong> This pattern applies beyond VRChat. Any runtime environment (web apps, mobile, game engines) needs autonomous test → fix → verify loops. Companies pay for people who build these internal tools.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag milestone">MILESTONE</span>
+                                <span class="tag">architecture</span>
+                                <span class="tag">automation</span>
+                                <span class="tag">ai</span>
+                                <span class="tag tech">Unity MCP</span>
+                                <span class="tag tech">Claude Code</span>
+                                <span class="tag tech">Agent Swarm</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-12-06-terminal" data-searchable>
+                            <div class="devlog-date">December 6, 2025</div>
+                            <h3 class="devlog-title">Meta-Review: Terminal 2.1 Spec Quality</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    After building the Terminal 2.1 spec, I turned Claude on myself. "Review this spec against best practices - Spec-Driven Development, TDD guidelines, Hermeneutic Circle methodology. How does it hold up?"
+                                </p>
+                                <p>
+                                    The results were humbling. Strong marks for Hub-Spoke Architecture ✅, 600-line rule compliance ✅, and UdonSharp checks ✅. But big gaps: no TDD integration ❌, missing Hermeneutic Circle analysis ❌, incomplete pre-commit workflow ❌.
+                                </p>
+                                <a href="images/2025/12/terminal-spec-review-dec6.png" target="_blank">
+                                    <img src="images/2025/12/terminal-spec-review-dec6.png" alt="Alignment analysis showing Terminal 2.1 spec strengths and gaps" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <p>
+                                    This is how you get better - critique your own work with the same rigor you'd apply to someone else's. The spec demonstrates solid architecture thinking, but I'm not validating it with tests or considering WHOLE ↔ PART impacts explicitly. Those are fixable gaps.
+                                </p>
+                                <p>
+                                    Using AI to review your own methodology is meta-learning at its finest. It's not about getting praise - it's about finding the blind spots.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">meta-learning</span>
+                                <span class="tag">documentation</span>
+                                <span class="tag">methodology</span>
+                                <span class="tag tech">Spec-Driven Development</span>
+                                <span class="tag tech">Claude Opus</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-12-03" data-searchable>
+                            <div class="devlog-date">December 3, 2025</div>
+                            <h3 class="devlog-title">Refactoring CLAUDE.md</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    A coworker sent me
+                                    <a href="https://www.humanlayer.dev/blog/writing-a-good-claude-md" target="_blank">HumanLayer's guide to writing good CLAUDE.md files</a>,
+                                    and I couldn't help myself - had to try it immediately.
+                                </p>
+                                <p>
+                                    Opened Claude Opus and fed it my entire 953-line CLAUDE.md for review, citing the HumanLayer article as the comparison benchmark. "How does mine stack up against their recommendations?"
+                                </p>
+                                <p>
+                                    Opus came back with a refactor plan: too many instructions causing "instruction-following decay," embedded code examples getting stale, mixed universal and task-specific rules. The solution? Modular structure - keep CLAUDE.md lean (~150 lines) and create reference documents in <code>Docs/Reference/</code> that Claude can pull when needed.
+                                </p>
+                                <a href="images/2025/12/claude-md-refactor-opus-dec3.png" target="_blank">
+                                    <img src="images/2025/12/claude-md-refactor-opus-dec3.png" alt="Claude Opus refactor analysis showing before/after comparison" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <p>
+                                    This is how I learn best. Read something interesting, apply it immediately while it's fresh. No analysis paralysis, just iteration. By the end of the session, I had a new doc structure that made every future Claude conversation more effective.
+                                </p>
+                                <p>
+                                    Meta-learning: using AI to improve how you work with AI. That's leverage.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">documentation</span>
+                                <span class="tag">meta-learning</span>
+                                <span class="tag">ai</span>
+                                <span class="tag tech">Claude Opus</span>
+                                <span class="tag tech">Claude Code</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-11-29" data-searchable>
+                            <div class="devlog-date">November 29, 2025</div>
+                            <h3 class="devlog-title">Symbolic Games POC</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Experimented with terminal-based games using unicode characters instead of sprites. Built breakout and pong prototypes that render using block characters.
+                                </p>
+                                <p>
+                                    Interesting concept, but after testing found sprites are significantly less resource-intensive on Quest. Keeping the code for reference but won't ship in prod.
+                                </p>
+                                <a href="Manual Change Logs and Images/images/Claude Code Jam Session November/11-29-25 Symbolic Rendering Engine WORKING.png" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/Claude Code Jam Session November/11-29-25 Symbolic Rendering Engine WORKING.png" alt="Symbolic rendering engine working" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <a href="Manual Change Logs and Images/images/Claude Code Jam Session November/Symbolic Breakout .png" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/Claude Code Jam Session November/Symbolic Breakout .png" alt="Symbolic breakout game" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">terminal</span>
+                                <span class="tag">games</span>
+                                <span class="tag">optimization</span>
+                                <span class="tag tech">TextMeshPro</span>
+                                <span class="tag tech">UdonSharp</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-11-07" data-searchable>
+                            <div class="devlog-date">November 7, 2025</div>
+                            <h3 class="devlog-title milestone">MILESTONE: Claude Code + Documentation Sprint</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Started my first session with
+                                    <span class="term" tabindex="0">Claude Code<span class="tooltip">Anthropic's AI coding assistant with direct file access and terminal execution</span></span>
+                                    - this is a game changer. Instead of copying code snippets back and forth, Claude can directly read my project files, write code, and even help with git commits.
+                                </p>
+                                <p>
+                                    Spent the session adding comprehensive
+                                    <span class="term" tabindex="0">XML docstrings<span class="tooltip">Documentation comments that describe what each method does - helps both humans and AI understand code</span></span>
+                                    to all major scripts. The AchievementTracker alone went from zero documentation to fully annotated with parameter descriptions and usage examples.
+                                </p>
+                                <p>
+                                    Also started setting up project automation - automatic UdonSharp validation before commits, organized GitHub issues with story points, and established milestones. Treating Claude like a jr developer is really showing how much leadership and project management coordination I have in this area.
+                                </p>
+                                <a href="Manual Change Logs and Images/images/Claude Code Jam Session November/Adding Doc Strings 2025-11-07 180219.png" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/Claude Code Jam Session November/Adding Doc Strings 2025-11-07 180219.png" alt="Adding XML docstrings with Claude Code" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <a href="Manual Change Logs and Images/images/Claude Code Jam Session November/first upload using git.png" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/Claude Code Jam Session November/first upload using git.png" alt="First git upload with Claude Code" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <a href="Manual Change Logs and Images/images/Claude Code Jam Session November/organizing issues using github and roadmap.png" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/Claude Code Jam Session November/organizing issues using github and roadmap.png" alt="GitHub issue organization" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag milestone">MILESTONE</span>
+                                <span class="tag">documentation</span>
+                                <span class="tag">automation</span>
+                                <span class="tag">ai</span>
+                                <span class="tag tech">Claude Code</span>
+                                <span class="tag tech">GitHub</span>
+                                <span class="tag tech">Git</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-11-15" data-searchable>
+                            <div class="devlog-date">November 15, 2025</div>
+                            <h3 class="devlog-title">Terminal Menu System Complete</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    In a development instance I ran a POC that replaces the original auto-cycling display with an actual interactive menu. Players could use their movement controls to navigate up/down through options and select with the interact button.
+                                </p>
+                                <p>
+                                    Had to implement player immobilization when they're at the terminal - otherwise pressing up/down would move your avatar AND the cursor. Using
+                                    <span class="term" tabindex="0">VRCStation<span class="tooltip">A VRChat component that locks a player in place and captures their input</span></span>
+                                    for this also solves the "walking away mid-interaction" problem.
+                                </p>
+                                <p>
+                                    Also extracted the weather module into its own script. The terminal now pulls
+                                    real-time weather data from my
+                                    <span class="term" tabindex="0">GitHub Pages<span class="tooltip">Free static website hosting from GitHub - I use it to serve weather data as JSON</span></span>
+                                    endpoint and displays it in the header. When it's actually raining in Fond du Lac,
+                                    you'll see rain in the basement too once I figure out how to re-bake the lighting with the shader enabled windows.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">terminal</span>
+                                <span class="tag">input</span>
+                                <span class="tag">weather</span>
+                                <span class="tag tech">VRCStation</span>
+                                <span class="tag tech">UdonSharp</span>
+                                <span class="tag tech">GitHub Pages API</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-10-20" data-searchable>
+                            <div class="devlog-date">October 20, 2025</div>
+                            <h3 class="devlog-title milestone">MILESTONE: Achievement System Overhaul</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Finally finished the Xbox 360-style achievement system! 19 achievements worth 420G implemented out of 1,000G leaves plenty of room for expansion with future ideas. This matches the original Xbox 360 gamer score point structure. The notifications pop up just like they did on the 360 - that satisfying sound effect and the animated banner!
+                                </p>
+                                <p>
+                                    Using VRChat's
+                                    <span class="term" tabindex="0">PlayerData API<span class="tooltip">VRChat's persistence system that saves player data across sessions - limited to basic types like int, float, string</span></span>
+                                    for persistence. This was tricky because you can't use fancy C# features in
+                                    <span class="term" tabindex="0">UdonSharp<span class="tooltip">A C# to Udon compiler - no generics, no LINQ, no async, no try/catch</span></span> -
+                                    no List&lt;T&gt;, no Dictionary, no LINQ. Everything's done with arrays and
+                                    careful indexing.
+                                </p>
+                                <p>
+                                    The
+                                    <span class="term" tabindex="0">FIFO queue<span class="tooltip">First-In-First-Out - notifications appear in the order they were earned, like a live feed</span></span>
+                                    for notifications took a few iterations. Originally had a priority system but
+                                    it felt weird when achievements popped up out of order. The chronological
+                                    approach matches the "basement live feed" vibe I was going for.
+                                </p>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag milestone">MILESTONE</span>
+                                <span class="tag">achievements</span>
+                                <span class="tag">persistence</span>
+                                <span class="tag">xbox</span>
+                                <span class="tag tech">VRChat PlayerData API</span>
+                                <span class="tag tech">UdonSharp</span>
+                                <span class="tag tech">TextMeshPro</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-08-10" data-searchable>
+                            <div class="devlog-date">August 10, 2025</div>
+                            <h3 class="devlog-title milestone">MILESTONE: World Launch Party</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Opened Lower Level 2.0 to the public! Had about 8 friends show up for the launch. Watching the achievement notifications pop as people joined was incredibly satisfying - exactly the vibe I was going for.
+                                </p>
+                                <p>
+                                    Everything worked smoothly - notifications, persistence, the DOS terminal.
+                                </p>
+                                <a href="Manual Change Logs and Images/images/August 2025/VRChat_2025-08-10_20-58-06.405_2560x1440 launch party.png" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/August 2025/VRChat_2025-08-10_20-58-06.405_2560x1440 launch party.png" alt="Launch party screenshot with 8 friends" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <a href="Manual Change Logs and Images/images/August 2025/hangout verified.jpg" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/August 2025/hangout verified.jpg" alt="Achievement notifications during launch" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag milestone">MILESTONE</span>
+                                <span class="tag">launch</span>
+                                <span class="tag">social</span>
+                                <span class="tag tech">VRChat</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-08-07" data-searchable>
+                            <div class="devlog-date">August 7, 2025</div>
+                            <h3 class="devlog-title">Weather System + Rain Shaders</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Integrated real-time weather from Fond du Lac, WI using a
+                                    <span class="term" tabindex="0">GitHub Pages JSON endpoint<span class="tooltip">Free static file hosting - I update a JSON file with current weather and VRChat fetches it</span></span>.
+                                    The terminal displays current conditions and when it's actually raining outside, the basement windows show rain effects.
+                                </p>
+                                <p>
+                                    Rain shader source: [PLACEHOLDER - Please specify the rain shader source (Unity Asset Store, GitHub repo, custom made, etc.)]
+                                </p>
+                                <a href="Manual Change Logs and Images/images/August 2025/'Thunderyoutbreaksinnearby' Screenshot 2025-08-07 195825.jpg" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/August 2025/'Thunderyoutbreaksinnearby' Screenshot 2025-08-07 195825.jpg" alt="Thundery outbreaks weather condition" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <a href="Manual Change Logs and Images/images/July 2025/working weather.png" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/July 2025/working weather.png" alt="Weather system working on terminal" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">weather</span>
+                                <span class="tag">api</span>
+                                <span class="tag">shaders</span>
+                                <span class="tag tech">GitHub Pages</span>
+                                <span class="tag tech">VRCUrlLoader</span>
+                                <span class="tag tech">UdonSharp</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-07-26" data-searchable>
+                            <div class="devlog-date">July 26, 2025</div>
+                            <h3 class="devlog-title">Achievement Icon Design</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Finished designing custom icons for all 19 achievements using Photopea.com. Referenced actual Xbox 360 achievement art to match that 2000s gaming aesthetic.
+                                </p>
+                                <a href="Manual Change Logs and Images/images/360 Icons/Photo Jul 26 2025, 9 17 32 PM.png" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/360 Icons/Photo Jul 26 2025, 9 17 32 PM.png" alt="Achievement icon sketches" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <a href="Manual Change Logs and Images/images/July 2025/Custom Icons.jpg" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/July 2025/Custom Icons.jpg" alt="Custom achievement icons in Unity" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">art</span>
+                                <span class="tag">ui</span>
+                                <span class="tag">achievements</span>
+                                <span class="tag tech">Photopea</span>
+                                <span class="tag tech">Unity</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-07-19" data-searchable>
+                            <div class="devlog-date">July 19, 2025</div>
+                            <h3 class="devlog-title">Multi-TV Broadcasting System</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Got notifications working on all 3 TVs simultaneously! The NotificationEventHub broadcasts to each display independently, so everyone in the basement sees achievements pop regardless of which room they're in.
+                                </p>
+                                <p>
+                                    Each TV maintains its own FIFO queue and animation timing. Had to be careful with the ProTV prefab integration - it uses a different Canvas setup than standard UI.
+                                </p>
+                                <a href="Manual Change Logs and Images/images/July 2025/Notifications working on 3 Tvs!!!.jpg" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/July 2025/Notifications working on 3 Tvs!!!.jpg" alt="Notifications working on all 3 TVs" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <a href="Manual Change Logs and Images/images/July 2025/Multiple TVs.jpg" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/July 2025/Multiple TVs.jpg" alt="Multi-TV setup in basement" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">notifications</span>
+                                <span class="tag">ui</span>
+                                <span class="tag">networking</span>
+                                <span class="tag tech">UdonSharp</span>
+                                <span class="tag tech">ProTV</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-07-13" data-searchable>
+                            <div class="devlog-date">July 13, 2025</div>
+                            <h3 class="devlog-title milestone">MILESTONE: VRChat PlayerData Persistence</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    Finally got VRChat's
+                                    <span class="term" tabindex="0">PlayerData API<span class="tooltip">VRChat's cloud persistence system - stores int/float/string values per player across sessions</span></span>
+                                    working! Visit counts now persist between sessions. This took way longer than expected because of UdonSharp's limitations.
+                                </p>
+                                <p>
+                                    Can't use Dictionary or List in UdonSharp, so I'm tracking players with parallel arrays. Not elegant, but it works. Successfully tested with 3 visits - data persists across world reloads.
+                                </p>
+                                <p>
+                                    The 11-hour debugging marathon was worth it. This is the foundation for the entire achievement system.
+                                </p>
+                                <a href="Manual Change Logs and Images/images/July 2025/Persistence Working.jpg" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/July 2025/Persistence Working.jpg" alt="PlayerData persistence working" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <a href="Manual Change Logs and Images/images/July 2025/tracking 3 visits.png" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/July 2025/tracking 3 visits.png" alt="Successfully tracking 3 visits" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag milestone">MILESTONE</span>
+                                <span class="tag">persistence</span>
+                                <span class="tag">vrchat</span>
+                                <span class="tag">udonsharp</span>
+                                <span class="tag tech">VRChat PlayerData API</span>
+                                <span class="tag tech">UdonSharp</span>
+                            </div>
+                        </article>
+
+                        <article class="devlog-entry" id="entry-2025-07-10" data-searchable>
+                            <div class="devlog-date">July 10, 2025</div>
+                            <h3 class="devlog-title">First Achievement Unlocked</h3>
+                            <div class="devlog-content">
+                                <p>
+                                    First achievement notification popped in-world today! "First Time Visitor" - the notification banner slides in from the right with that Xbox 360 bloop sound. Feels exactly like it did on the 360.
+                                </p>
+                                <p>
+                                    The FIFO queue, animation timing, and sound cues all working together. This is the moment I've been building toward since starting this project.
+                                </p>
+                                <a href="Manual Change Logs and Images/images/July 2025/First Welcome Message in prod 7 10 25.png" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/July 2025/First Welcome Message in prod 7 10 25.png" alt="First achievement notification in production" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                                <a href="Manual Change Logs and Images/images/July 2025/first achievement unlocked 7 10 25.png" target="_blank">
+                                    <img src="Manual Change Logs and Images/images/July 2025/first achievement unlocked 7 10 25.png" alt="First achievement unlocked screenshot" style="max-width: 50%; border: 1px solid var(--border-color); margin: 10px 0; cursor: pointer;">
+                                </a>
+                            </div>
+                            <div class="devlog-tags">
+                                <span class="tag">achievements</span>
+                                <span class="tag">ui</span>
+                                <span class="tag">audio</span>
+                                <span class="tag tech">UdonSharp</span>
+                                <span class="tag tech">VRChat SDK</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="content-section" id="section-skills">
+                    <h2 class="section-header">C:\BASEMENT\AI_SKILLS.DIR</h2>
+
+                    <div class="devlog-content">
+                        <p>Lower Level 2.0 continues to serve as a proving ground for my ongoing transition from traditional development to structured, AI-assisted workflows. Each new feature informs the next iteration of my methodology, improving how humans and AI collaborate on complex, interactive VR/XR environments.</p>
+                        <p>Below you will see AI tools and techniques I've learned and applied throughout this project. Each skill includes how I used it and links to relevant devlog entries.</p>
+                    </div>
+
+                    <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Claude Code ]
+                                    <span class="tooltip">AI coding assistant with direct file access. Used for: automated documentation, code generation, git workflow, and project management. Reduced manual coding time by ~60%.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Autonomous coding agent that reads/writes files, executes terminal commands, and manages git workflow.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> XML docstring generation, UdonSharp validation, automated commits, issue tracking
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-11-07" class="link" onclick="showSection('devlog')">→ Nov 7: First Integration</a><br>
+                                <a href="#entry-2025-12-06" class="link" onclick="showSection('devlog')">→ Dec 6: Closed-Loop System</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Unity MCP (Model Context Protocol) ]
+                                    <span class="tooltip">Protocol that lets AI agents communicate with Unity Editor directly. Used to: compile scripts, attach components, enter play mode, and read console errors - all without human intervention.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Bridge between AI agents and Unity Editor for full automation loop.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Automated UdonSharp compilation, component attachment, play mode testing, console error detection
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-12-06" class="link" onclick="showSection('devlog')">→ Dec 6: Breakthrough Achievement</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Agent Swarms ]
+                                    <span class="tooltip">Multiple AI agents working in parallel on different tasks. Used to: simultaneously update documentation, validate code, run tests, and commit changes - reducing iteration time from hours to minutes.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Parallel AI agents handling different aspects of development simultaneously.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Parallel code review, multi-file refactoring, concurrent testing, distributed documentation
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-12-06" class="link" onclick="showSection('devlog')">→ Dec 6: Implementation Details</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Prompt Engineering ]
+                                    <span class="tooltip">Crafting effective AI prompts to get consistent, accurate results. Key learnings: context windows, few-shot examples, constraint specification, and iterative refinement. Created custom CLAUDE.md with 1000+ lines of project-specific instructions.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Designing prompts and system instructions for reliable AI-assisted development.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> UdonSharp constraint documentation, code review checklists, automated validation rules
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-11-07" class="link" onclick="showSection('devlog')">→ Nov 7: Documentation Strategy</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ API Integration (VRChat PlayerData) ]
+                                    <span class="tooltip">Working within UdonSharp constraints (no generics, no LINQ) to implement cloud persistence. Learned: parallel array patterns, edge case handling, async data caching, and Quest optimization (5-second cache vs per-frame reads).</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Cloud persistence API with severe language constraints.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Achievement tracking, visit persistence, leaderboard data, cross-session state
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-07-13" class="link" onclick="showSection('devlog')">→ Jul 13: 11-Hour Debug Marathon</a><br>
+                                <a href="#entry-2025-10-20" class="link" onclick="showSection('devlog')">→ Oct 20: Full System Working</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ GitHub Actions & Automation ]
+                                    <span class="tooltip">Automated workflows triggered by git events. Set up: pre-commit UdonSharp validation, automatic issue labeling, changelog generation, and deployment pipelines. Prevents broken commits from reaching repo.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                CI/CD pipeline for VRChat world development.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Pre-commit validation, automated testing, issue management, deployment
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-11-07" class="link" onclick="showSection('devlog')">→ Nov 7: Initial Setup</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Real-Time API Integration ]
+                                    <span class="tooltip">GitHub Pages as free API endpoint for weather data. Learned: CORS handling, JSON parsing in UdonSharp, platform-specific caching (Quest: 10min, PC: 2min), and graceful degradation when API fails.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Live weather data fetched from custom JSON endpoint.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Dynamic weather display, rain shader triggers, weather-based achievements
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-08-07" class="link" onclick="showSection('devlog')">→ Aug 7: Weather System Launch</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Spec-Driven Development (SDD) ]
+                                    <span class="tooltip">Writing detailed specifications before coding. Prevents scope creep and gives AI clear requirements. Used Gemini to analyze 2000+ line spec and generate architectural recommendations before writing any code.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Specification-first approach with AI analysis before implementation.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Basement OS v2.1 architecture, terminal module system, hub-spoke pattern design
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-12-06" class="link" onclick="showSection('devlog')">→ Dec 6: Architecture Design</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Test-Driven Development (TDD) ]
+                                    <span class="tooltip">Writing tests before implementation code. In Unity/UdonSharp context: used [ContextMenu] test methods and manual test scenarios. Caught edge cases in achievement logic before production deployment.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Test-first methodology adapted for UdonSharp constraints.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Achievement unlock logic, network sync validation, edge case detection
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-07-13" class="link" onclick="showSection('devlog')">→ Jul 13: Persistence Testing</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Documentation as Code ]
+                                    <span class="tooltip">Treating documentation with same rigor as source code - version control, automated generation, validation. Claude Code generated 3000+ lines of XML docstrings, keeping docs in sync with code changes automatically.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Automated documentation generation and maintenance.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> XML docstrings, architecture diagrams, API references, troubleshooting guides
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-11-07" class="link" onclick="showSection('devlog')">→ Nov 7: Documentation Sprint</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Hub-Spoke Architecture ]
+                                    <span class="tooltip">Centralized core (hub) with modular components (spokes). DT_Core handles hardware I/O; apps in /BIN/ focus on logic. Enables independent development, easier testing, and clean separation of concerns.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Modular system design pattern for complex applications.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Basement OS kernel, terminal apps, notification routing, event broadcasting
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-12-06" class="link" onclick="showSection('devlog')">→ Dec 6: Architecture Implementation</a>
+                            </p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>
+                                <span class="term" tabindex="0">
+                                    [ Constraint-Based Problem Solving ]
+                                    <span class="tooltip">Working within severe language limitations (no List, no LINQ, no exceptions). Key skill: pattern recognition from other constrained environments (embedded systems, old C standards). Developed workarounds: parallel arrays for key-value storage, manual bounds checking instead of exceptions.</span>
+                                </span>
+                            </h3>
+                            <p class="text-dim" style="margin-top: 8px;">
+                                Creative solutions within UdonSharp's C# subset limitations.
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <span class="text-primary">Used for:</span> Data structure workarounds, control flow patterns, memory management
+                            </p>
+                            <p style="margin-top: 8px;">
+                                <a href="#entry-2025-07-13" class="link" onclick="showSection('devlog')">→ Jul 13: Persistence Workarounds</a><br>
+                                <a href="#entry-2025-10-20" class="link" onclick="showSection('devlog')">→ Oct 20: FIFO Queue Implementation</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-section" id="section-about">
+                    <h2 class="section-header">C:\BASEMENT\ABOUT.TXT</h2>
+
+                    <div class="devlog-content">
+                        <p>Visitors can explore a world that blends retro charm with modern VR features: a functional DOS-style terminal running its own "Basement OS", Xbox 360-style achievements, real-time weather integration, and persistent progress tracking powered by VRChat's PlayerData API. The project has now surpassed <span id="stat-visits-intro">770+</span> visits, continuing to evolve as I refine the underlying methods behind its development.</p>
+                    </div>
+
+                    <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+                    <h3 style="margin-top: 20px; margin-bottom: 15px;">Core Features</h3>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>[ Achievement System (Xbox 360-Inspired) ]</h3>
+                            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 8px;">
+                                <li>19 achievements across Visit, Time, and Activity categories</li>
+                                <li>Total of 420 Gamerscore</li>
+                                <li>Persistent tracking through PlayerData</li>
+                                <li>Seven role-based notification tiers with custom icons and sounds</li>
+                                <li>Anti-spam logic using edge detection and persistent flags</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>[ Basement OS v29.1 — Interactive DOS Terminal ]</h3>
+                            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 8px;">
+                                <li>9-page menu with arrow-key navigation</li>
+                                <li>Auto-generated changelog pulled directly from Git commits</li>
+                                <li>Real-time stats: weather, player count, uptime, and session data</li>
+                                <li>Remote content loading from GitHub Pages via domain whitelisting</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>[ Live Weather Integration ]</h3>
+                            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 8px;">
+                                <li>Dynamic weather powered by an external API</li>
+                                <li>Rain shader on basement windows</li>
+                                <li>Weather-based achievements (e.g., Heavy Rain)</li>
+                                <li>Optimized caching: 2 minutes on PC VR, 10 minutes on Quest</li>
+                                <li>Support for seven atmospheric conditions</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>[ Network-Synced Notifications ]</h3>
+                            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary); margin-top: 8px;">
+                                <li>FIFO queue system for chronological ordering (max 100 items)</li>
+                                <li>Smooth fade animations and icon alternation</li>
+                                <li>Multiplayer broadcasting via UdonSynced variables</li>
+                                <li>Role-aware personalization for visitors</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>[ Tech Stack ]</h3>
+                            <div class="stat-row">
+                                <span class="stat-label">Engine</span>
+                                <span class="stat-value">Unity 2022.3.22f1</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">SDK</span>
+                                <span class="stat-value">VRChat SDK 3.8.2+</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Scripting</span>
+                                <span class="stat-value">UdonSharp</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Platform</span>
+                                <span class="stat-value">PC VR + Quest</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Status</span>
+                                <span class="stat-value">Active Development</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>[ Lower Level Stats ]</h3>
+                            <div class="stat-row">
+                                <span class="stat-label">Total Visits</span>
+                                <span class="stat-value" id="stat-visits">Loading...</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Total Favorites</span>
+                                <span class="stat-value" id="stat-favorites">--</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Popularity</span>
+                                <span class="stat-value" id="stat-popularity">--</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Last Updated</span>
+                                <span class="stat-value" id="stat-updated">--</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">First Uploaded</span>
+                                <span class="stat-value" id="stat-created">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="content-section" id="section-links">
+                    <h2 class="section-header">C:\BASEMENT\LINKS.NET</h2>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>[ GitHub Repository ]</h3>
+                            <p>
+                                <a href="https://github.com/CloudStrife7/LL2PCVR" class="link" target="_blank">
+                                    github.com/CloudStrife7/LL2PCVR
+                                </a>
+                            </p>
+                            <p class="text-dim mt-1">Source code, docs, and issues</p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>[ VRChat World ]</h3>
+                            <p>
+                                <a href="https://vrchat.com/home/launch?worldId=wrld_7302897c-be0f-4037-ac67-76f0ea065c2b" class="link" target="_blank">
+                                    Lower Level 2.0
+                                </a>
+                            </p>
+                            <p class="text-dim mt-1">Visit the basement in VR</p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>[ Weather API ]</h3>
+                            <p>
+                                <a href="https://cloudstrife7.github.io/DOS-Terminal/api/weather/current.json" class="link" target="_blank">
+                                    Weather Endpoint
+                                </a>
+                            </p>
+                            <p class="text-dim mt-1">Real-time weather JSON feed</p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>[ This Blog's Source ]</h3>
+                            <p>
+                                <a href="https://github.com/CloudStrife7/basement-os-web" class="link" target="_blank">
+                                    basement-os-web
+                                </a>
+                            </p>
+                            <p class="text-dim mt-1">The code behind this site</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="prompt-line">
+                <span class="prompt">C:\BASEMENT&gt;</span>
+                <span class="cursor"></span>
+            </div>
+
+            <div class="status-bar">
+                <span class="status-item">
+                    MEM: <span class="status-value">640K OK</span>
+                </span>
+                <span class="status-item">
+                    TIME: <span class="status-value" id="clock">00:00:00</span>
+                </span>
+                <span class="status-item">
+                    SYS: <span class="status-value">BASEMENT OS</span>
+                </span>
+            </div>
+        </div>
+
+        <footer class="terminal-footer">
+            <p>&copy; 2025 <a href="https://github.com/CloudStrife7" class="link">CloudStrife7</a> | Lower Level 2.0</p>
+        </footer>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">✕</button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev">‹</button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next">›</button>
+        <div class="lightbox-content">
+            <img class="lightbox-image" id="lightbox-image" src="" alt="">
+        </div>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════════
+        // THEME ENGINE
+        // ═══════════════════════════════════════════════════════════════════
+
+        const THEMES = [
+            'high-contrast', 'synthwave', 'framer-dark', 'framer-light',
+            'solarized-dark', 'solarized-light', 'catppuccin',
+            'monokai', 'gruvbox-dark', 'gruvbox-light',
+            'rose-pine', 'rose-pine-dawn', 'rose-pine-moon', 'cappuccino'
+        ];
+
+        function setTheme(theme) {
+            if (!THEMES.includes(theme)) theme = 'synthwave';
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('basement-os-theme', theme);
+            document.getElementById('theme-select').value = theme;
+        }
+
+        function loadSavedTheme() {
+            const saved = localStorage.getItem('basement-os-theme') || 'synthwave';
+            setTheme(saved);
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // BOOT SEQUENCE
+        // ═══════════════════════════════════════════════════════════════════
+
+        const BOOT_SEQUENCE = [
+            { text: '════════════════════════════════════════════════════════════════════', delay: 0 },
+            { text: '', delay: 50 },
+            { text: 'BASEMENT OS (Web Terminal)', delay: 100, class: 'text-secondary' },
+            { text: '(C) 2025 CloudStrife7', delay: 150, class: 'text-dim' },
+            { text: '', delay: 200 },
+            { text: '════════════════════════════════════════════════════════════════════', delay: 250 },
+            { text: '', delay: 300 },
+            { text: 'POST: Power-On Self Test...', delay: 400 },
+            { text: '  Checking BIOS.................... OK', delay: 600, class: 'boot-ok' },
+            { text: '  Memory Test: 640K................ OK', delay: 800, class: 'boot-ok' },
+            { text: '  Display Adapter.................. OK', delay: 1000, class: 'boot-ok' },
+            { text: '', delay: 1100 },
+            { text: 'Loading Devlog...', delay: 1300 },
+            { text: '  Connecting to GitHub............. OK', delay: 1500, class: 'boot-ok' },
+            { text: '  Loading blog entries............. OK', delay: 1700, class: 'boot-ok' },
+            { text: '  Initializing search.............. OK', delay: 1900, class: 'boot-ok' },
+            { text: '', delay: 2000 },
+            { text: '════════════════════════════════════════════════════════════════════', delay: 2100 },
+            { text: 'Boot complete. Welcome to Basement OS.', delay: 2300, class: 'boot-info' },
+            { text: '════════════════════════════════════════════════════════════════════', delay: 2500 },
+        ];
+
+        let bootIndex = 0;
+
+        function runBootSequence() {
+            const bootScreen = document.getElementById('boot-screen');
+
+            if (bootIndex < BOOT_SEQUENCE.length) {
+                const item = BOOT_SEQUENCE[bootIndex];
+                const line = document.createElement('div');
+                line.className = 'boot-line';
+                if (item.class) line.classList.add(item.class);
+                line.textContent = item.text;
+                line.style.animationDelay = '0s';
+                bootScreen.appendChild(line);
+                bootIndex++;
+
+                const nextDelay = bootIndex < BOOT_SEQUENCE.length
+                    ? BOOT_SEQUENCE[bootIndex].delay - item.delay
+                    : 500;
+                setTimeout(runBootSequence, nextDelay);
+            } else {
+                setTimeout(() => {
+                    bootScreen.style.display = 'none';
+                    document.getElementById('main-content').classList.add('active');
+                    document.getElementById('nav-menu').classList.add('active');
+                    document.getElementById('ai-disclosure').style.display = 'block';
+                }, 800);
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // NAVIGATION
+        // ═══════════════════════════════════════════════════════════════════
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(s => {
+                s.classList.remove('active');
+            });
+
+            const section = document.getElementById('section-' + sectionId);
+            if (section) {
+                section.classList.add('active');
+            }
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            if (event && event.target) {
+                event.target.closest('.nav-btn').classList.add('active');
+            }
+
+            // Close search when navigating
+            document.getElementById('search-container').classList.remove('active');
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // SEARCH
+        // ═══════════════════════════════════════════════════════════════════
+
+        function toggleSearch() {
+            const container = document.getElementById('search-container');
+            container.classList.toggle('active');
+            if (container.classList.contains('active')) {
+                document.getElementById('search-input').focus();
+            }
+        }
+
+        function performSearch(query) {
+            const resultsDiv = document.getElementById('search-results');
+            if (!query || query.length < 2) {
+                resultsDiv.innerHTML = '';
+                return;
+            }
+
+            const entries = document.querySelectorAll('.devlog-entry');
+            let matches = 0;
+
+            entries.forEach(entry => {
+                const content = entry.textContent.toLowerCase();
+                const queryLower = query.toLowerCase();
+
+                if (content.includes(queryLower)) {
+                    matches++;
+                    entry.style.display = 'block';
+                } else {
+                    entry.style.display = 'none';
+                }
+            });
+
+            resultsDiv.innerHTML = matches > 0
+                ? `Found ${matches} matching ${matches === 1 ? 'entry' : 'entries'}`
+                : 'No matches found';
+
+            // Show devlog section when searching
+            if (matches > 0) {
+                showSection('devlog');
+                document.querySelectorAll('.nav-btn')[0].classList.add('active');
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // CLOCK
+        // ═══════════════════════════════════════════════════════════════════
+
+        function updateClock() {
+            const now = new Date();
+            const time = now.toLocaleTimeString('en-US', { hour12: true });
+            document.getElementById('clock').textContent = time;
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // KEYBOARD NAVIGATION
+        // ═══════════════════════════════════════════════════════════════════
+
+        document.addEventListener('keydown', (e) => {
+            // Ctrl+K or / to open search
+            if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && document.activeElement.tagName !== 'INPUT')) {
+                e.preventDefault();
+                toggleSearch();
+            }
+
+            // Escape to close search
+            if (e.key === 'Escape') {
+                document.getElementById('search-container').classList.remove('active');
+            }
+        });
+
+        // ═══════════════════════════════════════════════════════════════════
+        // TOOLTIP MOBILE SUPPORT
+        // ═══════════════════════════════════════════════════════════════════
+
+        document.querySelectorAll('.term').forEach(term => {
+            term.addEventListener('click', function(e) {
+                // Toggle tooltip visibility on mobile
+                const tooltip = this.querySelector('.tooltip');
+                if (tooltip) {
+                    const isVisible = tooltip.style.visibility === 'visible';
+                    // Hide all other tooltips
+                    document.querySelectorAll('.tooltip').forEach(t => {
+                        t.style.visibility = 'hidden';
+                        t.style.opacity = '0';
+                    });
+                    // Toggle this one
+                    if (!isVisible) {
+                        tooltip.style.visibility = 'visible';
+                        tooltip.style.opacity = '1';
+                    }
+                }
+            });
+        });
+
+        // Close tooltips when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.term')) {
+                document.querySelectorAll('.tooltip').forEach(t => {
+                    t.style.visibility = 'hidden';
+                    t.style.opacity = '0';
+                });
+            }
+        });
+
+        // ═══════════════════════════════════════════════════════════════════
+        // TABLE OF CONTENTS TREE
+        // ═══════════════════════════════════════════════════════════════════
+
+        function toggleTOCYear(element) {
+            const content = element.nextElementSibling;
+            const toggle = element.querySelector('.toc-year-toggle');
+
+            if (content.classList.contains('collapsed')) {
+                content.classList.remove('collapsed');
+                toggle.textContent = '▼';
+            } else {
+                content.classList.add('collapsed');
+                toggle.textContent = '▶';
+            }
+        }
+
+        function toggleTOCMonth(element) {
+            const content = element.nextElementSibling;
+            const toggle = element.querySelector('.toc-month-toggle');
+
+            if (content.classList.contains('collapsed')) {
+                content.classList.remove('collapsed');
+                toggle.textContent = '▼';
+            } else {
+                content.classList.add('collapsed');
+                toggle.textContent = '▶';
+            }
+        }
+
+        function expandAllTOC() {
+            document.querySelectorAll('.toc-year-content, .toc-month-entries').forEach(el => {
+                el.classList.remove('collapsed');
+            });
+            document.querySelectorAll('.toc-year-toggle, .toc-month-toggle').forEach(toggle => {
+                toggle.textContent = '▼';
+            });
+        }
+
+        function collapseAllTOC() {
+            document.querySelectorAll('.toc-year-content, .toc-month-entries').forEach(el => {
+                el.classList.add('collapsed');
+            });
+            document.querySelectorAll('.toc-year-toggle, .toc-month-toggle').forEach(toggle => {
+                toggle.textContent = '▶';
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // LIGHTBOX IMAGE VIEWER
+        // ═══════════════════════════════════════════════════════════════════
+
+        let lightboxImages = [];
+        let currentImageIndex = 0;
+
+        // Global function to open lightbox with a single image
+        function openLightbox(imageSrc, imageAlt = '') {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxCounter = document.getElementById('lightbox-counter');
+            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxNext = document.getElementById('lightbox-next');
+
+            // Set up single image
+            lightboxImages = [{ src: imageSrc, alt: imageAlt }];
+            currentImageIndex = 0;
+
+            // Show image
+            lightboxImage.src = imageSrc;
+            lightboxImage.alt = imageAlt;
+
+            // Hide navigation for single image
+            lightboxCounter.style.display = 'none';
+            lightboxPrev.style.display = 'none';
+            lightboxNext.style.display = 'none';
+
+            // Show lightbox
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function initializeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxNext = document.getElementById('lightbox-next');
+            const lightboxCounter = document.getElementById('lightbox-counter');
+
+            // Get all images in devlog content
+            const images = document.querySelectorAll('.devlog-content img');
+
+            images.forEach((img, index) => {
+                img.addEventListener('click', function(e) {
+                    // Prevent opening image in new tab
+                    e.preventDefault();
+
+                    // Get all images in the same article
+                    const article = this.closest('.devlog-entry');
+                    lightboxImages = Array.from(article.querySelectorAll('.devlog-content img'));
+                    currentImageIndex = lightboxImages.indexOf(this);
+
+                    showLightbox();
+                });
+
+                // Also prevent the parent <a> tag from navigating
+                const parentLink = img.closest('a');
+                if (parentLink) {
+                    parentLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+                    });
+                }
+            });
+
+            // Close lightbox
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Navigate images
+            lightboxPrev.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navigateImage(-1);
+            });
+
+            lightboxNext.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navigateImage(1);
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('active')) return;
+
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    navigateImage(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateImage(1);
+                }
+            });
+
+            function showLightbox() {
+                lightbox.classList.add('active');
+                updateLightboxImage();
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function navigateImage(direction) {
+                currentImageIndex += direction;
+                if (currentImageIndex < 0) {
+                    currentImageIndex = lightboxImages.length - 1;
+                } else if (currentImageIndex >= lightboxImages.length) {
+                    currentImageIndex = 0;
+                }
+                updateLightboxImage();
+            }
+
+            function updateLightboxImage() {
+                const img = lightboxImages[currentImageIndex];
+                lightboxImage.src = img.src;
+                lightboxImage.alt = img.alt;
+
+                // Update counter
+                if (lightboxImages.length > 1) {
+                    lightboxCounter.textContent = `${currentImageIndex + 1} / ${lightboxImages.length}`;
+                    lightboxCounter.style.display = 'block';
+                    lightboxPrev.style.display = 'block';
+                    lightboxNext.style.display = 'block';
+                } else {
+                    lightboxCounter.style.display = 'none';
+                    lightboxPrev.style.display = 'none';
+                    lightboxNext.style.display = 'none';
+                }
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // INITIALIZATION
+        // ═══════════════════════════════════════════════════════════════════
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSavedTheme();
+            updateClock();
+            setInterval(updateClock, 1000);
+            initializeLightbox();
+
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('skipboot') === 'true') {
+                document.getElementById('boot-screen').style.display = 'none';
+                document.getElementById('main-content').classList.add('active');
+                document.getElementById('nav-menu').classList.add('active');
+                document.getElementById('ai-disclosure').style.display = 'block';
+            } else {
+                runBootSequence();
+            }
+        });
+    </script>
+            <script>
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. Your World ID
+    const worldId = "wrld_7302897c-be0f-4037-ac67-76f0ea065c2b";
+
+    // 2. The VRChat Public API Key (Standard public key for read-only access)
+    const apiKey = "JlE5Jldo5Jibnk5O5hTx6XVqsJyIkZVd";
+
+    // 3. Cached fallback data (last known good values)
+    const cachedStats = {
+        visits: 770,
+        favorites: 25,
+        popularity: 42,
+        updated_at: "2025-12-09T00:00:00.000Z",
+        created_at: "2024-07-08T00:00:00.000Z"
+    };
+
+    // 4. Construct the URL with CORS Proxies (with fallback)
+    const targetUrl = `https://api.vrchat.cloud/api/1/worlds/${worldId}?apiKey=${apiKey}`;
+
+    // Try multiple CORS proxies in case one fails
+    const corsProxies = [
+        `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`,
+        `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`,
+        `https://cors-anywhere.herokuapp.com/${targetUrl}`
+    ];
+
+    async function fetchWithFallback(proxies) {
+        for (let i = 0; i < proxies.length; i++) {
+            try {
+                const response = await fetch(proxies[i]);
+                if (!response.ok) continue;
+
+                const data = await response.json();
+                // Handle different proxy response formats
+                const worldData = data.contents ? JSON.parse(data.contents) : data;
+                return worldData;
+            } catch (e) {
+                console.log(`Proxy ${i + 1} failed, trying next...`);
+                continue;
+            }
+        }
+        throw new Error('All proxies failed');
+    }
+
+    function updateStats(worldData) {
+        // Helper to format numbers with commas (e.g., 1,234)
+        const formatNum = (num) => new Intl.NumberFormat().format(num);
+
+        // Helper to format dates (e.g., 12/9/2025)
+        const formatDate = (dateString) => {
+            const date = new Date(dateString);
+            return date.toLocaleDateString();
+        };
+
+        // --- Update The Stats Card ---
+        document.getElementById("stat-visits").textContent = formatNum(worldData.visits);
+        document.getElementById("stat-favorites").textContent = formatNum(worldData.favorites);
+        document.getElementById("stat-popularity").textContent = formatNum(worldData.popularity);
+        document.getElementById("stat-updated").textContent = formatDate(worldData.updated_at);
+        document.getElementById("stat-created").textContent = formatDate(worldData.created_at);
+
+        // --- Update The Intro Page ---
+        const introVisits = document.getElementById("stat-visits-intro");
+        if (introVisits) introVisits.textContent = formatNum(worldData.visits) + "+";
+    }
+
+    fetchWithFallback(corsProxies)
+        .then(worldData => {
+            // Cache successful fetch to localStorage
+            localStorage.setItem('vrchat-stats-cache', JSON.stringify(worldData));
+            localStorage.setItem('vrchat-stats-timestamp', Date.now());
+            updateStats(worldData);
+        })
+        .catch(error => {
+            console.error('Error fetching VRChat stats:', error);
+            // Try to use cached data from localStorage
+            const cachedData = localStorage.getItem('vrchat-stats-cache');
+            if (cachedData) {
+                try {
+                    const parsedCache = JSON.parse(cachedData);
+                    console.log('Using cached stats from localStorage');
+                    updateStats(parsedCache);
+                    return;
+                } catch (e) {
+                    console.error('Failed to parse cached data');
+                }
+            }
+            // Fall back to hardcoded cached stats
+            console.log('Using hardcoded fallback stats');
+            updateStats(cachedStats);
+        });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TerminalShell from '../../components/TerminalShell.astro';
+import DevlogEntry from '../../components/DevlogEntry.astro';
+import DevlogTOC from '../../components/DevlogTOC.astro';
+
+const allPosts = await getCollection('devlog');
+const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="BASEMENT OS | Devlog">
+  <TerminalShell activeSection="devlog">
+     <div class="content-section active" style="padding: 0; display: flex; flex-direction: column; height: 100%;">
+        <h2 class="section-header" style="margin: 20px 20px 10px 20px;">C:\BASEMENT\DEVLOG.DAT</h2>
+        
+        <div class="devlog-container" style="flex: 1; overflow: hidden;">
+            <DevlogTOC posts={sortedPosts} />
+            
+            <div class="devlog-entries">
+                {sortedPosts.map(post => <DevlogEntry entry={post} />)}
+                
+                {sortedPosts.length === 0 && (
+                    <div class="devlog-entry">
+                        <p>No entries found. Run 'boot' sequence to initialize archive.</p>
+                    </div>
+                )}
+            </div>
+        </div>
+     </div>
+  </TerminalShell>
+</BaseLayout>

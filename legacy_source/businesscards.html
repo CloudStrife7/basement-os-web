@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASEMENT OS Business Cards | Synthwave Edition</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
+
+        /* ═══════════════════════════════════════════════════════════════════
+           GLOBAL STYLES - SYNTHWAVE THEME
+        ═══════════════════════════════════════════════════════════════════ */
+
+        :root {
+            /* Synthwave Color Palette */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-terminal: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-dim: #888888;
+            --accent-primary: #ff3e8a;
+            --accent-secondary: #ff6b9d;
+            --accent-alert: #ffb347;
+            --accent-error: #ff4757;
+            --accent-link: #ffffff;
+            --accent-milestone: #ff3e8a;
+            --border-color: #333333;
+            --scanline-color: rgba(255, 62, 138, 0.02);
+            --cursor-color: #ff3e8a;
+
+            /* Fonts */
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+            --font-display: 'VT323', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Background grid effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(0deg, transparent 24%, rgba(255, 62, 138, 0.05) 25%, rgba(255, 62, 138, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 62, 138, 0.05) 75%, rgba(255, 62, 138, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255, 62, 138, 0.05) 25%, rgba(255, 62, 138, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 62, 138, 0.05) 75%, rgba(255, 62, 138, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .page-title {
+            font-family: var(--font-display);
+            font-size: 48px;
+            color: var(--accent-primary);
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--accent-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .cards-container {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-label {
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           BUSINESS CARD BASE STYLES
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .card {
+            width: 3.5in;
+            height: 2in;
+            background: var(--bg-terminal);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow:
+                0 0 30px rgba(0, 0, 0, 0.5),
+                0 0 60px rgba(255, 62, 138, 0.2),
+                inset 0 0 0 1px rgba(255, 62, 138, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.6),
+                0 0 80px rgba(255, 62, 138, 0.4),
+                inset 0 0 0 1px rgba(255, 62, 138, 0.2);
+        }
+
+        /* Scanline effect */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(255, 62, 138, 0.03) 0px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* macOS-style window buttons */
+        .window-controls {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .window-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .window-button.close { background: var(--accent-error); }
+        .window-button.minimize { background: var(--accent-secondary); }
+        .window-button.maximize { background: var(--accent-primary); }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           FRONT CARD - DOS FOOTER STYLE (Terminal Status Bar)
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .card-front {
+            padding: 36px 0 18px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .front-header-section {
+            background: rgba(30, 30, 30, 0.8);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 6px 20px;
+            margin: -6px 0 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dos-header {
+            font-family: var(--font-display);
+            font-size: 20px;
+            color: var(--accent-primary);
+            text-shadow: 0 0 8px var(--accent-primary);
+            letter-spacing: 1px;
+        }
+
+        .terminal-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+
+        .dos-content {
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .dos-lines {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            font-size: 9px;
+            line-height: 1.3;
+            color: var(--text-secondary);
+        }
+
+        .dos-line {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .dos-value {
+            color: var(--accent-primary);
+        }
+
+        .dos-prompt {
+            color: var(--text-dim);
+            font-size: 9px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 6px;
+            height: 10px;
+            background: var(--cursor-color);
+            margin-left: 4px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .dos-status-bar {
+            display: flex;
+            justify-content: space-between;
+            font-size: 8px;
+            color: var(--text-dim);
+            padding: 8px 20px 0 20px;
+            border-top: 1px solid var(--border-color);
+            margin: 6px 0 0 0;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .status-value {
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           BACK CARD - MINI AI SKILLS PAGE (Website-inspired)
+        ═══════════════════════════════════════════════════════════════════ */
+
+        .card-back {
+            padding: 36px 0 16px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .header-section {
+            background: rgba(30, 30, 30, 0.8);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 6px 16px;
+            margin: -6px 0 6px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skills-content {
+            padding: 0 16px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .skills-header {
+            font-family: var(--font-display);
+            font-size: 18px;
+            color: var(--accent-primary);
+            text-shadow: 0 0 8px var(--accent-primary);
+            letter-spacing: 1px;
+        }
+
+        .ai-skills-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 6px;
+            font-size: 7px;
+            flex: 1;
+        }
+
+        .skill-item {
+            background: rgba(255, 62, 138, 0.05);
+            border: 1px solid rgba(255, 62, 138, 0.2);
+            border-radius: 3px;
+            padding: 4px 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .skill-name {
+            color: var(--accent-primary);
+            font-weight: 700;
+            font-size: 7px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .skill-desc {
+            color: var(--text-dim);
+            line-height: 1.2;
+            font-size: 5px;
+        }
+
+        .contact-section {
+            border-top: 1px solid var(--border-color);
+            padding-top: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            align-items: center;
+        }
+
+        .contact-name {
+            font-size: 9px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .contact-info {
+            font-size: 7px;
+            color: var(--text-dim);
+        }
+
+        .website-link {
+            font-size: 8px;
+            color: var(--accent-link);
+            font-weight: 700;
+            text-decoration: none;
+            padding: 3px 8px;
+            border: 1px solid var(--accent-primary);
+            border-radius: 3px;
+            background: rgba(255, 62, 138, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .website-link:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            box-shadow: 0 0 10px var(--accent-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           RESPONSIVE DESIGN
+        ═══════════════════════════════════════════════════════════════════ */
+
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .card {
+                width: 90vw;
+                max-width: 500px;
+                height: auto;
+                aspect-ratio: 1.75 / 1;
+            }
+
+            .page-title {
+                font-size: 32px;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           PRINT STYLES
+        ═══════════════════════════════════════════════════════════════════ */
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            body::before {
+                display: none;
+            }
+
+            .page-title {
+                display: none;
+            }
+
+            .cards-container {
+                gap: 0.25in;
+            }
+
+            .card {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+
+            .card:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="page-title">// BASEMENT_OS.BUSINESS_CARDS</h1>
+
+    <div class="cards-container">
+        <!-- FRONT CARD: DOS Footer/Terminal Style -->
+        <div class="card-wrapper">
+            <div class="card card-front">
+                <div class="window-controls">
+                    <div class="window-button close"></div>
+                    <div class="window-button minimize"></div>
+                    <div class="window-button maximize"></div>
+                </div>
+
+                <div class="front-header-section">
+                    <div class="dos-header">BASEMENT OS</div>
+                    <div class="terminal-label">&lt;TERMINAL&gt;</div>
+                </div>
+
+                <div class="dos-content">
+                    <div class="dos-lines">
+                        <div class="dos-line">BIOS Ver <span class="dos-value">2.0</span></div>
+                        <div class="dos-line">CPU: <span class="dos-value">Creativity Core</span></div>
+                        <div class="dos-line">RAM: <span class="dos-value">Infinite Ideas</span></div>
+                        <div class="dos-line">GPU: <span class="dos-value">Unity Renderer</span></div>
+                        <div class="dos-line">AI: <span class="dos-value">Claude Integrated</span></div>
+                    </div>
+
+                    <div class="dos-prompt">
+                        C:\BASEMENT&gt;<span class="cursor"></span>
+                    </div>
+                </div>
+
+                <div class="dos-status-bar">
+                    <span class="status-item">
+                        MEM: <span class="status-value">640K OK</span>
+                    </span>
+                    <span class="status-item">
+                        TIME: <span class="status-value" id="clock">00:00:00</span>
+                    </span>
+                    <span class="status-item">
+                        SYS: <span class="status-value">BASEMENT OS</span>
+                    </span>
+                </div>
+            </div>
+            <div class="card-label">FRONT</div>
+        </div>
+
+        <!-- BACK CARD: Mini AI Skills Page -->
+        <div class="card-wrapper">
+            <div class="card card-back">
+            <div class="window-controls">
+                <div class="window-button close"></div>
+                <div class="window-button minimize"></div>
+                <div class="window-button maximize"></div>
+            </div>
+
+            <div class="header-section">
+                <div class="skills-header">ZACH WAGNER</div>
+                <div class="ai-skills-label">&lt;AI&gt; SKILLS</div>
+            </div>
+
+            <div class="skills-content">
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-name">C# / UdonSharp</div>
+                        <div class="skill-desc">VRChat scripting</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">AI Integration</div>
+                        <div class="skill-desc">Claude Code & MCP</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">Agent Swarms</div>
+                        <div class="skill-desc">Parallel AI tasks</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">API Design</div>
+                        <div class="skill-desc">Cloud persistence</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">UI/UX Design</div>
+                        <div class="skill-desc">Interactive systems</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">Git Workflow</div>
+                        <div class="skill-desc">CI/CD automation</div>
+                    </div>
+                </div>
+
+                <div class="contact-section">
+                    <div class="contact-info">Why Build it? Because I can.</div>
+                </div>
+            </div>
+            </div>
+            <div class="card-label">BACK</div>
+        </div>
+    </div>
+
+    <script>
+        // Update clock in real-time
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const clockElement = document.getElementById('clock');
+            if (clockElement) {
+                clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+            }
+        }
+
+        // Update clock every second
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>

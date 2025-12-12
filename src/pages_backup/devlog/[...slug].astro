@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TerminalShell from '../../components/TerminalShell.astro';
+import DevlogEntry from '../../components/DevlogEntry.astro';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('devlog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+
+<BaseLayout title={`BASEMENT OS | ${entry.data.title}`}>
+  <TerminalShell activeSection="devlog">
+    <div class="content-section active" style="padding: 20px;">
+        <a href="/devlog" class="link" style="margin-bottom: 20px; display: inline-block;">&lt; BACK TO LOG</a>
+        <DevlogEntry entry={entry} />
+    </div>
+  </TerminalShell>
+</BaseLayout>

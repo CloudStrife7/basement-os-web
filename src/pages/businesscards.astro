@@ -1,0 +1,262 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="BASEMENT OS | Business Cards">
+  <div class="cards-page-container">
+    <h1 class="page-title">// BASEMENT_OS.BUSINESS_CARDS</h1>
+
+    <div class="cards-container">
+        <!-- FRONT CARD -->
+        <div class="card-wrapper">
+            <div class="card card-front">
+                <div class="window-controls">
+                    <div class="window-button close"></div>
+                    <div class="window-button minimize"></div>
+                    <div class="window-button maximize"></div>
+                </div>
+
+                <div class="front-header-section">
+                    <div class="dos-header">BASEMENT OS</div>
+                    <div class="terminal-label">&lt;TERMINAL&gt;</div>
+                </div>
+
+                <div class="dos-content">
+                    <div class="dos-lines">
+                        <div class="dos-line">BIOS Ver <span class="dos-value">2.0</span></div>
+                        <div class="dos-line">CPU: <span class="dos-value">Creativity Core</span></div>
+                        <div class="dos-line">RAM: <span class="dos-value">Infinite Ideas</span></div>
+                        <div class="dos-line">GPU: <span class="dos-value">Unity Renderer</span></div>
+                        <div class="dos-line">AI: <span class="dos-value">Claude Integrated</span></div>
+                    </div>
+
+                    <div class="dos-prompt">
+                        C:\BASEMENT&gt;<span class="cursor"></span>
+                    </div>
+                </div>
+
+                <div class="dos-status-bar">
+                    <span class="status-item">
+                        MEM: <span class="status-value">640K OK</span>
+                    </span>
+                    <span class="status-item">
+                        TIME: <span class="status-value" id="card-clock">00:00:00</span>
+                    </span>
+                    <span class="status-item">
+                        SYS: <span class="status-value">BASEMENT OS</span>
+                    </span>
+                </div>
+            </div>
+            <div class="card-label">FRONT</div>
+        </div>
+
+        <!-- BACK CARD -->
+        <div class="card-wrapper">
+            <div class="card card-back">
+            <div class="window-controls">
+                <div class="window-button close"></div>
+                <div class="window-button minimize"></div>
+                <div class="window-button maximize"></div>
+            </div>
+
+            <div class="header-section">
+                <div class="skills-header">ZACH WAGNER</div>
+                <div class="ai-skills-label">&lt;AI&gt; SKILLS</div>
+            </div>
+
+            <div class="skills-content">
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-name">C# / UdonSharp</div>
+                        <div class="skill-desc">VRChat scripting</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">AI Integration</div>
+                        <div class="skill-desc">Claude Code</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">Agent Swarms</div>
+                        <div class="skill-desc">Parallel Tasks</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">API Design</div>
+                        <div class="skill-desc">Cloud persistence</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">UI/UX Design</div>
+                        <div class="skill-desc">Interactive systems</div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">Git Workflow</div>
+                        <div class="skill-desc">CI/CD automation</div>
+                    </div>
+                </div>
+
+                <div class="contact-section">
+                     <a href="/" class="website-link">ENTER BASEMENT OS</a>
+                </div>
+            </div>
+            </div>
+            <div class="card-label">BACK</div>
+        </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+    function updateClock() {
+        const now = new Date();
+        const clock = document.getElementById('card-clock');
+        if (clock) {
+            clock.textContent = now.toLocaleTimeString('en-US', {hour12: false});
+        }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
+
+<style>
+/* Specific Styles for Business Cards */
+.cards-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: var(--accent-primary);
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px var(--accent-primary);
+}
+
+.cards-container {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-label {
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.card {
+    width: 3.5in;
+    height: 2in;
+    background: var(--bg-terminal);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255, 62, 138, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+/* Internal Card Layouts */
+.card-front {
+    padding: 36px 0 18px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.front-header-section {
+    background: rgba(30,30,30,0.8);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 6px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dos-header { color: var(--accent-primary); font-family: var(--font-display); font-size: 20px; }
+.terminal-label { font-size: 11px; color: var(--text-secondary); }
+
+.dos-content { padding: 0 20px; flex: 1; display:flex; flex-direction:column; justify-content:center; }
+.dos-lines { font-size: 9px; line-height: 1.3; color: var(--text-secondary); }
+.dos-value { color: var(--accent-primary); }
+.dos-prompt { color: var(--text-dim); font-size: 9px; margin-top: 8px; }
+
+.dos-status-bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 8px;
+    color: var(--text-dim);
+    padding: 8px 20px 0 20px;
+    border-top: 1px solid var(--border-color);
+}
+.status-value { color: var(--accent-primary); font-weight: bold; }
+
+.card-back {
+    padding: 36px 0 16px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-section {
+    background: rgba(30,30,30,0.8);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 6px 16px;
+    display: flex;
+    justify-content: space-between;
+}
+.skills-header { color: var(--accent-primary); font-family: var(--font-display); font-size: 18px; }
+.ai-skills-label { font-size: 11px; color: var(--text-secondary); }
+
+.skills-content { padding: 0 16px; flex: 1; display: flex; flex-direction: column; }
+.skills-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4px 6px; font-size: 7px; margin-top: 6px;
+}
+.skill-item {
+    border: 1px solid var(--border-color); padding: 4px; border-radius: 3px;
+}
+.skill-name { color: var(--accent-primary); font-weight: bold; font-size: 7px; }
+.skill-desc { color: var(--text-dim); font-size: 5px; }
+
+.contact-section {
+    margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 6px; text-align: center;
+}
+.website-link {
+    font-size: 10px; color: var(--accent-link); text-decoration: none; border: 1px solid var(--accent-primary); padding: 2px 8px; border-radius: 4px;
+}
+.website-link:hover { background: var(--accent-primary); color: var(--bg-primary); }
+
+.window-controls {
+    position: absolute; top: 12px; left: 12px; display: flex; gap: 8px;
+}
+.window-button { width: 8px; height: 8px; border-radius: 50%; }
+.close { background: var(--accent-error); }
+.minimize { background: var(--accent-secondary); }
+.maximize { background: var(--accent-primary); }
+
+.cursor {
+    display: inline-block; width: 4px; height: 8px; background: var(--cursor-color); animation: blink 1s infinite;
+}
+</style>

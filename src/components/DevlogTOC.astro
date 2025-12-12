@@ -1,0 +1,69 @@
+---
+import { type CollectionEntry } from 'astro:content';
+
+interface Props {
+  posts: CollectionEntry<'devlog'>[];
+}
+
+const { posts } = Astro.props;
+
+// Group posts by Year -> Month
+const grouped = posts.reduce((acc, post) => {
+  const year = post.data.date.getFullYear();
+  const month = post.data.date.toLocaleString('default', { month: 'long' });
+  
+  if (!acc[year]) acc[year] = {};
+  if (!acc[year][month]) acc[year][month] = [];
+  
+  acc[year][month].push(post);
+  return acc;
+}, {} as Record<number, Record<string, CollectionEntry<'devlog'>[]>>);
+
+// Sort descriptors for display
+const years = Object.keys(grouped).map(Number).sort((a, b) => b - a);
+---
+
+<div class="devlog-toc">
+  <div class="search-bar-mini" onclick="document.getElementById('search-container').classList.add('active'); document.getElementById('search-input').focus();">
+    <span class="search-icon">🔍</span> Search...
+  </div>
+  
+  <ul class="toc-tree">
+    {years.map(year => (
+      <li class="toc-year">
+        <div class="toc-year-header" onclick="this.parentElement.querySelector('.toc-year-content').classList.toggle('collapsed'); this.querySelector('.toc-year-toggle').textContent = this.querySelector('.toc-year-toggle').textContent === '▶' ? '▼' : '▶';">
+            <span class="toc-year-toggle">▼</span>
+            <span>{year}</span>
+        </div>
+        <div class="toc-year-content">
+            {Object.keys(grouped[year]).map(month => (
+                <div class="toc-month">
+                    <div class="toc-month-header" onclick="this.nextElementSibling.classList.toggle('collapsed'); this.querySelector('.toc-month-toggle').textContent = this.querySelector('.toc-month-toggle').textContent === '▶' ? '▼' : '▶';">
+                         <span class="toc-month-toggle">▼</span>
+                         <span>{month}</span>
+                    </div>
+                    <div class="toc-month-entries">
+                        {grouped[year][month].map(post => (
+                            <div class="toc-entry">
+                                <a href={`#entry-${post.slug}`}>
+                                    <span>
+                                        {post.data.type === 'milestone' && <span class="milestone-badge">★</span>}
+                                        {post.data.title}
+                                    </span>
+                                    <span class="date">{post.data.date.getDate().toString().padStart(2, '0')}</span>
+                                </a>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+/* Ensure TOC styles mimic global.css or inherit correctly */
+/* These interactions are handled inline for simplicity or we can add a script tag */
+</style>

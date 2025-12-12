@@ -1,0 +1,59 @@
+/* Shutdown Screen */
+#shutdown-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-primary);
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.shutdown-msg-1 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--accent-primary);
+}
+
+.shutdown-msg-2 {
+    font-family: var(--font-mono);
+    font-size: 32px;
+    color: var(--accent-primary);
+    /* Pink in synthwave */
+    display: none;
+    text-shadow: 2px 2px 0px #000;
+}
+
+/* CRT Turn Off Animation */
+@keyframes crtTurnOff {
+    0% {
+        transform: scale(1, 1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+
+    40% {
+        transform: scale(1, 0.002);
+        filter: brightness(20);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0, 0);
+        filter: brightness(0);
+        opacity: 0;
+    }
+}
+
+.crt-off {
+    animation: crtTurnOff 0.8s ease-out forwards;
+}
