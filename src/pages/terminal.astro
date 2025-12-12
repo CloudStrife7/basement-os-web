@@ -50,10 +50,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <script src="/js/basement-os.js" is:inline></script>
 <script is:inline>
-    // Initialize when ready
-    document.addEventListener('DOMContentLoaded', () => {
+    // Initialize when ready or after navigation
+    document.addEventListener('astro:page-load', () => {
         if (typeof BasementOS !== 'undefined') {
-            const os = new BasementOS('terminal-root');
+            // Prevent double init if caching issues
+            if (!document.getElementById('terminal-root').classList.contains('booted')) {
+                const os = new BasementOS('terminal-root');
+                document.getElementById('terminal-root').classList.add('booted');
+            }
         } else {
             console.error('BasementOS library not loaded');
         }

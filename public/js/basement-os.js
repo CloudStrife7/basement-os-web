@@ -23,7 +23,7 @@ class BasementOS {
         this.contentLines = []; // Active file lines
 
         // Config
-        this.repoBaseUrl = './os-data'; // Where the CS files live
+        this.repoBaseUrl = '/os-data'; // Where the CS files live
 
         this.init();
     }
