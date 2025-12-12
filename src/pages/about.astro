@@ -114,3 +114,129 @@ import TerminalShell from '../components/TerminalShell.astro';
     </div>
   </TerminalShell>
 </BaseLayout>
+
+<script>
+// VRChat Stats Fetcher with Caching
+document.addEventListener("DOMContentLoaded", function() {
+    const worldId = "wrld_7302897c-be0f-4037-ac67-76f0ea065c2b";
+    const apiKey = "JlE5Jldo5Jibnk5O5hTx6XVqsJyIkZVd";
+    const CACHE_KEY = "vrchat-world-stats";
+    const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
+
+    // Default fallback stats
+    const defaultStats = {
+        visits: 770,
+        favorites: 25,
+        popularity: 42,
+        updated_at: "2025-12-09T00:00:00.000Z",
+        created_at: "2024-07-08T00:00:00.000Z",
+        timestamp: Date.now()
+    };
+
+    const targetUrl = `https://api.vrchat.cloud/api/1/worlds/${worldId}?apiKey=${apiKey}`;
+    const corsProxies = [
+        `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`,
+        `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`,
+        `https://cors-anywhere.herokuapp.com/${targetUrl}`
+    ];
+
+    function getCachedStats() {
+        try {
+            const cached = localStorage.getItem(CACHE_KEY);
+            if (cached) {
+                const data = JSON.parse(cached);
+                if (Date.now() - data.timestamp < CACHE_DURATION) {
+                    return data;
+                }
+            }
+        } catch (e) {
+            console.log('Cache read failed:', e);
+        }
+        return null;
+    }
+
+    function setCachedStats(stats: any) {
+        try {
+            localStorage.setItem(CACHE_KEY, JSON.stringify({
+                ...stats,
+                timestamp: Date.now()
+            }));
+        } catch (e) {
+            console.log('Cache write failed:', e);
+        }
+    }
+
+    async function fetchWithFallback(proxies: string[]) {
+        for (let i = 0; i < proxies.length; i++) {
+            try {
+                const response = await fetch(proxies[i], {
+                    method: 'GET',
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (!response.ok) continue;
+                const data = await response.json();
+                const worldData = data.contents ? JSON.parse(data.contents) : data;
+                return worldData;
+            } catch (e) {
+                console.log(`Proxy ${i + 1} failed:`, e);
+                continue;
+            }
+        }
+        throw new Error('All proxies failed');
+    }
+
+    function formatDate(dateString: string) {
+        try {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        } catch (e) {
+            return '--';
+        }
+    }
+
+    function updateStats(worldData: any) {
+        const formatNum = (num: number) => new Intl.NumberFormat().format(num);
+
+        const elements = {
+            visits: document.getElementById("stat-visits"),
+            favorites: document.getElementById("stat-favorites"),
+            popularity: document.getElementById("stat-popularity"),
+            updated: document.getElementById("stat-updated"),
+            created: document.getElementById("stat-created"),
+            intro: document.getElementById("stat-visits-intro")
+        };
+
+        if (elements.visits) elements.visits.textContent = formatNum(worldData.visits);
+        if (elements.favorites) elements.favorites.textContent = formatNum(worldData.favorites || 0);
+        if (elements.popularity) elements.popularity.textContent = formatNum(worldData.popularity || 0);
+        if (elements.updated) elements.updated.textContent = formatDate(worldData.updated_at);
+        if (elements.created) elements.created.textContent = formatDate(worldData.created_at);
+        if (elements.intro) elements.intro.textContent = formatNum(worldData.visits) + "+";
+    }
+
+    // Try to load from cache first
+    const cachedData = getCachedStats();
+    if (cachedData) {
+        updateStats(cachedData);
+    }
+
+    // Fetch fresh data
+    fetchWithFallback(corsProxies)
+        .then(worldData => {
+            updateStats(worldData);
+            setCachedStats(worldData);
+        })
+        .catch(error => {
+            console.log('All fetch attempts failed, using cached or default stats');
+            // If no cached data, use defaults
+            if (!cachedData) {
+                updateStats(defaultStats);
+                setCachedStats(defaultStats);
+            }
+        });
+});
+</script>
