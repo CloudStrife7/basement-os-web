@@ -39,34 +39,13 @@ public class DT_Shell : UdonSharpBehaviour
     public UdonSharpBehaviour[] menuTargets;
 
     [Tooltip("Display names for menu items")]
-    public string[] menuNames = new string[] { 
-        "GITHUB", 
-        "DASHBOARD", 
-        "GAMES", 
-        "STATS", 
-        "TALES", 
-        "WEATHER" 
-    };
+    public string[] menuNames = new string[] { "GITHUB", "DASHBOARD", "GAMES", "STATS", "TALES", "WEATHER" };
 
     [Tooltip("Descriptions for menu items")]
-    public string[] menuDescriptions = new string[] { 
-        "Remote Repository Viewer", 
-        "System Overview & Status", 
-        "Arcade & Mini-games", 
-        "World Traffic Analytics", 
-        "Audio Log Archives", 
-        "External Weather Uplink" 
-    };
+    public string[] menuDescriptions = new string[] { "Remote Repository Viewer", "System Overview & Status", "Arcade & Mini-games", "World Traffic Analytics", "Audio Log Archives", "External Weather Uplink" };
 
     [Tooltip("Item types: <DIR>, <EXE>, <BAT>")]
-    public string[] menuTypes = new string[] { 
-        "<EXE>", 
-        "<APP>", 
-        "<DIR>", 
-        "<DAT>", 
-        "<DIR>", 
-        "<NET>" 
-    };
+    public string[] menuTypes = new string[] { "<EXE>", "<APP>", "<DIR>", "<DAT>", "<DIR>", "<NET>" };
 
     // ============================================================
     // CORE REFERENCE
