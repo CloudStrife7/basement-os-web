@@ -467,6 +467,17 @@ body::before {
 
 .btn-close {
     background: var(--accent-error);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.btn-close:hover {
+    box-shadow: 0 0 10px var(--accent-error);
+    transform: scale(1.2);
+}
+
+.btn-close:active {
+    transform: scale(1.1);
 }
 
 .btn-minimize {

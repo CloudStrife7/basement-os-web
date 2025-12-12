@@ -260,18 +260,33 @@ const { activeSection = 'intro' } = Astro.props;
                   if (msg2) msg2.style.display = 'block';
                   
                   setTimeout(() => {
-                      // 3. CRT Turn Off Animation
-                      document.body.classList.add('crt-off');
+                      // 3. Random Turn Off Animation
+                      const animations = ['anim-crt', 'anim-vhs', 'anim-phosphor'];
+                      const randomAnim = animations[Math.floor(Math.random() * animations.length)];
+                      
+                      // For CRT effect, we need to center the transform origin to the viewport
+                      if (randomAnim === 'anim-crt') {
+                          const scrollY = window.scrollY;
+                          const viewportHeight = window.innerHeight;
+                          const docHeight = document.body.scrollHeight;
+                          const centerY = scrollY + (viewportHeight / 2);
+                          
+                          // Set origin to center of current viewport
+                          document.body.style.transformOrigin = `50% ${centerY}px`;
+                      }
+
+                      document.body.classList.add(randomAnim);
                       
                       setTimeout(() => {
                           // 4. Reset and Reboot
                           sessionStorage.removeItem('basement-os-booted');
                           window.location.reload();
-                      }, 1000); // Wait for CSS animation
+                      }, 2500); // Increased wait for slower animations (phosphor is 2.5s)
                   }, 2000); // Read text duration
               }, 2000); // Shutdown wait duration
           });
       }
+
 
       // Search Logic
       const searchToggle = document.getElementById('search-toggle');
@@ -346,5 +361,28 @@ const { activeSection = 'intro' } = Astro.props;
             }
         });
       }
+
+      // Typewriter Effect for Section Headers
+      const headers = document.querySelectorAll('.section-header');
+      headers.forEach(header => {
+          // Prevent re-running on same element if already processed (though page-load usually resets DOM)
+          if (header.classList.contains('typewriter-text')) return;
+
+          const text = header.textContent || '';
+          header.innerHTML = '<span class="typewriter-cursor"></span>';
+          header.classList.add('typewriter-text');
+          
+          let index = 0;
+          function typeChar() {
+              if (index < text.length) {
+                  header.innerHTML = text.substring(0, index + 1) + '<span class="typewriter-cursor"></span>';
+                  index++;
+                  setTimeout(typeChar, 50); // Speed for headers
+              }
+          }
+          
+          // Slight delay before starting to simulate "loading"
+          setTimeout(typeChar, 200);
+      });
   });
 </script>

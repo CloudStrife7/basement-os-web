@@ -33,7 +33,12 @@
     text-shadow: 2px 2px 0px #000;
 }
 
-/* CRT Turn Off Animation */
+/* Ensure background is black when body shrinks/fades */
+html {
+    background-color: #000;
+}
+
+/* 1. CRT Turn Off Animation */
 @keyframes crtTurnOff {
     0% {
         transform: scale(1, 1);
@@ -54,6 +59,138 @@
     }
 }
 
-.crt-off {
+.anim-crt {
     animation: crtTurnOff 0.8s ease-out forwards;
+}
+
+
+/* 2. VHS Power Down */
+@keyframes vhsFade {
+    0% {
+        filter: blur(0) grayscale(0);
+        transform: skew(0);
+    }
+
+    20% {
+        filter: blur(2px) grayscale(0.5);
+        transform: skew(10deg);
+    }
+
+    40% {
+        filter: blur(4px) grayscale(0.8);
+        transform: skew(-10deg);
+        height: 100vh;
+    }
+
+    60% {
+        filter: blur(10px) grayscale(1);
+        transform: scaleY(0.1) skew(50deg);
+        height: 10vh;
+        opacity: 1;
+    }
+
+    100% {
+        filter: blur(20px) grayscale(1);
+        transform: scaleY(0);
+        opacity: 0;
+    }
+}
+
+.anim-vhs {
+    animation: vhsFade 0.6s ease-in forwards;
+}
+
+
+/* 3. Terminal Glitch */
+@keyframes glitchFail {
+    0% {
+        clip-path: inset(0 0 0 0);
+        filter: invert(0);
+    }
+
+    20% {
+        clip-path: inset(20% 0 10% 0);
+        filter: invert(1);
+        transform: translate(-5px, 5px);
+    }
+
+    40% {
+        clip-path: inset(50% 0 30% 0);
+        filter: invert(0);
+        transform: translate(5px, -5px);
+    }
+
+    60% {
+        clip-path: inset(10% 0 60% 0);
+        filter: invert(1);
+        transform: translate(-10px, 0);
+    }
+
+    80% {
+        clip-path: inset(80% 0 5% 0);
+        filter: invert(0);
+        opacity: 1;
+    }
+
+    100% {
+        clip-path: inset(50% 50% 50% 50%);
+        opacity: 0;
+    }
+}
+
+.anim-glitch {
+    animation: glitchFail 0.4s steps(5) forwards;
+}
+
+
+/* 4. Phosphor Decay */
+@keyframes phosphorBurn {
+    0% {
+        filter: brightness(1) blur(0);
+        opacity: 1;
+    }
+
+    30% {
+        filter: brightness(3) blur(2px);
+        opacity: 1;
+        color: #a6e22e;
+        text-shadow: 0 0 20px #a6e22e;
+    }
+
+    100% {
+        filter: brightness(0) blur(20px);
+        opacity: 0;
+        transform: scale(1.1);
+    }
+}
+
+.anim-phosphor {
+    animation: phosphorBurn 2.5s ease-out forwards;
+}
+
+.typewriter-text {
+    min-height: 1.2em;
+    display: block;
+}
+
+.typewriter-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1em;
+    background-color: var(--accent-primary);
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
 }
