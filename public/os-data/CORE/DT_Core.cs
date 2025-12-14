@@ -168,6 +168,39 @@ public class DT_Core : UdonSharpBehaviour
         }
     }
 
+    // =================================================================
+    // EXTERNAL STATION RELAY HANDLERS (Called by DT_StationRelay)
+    // =================================================================
+    
+    /// <summary>Player reference set by DT_StationRelay before event call</summary>
+    [HideInInspector] public VRCPlayerApi relayedPlayer;
+
+    /// <summary>
+    /// Called by DT_StationRelay when player enters the terminal chair
+    /// </summary>
+    public void OnTerminalStationEntered()
+    {
+        if (relayedPlayer != null && relayedPlayer.isLocal)
+        {
+            isPlayerLocked = true;
+            SetFooterStatus("USER LOGIN: " + relayedPlayer.displayName);
+            Debug.Log("[DT_Core] Terminal station entered via relay: " + relayedPlayer.displayName);
+        }
+    }
+
+    /// <summary>
+    /// Called by DT_StationRelay when player exits the terminal chair
+    /// </summary>
+    public void OnTerminalStationExited()
+    {
+        if (relayedPlayer != null && relayedPlayer.isLocal)
+        {
+            isPlayerLocked = false;
+            SetFooterStatus("USER LOGOUT.");
+            Debug.Log("[DT_Core] Terminal station exited via relay");
+        }
+    }
+
     public override void InputMoveVertical(float value, VRC.Udon.Common.UdonInputEventArgs args)
     {
         if (!isPlayerLocked || !Utilities.IsValid(activeProcess)) return;

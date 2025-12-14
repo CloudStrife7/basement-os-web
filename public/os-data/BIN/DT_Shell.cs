@@ -98,6 +98,12 @@ public class DT_Shell : UdonSharpBehaviour
     /// </summary>
     public void OnAppOpen()
     {
+        // Initialize menu count (in case OnAppOpen runs before Start due to script order)
+        if (menuNames != null)
+        {
+            menuItemCount = menuNames.Length;
+        }
+        
         // Reset cursor to top of menu
         cursorIndex = 0;
         
