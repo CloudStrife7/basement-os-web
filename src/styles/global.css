@@ -353,7 +353,7 @@ body {
     color: var(--text-primary);
     font-family: var(--font-mono);
     font-size: 14px;
-    line-height: 1.7;
+    line-height: 1.6;
     min-height: 100vh;
     transition: background var(--transition-speed), color var(--transition-speed);
     position: relative;
@@ -628,7 +628,7 @@ body::before {
 .nav-menu.active {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 8px;
     justify-content: center;
 }
 
@@ -669,6 +669,8 @@ body::before {
 
 .terminal-content {
     padding: 0 20px 20px 20px;
+    padding-left: 16px;
+    padding-right: 16px;
     display: none;
 }
 
@@ -1492,4 +1494,159 @@ body::before {
     flex-direction: column;
     gap: 40px;
     padding-bottom: 50px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE STYLES
+   Optimized for touch devices and small screens
+═══════════════════════════════════════════════════════════════════ */
+
+@media screen and (max-width: 768px) {
+
+    /* 1. INCREASE CONTENT PADDING - Breathing room from borders */
+    .terminal-content,
+    .boot-screen,
+    .mission-statement,
+    .devlog-content,
+    .content-section {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .mission-statement {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    /* 2. IMPROVE TYPOGRAPHY READABILITY - Better line height for mono fonts */
+    body {
+        line-height: 1.6;
+    }
+
+    .terminal-content,
+    .mission-statement,
+    .boot-screen,
+    p {
+        line-height: 1.6;
+    }
+
+    .devlog-content p,
+    .devlog-content li {
+        line-height: 1.7;
+    }
+
+    /* 3. CONTRAST ADJUSTMENTS - Brighter pink for better readability */
+    .section-header,
+    .devlog-toc h3,
+    .routing-header {
+        /* Lighten the accent color on mobile for outdoor visibility */
+        color: #ff6b9d;
+        /* Brighter pink vs the default dark pink */
+    }
+
+    [data-theme="synthwave"] .section-header,
+    [data-theme="synthwave"] .devlog-toc h3,
+    [data-theme="synthwave"] .routing-header,
+    [data-theme="synthwave"] .toc-year-header {
+        color: #ff7aa8;
+        /* Even brighter for synthwave theme */
+    }
+
+    /* 4. BUTTON GRID SPACING - Prevent fat finger errors */
+    .nav-menu.active {
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .routing-grid {
+        gap: 16px;
+    }
+
+    .nav-btn {
+        padding: 12px 16px;
+        /* Larger touch targets */
+        min-height: 44px;
+        /* iOS recommended touch target */
+        font-size: 13px;
+    }
+
+    /* 5. VISUAL HIERARCHY - Outlined style for non-active buttons */
+    .nav-btn {
+        background: transparent;
+        color: var(--accent-primary);
+        border: 1px solid var(--accent-primary);
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+        background: var(--accent-primary);
+        color: var(--bg-primary);
+        border-color: var(--accent-primary);
+    }
+
+    /* Synthwave theme specific - use pink outline */
+    [data-theme="synthwave"] .nav-btn {
+        color: #ff6b9d;
+        border-color: #ff6b9d;
+        background: transparent;
+    }
+
+    [data-theme="synthwave"] .nav-btn:hover,
+    [data-theme="synthwave"] .nav-btn.active {
+        background: #ff3e8a;
+        color: #000;
+        border-color: #ff3e8a;
+    }
+
+    /* Terminal wrapper mobile padding */
+    .terminal-wrapper {
+        padding: 10px;
+    }
+
+    .terminal-header {
+        padding: 8px 12px;
+    }
+
+    .terminal-title {
+        font-size: 14px;
+    }
+
+    /* Improve touch scrolling */
+    .terminal-content {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Extra small screens (phones in portrait) */
+@media screen and (max-width: 480px) {
+
+    body {
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+    .terminal-wrapper {
+        padding: 5px;
+    }
+
+    .terminal-title {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+
+    .nav-btn {
+        padding: 10px 12px;
+        font-size: 11px;
+    }
+
+    .mission-statement {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    /* Stack routing grid on very small screens */
+    .routing-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 }

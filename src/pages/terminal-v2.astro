@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="BASEMENT OS | INDUSTRIAL MILITARY THEME">
+    <div class="terminal-page-container">
+        <!-- Back Button Overlay -->
+        <a href="/" class="back-btn">
+            &lt; DISCONNECT / RETURN TO HOME
+        </a>
+
+        <!-- REMOTE ACCESS TERMINAL - Industrial Military Theme -->
+        <div id="terminal-root" class="basement-terminal-container">
+            <div class="terminal-screen">CONNECTING TO HOST...</div>
+            <div class="scanlines"></div>
+        </div>
+    </div>
+</BaseLayout>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+    .terminal-page-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+        padding: 20px;
+        background-color: #050505;
+    }
+
+    .back-btn {
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        background: #10B981;
+        color: #000;
+        font-family: 'JetBrains Mono', monospace;
+        text-decoration: none;
+        font-size: 1.2rem;
+        border: 2px solid #10B981;
+        transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+        background: #000;
+        color: #34D399;
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+        border-color: #34D399;
+    }
+
+    /* INDUSTRIAL MILITARY THEME - Emerald Color Scheme */
+    .basement-terminal-container {
+        width: 100%;
+        max-width: 960px;
+        margin: 2rem auto;
+        background: #000;
+        border: 2px solid #064E3B;
+        padding: 1rem;
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.15);
+        border-radius: 4px;
+        font-family: 'JetBrains Mono', monospace;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .terminal-screen {
+        font-size: 14px;
+        line-height: 1.4;
+        white-space: pre-wrap;
+        color: #10B981; /* Primary Emerald */
+        min-height: 600px;
+    }
+
+    /* CRT Scanline Effect Overlay */
+    .scanlines {
+        background: linear-gradient(to bottom,
+                rgba(255, 255, 255, 0),
+                rgba(255, 255, 255, 0) 50%,
+                rgba(0, 0, 0, 0.15) 50%,
+                rgba(0, 0, 0, 0.15));
+        background-size: 100% 4px;
+        position: absolute;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+</style>
+
+<script src="/js/basement-os-v2.js" is:inline></script>
+<script is:inline>
+    // Initialize when ready or after navigation
+    document.addEventListener('astro:page-load', () => {
+        if (typeof BasementOSv2 !== 'undefined') {
+            // Prevent double init if caching issues
+            if (!document.getElementById('terminal-root').classList.contains('booted')) {
+                const os = new BasementOSv2('terminal-root');
+                document.getElementById('terminal-root').classList.add('booted');
+            }
+        } else {
+            console.error('BasementOSv2 library not loaded');
+        }
+    });
+</script>

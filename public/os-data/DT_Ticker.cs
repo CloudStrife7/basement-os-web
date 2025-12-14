@@ -32,11 +32,8 @@ public class DT_Ticker : UdonSharpBehaviour
     [Tooltip("Default messages for the ticker feed")]
     private string[] feedMessages = new string[]
     {
-        "WELCOME TO BASEMENT OS",
-        "SYSTEM STATUS: NOMINAL",
-        "UPTIME: ETERNAL",
-        "NETWORK: CONNECTED",
-        "SECURITY: COMPROMISED"
+        "WELCOME TO LOWER LEVEL 2.0                                        ",
+        "UPTIME: ETERNAL                                        "
     };
 
     [SerializeField]
