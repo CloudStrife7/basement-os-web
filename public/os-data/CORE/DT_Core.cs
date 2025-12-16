@@ -6,7 +6,7 @@ using TMPro;
 using UdonSharp;
 
 /// <summary>
-/// BASEMENT OS CORE (v2.1)
+/// BASEMENT OS CORE (v2.0)
 /// 
 /// ROLE: SYSTEM CORE / HARDWARE ABSTRACTION LAYER
 /// The Core is the only script allowed to talk directly to the hardware 
@@ -39,6 +39,10 @@ public class DT_Core : UdonSharpBehaviour
     [Tooltip("System Beeps and Drive Noises")]
     [SerializeField] private AudioSource audioSource;
 
+    [Header("--- Terminal Station ---")]
+    [Tooltip("The VRCStation used for the terminal (for spacebar exit)")]
+    [SerializeField] private VRC.SDK3.Components.VRCStation terminalStation;
+
     [Header("--- Boot Configuration ---")]
     [Tooltip("The first program to load (e.g. DT_Shell in /BIN/)")]
     [SerializeField] private UdonSharpBehaviour bootProcess;
@@ -48,6 +52,7 @@ public class DT_Core : UdonSharpBehaviour
     // =================================================================
     private UdonSharpBehaviour activeProcess;
     private bool isPlayerLocked = false;
+    private string currentAppName = "MENU"; // Current app name for path display
     
     // Screen Buffer (80x24 Grid)
     private string headerLine = ""; // Line 0
@@ -63,6 +68,20 @@ public class DT_Core : UdonSharpBehaviour
     
     // Constants
     private const int SCREEN_WIDTH = 80;
+
+    // Flavor Text Pool (random selection on app transitions)
+    private string[] flavorTexts = new string[]
+    {
+        "Mounting virtual volume... OK.",
+        "Allocating memory banks... OK.",
+        "Loading process into RAM... OK.",
+        "Initializing display driver... OK.",
+        "Handshake complete.",
+        "Process spawned successfully.",
+        "System resources allocated.",
+        "Compiling bytecode... Done.",
+        "Reading sector 0x7C00... OK."
+    };
 
     // =================================================================
     // CORE INITIALIZATION
@@ -81,17 +100,23 @@ public class DT_Core : UdonSharpBehaviour
 
     private void BootSequence()
     {
+        Debug.Log("[DT_Core] ===== BOOT SEQUENCE START =====");
+        
         // Set initial flavor text
         SetFooterStatus("BIOS Check... OK. Initializing Core...");
         
-        // Initialize UI Buffers
-        headerLine = "BASEMENT OS v2.1 | MEM: 640K OK";
-        rssLine = " *** WELCOME TO LOWER LEVEL 2.0 *** ";
+        // Initialize UI Buffers with box drawing header
+        headerLine = "╔══════════════════════════════════════════════════════════════════════════════╗\n" +
+                     "║ BASEMENT OS // VERSION 2                                            [ONLINE] ║\n" +
+                     "╚══════════════════════════════════════════════════════════════════════════════╝";
+        rssLine = ""; // Reserved for RSS ticker with [PlayerName]
         promptLine = @"C:\BASEMENT> _";
 
         // Load Boot Process
         if (Utilities.IsValid(bootProcess))
         {
+            Debug.Log("[DT_Core] bootProcess is Valid. Type: " + bootProcess.GetType().Name);
+            Debug.Log("[DT_Core] bootProcess GameObject: " + bootProcess.gameObject.name);
             LoadProcess(bootProcess);
         }
         else
@@ -120,29 +145,76 @@ public class DT_Core : UdonSharpBehaviour
     // =================================================================
     
     /// <summary>
+    /// Variable for apps to set the next process before calling LoadNextProcess
+    /// Used because SendCustomEvent cannot pass parameters
+    /// </summary>
+    [HideInInspector] public UdonSharpBehaviour nextProcess;
+
+    /// <summary>
+    /// Called by apps via SendCustomEvent to load the nextProcess
+    /// Apps should: coreReference.SetProgramVariable("nextProcess", targetApp);
+    ///              coreReference.SendCustomEvent("LoadNextProcess");
+    /// </summary>
+    public void LoadNextProcess()
+    {
+        if (Utilities.IsValid(nextProcess))
+        {
+            LoadProcess(nextProcess);
+            nextProcess = null; // Clear for next use
+        }
+        else
+        {
+            Debug.LogWarning("[DT_Core] LoadNextProcess called but nextProcess is null");
+        }
+    }
+
+    /// <summary>
     /// Context switches to a new App (Spoke).
     /// </summary>
     public void LoadProcess(UdonSharpBehaviour newProcess)
     {
-        if (!Utilities.IsValid(newProcess)) return;
+        Debug.Log("[DT_Core] ===== LoadProcess START =====");
+        Debug.Log("[DT_Core] newProcess: " + (newProcess != null ? newProcess.GetType().Name + " on " + newProcess.gameObject.name : "NULL"));
+        
+        if (!Utilities.IsValid(newProcess)) 
+        {
+            Debug.LogError("[DT_Core] newProcess is INVALID - aborting LoadProcess");
+            return;
+        }
 
         // 1. Terminate current process
         if (Utilities.IsValid(activeProcess))
         {
+            Debug.Log("[DT_Core] Calling OnAppClose on previous activeProcess");
             activeProcess.SendCustomEvent("OnAppClose");
         }
 
         // 2. Context Switch
         activeProcess = newProcess;
+        Debug.Log("[DT_Core] activeProcess now set to: " + activeProcess.GetType().Name);
 
-        // 3. Initialize new process
+        // 3. Determine app name from GameObject name
+        string goName = newProcess.gameObject.name.ToUpper();
+        if (goName.Contains("DASHBOARD")) currentAppName = "DASHBOARD";
+        else if (goName.Contains("SHELL") || goName.Contains("MENU")) currentAppName = "MENU";
+        else if (goName.Contains("STATS")) currentAppName = "STATS";
+        else if (goName.Contains("WEATHER")) currentAppName = "WEATHER";
+        else if (goName.Contains("GITHUB")) currentAppName = "GITHUB";
+        else if (goName.Contains("GAMES")) currentAppName = "GAMES";
+        else if (goName.Contains("TALES")) currentAppName = "TALES";
+        else currentAppName = "APP";
+
+        // 4. Initialize new process
+        Debug.Log("[DT_Core] Calling SendCustomEvent('OnAppOpen')...");
         activeProcess.SendCustomEvent("OnAppOpen");
+        Debug.Log("[DT_Core] SendCustomEvent('OnAppOpen') returned successfully");
 
-        // 4. Update Status (Flavor Text)
-        SetFooterStatus("Mounting virtual volume... OK.");
+        // 5. Update Status (Random Flavor Text)
+        int flavorIndex = Random.Range(0, flavorTexts.Length);
+        SetFooterStatus(flavorTexts[flavorIndex]);
         
-        // 5. Update Path
-        promptLine = @"C:\BASEMENT\APP> " + (isCursorVisible ? "_" : " ");
+        // 6. Update Path with current app name
+        promptLine = "C:\\BASEMENT\\" + currentAppName + "> ";
         RefreshDisplay();
     }
 
@@ -171,20 +243,25 @@ public class DT_Core : UdonSharpBehaviour
     // =================================================================
     // EXTERNAL STATION RELAY HANDLERS (Called by DT_StationRelay)
     // =================================================================
-    
+
     /// <summary>Player reference set by DT_StationRelay before event call</summary>
     [HideInInspector] public VRCPlayerApi relayedPlayer;
+
+    /// <summary>Input key set by DT_StationRelay before input event call</summary>
+    [HideInInspector] public string relayedInputKey;
 
     /// <summary>
     /// Called by DT_StationRelay when player enters the terminal chair
     /// </summary>
     public void OnTerminalStationEntered()
     {
+        Debug.Log("[DT_Core] OnTerminalStationEntered called. relayedPlayer: " + (relayedPlayer != null ? relayedPlayer.displayName : "NULL"));
+
         if (relayedPlayer != null && relayedPlayer.isLocal)
         {
             isPlayerLocked = true;
+            Debug.Log("[DT_Core] Player locked = TRUE. activeProcess = " + (activeProcess != null ? "Valid" : "NULL"));
             SetFooterStatus("USER LOGIN: " + relayedPlayer.displayName);
-            Debug.Log("[DT_Core] Terminal station entered via relay: " + relayedPlayer.displayName);
         }
     }
 
@@ -197,37 +274,65 @@ public class DT_Core : UdonSharpBehaviour
         {
             isPlayerLocked = false;
             SetFooterStatus("USER LOGOUT.");
-            Debug.Log("[DT_Core] Terminal station exited via relay");
         }
     }
 
-    public override void InputMoveVertical(float value, VRC.Udon.Common.UdonInputEventArgs args)
+    /// <summary>
+    /// Called by DT_StationRelay when player presses WASD/E
+    /// </summary>
+    public void OnRelayedInput()
     {
+        Debug.Log("[DT_Core] OnRelayedInput: key=" + relayedInputKey + " locked=" + isPlayerLocked + " activeProcess=" + (activeProcess != null ? "Valid" : "NULL"));
+
         if (!isPlayerLocked || !Utilities.IsValid(activeProcess)) return;
 
-        if (value > 0.5f) RouteInput("UP");
-        else if (value < -0.5f) RouteInput("DOWN");
+        RouteInput(relayedInputKey);
     }
 
-    public override void InputMoveHorizontal(float value, VRC.Udon.Common.UdonInputEventArgs args)
+    /// <summary>
+    /// Called by DT_StationRelay when player presses Spacebar
+    /// </summary>
+    public void OnRelayedInputJump()
     {
-        if (!isPlayerLocked || !Utilities.IsValid(activeProcess)) return;
+        Debug.Log("[DT_Core] OnRelayedInputJump - Exiting station");
 
-        if (value > 0.5f) RouteInput("RIGHT");
-        else if (value < -0.5f) RouteInput("LEFT");
+        if (isPlayerLocked && Utilities.IsValid(terminalStation))
+        {
+            VRCPlayerApi player = Networking.LocalPlayer;
+            if (player != null)
+            {
+                terminalStation.ExitStation(player);
+            }
+        }
     }
 
-    public override void InputUse(bool value, VRC.Udon.Common.UdonInputEventArgs args)
-    {
-        if (!value) return; // Press only
-        if (isPlayerLocked && Utilities.IsValid(activeProcess)) RouteInput("ACCEPT");
-    }
+    // NOTE: Input override methods removed - all input now relayed from DT_StationRelay
+    // See OnRelayedInput() and OnRelayedInputJump() below for relay handlers
 
     private void RouteInput(string key)
     {
-        activeProcess.SetProgramVariable("inputKey", key);
-        activeProcess.SendCustomEvent("OnInput");
+        Debug.Log("[DT_Core] ===== RouteInput START =====");
+        Debug.Log("[DT_Core] key=" + key);
+        Debug.Log("[DT_Core] activeProcess valid=" + Utilities.IsValid(activeProcess));
         
+        if (Utilities.IsValid(activeProcess))
+        {
+            Debug.Log("[DT_Core] activeProcess Type: " + activeProcess.GetType().Name);
+            Debug.Log("[DT_Core] activeProcess GameObject: " + activeProcess.gameObject.name);
+        }
+
+        if (!Utilities.IsValid(activeProcess)) 
+        {
+            Debug.LogError("[DT_Core] activeProcess is INVALID - cannot route input!");
+            return;
+        }
+
+        Debug.Log("[DT_Core] Calling SetProgramVariable('inputKey', '" + key + "')...");
+        activeProcess.SetProgramVariable("inputKey", key);
+        Debug.Log("[DT_Core] Calling SendCustomEvent('OnInput')...");
+        activeProcess.SendCustomEvent("OnInput");
+        Debug.Log("[DT_Core] SendCustomEvent('OnInput') returned successfully");
+
         if (Utilities.IsValid(audioSource)) audioSource.Play();
     }
 

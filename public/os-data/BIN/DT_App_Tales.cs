@@ -36,6 +36,9 @@ public class DT_App_Tales : UdonSharpBehaviour
     [Header("--- Core Reference ---")]
     [SerializeField] private UdonSharpBehaviour coreReference;
 
+    [Tooltip("Shell app to return to")]
+    [SerializeField] private UdonSharpBehaviour shellApp;
+
     // =================================================================
     // STORY DATA
     // =================================================================
@@ -44,12 +47,12 @@ public class DT_App_Tales : UdonSharpBehaviour
     [TextArea(3, 10)]
     [SerializeField] private string[] storyTexts = new string[]
     {
-        "You find yourself in a dimly lit basement. The hum of old computers fills the air. A single CRT monitor glows in the corner, casting eerie green light across dusty pizza boxes.\n\nThe pizza box on the table is empty. A faint smell of pepperoni lingers in the stale air.",
-        "You pull open the ancient refrigerator. The light flickers on, revealing: three cans of expired energy drinks, a half-eaten burger from 2019, and a mysterious Tupperware container.\n\nWait... there's a USB drive taped to the back wall. Someone didn't want this found.",
-        "You approach the vintage arcade cabinet. The screen displays 'TERMINAL TALES - INSERT COIN'. But this isn't a normal arcade machine. The joystick has been replaced with a keyboard.\n\nA sticky note reads: 'The stories are real. They're warnings. -MT'",
-        "The terminal displays scrolling text:\n\n> BASEMENTOS v2.0 KERNEL LOADED\n> WARNING: REALITY ANCHOR UNSTABLE\n> FICTION BOUNDARY: 47% INTEGRITY\n\nA message blinks: 'Every game tells a story. Every story hides a truth.'",
-        "You plug the USB drive into the terminal. Files cascade across the screen - stories, logs, memories.\n\n'If you're reading this, you've gone too deep. The basement isn't just a place. It's a collection of moments, frozen in time.'\n\nThe drive corrupts and dies with a spark.",
-        "You turn away and head back upstairs. The basement door creaks shut behind you.\n\nBut you can't shake the feeling that the stories down there are trying to tell you something...\n\n[STORY ENDED]"
+        "You find yourself in a dimly lit basement. Old computers hum quietly. A CRT monitor glows green in the corner.",
+        "You open the fridge. Three expired energy drinks, a fossilized burger, and... a USB drive taped to the back wall.",
+        "The arcade cabinet displays 'TERMINAL TALES - INSERT COIN'. A sticky note reads: 'The stories are real. -MT'",
+        "The terminal shows:\n> BASEMENTOS v2.0 LOADED\n> WARNING: REALITY ANCHOR UNSTABLE\n\n'Every game tells a story.'",
+        "Files cascade across the screen. 'If you're reading this, you've gone too deep...'\n\nThe USB drive sparks and dies.",
+        "You head back upstairs. The door creaks shut.\n\n[STORY ENDED]"
     };
 
     [SerializeField] private string[] choiceATexts = new string[] { "Check the Fridge", "Take the USB Drive", "Insert a Floppy", "Read Warnings Again", "Examine Files", "Return to Basement" };
@@ -81,6 +84,7 @@ public class DT_App_Tales : UdonSharpBehaviour
         currentNode = 0;
         selectedChoice = 0;
         isInitialized = true;
+        PushDisplayToCore();
     }
 
     public void OnAppClose()
@@ -101,38 +105,56 @@ public class DT_App_Tales : UdonSharpBehaviour
             selectedChoice--;
             int count = GetChoiceCount(currentNode);
             if (selectedChoice < 0) selectedChoice = count - 1;
+            PushDisplayToCore();
         }
         else if (inputKey == "DOWN")
         {
             selectedChoice++;
             int count = GetChoiceCount(currentNode);
             if (selectedChoice >= count) selectedChoice = 0;
+            PushDisplayToCore();
         }
-        else if (inputKey == "ACCEPT")
+        else if (inputKey == "ACCEPT" || inputKey == "RIGHT")
         {
             int targetNode = GetChoiceTarget(currentNode, selectedChoice);
             if (targetNode == -1)
             {
-                if (Utilities.IsValid(coreReference))
-                {
-                    coreReference.SendCustomEvent("ReturnToShell");
-                }
+                ReturnToShell();
             }
             else if (targetNode >= 0 && targetNode < storyTexts.Length)
             {
                 currentNode = targetNode;
                 selectedChoice = 0;
+                PushDisplayToCore();
             }
         }
         else if (inputKey == "LEFT")
         {
-            if (Utilities.IsValid(coreReference))
-            {
-                coreReference.SendCustomEvent("ReturnToShell");
-            }
+            ReturnToShell();
         }
 
         inputKey = "";
+    }
+
+    private void ReturnToShell()
+    {
+        if (Utilities.IsValid(coreReference) && Utilities.IsValid(shellApp))
+        {
+            coreReference.SetProgramVariable("nextProcess", shellApp);
+            coreReference.SendCustomEvent("LoadNextProcess");
+        }
+    }
+
+    /// <summary>
+    /// Push display content to DT_Core for rendering
+    /// </summary>
+    private void PushDisplayToCore()
+    {
+        if (Utilities.IsValid(coreReference))
+        {
+            coreReference.SetProgramVariable("contentBuffer", GetDisplayContent());
+            coreReference.SendCustomEvent("RefreshDisplay");
+        }
     }
 
     // =================================================================

@@ -2,6 +2,7 @@ using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
 using UdonSharp;
+using LowerLevel.Terminal;
 
 /// <summary>
 /// BASEMENT OS WEATHER APPLICATION (v2.1)
@@ -36,10 +37,13 @@ public class DT_App_Weather : UdonSharpBehaviour
 
     [Header("--- Module References ---")]
     [Tooltip("Weather Module - provides cached weather data")]
-    [SerializeField] private UdonSharpBehaviour weatherModule;
+    [SerializeField] private DT_WeatherModule weatherModule;
 
     [Tooltip("Core System Reference")]
     [SerializeField] private UdonSharpBehaviour coreReference;
+
+    [Tooltip("Shell app to return to on LEFT key")]
+    [SerializeField] private UdonSharpBehaviour shellApp;
 
     [Header("--- Weather Display ---")]
     [Tooltip("Location string to display")]
@@ -62,6 +66,7 @@ public class DT_App_Weather : UdonSharpBehaviour
     {
         RefreshWeatherFromCache();
         RenderWeatherDisplay();
+        PushDisplayToCore();
     }
 
     public void OnAppClose()
@@ -75,6 +80,16 @@ public class DT_App_Weather : UdonSharpBehaviour
         {
             RefreshWeatherFromCache();
             RenderWeatherDisplay();
+            PushDisplayToCore();
+        }
+        else if (inputKey == "LEFT")
+        {
+            // Return to Shell menu
+            if (Utilities.IsValid(coreReference) && Utilities.IsValid(shellApp))
+            {
+                coreReference.SetProgramVariable("nextProcess", shellApp);
+                coreReference.SendCustomEvent("LoadNextProcess");
+            }
         }
         inputKey = "";
     }
@@ -82,6 +97,18 @@ public class DT_App_Weather : UdonSharpBehaviour
     public string GetDisplayContent()
     {
         return displayContent;
+    }
+
+    /// <summary>
+    /// Push display content to DT_Core for rendering
+    /// </summary>
+    private void PushDisplayToCore()
+    {
+        if (Utilities.IsValid(coreReference))
+        {
+            coreReference.SetProgramVariable("contentBuffer", displayContent);
+            coreReference.SendCustomEvent("RefreshDisplay");
+        }
     }
 
     // =================================================================
@@ -98,14 +125,10 @@ public class DT_App_Weather : UdonSharpBehaviour
             return;
         }
 
-        object tempObj = weatherModule.GetProgramVariable("currentTemperature");
-        if (tempObj != null) cachedTemperature = (string)tempObj;
-
-        object condObj = weatherModule.GetProgramVariable("currentCondition");
-        if (condObj != null) cachedCondition = (string)condObj;
-
-        object onlineObj = weatherModule.GetProgramVariable("isOnline");
-        if (onlineObj != null) weatherOnline = (bool)onlineObj;
+        // Use the public getter methods from DT_WeatherModule
+        cachedTemperature = weatherModule.GetTemperature();
+        cachedCondition = weatherModule.GetCondition();
+        weatherOnline = weatherModule.IsWeatherOnline();
     }
 
     // =================================================================
@@ -117,29 +140,23 @@ public class DT_App_Weather : UdonSharpBehaviour
         string output = "";
 
         output = output + " WEATHER SENSORS - " + locationString + "\n";
-        output = output + GenerateSeparator() + "\n\n";
+        output = output + GenerateSeparator() + "\n";
 
         string[] artLines = GetWeatherArtLines(cachedCondition);
+        string statusText = weatherOnline ? "Online" : "OFFLINE";
 
         output = output + "      " + artLines[0] + "                   CURRENT CONDITIONS\n";
-        output = output + "    " + artLines[1] + "                   ──────────────────\n";
-        output = output + "    " + artLines[2] + "                   Temperature: " + cachedTemperature + "\n";
-        output = output + "    " + artLines[3] + "                   Condition:   " + cachedCondition + "\n";
-        output = output + "                                       Status:      ";
-        output = output + (weatherOnline ? "Online" : "Offline") + "\n\n";
+        output = output + "    " + artLines[1] + "                   Temperature: " + cachedTemperature + "\n";
+        output = output + "    " + artLines[2] + "                   Condition:   " + cachedCondition + "\n";
+        output = output + "    " + artLines[3] + "                   Status:      " + statusText + "\n\n";
 
         output = output + "  FORECAST\n";
-        output = output + "  ────────────────────────────────────────────────────────────────────────\n";
+        output = output + "  ────────────────────────────────────────────────────────────────\n";
         output = output + "  TODAY      Tomorrow    Wednesday   Thursday    Friday\n";
         output = output + "   " + cachedTemperature + "       --°F        --°F        --°F       --°F\n";
-        output = output + "  " + GetConditionShort(cachedCondition) + "      Pending     Pending     Pending    Pending\n";
+        output = output + "  " + GetConditionShort(cachedCondition) + "      Pending     Pending     Pending    Pending\n\n";
 
-        output = output + "\n\n  [USE] Refresh  [LEFT] Back\n";
-
-        if (!weatherOnline)
-        {
-            output = output + "\n  WARNING: Weather data unavailable. Using cached values.\n";
-        }
+        output = output + "  [ACCEPT] Refresh  [A] Back";
 
         displayContent = output;
     }

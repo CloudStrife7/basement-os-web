@@ -50,6 +50,5 @@ public class DT_Interact : UdonSharpBehaviour
         // Seat the player in the terminal chair
         terminalStation.UseStation(player);
         
-        Debug.Log("[DT_Interact] Seating player: " + player.displayName);
     }
 }

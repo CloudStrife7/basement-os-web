@@ -1,5 +1,5 @@
 /// <summary>
-/// BASEMENT OS SHELL (v2.1)
+/// BASEMENT OS SHELL (v2.0)
 ///
 /// ROLE: MAIN MENU / COMMAND SHELL
 /// LOCATION: Assets/Scripts/BasementOS/BIN/DT_Shell.cs
@@ -44,7 +44,7 @@ public class DT_Shell : UdonSharpBehaviour
     [Tooltip("Descriptions for menu items")]
     public string[] menuDescriptions;
 
-    [Tooltip("Item types: <DIR>, <EXE>, <BAT>")]
+    [Tooltip("Item types: <APP>, <CFG>, <FX>, <BAR>, <DAT>, <DOC>")]
     public string[] menuTypes;
 
     // ============================================================
@@ -63,12 +63,13 @@ public class DT_Shell : UdonSharpBehaviour
     private int menuItemCount = 0;
 
     // ============================================================
-    // THEME COLORS (from DT_Theme)
+    // THEME COLORS (from DT_Theme - Web Terminal Palette)
     // ============================================================
 
-    private const string COLOR_PRIMARY = "#33FF33";
-    private const string COLOR_ALERT = "#FFB000";
-    private const string COLOR_DIM = "#808080";
+    private const string COLOR_STRUCT = "#064E3B";     // Borders, inactive
+    private const string COLOR_PRIMARY = "#10B981";    // Body text, menu names
+    private const string COLOR_HIGHLIGHT = "#34D399";  // Active selections
+    private const string COLOR_DIM = "#0A5240";        // Subtle elements
 
     // ============================================================
     // INITIALIZATION
@@ -98,17 +99,25 @@ public class DT_Shell : UdonSharpBehaviour
     /// </summary>
     public void OnAppOpen()
     {
+        Debug.Log("[DT_Shell] ===== OnAppOpen CALLED =====");
+        
         // Initialize menu count (in case OnAppOpen runs before Start due to script order)
         if (menuNames != null)
         {
             menuItemCount = menuNames.Length;
+            Debug.Log("[DT_Shell] menuItemCount = " + menuItemCount);
+        }
+        else
+        {
+            Debug.LogWarning("[DT_Shell] menuNames is NULL!");
         }
         
-        // Reset cursor to top of menu
-        cursorIndex = 0;
+        // NOTE: cursorIndex is NOT reset here - cursor persists when returning from apps
         
         // Push display content to core
+        Debug.Log("[DT_Shell] Calling PushDisplayToCore()...");
         PushDisplayToCore();
+        Debug.Log("[DT_Shell] OnAppOpen complete");
     }
 
     /// <summary>
@@ -129,34 +138,59 @@ public class DT_Shell : UdonSharpBehaviour
     /// </summary>
     public void OnInput()
     {
-        if (menuItemCount == 0) return;
+        Debug.Log("[DT_Shell] ===== OnInput CALLED =====");
+        Debug.Log("[DT_Shell] inputKey = '" + inputKey + "'");
+        Debug.Log("[DT_Shell] menuItemCount = " + menuItemCount);
+        Debug.Log("[DT_Shell] cursorIndex = " + cursorIndex);
+        
+        if (menuItemCount == 0) 
+        {
+            Debug.LogWarning("[DT_Shell] menuItemCount is 0 - returning early");
+            return;
+        }
 
         // Navigate up
         if (inputKey == "UP")
         {
+            Debug.Log("[DT_Shell] Processing UP navigation");
             cursorIndex--;
             if (cursorIndex < 0)
             {
                 cursorIndex = menuItemCount - 1; // Wrap to bottom
             }
+            Debug.Log("[DT_Shell] New cursorIndex = " + cursorIndex);
             PushDisplayToCore();
         }
 
         // Navigate down
         else if (inputKey == "DOWN")
         {
+            Debug.Log("[DT_Shell] Processing DOWN navigation");
             cursorIndex++;
             if (cursorIndex >= menuItemCount)
             {
                 cursorIndex = 0; // Wrap to top
             }
+            Debug.Log("[DT_Shell] New cursorIndex = " + cursorIndex);
             PushDisplayToCore();
         }
 
-        // Select current item
-        else if (inputKey == "ACCEPT")
+        // Select current item (E/Click or D key)
+        else if (inputKey == "ACCEPT" || inputKey == "RIGHT")
         {
+            Debug.Log("[DT_Shell] Processing ACCEPT/RIGHT - launching selected item");
             LaunchSelectedItem();
+        }
+
+        // Go back (A key) - for future submenu navigation
+        else if (inputKey == "LEFT")
+        {
+            Debug.Log("[DT_Shell] Processing LEFT - back navigation (TODO)");
+            // TODO: Implement back navigation when submenus are added
+        }
+        else
+        {
+            Debug.LogWarning("[DT_Shell] Unknown inputKey: '" + inputKey + "'");
         }
     }
 
@@ -200,7 +234,7 @@ public class DT_Shell : UdonSharpBehaviour
 
         // Tell Core to load the selected app
         coreReference.SetProgramVariable("nextProcess", targetApp);
-        coreReference.SendCustomEvent("LoadProcess");
+        coreReference.SendCustomEvent("LoadNextProcess");
     }
 
     // ============================================================
@@ -249,7 +283,7 @@ public class DT_Shell : UdonSharpBehaviour
         // Cursor indicator
         if (index == cursorIndex)
         {
-            line = line + " <color=" + COLOR_ALERT + ">";
+            line = line + " <color=" + COLOR_HIGHLIGHT + ">";
             line = line + ">";
         }
         else
@@ -309,7 +343,7 @@ public class DT_Shell : UdonSharpBehaviour
         {
             return menuTypes[index];
         }
-        return "<DIR>";
+        return "<APP>";
     }
 
     /// <summary>

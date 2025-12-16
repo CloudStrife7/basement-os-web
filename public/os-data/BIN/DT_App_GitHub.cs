@@ -34,11 +34,14 @@ public class DT_App_GitHub : UdonSharpBehaviour
     // =================================================================
 
     [Header("--- External Systems ---")]
-    [Tooltip("Optional remote content loader")]
-    [SerializeField] private UdonSharpBehaviour remoteContentLoader;
+    [Tooltip("Remote content module with cached GitHub content")]
+    [SerializeField] private DT_RemoteContent remoteContentModule;
 
     [Tooltip("Reference to DT_Core")]
     [SerializeField] private UdonSharpBehaviour coreReference;
+
+    [Tooltip("Shell app to return to on ACCEPT key")]
+    [SerializeField] private UdonSharpBehaviour shellApp;
 
     // =================================================================
     // TAB CONFIGURATION
@@ -79,6 +82,7 @@ public class DT_App_GitHub : UdonSharpBehaviour
         currentTabIndex = 0;
         scrollOffset = 0;
         LoadCurrentTab();
+        PushDisplayToCore();
     }
 
     public void OnAppClose()
@@ -92,12 +96,37 @@ public class DT_App_GitHub : UdonSharpBehaviour
 
     public void OnInput()
     {
+        Debug.Log("[DT_App_GitHub] OnInput called with key='" + inputKey + "' currentTabIndex=" + currentTabIndex.ToString());
+        
         if (inputKey == "LEFT")
         {
-            currentTabIndex--;
-            if (currentTabIndex < 0) currentTabIndex = tabNames.Length - 1;
-            scrollOffset = 0;
-            LoadCurrentTab();
+            Debug.Log("[DT_App_GitHub] LEFT pressed, currentTabIndex=" + currentTabIndex.ToString());
+            // If on first tab, return to Shell menu
+            if (currentTabIndex == 0)
+            {
+                Debug.Log("[DT_App_GitHub] On first tab, attempting to return to Shell");
+                Debug.Log("[DT_App_GitHub] coreReference valid: " + Utilities.IsValid(coreReference).ToString());
+                Debug.Log("[DT_App_GitHub] shellApp valid: " + Utilities.IsValid(shellApp).ToString());
+                
+                if (Utilities.IsValid(coreReference) && Utilities.IsValid(shellApp))
+                {
+                    coreReference.SetProgramVariable("nextProcess", shellApp);
+                    coreReference.SendCustomEvent("LoadNextProcess");
+                    Debug.Log("[DT_App_GitHub] LoadNextProcess called successfully");
+                }
+                else
+                {
+                    Debug.LogWarning("[DT_App_GitHub] Cannot return to shell - coreReference or shellApp not assigned!");
+                }
+            }
+            else
+            {
+                // Go to previous tab
+                currentTabIndex--;
+                scrollOffset = 0;
+                LoadCurrentTab();
+                PushDisplayToCore();
+            }
         }
         else if (inputKey == "RIGHT")
         {
@@ -105,17 +134,32 @@ public class DT_App_GitHub : UdonSharpBehaviour
             if (currentTabIndex >= tabNames.Length) currentTabIndex = 0;
             scrollOffset = 0;
             LoadCurrentTab();
+            PushDisplayToCore();
         }
         else if (inputKey == "UP")
         {
+            Debug.Log("[DT_App_GitHub] UP pressed, scrollOffset=" + scrollOffset.ToString() + " displayLines=" + (displayLines != null ? displayLines.Length.ToString() : "NULL"));
             if (scrollOffset > 0) scrollOffset--;
+            PushDisplayToCore();
         }
         else if (inputKey == "DOWN")
         {
+            Debug.Log("[DT_App_GitHub] DOWN pressed, scrollOffset=" + scrollOffset.ToString() + " displayLines=" + (displayLines != null ? displayLines.Length.ToString() : "NULL") + " visibleLines=" + visibleLines.ToString());
             if (displayLines != null && displayLines.Length > visibleLines)
             {
                 int maxOffset = displayLines.Length - visibleLines;
+                Debug.Log("[DT_App_GitHub] maxOffset=" + maxOffset.ToString());
                 if (scrollOffset < maxOffset) scrollOffset++;
+            }
+            PushDisplayToCore();
+        }
+        else if (inputKey == "ACCEPT" || inputKey == "BACK")
+        {
+            // Return to Shell menu
+            if (Utilities.IsValid(coreReference) && Utilities.IsValid(shellApp))
+            {
+                coreReference.SetProgramVariable("nextProcess", shellApp);
+                coreReference.SendCustomEvent("LoadNextProcess");
             }
         }
 
@@ -155,10 +199,19 @@ public class DT_App_GitHub : UdonSharpBehaviour
             output = output + "No content available for this tab.\n";
         }
 
-        output = output + "\n────────────────────────────────────────────────────────────────────────────────\n";
-        output = output + "              [Use LEFT/RIGHT to switch tabs | UP/DOWN to scroll]";
-
         return output;
+    }
+
+    /// <summary>
+    /// Push display content to DT_Core for rendering
+    /// </summary>
+    private void PushDisplayToCore()
+    {
+        if (Utilities.IsValid(coreReference))
+        {
+            coreReference.SetProgramVariable("contentBuffer", GetDisplayContent());
+            coreReference.SendCustomEvent("RefreshDisplay");
+        }
     }
 
     private string BuildTabHeader()
@@ -201,10 +254,70 @@ public class DT_App_GitHub : UdonSharpBehaviour
     {
         string rawContent = "";
 
-        if (currentTabIndex == 0) rawContent = fallbackReadme;
-        else if (currentTabIndex == 1) rawContent = fallbackChangelog;
-        else if (currentTabIndex == 2) rawContent = fallbackIssues;
-        else if (currentTabIndex == 3) rawContent = fallbackThanks;
+        if (currentTabIndex == 0)
+        {
+            // README - check for remote content first
+            if (Utilities.IsValid(remoteContentModule) && remoteContentModule.hasRemoteContent)
+            {
+                string remoteReadme = remoteContentModule.remoteDashboardContent;
+                if (!string.IsNullOrEmpty(remoteReadme))
+                {
+                    rawContent = remoteReadme;
+                }
+                else
+                {
+                    rawContent = fallbackReadme;
+                }
+            }
+            else
+            {
+                rawContent = fallbackReadme;
+            }
+        }
+        else if (currentTabIndex == 1)
+        {
+            // CHANGELOG - check for remote content first
+            if (Utilities.IsValid(remoteContentModule) && remoteContentModule.hasRemoteContent)
+            {
+                string remoteChangelog = remoteContentModule.remoteChangelogContent;
+                if (!string.IsNullOrEmpty(remoteChangelog))
+                {
+                    rawContent = remoteChangelog;
+                }
+                else
+                {
+                    rawContent = fallbackChangelog;
+                }
+            }
+            else
+            {
+                rawContent = fallbackChangelog;
+            }
+        }
+        else if (currentTabIndex == 2)
+        {
+            rawContent = fallbackIssues;
+        }
+        else if (currentTabIndex == 3)
+        {
+            // THANKS - check for Hall of Fame content
+            if (Utilities.IsValid(remoteContentModule) && remoteContentModule.hasRemoteContent)
+            {
+                string remoteHoF = remoteContentModule.remoteHallOfFameContent;
+                if (!string.IsNullOrEmpty(remoteHoF))
+                {
+                    rawContent = remoteHoF;
+                }
+                else
+                {
+                    rawContent = fallbackThanks;
+                }
+            }
+            else
+            {
+                rawContent = fallbackThanks;
+            }
+        }
 
         ProcessContent(rawContent);
     }

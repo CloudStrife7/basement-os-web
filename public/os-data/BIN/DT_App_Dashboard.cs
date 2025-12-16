@@ -87,6 +87,7 @@ public class DT_App_Dashboard : UdonSharpBehaviour
     {
         RefreshData();
         RebuildDisplay();
+        PushDisplayToCore();
     }
 
     public void OnAppClose()
@@ -96,8 +97,12 @@ public class DT_App_Dashboard : UdonSharpBehaviour
 
     public void OnInput()
     {
-        if (inputKey == "ACCEPT")
+        Debug.Log("[DT_App_Dashboard] OnInput called with inputKey='" + inputKey + "'");
+        
+        // ACCEPT or LEFT both return to Shell menu
+        if (inputKey == "ACCEPT" || inputKey == "LEFT")
         {
+            Debug.Log("[DT_App_Dashboard] Launching Shell...");
             LaunchShell();
         }
         inputKey = "";
@@ -125,32 +130,18 @@ public class DT_App_Dashboard : UdonSharpBehaviour
             playerName = "Unknown";
         }
 
-        if (Utilities.IsValid(achievementDataManager))
-        {
-            object visits = achievementDataManager.GetProgramVariable("totalVisits");
-            if (visits != null) playerVisits = (int)visits;
-
-            object score = achievementDataManager.GetProgramVariable("gamerScore");
-            if (score != null) playerScore = (int)score;
-
-            playerRank = CalculateRank(playerScore);
-        }
-
-        if (Utilities.IsValid(weatherModule))
-        {
-            object temp = weatherModule.GetProgramVariable("currentTemperature");
-            if (temp != null) weatherTemp = (string)temp;
-
-            object cond = weatherModule.GetProgramVariable("currentCondition");
-            if (cond != null) weatherCondition = (string)cond;
-
-            object online = weatherModule.GetProgramVariable("isOnline");
-            if (online != null)
-            {
-                bool isOnline = (bool)online;
-                weatherSensorStatus = isOnline ? "[OK]" : "[!!]";
-            }
-        }
+        // NOTE: Achievement and Weather module integration disabled
+        // GetProgramVariable crashes Udon when variables don't exist
+        // TODO: Re-enable when modules have matching variable names
+        
+        // Use default values for now
+        playerVisits = 1;
+        playerScore = 0;
+        playerRank = CalculateRank(playerScore);
+        
+        weatherTemp = "N/A";
+        weatherCondition = "Offline";
+        weatherSensorStatus = "[--]";
 
         GatherOnlinePlayers();
         memoryStatus = "[OK]";
@@ -215,9 +206,21 @@ public class DT_App_Dashboard : UdonSharpBehaviour
         cachedContent = output;
     }
 
+    /// <summary>
+    /// Push display content to DT_Core for rendering
+    /// </summary>
+    private void PushDisplayToCore()
+    {
+        if (Utilities.IsValid(coreReference))
+        {
+            coreReference.SetProgramVariable("contentBuffer", cachedContent);
+            coreReference.SendCustomEvent("RefreshDisplay");
+        }
+    }
+
     private string[] BuildLeftColumn()
     {
-        string[] lines = new string[16];
+        string[] lines = new string[14];
         int idx = 0;
 
         lines[idx++] = "SYSTEM STATUS";
@@ -233,8 +236,6 @@ public class DT_App_Dashboard : UdonSharpBehaviour
         lines[idx++] = "[>] SYSTEM MENU (Open)";
         lines[idx++] = "    Press [ACCEPT] to continue";
         lines[idx++] = "";
-        lines[idx++] = "    [Quick Launch: Snake]";
-        lines[idx++] = "    [Quick Launch: Arcade]";
         lines[idx++] = "";
 
         return lines;
@@ -242,7 +243,7 @@ public class DT_App_Dashboard : UdonSharpBehaviour
 
     private string[] BuildRightColumn()
     {
-        string[] lines = new string[16];
+        string[] lines = new string[14];
         int idx = 0;
 
         lines[idx++] = "WHO IS ONLINE (" + onlineCount.ToString() + ")";
@@ -259,7 +260,7 @@ public class DT_App_Dashboard : UdonSharpBehaviour
         lines[idx++] = weatherTemp + "  " + weatherCondition;
         lines[idx++] = "";
 
-        while (idx < 16) lines[idx++] = "";
+        while (idx < 14) lines[idx++] = "";
 
         return lines;
     }
@@ -294,7 +295,7 @@ public class DT_App_Dashboard : UdonSharpBehaviour
         if (Utilities.IsValid(coreReference) && Utilities.IsValid(shellApp))
         {
             coreReference.SetProgramVariable("nextProcess", shellApp);
-            coreReference.SendCustomEvent("LoadProcess");
+            coreReference.SendCustomEvent("LoadNextProcess");
         }
     }
 

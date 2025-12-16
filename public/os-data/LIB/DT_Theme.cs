@@ -5,7 +5,7 @@ using TMPro;
 using UdonSharp;
 
 /// <summary>
-/// BASEMENT OS THEME LIBRARY (v2.1)
+/// BASEMENT OS THEME LIBRARY (v2.0)
 ///
 /// ROLE: COLOR PALETTE & TEXT STYLING UTILITIES
 /// Provides TextMeshPro rich text wrappers for consistent terminal theming.
@@ -15,7 +15,7 @@ using UdonSharp;
 ///
 /// INTEGRATION:
 /// - Used by: DT_Shell, DT_Core, all /BIN/ apps
-/// - Enforces: 80s DOS phosphor green aesthetic
+/// - Enforces: Web terminal emerald/teal aesthetic
 ///
 /// LIMITATIONS:
 /// - Static utility class (no UdonBehaviour methods needed)
@@ -25,28 +25,31 @@ using UdonSharp;
 public class DT_Theme : UdonSharpBehaviour
 {
     // =================================================================
-    // COLOR PALETTE (DOS Phosphor Terminal)
+    // COLOR PALETTE (Web Terminal - Emerald/Teal)
     // =================================================================
 
-    /// <summary>Primary phosphor green - default text color</summary>
-    public const string COLOR_PRIMARY = "#33FF33";
+    /// <summary>Structure color - borders, box drawing, inactive elements</summary>
+    public const string COLOR_STRUCT = "#064E3B";
 
-    /// <summary>Dimmed green - secondary text, disabled states</summary>
-    public const string COLOR_DIM = "#008800";
+    /// <summary>Primary emerald green - main body text, menu names</summary>
+    public const string COLOR_PRIMARY = "#10B981";
 
-    /// <summary>Amber warning - alerts, important notifications</summary>
+    /// <summary>Highlight mint - active selections, headers, important values</summary>
+    public const string COLOR_HIGHLIGHT = "#34D399";
+
+    /// <summary>Dim dark teal - help text, subtle elements</summary>
+    public const string COLOR_DIM = "#0A5240";
+
+    /// <summary>Error coral red - warnings, errors, glitch effects</summary>
+    public const string COLOR_ERROR = "#F87171";
+
+    /// <summary>Amber alert - important notifications (legacy compatibility)</summary>
     public const string COLOR_ALERT = "#FFB000";
 
-    /// <summary>Red error - critical warnings, failures</summary>
-    public const string COLOR_ERROR = "#FF3333";
-
-    /// <summary>Cyan link - hyperlinks, selectable items</summary>
-    public const string COLOR_LINK = "#00FFFF";
-
-    /// <summary>White - high contrast text, headers</summary>
+    /// <summary>White - high contrast text</summary>
     public const string COLOR_WHITE = "#FFFFFF";
 
-    /// <summary>Gray - muted text, comments</summary>
+    /// <summary>Muted gray - comments, metadata</summary>
     public const string COLOR_MUTED = "#666666";
 
     // =================================================================
@@ -57,7 +60,7 @@ public class DT_Theme : UdonSharpBehaviour
     /// Wraps text in custom color tag
     /// </summary>
     /// <param name="text">Text to colorize</param>
-    /// <param name="hexColor">Hex color code (e.g., "#33FF33")</param>
+    /// <param name="hexColor">Hex color code (e.g., "#10B981")</param>
     /// <returns>TextMeshPro formatted string</returns>
     public static string Colorize(string text, string hexColor)
     {
@@ -66,7 +69,7 @@ public class DT_Theme : UdonSharpBehaviour
     }
 
     /// <summary>
-    /// Primary phosphor green text (default terminal color)
+    /// Primary emerald green text (main terminal color)
     /// </summary>
     public static string Primary(string text)
     {
@@ -74,7 +77,23 @@ public class DT_Theme : UdonSharpBehaviour
     }
 
     /// <summary>
-    /// Dimmed green text (secondary information)
+    /// Structure color text (borders, inactive elements)
+    /// </summary>
+    public static string Struct(string text)
+    {
+        return Colorize(text, COLOR_STRUCT);
+    }
+
+    /// <summary>
+    /// Highlight mint text (active selections, headers)
+    /// </summary>
+    public static string Highlight(string text)
+    {
+        return Colorize(text, COLOR_HIGHLIGHT);
+    }
+
+    /// <summary>
+    /// Dim dark teal text (secondary information, help text)
     /// </summary>
     public static string Dim(string text)
     {
@@ -90,19 +109,11 @@ public class DT_Theme : UdonSharpBehaviour
     }
 
     /// <summary>
-    /// Red error text (critical failures)
+    /// Coral red error text (critical failures, glitch effects)
     /// </summary>
     public static string Error(string text)
     {
         return Colorize(text, COLOR_ERROR);
-    }
-
-    /// <summary>
-    /// Cyan link text (selectable items, hyperlinks)
-    /// </summary>
-    public static string Link(string text)
-    {
-        return Colorize(text, COLOR_LINK);
     }
 
     /// <summary>

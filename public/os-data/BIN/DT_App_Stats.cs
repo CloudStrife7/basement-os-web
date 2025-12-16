@@ -2,6 +2,7 @@ using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
+using LowerLevel.Achievements;
 
 /// <summary>
 /// BASEMENT OS STATS APPLICATION (v2.1)
@@ -35,10 +36,13 @@ public class DT_App_Stats : UdonSharpBehaviour
 
     [Header("--- Data Sources ---")]
     [Tooltip("Achievement manager for player stats")]
-    [SerializeField] private UdonSharpBehaviour achievementDataManager;
+    [SerializeField] private AchievementDataManager achievementDataManager;
 
     [Tooltip("Core reference for navigation")]
     [SerializeField] private UdonSharpBehaviour coreReference;
+
+    [Tooltip("Shell app to return to on LEFT key")]
+    [SerializeField] private UdonSharpBehaviour shellApp;
 
     // =================================================================
     // DISPLAY STATE
@@ -93,6 +97,7 @@ public class DT_App_Stats : UdonSharpBehaviour
         scrollOffset = 0;
         CachePlayerData();
         GenerateDisplay();
+        PushDisplayToCore();
     }
 
     public void OnAppClose()
@@ -107,11 +112,28 @@ public class DT_App_Stats : UdonSharpBehaviour
 
     public void OnInput()
     {
-        if (inputKey == "LEFT" || inputKey == "ACCEPT")
+        if (inputKey == "LEFT")
         {
-            // Go back handled by core
+            // Return to Shell menu
+            if (Utilities.IsValid(coreReference) && Utilities.IsValid(shellApp))
+            {
+                coreReference.SetProgramVariable("nextProcess", shellApp);
+                coreReference.SendCustomEvent("LoadNextProcess");
+            }
         }
         inputKey = "";
+    }
+
+    /// <summary>
+    /// Push display content to DT_Core for rendering
+    /// </summary>
+    private void PushDisplayToCore()
+    {
+        if (Utilities.IsValid(coreReference))
+        {
+            coreReference.SetProgramVariable("contentBuffer", GetDisplayContent());
+            coreReference.SendCustomEvent("RefreshDisplay");
+        }
     }
 
     // =================================================================
@@ -132,14 +154,14 @@ public class DT_App_Stats : UdonSharpBehaviour
 
         if (Utilities.IsValid(achievementDataManager))
         {
-            object visits = achievementDataManager.GetProgramVariable("totalVisits");
-            if (visits != null) totalVisits = (int)visits;
-
-            object time = achievementDataManager.GetProgramVariable("timePlayedMinutes");
-            if (time != null) timePlayedHours = (float)time / 60f;
-
-            object score = achievementDataManager.GetProgramVariable("gamerScore");
-            if (score != null) currentGamerScore = (int)score;
+            // Use typed reference and public getter methods
+            totalVisits = achievementDataManager.GetPlayerVisits(playerName);
+            
+            // GetPlayerTotalTime returns seconds, convert to hours
+            float totalTimeSeconds = achievementDataManager.GetPlayerTotalTime(playerName);
+            timePlayedHours = totalTimeSeconds / 3600f;
+            
+            currentGamerScore = achievementDataManager.GetPlayerTotalPoints(playerName);
         }
         else
         {
@@ -190,37 +212,26 @@ public class DT_App_Stats : UdonSharpBehaviour
         totalLines = 0;
 
         // Header
-        AddLine(" ╔══════════════════════════════════════════════════════════════════════════════╗");
-        AddLine(" ║  PERSONAL STATISTICS                                                         ║");
-        AddLine(" ╠══════════════════════════════════════════════════════════════════════════════╣");
-        AddLine(" ║                                                                              ║");
+        AddLine(" PERSONAL STATISTICS");
+        AddLine(" ────────────────────────────────────────────────────────────────────────────");
 
         // Player info
-        string playerLine = " ║  Player: " + PadRight(playerName, 28) + "Rank: " + PadRight(playerRank, 24) + "║";
-        AddLine(playerLine);
+        AddLine(" Player: " + playerName + "     Rank: " + playerRank);
+        AddLine(" Total Visits: " + totalVisits.ToString() + "     Time Played: " + FormatPlayTime(timePlayedHours));
+        AddLine("");
 
-        string visitsText = "Total Visits: " + totalVisits.ToString();
-        string timeText = "Time Played: " + FormatPlayTime(timePlayedHours);
-        AddLine(" ║  " + PadRight(visitsText, 34) + PadRight(timeText, 42) + "║");
-
-        AddLine(" ║                                                                              ║");
-        AddLine(" ║  ACHIEVEMENT PROGRESS                                                        ║");
-        AddLine(" ║  ────────────────────────────────────────────────────────────────────────    ║");
-
-        // Achievement progress bars
+        // Achievement progress
+        AddLine(" ACHIEVEMENTS");
         for (int i = 0; i < achievementCount; i++)
         {
             string achievementLine = GenerateAchievementLine(i);
             AddLine(achievementLine);
         }
 
-        AddLine(" ║                                                                              ║");
-
-        // Gamerscore
-        string gamerscoreText = "Gamerscore: " + currentGamerScore.ToString() + "G / " + maxGamerScore.ToString() + "G";
-        AddLine(" ║  " + PadRight(gamerscoreText, 74) + "║");
-
-        AddLine(" ╚══════════════════════════════════════════════════════════════════════════════╝");
+        AddLine("");
+        AddLine(" Gamerscore: " + currentGamerScore.ToString() + "G / " + maxGamerScore.ToString() + "G");
+        AddLine("");
+        AddLine(" [A] Back");
     }
 
     private string GenerateAchievementLine(int index)
@@ -232,9 +243,9 @@ public class DT_App_Stats : UdonSharpBehaviour
         string bar = GenerateProgressBar(progress);
         int percent = (int)(progress * 100.0f);
         string percentText = PadLeft(percent.ToString(), 3) + "%";
-        string status = complete ? "COMPLETE" : "";
+        string status = complete ? "[DONE]" : "";
 
-        string line = " ║  " + PadRightWithDots(name, 20) + bar + "  " + percentText + "  " + PadRight(status, 18) + "║";
+        string line = "   " + PadRight(name, 18) + bar + " " + percentText + " " + status;
         return line;
     }
 

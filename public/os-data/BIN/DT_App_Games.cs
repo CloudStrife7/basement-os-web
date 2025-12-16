@@ -57,6 +57,9 @@ public class DT_App_Games : UdonSharpBehaviour
     [Tooltip("Reference to DT_Core")]
     [SerializeField] private UdonSharpBehaviour coreReference;
 
+    [Tooltip("Shell app to return to on LEFT key")]
+    [SerializeField] private UdonSharpBehaviour shellApp;
+
     [Tooltip("High scores")]
     [SerializeField] private int[] highScores;
 
@@ -75,6 +78,7 @@ public class DT_App_Games : UdonSharpBehaviour
 
     public void OnAppOpen()
     {
+        Debug.Log("[DT_App_Games] OnAppOpen called");
         selectedIndex = 0;
         isGameRunning = false;
         activeGameIndex = -1;
@@ -83,6 +87,11 @@ public class DT_App_Games : UdonSharpBehaviour
         {
             if (gameObjects != null) highScores = new int[gameObjects.Length];
         }
+        
+        Debug.Log("[DT_App_Games] gameObjects count: " + (gameObjects != null ? gameObjects.Length.ToString() : "NULL"));
+        Debug.Log("[DT_App_Games] coreReference valid: " + Utilities.IsValid(coreReference).ToString());
+        
+        PushDisplayToCore();
     }
 
     public void OnAppClose()
@@ -105,7 +114,16 @@ public class DT_App_Games : UdonSharpBehaviour
 
         if (inputKey == "UP") NavigateUp();
         else if (inputKey == "DOWN") NavigateDown();
-        else if (inputKey == "ACCEPT") LaunchSelectedGame();
+        else if (inputKey == "ACCEPT" || inputKey == "RIGHT") LaunchSelectedGame();
+        else if (inputKey == "LEFT")
+        {
+            // Return to Shell menu
+            if (Utilities.IsValid(coreReference) && Utilities.IsValid(shellApp))
+            {
+                coreReference.SetProgramVariable("nextProcess", shellApp);
+                coreReference.SendCustomEvent("LoadNextProcess");
+            }
+        }
 
         inputKey = "";
     }
@@ -229,6 +247,18 @@ public class DT_App_Games : UdonSharpBehaviour
         }
 
         return output;
+    }
+
+    /// <summary>
+    /// Push display content to DT_Core for rendering
+    /// </summary>
+    private void PushDisplayToCore()
+    {
+        if (Utilities.IsValid(coreReference))
+        {
+            coreReference.SetProgramVariable("contentBuffer", GetDisplayContent());
+            coreReference.SendCustomEvent("RefreshDisplay");
+        }
     }
 
     // =================================================================
