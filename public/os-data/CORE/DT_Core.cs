@@ -61,6 +61,7 @@ public class DT_Core : UdonSharpBehaviour
     [HideInInspector] public string queuePlayerName = "";
     [HideInInspector] public string queueAchievementTitle = "";
     [HideInInspector] public int queuePoints = 0;
+    [HideInInspector] public bool queueIsFirstTime = false;
 
     // =================================================================
     // CORE STATE
@@ -486,6 +487,29 @@ public class DT_Core : UdonSharpBehaviour
         ticker.AddMessage(message);
 
         Debug.Log("[DT_Core] Achievement ticker: " + message);
+    }
+
+    /// <summary>
+    /// Called by NotificationEventHub when a player joins
+    /// Adds the login message to the scrolling ticker
+    /// </summary>
+    public void QueueOnlineNotificationEvent()
+    {
+        if (!Utilities.IsValid(ticker)) return;
+
+        string message = "";
+        if (queueIsFirstTime)
+        {
+            message = queuePlayerName + " joined for the FIRST TIME!";
+        }
+        else
+        {
+            message = queuePlayerName + " has entered the basement";
+        }
+
+        ticker.AddMessage(message);
+
+        Debug.Log("[DT_Core] Login ticker: " + message);
     }
 
     private void UpdatePromptDisplay()
