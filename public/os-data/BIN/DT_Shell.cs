@@ -249,13 +249,13 @@ public class DT_Shell : UdonSharpBehaviour
     {
         string output = "";
 
-        // Header: Current directory
-        output = output + " C:\\BASEMENT\\MENU\n";
+        // Header: Current directory (primary color)
+        output = output + " <color=" + COLOR_PRIMARY + ">C:\\BASEMENT\\MENU</color>\n";
         output = output + "\n";
 
-        // Column headers
-        output = output + "   TYPE     NAME             DESCRIPTION\n";
-        output = output + "   ----     ------------     ---------------------------------------\n";
+        // Column headers (dim color for structure)
+        output = output + "   <color=" + COLOR_DIM + ">TYPE     NAME             DESCRIPTION</color>\n";
+        output = output + "   <color=" + COLOR_DIM + ">----     ------------     ---------------------------------------</color>\n";
 
         // Menu items
         if (menuItemCount > 0)
@@ -280,15 +280,17 @@ public class DT_Shell : UdonSharpBehaviour
     {
         string line = "";
 
-        // Cursor indicator
+        // Cursor indicator and line color
         if (index == cursorIndex)
         {
+            // Highlighted line (cursor selected)
             line = line + " <color=" + COLOR_HIGHLIGHT + ">";
             line = line + ">";
         }
         else
         {
-            line = line + "  ";
+            // Normal line (primary color)
+            line = line + " <color=" + COLOR_PRIMARY + "> ";
         }
 
         // Item type (padded to 8 chars)
@@ -299,15 +301,17 @@ public class DT_Shell : UdonSharpBehaviour
         string itemName = GetItemName(index);
         line = line + " " + PadRight(itemName, 16);
 
-        // Description
+        // Description (truncate to fit remaining space)
+        // Available: 80 - 2 (cursor+space) - 1 (space) - 8 (type) - 1 (space) - 16 (name) - 1 (space) - 8 (</color>) = 43 chars
         string itemDesc = GetItemDescription(index);
+        if (itemDesc.Length > 43)
+        {
+            itemDesc = itemDesc.Substring(0, 40) + "...";
+        }
         line = line + " " + itemDesc;
 
-        // Close color tag if cursor line
-        if (index == cursorIndex)
-        {
-            line = line + "</color>";
-        }
+        // Close color tag
+        line = line + "</color>";
 
         line = line + "\n";
 

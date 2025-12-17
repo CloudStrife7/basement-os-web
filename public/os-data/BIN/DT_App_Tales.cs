@@ -169,7 +169,7 @@ public class DT_App_Tales : UdonSharpBehaviour
         string output = "";
 
         output = output + " *** STORY LOADED: \"The Basement\" (Chapter 1) ***\n\n";
-        output = output + WrapText(storyTexts[currentNode], 70) + "\n\n";
+        output = output + WrapText(storyTexts[currentNode], 78) + "\n\n";
         output = output + " WHAT DO YOU DO?\n\n";
 
         int choiceCount = GetChoiceCount(currentNode);
@@ -234,7 +234,7 @@ public class DT_App_Tales : UdonSharpBehaviour
 
     private string WrapText(string text, int maxWidth)
     {
-        if (text.Length <= maxWidth) return " " + text;
+        if (text.Length <= maxWidth) return DT_Format.EnforceLine80(" " + text);
 
         string result = "";
         string[] paragraphs = text.Split('\n');
@@ -256,12 +256,14 @@ public class DT_App_Tales : UdonSharpBehaviour
                 }
                 else
                 {
-                    result = result + currentLine + "\n";
+                    // Pad line to 80 chars before adding newline
+                    result = result + DT_Format.EnforceLine80(currentLine) + "\n";
                     currentLine = " " + word;
                 }
             }
 
-            if (currentLine != " ") result = result + currentLine;
+            // Pad final line to 80 chars
+            if (currentLine != " ") result = result + DT_Format.EnforceLine80(currentLine);
             if (p < paragraphs.Length - 1) result = result + "\n";
         }
 

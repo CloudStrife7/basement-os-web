@@ -342,7 +342,7 @@ public class DT_App_GitHub : UdonSharpBehaviour
 
             if (line.Length <= terminalWidth)
             {
-                tempLines[lineCount] = line;
+                tempLines[lineCount] = DT_Format.EnforceLine80(line);
                 lineCount++;
             }
             else
@@ -352,7 +352,7 @@ public class DT_App_GitHub : UdonSharpBehaviour
                 {
                     int remaining = line.Length - pos;
                     int chunkSize = remaining < terminalWidth ? remaining : terminalWidth;
-                    tempLines[lineCount] = line.Substring(pos, chunkSize);
+                    tempLines[lineCount] = DT_Format.EnforceLine80(line.Substring(pos, chunkSize));
                     lineCount++;
                     pos = pos + chunkSize;
                 }

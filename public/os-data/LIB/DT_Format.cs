@@ -331,4 +331,101 @@ public class DT_Format : UdonSharpBehaviour
 
         return result;
     }
+
+    // =================================================================
+    // WIDTH ENFORCEMENT (80-Column Grid Compliance)
+    // =================================================================
+
+    /// <summary>
+    /// Ensures a line is exactly SCREEN_WIDTH (80) characters.
+    /// Truncates if too long, pads with spaces if too short.
+    /// Handles TextMeshPro color tags correctly.
+    /// </summary>
+    /// <param name="line">Line to enforce</param>
+    /// <returns>Exactly 80-character line</returns>
+    public static string EnforceLine80(string line)
+    {
+        if (line == null) line = "";
+
+        // Strip any existing color tags for width calculation
+        string plainText = StripColorTags(line);
+
+        // If line is too long, truncate
+        if (plainText.Length > SCREEN_WIDTH)
+        {
+            line = line.Substring(0, SCREEN_WIDTH);
+        }
+        // If line is too short, pad with spaces
+        else if (plainText.Length < SCREEN_WIDTH)
+        {
+            int spacesNeeded = SCREEN_WIDTH - plainText.Length;
+            for (int i = 0; i < spacesNeeded; i++)
+            {
+                line = line + " ";
+            }
+        }
+
+        return line;
+    }
+
+    /// <summary>
+    /// Generates an 80-character separator line using double-line borders
+    /// </summary>
+    /// <returns>String of 80 ═ characters</returns>
+    public static string GenerateSeparator80()
+    {
+        return new string(BORDER_HORIZONTAL, SCREEN_WIDTH);
+    }
+
+    /// <summary>
+    /// Strips TextMeshPro color tags for accurate width measurement.
+    /// Removes &lt;color=#XXXXXX&gt; and &lt;/color&gt; tags.
+    /// </summary>
+    /// <param name="text">Text with possible color tags</param>
+    /// <returns>Plain text without color tags</returns>
+    public static string StripColorTags(string text)
+    {
+        if (string.IsNullOrEmpty(text)) return "";
+
+        string result = text;
+
+        // Remove <color=#XXXXXX> tags
+        // UdonSharp doesn't support Regex, so use simple string operations
+        while (result.Contains("<color="))
+        {
+            int startIdx = result.IndexOf("<color=");
+            int endIdx = result.IndexOf(">", startIdx);
+            if (endIdx > startIdx)
+            {
+                result = result.Substring(0, startIdx) +
+                         result.Substring(endIdx + 1);
+            }
+            else break;
+        }
+
+        // Remove </color> tags
+        while (result.Contains("</color>"))
+        {
+            int startIdx = result.IndexOf("</color>");
+            result = result.Substring(0, startIdx) +
+                     result.Substring(startIdx + 8);
+        }
+
+        // Remove <b> and </b> tags (if present)
+        while (result.Contains("<b>"))
+        {
+            int startIdx = result.IndexOf("<b>");
+            result = result.Substring(0, startIdx) +
+                     result.Substring(startIdx + 3);
+        }
+
+        while (result.Contains("</b>"))
+        {
+            int startIdx = result.IndexOf("</b>");
+            result = result.Substring(0, startIdx) +
+                     result.Substring(startIdx + 4);
+        }
+
+        return result;
+    }
 }

@@ -213,7 +213,7 @@ public class DT_App_Stats : UdonSharpBehaviour
 
         // Header
         AddLine(" PERSONAL STATISTICS");
-        AddLine(" ────────────────────────────────────────────────────────────────────────────");
+        AddLine(DT_Format.GenerateSeparator80());
 
         // Player info
         AddLine(" Player: " + playerName + "     Rank: " + playerRank);

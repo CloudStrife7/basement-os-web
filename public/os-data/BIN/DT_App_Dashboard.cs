@@ -267,9 +267,18 @@ public class DT_App_Dashboard : UdonSharpBehaviour
 
     private string FormatTwoColumnLine(string leftText, string rightText)
     {
+        // Truncate if too long
+        if (leftText.Length > LEFT_COL_WIDTH)
+            leftText = leftText.Substring(0, LEFT_COL_WIDTH);
+        if (rightText.Length > RIGHT_COL_WIDTH)
+            rightText = rightText.Substring(0, RIGHT_COL_WIDTH);
+
+        // Pad left column to exact width
         string paddedLeft = PadRight(leftText, LEFT_COL_WIDTH);
-        string gap = "    ";
-        return paddedLeft + gap + rightText;
+        string gap = "    "; // 4 chars
+
+        // Build line: 38 + 4 + 38 = 80
+        return paddedLeft + gap + PadRight(rightText, RIGHT_COL_WIDTH);
     }
 
     private string PadRight(string text, int maxWidth)

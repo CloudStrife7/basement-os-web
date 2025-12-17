@@ -47,6 +47,21 @@ public class DT_Core : UdonSharpBehaviour
     [Tooltip("The first program to load (e.g. DT_Shell in /BIN/)")]
     [SerializeField] private UdonSharpBehaviour bootProcess;
 
+    [Header("--- Ticker ---")]
+    [Tooltip("RSS Ticker component for scrolling messages")]
+    [SerializeField] private DT_Ticker ticker;
+
+    [Header("--- Cache Manager ---")]
+    [Tooltip("Cache manager for DateTime operations")]
+    [SerializeField] private DT_CacheManager cacheManager;
+
+    // =================================================================
+    // NOTIFICATION INTEGRATION (for NotificationEventHub)
+    // =================================================================
+    [HideInInspector] public string queuePlayerName = "";
+    [HideInInspector] public string queueAchievementTitle = "";
+    [HideInInspector] public int queuePoints = 0;
+
     // =================================================================
     // CORE STATE
     // =================================================================
@@ -101,14 +116,18 @@ public class DT_Core : UdonSharpBehaviour
     private void BootSequence()
     {
         Debug.Log("[DT_Core] ===== BOOT SEQUENCE START =====");
-        
+
+        // Initialize cache manager
+        if (Utilities.IsValid(cacheManager))
+        {
+            cacheManager.InitializeCaches();
+        }
+
         // Set initial flavor text
         SetFooterStatus("BIOS Check... OK. Initializing Core...");
-        
-        // Initialize UI Buffers with box drawing header
-        headerLine = "╔══════════════════════════════════════════════════════════════════════════════╗\n" +
-                     "║ BASEMENT OS // VERSION 2                                            [ONLINE] ║\n" +
-                     "╚══════════════════════════════════════════════════════════════════════════════╝";
+
+        // Initialize UI Buffers with dynamic header
+        UpdateHeaderTime(); // Set initial time/date
         rssLine = ""; // Reserved for RSS ticker with [PlayerName]
         promptLine = @"C:\BASEMENT> _";
 
@@ -131,6 +150,22 @@ public class DT_Core : UdonSharpBehaviour
     // =================================================================
     void Update()
     {
+        // Update cache manager time (once per second)
+        if (Utilities.IsValid(cacheManager))
+        {
+            cacheManager.UpdateTimeCache();
+        }
+
+        // Update ticker scroll
+        if (Utilities.IsValid(ticker))
+        {
+            ticker.UpdateTick(Time.deltaTime);
+            rssLine = ticker.GetVisibleText();
+        }
+
+        // Update header time display (once per second)
+        UpdateHeaderTime();
+
         // Cursor Blink (Visual Only)
         if (Time.time - lastBlinkTime > CURSOR_BLINK_RATE)
         {
@@ -212,8 +247,8 @@ public class DT_Core : UdonSharpBehaviour
         // 5. Update Status (Random Flavor Text)
         int flavorIndex = Random.Range(0, flavorTexts.Length);
         SetFooterStatus(flavorTexts[flavorIndex]);
-        
-        // 6. Update Path with current app name
+
+        // 6. Update Path with current app name (enforce 80-char width)
         promptLine = "C:\\BASEMENT\\" + currentAppName + "> ";
         RefreshDisplay();
     }
@@ -352,8 +387,8 @@ public class DT_Core : UdonSharpBehaviour
 
     public void SetFooterStatus(string status)
     {
-        if (status.Length > SCREEN_WIDTH) status = status.Substring(0, SCREEN_WIDTH - 3) + "...";
-        footerLine = status;
+        // DT_Format.EnforceLine80 will handle truncation and padding
+        footerLine = DT_Format.EnforceLine80(status);
         RefreshDisplay();
     }
 
@@ -364,6 +399,93 @@ public class DT_Core : UdonSharpBehaviour
     {
         contentBuffer = content;
         RefreshDisplay();
+    }
+
+    /// <summary>
+    /// Normalizes multi-line content to 80 chars per line
+    /// </summary>
+    private string NormalizeMultiLineContent(string content)
+    {
+        if (string.IsNullOrEmpty(content)) return "";
+
+        string[] lines = content.Split('\n');
+        string result = "";
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            if (i > 0) result = result + "\n";
+            result = result + DT_Format.EnforceLine80(lines[i]);
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Updates the header line with current time and date
+    /// </summary>
+    private void UpdateHeaderTime()
+    {
+        string timeStr = "00:00";
+        string dateStr = "00.00.0000";
+
+        if (Utilities.IsValid(cacheManager))
+        {
+            string fullTime = cacheManager.GetCachedTime();
+            // Extract HH:mm from "h:mm:ss tt" format
+            if (!string.IsNullOrEmpty(fullTime) && fullTime.Length >= 5)
+            {
+                // Parse time to get hours and minutes
+                int spaceIdx = fullTime.IndexOf(" ");
+                if (spaceIdx > 0)
+                {
+                    string timePart = fullTime.Substring(0, spaceIdx);
+                    int colonIdx = timePart.IndexOf(":");
+                    if (colonIdx > 0 && timePart.Length > colonIdx + 2)
+                    {
+                        timeStr = timePart.Substring(0, colonIdx + 3); // HH:mm
+                    }
+                }
+            }
+            string rawDate = cacheManager.GetCachedDate();
+            // Convert MM.dd.yyyy to MM/dd/yyyy
+            if (!string.IsNullOrEmpty(rawDate))
+            {
+                dateStr = rawDate.Replace(".", "/");
+            }
+        }
+
+        // Format: "BASEMENT OS // VERSION 2                         [MM/dd/yyyy] [HH:mm] [ONLINE]"
+        // Total length must be 80 chars
+        string baseText = "BASEMENT OS // VERSION 2";
+        string status = "[ONLINE]";
+        string date = "[" + dateStr + "]";
+        string time = "[" + timeStr + "]";
+
+        // Calculate spacing: 80 - baseText - date - time - status - spaces between
+        int usedSpace = baseText.Length + date.Length + time.Length + status.Length + 3; // 3 spaces between elements
+        int paddingNeeded = SCREEN_WIDTH - usedSpace;
+
+        string padding = "";
+        for (int i = 0; i < paddingNeeded; i++)
+        {
+            padding = padding + " ";
+        }
+
+        headerLine = baseText + padding + date + " " + time + " " + status;
+    }
+
+    /// <summary>
+    /// Called by NotificationEventHub when an achievement is earned
+    /// Adds the achievement message to the scrolling ticker
+    /// </summary>
+    public void QueueAchievementNotificationEvent()
+    {
+        if (!Utilities.IsValid(ticker)) return;
+
+        string message = queuePlayerName + " earned " + queueAchievementTitle + " (" + queuePoints.ToString() + "G)";
+        ticker.AddMessage(message);
+
+        Debug.Log("[DT_Core] Achievement ticker: " + message);
     }
 
     private void UpdatePromptDisplay()
@@ -379,17 +501,25 @@ public class DT_Core : UdonSharpBehaviour
     {
         if (!Utilities.IsValid(terminalScreen)) return;
 
-        // Assemble Screen Buffer
-        string separator = new string('═', SCREEN_WIDTH);
-        
-        terminalScreen.text = headerLine + "\n" +
+        // Generate 80-char separator
+        string separator = DT_Format.GenerateSeparator80();
+
+        // Enforce 80-char width on all dynamic content
+        string normalizedHeader = NormalizeMultiLineContent(headerLine);
+        string normalizedRSS = DT_Format.EnforceLine80(rssLine);
+        string normalizedContent = NormalizeMultiLineContent(contentBuffer);
+        string normalizedFooter = DT_Format.EnforceLine80(footerLine);
+        string normalizedPrompt = DT_Format.EnforceLine80(promptLine + (isCursorVisible ? "_" : " "));
+
+        // Assemble screen buffer with guaranteed 80-char lines
+        terminalScreen.text = normalizedHeader + "\n" +
                               separator + "\n" +
-                              rssLine + "\n" +
+                              normalizedRSS + "\n" +
                               separator + "\n" +
-                              contentBuffer + "\n" +
+                              normalizedContent + "\n" +
                               separator + "\n" +
-                              footerLine + "\n" +
-                              promptLine + (isCursorVisible ? "_" : " ");
+                              normalizedFooter + "\n" +
+                              normalizedPrompt;
     }
 
     // =================================================================
