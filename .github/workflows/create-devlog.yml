@@ -1,0 +1,97 @@
+name: Create Devlog from Issue
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  create-devlog:
+    if: github.event.label.name == 'devlog'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Parse issue and create devlog
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body;
+            
+            // Parse the issue body (GitHub form format)
+            const getField = (name) => {
+              const regex = new RegExp(`### ${name}\\s*\\n\\s*([\\s\\S]*?)(?=\\n###|$)`, 'i');
+              const match = body.match(regex);
+              return match ? match[1].trim() : '';
+            };
+            
+            const postType = getField('Post Type') || 'update';
+            const description = getField('Short Description');
+            const content = getField('Post Content');
+            
+            // Extract title from issue title (remove [Devlog] prefix)
+            const title = issue.title.replace(/^\[Devlog\]\s*/i, '').trim();
+            
+            // Generate filename with today's date
+            const today = new Date().toISOString().split('T')[0];
+            const slug = title
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-|-$/g, '');
+            const filename = `${today}-${slug}.md`;
+            
+            // Build frontmatter
+            let frontmatter = `---
+            title: "${title.replace(/"/g, '\\"')}"
+            date: ${today}
+            type: ${postType}`;
+            
+            if (description) {
+              frontmatter += `\ndescription: "${description.replace(/"/g, '\\"')}"`;
+            }
+            
+            frontmatter += `\n---`;
+            
+            // Clean up indentation
+            frontmatter = frontmatter.split('\n').map(line => line.trim()).join('\n');
+            
+            const fileContent = `${frontmatter}\n${content}\n`;
+            
+            // Create the file
+            const { data: ref } = await github.rest.git.getRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'heads/main'
+            });
+            
+            await github.rest.repos.createOrUpdateFileContents({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              path: `src/content/devlog/${filename}`,
+              message: `📝 New devlog: ${title}`,
+              content: Buffer.from(fileContent).toString('base64'),
+              branch: 'main'
+            });
+            
+            // Close the issue with a comment
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: `✅ **Devlog published!**\n\nYour post has been created as \`${filename}\` and will be live shortly after the site rebuilds.\n\n[View on site](https://${context.repo.owner}.github.io/${context.repo.repo}/devlog/${today}-${slug})`
+            });
+            
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              state: 'closed'
+            });
+            
+            console.log(`Created devlog: ${filename}`);

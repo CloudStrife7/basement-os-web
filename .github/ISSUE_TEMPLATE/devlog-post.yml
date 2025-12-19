@@ -1,0 +1,37 @@
+name: "📝 New Devlog Post"
+description: Submit a new devlog entry to the site
+title: "[Devlog] "
+labels: ["devlog"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Post Type
+      description: What kind of post is this?
+      options:
+        - update
+        - milestone
+        - meta
+    validations:
+      required: true
+
+  - type: input
+    id: description
+    attributes:
+      label: Short Description
+      description: A one-liner summary for previews (optional)
+      placeholder: "e.g., Implemented the new weather system"
+
+  - type: textarea
+    id: content
+    attributes:
+      label: Post Content
+      description: Write your devlog in Markdown. This will be the body of your post.
+      placeholder: |
+        ### What I Did
+        Describe what you worked on...
+
+        ### Why It Matters
+        Explain the significance...
+    validations:
+      required: true
