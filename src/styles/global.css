@@ -334,6 +334,29 @@
     --search-highlight: #e8b84a;
 }
 
+/* BASEMENTOS (Emerald Cyberpunk - from basementos-auto-director) */
+[data-theme="basementos"] {
+    --bg-primary: #050505;
+    --bg-secondary: #0a0a0a;
+    --bg-terminal: #050505;
+    --text-primary: #ecfdf5;
+    --text-secondary: #a7f3d0;
+    --text-dim: #6ee7b7;
+    --accent-primary: #10b981;
+    --accent-secondary: #34d399;
+    --accent-alert: #f59e0b;
+    --accent-error: #ef4444;
+    --accent-link: #6ee7b7;
+    --accent-milestone: #10b981;
+    --border-color: #064e3b;
+    --scanline-color: rgba(16, 185, 129, 0.02);
+    --cursor-color: #10b981;
+    --selection-bg: rgba(16, 185, 129, 0.3);
+    --selection-text: #ecfdf5;
+    --tooltip-bg: #0a0a0a;
+    --search-highlight: #34d399;
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    BASE STYLES
 ═══════════════════════════════════════════════════════════════════ */
