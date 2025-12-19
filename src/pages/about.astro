@@ -117,7 +117,8 @@ import TerminalShell from '../components/TerminalShell.astro';
 
 <script>
 // VRChat Stats Fetcher with Caching
-document.addEventListener("DOMContentLoaded", function() {
+// Using astro:page-load for View Transitions support (fires on initial load AND navigation)
+document.addEventListener("astro:page-load", function() {
     const worldId = "wrld_7302897c-be0f-4037-ac67-76f0ea065c2b";
     const apiKey = "JlE5Jldo5Jibnk5O5hTx6XVqsJyIkZVd";
     const CACHE_KEY = "vrchat-world-stats";

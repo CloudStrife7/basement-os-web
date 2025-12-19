@@ -72,8 +72,8 @@ import TerminalShell from '../components/TerminalShell.astro';
 
 
 <script>
-    // Stats Fetcher Logic
-    document.addEventListener("DOMContentLoaded", function() {
+    // Stats Fetcher Logic - using astro:page-load for View Transitions support
+    document.addEventListener("astro:page-load", function() {
     const worldId = "wrld_7302897c-be0f-4037-ac67-76f0ea065c2b";
     const apiKey = "JlE5Jldo5Jibnk5O5hTx6XVqsJyIkZVd";
 
