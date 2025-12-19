@@ -221,13 +221,14 @@ const { activeSection = 'intro' } = Astro.props;
         if (themeSelect) themeSelect.value = theme;
       }
 
+      // Apply saved theme immediately on page load
+      const savedTheme = localStorage.getItem('basement-os-theme') || 'synthwave';
+      setTheme(savedTheme);
+
       if (themeSelect) {
         themeSelect.addEventListener('change', (e) => {
           setTheme((e.target as HTMLSelectElement).value);
         });
-        // Set initial value
-        const saved = localStorage.getItem('basement-os-theme') || 'synthwave';
-        themeSelect.value = saved;
       }
 
       // Clock

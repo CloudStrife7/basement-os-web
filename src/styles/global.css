@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
 
+/* Orbitron font for BasementOS theme */
+@font-face {
+    font-family: 'Orbitron';
+    src: url('/fonts/Orbitron-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    THEME ENGINE - CSS Variables (HumanLayer-style)
    Default: High Contrast (black bg, white text, green highlights)
@@ -8,6 +17,7 @@
 :root {
     --font-mono: 'JetBrains Mono', 'VT323', 'Courier New', monospace;
     --font-display: 'VT323', monospace;
+    --font-orbitron: 'Orbitron', sans-serif;
     --screen-width: 80ch;
     --transition-speed: 0.3s;
 }
@@ -1699,4 +1709,215 @@ body::before {
         grid-template-columns: 1fr;
         gap: 20px;
     }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BASEMENTOS THEME OVERRIDES
+   Emerald Cyberpunk aesthetic with Orbitron font
+═══════════════════════════════════════════════════════════════════ */
+
+/* Title font override - Orbitron */
+[data-theme="basementos"] .terminal-title {
+    font-family: var(--font-orbitron);
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #6ee7b7;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+/* Terminal container - dark with emerald glow */
+[data-theme="basementos"] .terminal {
+    border: 1px solid #064e3b;
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.1), inset 0 0 60px rgba(0, 0, 0, 0.5);
+    border-radius: 0;
+}
+
+/* Header bar styling */
+[data-theme="basementos"] .terminal-header {
+    background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+    border-bottom: 1px solid #064e3b;
+}
+
+/* Navigation buttons - cyberpunk style */
+[data-theme="basementos"] .nav-btn {
+    background: transparent;
+    border: 1px solid #064e3b;
+    color: #6ee7b7;
+    border-radius: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+}
+
+[data-theme="basementos"] .nav-btn:hover,
+[data-theme="basementos"] .nav-btn.active {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: #10b981;
+    color: #ecfdf5;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+[data-theme="basementos"] .nav-btn .type {
+    color: #10b981;
+}
+
+/* Section headers with Orbitron */
+[data-theme="basementos"] .section-header,
+[data-theme="basementos"] .routing-header {
+    font-family: var(--font-orbitron);
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #10b981;
+    border-bottom: 1px solid #064e3b;
+}
+
+/* Mission statement / info boxes */
+[data-theme="basementos"] .mission-statement {
+    background: rgba(6, 78, 59, 0.1);
+    border: 1px solid #064e3b;
+    border-left: 3px solid #10b981;
+    border-radius: 0;
+}
+
+/* Navigation routing boxes */
+[data-theme="basementos"] .nav-routing {
+    background: rgba(6, 78, 59, 0.05);
+    border: 1px solid #064e3b;
+    border-radius: 0;
+}
+
+/* Routing items with cyber styling */
+[data-theme="basementos"] .routing-item {
+    background: transparent;
+    border: 1px solid #064e3b;
+    border-radius: 0;
+    transition: all 0.2s ease;
+}
+
+[data-theme="basementos"] .routing-item:hover {
+    background: rgba(16, 185, 129, 0.05);
+    border-color: #10b981;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+}
+
+[data-theme="basementos"] .routing-item .item-title {
+    font-family: var(--font-orbitron);
+    font-weight: 600;
+    color: #10b981;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Status bar */
+[data-theme="basementos"] .status-bar {
+    background: linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
+    border-top: 1px solid #064e3b;
+}
+
+/* Prompt line */
+[data-theme="basementos"] .prompt {
+    color: #10b981;
+    font-weight: 700;
+}
+
+/* Links */
+[data-theme="basementos"] a.link,
+[data-theme="basementos"] .link {
+    color: #6ee7b7;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+[data-theme="basementos"] a.link:hover,
+[data-theme="basementos"] .link:hover {
+    color: #10b981;
+    border-bottom-color: #10b981;
+    text-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+}
+
+/* Devlog entries */
+[data-theme="basementos"] .devlog-entry {
+    border: 1px solid #064e3b;
+    border-left: 3px solid #10b981;
+    background: rgba(6, 78, 59, 0.05);
+    border-radius: 0;
+}
+
+[data-theme="basementos"] .devlog-entry:hover {
+    border-color: #10b981;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+}
+
+/* TOC headers */
+[data-theme="basementos"] .devlog-toc h3,
+[data-theme="basementos"] .toc-year-header {
+    font-family: var(--font-orbitron);
+    color: #10b981;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Skills and card components */
+[data-theme="basementos"] .skill-card,
+[data-theme="basementos"] .card {
+    background: rgba(6, 78, 59, 0.05);
+    border: 1px solid #064e3b;
+    border-radius: 0;
+    transition: all 0.2s ease;
+}
+
+[data-theme="basementos"] .skill-card:hover,
+[data-theme="basementos"] .card:hover {
+    border-color: #10b981;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+/* Footer */
+[data-theme="basementos"] .terminal-footer {
+    background: #050505;
+    border-top: 1px solid #064e3b;
+}
+
+/* Theme selector dropdown */
+[data-theme="basementos"] .theme-selector select {
+    background: #0a0a0a;
+    border: 1px solid #064e3b;
+    color: #6ee7b7;
+    border-radius: 0;
+}
+
+[data-theme="basementos"] .theme-selector select:focus {
+    outline: 1px solid #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+/* AI Disclosure */
+[data-theme="basementos"] .ai-disclosure {
+    border: 1px solid #064e3b;
+    background: rgba(6, 78, 59, 0.1);
+}
+
+[data-theme="basementos"] .ai-disclosure-header {
+    color: #10b981;
+    font-family: var(--font-orbitron);
+}
+
+/* CRT screen effect kept but with emerald tint */
+[data-theme="basementos"] .terminal::before {
+    background: repeating-linear-gradient(0deg,
+            rgba(16, 185, 129, 0.02),
+            rgba(16, 185, 129, 0.02) 1px,
+            transparent 1px,
+            transparent 2px);
+}
+
+/* Background grid - emerald version */
+[data-theme="basementos"] body::before {
+    background-image:
+        linear-gradient(0deg, transparent 24%, rgba(16, 185, 129, 0.03) 25%, rgba(16, 185, 129, 0.03) 26%, transparent 27%, transparent 74%, rgba(16, 185, 129, 0.03) 75%, rgba(16, 185, 129, 0.03) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(16, 185, 129, 0.03) 25%, rgba(16, 185, 129, 0.03) 26%, transparent 27%, transparent 74%, rgba(16, 185, 129, 0.03) 75%, rgba(16, 185, 129, 0.03) 76%, transparent 77%, transparent);
+    background-size: 50px 50px;
 }
