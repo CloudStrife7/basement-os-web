@@ -4,16 +4,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="BASEMENT OS | INDUSTRIAL MILITARY THEME">
     <div class="terminal-page-container">
-        <!-- Back Button Overlay -->
-        <a href="/" class="back-btn">
-            &lt; DISCONNECT / RETURN TO HOME
-        </a>
-
-        <!-- REMOTE ACCESS TERMINAL - Industrial Military Theme -->
+        <!-- REMOTE ACCESS TERMINAL - 2000s Basement Theme -->
         <div id="terminal-root" class="basement-terminal-container">
+            <!-- Terminal Status Bar (monospace only) -->
+            <div class="terminal-status-bar">
+                <span class="status-left">BASEMENT OS // VERSION 2</span>
+                <span class="status-tagline">Prototype wildly. Rebuild ruthlessly.</span>
+                <span class="status-right">[ONLINE]</span>
+            </div>
+            
             <div class="terminal-screen">CONNECTING TO HOST...</div>
             <div class="scanlines"></div>
         </div>
+        
+        <!-- Back Button -->
+        <a href="/" class="back-btn">
+            &lt; DISCONNECT / RETURN TO HOME
+        </a>
     </div>
 </BaseLayout>
 
@@ -27,38 +34,71 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         justify-content: center;
         min-height: 80vh;
         padding: 20px;
-        background-color: #050505;
+        background-color: #0a0f0d;
+    }
+
+    /* Terminal Status Bar - Monospace Only */
+    .terminal-status-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 12px;
+        margin: -1rem -1rem 1rem -1rem;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px;
+        color: #00FFCC;
+        background: rgba(0, 20, 15, 0.6);
+        border: 1px solid #00FFCC;
+        border-left: 3px solid #00FFCC;
+    }
+
+    .status-left {
+        letter-spacing: 0.05em;
+        flex-shrink: 0;
+    }
+
+    .status-tagline {
+        color: #7a9a90;
+        font-size: 12px;
+        letter-spacing: 0.02em;
+        font-style: italic;
+    }
+
+    .status-right {
+        color: #00FFCC;
+        letter-spacing: 0.05em;
+        flex-shrink: 0;
     }
 
     .back-btn {
-        margin-bottom: 20px;
+        margin-top: 20px;
         padding: 10px 20px;
-        background: #10B981;
-        color: #000;
+        background: transparent;
+        color: #00FFCC;
         font-family: 'JetBrains Mono', monospace;
         text-decoration: none;
-        font-size: 1.2rem;
-        border: 2px solid #10B981;
+        font-size: 0.9rem;
+        border: 1px solid #1a3a30;
         transition: all 0.2s;
     }
 
     .back-btn:hover {
-        background: #000;
-        color: #34D399;
-        box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
-        border-color: #34D399;
+        background: rgba(0, 255, 204, 0.1);
+        color: #00FFCC;
+        box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+        border-color: #00FFCC;
     }
 
-    /* INDUSTRIAL MILITARY THEME - Emerald Color Scheme */
+    /* INDUSTRIAL MILITARY THEME - Teal/Cyan Color Scheme */
     .basement-terminal-container {
         width: 100%;
         max-width: 960px;
         margin: 2rem auto;
-        background: #000;
-        border: 2px solid #064E3B;
+        background: #0a0f0d;
+        border: 1px solid #1a3a30;
         padding: 1rem;
-        box-shadow: 0 0 30px rgba(16, 185, 129, 0.15);
-        border-radius: 4px;
+        box-shadow: 0 0 40px rgba(0, 255, 204, 0.08);
+        border-radius: 2px;
         font-family: 'JetBrains Mono', monospace;
         overflow: hidden;
         position: relative;
@@ -68,7 +108,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         font-size: 14px;
         line-height: 1.4;
         white-space: pre-wrap;
-        color: #10B981; /* Primary Emerald */
+        color: #00FFCC;
         min-height: 600px;
     }
 
@@ -77,8 +117,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         background: linear-gradient(to bottom,
                 rgba(255, 255, 255, 0),
                 rgba(255, 255, 255, 0) 50%,
-                rgba(0, 0, 0, 0.15) 50%,
-                rgba(0, 0, 0, 0.15));
+                rgba(0, 0, 0, 0.1) 50%,
+                rgba(0, 0, 0, 0.1));
         background-size: 100% 4px;
         position: absolute;
         pointer-events: none;

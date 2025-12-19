@@ -1,0 +1,5 @@
+{
+  "name": "BasementOS Auto-Director",
+  "description": "A cyberpunk-themed production manifest generator that converts narratives into ready-to-execute image and video prompts using Gemini.",
+  "requestFramePermissions": []
+}

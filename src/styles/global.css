@@ -1151,6 +1151,33 @@ body::before {
     font-size: 13px;
 }
 
+/* Featured card variant - stands out with accent styling */
+.info-card.featured {
+    border-color: var(--accent-milestone);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
+    position: relative;
+}
+
+.info-card.featured::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-milestone), transparent);
+}
+
+.info-card.featured h3 {
+    color: var(--accent-milestone);
+}
+
+.info-card.featured:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
 .stat-row {
     display: flex;
     justify-content: space-between;

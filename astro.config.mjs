@@ -3,5 +3,8 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://basementos.com',
-  integrations: [sitemap()]
+  integrations: [sitemap()],
+  redirects: {
+    '/businesscards.html': '/businesscards/'
+  }
 });

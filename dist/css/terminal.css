@@ -3,10 +3,10 @@
 
 :root {
     --term-bg: #0a0a0a;
-    --term-text: #33ff33;
-    /* Classic Phosphor Green */
-    --term-dim: #1a5c1a;
-    --term-alert: #ffb000;
+    --term-text: #20b020;
+    /* Softer Phosphor Green - easier on eyes */
+    --term-dim: #156015;
+    --term-alert: #cc9000;
 }
 
 .basement-terminal-container {
@@ -24,12 +24,15 @@
 }
 
 .terminal-screen {
-    font-size: 1.2rem;
-    line-height: 1.2;
+    font-size: 1.4rem;
+    line-height: 1.35;
     white-space: pre-wrap;
     /* Preserve formatting */
     color: var(--term-text);
-    text-shadow: 0 0 4px rgba(51, 255, 51, 0.6);
+    text-shadow: 0 0 2px rgba(51, 255, 51, 0.4);
+    letter-spacing: 0.02em;
+    min-height: 600px;
+    /* Fixed height prevents bouncing */
 }
 
 /* CRT Scanline Effect Overlay */
