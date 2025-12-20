@@ -4,7 +4,7 @@ date: 2025-12-20
 type: update
 description: "Standing up my first NAS and taking ownership of my digital life."
 ---
-I’m migrating my family’s data off cloud services (Google Drive, Dropbox, Google Photos) to local storage.
+I’m migrating my data off cloud services (Google Drive, Dropbox, Google Photos) to local storage.
 
 <img width="512" height="343" alt="Image" src="https://github.com/user-attachments/assets/29eaae8e-f354-473a-8025-0c98b2838a53" />
 
