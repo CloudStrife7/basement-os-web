@@ -95,3 +95,9 @@ jobs:
             });
             
             console.log(`Created devlog: ${filename}`);
+
+      - name: Optimize images
+        uses: calibreapp/image-actions@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          compressOnly: true

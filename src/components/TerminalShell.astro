@@ -114,6 +114,17 @@ const { activeSection = 'intro' } = Astro.props;
   </footer>
 </div>
 
+<!-- Lightbox for devlog images -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">✕ CLOSE</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev">‹</button>
+  <div class="lightbox-content">
+    <img class="lightbox-image" id="lightbox-image" src="" alt="">
+  </div>
+  <button class="lightbox-nav lightbox-next" id="lightbox-next">›</button>
+  <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
+</div>
+
 <script>
   // Boot Sequence Configuration
   const BOOT_SEQUENCE = [
@@ -386,6 +397,91 @@ const { activeSection = 'intro' } = Astro.props;
           
           // Slight delay before starting to simulate "loading"
           setTimeout(typeChar, 200);
+      });
+
+      // Lightbox Logic for devlog images
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
+      const lightboxClose = document.getElementById('lightbox-close');
+      const lightboxPrev = document.getElementById('lightbox-prev');
+      const lightboxNext = document.getElementById('lightbox-next');
+      const lightboxCounter = document.getElementById('lightbox-counter');
+      
+      let currentImageIndex = 0;
+      let devlogImages: HTMLImageElement[] = [];
+
+      function openLightbox(index: number) {
+          if (!lightbox || !lightboxImage || devlogImages.length === 0) return;
+          
+          currentImageIndex = index;
+          lightboxImage.src = devlogImages[index].src;
+          lightboxImage.alt = devlogImages[index].alt || 'Devlog image';
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden'; // Prevent scroll
+          updateCounter();
+      }
+
+      function closeLightbox() {
+          if (!lightbox) return;
+          lightbox.classList.remove('active');
+          document.body.style.overflow = '';
+      }
+
+      function showPrevImage() {
+          if (devlogImages.length === 0) return;
+          currentImageIndex = (currentImageIndex - 1 + devlogImages.length) % devlogImages.length;
+          if (lightboxImage) {
+              lightboxImage.src = devlogImages[currentImageIndex].src;
+              lightboxImage.alt = devlogImages[currentImageIndex].alt || 'Devlog image';
+          }
+          updateCounter();
+      }
+
+      function showNextImage() {
+          if (devlogImages.length === 0) return;
+          currentImageIndex = (currentImageIndex + 1) % devlogImages.length;
+          if (lightboxImage) {
+              lightboxImage.src = devlogImages[currentImageIndex].src;
+              lightboxImage.alt = devlogImages[currentImageIndex].alt || 'Devlog image';
+          }
+          updateCounter();
+      }
+
+      function updateCounter() {
+          if (lightboxCounter) {
+              lightboxCounter.textContent = `${currentImageIndex + 1} / ${devlogImages.length}`;
+          }
+      }
+
+      // Collect images from devlog content AND main landing page (crt-screen)
+      devlogImages = Array.from(document.querySelectorAll('.devlog-content img, .crt-screen img')) as HTMLImageElement[];
+      devlogImages.forEach((img, index) => {
+          img.style.cursor = 'pointer'; // Ensure pointer cursor
+          img.addEventListener('click', (e) => {
+              e.preventDefault(); // Prevent anchor links from opening
+              openLightbox(index);
+          });
+      });
+
+      // Event listeners
+      if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+      if (lightboxPrev) lightboxPrev.addEventListener('click', showPrevImage);
+      if (lightboxNext) lightboxNext.addEventListener('click', showNextImage);
+      
+      // Close on background click
+      if (lightbox) {
+          lightbox.addEventListener('click', (e) => {
+              if (e.target === lightbox) closeLightbox();
+          });
+      }
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+          if (!lightbox?.classList.contains('active')) return;
+          
+          if (e.key === 'Escape') closeLightbox();
+          if (e.key === 'ArrowLeft') showPrevImage();
+          if (e.key === 'ArrowRight') showNextImage();
       });
   });
 </script>

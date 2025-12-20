@@ -1541,10 +1541,27 @@ body::before {
     z-index: 10001;
 }
 
-/* Make images clickable */
+/* Devlog images - responsive sizing + clickable */
 .devlog-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
     cursor: pointer;
     transition: opacity 0.2s;
+}
+
+/* Landing page CRT screen images - also lightbox enabled */
+.crt-screen img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.crt-screen img:hover {
+    opacity: 0.9;
+    transform: scale(1.01);
 }
 
 
