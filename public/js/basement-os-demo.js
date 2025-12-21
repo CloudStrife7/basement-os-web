@@ -270,7 +270,7 @@ class BasementOSDemo {
         if (!this.booted) return;
 
         const content = this.getActiveAppContent();
-        const W = 80;
+        const W = 70;
 
         // Build header
         const title = 'BASEMENT OS // VERSION 2';
@@ -280,11 +280,9 @@ class BasementOSDemo {
         // Build ticker
         const tickerContent = ' ' + this.rssLine.substring(0, W - 2);
 
-        // Build footer
+        // Build footer - left aligned
         const cursor = this.isCursorVisible ? '█' : ' ';
-        const prompt = `C:\\BASEMENT>${cursor}`;
-        const help = '[↑/↓] Navigate  [Enter] Select  [Esc] Back';
-        const footerLine = prompt + ' '.repeat(W - prompt.length - help.length) + help;
+        const footerLine = ` C:\\BASEMENT>${cursor}  [↑/↓] Navigate  [Enter] Select  [Esc] Back`;
 
         // Assemble buffer - horizontal borders only
         let buffer = '';
