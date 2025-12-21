@@ -143,7 +143,7 @@ class BasementOSDemo {
     }
 
     startTicker() {
-        const fullTicker = '    BASEMENT OS // LIVE FEED // Welcome to the simulation... System status: ONLINE // Weather: Clear // All systems nominal //    ';
+        const fullTicker = '          -- CloudStrife signed in --          -- xAngelx unlocked: First Steps 10G --          -- Weather: Clear 72°F --          -- Status: ONLINE --          -- NightOwl earned: Night Owl 25G --          -- UPTIME: Eternal --          -- Player1 signed in --          ';
         this.tickerInterval = setInterval(() => {
             this.tickerOffset = (this.tickerOffset + 1) % fullTicker.length;
             this.rssLine = fullTicker.substring(this.tickerOffset) + fullTicker.substring(0, this.tickerOffset);
@@ -290,6 +290,7 @@ class BasementOSDemo {
         let buffer = '';
         buffer += '═'.repeat(W) + '\n';
         buffer += headerContent + '\n';
+        buffer += '═'.repeat(W) + '\n';
         buffer += tickerContent + '\n';
         buffer += '─'.repeat(W) + '\n';
         buffer += content;
