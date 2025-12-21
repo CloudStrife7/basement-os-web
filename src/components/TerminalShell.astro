@@ -55,17 +55,17 @@ const { activeSection = 'intro' } = Astro.props;
       <a href="/links" class={`nav-btn ${activeSection === 'links' ? 'active' : ''}`}>
         <span class="type">&lt;NET&gt;</span> LINKS
       </a>
-      <button class="nav-btn" id="search-toggle">
-        <span class="type">&lt;CMD&gt;</span> SEARCH
+      <button class="nav-btn" id="terminal-toggle">
+        <span class="type">&lt;SSH&gt;</span> TERMINAL
       </button>
     </nav>
 
-    <!-- Search Overlay -->
-    <div class="search-container" id="search-container">
-      <input type="text" class="search-input" id="search-input"
-             placeholder="Search database..."
-             autocomplete="off">
-      <div class="search-results" id="search-results"></div>
+    <!-- Terminal Demo Container (inline, replaces main-content when active) -->
+    <div class="terminal-demo-container" id="terminal-demo" style="display:none">
+      <div class="terminal-demo-screen" id="terminal-demo-root"></div>
+      <div class="terminal-disconnect" id="terminal-disconnect" style="display:none">
+        <span class="disconnect-text">Disconnecting</span><span class="disconnect-dots" id="disconnect-dots"></span>
+      </div>
     </div>
 
     <!-- AI Disclosure -->
@@ -302,79 +302,163 @@ const { activeSection = 'intro' } = Astro.props;
       }
 
 
-      // Search Logic
-      const searchToggle = document.getElementById('search-toggle');
-      const searchContainer = document.getElementById('search-container');
-      const searchInput = document.getElementById('search-input') as HTMLInputElement;
-      const searchResults = document.getElementById('search-results');
+      // Terminal Demo Logic
+      const terminalToggle = document.getElementById('terminal-toggle');
+      const terminalDemo = document.getElementById('terminal-demo');
+      const terminalRoot = document.getElementById('terminal-demo-root');
+      const terminalDisconnect = document.getElementById('terminal-disconnect');
+      const disconnectDots = document.getElementById('disconnect-dots');
+      
+      let terminalInstance: any = null;
+      let originalTheme: string | null = null;
+      let originalActiveBtn: Element | null = null;
+      let isTerminalActive = false;
 
-      if (searchToggle && searchContainer && searchInput) {
-        searchToggle.addEventListener('click', () => {
-            searchContainer.classList.toggle('active');
-            if (searchContainer.classList.contains('active')) {
-                searchInput.focus();
-            }
-        });
-
-        // Close on Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && searchContainer.classList.contains('active')) {
-                searchContainer.classList.remove('active');
-            }
-        });
-
-        // Perform Search
-        searchInput.addEventListener('input', async (e) => {
-            const query = (e.target as HTMLInputElement).value;
-            if (query.length < 2) {
-                if (searchResults) searchResults.innerHTML = '';
-                return;
-            }
-
-            if (searchResults) searchResults.innerHTML = '<div class="searching">Searching database...</div>';
-
-            try {
-                if (import.meta.env.DEV) {
-                    if (searchResults) {
-                        searchResults.innerHTML = '<div class="result-error">Search index unavailable in DEV mode.<br>Run "npm run build" to test search.</div>';
-                    }
-                    return;
-                }
-
-                // dynamic import for pagefind (only works in prod/after build)
-                // Use variable to avoid Vite analysis
-                const pagefindUrl = '/pagefind/pagefind.js';
-                // @ts-ignore
-                const pagefind = await import(/* @vite-ignore */ pagefindUrl);
-                const search = await pagefind.search(query);
-                const results = await Promise.all(search.results.slice(0, 5).map((r: any) => r.data()));
-
-                if (searchResults) {
-                    if (results.length === 0) {
-                        searchResults.innerHTML = '<div class="no-results">No matching records found.</div>';
-                    } else {
-                        searchResults.innerHTML = results.map((r: any) => `
-                            <div class="search-result-item">
-                                <a href="${r.url}">
-                                    <div class="result-title">${r.meta.title}</div>
-                                    <div class="result-excerpt">${r.excerpt}</div>
-                                </a>
-                            </div>
-                        `).join('');
-                    }
-                }
-            } catch (err) {
-                console.log('Pagefind not loaded (dev mode)', err);
-                if (searchResults) {
-                     searchResults.innerHTML = `
-                        <div class="result-error">
-                            Search index unavailable in DEV mode.<br>
-                            Run 'npm run build' to generate index.
-                        </div>`;
-                }
-            }
+      // Load terminal script dynamically
+      function loadTerminalScript(): Promise<void> {
+        return new Promise((resolve, reject) => {
+          if ((window as any).BasementOSDemo) {
+            resolve();
+            return;
+          }
+          const script = document.createElement('script');
+          script.src = '/js/basement-os-demo.js';
+          script.onload = () => resolve();
+          script.onerror = () => reject(new Error('Failed to load terminal script'));
+          document.head.appendChild(script);
         });
       }
+
+      async function openTerminal() {
+        if (isTerminalActive) return;
+        isTerminalActive = true;
+
+        // Save current theme and fade to basementos
+        originalTheme = localStorage.getItem('basement-os-theme') || 'synthwave';
+        document.documentElement.style.transition = 'all 0.3s ease';
+        document.documentElement.setAttribute('data-theme', 'basementos');
+
+        // Update disclosure text for terminal mode
+        const disclosureHeader = document.querySelector('.ai-disclosure-header');
+        const disclosureContent = document.querySelector('.ai-disclosure-content');
+        if (disclosureHeader) disclosureHeader.textContent = '[ BASEMENT OS SIMULATION ACTIVE ]';
+        if (disclosureContent) disclosureContent.textContent = 'Terminal code simulates VRChat environment and is direct copy of C# Code modified for Web View. Navigate with ↑ ↓ ← → , Enter to select, Esc to go back.';
+
+        // Hide main content, show terminal
+        if (mainContent) mainContent.style.display = 'none';
+        if (terminalDemo) terminalDemo.style.display = 'block';
+
+        // Load and init terminal
+        try {
+          await loadTerminalScript();
+          if (terminalRoot && (window as any).BasementOSDemo) {
+            terminalInstance = new (window as any).BasementOSDemo('terminal-demo-root');
+            (window as any).basementOSInstance = terminalInstance;
+            terminalInstance.init();
+          }
+        } catch (e) {
+          console.error('Terminal init error:', e);
+        }
+
+        // Mark terminal button as active - save and remove active from others first
+        originalActiveBtn = document.querySelector('.nav-btn.active');
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        if (terminalToggle) terminalToggle.classList.add('active');
+      }
+
+      function closeTerminal() {
+        if (!isTerminalActive) return;
+
+        // Show disconnect animation
+        if (terminalDisconnect && disconnectDots && terminalRoot) {
+          terminalRoot.style.opacity = '0.3';
+          terminalDisconnect.style.display = 'flex';
+          
+          // Animate dots: . -> .. -> ...
+          let dotCount = 0;
+          const dotInterval = setInterval(() => {
+            dotCount++;
+            if (disconnectDots) disconnectDots.textContent = '.'.repeat(dotCount);
+            if (dotCount >= 3) {
+              clearInterval(dotInterval);
+              
+              // After animation, clean up and show content
+              setTimeout(() => {
+                finishClose();
+              }, 300);
+            }
+          }, 400);
+        } else {
+          finishClose();
+        }
+      }
+
+      function finishClose() {
+        // Destroy terminal instance
+        if (terminalInstance && terminalInstance.destroy) {
+          terminalInstance.destroy();
+        }
+        terminalInstance = null;
+        (window as any).basementOSInstance = null;
+        isTerminalActive = false;
+
+        // Clear terminal container
+        if (terminalRoot) {
+          terminalRoot.innerHTML = '';
+          terminalRoot.style.opacity = '1';
+        }
+        if (terminalDisconnect) terminalDisconnect.style.display = 'none';
+        if (disconnectDots) disconnectDots.textContent = '';
+
+        // Fade back to original theme
+        if (originalTheme) {
+          document.documentElement.setAttribute('data-theme', originalTheme);
+        }
+
+        // Restore disclosure text
+        const disclosureHeader = document.querySelector('.ai-disclosure-header');
+        const disclosureContent = document.querySelector('.ai-disclosure-content');
+        if (disclosureHeader) disclosureHeader.textContent = '[ NEXT-GEN AI DEVLOG ]';
+        if (disclosureContent) disclosureContent.textContent = 'Content Generated by Developer-Led AI Workflows. Reviewed by a Human-In-the-Loop.';
+
+        // Show main content, hide terminal
+        if (terminalDemo) terminalDemo.style.display = 'none';
+        if (mainContent) mainContent.style.display = 'block';
+
+        // Remove active state from terminal button and restore original
+        if (terminalToggle) terminalToggle.classList.remove('active');
+        if (originalActiveBtn) originalActiveBtn.classList.add('active');
+      }
+
+      // Terminal toggle click
+      if (terminalToggle) {
+        terminalToggle.addEventListener('click', () => {
+          if (isTerminalActive) {
+            closeTerminal();
+          } else {
+            openTerminal();
+          }
+        });
+      }
+
+      // Close terminal when clicking other nav buttons
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        if (btn.id !== 'terminal-toggle') {
+          btn.addEventListener('click', () => {
+            if (isTerminalActive) {
+              closeTerminal();
+            }
+          });
+        }
+      });
+
+      // ESC to close terminal (but not to interfere with terminal's internal ESC handling)
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isTerminalActive && terminalInstance?.currentApp === 'SHELL') {
+          closeTerminal();
+          e.preventDefault();
+        }
+      });
 
       // Typewriter Effect for Section Headers
       const headers = document.querySelectorAll('.section-header');

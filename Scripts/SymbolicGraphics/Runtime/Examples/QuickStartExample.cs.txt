@@ -1,0 +1,123 @@
+using UnityEngine;
+
+namespace SymbolicGraphics.Examples
+{
+    /// <summary>
+    /// Simple example showing basic usage of the Symbolic Rendering system.
+    /// Perfect for learning the fundamentals.
+    /// </summary>
+    [RequireComponent(typeof(SymbolicRenderer))]
+    public class QuickStartExample : MonoBehaviour
+    {
+        private SymbolicRenderer renderer;
+        private SymbolicCanvas canvas;
+
+        void Start()
+        {
+            // Get components
+            renderer = GetComponent<SymbolicRenderer>();
+            canvas = renderer.Canvas;
+
+            // Create your art!
+            DrawExamples();
+
+            // Update the display
+            renderer.UpdateDisplay();
+        }
+
+        private void DrawExamples()
+        {
+            // Example 1: Set individual pixels
+            canvas.SetPixel(5, 5, '█', Color.red);
+            canvas.SetPixel(6, 5, '█', Color.green);
+            canvas.SetPixel(7, 5, '█', Color.blue);
+
+            // Example 2: Draw a box
+            canvas.DrawBox(10, 3, 20, 8, Color.yellow, Color.black);
+
+            // Example 3: Draw text
+            canvas.DrawText(12, 5, "Hello World!", Color.cyan);
+
+            // Example 4: Draw a gradient
+            canvas.DrawHorizontalGradient(10, 28, 10, Color.red, Color.blue);
+
+            // Example 5: Fill a rectangle
+            canvas.FillRect(35, 3, 10, 5, SymbolicChars.FULL_BLOCK, Color.magenta);
+
+            // Example 6: Draw a line
+            canvas.DrawLine(5, 15, 25, 25, SymbolicChars.FULL_BLOCK, Color.green);
+
+            // Example 7: Draw a circle
+            canvas.DrawCircle(55, 15, 8, SymbolicChars.FULL_BLOCK, Color.yellow);
+
+            // Example 8: Use different shade characters
+            int yPos = 30;
+            canvas.SetPixel(10, yPos, SymbolicChars.LIGHT_SHADE, Color.white);
+            canvas.SetPixel(12, yPos, SymbolicChars.MEDIUM_SHADE, Color.white);
+            canvas.SetPixel(14, yPos, SymbolicChars.DARK_SHADE, Color.white);
+            canvas.SetPixel(16, yPos, SymbolicChars.FULL_BLOCK, Color.white);
+            canvas.DrawText(20, yPos, "Light -> Full", Color.gray);
+
+            // Example 9: Use box drawing characters
+            yPos = 32;
+            canvas.SetPixel(10, yPos, SymbolicChars.BOX_TL, Color.white);
+            canvas.SetPixel(11, yPos, SymbolicChars.BOX_H, Color.white);
+            canvas.SetPixel(12, yPos, SymbolicChars.BOX_TR, Color.white);
+            canvas.SetPixel(10, yPos + 1, SymbolicChars.BOX_V, Color.white);
+            canvas.SetPixel(12, yPos + 1, SymbolicChars.BOX_V, Color.white);
+            canvas.SetPixel(10, yPos + 2, SymbolicChars.BOX_BL, Color.white);
+            canvas.SetPixel(11, yPos + 2, SymbolicChars.BOX_H, Color.white);
+            canvas.SetPixel(12, yPos + 2, SymbolicChars.BOX_BR, Color.white);
+
+            // Example 10: Create a simple smiley face
+            DrawSmileyFace(60, 30);
+        }
+
+        private void DrawSmileyFace(int centerX, int centerY)
+        {
+            Color faceColor = Color.yellow;
+            Color featureColor = Color.black;
+
+            // Face outline (circle)
+            canvas.DrawCircle(centerX, centerY, 5, SymbolicChars.FULL_BLOCK, faceColor);
+
+            // Eyes
+            canvas.SetPixel(centerX - 2, centerY - 1, SymbolicChars.FILLED_CIRCLE, featureColor);
+            canvas.SetPixel(centerX + 2, centerY - 1, SymbolicChars.FILLED_CIRCLE, featureColor);
+
+            // Smile (simple curve)
+            canvas.SetPixel(centerX - 2, centerY + 2, '\\', featureColor);
+            canvas.SetPixel(centerX - 1, centerY + 2, '_', featureColor);
+            canvas.SetPixel(centerX, centerY + 2, '_', featureColor);
+            canvas.SetPixel(centerX + 1, centerY + 2, '_', featureColor);
+            canvas.SetPixel(centerX + 2, centerY + 2, '/', featureColor);
+        }
+
+        // You can also draw in Update() for animations
+        void Update()
+        {
+            // Example: Animated rainbow bar
+            if (Input.GetKey(KeyCode.Space))
+            {
+                DrawAnimatedRainbow();
+                renderer.UpdateDisplay();
+            }
+        }
+
+        private void DrawAnimatedRainbow()
+        {
+            int y = 35;
+            int barWidth = 40;
+            int startX = 10;
+
+            for (int x = 0; x < barWidth; x++)
+            {
+                float hue = ((x / (float)barWidth) + Time.time * 0.2f) % 1.0f;
+                Color color = Color.HSVToRGB(hue, 1f, 1f);
+                canvas.SetPixel(startX + x, y, SymbolicChars.FULL_BLOCK, color);
+            }
+
+            canvas.DrawText(startX, y - 1, "Hold SPACE for animated rainbow!", Color.white);
+        }
+    }
+}

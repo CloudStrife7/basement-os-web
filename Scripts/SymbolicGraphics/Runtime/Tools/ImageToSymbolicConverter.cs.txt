@@ -1,0 +1,198 @@
+using UnityEngine;
+
+namespace SymbolicGraphics.Tools
+{
+    /// <summary>
+    /// Converts any image (Texture2D) to colored symbolic art.
+    /// Each pixel becomes a colored Unicode character!
+    ///
+    /// USAGE:
+    /// 1. Attach to GameObject with SymbolicRenderer
+    /// 2. Assign source image
+    /// 3. Click "Convert Image" button in inspector
+    /// 4. Watch as image is recreated using colored symbols!
+    /// </summary>
+    [RequireComponent(typeof(SymbolicRenderer))]
+    public class ImageToSymbolicConverter : MonoBehaviour
+    {
+        [Header("Source Image")]
+        [Tooltip("Image to convert to colored symbols")]
+        public Texture2D sourceImage;
+
+        [Header("Conversion Settings")]
+        [Tooltip("Character to use for each pixel")]
+        public CharacterMode characterMode = CharacterMode.FullBlock;
+
+        [Tooltip("Use brightness-based characters for better detail")]
+        public bool useBrightnessShading = false;
+
+        [Tooltip("Color reduction for artistic effect (0 = full color)")]
+        [Range(0, 64)]
+        public int colorReduction = 0;
+
+        [Header("Output")]
+        [Tooltip("Automatically resize canvas to match image dimensions")]
+        public bool autoResizeCanvas = true;
+
+        [Tooltip("Maximum canvas size (prevents huge canvases)")]
+        public int maxCanvasSize = 1920;
+
+        public enum CharacterMode
+        {
+            FullBlock,          // █ - Best for photos
+            Shade,              // Use ░▒▓█ based on brightness
+            Braille,            // ⠀⠁⠂... - High density
+            Custom              // Use customCharacter
+        }
+
+        [Header("Custom Character")]
+        public char customCharacter = '●';
+
+        private SymbolicRenderer renderer;
+        private SymbolicCanvas canvas;
+
+        void Start()
+        {
+            renderer = GetComponent<SymbolicRenderer>();
+
+            if (sourceImage != null)
+            {
+                ConvertImage();
+            }
+        }
+
+        [ContextMenu("Convert Image")]
+        public void ConvertImage()
+        {
+            if (sourceImage == null)
+            {
+                Debug.LogError("No source image assigned!");
+                return;
+            }
+
+            renderer = GetComponent<SymbolicRenderer>();
+
+            // Resize canvas if needed
+            if (autoResizeCanvas)
+            {
+                int targetWidth = Mathf.Min(sourceImage.width, maxCanvasSize);
+                int targetHeight = Mathf.Min(sourceImage.height, maxCanvasSize);
+
+                renderer.ResizeCanvas(targetWidth, targetHeight);
+                Debug.Log($"Canvas resized to {targetWidth}×{targetHeight}");
+            }
+
+            canvas = renderer.Canvas;
+
+            // Convert each pixel
+            int width = Mathf.Min(sourceImage.width, canvas.Width);
+            int height = Mathf.Min(sourceImage.height, canvas.Height);
+
+            Debug.Log($"Converting {width}×{height} image to colored symbols...");
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    // Sample pixel from image (flip Y because Unity textures are bottom-up)
+                    Color pixelColor = sourceImage.GetPixel(x, height - 1 - y);
+
+                    // Apply color reduction if enabled
+                    if (colorReduction > 0)
+                    {
+                        pixelColor = QuantizeColor(pixelColor, colorReduction);
+                    }
+
+                    // Choose character based on mode
+                    char character = GetCharacterForPixel(pixelColor);
+
+                    // Set pixel in canvas with FULL COLOR
+                    canvas.SetPixel(x, y, character, pixelColor);
+                }
+
+                // Progress update
+                if (y % 100 == 0)
+                {
+                    Debug.Log($"Progress: {(y / (float)height * 100):F0}%");
+                }
+            }
+
+            Debug.Log("Conversion complete! Updating display...");
+            renderer.UpdateDisplay();
+            Debug.Log("Done! Your image is now colored symbolic art!");
+        }
+
+        char GetCharacterForPixel(Color color)
+        {
+            switch (characterMode)
+            {
+                case CharacterMode.FullBlock:
+                    return '█';
+
+                case CharacterMode.Shade:
+                    if (useBrightnessShading)
+                    {
+                        float brightness = color.grayscale;
+                        return SymbolicChars.GetShadeChar(brightness);
+                    }
+                    return '█';
+
+                case CharacterMode.Braille:
+                    // Simple braille - could be enhanced with patterns
+                    float density = color.grayscale;
+                    if (density > 0.75f) return '⣿';
+                    if (density > 0.50f) return '⣤';
+                    if (density > 0.25f) return '⣀';
+                    return '⠀';
+
+                case CharacterMode.Custom:
+                    return customCharacter;
+
+                default:
+                    return '█';
+            }
+        }
+
+        Color QuantizeColor(Color color, int levels)
+        {
+            float step = 1.0f / (levels - 1);
+
+            return new Color(
+                Mathf.Round(color.r / step) * step,
+                Mathf.Round(color.g / step) * step,
+                Mathf.Round(color.b / step) * step,
+                color.a
+            );
+        }
+
+        [ContextMenu("Save as PNG")]
+        public void SaveConvertedAsSymbolicPNG()
+        {
+            // Generate TMP string
+            string tmpString = canvas.GenerateTMPString();
+
+            // Save to file
+            string path = Application.dataPath + "/SymbolicArt_" + System.DateTime.Now.Ticks + ".txt";
+            System.IO.File.WriteAllText(path, tmpString);
+
+            Debug.Log($"Saved symbolic art to: {path}");
+        }
+
+        [ContextMenu("Print Color Info")]
+        public void PrintColorInfo()
+        {
+            if (sourceImage == null) return;
+
+            Debug.Log($"Image: {sourceImage.width}×{sourceImage.height}");
+            Debug.Log($"Total pixels: {sourceImage.width * sourceImage.height:N0}");
+            Debug.Log($"Each pixel = one colored symbol!");
+
+            // Sample some colors
+            Color topLeft = sourceImage.GetPixel(0, 0);
+            Color center = sourceImage.GetPixel(sourceImage.width / 2, sourceImage.height / 2);
+
+            Debug.Log($"Top-left color: R{topLeft.r:F2} G{topLeft.g:F2} B{topLeft.b:F2}");
+            Debug.Log($"Center color: R{center.r:F2} G{center.g:F2} B{center.b:F2}");
+        }
+    }
+}

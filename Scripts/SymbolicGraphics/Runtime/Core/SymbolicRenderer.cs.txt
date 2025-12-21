@@ -1,0 +1,203 @@
+using UnityEngine;
+using TMPro;
+
+namespace SymbolicGraphics
+{
+    /// <summary>
+    /// Unity MonoBehaviour that connects a SymbolicCanvas to a TextMeshPro component.
+    /// Handles rendering and TMP configuration.
+    /// </summary>
+    [RequireComponent(typeof(TextMeshPro))]
+    public class SymbolicRenderer : MonoBehaviour
+    {
+        [Header("Canvas Configuration")]
+        [Tooltip("Width of the symbolic canvas in characters")]
+        [SerializeField] private int canvasWidth = 80;
+
+        [Tooltip("Height of the symbolic canvas in characters")]
+        [SerializeField] private int canvasHeight = 40;
+
+        [Header("Rendering Options")]
+        [Tooltip("Automatically update TextMeshPro every frame")]
+        [SerializeField] private bool autoUpdate = false;
+
+        [Tooltip("Use dirty rectangle optimization for updates")]
+        [SerializeField] private bool optimizeUpdates = true;
+
+        [Header("TMP Settings")]
+        [Tooltip("Font size for characters (smaller = higher density)")]
+        [SerializeField] private float fontSize = 4f;
+
+        [Tooltip("Character spacing (negative = tighter)")]
+        [SerializeField] private float characterSpacing = -2f;
+
+        [Tooltip("Line spacing (negative = tighter)")]
+        [SerializeField] private float lineSpacing = -20f;
+
+        // Components
+        private TextMeshPro tmpComponent;
+        private SymbolicCanvas canvas;
+
+        // State
+        private bool initialized = false;
+
+        /// <summary>
+        /// Access to the symbolic canvas
+        /// </summary>
+        public SymbolicCanvas Canvas
+        {
+            get
+            {
+                if (!initialized) Initialize();
+                return canvas;
+            }
+        }
+
+        /// <summary>
+        /// Access to the TextMeshPro component
+        /// </summary>
+        public TextMeshPro TMP => tmpComponent;
+
+        void Awake()
+        {
+            Initialize();
+        }
+
+        void Start()
+        {
+            // Ensure TMP is properly configured
+            ConfigureTMP();
+        }
+
+        void Update()
+        {
+            if (autoUpdate && canvas.IsDirty)
+            {
+                UpdateDisplay();
+            }
+        }
+
+        /// <summary>
+        /// Initializes the canvas and TMP component
+        /// </summary>
+        private void Initialize()
+        {
+            if (initialized) return;
+
+            // Get or add TMP component
+            tmpComponent = GetComponent<TextMeshPro>();
+            if (tmpComponent == null)
+            {
+                tmpComponent = gameObject.AddComponent<TextMeshPro>();
+            }
+
+            // Create canvas
+            canvas = new SymbolicCanvas(canvasWidth, canvasHeight);
+
+            ConfigureTMP();
+
+            initialized = true;
+        }
+
+        /// <summary>
+        /// Configures TextMeshPro with optimal settings for symbolic rendering
+        /// </summary>
+        private void ConfigureTMP()
+        {
+            if (tmpComponent == null) return;
+
+            // Font sizing
+            tmpComponent.fontSize = fontSize;
+            tmpComponent.fontSizeMin = fontSize;
+            tmpComponent.fontSizeMax = fontSize;
+            tmpComponent.enableAutoSizing = false;
+
+            // Alignment
+            tmpComponent.alignment = TextAlignmentOptions.TopLeft;
+
+            // Spacing
+            tmpComponent.characterSpacing = characterSpacing;
+            tmpComponent.lineSpacing = lineSpacing;
+
+            // Overflow and wrapping
+            tmpComponent.overflowMode = TextOverflowModes.Overflow;
+            tmpComponent.enableWordWrapping = false;
+
+            // Critical settings
+            tmpComponent.richText = true;  // ESSENTIAL for color tags
+            tmpComponent.parseCtrlCharacters = false;
+
+            // Padding
+            tmpComponent.extraPadding = false;
+            tmpComponent.margin = Vector4.zero;
+
+            // Material
+            tmpComponent.fontMaterial.renderQueue = 3000; // Transparent queue
+        }
+
+        /// <summary>
+        /// Updates the TextMeshPro display with current canvas content
+        /// </summary>
+        public void UpdateDisplay()
+        {
+            if (!initialized) Initialize();
+
+            tmpComponent.text = canvas.GenerateTMPString();
+        }
+
+        /// <summary>
+        /// Manually resize the canvas (destroys current content)
+        /// </summary>
+        public void ResizeCanvas(int newWidth, int newHeight)
+        {
+            canvasWidth = newWidth;
+            canvasHeight = newHeight;
+            canvas = new SymbolicCanvas(canvasWidth, canvasHeight);
+            UpdateDisplay();
+        }
+
+        /// <summary>
+        /// Clears the canvas with specified character and color
+        /// </summary>
+        public void Clear(char fillChar = ' ', Color? color = null)
+        {
+            Color32 fillColor = color.HasValue ? (Color32)color.Value : new Color32(0, 0, 0, 255);
+            canvas.Clear(fillChar, fillColor);
+
+            if (autoUpdate)
+            {
+                UpdateDisplay();
+            }
+        }
+
+        #region Inspector Helpers
+
+        private void OnValidate()
+        {
+            // Clamp values
+            canvasWidth = Mathf.Max(1, canvasWidth);
+            canvasHeight = Mathf.Max(1, canvasHeight);
+            fontSize = Mathf.Max(0.1f, fontSize);
+
+            // Apply TMP settings in editor
+            if (Application.isPlaying && initialized)
+            {
+                ConfigureTMP();
+            }
+        }
+
+        #endregion
+
+        #region Gizmos
+
+        private void OnDrawGizmosSelected()
+        {
+            // Draw canvas bounds
+            Vector3 size = transform.lossyScale;
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireCube(transform.position, size);
+        }
+
+        #endregion
+    }
+}

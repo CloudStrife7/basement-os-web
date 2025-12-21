@@ -1,0 +1,421 @@
+using UnityEngine;
+using System.Text;
+using System.Collections.Generic;
+
+namespace SymbolicGraphics
+{
+    /// <summary>
+    /// A 2D grid-based canvas for symbolic rendering.
+    /// Manages a grid of SymbolicPixels and provides drawing primitives.
+    /// </summary>
+    public class SymbolicCanvas
+    {
+        private SymbolicPixel[,] grid;
+        private int width;
+        private int height;
+        private bool isDirty = false;
+
+        // Performance optimization: cache color hex strings
+        private Dictionary<Color32, string> colorCache = new Dictionary<Color32, string>();
+
+        // Dirty rectangle tracking for partial updates
+        private int dirtyMinX = int.MaxValue;
+        private int dirtyMinY = int.MaxValue;
+        private int dirtyMaxX = int.MinValue;
+        private int dirtyMaxY = int.MinValue;
+
+        public int Width => width;
+        public int Height => height;
+        public bool IsDirty => isDirty;
+
+        /// <summary>
+        /// Creates a new symbolic canvas with the specified dimensions
+        /// </summary>
+        public SymbolicCanvas(int w, int h)
+        {
+            width = w;
+            height = h;
+            grid = new SymbolicPixel[w, h];
+            Clear(' ', Color.black);
+        }
+
+        /// <summary>
+        /// Sets a pixel at the specified coordinates
+        /// </summary>
+        public void SetPixel(int x, int y, char character, Color32 color)
+        {
+            if (x >= 0 && x < width && y >= 0 && y < height)
+            {
+                grid[x, y] = new SymbolicPixel(character, color);
+                MarkDirty(x, y);
+            }
+        }
+
+        /// <summary>
+        /// Sets a pixel at the specified coordinates
+        /// </summary>
+        public void SetPixel(int x, int y, SymbolicPixel pixel)
+        {
+            if (x >= 0 && x < width && y >= 0 && y < height)
+            {
+                grid[x, y] = pixel;
+                MarkDirty(x, y);
+            }
+        }
+
+        /// <summary>
+        /// Gets the pixel at the specified coordinates
+        /// </summary>
+        public SymbolicPixel GetPixel(int x, int y)
+        {
+            if (x >= 0 && x < width && y >= 0 && y < height)
+            {
+                return grid[x, y];
+            }
+            return SymbolicPixel.Blank;
+        }
+
+        /// <summary>
+        /// Clears the entire canvas with the specified character and color
+        /// </summary>
+        public void Clear(char fillChar = ' ', Color32? color = null)
+        {
+            Color32 fillColor = color ?? new Color32(0, 0, 0, 255);
+            SymbolicPixel clearPixel = new SymbolicPixel(fillChar, fillColor);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    grid[x, y] = clearPixel;
+                }
+            }
+
+            MarkDirtyFull();
+        }
+
+        /// <summary>
+        /// Fills a rectangular region with the specified character and color
+        /// </summary>
+        public void FillRect(int x, int y, int w, int h, char character, Color32 color)
+        {
+            for (int dy = 0; dy < h; dy++)
+            {
+                for (int dx = 0; dx < w; dx++)
+                {
+                    SetPixel(x + dx, y + dy, character, color);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Draws a line from (x1, y1) to (x2, y2) using Bresenham's algorithm
+        /// </summary>
+        public void DrawLine(int x1, int y1, int x2, int y2, char character, Color32 color)
+        {
+            int dx = Mathf.Abs(x2 - x1);
+            int dy = Mathf.Abs(y2 - y1);
+            int sx = x1 < x2 ? 1 : -1;
+            int sy = y1 < y2 ? 1 : -1;
+            int err = dx - dy;
+
+            while (true)
+            {
+                SetPixel(x1, y1, character, color);
+
+                if (x1 == x2 && y1 == y2) break;
+
+                int e2 = 2 * err;
+                if (e2 > -dy)
+                {
+                    err -= dy;
+                    x1 += sx;
+                }
+                if (e2 < dx)
+                {
+                    err += dx;
+                    y1 += sy;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Draws a rectangle outline
+        /// </summary>
+        public void DrawRect(int x, int y, int w, int h, char character, Color32 color)
+        {
+            // Top and bottom
+            for (int i = 0; i < w; i++)
+            {
+                SetPixel(x + i, y, character, color);
+                SetPixel(x + i, y + h - 1, character, color);
+            }
+
+            // Left and right
+            for (int i = 0; i < h; i++)
+            {
+                SetPixel(x, y + i, character, color);
+                SetPixel(x + w - 1, y + i, character, color);
+            }
+        }
+
+        /// <summary>
+        /// Draws a box with Unicode box-drawing characters
+        /// </summary>
+        public void DrawBox(int x, int y, int w, int h, Color32 borderColor, Color32 fillColor, bool doubleLines = false)
+        {
+            // Fill interior
+            if (w > 2 && h > 2)
+            {
+                FillRect(x + 1, y + 1, w - 2, h - 2, ' ', fillColor);
+            }
+
+            // Select characters based on single or double lines
+            char tl, tr, bl, br, hz, vt;
+            if (doubleLines)
+            {
+                tl = SymbolicChars.BOX_TL_DBL;
+                tr = SymbolicChars.BOX_TR_DBL;
+                bl = SymbolicChars.BOX_BL_DBL;
+                br = SymbolicChars.BOX_BR_DBL;
+                hz = SymbolicChars.BOX_H_DBL;
+                vt = SymbolicChars.BOX_V_DBL;
+            }
+            else
+            {
+                tl = SymbolicChars.BOX_TL;
+                tr = SymbolicChars.BOX_TR;
+                bl = SymbolicChars.BOX_BL;
+                br = SymbolicChars.BOX_BR;
+                hz = SymbolicChars.BOX_H;
+                vt = SymbolicChars.BOX_V;
+            }
+
+            // Corners
+            SetPixel(x, y, tl, borderColor);
+            SetPixel(x + w - 1, y, tr, borderColor);
+            SetPixel(x, y + h - 1, bl, borderColor);
+            SetPixel(x + w - 1, y + h - 1, br, borderColor);
+
+            // Top and bottom edges
+            for (int i = 1; i < w - 1; i++)
+            {
+                SetPixel(x + i, y, hz, borderColor);
+                SetPixel(x + i, y + h - 1, hz, borderColor);
+            }
+
+            // Left and right edges
+            for (int i = 1; i < h - 1; i++)
+            {
+                SetPixel(x, y + i, vt, borderColor);
+                SetPixel(x + w - 1, y + i, vt, borderColor);
+            }
+        }
+
+        /// <summary>
+        /// Draws text at the specified position
+        /// </summary>
+        public void DrawText(int x, int y, string text, Color32 color)
+        {
+            for (int i = 0; i < text.Length; i++)
+            {
+                SetPixel(x + i, y, text[i], color);
+            }
+        }
+
+        /// <summary>
+        /// Draws a horizontal gradient
+        /// </summary>
+        public void DrawHorizontalGradient(int x1, int x2, int y, Color32 startColor, Color32 endColor, char character = '█')
+        {
+            for (int x = x1; x <= x2; x++)
+            {
+                float t = (x - x1) / (float)(x2 - x1);
+                Color32 color = Color32.Lerp(startColor, endColor, t);
+                SetPixel(x, y, character, color);
+            }
+        }
+
+        /// <summary>
+        /// Draws a vertical gradient
+        /// </summary>
+        public void DrawVerticalGradient(int x, int y1, int y2, Color32 startColor, Color32 endColor, char character = '█')
+        {
+            for (int y = y1; y <= y2; y++)
+            {
+                float t = (y - y1) / (float)(y2 - y1);
+                Color32 color = Color32.Lerp(startColor, endColor, t);
+                SetPixel(x, y, character, color);
+            }
+        }
+
+        /// <summary>
+        /// Draws a radial gradient from center point
+        /// </summary>
+        public void DrawRadialGradient(int centerX, int centerY, int radius, Color32 innerColor, Color32 outerColor, bool useDensity = false)
+        {
+            for (int y = centerY - radius; y <= centerY + radius; y++)
+            {
+                for (int x = centerX - radius; x <= centerX + radius; x++)
+                {
+                    float distance = Vector2.Distance(
+                        new Vector2(x, y),
+                        new Vector2(centerX, centerY)
+                    );
+
+                    if (distance <= radius)
+                    {
+                        float t = distance / radius;
+                        Color32 color = Color32.Lerp(innerColor, outerColor, t);
+
+                        char c;
+                        if (useDensity)
+                        {
+                            c = SymbolicChars.GetShadeChar(1f - t);
+                        }
+                        else
+                        {
+                            c = SymbolicChars.FULL_BLOCK;
+                        }
+
+                        SetPixel(x, y, c, color);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Draws a filled circle
+        /// </summary>
+        public void DrawCircle(int centerX, int centerY, int radius, char character, Color32 color)
+        {
+            for (int y = centerY - radius; y <= centerY + radius; y++)
+            {
+                for (int x = centerX - radius; x <= centerX + radius; x++)
+                {
+                    float distance = Vector2.Distance(
+                        new Vector2(x, y),
+                        new Vector2(centerX, centerY)
+                    );
+
+                    if (distance <= radius)
+                    {
+                        SetPixel(x, y, character, color);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Generates the TextMeshPro formatted string with color tags
+        /// </summary>
+        public string GenerateTMPString()
+        {
+            // Pre-allocate StringBuilder (each pixel ~25 chars for <color=#RRGGBB>C</color>)
+            StringBuilder sb = new StringBuilder(width * height * 25);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    SymbolicPixel pixel = grid[x, y];
+
+                    // Get color hex (with caching)
+                    string hex = GetColorHex(pixel.color);
+
+                    // Build tagged character
+                    sb.Append("<color=#");
+                    sb.Append(hex);
+                    sb.Append(">");
+                    sb.Append(pixel.character);
+                    sb.Append("</color>");
+                }
+
+                // Newline after each row (except last)
+                if (y < height - 1)
+                {
+                    sb.Append('\n');
+                }
+            }
+
+            isDirty = false;
+            ResetDirtyRect();
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Generates TMP string for only the dirty rectangle region (optimization)
+        /// </summary>
+        public string GenerateTMPStringPartial(out int minX, out int minY, out int maxX, out int maxY)
+        {
+            minX = dirtyMinX;
+            minY = dirtyMinY;
+            maxX = dirtyMaxX;
+            maxY = dirtyMaxY;
+
+            if (!isDirty)
+            {
+                return string.Empty;
+            }
+
+            return GenerateTMPString(); // For now, return full string
+            // TODO: Implement actual partial string generation if needed
+        }
+
+        /// <summary>
+        /// Gets cached color hex string (optimizes repeated color conversions)
+        /// </summary>
+        private string GetColorHex(Color32 color)
+        {
+            if (!colorCache.TryGetValue(color, out string hex))
+            {
+                hex = ColorUtility.ToHtmlStringRGB(color);
+                colorCache[color] = hex;
+            }
+            return hex;
+        }
+
+        /// <summary>
+        /// Marks a single pixel as dirty
+        /// </summary>
+        private void MarkDirty(int x, int y)
+        {
+            isDirty = true;
+            dirtyMinX = Mathf.Min(dirtyMinX, x);
+            dirtyMinY = Mathf.Min(dirtyMinY, y);
+            dirtyMaxX = Mathf.Max(dirtyMaxX, x);
+            dirtyMaxY = Mathf.Max(dirtyMaxY, y);
+        }
+
+        /// <summary>
+        /// Marks entire canvas as dirty
+        /// </summary>
+        private void MarkDirtyFull()
+        {
+            isDirty = true;
+            dirtyMinX = 0;
+            dirtyMinY = 0;
+            dirtyMaxX = width - 1;
+            dirtyMaxY = height - 1;
+        }
+
+        /// <summary>
+        /// Resets dirty rectangle tracking
+        /// </summary>
+        private void ResetDirtyRect()
+        {
+            dirtyMinX = int.MaxValue;
+            dirtyMinY = int.MaxValue;
+            dirtyMaxX = int.MinValue;
+            dirtyMaxY = int.MinValue;
+        }
+
+        /// <summary>
+        /// Clears the color cache (call if memory becomes an issue)
+        /// </summary>
+        public void ClearColorCache()
+        {
+            colorCache.Clear();
+        }
+    }
+}

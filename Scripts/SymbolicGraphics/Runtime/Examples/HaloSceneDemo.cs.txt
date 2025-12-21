@@ -1,0 +1,365 @@
+using UnityEngine;
+
+namespace SymbolicGraphics.Examples
+{
+    /// <summary>
+    /// Demonstrates rendering a complete Halo-style FPS scene
+    /// where EVERY █ character is a colored pixel creating the entire image.
+    /// At 1280×720, this creates a full Xbox 360 resolution scene made of characters!
+    /// </summary>
+    [RequireComponent(typeof(SymbolicRenderer))]
+    public class HaloSceneDemo : MonoBehaviour
+    {
+        [Header("Scene Configuration")]
+        [Tooltip("Render at Xbox 360 resolution (1280×720)")]
+        public bool fullResolution = false;
+
+        [Tooltip("Preview resolution for testing")]
+        public int previewWidth = 160;
+        public int previewHeight = 90;
+
+        private SymbolicRenderer renderer;
+        private SymbolicCanvas canvas;
+
+        void Start()
+        {
+            renderer = GetComponent<SymbolicRenderer>();
+
+            // Set resolution
+            if (fullResolution)
+            {
+                renderer.ResizeCanvas(1280, 720);
+                Debug.Log("Rendering at FULL 1280×720 (921,600 colored pixels!)");
+            }
+            else
+            {
+                renderer.ResizeCanvas(previewWidth, previewHeight);
+                Debug.Log($"Rendering preview at {previewWidth}×{previewHeight}");
+            }
+
+            canvas = renderer.Canvas;
+
+            // Render the scene
+            RenderHaloScene();
+            renderer.UpdateDisplay();
+        }
+
+        /// <summary>
+        /// Renders a complete first-person Halo scene using colored block pixels
+        /// </summary>
+        void RenderHaloScene()
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+
+            Debug.Log($"Generating Halo scene: {w}×{h} = {w * h:N0} colored pixels...");
+
+            // 1. SKY - Top third (blue gradient)
+            RenderSky(0, (int)(h * 0.4f));
+
+            // 2. DISTANT MOUNTAINS - Background layer
+            RenderMountains((int)(h * 0.3f), (int)(h * 0.5f));
+
+            // 3. GROUND/TERRAIN - Bottom half
+            RenderGround((int)(h * 0.5f), h);
+
+            // 4. STRUCTURES - Forerunner architecture
+            RenderStructures();
+
+            // 5. WEAPON - First person view (bottom right)
+            RenderWeaponInHand(w - 40, h - 25);
+
+            // 6. HUD ELEMENTS - Overlay
+            RenderHUD();
+
+            Debug.Log("Scene generation complete!");
+        }
+
+        void RenderSky(int startY, int endY)
+        {
+            int w = canvas.Width;
+            Color32 skyTop = new Color32(20, 50, 100, 255);       // Dark blue
+            Color32 skyBottom = new Color32(100, 150, 200, 255);  // Light blue
+
+            for (int y = startY; y < endY; y++)
+            {
+                float t = (y - startY) / (float)(endY - startY);
+                Color32 skyColor = Color32.Lerp(skyTop, skyBottom, t);
+
+                for (int x = 0; x < w; x++)
+                {
+                    // Add some cloud noise
+                    float noise = Mathf.PerlinNoise(x * 0.02f, y * 0.02f);
+                    if (noise > 0.6f)
+                    {
+                        Color32 cloudColor = Color32.Lerp(skyColor, Color.white, (noise - 0.6f) * 2f);
+                        canvas.SetPixel(x, y, '█', cloudColor);
+                    }
+                    else
+                    {
+                        canvas.SetPixel(x, y, '█', skyColor);
+                    }
+                }
+            }
+        }
+
+        void RenderMountains(int startY, int endY)
+        {
+            int w = canvas.Width;
+            Color32 mountainColor = new Color32(60, 40, 80, 255);  // Purple/gray mountains
+            Color32 mountainLight = new Color32(80, 60, 100, 255); // Lighter side
+
+            // Generate mountain peaks
+            for (int x = 0; x < w; x++)
+            {
+                // Use Perlin noise for mountain silhouette
+                float peakHeight = Mathf.PerlinNoise(x * 0.005f, 0) * 0.3f + 0.2f;
+                int mountainTop = startY + (int)((endY - startY) * (1f - peakHeight));
+
+                for (int y = mountainTop; y < endY; y++)
+                {
+                    // Add some shading variation
+                    bool isLight = Mathf.PerlinNoise(x * 0.1f, y * 0.1f) > 0.5f;
+                    Color32 color = isLight ? mountainLight : mountainColor;
+
+                    canvas.SetPixel(x, y, '█', color);
+                }
+            }
+        }
+
+        void RenderGround(int startY, int endY)
+        {
+            int w = canvas.Width;
+            Color32 groundNear = new Color32(100, 120, 80, 255);   // Green-gray
+            Color32 groundFar = new Color32(80, 90, 70, 255);      // Darker distance
+
+            for (int y = startY; y < endY; y++)
+            {
+                // Perspective: closer = bottom of screen
+                float distanceT = (y - startY) / (float)(endY - startY);
+                Color32 groundColor = Color32.Lerp(groundFar, groundNear, distanceT);
+
+                for (int x = 0; x < w; x++)
+                {
+                    // Add ground texture with Perlin noise
+                    float noise = Mathf.PerlinNoise(x * 0.05f, y * 0.05f);
+                    Color32 pixelColor = Color32.Lerp(groundColor, new Color32(120, 140, 100, 255), noise * 0.3f);
+
+                    canvas.SetPixel(x, y, '█', pixelColor);
+                }
+            }
+        }
+
+        void RenderStructures()
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+
+            // Forerunner structure (left side)
+            int structureX = w / 4;
+            int structureY = h / 2;
+            int structureWidth = w / 8;
+            int structureHeight = h / 3;
+
+            Color32 structureColor = new Color32(180, 180, 200, 255);  // Metallic gray
+            Color32 structureLight = new Color32(220, 220, 240, 255);   // Highlight
+            Color32 structureDark = new Color32(120, 120, 140, 255);    // Shadow
+
+            // Main structure block
+            for (int y = 0; y < structureHeight; y++)
+            {
+                for (int x = 0; x < structureWidth; x++)
+                {
+                    int px = structureX + x;
+                    int py = structureY + y;
+
+                    if (px >= 0 && px < w && py >= 0 && py < h)
+                    {
+                        // Create depth with shading
+                        Color32 color;
+                        if (x < 3) // Left edge - highlight
+                            color = structureLight;
+                        else if (x > structureWidth - 5) // Right edge - shadow
+                            color = structureDark;
+                        else
+                            color = structureColor;
+
+                        // Add panel details
+                        if ((x % 10 == 0 || y % 10 == 0) && x > 2 && x < structureWidth - 2)
+                        {
+                            color = structureDark; // Panel lines
+                        }
+
+                        canvas.SetPixel(px, py, '█', color);
+                    }
+                }
+            }
+
+            // Add glowing core (energy)
+            int coreX = structureX + structureWidth / 2;
+            int coreY = structureY + structureHeight / 2;
+            Color32 glowColor = new Color32(0, 150, 255, 255);  // Blue glow
+
+            for (int r = 0; r < 8; r++)
+            {
+                for (int angle = 0; angle < 360; angle += 10)
+                {
+                    float rad = angle * Mathf.Deg2Rad;
+                    int gx = coreX + (int)(Mathf.Cos(rad) * r);
+                    int gy = coreY + (int)(Mathf.Sin(rad) * r);
+
+                    if (gx >= 0 && gx < w && gy >= 0 && gy < h)
+                    {
+                        float intensity = 1f - (r / 8f);
+                        Color32 color = Color32.Lerp(structureColor, glowColor, intensity);
+                        canvas.SetPixel(gx, gy, '█', color);
+                    }
+                }
+            }
+        }
+
+        void RenderWeaponInHand(int startX, int startY)
+        {
+            // Assault rifle in first-person view (bottom right)
+            Color32 weaponMetal = new Color32(100, 100, 110, 255);
+            Color32 weaponDark = new Color32(50, 50, 55, 255);
+            Color32 weaponHighlight = new Color32(150, 150, 160, 255);
+
+            // Simplified weapon shape (barrel, body, grip)
+            int[][] weaponShape = new int[][]
+            {
+                // Barrel (long rectangle)
+                new int[] { 0, 5, 30, 8 },   // x, y, width, height
+                // Body
+                new int[] { 28, 3, 10, 12 },
+                // Grip
+                new int[] { 32, 12, 6, 8 }
+            };
+
+            foreach (var part in weaponShape)
+            {
+                int px = startX + part[0];
+                int py = startY + part[1];
+                int pw = part[2];
+                int ph = part[3];
+
+                for (int y = 0; y < ph; y++)
+                {
+                    for (int x = 0; x < pw; x++)
+                    {
+                        int finalX = px + x;
+                        int finalY = py + y;
+
+                        if (finalX >= 0 && finalX < canvas.Width && finalY >= 0 && finalY < canvas.Height)
+                        {
+                            // Add shading
+                            Color32 color = weaponMetal;
+                            if (y == 0) color = weaponHighlight; // Top highlight
+                            if (y == ph - 1) color = weaponDark;  // Bottom shadow
+                            if (x == 0) color = weaponHighlight;  // Left highlight
+                            if (x == pw - 1) color = weaponDark;  // Right shadow
+
+                            canvas.SetPixel(finalX, finalY, '█', color);
+                        }
+                    }
+                }
+            }
+
+            // Ammo counter display on weapon
+            Color32 ammoColor = new Color32(0, 255, 100, 255);  // Green
+            string ammoText = "32";
+            for (int i = 0; i < ammoText.Length; i++)
+            {
+                canvas.SetPixel(startX + 28 + i * 2, startY + 7, ammoText[i], ammoColor);
+            }
+        }
+
+        void RenderHUD()
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+
+            Color32 hudColor = new Color32(100, 200, 255, 255);  // Cyan HUD
+            Color32 shieldColor = new Color32(50, 150, 255, 255);
+
+            // CROSSHAIR (center)
+            int centerX = w / 2;
+            int centerY = h / 2;
+
+            // Simple cross
+            for (int i = -2; i <= 2; i++)
+            {
+                canvas.SetPixel(centerX + i, centerY, '█', hudColor);
+                canvas.SetPixel(centerX, centerY + i, '█', hudColor);
+            }
+
+            // SHIELD BAR (top right)
+            int barX = w - 30;
+            int barY = 3;
+            int barWidth = 20;
+
+            for (int i = 0; i < barWidth; i++)
+            {
+                canvas.SetPixel(barX + i, barY, '█', shieldColor);
+            }
+
+            // AMMO (bottom right)
+            string ammo = "32 / 600";
+            for (int i = 0; i < ammo.Length; i++)
+            {
+                canvas.SetPixel(w - 15 + i, h - 5, ammo[i], Color.white);
+            }
+
+            // RADAR (bottom left)
+            int radarX = 10;
+            int radarY = h - 15;
+            int radarSize = 12;
+
+            // Radar circle
+            for (int r = 0; r < radarSize / 2; r++)
+            {
+                for (int angle = 0; angle < 360; angle += 15)
+                {
+                    float rad = angle * Mathf.Deg2Rad;
+                    int rx = radarX + (int)(Mathf.Cos(rad) * r);
+                    int ry = radarY + (int)(Mathf.Sin(rad) * r);
+
+                    if (rx >= 0 && rx < w && ry >= 0 && ry < h)
+                    {
+                        Color32 radarColor = new Color32(20, 80, 80, 255);
+                        canvas.SetPixel(rx, ry, '█', radarColor);
+                    }
+                }
+            }
+
+            // Player dot (center of radar)
+            canvas.SetPixel(radarX, radarY, '█', Color.yellow);
+
+            // Enemy blips
+            Color32 enemyRed = new Color32(255, 50, 50, 255);
+            canvas.SetPixel(radarX + 3, radarY - 2, '█', enemyRed);
+            canvas.SetPixel(radarX - 4, radarY + 3, '█', enemyRed);
+        }
+
+        [ContextMenu("Regenerate Scene")]
+        public void RegenerateScene()
+        {
+            RenderHaloScene();
+            renderer.UpdateDisplay();
+        }
+
+        [ContextMenu("Switch to Full Resolution")]
+        public void SwitchToFullRes()
+        {
+            fullResolution = true;
+            Start();
+        }
+
+        [ContextMenu("Switch to Preview Resolution")]
+        public void SwitchToPreview()
+        {
+            fullResolution = false;
+            Start();
+        }
+    }
+}

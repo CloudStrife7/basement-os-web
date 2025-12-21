@@ -1,0 +1,270 @@
+using UnityEngine;
+using System.Threading.Tasks;
+using System.Text;
+
+namespace SymbolicGraphics
+{
+    /// <summary>
+    /// Renders entire game scenes using symbolic characters as pixels.
+    /// Converts Camera output or Textures to symbolic pixel art at any resolution.
+    /// Think: Every █ character is a colored pixel creating massive images.
+    /// </summary>
+    [RequireComponent(typeof(SymbolicRenderer))]
+    public class SymbolicSceneRenderer : MonoBehaviour
+    {
+        [Header("Resolution")]
+        [Tooltip("Target rendering resolution")]
+        public SceneResolution targetResolution = SceneResolution.Xbox360_720p;
+
+        [Header("Source")]
+        [Tooltip("Camera to capture from (leave null to use provided texture)")]
+        public Camera sourceCamera;
+
+        [Tooltip("Texture to convert (if no camera)")]
+        public Texture2D sourceTexture;
+
+        [Header("Rendering Options")]
+        [Tooltip("Character to use as pixel (█ recommended)")]
+        public char pixelCharacter = SymbolicChars.FULL_BLOCK;
+
+        [Tooltip("Apply color dithering for better gradients")]
+        public bool useDithering = false;
+
+        [Tooltip("Reduce colors to palette (0 = full color)")]
+        [Range(0, 256)]
+        public int colorPaletteSize = 0;
+
+        [Header("Performance")]
+        [Tooltip("Generate string async to avoid frame drops")]
+        public bool useAsyncGeneration = true;
+
+        [Tooltip("Update every N frames (1 = every frame)")]
+        [Range(1, 60)]
+        public int updateInterval = 1;
+
+        private SymbolicRenderer symbolicRenderer;
+        private SymbolicCanvas canvas;
+        private RenderTexture renderTexture;
+        private Texture2D readbackTexture;
+        private int frameCounter = 0;
+        private bool isGenerating = false;
+
+        public enum SceneResolution
+        {
+            Low_320x240,      // Retro
+            SD_640x480,       // Standard Definition
+            Xbox360_720p,     // 1280×720
+            HD_1080p,         // 1920×1080
+            Custom
+        }
+
+        void Start()
+        {
+            symbolicRenderer = GetComponent<SymbolicRenderer>();
+            InitializeResolution();
+        }
+
+        void Update()
+        {
+            frameCounter++;
+            if (frameCounter % updateInterval == 0 && !isGenerating)
+            {
+                if (sourceCamera != null)
+                {
+                    CaptureAndRenderFromCamera();
+                }
+                else if (sourceTexture != null)
+                {
+                    RenderFromTexture(sourceTexture);
+                }
+            }
+        }
+
+        void InitializeResolution()
+        {
+            Vector2Int resolution = GetResolution();
+
+            // Resize canvas to match target resolution
+            symbolicRenderer.ResizeCanvas(resolution.x, resolution.y);
+            canvas = symbolicRenderer.Canvas;
+
+            // Create render texture for camera capture
+            if (sourceCamera != null)
+            {
+                renderTexture = new RenderTexture(resolution.x, resolution.y, 24);
+                renderTexture.filterMode = FilterMode.Point; // Pixel-perfect
+                readbackTexture = new Texture2D(resolution.x, resolution.y, TextureFormat.RGB24, false);
+            }
+
+            Debug.Log($"Symbolic Scene Renderer initialized at {resolution.x}×{resolution.y} ({resolution.x * resolution.y:N0} pixels)");
+        }
+
+        Vector2Int GetResolution()
+        {
+            return targetResolution switch
+            {
+                SceneResolution.Low_320x240 => new Vector2Int(320, 240),
+                SceneResolution.SD_640x480 => new Vector2Int(640, 480),
+                SceneResolution.Xbox360_720p => new Vector2Int(1280, 720),
+                SceneResolution.HD_1080p => new Vector2Int(1920, 1080),
+                _ => new Vector2Int(symbolicRenderer.Canvas.Width, symbolicRenderer.Canvas.Height)
+            };
+        }
+
+        public async void CaptureAndRenderFromCamera()
+        {
+            if (sourceCamera == null || isGenerating) return;
+
+            isGenerating = true;
+
+            // Render camera to texture
+            RenderTexture previousRT = sourceCamera.targetTexture;
+            sourceCamera.targetTexture = renderTexture;
+            sourceCamera.Render();
+            sourceCamera.targetTexture = previousRT;
+
+            // Read pixels
+            RenderTexture.active = renderTexture;
+            readbackTexture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+            readbackTexture.Apply();
+            RenderTexture.active = null;
+
+            // Convert to symbolic
+            if (useAsyncGeneration)
+            {
+                await ConvertTextureToSymbolicAsync(readbackTexture);
+            }
+            else
+            {
+                ConvertTextureToSymbolic(readbackTexture);
+            }
+
+            symbolicRenderer.UpdateDisplay();
+            isGenerating = false;
+        }
+
+        public async void RenderFromTexture(Texture2D texture)
+        {
+            if (texture == null || isGenerating) return;
+
+            isGenerating = true;
+
+            if (useAsyncGeneration)
+            {
+                await ConvertTextureToSymbolicAsync(texture);
+            }
+            else
+            {
+                ConvertTextureToSymbolic(texture);
+            }
+
+            symbolicRenderer.UpdateDisplay();
+            isGenerating = false;
+        }
+
+        void ConvertTextureToSymbolic(Texture2D texture)
+        {
+            int width = Mathf.Min(texture.width, canvas.Width);
+            int height = Mathf.Min(texture.height, canvas.Height);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    // Sample texture (flip Y because Unity textures are bottom-up)
+                    Color pixel = texture.GetPixel(x, height - 1 - y);
+
+                    // Apply dithering if enabled
+                    if (useDithering)
+                    {
+                        pixel = ApplyDithering(pixel, x, y);
+                    }
+
+                    // Quantize to palette if enabled
+                    if (colorPaletteSize > 0)
+                    {
+                        pixel = QuantizeColor(pixel, colorPaletteSize);
+                    }
+
+                    // Set pixel in canvas
+                    canvas.SetPixel(x, y, pixelCharacter, pixel);
+                }
+            }
+        }
+
+        async Task ConvertTextureToSymbolicAsync(Texture2D texture)
+        {
+            int width = Mathf.Min(texture.width, canvas.Width);
+            int height = Mathf.Min(texture.height, canvas.Height);
+
+            await Task.Run(() =>
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        Color pixel = texture.GetPixel(x, height - 1 - y);
+
+                        if (useDithering)
+                        {
+                            pixel = ApplyDithering(pixel, x, y);
+                        }
+
+                        if (colorPaletteSize > 0)
+                        {
+                            pixel = QuantizeColor(pixel, colorPaletteSize);
+                        }
+
+                        canvas.SetPixel(x, y, pixelCharacter, pixel);
+                    }
+                }
+            });
+        }
+
+        Color ApplyDithering(Color color, int x, int y)
+        {
+            // Ordered dithering (Bayer matrix)
+            float[,] bayerMatrix = new float[2, 2]
+            {
+                { 0.0f, 0.5f },
+                { 0.75f, 0.25f }
+            };
+
+            float threshold = bayerMatrix[x % 2, y % 2];
+            float dither = (threshold - 0.5f) * 0.1f; // Subtle dithering
+
+            return new Color(
+                Mathf.Clamp01(color.r + dither),
+                Mathf.Clamp01(color.g + dither),
+                Mathf.Clamp01(color.b + dither),
+                color.a
+            );
+        }
+
+        Color QuantizeColor(Color color, int paletteSize)
+        {
+            float step = 1.0f / (paletteSize - 1);
+
+            return new Color(
+                Mathf.Round(color.r / step) * step,
+                Mathf.Round(color.g / step) * step,
+                Mathf.Round(color.b / step) * step,
+                color.a
+            );
+        }
+
+        void OnDestroy()
+        {
+            if (renderTexture != null)
+            {
+                renderTexture.Release();
+                Destroy(renderTexture);
+            }
+
+            if (readbackTexture != null)
+            {
+                Destroy(readbackTexture);
+            }
+        }
+    }
+}

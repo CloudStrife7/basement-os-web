@@ -160,6 +160,11 @@ class BasementOSDemo {
     handleKeyDown(e) {
         if (!this.booted) return;
 
+        // Prevent default to stop page scrolling
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter', 'Escape'].includes(e.key)) {
+            e.preventDefault();
+        }
+
         switch (this.currentApp) {
             case 'SHELL':
                 this.handleShellInput(e);
@@ -272,13 +277,14 @@ class BasementOSDemo {
         const content = this.getActiveAppContent();
         const W = 70;
 
-        // Build header
-        const title = 'BASEMENT OS // VERSION 2';
-        const status = '[SIMULATION ONLINE]';
-        const headerContent = ' ' + title + ' '.repeat(W - title.length - status.length - 2) + status;
+        // Build header - ensure it fits within W
+        const title = 'BASEMENT OS // V2';
+        const status = '[ONLINE]';
+        const padding = Math.max(0, W - title.length - status.length - 2);
+        const headerContent = (' ' + title + ' '.repeat(padding) + status).substring(0, W);
 
-        // Build ticker
-        const tickerContent = ' ' + this.rssLine.substring(0, W - 2);
+        // Build ticker - truncate to fit
+        const tickerContent = (' ' + this.rssLine).substring(0, W);
 
         // Build footer - left aligned
         const cursor = this.isCursorVisible ? '█' : ' ';
