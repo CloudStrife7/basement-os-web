@@ -305,16 +305,31 @@ class BasementOSDemo {
     }
 
     getActiveAppContent() {
+        const CONTENT_LINES = 15;
+        let content;
         switch (this.currentApp) {
-            case 'SHELL': return this.renderShell();
-            case 'GITHUB': return this.renderGitHub();
-            case 'DASHBOARD': return this.renderDashboard();
-            case 'GAMES': return this.renderGames();
-            case 'STATS': return this.renderStats();
-            case 'TALES': return this.renderTales();
-            case 'WEATHER': return this.renderWeather();
-            default: return 'NO APP LOADED\n';
+            case 'SHELL': content = this.renderShell(); break;
+            case 'GITHUB': content = this.renderGitHub(); break;
+            case 'DASHBOARD': content = this.renderDashboard(); break;
+            case 'GAMES': content = this.renderGames(); break;
+            case 'STATS': content = this.renderStats(); break;
+            case 'TALES': content = this.renderTales(); break;
+            case 'WEATHER': content = this.renderWeather(); break;
+            default: content = 'NO APP LOADED\n';
         }
+        return this.padToLines(content, CONTENT_LINES);
+    }
+
+    // Helper to ensure consistent content height
+    padToLines(content, totalLines) {
+        const lines = content.split('\n');
+        const currentLines = lines.length;
+        if (currentLines < totalLines) {
+            for (let i = currentLines; i < totalLines; i++) {
+                content += '\n';
+            }
+        }
+        return content;
     }
 
     // =======================================================================
