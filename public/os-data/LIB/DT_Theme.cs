@@ -29,16 +29,16 @@ public class DT_Theme : UdonSharpBehaviour
     // =================================================================
 
     /// <summary>Structure color - borders, box drawing, inactive elements</summary>
-    public const string COLOR_STRUCT = "#064E3B";
+    public const string COLOR_STRUCT = "#10B981";
 
     /// <summary>Primary emerald green - main body text, menu names</summary>
     public const string COLOR_PRIMARY = "#10B981";
 
     /// <summary>Highlight mint - active selections, headers, important values</summary>
-    public const string COLOR_HIGHLIGHT = "#34D399";
+    public const string COLOR_HIGHLIGHT = "#10B981";
 
     /// <summary>Dim dark teal - help text, subtle elements</summary>
-    public const string COLOR_DIM = "#0A5240";
+    public const string COLOR_DIM = "#10B981";
 
     /// <summary>Error coral red - warnings, errors, glitch effects</summary>
     public const string COLOR_ERROR = "#F87171";

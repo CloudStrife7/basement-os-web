@@ -355,7 +355,7 @@ MonoBehaviour:
       Data: 22|UnityEngine.TooltipAttribute, UnityEngine.CoreModule
     - Name: tooltip
       Entry: 1
-      Data: 'Item types: <DIR>, <EXE>, <BAT>'
+      Data: 'Item types: <APP>, <CFG>, <FX>, <BAR>, <DAT>, <DOC>'
     - Name: 
       Entry: 8
       Data: 

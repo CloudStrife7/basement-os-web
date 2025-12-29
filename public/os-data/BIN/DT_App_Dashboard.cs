@@ -4,7 +4,7 @@ using VRC.Udon;
 using UdonSharp;
 
 /// <summary>
-/// BASEMENT OS - DASHBOARD APPLICATION (v2.1)
+/// BASEMENT OS - DASHBOARD APPLICATION (v2.2)
 ///
 /// ROLE: FIRST SCREEN / SYSTEM OVERVIEW
 /// The default app that greets users when they sit at the terminal.
@@ -16,6 +16,7 @@ using UdonSharp;
 /// - Hub: Reads from AchievementDataManager for stats
 /// - Hub: Reads from DT_WeatherModule for weather
 /// - Spoke: Launches DT_Shell (menu) on ACCEPT
+/// - Uses: Terminal_Style_Guide.md box format
 ///
 /// LIMITATIONS:
 /// - Max 350 Lines
@@ -53,10 +54,23 @@ public class DT_App_Dashboard : UdonSharpBehaviour
     // DISPLAY CONSTANTS
     // =================================================================
 
-    private const int SCREEN_WIDTH = 80;
-    private const int LEFT_COL_WIDTH = 38;
-    private const int RIGHT_COL_WIDTH = 38;
+    private const int WIDTH = 80;
+    private const int CONTENT_W = 76;  // 80 - 4 for "║ " and " ║"
+    private const int LEFT_COL_WIDTH = 36;
+    private const int RIGHT_COL_WIDTH = 36;
     private const int COLUMN_GAP = 4;
+    private const int VISIBLE_ROWS = 12;
+
+    // =================================================================
+    // THEME COLORS (Emerald Palette)
+    // =================================================================
+
+    private const string COLOR_BORDER = "#065F46";     // Dark emerald for box borders
+    private const string COLOR_PRIMARY = "#10B981";    // Bright emerald for text
+    private const string COLOR_HEADER = "#6EE7B7";     // Pale emerald for headers
+    private const string COLOR_OK = "#34D399";         // Light emerald for OK status
+    private const string COLOR_WARN = "#FBBF24";       // Amber for warnings
+    private const string COLOR_DIM = "#6B7280";        // Gray for disabled
 
     // =================================================================
     // CACHED DISPLAY DATA
@@ -188,22 +202,59 @@ public class DT_App_Dashboard : UdonSharpBehaviour
     // DISPLAY RENDERING
     // =================================================================
 
+    /// <summary>
+    /// Helper to wrap content in box row borders.
+    /// IMPORTANT: Content should already be padded to CONTENT_W visible chars!
+    /// </summary>
+    private string BoxRow(string content)
+    {
+        // Don't use DT_Format.PadLeft here - it truncates color tags
+        return "<color=" + COLOR_BORDER + ">" + DT_Format.BORDER_VERTICAL + "</color> " +
+               content +
+               " <color=" + COLOR_BORDER + ">" + DT_Format.BORDER_VERTICAL + "</color>";
+    }
+
     private void RebuildDisplay()
     {
+        string o = "";
+
+        // Top border
+        o = o + "<color=" + COLOR_BORDER + ">" + DT_Format.GenerateBoxTop(WIDTH) + "</color>\n";
+
+        // Title row (centered) - PadCenter returns exactly CONTENT_W chars
+        string titleText = DT_Format.PadCenter("DASHBOARD - WELCOME " + playerName.ToUpper(), CONTENT_W);
+        o = o + BoxRow("<color=" + COLOR_HEADER + ">" + titleText + "</color>") + "\n";
+
+        // Divider
+        o = o + "<color=" + COLOR_BORDER + ">" + DT_Format.BORDER_LEFT_T + DT_Format.RepeatChar(DT_Format.BORDER_HORIZONTAL, WIDTH - 2) + DT_Format.BORDER_RIGHT_T + "</color>\n";
+
+        // Build two-column content
         string[] leftLines = BuildLeftColumn();
         string[] rightLines = BuildRightColumn();
-
-        string output = "";
         int maxLines = leftLines.Length > rightLines.Length ? leftLines.Length : rightLines.Length;
+        if (maxLines > VISIBLE_ROWS) maxLines = VISIBLE_ROWS;
 
         for (int i = 0; i < maxLines; i++)
         {
             string leftText = i < leftLines.Length ? leftLines[i] : "";
             string rightText = i < rightLines.Length ? rightLines[i] : "";
-            output = output + FormatTwoColumnLine(leftText, rightText) + "\n";
+            o = o + BoxRow(FormatTwoColumnContent(leftText, rightText)) + "\n";
         }
 
-        cachedContent = output;
+        // Pad remaining rows (empty row = 76 spaces)
+        string emptyRow = DT_Format.RepeatChar(' ', CONTENT_W);
+        for (int i = maxLines; i < VISIBLE_ROWS; i++)
+        {
+            o = o + BoxRow(emptyRow) + "\n";
+        }
+
+        // Bottom border
+        o = o + "<color=" + COLOR_BORDER + ">" + DT_Format.GenerateBoxBottom(WIDTH) + "</color>\n";
+
+        // Navigation footer (outside box)
+        o = o + " <color=" + COLOR_PRIMARY + ">[D] Open Menu  [A] Refresh</color>\n";
+
+        cachedContent = o;
     }
 
     /// <summary>
@@ -255,17 +306,13 @@ public class DT_App_Dashboard : UdonSharpBehaviour
 
         while (idx < 5) lines[idx++] = "";
 
-        lines[idx++] = "";
-        lines[idx++] = "WEATHER (" + weatherLocation + ")";
-        lines[idx++] = weatherTemp + "  " + weatherCondition;
-        lines[idx++] = "";
-
+        // Weather removed - now only shown in Shell header
         while (idx < 14) lines[idx++] = "";
 
         return lines;
     }
 
-    private string FormatTwoColumnLine(string leftText, string rightText)
+    private string FormatTwoColumnContent(string leftText, string rightText)
     {
         // Truncate if too long
         if (leftText.Length > LEFT_COL_WIDTH)
@@ -277,8 +324,8 @@ public class DT_App_Dashboard : UdonSharpBehaviour
         string paddedLeft = PadRight(leftText, LEFT_COL_WIDTH);
         string gap = "    "; // 4 chars
 
-        // Build line: 38 + 4 + 38 = 80
-        return paddedLeft + gap + PadRight(rightText, RIGHT_COL_WIDTH);
+        // Build line: 36 + 4 + 36 = 76 (fits CONTENT_W)
+        return "<color=" + COLOR_PRIMARY + ">" + paddedLeft + gap + PadRight(rightText, RIGHT_COL_WIDTH) + "</color>";
     }
 
     private string PadRight(string text, int maxWidth)

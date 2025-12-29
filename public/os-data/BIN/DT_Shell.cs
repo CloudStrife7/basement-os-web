@@ -1,5 +1,5 @@
 /// <summary>
-/// BASEMENT OS SHELL (v2.0)
+/// BASEMENT OS SHELL (v2.1)
 ///
 /// ROLE: MAIN MENU / COMMAND SHELL
 /// LOCATION: Assets/Scripts/BasementOS/BIN/DT_Shell.cs
@@ -9,10 +9,11 @@
 /// - Spoke: Launches other apps via Core.LoadProcess()
 ///
 /// FEATURES:
-/// - DOS DIR-style navigation interface
+/// - DOS DIR-style navigation interface with box borders
 /// - Cursor-based menu selection
 /// - Dynamic content generation with item types
 /// - Keyboard navigation (UP/DOWN/ACCEPT)
+/// - Unified terminal style (Terminal_Style_Guide.md)
 /// </summary>
 
 using UdonSharp;
@@ -66,10 +67,18 @@ public class DT_Shell : UdonSharpBehaviour
     // THEME COLORS (from DT_Theme - Web Terminal Palette)
     // ============================================================
 
-    private const string COLOR_STRUCT = "#064E3B";     // Borders, inactive
-    private const string COLOR_PRIMARY = "#10B981";    // Body text, menu names
-    private const string COLOR_HIGHLIGHT = "#34D399";  // Active selections
-    private const string COLOR_DIM = "#0A5240";        // Subtle elements
+    private const string COLOR_BORDER = "#065F46";     // Dark emerald for box borders
+    private const string COLOR_PRIMARY = "#10B981";    // Bright emerald for text
+    private const string COLOR_HIGHLIGHT = "#34D399";  // Light emerald for selected
+    private const string COLOR_DIM = "#6EE7B7";        // Pale emerald for headers
+
+    // ============================================================
+    // BOX DIMENSIONS (Terminal_Style_Guide.md)
+    // ============================================================
+
+    private const int WIDTH = 80;
+    private const int CONTENT_W = 76;  // 80 - 4 for "║ " and " ║"
+    private const int VISIBLE_ROWS = 12;  // Rows available for menu items
 
     // ============================================================
     // INITIALIZATION
@@ -242,80 +251,107 @@ public class DT_Shell : UdonSharpBehaviour
     // ============================================================
 
     /// <summary>
+    /// Helper to wrap content in box row borders.
+    /// IMPORTANT: Content must already be exactly CONTENT_W (76) visible chars!
+    /// Color tags in content don't count toward visible width.
+    /// </summary>
+    private string BoxRow(string content)
+    {
+        // Don't pad here - content should already be correct width
+        // This avoids truncating color tags
+        return "<color=" + COLOR_BORDER + ">" + DT_Format.BORDER_VERTICAL + "</color> " +
+               content +
+               " <color=" + COLOR_BORDER + ">" + DT_Format.BORDER_VERTICAL + "</color>";
+    }
+
+    /// <summary>
     /// Generate display content for lines 4-20
-    /// Returns DOS DIR-style menu listing
+    /// Returns DOS DIR-style menu listing with box borders
     /// </summary>
     public string GetDisplayContent()
     {
-        string output = "";
+        string o = "";
 
-        // Header: Current directory (primary color)
-        output = output + " <color=" + COLOR_PRIMARY + ">C:\\BASEMENT\\MENU</color>\n";
-        output = output + "\n";
+        // Top border
+        o = o + "<color=" + COLOR_BORDER + ">" + DT_Format.GenerateBoxTop(WIDTH) + "</color>\n";
 
-        // Column headers (dim color for structure)
-        output = output + "   <color=" + COLOR_DIM + ">TYPE     NAME             DESCRIPTION</color>\n";
-        output = output + "   <color=" + COLOR_DIM + ">----     ------------     ---------------------------------------</color>\n";
+        // Title row (centered)
+        o = o + BoxRow("<color=" + COLOR_DIM + ">" + DT_Format.PadCenter("BASEMENT OS - MAIN MENU", CONTENT_W) + "</color>") + "\n";
+
+        // Divider
+        o = o + "<color=" + COLOR_BORDER + ">" + DT_Format.BORDER_LEFT_T + DT_Format.RepeatChar(DT_Format.BORDER_HORIZONTAL, WIDTH - 2) + DT_Format.BORDER_RIGHT_T + "</color>\n";
+
+        // Column headers (same layout as menu items: 2+8+1+16+1+48=76)
+        string headerLine = "  " + PadRight("TYPE", 8) + " " + PadRight("NAME", 16) + " " + PadRight("DESCRIPTION", 48);
+        o = o + BoxRow("<color=" + COLOR_DIM + ">" + headerLine + "</color>") + "\n";
 
         // Menu items
+        int rowsUsed = 0;
         if (menuItemCount > 0)
         {
-            for (int i = 0; i < menuItemCount; i++)
+            for (int i = 0; i < menuItemCount && rowsUsed < VISIBLE_ROWS; i++)
             {
-                output = output + RenderMenuItem(i);
+                o = o + RenderMenuItem(i) + "\n";
+                rowsUsed++;
             }
         }
         else
         {
-            output = output + "   <color=" + COLOR_DIM + ">No menu items configured</color>\n";
+            // Pad message to exactly CONTENT_W chars
+            o = o + BoxRow("<color=" + COLOR_DIM + ">" + DT_Format.PadLeft("  No menu items configured", CONTENT_W) + "</color>") + "\n";
+            rowsUsed++;
         }
 
-        return output;
+        // Pad remaining rows to fill box (empty row = 76 spaces)
+        string emptyRow = DT_Format.RepeatChar(' ', CONTENT_W);
+        for (int i = rowsUsed; i < VISIBLE_ROWS; i++)
+        {
+            o = o + BoxRow(emptyRow) + "\n";
+        }
+
+        // Bottom border
+        o = o + "<color=" + COLOR_BORDER + ">" + DT_Format.GenerateBoxBottom(WIDTH) + "</color>\n";
+
+        // Navigation footer (outside box)
+        o = o + " <color=" + COLOR_PRIMARY + ">[D] Launch  [W/S] Navigate</color>\n";
+
+        return o;
     }
 
     /// <summary>
-    /// Render a single menu item with cursor and formatting
+    /// Render a single menu item with cursor and formatting inside box.
+    /// Layout: cursor(2) + type(8) + space(1) + name(16) + space(1) + desc(48) = 76 chars
     /// </summary>
     private string RenderMenuItem(int index)
     {
-        string line = "";
+        // Build plain text content first, then wrap in color at the end
+        // This ensures BoxRow receives exactly 76 visible chars
 
-        // Cursor indicator and line color
-        if (index == cursorIndex)
-        {
-            // Highlighted line (cursor selected)
-            line = line + " <color=" + COLOR_HIGHLIGHT + ">";
-            line = line + ">";
-        }
-        else
-        {
-            // Normal line (primary color)
-            line = line + " <color=" + COLOR_PRIMARY + "> ";
-        }
+        // Cursor indicator (2 chars: "> " or "  ")
+        string cursor = (index == cursorIndex) ? "> " : "  ";
 
-        // Item type (padded to 8 chars)
-        string itemType = GetItemType(index);
-        line = line + " " + PadRight(itemType, 8);
+        // Item type (8 chars) + space (1 char)
+        string itemType = PadRight(GetItemType(index), 8);
 
-        // Item name (padded to 16 chars)
-        string itemName = GetItemName(index);
-        line = line + " " + PadRight(itemName, 16);
+        // Item name (16 chars) + space (1 char)
+        string itemName = PadRight(GetItemName(index), 16);
 
-        // Description (truncate to fit remaining space)
-        // Available: 80 - 2 (cursor+space) - 1 (space) - 8 (type) - 1 (space) - 16 (name) - 1 (space) - 8 (</color>) = 43 chars
+        // Description (48 chars - truncate if too long, PAD if too short)
         string itemDesc = GetItemDescription(index);
-        if (itemDesc.Length > 43)
+        if (itemDesc.Length > 48)
         {
-            itemDesc = itemDesc.Substring(0, 40) + "...";
+            itemDesc = itemDesc.Substring(0, 45) + "...";
         }
-        line = line + " " + itemDesc;
+        itemDesc = PadRight(itemDesc, 48);  // Ensure exactly 48 chars
 
-        // Close color tag
-        line = line + "</color>";
+        // Assemble plain text: 2 + 8 + 1 + 16 + 1 + 48 = 76 chars exactly
+        string plainContent = cursor + itemType + " " + itemName + " " + itemDesc;
 
-        line = line + "\n";
+        // Wrap entire line in color (color tags don't affect visible width)
+        string color = (index == cursorIndex) ? COLOR_HIGHLIGHT : COLOR_PRIMARY;
+        string coloredContent = "<color=" + color + ">" + plainContent + "</color>";
 
-        return line;
+        return BoxRow(coloredContent);
     }
 
     // ============================================================
@@ -375,7 +411,7 @@ public class DT_Shell : UdonSharpBehaviour
     }
 
     /// <summary>
-    /// Pad string to specified width (UdonSharp-compatible)
+    /// Pad string to specified width, truncating if too long (UdonSharp-compatible)
     /// </summary>
     private string PadRight(string text, int totalWidth)
     {
@@ -383,11 +419,13 @@ public class DT_Shell : UdonSharpBehaviour
 
         int currentLength = text.Length;
 
+        // Truncate if too long
         if (currentLength >= totalWidth)
         {
-            return text;
+            return text.Substring(0, totalWidth);
         }
 
+        // Pad if too short
         string padded = text;
         int spacesNeeded = totalWidth - currentLength;
 

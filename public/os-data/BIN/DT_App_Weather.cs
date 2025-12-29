@@ -5,7 +5,7 @@ using UdonSharp;
 using LowerLevel.Terminal;
 
 /// <summary>
-/// BASEMENT OS WEATHER APPLICATION (v2.1)
+/// BASEMENT OS WEATHER APPLICATION (v2.2)
 ///
 /// ROLE: WEATHER FORECAST DISPLAY
 /// Displays weather using CACHED data from DT_WeatherModule.
@@ -16,6 +16,7 @@ using LowerLevel.Terminal;
 /// INTEGRATION:
 /// - DT_WeatherModule: Source of cached weather data (read-only)
 /// - DT_Core: System core for app lifecycle
+/// - Uses: Terminal_Style_Guide.md box format
 ///
 /// LIMITATIONS:
 /// - Max 250 Lines
@@ -48,6 +49,19 @@ public class DT_App_Weather : UdonSharpBehaviour
     [Header("--- Weather Display ---")]
     [Tooltip("Location string to display")]
     [SerializeField] private string locationString = "Chicago, IL";
+
+    // =================================================================
+    // BOX DIMENSIONS & COLORS (Terminal_Style_Guide.md)
+    // =================================================================
+
+    private const int WIDTH = 80;
+    private const int CONTENT_W = 76;
+    private const int VISIBLE_ROWS = 12;
+
+    private const string COLOR_BORDER = "#065F46";
+    private const string COLOR_PRIMARY = "#10B981";
+    private const string COLOR_HEADER = "#6EE7B7";
+    private const string COLOR_HIGHLIGHT = "#34D399";
 
     // =================================================================
     // CACHED WEATHER DATA
@@ -135,30 +149,53 @@ public class DT_App_Weather : UdonSharpBehaviour
     // DISPLAY RENDERING
     // =================================================================
 
+    private string BoxRow(string content)
+    {
+        return "<color=" + COLOR_BORDER + ">" + DT_Format.BORDER_VERTICAL + "</color> " +
+               DT_Format.PadLeft(content, CONTENT_W) +
+               " <color=" + COLOR_BORDER + ">" + DT_Format.BORDER_VERTICAL + "</color>";
+    }
+
     private void RenderWeatherDisplay()
     {
-        string output = "";
+        string o = "";
 
-        output = output + " WEATHER SENSORS - " + locationString + "\n";
-        output = output + GenerateSeparator() + "\n";
+        // Top border
+        o = o + "<color=" + COLOR_BORDER + ">" + DT_Format.GenerateBoxTop(WIDTH) + "</color>\n";
 
+        // Title row
+        o = o + BoxRow("<color=" + COLOR_HEADER + ">" + DT_Format.PadCenter("WEATHER SENSORS - " + locationString.ToUpper(), CONTENT_W) + "</color>") + "\n";
+
+        // Divider
+        o = o + "<color=" + COLOR_BORDER + ">" + DT_Format.BORDER_LEFT_T + DT_Format.RepeatChar(DT_Format.BORDER_HORIZONTAL, WIDTH - 2) + DT_Format.BORDER_RIGHT_T + "</color>\n";
+
+        // Weather content
         string[] artLines = GetWeatherArtLines(cachedCondition);
-        string statusText = weatherOnline ? "Online" : "OFFLINE";
+        string statusText = weatherOnline ? "<color=" + COLOR_HIGHLIGHT + ">Online</color>" : "<color=#EF4444>OFFLINE</color>";
 
-        output = output + "      " + artLines[0] + "                   CURRENT CONDITIONS\n";
-        output = output + "    " + artLines[1] + "                   Temperature: " + cachedTemperature + "\n";
-        output = output + "    " + artLines[2] + "                   Condition:   " + cachedCondition + "\n";
-        output = output + "    " + artLines[3] + "                   Status:      " + statusText + "\n\n";
+        o = o + BoxRow("<color=" + COLOR_PRIMARY + ">    " + artLines[0] + "                   CURRENT CONDITIONS</color>") + "\n";
+        o = o + BoxRow("<color=" + COLOR_PRIMARY + ">  " + artLines[1] + "                   Temperature: " + cachedTemperature + "</color>") + "\n";
+        o = o + BoxRow("<color=" + COLOR_PRIMARY + ">  " + artLines[2] + "                   Condition:   " + cachedCondition + "</color>") + "\n";
+        o = o + BoxRow("<color=" + COLOR_PRIMARY + ">  " + artLines[3] + "                   Status:      </color>" + statusText) + "\n";
+        o = o + BoxRow("") + "\n";
 
-        output = output + "  FORECAST\n";
-        output = output + "  ────────────────────────────────────────────────────────────────\n";
-        output = output + "  TODAY      Tomorrow    Wednesday   Thursday    Friday\n";
-        output = output + "   " + cachedTemperature + "       --°F        --°F        --°F       --°F\n";
-        output = output + "  " + GetConditionShort(cachedCondition) + "      Pending     Pending     Pending    Pending\n\n";
+        // Forecast section
+        o = o + BoxRow("<color=" + COLOR_HEADER + ">FORECAST</color>") + "\n";
+        o = o + BoxRow("<color=" + COLOR_PRIMARY + ">TODAY        Tomorrow     Wednesday    Thursday     Friday</color>") + "\n";
+        o = o + BoxRow("<color=" + COLOR_PRIMARY + ">" + DT_Format.PadLeft(cachedTemperature, 8) + "     --°F         --°F         --°F        --°F</color>") + "\n";
+        o = o + BoxRow("<color=" + COLOR_PRIMARY + ">" + GetConditionShort(cachedCondition) + "     Pending      Pending      Pending     Pending</color>") + "\n";
 
-        output = output + "  [ACCEPT] Refresh  [A] Back";
+        // Pad remaining rows
+        o = o + BoxRow("") + "\n";
+        o = o + BoxRow("") + "\n";
 
-        displayContent = output;
+        // Bottom border
+        o = o + "<color=" + COLOR_BORDER + ">" + DT_Format.GenerateBoxBottom(WIDTH) + "</color>\n";
+
+        // Navigation footer
+        o = o + " <color=" + COLOR_PRIMARY + ">[D] Refresh  [A] Back</color>\n";
+
+        displayContent = o;
     }
 
     private string[] GetWeatherArtLines(string condition)

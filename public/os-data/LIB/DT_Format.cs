@@ -70,6 +70,8 @@ public class DT_Format : UdonSharpBehaviour
     public const char BLOCK_DARK = '▓';
     public const char BLOCK_MEDIUM = '▒';
     public const char BLOCK_LIGHT = '░';
+    public const char BLOCK_FILLED = '■';  // Style guide progress filled
+    public const char BLOCK_EMPTY = '□';   // Style guide progress empty
 
     // =================================================================
     // BORDER GENERATION
@@ -267,6 +269,31 @@ public class DT_Format : UdonSharpBehaviour
         string bar = GenerateProgressBar(percent, barWidth);
 
         return bar + label;
+    }
+
+    /// <summary>
+    /// Generates style-guide compliant progress with ■□ blocks
+    /// </summary>
+    /// <param name="current">Current count</param>
+    /// <param name="total">Total count</param>
+    /// <param name="width">Bar width (excluding brackets)</param>
+    /// <returns>[■■■□□□□] X/Y</returns>
+    public static string GenerateStyleProgress(int current, int total, int width)
+    {
+        if (total <= 0) total = 1;
+        if (current < 0) current = 0;
+        if (current > total) current = total;
+
+        string countLabel = current.ToString() + "/" + total.ToString();
+        int barWidth = width - countLabel.Length - 3; // -3 for "[] "
+        if (barWidth < 2) barWidth = 2;
+
+        float percent = (float)current / (float)total;
+        int filled = (int)(barWidth * percent);
+        int empty = barWidth - filled;
+
+        string bar = "[" + RepeatChar(BLOCK_FILLED, filled) + RepeatChar(BLOCK_EMPTY, empty) + "]";
+        return bar + " " + countLabel;
     }
 
     // =================================================================

@@ -4,6 +4,7 @@ using VRC.Udon;
 using VRC.SDK3.Components;
 using TMPro;
 using UdonSharp;
+using LowerLevel.Terminal;
 
 /// <summary>
 /// BASEMENT OS CORE (v2.0)
@@ -55,6 +56,10 @@ public class DT_Core : UdonSharpBehaviour
     [Tooltip("Cache manager for DateTime operations")]
     [SerializeField] private DT_CacheManager cacheManager;
 
+    [Header("--- Weather ---")]
+    [Tooltip("Weather module for header display")]
+    [SerializeField] private DT_WeatherModule weatherModule;
+
     // =================================================================
     // NOTIFICATION INTEGRATION (for NotificationEventHub)
     // =================================================================
@@ -81,6 +86,8 @@ public class DT_Core : UdonSharpBehaviour
     private float lastBlinkTime = 0f;
     private bool isCursorVisible = true;
     private const float CURSOR_BLINK_RATE = 0.5f;
+    private float lastHeaderUpdate = 0f;
+    private const float HEADER_UPDATE_RATE = 1.0f; // Update header once per second (Quest optimization)
     
     // Constants
     private const int SCREEN_WIDTH = 80;
@@ -164,8 +171,12 @@ public class DT_Core : UdonSharpBehaviour
             rssLine = ticker.GetVisibleText();
         }
 
-        // Update header time display (once per second)
-        UpdateHeaderTime();
+        // Update header time display (throttled to 1s for Quest optimization)
+        if (Time.time - lastHeaderUpdate > HEADER_UPDATE_RATE)
+        {
+            lastHeaderUpdate = Time.time;
+            UpdateHeaderTime();
+        }
 
         // Cursor Blink (Visual Only)
         if (Time.time - lastBlinkTime > CURSOR_BLINK_RATE)
@@ -422,7 +433,60 @@ public class DT_Core : UdonSharpBehaviour
     }
 
     /// <summary>
-    /// Updates the header line with current time and date
+    /// Abbreviate long weather conditions to fit header display
+    /// </summary>
+    private string GetCompactCondition(string fullCondition)
+    {
+        if (string.IsNullOrEmpty(fullCondition)) return "N/A";
+
+        string lower = fullCondition.ToLower();
+
+        // Abbreviate long conditions
+        if (lower.Contains("partly cloudy")) return "Pt.Cloudy";
+        if (lower.Contains("thunderstorm")) return "T-Storm";
+        if (lower.Contains("heavy rain")) return "H.Rain";
+        if (lower.Contains("light rain")) return "Lt.Rain";
+        if (lower.Contains("light drizzle")) return "Drizzle";
+        if (lower.Contains("moderate rain")) return "Mod.Rain";
+        if (lower.Contains("overcast")) return "Overcast";
+
+        // Already short enough
+        if (fullCondition.Length <= 8) return fullCondition;
+
+        // Truncate if still too long
+        return fullCondition.Substring(0, 7) + ".";
+    }
+
+    /// <summary>
+    /// Get formatted weather display string for header with error states
+    /// </summary>
+    private string GetWeatherDisplayString()
+    {
+        if (!Utilities.IsValid(weatherModule))
+        {
+            return "[No Weather]";
+        }
+
+        if (!weatherModule.IsWeatherOnline())
+        {
+            return "[Weather Off]";
+        }
+
+        string temp = weatherModule.GetTemperature();
+        string condition = weatherModule.GetCondition();
+
+        if (string.IsNullOrEmpty(temp) || string.IsNullOrEmpty(condition))
+        {
+            return "[Loading...]";
+        }
+
+        string compactCond = GetCompactCondition(condition);
+        return "[" + temp + " " + compactCond + "]";
+    }
+
+    /// <summary>
+    /// Updates the header line with date, time, and weather (replaces ONLINE status)
+    /// Weather displayed at end of header, replacing the static ONLINE indicator
     /// </summary>
     private void UpdateHeaderTime()
     {
@@ -432,18 +496,19 @@ public class DT_Core : UdonSharpBehaviour
         if (Utilities.IsValid(cacheManager))
         {
             string fullTime = cacheManager.GetCachedTime();
-            // Extract HH:mm from "h:mm:ss tt" format
+            // Extract HH:mm AM/PM from "h:mm:ss tt" format
             if (!string.IsNullOrEmpty(fullTime) && fullTime.Length >= 5)
             {
-                // Parse time to get hours and minutes
+                // Parse time to get hours, minutes, and AM/PM
                 int spaceIdx = fullTime.IndexOf(" ");
                 if (spaceIdx > 0)
                 {
                     string timePart = fullTime.Substring(0, spaceIdx);
+                    string amPm = fullTime.Substring(spaceIdx + 1); // "AM" or "PM"
                     int colonIdx = timePart.IndexOf(":");
                     if (colonIdx > 0 && timePart.Length > colonIdx + 2)
                     {
-                        timeStr = timePart.Substring(0, colonIdx + 3); // HH:mm
+                        timeStr = timePart.Substring(0, colonIdx + 3) + " " + amPm; // HH:mm AM/PM
                     }
                 }
             }
@@ -455,16 +520,17 @@ public class DT_Core : UdonSharpBehaviour
             }
         }
 
-        // Format: "BASEMENT OS // VERSION 2                         [MM/dd/yyyy] [HH:mm] [ONLINE]"
+        // Format: "BASEMENT OS // VERSION 2                         [MM/dd/yyyy] [HH:mm] [74°F Clear]"
         // Total length must be 80 chars
         string baseText = "BASEMENT OS // VERSION 2";
-        string status = "[ONLINE]";
         string date = "[" + dateStr + "]";
         string time = "[" + timeStr + "]";
+        string weather = GetWeatherDisplayString(); // Replaces [ONLINE]
 
-        // Calculate spacing: 80 - baseText - date - time - status - spaces between
-        int usedSpace = baseText.Length + date.Length + time.Length + status.Length + 3; // 3 spaces between elements
+        // Calculate spacing: 80 - baseText - date - time - weather - spaces between
+        int usedSpace = baseText.Length + date.Length + time.Length + weather.Length + 2; // 2 spaces between elements
         int paddingNeeded = SCREEN_WIDTH - usedSpace;
+        if (paddingNeeded < 1) paddingNeeded = 1;
 
         string padding = "";
         for (int i = 0; i < paddingNeeded; i++)
@@ -472,7 +538,7 @@ public class DT_Core : UdonSharpBehaviour
             padding = padding + " ";
         }
 
-        headerLine = baseText + padding + date + " " + time + " " + status;
+        headerLine = baseText + padding + date + " " + time + " " + weather;
     }
 
     /// <summary>

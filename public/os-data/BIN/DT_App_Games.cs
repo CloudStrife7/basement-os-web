@@ -4,7 +4,7 @@ using VRC.Udon;
 using UdonSharp;
 
 /// <summary>
-/// BASEMENT OS ARCADE GAME LAUNCHER (v2.1)
+/// BASEMENT OS ARCADE GAME LAUNCHER (v2.2)
 ///
 /// ROLE: ARCADE CARTRIDGE SELECTION INTERFACE
 /// "Select a Cartridge" - Browse and launch arcade games from the terminal.
@@ -14,6 +14,7 @@ using UdonSharp;
 /// INTEGRATION:
 /// - Spoke: Receives input from DT_Core
 /// - Games: SymbolicPong, SymbolicSnake, future titles
+/// - Uses: Terminal_Style_Guide.md box format
 ///
 /// LIMITATIONS:
 /// - Max 250 Lines
@@ -64,13 +65,26 @@ public class DT_App_Games : UdonSharpBehaviour
     [SerializeField] private int[] highScores;
 
     // =================================================================
+    // BOX DIMENSIONS & COLORS (Terminal_Style_Guide.md)
+    // =================================================================
+
+    private const int WIDTH = 80;
+    private const int CONTENT_W = 76;
+    private const int VISIBLE_ROWS = 12;
+
+    private const string COLOR_BORDER = "#065F46";
+    private const string COLOR_PRIMARY = "#10B981";
+    private const string COLOR_HEADER = "#6EE7B7";
+    private const string COLOR_HIGHLIGHT = "#34D399";
+    private const string COLOR_DIM = "#6B7280";
+
+    // =================================================================
     // STATE
     // =================================================================
 
     private int selectedIndex = 0;
     private bool isGameRunning = false;
     private int activeGameIndex = -1;
-    private const int SCREEN_WIDTH = 80;
 
     // =================================================================
     // APP LIFECYCLE
@@ -203,50 +217,79 @@ public class DT_App_Games : UdonSharpBehaviour
     // DISPLAY RENDERING
     // =================================================================
 
+    private string BoxRow(string content)
+    {
+        return "<color=" + COLOR_BORDER + ">" + DT_Format.BORDER_VERTICAL + "</color> " +
+               DT_Format.PadLeft(content, CONTENT_W) +
+               " <color=" + COLOR_BORDER + ">" + DT_Format.BORDER_VERTICAL + "</color>";
+    }
+
     public string GetDisplayContent()
     {
+        string o = "";
+
+        // Top border
+        o = o + "<color=" + COLOR_BORDER + ">" + DT_Format.GenerateBoxTop(WIDTH) + "</color>\n";
+
+        // Title
+        o = o + BoxRow("<color=" + COLOR_HEADER + ">" + DT_Format.PadCenter("SELECT CARTRIDGE", CONTENT_W) + "</color>") + "\n";
+
+        // Divider
+        o = o + "<color=" + COLOR_BORDER + ">" + DT_Format.BORDER_LEFT_T + DT_Format.RepeatChar(DT_Format.BORDER_HORIZONTAL, WIDTH - 2) + DT_Format.BORDER_RIGHT_T + "</color>\n";
+
         if (gameObjects == null || gameObjects.Length == 0)
         {
-            return "\n\n   ERROR: No game cartridges found.\n   Configure gameObjects in Inspector.";
+            o = o + BoxRow("<color=" + COLOR_PRIMARY + ">  ERROR: No game cartridges found.</color>") + "\n";
+            o = o + BoxRow("<color=" + COLOR_DIM + ">  Configure gameObjects in Inspector.</color>") + "\n";
         }
-
-        string output = "";
-        string separator = "";
-        for (int s = 0; s < SCREEN_WIDTH; s++) separator = separator + "═";
-
-        output = output + " SELECT CARTRIDGE\n";
-        output = output + separator + "\n\n";
-
-        for (int i = 0; i < gameObjects.Length; i++)
+        else
         {
-            string cursor = (i == selectedIndex) ? " > " : "   ";
-            string indexDisplay = "[" + (i + 1).ToString() + "]";
-
-            string gameName = (gameNames != null && i < gameNames.Length) ? gameNames[i] : "UNKNOWN";
-            output = output + cursor + indexDisplay + "  " + gameName + "\n";
-
-            string description = (gameDescriptions != null && i < gameDescriptions.Length)
-                ? gameDescriptions[i] : "No description.";
-            output = output + "         " + description + "\n";
-
-            bool enabled = (gameEnabled == null || i >= gameEnabled.Length) ? true : gameEnabled[i];
-            if (!enabled)
+            int rowsUsed = 0;
+            for (int i = 0; i < gameObjects.Length && rowsUsed < VISIBLE_ROWS - 2; i++)
             {
-                output = output + "         Status: Coming Soon\n";
-            }
-            else if (highScores != null && i < highScores.Length && highScores[i] > 0)
-            {
-                output = output + "         High Score: " + highScores[i].ToString() + "\n";
-            }
-            else
-            {
-                output = output + "         Status: Ready\n";
+                string indexDisplay = "[" + (i + 1).ToString() + "]";
+                string gameName = (gameNames != null && i < gameNames.Length) ? gameNames[i] : "UNKNOWN";
+
+                // Game name row
+                if (i == selectedIndex)
+                {
+                    o = o + BoxRow("<color=" + COLOR_HIGHLIGHT + ">> " + indexDisplay + "  " + gameName + "</color>") + "\n";
+                }
+                else
+                {
+                    o = o + BoxRow("<color=" + COLOR_PRIMARY + ">  " + indexDisplay + "  " + gameName + "</color>") + "\n";
+                }
+                rowsUsed++;
+
+                // Description row
+                string description = (gameDescriptions != null && i < gameDescriptions.Length)
+                    ? gameDescriptions[i] : "No description.";
+
+                bool enabled = (gameEnabled == null || i >= gameEnabled.Length) ? true : gameEnabled[i];
+                string status = enabled ? "Ready" : "<color=" + COLOR_DIM + ">Coming Soon</color>";
+                if (enabled && highScores != null && i < highScores.Length && highScores[i] > 0)
+                {
+                    status = "High Score: " + highScores[i].ToString();
+                }
+
+                o = o + BoxRow("<color=" + COLOR_DIM + ">       " + description + " [" + status + "]</color>") + "\n";
+                rowsUsed++;
             }
 
-            output = output + "\n";
+            // Pad remaining rows
+            for (int i = rowsUsed; i < VISIBLE_ROWS; i++)
+            {
+                o = o + BoxRow("") + "\n";
+            }
         }
 
-        return output;
+        // Bottom border
+        o = o + "<color=" + COLOR_BORDER + ">" + DT_Format.GenerateBoxBottom(WIDTH) + "</color>\n";
+
+        // Navigation footer
+        o = o + " <color=" + COLOR_PRIMARY + ">[D] Launch  [W/S] Navigate  [A] Back</color>\n";
+
+        return o;
     }
 
     /// <summary>
