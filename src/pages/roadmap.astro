@@ -295,45 +295,8 @@ import TerminalShell from '../components/TerminalShell.astro';
 
 <script>
 document.addEventListener("astro:page-load", function() {
-    const REPO = 'CloudStrife7/LL2PCVR';
-    const CACHE_KEY = 'github-roadmap-cache';
-    const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
-
-    function getCachedData() {
-        try {
-            const cached = localStorage.getItem(CACHE_KEY);
-            if (cached) {
-                const data = JSON.parse(cached);
-                if (Date.now() - data.timestamp < CACHE_DURATION) {
-                    return data;
-                }
-            }
-        } catch (e) {}
-        return null;
-    }
-
-    function setCachedData(data: any) {
-        try {
-            localStorage.setItem(CACHE_KEY, JSON.stringify({
-                ...data,
-                timestamp: Date.now()
-            }));
-        } catch (e) {}
-    }
-
-    async function fetchGitHubData() {
-        const [issuesRes, milestonesRes, closedRes] = await Promise.all([
-            fetch(`https://api.github.com/repos/${REPO}/issues?state=open&per_page=100`),
-            fetch(`https://api.github.com/repos/${REPO}/milestones?state=open`),
-            fetch(`https://api.github.com/repos/${REPO}/issues?state=closed&per_page=20&sort=updated`)
-        ]);
-
-        const issues = await issuesRes.json();
-        const milestones = await milestonesRes.json();
-        const closed = await closedRes.json();
-
-        return { issues, milestones, closed };
-    }
+    // Fetch from static JSON file (synced from GitHub via Actions)
+    const ROADMAP_URL = '/data/roadmap.json';
 
     function getPriority(labels: string[]): string {
         if (labels.includes('priority: critical')) return 'critical';
@@ -343,7 +306,7 @@ document.addEventListener("astro:page-load", function() {
     }
 
     function createIssueElement(issue: any, isCompleted = false): HTMLElement {
-        const labels = issue.labels?.map((l: any) => l.name) || [];
+        const labels = issue.labels || [];
         const priority = getPriority(labels);
 
         const div = document.createElement('div');
@@ -389,19 +352,19 @@ document.addEventListener("astro:page-load", function() {
     function renderData(data: any) {
         const { issues, milestones, closed } = data;
 
-        // Filter issues by priority
+        // Filter issues by priority (labels are already string arrays from JSON)
         const currentFocus = issues.filter((i: any) => {
-            const labels = i.labels?.map((l: any) => l.name) || [];
+            const labels = i.labels || [];
             return labels.includes('priority: critical') || labels.includes('priority: high');
         });
 
         const comingSoon = issues.filter((i: any) => {
-            const labels = i.labels?.map((l: any) => l.name) || [];
+            const labels = i.labels || [];
             return labels.includes('priority: medium');
         });
 
         const backlog = issues.filter((i: any) => {
-            const labels = i.labels?.map((l: any) => l.name) || [];
+            const labels = i.labels || [];
             const priority = getPriority(labels);
             return priority === 'low' || (!labels.includes('priority: critical') && !labels.includes('priority: high') && !labels.includes('priority: medium'));
         });
@@ -410,7 +373,7 @@ document.addEventListener("astro:page-load", function() {
         const thirtyDaysAgo = new Date();
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
         const recentlyClosed = closed.filter((i: any) => {
-            return new Date(i.closed_at) > thirtyDaysAgo && !i.pull_request;
+            return i.closed_at && new Date(i.closed_at) > thirtyDaysAgo;
         });
 
         // Render current focus
@@ -424,14 +387,15 @@ document.addEventListener("astro:page-load", function() {
             }
         }
 
-        // Render milestones
+        // Render milestones (filter to open only)
         const milestonesEl = document.getElementById('milestones');
         if (milestonesEl) {
             milestonesEl.innerHTML = '';
-            if (milestones.length === 0) {
+            const openMilestones = milestones.filter((m: any) => m.state === 'open');
+            if (openMilestones.length === 0) {
                 milestonesEl.innerHTML = '<div class="empty-state">No active milestones</div>';
             } else {
-                milestones.forEach((m: any) => milestonesEl.appendChild(createMilestoneElement(m)));
+                openMilestones.forEach((m: any) => milestonesEl.appendChild(createMilestoneElement(m)));
             }
         }
 
@@ -467,6 +431,12 @@ document.addEventListener("astro:page-load", function() {
                 recentlyClosed.slice(0, 10).forEach((issue: any) => completedEl.appendChild(createIssueElement(issue, true)));
             }
         }
+
+        // Show last sync time if available
+        if (data.generated_at) {
+            const syncTime = new Date(data.generated_at).toLocaleString();
+            console.log(`Roadmap data last synced: ${syncTime}`);
+        }
     }
 
     // Toggle backlog expansion
@@ -481,24 +451,20 @@ document.addEventListener("astro:page-load", function() {
         });
     }
 
-    // Load data
-    const cached = getCachedData();
-    if (cached) {
-        renderData(cached);
-    }
-
-    fetchGitHubData()
+    // Fetch roadmap data from static JSON
+    fetch(ROADMAP_URL)
+        .then(response => {
+            if (!response.ok) throw new Error('Roadmap data not found');
+            return response.json();
+        })
         .then(data => {
             renderData(data);
-            setCachedData(data);
         })
         .catch(error => {
-            console.error('Failed to fetch GitHub data:', error);
-            if (!cached) {
-                document.querySelectorAll('.loading-indicator').forEach(el => {
-                    el.textContent = 'Failed to load from GitHub';
-                });
-            }
+            console.error('Failed to load roadmap:', error);
+            document.querySelectorAll('.loading-indicator').forEach(el => {
+                el.textContent = 'Roadmap data not yet synced';
+            });
         });
 });
 </script>
