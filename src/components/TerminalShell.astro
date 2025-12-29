@@ -1,9 +1,9 @@
 ---
 interface Props {
-  activeSection?: 'intro' | 'about' | 'devlog' | 'skills' | 'links';
+  activeSection?: 'home' | 'devlog' | 'skills' | 'support' | 'roadmap';
 }
 
-const { activeSection = 'intro' } = Astro.props;
+const { activeSection = 'home' } = Astro.props;
 ---
 
 <div class="terminal-wrapper">
@@ -40,11 +40,8 @@ const { activeSection = 'intro' } = Astro.props;
 
     <!-- Navigation -->
     <nav class="nav-menu active" id="nav-menu">
-      <a href="/" class={`nav-btn ${activeSection === 'intro' ? 'active' : ''}`}>
-        <span class="type">&lt;BOOT&gt;</span> INTRO
-      </a>
-      <a href="/about" class={`nav-btn ${activeSection === 'about' ? 'active' : ''}`}>
-        <span class="type">&lt;DIR&gt;</span> ABOUT
+      <a href="/" class={`nav-btn ${activeSection === 'home' ? 'active' : ''}`}>
+        <span class="type">&lt;BOOT&gt;</span> HOME
       </a>
       <a href="/devlog" class={`nav-btn ${activeSection === 'devlog' ? 'active' : ''}`}>
         <span class="type">&lt;LOG&gt;</span> DEVLOG
@@ -52,12 +49,18 @@ const { activeSection = 'intro' } = Astro.props;
       <a href="/skills" class={`nav-btn ${activeSection === 'skills' ? 'active' : ''}`}>
         <span class="type">&lt;AI&gt;</span> SKILLS
       </a>
-      <a href="/links" class={`nav-btn ${activeSection === 'links' ? 'active' : ''}`}>
-        <span class="type">&lt;NET&gt;</span> LINKS
+      <a href="/support" class={`nav-btn ${activeSection === 'support' ? 'active' : ''}`}>
+        <span class="type">&lt;NET&gt;</span> SUPPORT
+      </a>
+      <a href="/roadmap" class={`nav-btn ${activeSection === 'roadmap' ? 'active' : ''}`}>
+        <span class="type">&lt;MAP&gt;</span> ROADMAP
       </a>
       <button class="nav-btn" id="terminal-toggle">
         <span class="type">&lt;SSH&gt;</span> TERMINAL
       </button>
+      <a href="https://vrchat.com/home/launch?worldId=wrld_7302897c-be0f-4037-ac67-76f0ea065c2b" class="nav-btn" target="_blank">
+        <span class="type">&lt;VRC&gt;</span> VISIT
+      </a>
     </nav>
 
     <!-- Terminal Demo Container (inline, replaces main-content when active) -->

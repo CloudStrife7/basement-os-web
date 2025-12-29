@@ -1,0 +1,504 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TerminalShell from '../components/TerminalShell.astro';
+---
+
+<BaseLayout title="BASEMENT OS | Roadmap">
+  <TerminalShell activeSection="roadmap">
+    <div class="content-section active">
+      <h2 class="section-header">C:\BASEMENT\ROADMAP.TXT</h2>
+
+      <div class="mission-statement">
+        <h3>Development Roadmap</h3>
+        <p>Live project status pulled from <a href="https://github.com/CloudStrife7/LL2PCVR/issues" target="_blank" style="color: var(--accent-primary);">GitHub Issues</a>. Track what's being worked on, what's coming next, and the full backlog.</p>
+      </div>
+
+      <!-- CURRENT FOCUS -->
+      <div class="info-card">
+        <h3>[ Current Focus ]</h3>
+        <p class="section-desc">High priority items actively being worked on</p>
+        <div id="current-focus" class="issues-list">
+          <div class="loading-indicator">Loading from GitHub...</div>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- MILESTONES -->
+      <div class="info-card">
+        <h3>[ Milestones ]</h3>
+        <p class="section-desc">Major releases and feature sets</p>
+        <div id="milestones" class="milestones-grid">
+          <div class="loading-indicator">Loading from GitHub...</div>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- COMING SOON -->
+      <div class="info-card">
+        <h3>[ Coming Soon ]</h3>
+        <p class="section-desc">Medium priority - planned for upcoming releases</p>
+        <div id="coming-soon" class="issues-list">
+          <div class="loading-indicator">Loading from GitHub...</div>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- BACKLOG -->
+      <div class="info-card">
+        <h3>[ Backlog ]</h3>
+        <p class="section-desc">Ideas and enhancements for the future</p>
+        <div id="backlog" class="issues-list collapsed">
+          <div class="loading-indicator">Loading from GitHub...</div>
+        </div>
+        <button class="expand-btn" id="toggle-backlog">Show All Backlog Items</button>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- RECENTLY COMPLETED -->
+      <div class="info-card">
+        <h3>[ Recently Completed ]</h3>
+        <p class="section-desc">Shipped in the last 30 days</p>
+        <div id="completed" class="issues-list">
+          <div class="loading-indicator">Loading from GitHub...</div>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <div class="cta-section">
+        <p style="color: var(--text-secondary); margin-bottom: 15px;">Want to suggest a feature or report a bug?</p>
+        <a href="mailto:admin@BasementOS.com" class="cta-button-small">
+          <span>@</span>
+          <span>E-MAIL ME</span>
+        </a>
+      </div>
+
+    </div>
+  </TerminalShell>
+</BaseLayout>
+
+<style>
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 0.85em;
+    margin-bottom: 15px;
+    font-style: italic;
+  }
+
+  .issues-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .issues-list.collapsed {
+    max-height: 200px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .issues-list.collapsed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(transparent, var(--bg-secondary));
+    pointer-events: none;
+  }
+
+  .issue-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-left: 3px solid var(--border);
+    transition: all 0.2s ease;
+  }
+
+  .issue-item:hover {
+    background: rgba(0, 0, 0, 0.3);
+    border-left-color: var(--accent-primary);
+  }
+
+  .issue-item.priority-critical {
+    border-left-color: #ff4444;
+  }
+
+  .issue-item.priority-high {
+    border-left-color: #ff8844;
+  }
+
+  .issue-item.priority-medium {
+    border-left-color: #ffcc44;
+  }
+
+  .issue-item.completed {
+    border-left-color: var(--accent-primary);
+    opacity: 0.8;
+  }
+
+  .issue-number {
+    color: var(--text-muted);
+    font-size: 0.8em;
+    min-width: 45px;
+  }
+
+  .issue-title {
+    flex: 1;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    text-decoration: none;
+  }
+
+  .issue-title:hover {
+    color: var(--accent-primary);
+  }
+
+  .issue-labels {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+
+  .issue-label {
+    font-size: 0.7em;
+    padding: 2px 6px;
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--accent-primary);
+    border-radius: 2px;
+  }
+
+  .issue-label.area {
+    background: rgba(100, 100, 255, 0.2);
+    color: #8888ff;
+  }
+
+  .issue-label.bug {
+    background: rgba(255, 68, 68, 0.2);
+    color: #ff6666;
+  }
+
+  .issue-label.enhancement {
+    background: rgba(68, 255, 68, 0.2);
+    color: #66ff66;
+  }
+
+  /* Milestones */
+  .milestones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+  }
+
+  .milestone-card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    padding: 15px;
+  }
+
+  .milestone-title {
+    color: var(--accent-primary);
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+  }
+
+  .milestone-progress {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+
+  .milestone-progress-bar {
+    height: 100%;
+    background: var(--accent-primary);
+    transition: width 0.5s ease;
+  }
+
+  .milestone-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+    color: var(--text-muted);
+  }
+
+  /* Buttons */
+  .expand-btn {
+    margin-top: 15px;
+    padding: 8px 15px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .expand-btn:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+  }
+
+  .cta-button-small {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-primary);
+    color: #000;
+    padding: 10px 20px;
+    font-family: var(--font-mono);
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid var(--accent-primary);
+    transition: all 0.3s ease;
+  }
+
+  .cta-button-small:hover {
+    background: transparent;
+    color: var(--accent-primary);
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .loading-indicator {
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .empty-state {
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 15px;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .milestones-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener("astro:page-load", function() {
+    const REPO = 'CloudStrife7/LL2PCVR';
+    const CACHE_KEY = 'github-roadmap-cache';
+    const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+    function getCachedData() {
+        try {
+            const cached = localStorage.getItem(CACHE_KEY);
+            if (cached) {
+                const data = JSON.parse(cached);
+                if (Date.now() - data.timestamp < CACHE_DURATION) {
+                    return data;
+                }
+            }
+        } catch (e) {}
+        return null;
+    }
+
+    function setCachedData(data: any) {
+        try {
+            localStorage.setItem(CACHE_KEY, JSON.stringify({
+                ...data,
+                timestamp: Date.now()
+            }));
+        } catch (e) {}
+    }
+
+    async function fetchGitHubData() {
+        const [issuesRes, milestonesRes, closedRes] = await Promise.all([
+            fetch(`https://api.github.com/repos/${REPO}/issues?state=open&per_page=100`),
+            fetch(`https://api.github.com/repos/${REPO}/milestones?state=open`),
+            fetch(`https://api.github.com/repos/${REPO}/issues?state=closed&per_page=20&sort=updated`)
+        ]);
+
+        const issues = await issuesRes.json();
+        const milestones = await milestonesRes.json();
+        const closed = await closedRes.json();
+
+        return { issues, milestones, closed };
+    }
+
+    function getPriority(labels: string[]): string {
+        if (labels.includes('priority: critical')) return 'critical';
+        if (labels.includes('priority: high')) return 'high';
+        if (labels.includes('priority: medium')) return 'medium';
+        return 'low';
+    }
+
+    function createIssueElement(issue: any, isCompleted = false): HTMLElement {
+        const labels = issue.labels?.map((l: any) => l.name) || [];
+        const priority = getPriority(labels);
+
+        const div = document.createElement('div');
+        div.className = `issue-item ${isCompleted ? 'completed' : `priority-${priority}`}`;
+
+        const areaLabels = labels.filter((l: string) => l.startsWith('area:'));
+        const typeLabels = labels.filter((l: string) => ['bug', 'enhancement', 'documentation'].includes(l));
+
+        div.innerHTML = `
+            <span class="issue-number">#${issue.number}</span>
+            <a href="${issue.html_url}" target="_blank" class="issue-title">${issue.title.replace(/^\[.*?\]\s*/, '')}</a>
+            <div class="issue-labels">
+                ${areaLabels.map((l: string) => `<span class="issue-label area">${l.replace('area: ', '')}</span>`).join('')}
+                ${typeLabels.map((l: string) => `<span class="issue-label ${l}">${l}</span>`).join('')}
+            </div>
+        `;
+
+        return div;
+    }
+
+    function createMilestoneElement(milestone: any): HTMLElement {
+        const progress = milestone.open_issues + milestone.closed_issues > 0
+            ? Math.round((milestone.closed_issues / (milestone.open_issues + milestone.closed_issues)) * 100)
+            : 0;
+
+        const div = document.createElement('div');
+        div.className = 'milestone-card';
+        div.innerHTML = `
+            <div class="milestone-title">${milestone.title}</div>
+            <div class="milestone-progress">
+                <div class="milestone-progress-bar" style="width: ${progress}%"></div>
+            </div>
+            <div class="milestone-stats">
+                <span>${milestone.closed_issues} done</span>
+                <span>${milestone.open_issues} remaining</span>
+                <span>${progress}%</span>
+            </div>
+        `;
+
+        return div;
+    }
+
+    function renderData(data: any) {
+        const { issues, milestones, closed } = data;
+
+        // Filter issues by priority
+        const currentFocus = issues.filter((i: any) => {
+            const labels = i.labels?.map((l: any) => l.name) || [];
+            return labels.includes('priority: critical') || labels.includes('priority: high');
+        });
+
+        const comingSoon = issues.filter((i: any) => {
+            const labels = i.labels?.map((l: any) => l.name) || [];
+            return labels.includes('priority: medium');
+        });
+
+        const backlog = issues.filter((i: any) => {
+            const labels = i.labels?.map((l: any) => l.name) || [];
+            const priority = getPriority(labels);
+            return priority === 'low' || (!labels.includes('priority: critical') && !labels.includes('priority: high') && !labels.includes('priority: medium'));
+        });
+
+        // Filter recently closed (last 30 days)
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+        const recentlyClosed = closed.filter((i: any) => {
+            return new Date(i.closed_at) > thirtyDaysAgo && !i.pull_request;
+        });
+
+        // Render current focus
+        const currentFocusEl = document.getElementById('current-focus');
+        if (currentFocusEl) {
+            currentFocusEl.innerHTML = '';
+            if (currentFocus.length === 0) {
+                currentFocusEl.innerHTML = '<div class="empty-state">No high-priority items right now</div>';
+            } else {
+                currentFocus.forEach((issue: any) => currentFocusEl.appendChild(createIssueElement(issue)));
+            }
+        }
+
+        // Render milestones
+        const milestonesEl = document.getElementById('milestones');
+        if (milestonesEl) {
+            milestonesEl.innerHTML = '';
+            if (milestones.length === 0) {
+                milestonesEl.innerHTML = '<div class="empty-state">No active milestones</div>';
+            } else {
+                milestones.forEach((m: any) => milestonesEl.appendChild(createMilestoneElement(m)));
+            }
+        }
+
+        // Render coming soon
+        const comingSoonEl = document.getElementById('coming-soon');
+        if (comingSoonEl) {
+            comingSoonEl.innerHTML = '';
+            if (comingSoon.length === 0) {
+                comingSoonEl.innerHTML = '<div class="empty-state">No medium-priority items queued</div>';
+            } else {
+                comingSoon.forEach((issue: any) => comingSoonEl.appendChild(createIssueElement(issue)));
+            }
+        }
+
+        // Render backlog
+        const backlogEl = document.getElementById('backlog');
+        if (backlogEl) {
+            backlogEl.innerHTML = '';
+            if (backlog.length === 0) {
+                backlogEl.innerHTML = '<div class="empty-state">Backlog is empty</div>';
+            } else {
+                backlog.slice(0, 20).forEach((issue: any) => backlogEl.appendChild(createIssueElement(issue)));
+            }
+        }
+
+        // Render completed
+        const completedEl = document.getElementById('completed');
+        if (completedEl) {
+            completedEl.innerHTML = '';
+            if (recentlyClosed.length === 0) {
+                completedEl.innerHTML = '<div class="empty-state">No issues closed in the last 30 days</div>';
+            } else {
+                recentlyClosed.slice(0, 10).forEach((issue: any) => completedEl.appendChild(createIssueElement(issue, true)));
+            }
+        }
+    }
+
+    // Toggle backlog expansion
+    const toggleBtn = document.getElementById('toggle-backlog');
+    const backlogList = document.getElementById('backlog');
+    if (toggleBtn && backlogList) {
+        toggleBtn.addEventListener('click', () => {
+            backlogList.classList.toggle('collapsed');
+            toggleBtn.textContent = backlogList.classList.contains('collapsed')
+                ? 'Show All Backlog Items'
+                : 'Collapse Backlog';
+        });
+    }
+
+    // Load data
+    const cached = getCachedData();
+    if (cached) {
+        renderData(cached);
+    }
+
+    fetchGitHubData()
+        .then(data => {
+            renderData(data);
+            setCachedData(data);
+        })
+        .catch(error => {
+            console.error('Failed to fetch GitHub data:', error);
+            if (!cached) {
+                document.querySelectorAll('.loading-indicator').forEach(el => {
+                    el.textContent = 'Failed to load from GitHub';
+                });
+            }
+        });
+});
+</script>

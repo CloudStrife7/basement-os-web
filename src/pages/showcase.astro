@@ -3,10 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TerminalShell from '../components/TerminalShell.astro';
 ---
 
-<BaseLayout title="BASEMENT OS">
-  <TerminalShell activeSection="home">
+<BaseLayout title="BASEMENT OS | Showcase">
+  <TerminalShell activeSection="about">
     <div class="content-section active">
-      <h2 class="section-header">C:\BASEMENT\HOME.TXT</h2>
+      <h2 class="section-header">C:\BASEMENT\ABOUT.TXT</h2>
 
       <div class="mission-statement">
         <h3>A 2000s Basement VRChat World</h3>
@@ -14,11 +14,11 @@ import TerminalShell from '../components/TerminalShell.astro';
       </div>
 
       <!-- PROJECT STATS -->
-      <div class="info-card">
-        <h3>[ Project Stats ]</h3>
+      <div class="nav-routing">
+        <h3 class="routing-header left-align">[ PROJECT STATS ]</h3>
         <div class="stats-grid-compact">
           <div class="stat-block-compact">
-            <span class="stat-number-compact" id="stat-visits-top" data-target="936">0</span>
+            <span class="stat-number-compact" id="stat-visits" data-target="936">0</span>
             <span class="stat-label-compact">VISITS</span>
           </div>
           <div class="stat-block-compact">
@@ -38,7 +38,7 @@ import TerminalShell from '../components/TerminalShell.astro';
             <span class="stat-label-compact">GAMERSCORE</span>
           </div>
           <div class="stat-block-compact">
-            <span class="stat-number-compact" id="stat-favorites-top" data-target="68">0</span>
+            <span class="stat-number-compact" id="stat-favorites" data-target="68">0</span>
             <span class="stat-label-compact">FAVORITES</span>
           </div>
         </div>
@@ -46,20 +46,9 @@ import TerminalShell from '../components/TerminalShell.astro';
 
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
-      <!-- THE STORY -->
-      <div class="info-card">
-        <h3>[ The Story ]</h3>
-        <div class="devlog-content" style="margin-top: 10px;">
-          <p>Lower Level 2.0 started as a simple VRChat world and evolved into an 18,000+ line codebase built entirely with AI collaboration. From zero UdonSharp experience to a fully-featured achievement system, interactive DOS terminal, and real-time weather integration—all developed through systematic Claude Code workflows.</p>
-          <p style="margin-top: 15px;">The project demonstrates what's possible when combining modern AI tools with creative vision: persistent player data, cross-platform optimization, and a nostalgic 2000s basement aesthetic that feels like coming home.</p>
-        </div>
-      </div>
-
-      <div class="separator">────────────────────────────────────────────────────────────────────</div>
-
       <!-- SCREENSHOTS -->
-      <div class="info-card">
-        <h3>[ Screenshots ]</h3>
+      <div class="nav-routing">
+        <h3 class="routing-header left-align">[ SCREENSHOTS ]</h3>
         <div class="screenshot-grid-compact">
           <div class="crt-screen screenshot-compact">
             <a href="https://i.imgur.com/N8da6pU.jpeg" target="_blank">
@@ -85,8 +74,8 @@ import TerminalShell from '../components/TerminalShell.astro';
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
       <!-- CORE FEATURES -->
-      <div class="info-card">
-        <h3>[ Core Features ]</h3>
+      <div class="nav-routing">
+        <h3 class="routing-header left-align">[ CORE FEATURES ]</h3>
         <div class="features-grid-compact">
           <div class="feature-card-compact">
             <strong>Achievement System</strong>
@@ -95,25 +84,22 @@ import TerminalShell from '../components/TerminalShell.astro';
               <li>PlayerData persistence</li>
               <li>7 role-based tiers</li>
             </ul>
-            <p class="feature-desc">Xbox 360-style popups that save your progress across sessions—earn them all and flex your Gamerscore.</p>
           </div>
           <div class="feature-card-compact">
-            <strong>Basement OS</strong>
+            <strong>Basement OS v29.1</strong>
             <ul>
               <li>80-char DOS terminal</li>
               <li>14 Terminal Tales</li>
               <li>MUSIC.EXE player</li>
             </ul>
-            <p class="feature-desc">A fully interactive retro terminal with short stories, a music player, and live world stats.</p>
           </div>
           <div class="feature-card-compact">
             <strong>Weather Integration</strong>
             <ul>
-              <li>Live weather API</li>
+              <li>Live API + rain shader</li>
               <li>7 weather conditions</li>
               <li>Quest-optimized cache</li>
             </ul>
-            <p class="feature-desc">Real-world weather synced to the basement—rain on the windows when it's raining outside.</p>
           </div>
           <div class="feature-card-compact">
             <strong>Network Sync</strong>
@@ -122,7 +108,6 @@ import TerminalShell from '../components/TerminalShell.astro';
               <li>UdonSynced broadcast</li>
               <li>Role personalization</li>
             </ul>
-            <p class="feature-desc">Everyone sees achievement unlocks in real-time—celebrate together when someone hits a milestone.</p>
           </div>
         </div>
       </div>
@@ -130,45 +115,46 @@ import TerminalShell from '../components/TerminalShell.astro';
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
       <!-- ARCHITECTURE -->
-      <div class="info-card">
-        <h3>[ Architecture ]</h3>
+      <div class="nav-routing">
+        <h3 class="routing-header left-align">[ ARCHITECTURE ]</h3>
         <div class="architecture-container">
           <pre class="architecture-diagram">
                  ┌─────────────────────────────────────────┐
                  │           User Interaction              │
                  └─────────────────────┬───────────────────┘
                                        │
-       ┌───────────────────────────────┼───────────────────────────────┐
-       │                    │                    │                     │
-       ▼                    ▼                    ▼                     ▼
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│ Achievement │    │ DOS Terminal│    │ Weather API │    │   ProTV 3   │
-│ Tracker     │    │ Controller  │    │ Integration │    │ (MUSIC.EXE) │
-└──────┬──────┘    └──────┬──────┘    └──────┬──────┘    └──────┬──────┘
-       │                  │                  │                  │
-       │                  └─────────┬────────┘                  │
-       │                            │                           │
-       ▼                            ▼                           │
-┌────────────────────────────────────────────────────────┐      │
-│           NotificationEventHub (Bridge)                │◄─────┘
-│  ─────────────────────────────────────────────────     │
-│  • Network Broadcasting  • Event Routing               │
-│  • Queue Management      • Music State Sync            │
-└────────────────────────────┬───────────────────────────┘
-                             │
-                 ┌───────────┴───────────┐
-                 │                       │
-                 ▼                       ▼
-       ┌─────────────────┐     ┌─────────────────┐
-       │ XboxNotification│     │ Notification    │
-       │ UI (FIFO)       │     │ Roles Module    │
-       └────────┬────────┘     └─────────────────┘
-                │
-                ▼
-       ┌─────────────────────────┐
-       │ AchievementDataManager  │
-       │ (VRChat PlayerData)     │
-       └─────────────────────────┘
+              ┌────────────────────────┼────────────────────────┐
+              │                        │                        │
+              ▼                        ▼                        ▼
+     ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+     │  Achievement    │     │  DOS Terminal   │     │  Weather API    │
+     │  Tracker        │     │  Controller     │     │  Integration    │
+     └────────┬────────┘     └────────┬────────┘     └────────┬────────┘
+              │                       │                       │
+              │                       └───────────┬───────────┘
+              │                                   │
+              ▼                                   ▼
+     ┌────────────────────────────────────────────────────────┐
+     │           NotificationEventHub (Bridge)                │
+     │  ─────────────────────────────────────────────────     │
+     │  • Network Broadcasting                                │
+     │  • Event Routing                                       │
+     │  • Queue Management                                    │
+     └────────────────────────────┬───────────────────────────┘
+                                  │
+                      ┌───────────┴───────────┐
+                      │                       │
+                      ▼                       ▼
+            ┌─────────────────┐     ┌─────────────────┐
+            │ XboxNotification│     │ Notification    │
+            │ UI (FIFO)       │     │ Roles Module    │
+            └────────┬────────┘     └─────────────────┘
+                     │
+                     ▼
+            ┌─────────────────────────┐
+            │ AchievementDataManager  │
+            │ (VRChat PlayerData)     │
+            └─────────────────────────┘
           </pre>
           <p style="text-align: center; color: var(--text-secondary); margin-top: 15px; font-style: italic;">Hub-spoke event-driven architecture optimized for VRChat's UdonSharp environment</p>
         </div>
@@ -190,7 +176,15 @@ import TerminalShell from '../components/TerminalShell.astro';
           </div>
           <div class="stat-row">
             <span class="stat-label">Scripting</span>
-            <span class="stat-value">UdonSharp</span>
+            <span class="stat-value">UdonSharp 1.1+</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">UI</span>
+            <span class="stat-value">TextMeshPro</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Remote Content</span>
+            <span class="stat-value">GitHub Pages</span>
           </div>
           <div class="stat-row">
             <span class="stat-label">Platform</span>
@@ -203,14 +197,14 @@ import TerminalShell from '../components/TerminalShell.astro';
         </div>
 
         <div class="info-card">
-          <h3>[ Lower Level Stats ]</h3>
+          <h3>[ World Stats ]</h3>
           <div class="stat-row">
             <span class="stat-label">Total Visits</span>
-            <span class="stat-value" id="stat-visits">Loading...</span>
+            <span class="stat-value" id="stat-visits-2">Loading...</span>
           </div>
           <div class="stat-row">
             <span class="stat-label">Total Favorites</span>
-            <span class="stat-value" id="stat-favorites">--</span>
+            <span class="stat-value" id="stat-favorites-2">--</span>
           </div>
           <div class="stat-row">
             <span class="stat-label">Popularity</span>
@@ -229,6 +223,16 @@ import TerminalShell from '../components/TerminalShell.astro';
 
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
+      <!-- THE STORY -->
+      <h3 style="margin-top: 20px; margin-bottom: 15px;">The Story</h3>
+
+      <div class="devlog-content">
+        <p>Lower Level 2.0 started as a simple VRChat world and evolved into an 18,000+ line codebase built entirely with AI collaboration. From zero UdonSharp experience to a fully-featured achievement system, interactive DOS terminal, and real-time weather integration—all developed through systematic Claude Code workflows.</p>
+        <p style="margin-top: 15px;">The project demonstrates what's possible when combining modern AI tools with creative vision: persistent player data, cross-platform optimization, and a nostalgic 2000s basement aesthetic that feels like coming home.</p>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
       <!-- CALL TO ACTION -->
       <div class="cta-section">
         <p style="color: var(--accent-primary); font-size: 1.1em; margin-bottom: 20px;">Ready to visit?</p>
@@ -243,6 +247,8 @@ import TerminalShell from '../components/TerminalShell.astro';
           <span class="platform-badge">Meta Quest</span>
           <span class="platform-badge">Desktop</span>
         </div>
+
+        <p style="color: var(--text-muted); font-size: 0.85em; margin-top: 20px;">Requires VRChat (PC VR or Meta Quest)</p>
       </div>
 
     </div>
@@ -354,16 +360,6 @@ import TerminalShell from '../components/TerminalShell.astro';
   .feature-card-compact li::before {
     content: "› ";
     color: var(--accent-primary);
-  }
-
-  .feature-desc {
-    margin-top: 10px;
-    padding-top: 8px;
-    border-top: 1px solid var(--border);
-    color: var(--text-muted);
-    font-size: 0.8em;
-    font-style: italic;
-    line-height: 1.4;
   }
 
   /* Architecture Container */
@@ -512,11 +508,11 @@ document.addEventListener("astro:page-load", function() {
 
     // Default fallback stats
     const defaultStats = {
-        visits: 937,
+        visits: 936,
         favorites: 68,
-        popularity: 4,
+        popularity: 42,
         updated_at: "2025-12-28T00:00:00.000Z",
-        created_at: "2024-07-22T00:00:00.000Z",
+        created_at: "2024-07-08T00:00:00.000Z",
         timestamp: Date.now()
     };
 
@@ -594,11 +590,11 @@ document.addEventListener("astro:page-load", function() {
 
             // Override with live data for visits and favorites
             if (worldData) {
-                if (element.id === 'stat-visits-top') {
+                if (element.id === 'stat-visits') {
                     target = worldData.visits || target;
                     element.dataset.target = target.toString();
                 }
-                if (element.id === 'stat-favorites-top') {
+                if (element.id === 'stat-favorites') {
                     target = worldData.favorites || target;
                     element.dataset.target = target.toString();
                 }
@@ -615,14 +611,14 @@ document.addEventListener("astro:page-load", function() {
         const formatNum = (num: number) => new Intl.NumberFormat().format(num);
 
         // World Stats section at bottom
-        const visits = document.getElementById("stat-visits");
-        const favorites = document.getElementById("stat-favorites");
+        const visits2 = document.getElementById("stat-visits-2");
+        const favorites2 = document.getElementById("stat-favorites-2");
         const popularity = document.getElementById("stat-popularity");
         const updated = document.getElementById("stat-updated");
         const created = document.getElementById("stat-created");
 
-        if (visits) visits.textContent = formatNum(worldData.visits);
-        if (favorites) favorites.textContent = formatNum(worldData.favorites || 0);
+        if (visits2) visits2.textContent = formatNum(worldData.visits);
+        if (favorites2) favorites2.textContent = formatNum(worldData.favorites || 0);
         if (popularity) popularity.textContent = formatNum(worldData.popularity || 0);
         if (updated) updated.textContent = formatDate(worldData.updated_at);
         if (created) created.textContent = formatDate(worldData.created_at);
