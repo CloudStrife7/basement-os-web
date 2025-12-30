@@ -83,7 +83,7 @@ import TerminalShell from '../components/TerminalShell.astro';
 
 <style>
   .section-desc {
-    color: var(--text-muted);
+    color: var(--text-dim);
     font-size: 0.85em;
     margin-bottom: 15px;
     font-style: italic;
@@ -113,21 +113,22 @@ import TerminalShell from '../components/TerminalShell.astro';
     pointer-events: none;
   }
 
-  /* Issue Card */
+  /* Issue Card - matches .info-card style */
   .issue-card {
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--bg-secondary);
     border: 1px solid var(--border-color);
+    border-radius: 4px;
     padding: 12px 14px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
   }
 
   .issue-card:hover {
     border-color: var(--accent-primary);
-    background: rgba(0, 0, 0, 0.4);
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
+    transform: translateY(-2px);
   }
 
   .issue-card.completed {
@@ -188,9 +189,12 @@ import TerminalShell from '../components/TerminalShell.astro';
   .issue-label {
     font-size: 0.7em;
     padding: 2px 6px;
+    margin-right: 4px;
+    margin-bottom: 4px;
     border-radius: 2px;
     font-weight: 500;
     text-transform: lowercase;
+    display: inline-block;
   }
 
   /* Milestone/Status Badge */
@@ -216,9 +220,16 @@ import TerminalShell from '../components/TerminalShell.astro';
   }
 
   .milestone-card {
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--bg-secondary);
     border: 1px solid var(--border-color);
+    border-radius: 4px;
     padding: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .milestone-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
   }
 
   .milestone-title {
@@ -245,7 +256,7 @@ import TerminalShell from '../components/TerminalShell.astro';
     display: flex;
     justify-content: space-between;
     font-size: 0.8em;
-    color: var(--text-muted);
+    color: var(--text-dim);
   }
 
   /* Buttons */
@@ -291,7 +302,7 @@ import TerminalShell from '../components/TerminalShell.astro';
   }
 
   .loading-indicator {
-    color: var(--text-muted);
+    color: var(--text-dim);
     font-style: italic;
     padding: 20px;
     text-align: center;
@@ -299,7 +310,7 @@ import TerminalShell from '../components/TerminalShell.astro';
   }
 
   .empty-state {
-    color: var(--text-muted);
+    color: var(--text-dim);
     font-style: italic;
     padding: 15px;
     text-align: center;
