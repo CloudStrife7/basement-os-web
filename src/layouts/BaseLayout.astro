@@ -22,6 +22,14 @@ const { title, description = "Basement OS - An interactive dev blog for the Lowe
 		<title>{title}</title>
         <ClientRouter />
         <script is:inline>
+            // Disable browser's scroll restoration to prevent progress bar on scroll
+            // Astro's ClientRouter calls history.replaceState during scroll which
+            // triggers native mobile browser progress indicators
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+        </script>
+        <script is:inline>
             // Immediately invoked function to set the theme before FOUC
             (function() {
                 try {
