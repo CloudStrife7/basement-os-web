@@ -1,718 +1,1180 @@
 {
-  "generated_at": "2025-12-30T01:13:39Z",
+  "generated_at": "2025-12-30T01:19:43Z",
   "issues": [
     {
       "number": 147,
       "title": "[REQUEST] Add VRC Lightvolumes",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/147",
       "state": "open",
       "created_at": "2025-12-28T17:38:59Z",
       "updated_at": "2025-12-29T16:53:54Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "priority: low"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        }
       ]
     },
     {
       "number": 146,
       "title": "[REQUEST] L33T Speakers",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/146",
       "state": "open",
       "created_at": "2025-12-28T13:00:33Z",
       "updated_at": "2025-12-29T16:53:53Z",
+      "milestone": null,
       "labels": []
     },
     {
       "number": 145,
       "title": "[REQUEST] Add LCD Screen Filter",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/145",
       "state": "open",
       "created_at": "2025-12-28T04:44:50Z",
       "updated_at": "2025-12-29T16:53:51Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "priority: low"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        }
       ]
     },
     {
       "number": 144,
       "title": "[QA] Verify VRChat Networking Best Practices",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/144",
       "state": "open",
       "created_at": "2025-12-27T23:07:33Z",
       "updated_at": "2025-12-29T16:53:12Z",
+      "milestone": null,
       "labels": []
     },
     {
       "number": 143,
       "title": "[REQUEST] Migrate to Single Unity Project (EasyQuestSwitch)",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/143",
       "state": "open",
       "created_at": "2025-12-27T22:53:34Z",
       "updated_at": "2025-12-29T16:53:50Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "concept",
-        "priority: low",
-        "needs-testing"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        }
       ]
     },
     {
       "number": 140,
       "title": "[DOCS] Consolidate Docs Folder Structure",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/140",
       "state": "open",
       "created_at": "2025-12-26T02:56:17Z",
       "updated_at": "2025-12-29T16:53:05Z",
+      "milestone": null,
       "labels": [
-        "documentation",
-        "priority: low"
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        }
       ]
     },
     {
       "number": 138,
       "title": "[REQUEST] Stream Videos from NAS",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/138",
       "state": "open",
       "created_at": "2025-12-24T22:10:36Z",
       "updated_at": "2025-12-29T16:53:49Z",
+      "milestone": null,
       "labels": []
     },
     {
       "number": 137,
       "title": "# GitHub Copilot: Update Issues #117 and Related Game Issues",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/137",
       "state": "open",
       "created_at": "2025-12-24T21:07:16Z",
       "updated_at": "2025-12-24T21:07:16Z",
+      "milestone": null,
       "labels": []
     },
     {
       "number": 136,
       "title": "[FEATURE] VRChat API to GitHub Stats Sync",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/136",
       "state": "open",
       "created_at": "2025-12-24T21:04:57Z",
       "updated_at": "2025-12-29T16:54:27Z",
+      "milestone": null,
       "labels": []
     },
     {
       "number": 134,
       "title": "[FEATURE] Basement OS Version 2",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/134",
       "state": "open",
       "created_at": "2025-12-24T13:21:08Z",
       "updated_at": "2025-12-29T16:54:42Z",
+      "milestone": "BASEMENT OS Revamp",
       "labels": []
     },
     {
       "number": 133,
       "title": "[FEATURE] Retro DOS Profile Picture on Stats",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/133",
       "state": "open",
       "created_at": "2025-12-23T03:03:41Z",
       "updated_at": "2025-12-29T16:54:26Z",
+      "milestone": null,
       "labels": []
     },
     {
       "number": 132,
       "title": "[DEVLOG] Latest Experiments Automated Agent Installs",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/132",
       "state": "open",
       "created_at": "2025-12-18T14:06:56Z",
       "updated_at": "2025-12-29T16:54:22Z",
+      "milestone": null,
       "labels": []
     },
     {
       "number": 131,
       "title": "[FEATURE] Boot Screen Mockups",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/131",
       "state": "open",
       "created_at": "2025-12-17T14:42:25Z",
       "updated_at": "2025-12-29T16:54:25Z",
+      "milestone": null,
       "labels": []
     },
     {
       "number": 130,
       "title": "[FEATURE] Total Visit Stats Display",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/130",
       "state": "open",
       "created_at": "2025-12-17T04:16:50Z",
       "updated_at": "2025-12-29T16:54:23Z",
+      "milestone": null,
       "labels": []
     },
     {
       "number": 129,
       "title": "[DEVLOG] First Test of Closed-Loop Agent System",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/129",
       "state": "open",
       "created_at": "2025-12-09T03:33:59Z",
       "updated_at": "2025-12-29T16:54:21Z",
+      "milestone": null,
       "labels": [
-        "Devlog"
+        {
+          "name": "Devlog",
+          "color": "aaaaaa"
+        }
       ]
     },
     {
       "number": 128,
       "title": "[CONCEPT] Establish Lore Behind Lower Level 1.0, 2.0, and Basement OS",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/128",
       "state": "open",
       "created_at": "2025-12-08T18:54:36Z",
       "updated_at": "2025-12-29T16:52:35Z",
+      "milestone": null,
       "labels": [
-        "concept",
-        "priority: low"
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        }
       ]
     },
     {
       "number": 127,
       "title": "[QA] Test Achievement and Notification System",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/127",
       "state": "open",
       "created_at": "2025-12-07T15:45:25Z",
       "updated_at": "2025-12-29T16:54:40Z",
+      "milestone": "BASEMENT OS Revamp",
       "labels": [
-        "priority: high",
-        "area: terminal",
-        "area: achievements",
-        "area: notifications",
-        "needs-testing"
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "area: achievements",
+          "color": "f9d0c4"
+        },
+        {
+          "name": "area: notifications",
+          "color": "e99695"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        }
       ]
     },
     {
       "number": 125,
       "title": "[REQUEST] Add Donation QR Code",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/125",
       "state": "open",
       "created_at": "2025-11-29T05:33:12Z",
       "updated_at": "2025-12-29T16:53:47Z",
+      "milestone": null,
       "labels": [
-        "good first issue",
-        "priority: medium",
-        "area: terminal"
+        {
+          "name": "good first issue",
+          "color": "7057ff"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
       ]
     },
     {
       "number": 124,
       "title": "[REQUEST] MIDI Exporter for Terminal Web Version",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/124",
       "state": "open",
       "created_at": "2025-11-29T05:32:25Z",
       "updated_at": "2025-12-29T16:53:48Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "concept",
-        "priority: low",
-        "area: terminal",
-        "needs-design",
-        "needs-testing"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "needs-design",
+          "color": "c2e0c6"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        }
       ]
     },
     {
       "number": 119,
       "title": "[MAINTENANCE] Unity MCP Multi-Instance Workflow",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/119",
       "state": "open",
       "created_at": "2025-11-25T02:48:11Z",
       "updated_at": "2025-12-29T16:53:04Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "maintenance",
-        "needs-testing",
-        "quest-specific"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        }
       ]
     },
     {
       "number": 116,
       "title": "[MAINTENANCE] PCVR to Quest UdonSharp Script Sync",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/116",
       "state": "open",
       "created_at": "2025-11-24T22:17:15Z",
       "updated_at": "2025-12-29T16:53:03Z",
+      "milestone": "BASEMENT OS Revamp",
       "labels": [
-        "enhancement",
-        "maintenance",
-        "priority: critical",
-        "quest-specific"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        }
       ]
     },
     {
       "number": 115,
       "title": "[EPIC] Concepts and Future Ideas",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/115",
       "state": "open",
       "created_at": "2025-11-24T21:56:17Z",
       "updated_at": "2025-12-29T16:52:43Z",
+      "milestone": null,
       "labels": [
-        "concept",
-        "priority: low"
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        }
       ]
     },
     {
       "number": 114,
       "title": "[MAINTENANCE] Automation and Workflow Improvements",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/114",
       "state": "open",
       "created_at": "2025-11-24T21:56:02Z",
       "updated_at": "2025-12-29T16:53:02Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "maintenance",
-        "priority: medium"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        }
       ]
     },
     {
       "number": 113,
       "title": "[QA] Testing and Quality Assurance",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/113",
       "state": "open",
       "created_at": "2025-11-24T21:55:47Z",
       "updated_at": "2025-12-29T16:53:10Z",
+      "milestone": "BASEMENT OS Revamp",
       "labels": [
-        "enhancement",
-        "priority: high",
-        "needs-testing"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        }
       ]
     },
     {
       "number": 112,
       "title": "[EPIC] Models and Assets",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/112",
       "state": "open",
       "created_at": "2025-11-24T21:55:34Z",
       "updated_at": "2025-12-29T16:54:19Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "priority: low",
-        "area: models"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: models",
+          "color": "bfdadc"
+        }
       ]
     },
     {
       "number": 111,
       "title": "[FEATURE] Remote Content System",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/111",
       "state": "open",
       "created_at": "2025-11-24T21:55:21Z",
       "updated_at": "2025-12-29T16:53:24Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "priority: medium",
-        "area: terminal"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
       ]
     },
     {
       "number": 107,
       "title": "[FEATURE] Community Relay Protocol",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/107",
       "state": "open",
       "created_at": "2025-11-24T13:42:17Z",
       "updated_at": "2025-12-29T16:53:23Z",
+      "milestone": "Remake Snake",
       "labels": [
-        "enhancement",
-        "concept",
-        "priority: critical",
-        "area: terminal",
-        "area: achievements",
-        "area: games"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "area: achievements",
+          "color": "f9d0c4"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        }
       ]
     },
     {
       "number": 103,
       "title": "[CONCEPT] Working Nokia Prefab",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/103",
       "state": "open",
       "created_at": "2025-11-23T13:52:45Z",
       "updated_at": "2025-12-29T16:52:34Z",
+      "milestone": null,
       "labels": [
-        "concept",
-        "priority: low",
-        "area: games"
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        }
       ]
     },
     {
       "number": 102,
       "title": "[CONCEPT] Toggle State Items for Different Feel",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/102",
       "state": "open",
       "created_at": "2025-11-23T13:21:46Z",
       "updated_at": "2025-12-29T16:52:32Z",
+      "milestone": null,
       "labels": [
-        "concept",
-        "priority: low",
-        "area: models"
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: models",
+          "color": "bfdadc"
+        }
       ]
     },
     {
       "number": 101,
       "title": "[CONCEPT] Mom Email Terminal App",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/101",
       "state": "open",
       "created_at": "2025-11-22T14:43:42Z",
       "updated_at": "2025-12-29T16:52:31Z",
+      "milestone": null,
       "labels": [
-        "concept",
-        "priority: low",
-        "area: terminal"
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
       ]
     },
     {
       "number": 98,
       "title": "[REQUEST] Update Theater Posters",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/98",
       "state": "open",
       "created_at": "2025-11-20T14:48:46Z",
       "updated_at": "2025-12-29T16:54:01Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "priority: low",
-        "area: models"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: models",
+          "color": "bfdadc"
+        }
       ]
     },
     {
       "number": 97,
       "title": "[MAINTENANCE] Automation Idea - Issues",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/97",
       "state": "open",
       "created_at": "2025-11-20T10:59:26Z",
       "updated_at": "2025-12-29T16:53:01Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "maintenance",
-        "priority: medium"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        }
       ]
     },
     {
       "number": 93,
       "title": "DT -RSS- Ko-FI Notifications",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/93",
       "state": "open",
       "created_at": "2025-11-20T10:34:25Z",
       "updated_at": "2025-12-30T00:31:18Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "priority: low",
-        "area: notifications"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: notifications",
+          "color": "e99695"
+        }
       ]
     },
     {
       "number": 92,
       "title": "[FEATURE] DT_Roles Module Re-establish",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/92",
       "state": "open",
       "created_at": "2025-11-20T10:30:00Z",
       "updated_at": "2025-12-29T16:53:25Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "priority: medium",
-        "area: notifications"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: notifications",
+          "color": "e99695"
+        }
       ]
     },
     {
       "number": 89,
       "title": "[MAINTENANCE] Automate Issue Creation",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/89",
       "state": "open",
       "created_at": "2025-11-20T10:01:08Z",
       "updated_at": "2025-12-29T16:53:00Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "maintenance",
-        "priority: medium"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        }
       ]
     },
     {
       "number": 88,
       "title": "[CONCEPT] RSS Feed/Scrolling Text Ticker",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/88",
       "state": "open",
       "created_at": "2025-11-20T09:41:26Z",
       "updated_at": "2025-12-29T16:52:29Z",
+      "milestone": null,
       "labels": [
-        "concept",
-        "priority: low",
-        "area: terminal"
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
       ]
     },
     {
       "number": 73,
       "title": "[CONCEPT] Working Video Tape",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/73",
       "state": "open",
       "created_at": "2025-11-18T06:08:09Z",
       "updated_at": "2025-12-29T16:52:26Z",
+      "milestone": null,
       "labels": [
-        "concept",
-        "priority: low",
-        "area: models"
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: models",
+          "color": "bfdadc"
+        }
       ]
     },
     {
       "number": 72,
       "title": "[CONCEPT] Taking Immersion to the Next Level",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/72",
       "state": "open",
       "created_at": "2025-11-18T02:38:20Z",
       "updated_at": "2025-12-29T16:52:27Z",
+      "milestone": null,
       "labels": [
-        "concept",
-        "priority: low",
-        "area: terminal"
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
       ]
     },
     {
       "number": 69,
       "title": "[REQUEST] Update Posters with VRCStringDownloader",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/69",
       "state": "open",
       "created_at": "2025-11-18T02:23:56Z",
       "updated_at": "2025-12-29T16:53:59Z",
+      "milestone": "v2.3 - Terminal Tales & Integration",
       "labels": [
-        "enhancement",
-        "good first issue",
-        "priority: low",
-        "area: models"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "good first issue",
+          "color": "7057ff"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: models",
+          "color": "bfdadc"
+        }
       ]
     },
     {
       "number": 67,
       "title": "[QA] Test All Achievements",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/67",
       "state": "open",
       "created_at": "2025-11-17T22:30:40Z",
       "updated_at": "2025-12-29T16:53:09Z",
+      "milestone": "BASEMENT OS Revamp",
       "labels": [
-        "priority: high",
-        "area: achievements",
-        "needs-testing"
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: achievements",
+          "color": "f9d0c4"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        }
       ]
     },
     {
       "number": 66,
       "title": "[EPIC] Achievements System",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/66",
       "state": "open",
       "created_at": "2025-11-17T22:28:41Z",
       "updated_at": "2025-12-29T16:52:42Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "priority: medium",
-        "area: achievements"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: achievements",
+          "color": "f9d0c4"
+        }
       ]
     },
     {
       "number": 63,
       "title": "[QA] Test FIFO Notifications",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/63",
       "state": "open",
       "created_at": "2025-11-17T21:50:36Z",
       "updated_at": "2025-12-29T16:53:07Z",
+      "milestone": "BASEMENT OS Revamp",
       "labels": [
-        "priority: high",
-        "area: notifications",
-        "needs-testing"
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: notifications",
+          "color": "e99695"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        }
       ]
     },
     {
       "number": 62,
       "title": "[EPIC] Notifications System",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/62",
       "state": "open",
       "created_at": "2025-11-17T21:47:57Z",
       "updated_at": "2025-12-29T16:52:41Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "priority: medium",
-        "area: notifications"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: notifications",
+          "color": "e99695"
+        }
       ]
     },
     {
       "number": 61,
       "title": "[CONCEPT] Tournament Functionality",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/61",
       "state": "open",
       "created_at": "2025-11-17T21:43:33Z",
       "updated_at": "2025-12-29T16:52:36Z",
+      "milestone": null,
       "labels": [
-        "concept",
-        "priority: low",
-        "area: games"
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        }
       ]
     },
     {
       "number": 60,
       "title": "[REQUEST] Antique Chair Model",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/60",
       "state": "open",
       "created_at": "2025-11-17T19:53:56Z",
       "updated_at": "2025-12-29T16:54:14Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "priority: low",
-        "area: models"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: models",
+          "color": "bfdadc"
+        }
       ]
     },
     {
       "number": 59,
       "title": "[REQUEST] Recliner Model",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/59",
       "state": "open",
       "created_at": "2025-11-17T19:52:00Z",
       "updated_at": "2025-12-29T16:54:13Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "priority: low",
-        "area: models"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: models",
+          "color": "bfdadc"
+        }
       ]
     },
     {
       "number": 58,
       "title": "[EPIC] Models and Assets",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/58",
       "state": "open",
       "created_at": "2025-11-17T19:49:36Z",
       "updated_at": "2025-12-29T16:52:40Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "priority: low",
-        "area: models"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: models",
+          "color": "bfdadc"
+        }
       ]
     },
     {
       "number": 57,
       "title": "[BUG] Snake Sharp Turn Death",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/57",
       "state": "open",
       "created_at": "2025-11-17T19:32:54Z",
       "updated_at": "2025-12-29T16:52:20Z",
+      "milestone": "Remake Snake",
       "labels": [
-        "bug",
-        "priority: high",
-        "priority: low",
-        "area: games"
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        }
       ]
     },
     {
       "number": 54,
       "title": "[EPIC] Interactive Games",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/54",
       "state": "open",
       "created_at": "2025-11-17T19:27:20Z",
       "updated_at": "2025-12-29T16:52:39Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "priority: medium",
-        "area: games"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        }
       ]
     },
     {
       "number": 52,
       "title": "[CONCEPT] 2D Side Scrolling Shooter",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/52",
       "state": "open",
       "created_at": "2025-11-17T19:15:25Z",
       "updated_at": "2025-12-29T16:52:25Z",
+      "milestone": null,
       "labels": [
-        "concept",
-        "priority: low",
-        "area: games"
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        }
       ]
     },
     {
       "number": 51,
       "title": "[FEATURE] High Score Screen Font",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/51",
       "state": "open",
       "created_at": "2025-11-17T13:41:10Z",
       "updated_at": "2025-12-29T16:54:15Z",
+      "milestone": "Remake Snake",
       "labels": [
-        "enhancement",
-        "priority: low",
-        "area: games",
-        "blocked"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        }
       ]
     },
     {
       "number": 50,
       "title": "[FEATURE] Snake Game",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/50",
       "state": "open",
       "created_at": "2025-11-17T13:40:27Z",
       "updated_at": "2025-12-29T16:53:22Z",
+      "milestone": "Remake Snake",
       "labels": [
-        "enhancement",
-        "priority: high",
-        "priority: low",
-        "area: games",
-        "blocked",
-        "needs-design"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "needs-design",
+          "color": "c2e0c6"
+        }
       ]
     },
     {
       "number": 44,
       "title": "[FEATURE] Arcade Games",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/44",
       "state": "open",
       "created_at": "2025-11-16T18:40:31Z",
       "updated_at": "2025-12-29T16:53:19Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "concept",
-        "priority: low",
-        "area: games"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        }
       ]
     },
     {
       "number": 39,
       "title": "[FEATURE] Family Feud Minigame",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/39",
       "state": "open",
       "created_at": "2025-11-16T04:44:06Z",
       "updated_at": "2025-12-29T16:53:21Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "concept",
-        "priority: low",
-        "area: games"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        }
       ]
     },
     {
       "number": 36,
       "title": "[REQUEST] Remote Achievement Descriptions",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/36",
       "state": "open",
       "created_at": "2025-11-16T04:18:33Z",
       "updated_at": "2025-12-29T16:53:56Z",
+      "milestone": null,
       "labels": [
-        "enhancement",
-        "priority: medium",
-        "area: achievements"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: achievements",
+          "color": "f9d0c4"
+        }
       ]
     },
     {
       "number": 35,
       "title": "[REQUEST] Main Menu Message of the Day",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/35",
       "state": "open",
       "created_at": "2025-11-16T04:17:29Z",
       "updated_at": "2025-12-29T23:04:21Z",
+      "milestone": "BASEMENT OS Revamp",
       "labels": [
-        "enhancement",
-        "priority: medium",
-        "area: terminal"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
       ]
     },
     {
       "number": 32,
       "title": "[BUG] Conflicting Audio Sources Theater/Game Room",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/32",
       "state": "open",
       "created_at": "2025-11-15T16:24:59Z",
       "updated_at": "2025-12-29T16:52:22Z",
+      "milestone": "BASEMENT OS Revamp",
       "labels": [
-        "bug",
-        "enhancement",
-        "priority: medium",
-        "area: audio"
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: audio",
+          "color": "d4c5f9"
+        }
       ]
     }
   ],
@@ -720,172 +1182,695 @@
     {
       "number": 122,
       "title": "[FEATURE] BASEMENT OS Refactor (DOS Terminal v2.1)",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/122",
       "state": "closed",
       "created_at": "2025-11-26T19:03:57Z",
       "updated_at": "2025-12-29T23:06:05Z",
       "closed_at": "2025-12-29T23:06:05Z",
+      "milestone": "BASEMENT OS Revamp",
       "labels": [
-        "enhancement",
-        "maintenance",
-        "priority: high",
-        "area: terminal"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
       ]
     },
     {
       "number": 30,
       "title": "[FEATURE] Terminal Tales",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/30",
       "state": "closed",
       "created_at": "2025-11-15T10:43:32Z",
       "updated_at": "2025-12-29T23:03:45Z",
       "closed_at": "2025-12-29T23:03:45Z",
+      "milestone": "v2.3 - Terminal Tales & Integration",
       "labels": [
-        "enhancement",
-        "priority: medium",
-        "area: terminal"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
       ]
     },
     {
       "number": 38,
       "title": "[FEATURE] Dev Journey Navigation in Terminal",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/38",
       "state": "closed",
       "created_at": "2025-11-16T04:22:14Z",
       "updated_at": "2025-12-29T16:54:18Z",
       "closed_at": "2025-12-06T03:46:56Z",
+      "milestone": "Remake Snake",
       "labels": [
-        "enhancement",
-        "priority: medium",
-        "area: terminal"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
       ]
     },
     {
       "number": 34,
       "title": "[FEATURE] MCP Agent Changelog Automation",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/34",
       "state": "closed",
       "created_at": "2025-11-16T04:16:13Z",
       "updated_at": "2025-12-29T16:54:17Z",
       "closed_at": "2025-12-06T03:45:51Z",
+      "milestone": "v2.3 - Terminal Tales & Integration",
       "labels": [
-        "enhancement",
-        "priority: medium",
-        "area: terminal"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
       ]
     },
     {
       "number": 37,
       "title": "[REQUEST] VRCStringDownloader Integration",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/37",
       "state": "closed",
       "created_at": "2025-11-16T04:19:08Z",
       "updated_at": "2025-12-29T16:53:58Z",
       "closed_at": "2025-12-06T03:46:38Z",
+      "milestone": "Remake Snake",
       "labels": [
-        "enhancement",
-        "priority: medium",
-        "area: terminal"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
       ]
     },
     {
       "number": 43,
       "title": "[FEATURE] Terminal Modernization",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/43",
       "state": "closed",
       "created_at": "2025-11-16T18:37:22Z",
       "updated_at": "2025-12-29T16:53:18Z",
       "closed_at": "2025-12-06T03:47:38Z",
+      "milestone": "BASEMENT OS Revamp",
       "labels": [
-        "enhancement",
-        "priority: high",
-        "area: terminal"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
       ]
     },
     {
       "number": 56,
       "title": "Add High Score Functionality",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/56",
       "state": "closed",
       "created_at": "2025-11-17T19:32:03Z",
       "updated_at": "2025-12-26T02:44:53Z",
       "closed_at": "2025-12-26T02:44:53Z",
+      "milestone": "Remake Snake",
       "labels": [
-        "enhancement",
-        "priority: medium",
-        "area: games"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        }
       ]
     },
     {
       "number": 55,
       "title": "Add Achievement Functionality",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/55",
       "state": "closed",
       "created_at": "2025-11-17T19:31:48Z",
       "updated_at": "2025-12-26T02:44:50Z",
       "closed_at": "2025-12-26T02:44:50Z",
+      "milestone": "Remake Snake",
       "labels": [
-        "enhancement",
-        "priority: medium",
-        "area: achievements",
-        "area: games"
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: achievements",
+          "color": "f9d0c4"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        }
       ]
     },
     {
       "number": 117,
       "title": "Decision: Symbolic Pixel Rendering vs Traditional Unity Sprites for Arcade Games",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/117",
       "state": "closed",
       "created_at": "2025-11-24T22:41:13Z",
       "updated_at": "2025-12-26T02:44:43Z",
       "closed_at": "2025-12-26T02:44:43Z",
+      "milestone": "BASEMENT OS Revamp",
       "labels": [
-        "priority: critical",
-        "area: games",
-        "needs-testing"
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        }
       ]
     },
     {
       "number": 96,
       "title": "DT_RSS - Music Playing",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/96",
       "state": "closed",
       "created_at": "2025-11-20T10:41:43Z",
       "updated_at": "2025-12-17T04:18:22Z",
       "closed_at": "2025-11-25T00:58:00Z",
+      "milestone": null,
       "labels": [
-        "concept",
-        "priority: low",
-        "area: terminal",
-        "area: audio"
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "area: audio",
+          "color": "d4c5f9"
+        }
       ]
     },
     {
       "number": 95,
       "title": "DT_RSS - High Scores",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/95",
       "state": "closed",
       "created_at": "2025-11-20T10:38:52Z",
       "updated_at": "2025-12-17T04:18:15Z",
       "closed_at": "2025-11-25T00:57:58Z",
+      "milestone": null,
       "labels": [
-        "concept",
-        "priority: low",
-        "area: games"
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        }
       ]
     },
     {
       "number": 94,
       "title": "DT_RSS - Movie Time",
-      "html_url": "https://github.com/CloudStrife7/LL2PCVR/issues/94",
       "state": "closed",
       "created_at": "2025-11-20T10:38:08Z",
       "updated_at": "2025-12-17T04:18:10Z",
       "closed_at": "2025-11-25T00:57:55Z",
+      "milestone": null,
       "labels": [
-        "concept",
-        "priority: low",
-        "area: terminal"
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "title": "Link chair and terminal use",
+      "state": "closed",
+      "created_at": "2025-11-17T21:58:13Z",
+      "updated_at": "2025-12-17T04:11:51Z",
+      "closed_at": "2025-12-17T04:11:51Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "title": "Re-create DOS Terminal to 80 char width (currently 45 chars)",
+      "state": "closed",
+      "created_at": "2025-11-16T22:56:59Z",
+      "updated_at": "2025-12-06T03:47:28Z",
+      "closed_at": "2025-12-06T03:47:28Z",
+      "milestone": "BASEMENT OS Revamp",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "title": "Shorten Terminal Lines on Splash screen",
+      "state": "closed",
+      "created_at": "2025-11-16T23:48:38Z",
+      "updated_at": "2025-12-06T03:47:20Z",
+      "closed_at": "2025-12-06T03:47:18Z",
+      "milestone": "BASEMENT OS Revamp",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "title": "Unify Terminal Screens and Design Language",
+      "state": "closed",
+      "created_at": "2025-11-17T19:25:04Z",
+      "updated_at": "2025-12-06T03:47:11Z",
+      "closed_at": "2025-12-06T03:47:11Z",
+      "milestone": "BASEMENT OS Revamp",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 71,
+      "title": "Integrate Roadmap from GitHub",
+      "state": "closed",
+      "created_at": "2025-11-18T02:37:44Z",
+      "updated_at": "2025-12-06T03:46:46Z",
+      "closed_at": "2025-12-06T03:46:45Z",
+      "milestone": "v2.3 - Terminal Tales & Integration",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "title": "ARG Easter Egg Ideas",
+      "state": "closed",
+      "created_at": "2025-11-18T02:33:17Z",
+      "updated_at": "2025-12-06T03:45:38Z",
+      "closed_at": "2025-12-06T03:45:38Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 99,
+      "title": "`unicode-art-tmp-rendering Agent",
+      "state": "closed",
+      "created_at": "2025-11-22T12:29:01Z",
+      "updated_at": "2025-12-06T03:45:28Z",
+      "closed_at": "2025-12-06T03:45:28Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "title": "Revamp gui",
+      "state": "closed",
+      "created_at": "2025-11-17T21:55:50Z",
+      "updated_at": "2025-12-01T21:26:27Z",
+      "closed_at": "2025-12-01T21:26:27Z",
+      "milestone": "Remake Snake",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        }
+      ]
+    },
+    {
+      "number": 120,
+      "title": "Backup system received error - need to investigate and upload pc/quest to VRCHAT verify sync",
+      "state": "closed",
+      "created_at": "2025-11-25T03:40:47Z",
+      "updated_at": "2025-11-29T03:49:08Z",
+      "closed_at": "2025-11-29T03:49:08Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        }
+      ]
+    },
+    {
+      "number": 123,
+      "title": "Explore CLI AI Agent Tools for Ollama Integration",
+      "state": "closed",
+      "created_at": "2025-11-27T04:04:53Z",
+      "updated_at": "2025-11-27T04:16:16Z",
+      "closed_at": "2025-11-27T04:16:16Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        }
+      ]
+    },
+    {
+      "number": 118,
+      "title": "Configure Agent Slash Commands for Easy Invocation",
+      "state": "closed",
+      "created_at": "2025-11-25T01:37:05Z",
+      "updated_at": "2025-11-25T03:28:47Z",
+      "closed_at": "2025-11-25T03:28:47Z",
+      "milestone": "BASEMENT OS Revamp",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        }
+      ]
+    },
+    {
+      "number": 91,
+      "title": "Shorten Unity project name and folder structure",
+      "state": "closed",
+      "created_at": "2025-11-20T10:26:30Z",
+      "updated_at": "2025-11-25T00:53:37Z",
+      "closed_at": "2025-11-25T00:53:37Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        }
+      ]
+    },
+    {
+      "number": 90,
+      "title": "Add quest to git",
+      "state": "closed",
+      "created_at": "2025-11-20T10:24:49Z",
+      "updated_at": "2025-11-24T22:57:48Z",
+      "closed_at": "2025-11-24T22:57:48Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "title": "Achievements?",
+      "state": "closed",
+      "created_at": "2025-11-16T18:55:20Z",
+      "updated_at": "2025-11-24T22:51:33Z",
+      "closed_at": "2025-11-24T22:51:33Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: achievements",
+          "color": "f9d0c4"
+        },
+        {
+          "name": "needs-design",
+          "color": "c2e0c6"
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "title": "Once this is done, upload as roadmap to DOS Terminal",
+      "state": "closed",
+      "created_at": "2025-11-16T18:24:15Z",
+      "updated_at": "2025-11-24T22:47:35Z",
+      "closed_at": "2025-11-24T22:47:35Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "title": "Run /install-github-app",
+      "state": "closed",
+      "created_at": "2025-11-16T18:16:26Z",
+      "updated_at": "2025-11-24T22:46:11Z",
+      "closed_at": "2025-11-24T22:46:11Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "needs-design",
+          "color": "c2e0c6"
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "title": "Create and group features into milestone releases",
+      "state": "closed",
+      "created_at": "2025-11-16T18:23:18Z",
+      "updated_at": "2025-11-24T22:44:47Z",
+      "closed_at": "2025-11-24T22:44:47Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "title": "Prioritize Quest Development Over Desktop",
+      "state": "closed",
+      "created_at": "2025-11-17T22:45:16Z",
+      "updated_at": "2025-11-24T22:29:49Z",
+      "closed_at": "2025-11-24T22:29:49Z",
+      "milestone": "BASEMENT OS Revamp",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        }
       ]
     }
   ],
