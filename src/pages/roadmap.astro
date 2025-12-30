@@ -329,7 +329,12 @@ import TerminalShell from '../components/TerminalShell.astro';
 </style>
 
 <script>
-document.addEventListener("astro:page-load", function() {
+// Initialize roadmap - called by both astro:page-load and DOMContentLoaded
+function initRoadmap() {
+    // Prevent double initialization
+    if ((window as any).__roadmapInitialized) return;
+    (window as any).__roadmapInitialized = true;
+
     const ROADMAP_URL = '/data/roadmap.json';
 
     function getPriority(labels: any[]): string {
@@ -541,5 +546,19 @@ document.addEventListener("astro:page-load", function() {
                 el.textContent = 'Roadmap data not yet synced';
             });
         });
+}
+
+// Reset flag on page swap (for view transitions)
+document.addEventListener("astro:before-swap", () => {
+    (window as any).__roadmapInitialized = false;
 });
+
+// Listen for both events to handle Astro 5.x edge cases
+document.addEventListener("astro:page-load", initRoadmap);
+document.addEventListener("DOMContentLoaded", initRoadmap);
+
+// Also run immediately if DOM is already loaded (handles cached pages)
+if (document.readyState !== 'loading') {
+    initRoadmap();
+}
 </script>
