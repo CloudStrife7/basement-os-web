@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-30T01:19:43Z",
+  "generated_at": "2025-12-30T06:44:06Z",
   "issues": [
     {
       "number": 147,
@@ -51,9 +51,14 @@
       "title": "[QA] Verify VRChat Networking Best Practices",
       "state": "open",
       "created_at": "2025-12-27T23:07:33Z",
-      "updated_at": "2025-12-29T16:53:12Z",
+      "updated_at": "2025-12-30T02:17:25Z",
       "milestone": null,
-      "labels": []
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
     },
     {
       "number": 143,
@@ -86,7 +91,7 @@
       "title": "[DOCS] Consolidate Docs Folder Structure",
       "state": "open",
       "created_at": "2025-12-26T02:56:17Z",
-      "updated_at": "2025-12-29T16:53:05Z",
+      "updated_at": "2025-12-30T02:17:24Z",
       "milestone": null,
       "labels": [
         {
@@ -96,6 +101,10 @@
         {
           "name": "priority: low",
           "color": "0e8a16"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -113,45 +122,70 @@
       "title": "# GitHub Copilot: Update Issues #117 and Related Game Issues",
       "state": "open",
       "created_at": "2025-12-24T21:07:16Z",
-      "updated_at": "2025-12-24T21:07:16Z",
+      "updated_at": "2025-12-30T02:16:30Z",
       "milestone": null,
-      "labels": []
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
     },
     {
       "number": 136,
       "title": "[FEATURE] VRChat API to GitHub Stats Sync",
       "state": "open",
       "created_at": "2025-12-24T21:04:57Z",
-      "updated_at": "2025-12-29T16:54:27Z",
+      "updated_at": "2025-12-30T02:16:28Z",
       "milestone": null,
-      "labels": []
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
     },
     {
       "number": 134,
       "title": "[FEATURE] Basement OS Version 2",
       "state": "open",
       "created_at": "2025-12-24T13:21:08Z",
-      "updated_at": "2025-12-29T16:54:42Z",
+      "updated_at": "2025-12-30T02:16:31Z",
       "milestone": "BASEMENT OS Revamp",
-      "labels": []
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
     },
     {
       "number": 133,
       "title": "[FEATURE] Retro DOS Profile Picture on Stats",
       "state": "open",
       "created_at": "2025-12-23T03:03:41Z",
-      "updated_at": "2025-12-29T16:54:26Z",
+      "updated_at": "2025-12-30T02:16:23Z",
       "milestone": null,
-      "labels": []
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
     },
     {
       "number": 132,
       "title": "[DEVLOG] Latest Experiments Automated Agent Installs",
       "state": "open",
       "created_at": "2025-12-18T14:06:56Z",
-      "updated_at": "2025-12-29T16:54:22Z",
+      "updated_at": "2025-12-30T02:17:14Z",
       "milestone": null,
-      "labels": []
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
     },
     {
       "number": 131,
@@ -167,21 +201,30 @@
       "title": "[FEATURE] Total Visit Stats Display",
       "state": "open",
       "created_at": "2025-12-17T04:16:50Z",
-      "updated_at": "2025-12-29T16:54:23Z",
+      "updated_at": "2025-12-30T02:16:15Z",
       "milestone": null,
-      "labels": []
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
     },
     {
       "number": 129,
       "title": "[DEVLOG] First Test of Closed-Loop Agent System",
       "state": "open",
       "created_at": "2025-12-09T03:33:59Z",
-      "updated_at": "2025-12-29T16:54:21Z",
+      "updated_at": "2025-12-30T02:16:59Z",
       "milestone": null,
       "labels": [
         {
           "name": "Devlog",
           "color": "aaaaaa"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -190,7 +233,7 @@
       "title": "[CONCEPT] Establish Lore Behind Lower Level 1.0, 2.0, and Basement OS",
       "state": "open",
       "created_at": "2025-12-08T18:54:36Z",
-      "updated_at": "2025-12-29T16:52:35Z",
+      "updated_at": "2025-12-30T02:16:24Z",
       "milestone": null,
       "labels": [
         {
@@ -200,6 +243,10 @@
         {
           "name": "priority: low",
           "color": "0e8a16"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -208,7 +255,7 @@
       "title": "[QA] Test Achievement and Notification System",
       "state": "open",
       "created_at": "2025-12-07T15:45:25Z",
-      "updated_at": "2025-12-29T16:54:40Z",
+      "updated_at": "2025-12-30T02:17:05Z",
       "milestone": "BASEMENT OS Revamp",
       "labels": [
         {
@@ -230,6 +277,10 @@
         {
           "name": "needs-testing",
           "color": "fef2c0"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -238,7 +289,7 @@
       "title": "[REQUEST] Add Donation QR Code",
       "state": "open",
       "created_at": "2025-11-29T05:33:12Z",
-      "updated_at": "2025-12-29T16:53:47Z",
+      "updated_at": "2025-12-30T02:16:20Z",
       "milestone": null,
       "labels": [
         {
@@ -251,6 +302,10 @@
         },
         {
           "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "Good Agentic Build",
           "color": "1d76db"
         }
       ]
@@ -294,7 +349,7 @@
       "title": "[MAINTENANCE] Unity MCP Multi-Instance Workflow",
       "state": "open",
       "created_at": "2025-11-25T02:48:11Z",
-      "updated_at": "2025-12-29T16:53:04Z",
+      "updated_at": "2025-12-30T02:17:29Z",
       "milestone": null,
       "labels": [
         {
@@ -312,6 +367,10 @@
         {
           "name": "quest-specific",
           "color": "5319e7"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -320,7 +379,7 @@
       "title": "[MAINTENANCE] PCVR to Quest UdonSharp Script Sync",
       "state": "open",
       "created_at": "2025-11-24T22:17:15Z",
-      "updated_at": "2025-12-29T16:53:03Z",
+      "updated_at": "2025-12-30T02:17:26Z",
       "milestone": "BASEMENT OS Revamp",
       "labels": [
         {
@@ -338,6 +397,10 @@
         {
           "name": "quest-specific",
           "color": "5319e7"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -430,7 +493,7 @@
       "title": "[FEATURE] Remote Content System",
       "state": "open",
       "created_at": "2025-11-24T21:55:21Z",
-      "updated_at": "2025-12-29T16:53:24Z",
+      "updated_at": "2025-12-30T02:17:08Z",
       "milestone": null,
       "labels": [
         {
@@ -444,6 +507,10 @@
         {
           "name": "area: terminal",
           "color": "1d76db"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -452,7 +519,7 @@
       "title": "[FEATURE] Community Relay Protocol",
       "state": "open",
       "created_at": "2025-11-24T13:42:17Z",
-      "updated_at": "2025-12-29T16:53:23Z",
+      "updated_at": "2025-12-30T02:17:13Z",
       "milestone": "Remake Snake",
       "labels": [
         {
@@ -478,6 +545,10 @@
         {
           "name": "area: games",
           "color": "c5def5"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -508,7 +579,7 @@
       "title": "[CONCEPT] Toggle State Items for Different Feel",
       "state": "open",
       "created_at": "2025-11-23T13:21:46Z",
-      "updated_at": "2025-12-29T16:52:32Z",
+      "updated_at": "2025-12-30T02:16:27Z",
       "milestone": null,
       "labels": [
         {
@@ -522,6 +593,10 @@
         {
           "name": "area: models",
           "color": "bfdadc"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -530,7 +605,7 @@
       "title": "[CONCEPT] Mom Email Terminal App",
       "state": "open",
       "created_at": "2025-11-22T14:43:42Z",
-      "updated_at": "2025-12-29T16:52:31Z",
+      "updated_at": "2025-12-30T02:16:13Z",
       "milestone": null,
       "labels": [
         {
@@ -543,6 +618,10 @@
         },
         {
           "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "Good Agentic Build",
           "color": "1d76db"
         }
       ]
@@ -574,7 +653,7 @@
       "title": "[MAINTENANCE] Automation Idea - Issues",
       "state": "open",
       "created_at": "2025-11-20T10:59:26Z",
-      "updated_at": "2025-12-29T16:53:01Z",
+      "updated_at": "2025-12-30T02:17:31Z",
       "milestone": null,
       "labels": [
         {
@@ -588,6 +667,10 @@
         {
           "name": "priority: medium",
           "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -596,7 +679,7 @@
       "title": "DT -RSS- Ko-FI Notifications",
       "state": "open",
       "created_at": "2025-11-20T10:34:25Z",
-      "updated_at": "2025-12-30T00:31:18Z",
+      "updated_at": "2025-12-30T02:17:04Z",
       "milestone": null,
       "labels": [
         {
@@ -610,6 +693,10 @@
         {
           "name": "area: notifications",
           "color": "e99695"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -618,7 +705,7 @@
       "title": "[FEATURE] DT_Roles Module Re-establish",
       "state": "open",
       "created_at": "2025-11-20T10:30:00Z",
-      "updated_at": "2025-12-29T16:53:25Z",
+      "updated_at": "2025-12-30T02:16:55Z",
       "milestone": null,
       "labels": [
         {
@@ -632,6 +719,10 @@
         {
           "name": "area: notifications",
           "color": "e99695"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -640,7 +731,7 @@
       "title": "[MAINTENANCE] Automate Issue Creation",
       "state": "open",
       "created_at": "2025-11-20T10:01:08Z",
-      "updated_at": "2025-12-29T16:53:00Z",
+      "updated_at": "2025-12-30T02:17:28Z",
       "milestone": null,
       "labels": [
         {
@@ -654,6 +745,10 @@
         {
           "name": "priority: medium",
           "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -662,7 +757,7 @@
       "title": "[CONCEPT] RSS Feed/Scrolling Text Ticker",
       "state": "open",
       "created_at": "2025-11-20T09:41:26Z",
-      "updated_at": "2025-12-29T16:52:29Z",
+      "updated_at": "2025-12-30T02:16:22Z",
       "milestone": null,
       "labels": [
         {
@@ -676,6 +771,10 @@
         {
           "name": "area: terminal",
           "color": "1d76db"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -684,7 +783,7 @@
       "title": "[CONCEPT] Working Video Tape",
       "state": "open",
       "created_at": "2025-11-18T06:08:09Z",
-      "updated_at": "2025-12-29T16:52:26Z",
+      "updated_at": "2025-12-30T02:16:17Z",
       "milestone": null,
       "labels": [
         {
@@ -698,6 +797,10 @@
         {
           "name": "area: models",
           "color": "bfdadc"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -725,19 +828,15 @@
     },
     {
       "number": 69,
-      "title": "[REQUEST] Update Posters with VRCStringDownloader",
+      "title": "[REQUEST] Dynamic Poster System with VRCImageDownloader",
       "state": "open",
       "created_at": "2025-11-18T02:23:56Z",
-      "updated_at": "2025-12-29T16:53:59Z",
-      "milestone": "v2.3 - Terminal Tales & Integration",
+      "updated_at": "2025-12-30T02:48:21Z",
+      "milestone": null,
       "labels": [
         {
           "name": "enhancement",
           "color": "a2eeef"
-        },
-        {
-          "name": "good first issue",
-          "color": "7057ff"
         },
         {
           "name": "priority: low",
@@ -746,6 +845,10 @@
         {
           "name": "area: models",
           "color": "bfdadc"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -754,7 +857,7 @@
       "title": "[QA] Test All Achievements",
       "state": "open",
       "created_at": "2025-11-17T22:30:40Z",
-      "updated_at": "2025-12-29T16:53:09Z",
+      "updated_at": "2025-12-30T02:17:07Z",
       "milestone": "BASEMENT OS Revamp",
       "labels": [
         {
@@ -768,6 +871,10 @@
         {
           "name": "needs-testing",
           "color": "fef2c0"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -798,7 +905,7 @@
       "title": "[QA] Test FIFO Notifications",
       "state": "open",
       "created_at": "2025-11-17T21:50:36Z",
-      "updated_at": "2025-12-29T16:53:07Z",
+      "updated_at": "2025-12-30T02:16:58Z",
       "milestone": "BASEMENT OS Revamp",
       "labels": [
         {
@@ -812,6 +919,10 @@
         {
           "name": "needs-testing",
           "color": "fef2c0"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -930,7 +1041,7 @@
       "title": "[BUG] Snake Sharp Turn Death",
       "state": "open",
       "created_at": "2025-11-17T19:32:54Z",
-      "updated_at": "2025-12-29T16:52:20Z",
+      "updated_at": "2025-12-30T02:16:19Z",
       "milestone": "Remake Snake",
       "labels": [
         {
@@ -948,6 +1059,10 @@
         {
           "name": "area: games",
           "color": "c5def5"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -1000,7 +1115,7 @@
       "title": "[FEATURE] High Score Screen Font",
       "state": "open",
       "created_at": "2025-11-17T13:41:10Z",
-      "updated_at": "2025-12-29T16:54:15Z",
+      "updated_at": "2025-12-30T02:16:11Z",
       "milestone": "Remake Snake",
       "labels": [
         {
@@ -1018,6 +1133,10 @@
         {
           "name": "blocked",
           "color": "000000"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -1026,7 +1145,7 @@
       "title": "[FEATURE] Snake Game",
       "state": "open",
       "created_at": "2025-11-17T13:40:27Z",
-      "updated_at": "2025-12-29T16:53:22Z",
+      "updated_at": "2025-12-30T02:16:29Z",
       "milestone": "Remake Snake",
       "labels": [
         {
@@ -1052,6 +1171,10 @@
         {
           "name": "needs-design",
           "color": "c2e0c6"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -1060,7 +1183,7 @@
       "title": "[FEATURE] Arcade Games",
       "state": "open",
       "created_at": "2025-11-16T18:40:31Z",
-      "updated_at": "2025-12-29T16:53:19Z",
+      "updated_at": "2025-12-30T02:17:11Z",
       "milestone": null,
       "labels": [
         {
@@ -1078,6 +1201,10 @@
         {
           "name": "area: games",
           "color": "c5def5"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -1086,7 +1213,7 @@
       "title": "[FEATURE] Family Feud Minigame",
       "state": "open",
       "created_at": "2025-11-16T04:44:06Z",
-      "updated_at": "2025-12-29T16:53:21Z",
+      "updated_at": "2025-12-30T02:17:10Z",
       "milestone": null,
       "labels": [
         {
@@ -1104,6 +1231,10 @@
         {
           "name": "area: games",
           "color": "c5def5"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -1112,7 +1243,7 @@
       "title": "[REQUEST] Remote Achievement Descriptions",
       "state": "open",
       "created_at": "2025-11-16T04:18:33Z",
-      "updated_at": "2025-12-29T16:53:56Z",
+      "updated_at": "2025-12-30T02:17:03Z",
       "milestone": null,
       "labels": [
         {
@@ -1126,6 +1257,10 @@
         {
           "name": "area: achievements",
           "color": "f9d0c4"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -1134,7 +1269,7 @@
       "title": "[REQUEST] Main Menu Message of the Day",
       "state": "open",
       "created_at": "2025-11-16T04:17:29Z",
-      "updated_at": "2025-12-29T23:04:21Z",
+      "updated_at": "2025-12-30T02:16:14Z",
       "milestone": "BASEMENT OS Revamp",
       "labels": [
         {
@@ -1148,6 +1283,10 @@
         {
           "name": "area: terminal",
           "color": "1d76db"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     },
@@ -1156,7 +1295,7 @@
       "title": "[BUG] Conflicting Audio Sources Theater/Game Room",
       "state": "open",
       "created_at": "2025-11-15T16:24:59Z",
-      "updated_at": "2025-12-29T16:52:22Z",
+      "updated_at": "2025-12-30T02:16:56Z",
       "milestone": "BASEMENT OS Revamp",
       "labels": [
         {
@@ -1174,11 +1313,38 @@
         {
           "name": "area: audio",
           "color": "d4c5f9"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         }
       ]
     }
   ],
   "closed": [
+    {
+      "number": 117,
+      "title": "Decision: Symbolic Pixel Rendering vs Traditional Unity Sprites for Arcade Games",
+      "state": "closed",
+      "created_at": "2025-11-24T22:41:13Z",
+      "updated_at": "2025-12-30T01:38:32Z",
+      "closed_at": "2025-12-26T02:44:43Z",
+      "milestone": "BASEMENT OS Revamp",
+      "labels": [
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        }
+      ]
+    },
     {
       "number": 122,
       "title": "[FEATURE] BASEMENT OS Refactor (DOS Terminal v2.1)",
@@ -1368,29 +1534,6 @@
         {
           "name": "area: games",
           "color": "c5def5"
-        }
-      ]
-    },
-    {
-      "number": 117,
-      "title": "Decision: Symbolic Pixel Rendering vs Traditional Unity Sprites for Arcade Games",
-      "state": "closed",
-      "created_at": "2025-11-24T22:41:13Z",
-      "updated_at": "2025-12-26T02:44:43Z",
-      "closed_at": "2025-12-26T02:44:43Z",
-      "milestone": "BASEMENT OS Revamp",
-      "labels": [
-        {
-          "name": "priority: critical",
-          "color": "b60205"
-        },
-        {
-          "name": "area: games",
-          "color": "c5def5"
-        },
-        {
-          "name": "needs-testing",
-          "color": "fef2c0"
         }
       ]
     },
@@ -1895,7 +2038,7 @@
       "title": "v2.3 - Terminal Tales & Integration",
       "description": "Story content and automation: Terminal Tales, roadmap in terminal, MCP changelog, Quest optimizations",
       "state": "open",
-      "open_issues": 1,
+      "open_issues": 0,
       "closed_issues": 3,
       "due_on": "2026-02-14T00:00:00Z"
     }
