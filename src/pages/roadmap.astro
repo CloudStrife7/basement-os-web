@@ -14,7 +14,7 @@ import TerminalShell from '../components/TerminalShell.astro';
       </div>
 
       <!-- CURRENT FOCUS -->
-      <div class="info-card">
+      <div class="roadmap-section">
         <h3>[ Current Focus ]</h3>
         <p class="section-desc">High priority items actively being worked on</p>
         <div id="current-focus" class="issues-grid">
@@ -25,7 +25,7 @@ import TerminalShell from '../components/TerminalShell.astro';
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
       <!-- MILESTONES -->
-      <div class="info-card">
+      <div class="roadmap-section">
         <h3>[ Milestones ]</h3>
         <p class="section-desc">Major releases and feature sets</p>
         <div id="milestones" class="milestones-grid">
@@ -36,7 +36,7 @@ import TerminalShell from '../components/TerminalShell.astro';
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
       <!-- COMING SOON -->
-      <div class="info-card">
+      <div class="roadmap-section">
         <h3>[ Coming Soon ]</h3>
         <p class="section-desc">Medium priority - planned for upcoming releases</p>
         <div id="coming-soon" class="issues-grid">
@@ -47,7 +47,7 @@ import TerminalShell from '../components/TerminalShell.astro';
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
       <!-- BACKLOG -->
-      <div class="info-card">
+      <div class="roadmap-section">
         <h3>[ Backlog ]</h3>
         <p class="section-desc">Ideas and enhancements for the future</p>
         <div id="backlog" class="issues-grid collapsed">
@@ -59,7 +59,7 @@ import TerminalShell from '../components/TerminalShell.astro';
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
       <!-- RECENTLY COMPLETED -->
-      <div class="info-card">
+      <div class="roadmap-section">
         <h3>[ Recently Completed ]</h3>
         <p class="section-desc">Shipped in the last 30 days</p>
         <div id="completed" class="issues-grid">
@@ -82,6 +82,17 @@ import TerminalShell from '../components/TerminalShell.astro';
 </BaseLayout>
 
 <style>
+  /* Roadmap section - NO box around it */
+  .roadmap-section {
+    margin-bottom: 10px;
+  }
+
+  .roadmap-section h3 {
+    color: var(--accent-primary);
+    font-size: 1.1em;
+    margin-bottom: 5px;
+  }
+
   .section-desc {
     color: var(--text-dim);
     font-size: 0.85em;
