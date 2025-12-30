@@ -116,10 +116,11 @@ import TerminalShell from '../components/TerminalShell.astro';
   /* Issue Card - structured layout like Tech Stack */
   .issue-card {
     background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--accent-primary);
     border-radius: 4px;
     transition: all 0.3s ease;
     overflow: hidden;
+    box-shadow: 0 0 8px rgba(0, 255, 204, 0.15);
   }
 
   .issue-card:hover {
@@ -158,8 +159,8 @@ import TerminalShell from '../components/TerminalShell.astro';
     align-items: center;
     gap: 10px;
     padding: 12px 14px;
-    background: rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid var(--border-color);
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--accent-primary);
   }
 
   .issue-status-icon {
@@ -197,8 +198,13 @@ import TerminalShell from '../components/TerminalShell.astro';
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 0;
-    border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--accent-primary);
+    opacity: 0.8;
+  }
+
+  .issue-row:hover {
+    opacity: 1;
   }
 
   .issue-row:last-child {
