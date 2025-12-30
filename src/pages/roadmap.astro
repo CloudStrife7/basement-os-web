@@ -10,14 +10,14 @@ import TerminalShell from '../components/TerminalShell.astro';
 
       <div class="mission-statement">
         <h3>Development Roadmap</h3>
-        <p>Live project status pulled from <a href="https://github.com/CloudStrife7/LL2PCVR/issues" target="_blank" style="color: var(--accent-primary);">GitHub Issues</a>. Track what's being worked on, what's coming next, and the full backlog.</p>
+        <p>Live project status synced from GitHub Issues every 6 hours. Track what's being worked on, what's coming next, and the full backlog.</p>
       </div>
 
       <!-- CURRENT FOCUS -->
       <div class="info-card">
         <h3>[ Current Focus ]</h3>
         <p class="section-desc">High priority items actively being worked on</p>
-        <div id="current-focus" class="issues-list">
+        <div id="current-focus" class="issues-grid">
           <div class="loading-indicator">Loading from GitHub...</div>
         </div>
       </div>
@@ -39,7 +39,7 @@ import TerminalShell from '../components/TerminalShell.astro';
       <div class="info-card">
         <h3>[ Coming Soon ]</h3>
         <p class="section-desc">Medium priority - planned for upcoming releases</p>
-        <div id="coming-soon" class="issues-list">
+        <div id="coming-soon" class="issues-grid">
           <div class="loading-indicator">Loading from GitHub...</div>
         </div>
       </div>
@@ -50,7 +50,7 @@ import TerminalShell from '../components/TerminalShell.astro';
       <div class="info-card">
         <h3>[ Backlog ]</h3>
         <p class="section-desc">Ideas and enhancements for the future</p>
-        <div id="backlog" class="issues-list collapsed">
+        <div id="backlog" class="issues-grid collapsed">
           <div class="loading-indicator">Loading from GitHub...</div>
         </div>
         <button class="expand-btn" id="toggle-backlog">Show All Backlog Items</button>
@@ -62,7 +62,7 @@ import TerminalShell from '../components/TerminalShell.astro';
       <div class="info-card">
         <h3>[ Recently Completed ]</h3>
         <p class="section-desc">Shipped in the last 30 days</p>
-        <div id="completed" class="issues-list">
+        <div id="completed" class="issues-grid">
           <div class="loading-indicator">Loading from GitHub...</div>
         </div>
       </div>
@@ -89,105 +89,123 @@ import TerminalShell from '../components/TerminalShell.astro';
     font-style: italic;
   }
 
-  .issues-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  /* Issue Cards Grid */
+  .issues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
   }
 
-  .issues-list.collapsed {
-    max-height: 200px;
+  .issues-grid.collapsed {
+    max-height: 400px;
     overflow: hidden;
     position: relative;
   }
 
-  .issues-list.collapsed::after {
+  .issues-grid.collapsed::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    height: 80px;
     background: linear-gradient(transparent, var(--bg-secondary));
     pointer-events: none;
   }
 
-  .issue-item {
+  /* Issue Card */
+  .issue-card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    padding: 12px 14px;
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
     gap: 10px;
-    padding: 10px 12px;
-    background: rgba(0, 0, 0, 0.2);
-    border-left: 3px solid var(--border);
     transition: all 0.2s ease;
   }
 
-  .issue-item:hover {
-    background: rgba(0, 0, 0, 0.3);
-    border-left-color: var(--accent-primary);
+  .issue-card:hover {
+    border-color: var(--accent-primary);
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
   }
 
-  .issue-item.priority-critical {
-    border-left-color: #ff4444;
+  .issue-card.completed {
+    opacity: 0.75;
+    border-left: 3px solid var(--accent-primary);
   }
 
-  .issue-item.priority-high {
-    border-left-color: #ff8844;
+  .issue-card.priority-critical {
+    border-left: 3px solid #ff4444;
   }
 
-  .issue-item.priority-medium {
-    border-left-color: #ffcc44;
+  .issue-card.priority-high {
+    border-left: 3px solid #ff8844;
   }
 
-  .issue-item.completed {
-    border-left-color: var(--accent-primary);
-    opacity: 0.8;
+  .issue-card.priority-medium {
+    border-left: 3px solid #ffcc44;
   }
 
-  .issue-number {
-    color: var(--text-muted);
-    font-size: 0.8em;
-    min-width: 45px;
+  /* Card Header */
+  .issue-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
   }
 
   .issue-title {
-    flex: 1;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     font-size: 0.9em;
-    text-decoration: none;
+    font-weight: 500;
+    line-height: 1.4;
+    flex: 1;
   }
 
-  .issue-title:hover {
-    color: var(--accent-primary);
+  .issue-number {
+    color: var(--text-dim);
+    font-size: 0.75em;
+    white-space: nowrap;
+    opacity: 0.7;
   }
 
+  /* Card Details */
+  .issue-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.8em;
+  }
+
+  /* Labels */
   .issue-labels {
     display: flex;
-    gap: 5px;
     flex-wrap: wrap;
+    gap: 4px;
   }
 
   .issue-label {
     font-size: 0.7em;
     padding: 2px 6px;
-    background: rgba(16, 185, 129, 0.2);
-    color: var(--accent-primary);
     border-radius: 2px;
+    font-weight: 500;
+    text-transform: lowercase;
   }
 
-  .issue-label.area {
-    background: rgba(100, 100, 255, 0.2);
-    color: #8888ff;
+  /* Milestone/Status Badge */
+  .issue-milestone {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--accent-primary);
+    font-size: 0.8em;
+    padding: 2px 0;
   }
 
-  .issue-label.bug {
-    background: rgba(255, 68, 68, 0.2);
-    color: #ff6666;
-  }
-
-  .issue-label.enhancement {
-    background: rgba(68, 255, 68, 0.2);
-    color: #66ff66;
+  .issue-milestone::before {
+    content: '◉';
+    font-size: 0.7em;
   }
 
   /* Milestones */
@@ -199,7 +217,7 @@ import TerminalShell from '../components/TerminalShell.astro';
 
   .milestone-card {
     background: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-color);
     padding: 15px;
   }
 
@@ -235,7 +253,7 @@ import TerminalShell from '../components/TerminalShell.astro';
     margin-top: 15px;
     padding: 8px 15px;
     background: transparent;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-color);
     color: var(--text-secondary);
     font-family: var(--font-mono);
     font-size: 0.85em;
@@ -277,6 +295,7 @@ import TerminalShell from '../components/TerminalShell.astro';
     font-style: italic;
     padding: 20px;
     text-align: center;
+    grid-column: 1 / -1;
   }
 
   .empty-state {
@@ -284,9 +303,14 @@ import TerminalShell from '../components/TerminalShell.astro';
     font-style: italic;
     padding: 15px;
     text-align: center;
+    grid-column: 1 / -1;
   }
 
   @media (max-width: 600px) {
+    .issues-grid {
+      grid-template-columns: 1fr;
+    }
+
     .milestones-grid {
       grid-template-columns: 1fr;
     }
@@ -295,36 +319,83 @@ import TerminalShell from '../components/TerminalShell.astro';
 
 <script>
 document.addEventListener("astro:page-load", function() {
-    // Fetch from static JSON file (synced from GitHub via Actions)
     const ROADMAP_URL = '/data/roadmap.json';
 
-    function getPriority(labels: string[]): string {
-        if (labels.includes('priority: critical')) return 'critical';
-        if (labels.includes('priority: high')) return 'high';
-        if (labels.includes('priority: medium')) return 'medium';
+    function getPriority(labels: any[]): string {
+        const labelNames = labels.map(l => typeof l === 'string' ? l : l.name);
+        if (labelNames.includes('priority: critical')) return 'critical';
+        if (labelNames.includes('priority: high')) return 'high';
+        if (labelNames.includes('priority: medium')) return 'medium';
         return 'low';
     }
 
-    function createIssueElement(issue: any, isCompleted = false): HTMLElement {
+    function getLabelColor(label: any): string {
+        if (typeof label === 'object' && label.color) {
+            return `#${label.color}`;
+        }
+        const name = typeof label === 'string' ? label : label.name;
+        if (name === 'bug') return '#ff4444';
+        if (name === 'enhancement') return '#44aa44';
+        if (name === 'documentation') return '#0066cc';
+        if (name.startsWith('area:')) return '#6666ff';
+        if (name.startsWith('priority:')) return '#ffaa00';
+        if (name === 'concept') return '#aa66cc';
+        if (name === 'maintenance') return '#888888';
+        if (name === 'needs-testing') return '#ff8800';
+        return '#666666';
+    }
+
+    function getDisplayLabels(labels: any[]): any[] {
+        return labels.filter(l => {
+            const name = typeof l === 'string' ? l : l.name;
+            return !name.startsWith('priority:');
+        }).slice(0, 4);
+    }
+
+    function cleanTitle(title: string): string {
+        return title.replace(/^\[.*?\]\s*/, '');
+    }
+
+    function createIssueCard(issue: any, isCompleted = false): HTMLElement {
         const labels = issue.labels || [];
         const priority = getPriority(labels);
+        const displayLabels = getDisplayLabels(labels);
 
-        const div = document.createElement('div');
-        div.className = `issue-item ${isCompleted ? 'completed' : `priority-${priority}`}`;
+        const card = document.createElement('div');
+        card.className = `issue-card ${isCompleted ? 'completed' : `priority-${priority}`}`;
 
-        const areaLabels = labels.filter((l: string) => l.startsWith('area:'));
-        const typeLabels = labels.filter((l: string) => ['bug', 'enhancement', 'documentation'].includes(l));
+        const labelsHtml = displayLabels.map((l: any) => {
+            const name = typeof l === 'string' ? l : l.name;
+            const color = getLabelColor(l);
+            const textColor = isLightColor(color) ? '#000' : '#fff';
+            return `<span class="issue-label" style="background: ${color}; color: ${textColor}">${name.replace('area: ', '')}</span>`;
+        }).join('');
 
-        div.innerHTML = `
-            <span class="issue-number">#${issue.number}</span>
-            <a href="${issue.html_url}" target="_blank" class="issue-title">${issue.title.replace(/^\[.*?\]\s*/, '')}</a>
-            <div class="issue-labels">
-                ${areaLabels.map((l: string) => `<span class="issue-label area">${l.replace('area: ', '')}</span>`).join('')}
-                ${typeLabels.map((l: string) => `<span class="issue-label ${l}">${l}</span>`).join('')}
+        const milestoneHtml = issue.milestone
+            ? `<div class="issue-milestone">${issue.milestone}</div>`
+            : '';
+
+        card.innerHTML = `
+            <div class="issue-card-header">
+                <span class="issue-title">${cleanTitle(issue.title)}</span>
+                <span class="issue-number">#${issue.number}</span>
+            </div>
+            <div class="issue-card-details">
+                ${labelsHtml ? `<div class="issue-labels">${labelsHtml}</div>` : ''}
+                ${milestoneHtml}
             </div>
         `;
 
-        return div;
+        return card;
+    }
+
+    function isLightColor(hex: string): boolean {
+        const c = hex.replace('#', '');
+        const r = parseInt(c.substr(0, 2), 16);
+        const g = parseInt(c.substr(2, 2), 16);
+        const b = parseInt(c.substr(4, 2), 16);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        return brightness > 155;
     }
 
     function createMilestoneElement(milestone: any): HTMLElement {
@@ -352,42 +423,41 @@ document.addEventListener("astro:page-load", function() {
     function renderData(data: any) {
         const { issues, milestones, closed } = data;
 
-        // Filter issues by priority (labels are already string arrays from JSON)
         const currentFocus = issues.filter((i: any) => {
             const labels = i.labels || [];
-            return labels.includes('priority: critical') || labels.includes('priority: high');
+            const labelNames = labels.map((l: any) => typeof l === 'string' ? l : l.name);
+            return labelNames.includes('priority: critical') || labelNames.includes('priority: high');
         });
 
         const comingSoon = issues.filter((i: any) => {
             const labels = i.labels || [];
-            return labels.includes('priority: medium');
+            const labelNames = labels.map((l: any) => typeof l === 'string' ? l : l.name);
+            return labelNames.includes('priority: medium');
         });
 
         const backlog = issues.filter((i: any) => {
             const labels = i.labels || [];
+            const labelNames = labels.map((l: any) => typeof l === 'string' ? l : l.name);
             const priority = getPriority(labels);
-            return priority === 'low' || (!labels.includes('priority: critical') && !labels.includes('priority: high') && !labels.includes('priority: medium'));
+            return priority === 'low' || (!labelNames.includes('priority: critical') && !labelNames.includes('priority: high') && !labelNames.includes('priority: medium'));
         });
 
-        // Filter recently closed (last 30 days)
         const thirtyDaysAgo = new Date();
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
         const recentlyClosed = closed.filter((i: any) => {
             return i.closed_at && new Date(i.closed_at) > thirtyDaysAgo;
         });
 
-        // Render current focus
         const currentFocusEl = document.getElementById('current-focus');
         if (currentFocusEl) {
             currentFocusEl.innerHTML = '';
             if (currentFocus.length === 0) {
                 currentFocusEl.innerHTML = '<div class="empty-state">No high-priority items right now</div>';
             } else {
-                currentFocus.forEach((issue: any) => currentFocusEl.appendChild(createIssueElement(issue)));
+                currentFocus.forEach((issue: any) => currentFocusEl.appendChild(createIssueCard(issue)));
             }
         }
 
-        // Render milestones (filter to open only)
         const milestonesEl = document.getElementById('milestones');
         if (milestonesEl) {
             milestonesEl.innerHTML = '';
@@ -399,47 +469,42 @@ document.addEventListener("astro:page-load", function() {
             }
         }
 
-        // Render coming soon
         const comingSoonEl = document.getElementById('coming-soon');
         if (comingSoonEl) {
             comingSoonEl.innerHTML = '';
             if (comingSoon.length === 0) {
                 comingSoonEl.innerHTML = '<div class="empty-state">No medium-priority items queued</div>';
             } else {
-                comingSoon.forEach((issue: any) => comingSoonEl.appendChild(createIssueElement(issue)));
+                comingSoon.forEach((issue: any) => comingSoonEl.appendChild(createIssueCard(issue)));
             }
         }
 
-        // Render backlog
         const backlogEl = document.getElementById('backlog');
         if (backlogEl) {
             backlogEl.innerHTML = '';
             if (backlog.length === 0) {
                 backlogEl.innerHTML = '<div class="empty-state">Backlog is empty</div>';
             } else {
-                backlog.slice(0, 20).forEach((issue: any) => backlogEl.appendChild(createIssueElement(issue)));
+                backlog.forEach((issue: any) => backlogEl.appendChild(createIssueCard(issue)));
             }
         }
 
-        // Render completed
         const completedEl = document.getElementById('completed');
         if (completedEl) {
             completedEl.innerHTML = '';
             if (recentlyClosed.length === 0) {
                 completedEl.innerHTML = '<div class="empty-state">No issues closed in the last 30 days</div>';
             } else {
-                recentlyClosed.slice(0, 10).forEach((issue: any) => completedEl.appendChild(createIssueElement(issue, true)));
+                recentlyClosed.slice(0, 10).forEach((issue: any) => completedEl.appendChild(createIssueCard(issue, true)));
             }
         }
 
-        // Show last sync time if available
         if (data.generated_at) {
             const syncTime = new Date(data.generated_at).toLocaleString();
             console.log(`Roadmap data last synced: ${syncTime}`);
         }
     }
 
-    // Toggle backlog expansion
     const toggleBtn = document.getElementById('toggle-backlog');
     const backlogList = document.getElementById('backlog');
     if (toggleBtn && backlogList) {
@@ -451,7 +516,6 @@ document.addEventListener("astro:page-load", function() {
         });
     }
 
-    // Fetch roadmap data from static JSON
     fetch(ROADMAP_URL)
         .then(response => {
             if (!response.ok) throw new Error('Roadmap data not found');
