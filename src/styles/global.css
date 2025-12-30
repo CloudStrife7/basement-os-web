@@ -1167,7 +1167,8 @@ body::before {
     overflow-x: auto;
     font-size: 0.85em;
     line-height: 1.5;
-    max-width: 100%;
+    max-width: calc(100vw - 64px);
+    /* Account for terminal padding */
 }
 
 .devlog-content pre code {
@@ -1199,6 +1200,8 @@ body::before {
     font-size: 0.85em;
     display: block;
     overflow-x: auto;
+    max-width: calc(100vw - 64px);
+    /* Account for terminal padding */
 }
 
 .devlog-content th,
