@@ -14,58 +14,49 @@ import TerminalShell from '../components/TerminalShell.astro';
       </div>
 
       <!-- CURRENT FOCUS -->
-      <div class="roadmap-section">
-        <h3>[ Current Focus ]</h3>
+      <details class="roadmap-section section-primary" open>
+        <summary>[ Current Focus ]</summary>
         <p class="section-desc">High priority items actively being worked on</p>
         <div id="current-focus" class="issues-grid">
           <div class="loading-indicator">Loading from GitHub...</div>
         </div>
-      </div>
-
-      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+      </details>
 
       <!-- MILESTONES -->
-      <div class="roadmap-section">
-        <h3>[ Milestones ]</h3>
+      <details class="roadmap-section section-primary">
+        <summary>[ Milestones ]</summary>
         <p class="section-desc">Major releases and feature sets</p>
         <div id="milestones" class="milestones-grid">
           <div class="loading-indicator">Loading from GitHub...</div>
         </div>
-      </div>
-
-      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+      </details>
 
       <!-- COMING SOON -->
-      <div class="roadmap-section">
-        <h3>[ Coming Soon ]</h3>
+      <details class="roadmap-section section-secondary">
+        <summary>[ Coming Soon ]</summary>
         <p class="section-desc">Medium priority - planned for upcoming releases</p>
         <div id="coming-soon" class="issues-grid">
           <div class="loading-indicator">Loading from GitHub...</div>
         </div>
-      </div>
-
-      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+      </details>
 
       <!-- BACKLOG -->
-      <div class="roadmap-section">
-        <h3>[ Backlog ]</h3>
+      <details class="roadmap-section section-muted">
+        <summary>[ Backlog ]</summary>
         <p class="section-desc">Ideas and enhancements for the future</p>
-        <div id="backlog" class="issues-grid collapsed">
+        <div id="backlog" class="issues-grid">
           <div class="loading-indicator">Loading from GitHub...</div>
         </div>
-        <button class="expand-btn" id="toggle-backlog">Show All Backlog Items</button>
-      </div>
-
-      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+      </details>
 
       <!-- RECENTLY COMPLETED -->
-      <div class="roadmap-section">
-        <h3>[ Recently Completed ]</h3>
+      <details class="roadmap-section section-completed">
+        <summary>[ Recently Completed ]</summary>
         <p class="section-desc">Shipped in the last 30 days</p>
         <div id="completed" class="issues-grid">
           <div class="loading-indicator">Loading from GitHub...</div>
         </div>
-      </div>
+      </details>
 
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
@@ -82,195 +73,167 @@ import TerminalShell from '../components/TerminalShell.astro';
 </BaseLayout>
 
 <style>
-  /* Roadmap section - NO box around it */
+  /* Collapsible Roadmap Sections using details/summary */
   .roadmap-section {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--bg-secondary);
   }
 
-  .roadmap-section h3 {
+  .roadmap-section summary {
     color: var(--accent-primary);
-    font-size: 1.1em;
-    margin-bottom: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 10px 15px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  .section-desc {
+  .roadmap-section summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .roadmap-section summary::after {
+    content: '+';
+    font-size: 1.2em;
     color: var(--text-dim);
-    font-size: 0.85em;
-    margin-bottom: 15px;
+  }
+
+  .roadmap-section[open] summary::after {
+    content: '−';
+  }
+
+  .roadmap-section[open] summary {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .roadmap-section .section-desc {
+    color: var(--text-dim);
+    font-size: 0.8em;
+    margin: 0;
+    padding: 8px 15px;
     font-style: italic;
   }
 
-  /* Issue Cards Grid */
-  .issues-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 12px;
+  .roadmap-section .issues-grid,
+  .roadmap-section .milestones-grid {
+    padding: 10px 15px 15px 15px;
   }
 
-  .issues-grid.collapsed {
-    max-height: 400px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .issues-grid.collapsed::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: linear-gradient(transparent, var(--bg-secondary));
-    pointer-events: none;
-  }
-
-  /* Issue Card - structured layout like Tech Stack */
-  .issue-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--accent-primary);
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    box-shadow: 0 0 8px rgba(0, 255, 204, 0.15);
-  }
-
-  .issue-card:hover {
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
-    transform: translateY(-2px);
-  }
-
-  .issue-card.completed {
-    opacity: 0.8;
-  }
-
-  .issue-card.completed .issue-card-header {
-    border-left: 3px solid var(--accent-primary);
-  }
-
-  .issue-card.priority-critical .issue-card-header {
-    border-left: 3px solid #ff4444;
-  }
-
-  .issue-card.priority-high .issue-card-header {
-    border-left: 3px solid #ff8844;
-  }
-
-  .issue-card.priority-medium .issue-card-header {
-    border-left: 3px solid #ffcc44;
-  }
-
-  .issue-card.priority-low .issue-card-header {
-    border-left: 3px solid var(--border-color);
-  }
-
-  /* Card Header */
-  .issue-card-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 14px;
-    background: rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid var(--accent-primary);
-  }
-
-  .issue-status-icon {
-    font-size: 0.9em;
-  }
-
-  .issue-status-icon.open {
-    color: #44bb44;
-  }
-
-  .issue-status-icon.closed {
+  /* Visual Hierarchy - Section variants */
+  .section-primary summary {
     color: var(--accent-primary);
   }
 
-  .issue-title {
-    color: var(--text-primary);
-    font-size: 0.9em;
-    font-weight: 500;
-    line-height: 1.3;
-    flex: 1;
+  .section-secondary summary {
+    color: var(--accent-secondary);
   }
 
-  .issue-number {
+  .section-secondary .issue-card {
+    opacity: 0.9;
+  }
+
+  .section-muted summary {
     color: var(--text-dim);
+  }
+
+  .section-muted .issue-card {
+    opacity: 0.75;
+  }
+
+  .section-completed summary {
+    color: var(--accent-primary);
+  }
+
+  .section-completed .issue-card {
+    opacity: 0.7;
+  }
+
+  /* Condensed Issue Cards Grid */
+  .issues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
+  }
+
+  /* Condensed Issue Card */
+  .issue-card {
+    padding: 10px !important;
     font-size: 0.8em;
-    white-space: nowrap;
   }
 
-  /* Card Body - stat rows */
-  .issue-card-body {
-    padding: 10px 14px;
+  .issue-card h3 {
+    color: var(--accent-secondary);
+    margin-bottom: 6px;
+    font-size: 0.9em;
+    line-height: 1.2;
   }
 
-  .issue-row {
+  .issue-card .stat-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px dotted var(--accent-primary);
-    opacity: 0.8;
+    gap: 10px;
+    padding: 3px 0;
+    border-bottom: 1px dotted var(--border-color);
+    font-size: 0.9em;
   }
 
-  .issue-row:hover {
-    opacity: 1;
-  }
-
-  .issue-row:last-child {
+  .issue-card .stat-row:last-child {
     border-bottom: none;
   }
 
-  .issue-row-label {
+  .issue-card .stat-label {
     color: var(--text-dim);
-    font-size: 0.8em;
-    min-width: 70px;
+    flex-shrink: 0;
+    min-width: 55px;
   }
 
-  .issue-row-value {
-    color: var(--text-secondary);
-    font-size: 0.85em;
+  .issue-card .stat-value {
+    color: var(--accent-primary);
     text-align: right;
     flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .issue-row-value.priority-critical {
+  .issue-card .stat-value.priority-critical {
     color: #ff4444;
   }
 
-  .issue-row-value.priority-high {
+  .issue-card .stat-value.priority-high {
     color: #ff8844;
   }
 
-  .issue-row-value.priority-medium {
+  .issue-card .stat-value.priority-medium {
     color: #ffcc44;
   }
 
-  .issue-row-value.priority-low {
+  /* Smaller labels - auto-scale to fit */
+  .issue-card .stat-row.labels-row {
+    font-size: 0.5em;
+  }
+
+  .issue-card .stat-row.labels-row .stat-value {
+    white-space: nowrap;
+  }
+
+  /* Milestone row */
+  .issue-card .stat-row.milestone-row {
+    font-size: clamp(0.6em, 0.75em, 0.85em);
+  }
+
+  .issue-card .stat-row.milestone-row .stat-value {
+    white-space: nowrap;
+  }
+
+  /* Smaller created timestamp */
+  .issue-card .stat-row.created-row {
+    font-size: 0.75em;
     color: var(--text-dim);
-  }
-
-  /* Labels in row */
-  .issue-labels {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    justify-content: flex-end;
-  }
-
-  .issue-label {
-    font-size: 0.7em;
-    padding: 2px 6px;
-    border-radius: 2px;
-    font-weight: 500;
-    text-transform: lowercase;
-  }
-
-  /* Milestone row value */
-  .issue-milestone {
-    color: var(--accent-primary);
-    font-size: 0.85em;
   }
 
   /* Milestones */
@@ -457,55 +420,45 @@ function initRoadmap() {
         const displayLabels = getDisplayLabels(labels);
 
         const card = document.createElement('div');
-        card.className = `issue-card ${isCompleted ? 'completed' : `priority-${priority}`}`;
+        // Use info-card class for proper styling
+        card.className = `info-card issue-card ${isCompleted ? 'completed' : `priority-${priority}`}`;
 
-        // Build labels HTML
+        // Build labels HTML with brackets
         const labelsHtml = displayLabels.length > 0
             ? displayLabels.map((l: any) => {
                 const name = typeof l === 'string' ? l : l.name;
-                const color = getLabelColor(l);
-                const textColor = isLightColor(color) ? '#000' : '#fff';
-                return `<span class="issue-label" style="background: ${color}; color: ${textColor}">${name.replace('area: ', '')}</span>`;
-            }).join('')
+                const cleanName = name.replace('area: ', '').toUpperCase();
+                return `<span class="issue-label">[ ${cleanName} ]</span>`;
+            }).join(' ')
             : '<span style="color: var(--text-dim); font-style: italic;">None</span>';
-
-        // Build milestone row (only if exists)
-        const milestoneRow = issue.milestone
-            ? `<div class="issue-row">
-                <span class="issue-row-label">Milestone</span>
-                <span class="issue-row-value issue-milestone">${issue.milestone}</span>
-               </div>`
-            : '';
 
         // Status icon and text
         const statusIcon = isCompleted ? '✓' : '●';
         const statusClass = isCompleted ? 'closed' : 'open';
         const statusText = isCompleted ? 'Closed' : 'Open';
 
+        // Build milestone row (only if exists)
+        const milestoneRow = issue.milestone
+            ? `<div class="stat-row milestone-row">
+                <span class="stat-label">Milestone</span>
+                <span class="stat-value">${issue.milestone}</span>
+               </div>`
+            : '';
+
         card.innerHTML = `
-            <div class="issue-card-header">
-                <span class="issue-status-icon ${statusClass}">${statusIcon}</span>
-                <span class="issue-title">${cleanTitle(issue.title)}</span>
-                <span class="issue-number">#${issue.number}</span>
+            <h3>[ ${cleanTitle(issue.title)} #${issue.number} ]</h3>
+            <div class="stat-row">
+                <span class="stat-label">Priority</span>
+                <span class="stat-value priority-${priority}">${formatPriority(priority)}</span>
             </div>
-            <div class="issue-card-body">
-                <div class="issue-row">
-                    <span class="issue-row-label">Status</span>
-                    <span class="issue-row-value">${statusText}</span>
-                </div>
-                <div class="issue-row">
-                    <span class="issue-row-label">Priority</span>
-                    <span class="issue-row-value priority-${priority}">${formatPriority(priority)}</span>
-                </div>
-                <div class="issue-row">
-                    <span class="issue-row-label">Labels</span>
-                    <span class="issue-row-value"><div class="issue-labels">${labelsHtml}</div></span>
-                </div>
-                ${milestoneRow}
-                <div class="issue-row">
-                    <span class="issue-row-label">Created</span>
-                    <span class="issue-row-value">${getTimeAgo(issue.created_at)}</span>
-                </div>
+            <div class="stat-row labels-row">
+                <span class="stat-label">Labels</span>
+                <span class="stat-value">${labelsHtml}</span>
+            </div>
+            ${milestoneRow}
+            <div class="stat-row created-row">
+                <span class="stat-label">Created</span>
+                <span class="stat-value">${getTimeAgo(issue.created_at)}</span>
             </div>
         `;
 
@@ -626,17 +579,6 @@ function initRoadmap() {
             const syncTime = new Date(data.generated_at).toLocaleString();
             console.log(`Roadmap data last synced: ${syncTime}`);
         }
-    }
-
-    const toggleBtn = document.getElementById('toggle-backlog');
-    const backlogList = document.getElementById('backlog');
-    if (toggleBtn && backlogList) {
-        toggleBtn.addEventListener('click', () => {
-            backlogList.classList.toggle('collapsed');
-            toggleBtn.textContent = backlogList.classList.contains('collapsed')
-                ? 'Show All Backlog Items'
-                : 'Collapse Backlog';
-        });
     }
 
     fetch(ROADMAP_URL)
