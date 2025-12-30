@@ -1157,6 +1157,68 @@ body::before {
     margin-bottom: 15px;
 }
 
+/* Code blocks in devlog - responsive with horizontal scroll */
+.devlog-content pre {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 12px 15px;
+    margin: 15px 0;
+    overflow-x: auto;
+    font-size: 0.85em;
+    line-height: 1.5;
+    max-width: 100%;
+}
+
+.devlog-content pre code {
+    white-space: pre;
+    word-break: normal;
+}
+
+/* Inline code */
+.devlog-content code {
+    background: var(--bg-secondary);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: var(--accent-primary);
+    word-break: break-word;
+}
+
+.devlog-content pre code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+}
+
+/* Tables in devlog - responsive */
+.devlog-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.85em;
+    display: block;
+    overflow-x: auto;
+}
+
+.devlog-content th,
+.devlog-content td {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.devlog-content th {
+    background: var(--bg-secondary);
+    color: var(--accent-primary);
+    font-weight: bold;
+}
+
+.devlog-content tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.2);
+}
+
 .devlog-tags {
     margin-top: 10px;
 }
