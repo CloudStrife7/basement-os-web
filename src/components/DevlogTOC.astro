@@ -24,10 +24,7 @@ const years = Object.keys(grouped).map(Number).sort((a, b) => b - a);
 ---
 
 <div class="devlog-toc">
-  <div class="search-bar-mini" onclick="document.getElementById('search-container').classList.add('active'); document.getElementById('search-input').focus();">
-    <span class="search-icon">🔍</span> Search...
-  </div>
-  
+  <div class="toc-header">📑 Table of Contents</div>
   <ul class="toc-tree">
     {years.map(year => (
       <li class="toc-year">
