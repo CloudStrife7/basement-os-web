@@ -18,27 +18,27 @@ import TerminalShell from '../components/TerminalShell.astro';
         <h3>[ Project Stats ]</h3>
         <div class="stats-grid-compact">
           <div class="stat-block-compact">
-            <span class="stat-number-compact" id="stat-visits-top" data-target="936">0</span>
+            <span class="stat-number-compact" id="stat-visits-top">936</span>
             <span class="stat-label-compact">VISITS</span>
           </div>
           <div class="stat-block-compact">
-            <span class="stat-number-compact" data-target="18000">0</span>
+            <span class="stat-number-compact">18,000</span>
             <span class="stat-label-compact">LINES</span>
           </div>
           <div class="stat-block-compact">
-            <span class="stat-number-compact" data-target="47">0</span>
+            <span class="stat-number-compact">47</span>
             <span class="stat-label-compact">SCRIPTS</span>
           </div>
           <div class="stat-block-compact">
-            <span class="stat-number-compact" data-target="19">0</span>
+            <span class="stat-number-compact">19</span>
             <span class="stat-label-compact">ACHIEVEMENTS</span>
           </div>
           <div class="stat-block-compact">
-            <span class="stat-number-compact" data-target="420">0</span>
+            <span class="stat-number-compact">420</span>
             <span class="stat-label-compact">GAMERSCORE</span>
           </div>
           <div class="stat-block-compact">
-            <span class="stat-number-compact" id="stat-favorites-top" data-target="68">0</span>
+            <span class="stat-number-compact" id="stat-favorites-top">68</span>
             <span class="stat-label-compact">FAVORITES</span>
           </div>
         </div>
@@ -620,33 +620,24 @@ document.addEventListener("astro:page-load", function() {
     }
 
     /**
-     * Animate all stat numbers with spin-up effect
+     * Update stat numbers with live data (no animation)
      * @param {Object} [worldData]
      */
-    function runSpinUpAnimations(worldData) {
-        const statNumbers = document.querySelectorAll('.stat-block-compact .stat-number-compact');
-        statNumbers.forEach((el, index) => {
-            /** @type {HTMLElement} */
-            const element = /** @type {HTMLElement} */ (el);
-            let target = parseInt(element.dataset.target || '0', 10);
-
-            // Override with live data for visits and favorites
-            if (worldData) {
-                if (element.id === 'stat-visits-top') {
-                    target = worldData.visits || target;
-                    element.dataset.target = target.toString();
-                }
-                if (element.id === 'stat-favorites-top') {
-                    target = worldData.favorites || target;
-                    element.dataset.target = target.toString();
-                }
+    function updateTopStats(worldData) {
+        /** @param {number} num */
+        const formatNum = (num) => new Intl.NumberFormat().format(num);
+        
+        if (worldData) {
+            const visitsEl = document.getElementById('stat-visits-top');
+            const favoritesEl = document.getElementById('stat-favorites-top');
+            
+            if (visitsEl && worldData.visits) {
+                visitsEl.textContent = formatNum(worldData.visits);
             }
-
-            // Stagger the animations slightly
-            setTimeout(() => {
-                animateNumber(element, target, 1500);
-            }, index * 100);
-        });
+            if (favoritesEl && worldData.favorites) {
+                favoritesEl.textContent = formatNum(worldData.favorites);
+            }
+        }
     }
 
     /** @param {Object} worldData */
@@ -671,17 +662,17 @@ document.addEventListener("astro:page-load", function() {
     // Try to load from cache first
     const cachedData = getCachedStats();
 
-    // Fetch fresh data then run animations
+    // Fetch fresh data then update stats
     fetchWithFallback(corsProxies)
         .then(worldData => {
-            runSpinUpAnimations(worldData);
+            updateTopStats(worldData);
             updateWorldStats(worldData);
             setCachedStats(worldData);
         })
         .catch(error => {
             console.log('All fetch attempts failed, using cached or default stats');
             const fallbackData = cachedData || defaultStats;
-            runSpinUpAnimations(fallbackData);
+            updateTopStats(fallbackData);
             updateWorldStats(fallbackData);
             if (!cachedData) {
                 setCachedStats(defaultStats);
