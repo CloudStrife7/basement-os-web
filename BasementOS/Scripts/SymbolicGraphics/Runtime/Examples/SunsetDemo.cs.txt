@@ -1,0 +1,327 @@
+using UnityEngine;
+
+namespace SymbolicGraphics.Examples
+{
+    /// <summary>
+    /// Demonstrates landscape rendering with gradients, sun, mountains, and water.
+    /// Shows the visual potential of symbolic rendering.
+    /// </summary>
+    [RequireComponent(typeof(SymbolicRenderer))]
+    public class SunsetDemo : MonoBehaviour
+    {
+        [Header("Scene Configuration")]
+        [SerializeField] private bool renderOnStart = true;
+        [SerializeField] private bool animateSun = false;
+        [SerializeField] private float sunAnimationSpeed = 0.1f;
+
+        private SymbolicRenderer renderer;
+        private SymbolicCanvas canvas;
+
+        // Sun position (for animation)
+        private int sunX;
+        private int sunY;
+
+        void Start()
+        {
+            renderer = GetComponent<SymbolicRenderer>();
+            canvas = renderer.Canvas;
+
+            if (renderOnStart)
+            {
+                RenderScene();
+                renderer.UpdateDisplay();
+            }
+        }
+
+        void Update()
+        {
+            if (animateSun)
+            {
+                AnimateSun();
+            }
+        }
+
+        /// <summary>
+        /// Renders the complete sunset scene
+        /// </summary>
+        public void RenderScene()
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+
+            // Calculate regions
+            int horizonY = (int)(h * 0.55f);
+            sunX = w / 2;
+            sunY = (int)(h * 0.45f);
+
+            // 1. Draw sky with gradient layers
+            DrawSky(horizonY);
+
+            // 2. Draw clouds
+            DrawClouds(horizonY);
+
+            // 3. Draw sun
+            DrawSun(sunX, sunY);
+
+            // 4. Draw mountains (silhouettes)
+            DrawMountains(horizonY);
+
+            // 5. Draw water reflection
+            DrawWater(horizonY);
+
+            // 6. Draw foreground (trees)
+            DrawForeground(horizonY);
+        }
+
+        private void DrawSky(int horizonY)
+        {
+            int w = canvas.Width;
+
+            // Multi-layer gradient for sky
+            Color32[] skyColors = new Color32[]
+            {
+                new Color32(255, 204, 221, 255), // Soft pink (top)
+                new Color32(255, 182, 193, 255), // Rose
+                new Color32(255, 153, 153, 255), // Coral
+                new Color32(255, 107, 107, 255), // Salmon
+                new Color32(255, 85, 85, 255),   // Red-orange
+                new Color32(255, 51, 51, 255),   // Deep red (horizon)
+            };
+
+            for (int y = 0; y < horizonY; y++)
+            {
+                // Determine which color segment we're in
+                float t = y / (float)horizonY;
+                int segmentIndex = Mathf.Min((int)(t * (skyColors.Length - 1)), skyColors.Length - 2);
+                float segmentT = (t * (skyColors.Length - 1)) - segmentIndex;
+
+                Color32 color = Color32.Lerp(skyColors[segmentIndex], skyColors[segmentIndex + 1], segmentT);
+
+                // Use shade characters for atmospheric depth
+                char c = SymbolicChars.FULL_BLOCK;
+                if (y < horizonY * 0.3f)
+                {
+                    c = SymbolicChars.LIGHT_SHADE;
+                }
+                else if (y < horizonY * 0.6f)
+                {
+                    c = SymbolicChars.MEDIUM_SHADE;
+                }
+                else if (y < horizonY * 0.8f)
+                {
+                    c = SymbolicChars.DARK_SHADE;
+                }
+
+                for (int x = 0; x < w; x++)
+                {
+                    canvas.SetPixel(x, y, c, color);
+                }
+            }
+        }
+
+        private void DrawClouds(int horizonY)
+        {
+            int w = canvas.Width;
+            Color32 cloudColor = new Color32(255, 218, 185, 255); // Peach
+
+            // Simple procedural clouds
+            System.Random rng = new System.Random(12345); // Fixed seed for consistency
+
+            for (int cloudNum = 0; cloudNum < 8; cloudNum++)
+            {
+                int cx = rng.Next(0, w);
+                int cy = rng.Next(2, horizonY / 3);
+                int cloudWidth = rng.Next(6, 15);
+                int cloudHeight = rng.Next(2, 4);
+
+                for (int dy = 0; dy < cloudHeight; dy++)
+                {
+                    for (int dx = 0; dx < cloudWidth; dx++)
+                    {
+                        int x = cx + dx - cloudWidth / 2;
+                        int y = cy + dy;
+
+                        // Edge fading
+                        float edgeDist = Mathf.Min(dx, cloudWidth - dx - 1) / (float)(cloudWidth / 2);
+                        char c = edgeDist > 0.5f ? SymbolicChars.LIGHT_SHADE : SymbolicChars.MEDIUM_SHADE;
+
+                        if (x >= 0 && x < w && y >= 0 && y < horizonY)
+                        {
+                            canvas.SetPixel(x, y, c, cloudColor);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DrawSun(int centerX, int centerY)
+        {
+            Color32 sunCore = new Color32(255, 255, 0, 255);      // Yellow
+            Color32 sunOuter = new Color32(255, 170, 0, 255);     // Orange
+            Color32 sunGlow = new Color32(255, 102, 0, 255);      // Orange-red
+
+            // Outer glow
+            canvas.DrawRadialGradient(centerX, centerY, 12, sunGlow, new Color32(255, 51, 51, 100), true);
+
+            // Sun body
+            canvas.DrawRadialGradient(centerX, centerY, 8, sunCore, sunOuter, false);
+
+            // Bright core
+            canvas.DrawCircle(centerX, centerY, 4, SymbolicChars.FULL_BLOCK, sunCore);
+        }
+
+        private void DrawMountains(int horizonY)
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+            Color32 mountainColor = new Color32(26, 26, 46, 255); // Dark blue-gray
+
+            // Three mountain peaks with different heights
+            int[] peakPositions = new int[] { w / 4, w / 2, 3 * w / 4 };
+            int[] peakHeights = new int[] { 15, 20, 12 };
+
+            for (int p = 0; p < peakPositions.Length; p++)
+            {
+                int peakX = peakPositions[p];
+                int peakHeight = peakHeights[p];
+
+                // Draw triangle mountain
+                for (int dy = 0; dy < peakHeight; dy++)
+                {
+                    int y = horizonY - dy;
+                    int halfWidth = (int)(dy * 1.5f);
+
+                    for (int dx = -halfWidth; dx <= halfWidth; dx++)
+                    {
+                        int x = peakX + dx;
+                        if (x >= 0 && x < w && y >= 0 && y < h)
+                        {
+                            // Use shading for depth
+                            char c;
+                            if (dx < 0) // Left side (darker)
+                                c = SymbolicChars.DARK_SHADE;
+                            else if (dx > halfWidth / 2) // Right side (lighter)
+                                c = SymbolicChars.MEDIUM_SHADE;
+                            else // Center
+                                c = SymbolicChars.FULL_BLOCK;
+
+                            canvas.SetPixel(x, y, c, mountainColor);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DrawWater(int horizonY)
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+
+            Color32 waterDeep = new Color32(34, 68, 170, 255);    // Deep blue
+            Color32 waterShallow = new Color32(68, 102, 187, 255); // Lighter blue
+
+            for (int y = horizonY; y < h; y++)
+            {
+                float t = (y - horizonY) / (float)(h - horizonY);
+                Color32 waterColor = Color32.Lerp(waterShallow, waterDeep, t);
+
+                // Water uses layered shades for texture
+                char c = SymbolicChars.FULL_BLOCK;
+                if ((y - horizonY) % 3 == 0)
+                {
+                    c = SymbolicChars.DARK_SHADE;
+                }
+                else if ((y - horizonY) % 3 == 1)
+                {
+                    c = SymbolicChars.MEDIUM_SHADE;
+                }
+
+                for (int x = 0; x < w; x++)
+                {
+                    canvas.SetPixel(x, y, c, waterColor);
+                }
+            }
+
+            // Sun reflection in water
+            int reflectionY = horizonY + (horizonY - sunY);
+            if (reflectionY < h)
+            {
+                Color32 reflectionColor = new Color32(255, 200, 100, 200);
+                for (int dy = 0; dy < 8; dy++)
+                {
+                    for (int dx = -3; dx <= 3; dx++)
+                    {
+                        int x = sunX + dx;
+                        int y = reflectionY + dy;
+                        if (x >= 0 && x < w && y >= 0 && y < h)
+                        {
+                            canvas.SetPixel(x, y, SymbolicChars.MEDIUM_SHADE, reflectionColor);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DrawForeground(int horizonY)
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+            Color32 silhouetteColor = new Color32(13, 13, 13, 255); // Near black
+
+            // Draw simple tree silhouettes
+            System.Random rng = new System.Random(54321);
+
+            for (int treeNum = 0; treeNum < 5; treeNum++)
+            {
+                int treeX = rng.Next(0, w);
+                int treeHeight = rng.Next(8, 15);
+                int treeWidth = rng.Next(4, 8);
+
+                // Tree trunk
+                for (int dy = 0; dy < treeHeight; dy++)
+                {
+                    int y = h - dy - 1;
+                    if (y >= horizonY && y < h)
+                    {
+                        canvas.SetPixel(treeX, y, SymbolicChars.FULL_BLOCK, silhouetteColor);
+                        canvas.SetPixel(treeX + 1, y, SymbolicChars.FULL_BLOCK, silhouetteColor);
+                    }
+                }
+
+                // Tree foliage (triangular)
+                int foliageY = h - treeHeight;
+                for (int dy = 0; dy < treeHeight / 2; dy++)
+                {
+                    int width = treeWidth - dy;
+                    for (int dx = -width / 2; dx <= width / 2; dx++)
+                    {
+                        int x = treeX + dx;
+                        int y = foliageY + dy;
+                        if (x >= 0 && x < w && y >= 0 && y < h)
+                        {
+                            canvas.SetPixel(x, y, SymbolicChars.FULL_BLOCK, silhouetteColor);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void AnimateSun()
+        {
+            // Simple sun movement animation
+            sunX = (int)(canvas.Width / 2 + Mathf.Sin(Time.time * sunAnimationSpeed) * 10);
+            sunY = (int)(canvas.Height * 0.45f + Mathf.Cos(Time.time * sunAnimationSpeed) * 5);
+
+            RenderScene();
+            renderer.UpdateDisplay();
+        }
+
+        // Public method to regenerate scene (can be called from inspector button)
+        [ContextMenu("Regenerate Scene")]
+        public void RegenerateScene()
+        {
+            RenderScene();
+            renderer.UpdateDisplay();
+        }
+    }
+}

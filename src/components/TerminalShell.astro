@@ -1,6 +1,6 @@
 ---
 interface Props {
-  activeSection?: 'home' | 'devlog' | 'skills' | 'support' | 'roadmap';
+  activeSection?: 'home' | 'devlog' | 'skills' | 'support' | 'achievements' | 'roadmap';
 }
 
 const { activeSection = 'home' } = Astro.props;
@@ -51,6 +51,9 @@ const { activeSection = 'home' } = Astro.props;
       </a>
       <a href="/support" class={`nav-btn ${activeSection === 'support' ? 'active' : ''}`}>
         <span class="type">&lt;NET&gt;</span> SUPPORT
+      </a>
+      <a href="/achievements" class={`nav-btn ${activeSection === 'achievements' ? 'active' : ''}`}>
+        <span class="type">&lt;360&gt;</span> ACHIEVEMENTS
       </a>
       <a href="/roadmap" class={`nav-btn ${activeSection === 'roadmap' ? 'active' : ''}`}>
         <span class="type">&lt;MAP&gt;</span> ROADMAP
@@ -226,9 +229,11 @@ const { activeSection = 'home' } = Astro.props;
         'basementos'
       ];
 
-      const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
+      /** @type {HTMLSelectElement} */
+      const themeSelect = /** @type {HTMLSelectElement} */ (document.getElementById('theme-select'));
 
-      function setTheme(theme: string) {
+      /** @param {string} theme */
+      function setTheme(theme) {
         if (!THEMES.includes(theme)) theme = 'synthwave';
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('basement-os-theme', theme);
@@ -241,7 +246,7 @@ const { activeSection = 'home' } = Astro.props;
 
       if (themeSelect) {
         themeSelect.addEventListener('change', (e) => {
-          setTheme((e.target as HTMLSelectElement).value);
+          setTheme(/** @type {HTMLSelectElement} */ (e.target).value);
         });
       }
 
@@ -254,8 +259,10 @@ const { activeSection = 'home' } = Astro.props;
       }
       
       // Clear existing interval to prevent duplicates on nav
-      if ((window as any).clockInterval) clearInterval((window as any).clockInterval);
-      (window as any).clockInterval = setInterval(updateClock, 1000);
+      // @ts-ignore - Global window property for cleanup
+      if (window.clockInterval) clearInterval(window.clockInterval);
+      // @ts-ignore - Global window property for cleanup
+      window.clockInterval = setInterval(updateClock, 1000);
       updateClock();
 
       // Reboot Logic
@@ -312,15 +319,19 @@ const { activeSection = 'home' } = Astro.props;
       const terminalDisconnect = document.getElementById('terminal-disconnect');
       const disconnectDots = document.getElementById('disconnect-dots');
       
-      let terminalInstance: any = null;
-      let originalTheme: string | null = null;
-      let originalActiveBtn: Element | null = null;
+      let terminalInstance = null;
+      /** @type {string|null} */
+      let originalTheme = null;
+      /** @type {Element|null} */
+      let originalActiveBtn = null;
       let isTerminalActive = false;
 
       // Load terminal script dynamically
-      function loadTerminalScript(): Promise<void> {
+      /** @returns {Promise<void>} */
+      function loadTerminalScript() {
         return new Promise((resolve, reject) => {
-          if ((window as any).BasementOSDemo) {
+          // @ts-ignore - Global window property
+          if (window.BasementOSDemo) {
             resolve();
             return;
           }
@@ -354,9 +365,12 @@ const { activeSection = 'home' } = Astro.props;
         // Load and init terminal
         try {
           await loadTerminalScript();
-          if (terminalRoot && (window as any).BasementOSDemo) {
-            terminalInstance = new (window as any).BasementOSDemo('terminal-demo-root');
-            (window as any).basementOSInstance = terminalInstance;
+          // @ts-ignore - Global window property
+          if (terminalRoot && window.BasementOSDemo) {
+            // @ts-ignore - Global window property
+            terminalInstance = new window.BasementOSDemo('terminal-demo-root');
+            // @ts-ignore - Global window property
+            window.basementOSInstance = terminalInstance;
             terminalInstance.init();
           }
         } catch (e) {
@@ -402,7 +416,8 @@ const { activeSection = 'home' } = Astro.props;
           terminalInstance.destroy();
         }
         terminalInstance = null;
-        (window as any).basementOSInstance = null;
+        // @ts-ignore - Global window property
+        window.basementOSInstance = null;
         isTerminalActive = false;
 
         // Clear terminal container
@@ -488,16 +503,19 @@ const { activeSection = 'home' } = Astro.props;
 
       // Lightbox Logic for devlog images
       const lightbox = document.getElementById('lightbox');
-      const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
+      /** @type {HTMLImageElement} */
+      const lightboxImage = /** @type {HTMLImageElement} */ (document.getElementById('lightbox-image'));
       const lightboxClose = document.getElementById('lightbox-close');
       const lightboxPrev = document.getElementById('lightbox-prev');
       const lightboxNext = document.getElementById('lightbox-next');
       const lightboxCounter = document.getElementById('lightbox-counter');
       
       let currentImageIndex = 0;
-      let devlogImages: HTMLImageElement[] = [];
+      /** @type {HTMLImageElement[]} */
+      let devlogImages = [];
 
-      function openLightbox(index: number) {
+      /** @param {number} index */
+      function openLightbox(index) {
           if (!lightbox || !lightboxImage || devlogImages.length === 0) return;
           
           currentImageIndex = index;
@@ -541,7 +559,7 @@ const { activeSection = 'home' } = Astro.props;
       }
 
       // Collect images from devlog content AND main landing page (crt-screen)
-      devlogImages = Array.from(document.querySelectorAll('.devlog-content img, .crt-screen img')) as HTMLImageElement[];
+      devlogImages = /** @type {HTMLImageElement[]} */ (Array.from(document.querySelectorAll('.devlog-content img, .crt-screen img')));
       devlogImages.forEach((img, index) => {
           img.style.cursor = 'pointer'; // Ensure pointer cursor
           img.addEventListener('click', (e) => {

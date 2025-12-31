@@ -356,12 +356,15 @@ import TerminalShell from '../components/TerminalShell.astro';
 // Initialize roadmap - called by both astro:page-load and DOMContentLoaded
 function initRoadmap() {
     // Prevent double initialization
-    if ((window as any).__roadmapInitialized) return;
-    (window as any).__roadmapInitialized = true;
+    // @ts-ignore - Global window property
+    if (window.__roadmapInitialized) return;
+    // @ts-ignore - Global window property
+    window.__roadmapInitialized = true;
 
     const ROADMAP_URL = '/data/roadmap.json';
 
-    function getPriority(labels: any[]): string {
+    /** @param {any[]} labels @returns {string} */
+    function getPriority(labels) {
         const labelNames = labels.map(l => typeof l === 'string' ? l : l.name);
         if (labelNames.includes('priority: critical')) return 'critical';
         if (labelNames.includes('priority: high')) return 'high';
@@ -369,7 +372,8 @@ function initRoadmap() {
         return 'low';
     }
 
-    function getLabelColor(label: any): string {
+    /** @param {any} label @returns {string} */
+    function getLabelColor(label) {
         if (typeof label === 'object' && label.color) {
             return `#${label.color}`;
         }
@@ -385,22 +389,26 @@ function initRoadmap() {
         return '#666666';
     }
 
-    function getDisplayLabels(labels: any[]): any[] {
+    /** @param {any[]} labels @returns {any[]} */
+    function getDisplayLabels(labels) {
         return labels.filter(l => {
             const name = typeof l === 'string' ? l : l.name;
             return !name.startsWith('priority:');
         }).slice(0, 4);
     }
 
-    function cleanTitle(title: string): string {
+    /** @param {string} title @returns {string} */
+    function cleanTitle(title) {
         return title.replace(/^\[.*?\]\s*/, '');
     }
 
-    function formatPriority(priority: string): string {
+    /** @param {string} priority @returns {string} */
+    function formatPriority(priority) {
         return priority.charAt(0).toUpperCase() + priority.slice(1);
     }
 
-    function getTimeAgo(dateString: string): string {
+    /** @param {string} dateString @returns {string} */
+    function getTimeAgo(dateString) {
         const date = new Date(dateString);
         const now = new Date();
         const diffMs = now.getTime() - date.getTime();
@@ -414,7 +422,12 @@ function initRoadmap() {
         return `${Math.floor(diffDays / 365)} years ago`;
     }
 
-    function createIssueCard(issue: any, isCompleted = false): HTMLElement {
+    /**
+     * @param {any} issue
+     * @param {boolean} [isCompleted=false]
+     * @returns {HTMLElement}
+     */
+    function createIssueCard(issue, isCompleted = false) {
         const labels = issue.labels || [];
         const priority = getPriority(labels);
         const displayLabels = getDisplayLabels(labels);
@@ -425,7 +438,7 @@ function initRoadmap() {
 
         // Build labels HTML with brackets
         const labelsHtml = displayLabels.length > 0
-            ? displayLabels.map((l: any) => {
+            ? displayLabels.map((l) => {
                 const name = typeof l === 'string' ? l : l.name;
                 const cleanName = name.replace('area: ', '').toUpperCase();
                 return `<span class="issue-label">[ ${cleanName} ]</span>`;
@@ -461,7 +474,8 @@ function initRoadmap() {
         return card;
     }
 
-    function isLightColor(hex: string): boolean {
+    /** @param {string} hex @returns {boolean} */
+    function isLightColor(hex) {
         const c = hex.replace('#', '');
         const r = parseInt(c.substr(0, 2), 16);
         const g = parseInt(c.substr(2, 2), 16);
@@ -470,7 +484,8 @@ function initRoadmap() {
         return brightness > 155;
     }
 
-    function createMilestoneElement(milestone: any): HTMLElement {
+    /** @param {any} milestone @returns {HTMLElement} */
+    function createMilestoneElement(milestone) {
         const progress = milestone.open_issues + milestone.closed_issues > 0
             ? Math.round((milestone.closed_issues / (milestone.open_issues + milestone.closed_issues)) * 100)
             : 0;
@@ -492,31 +507,32 @@ function initRoadmap() {
         return div;
     }
 
-    function renderData(data: any) {
+    /** @param {any} data */
+    function renderData(data) {
         const { issues, milestones, closed } = data;
 
-        const currentFocus = issues.filter((i: any) => {
+        const currentFocus = issues.filter((i) => {
             const labels = i.labels || [];
-            const labelNames = labels.map((l: any) => typeof l === 'string' ? l : l.name);
+            const labelNames = labels.map((l) => typeof l === 'string' ? l : l.name);
             return labelNames.includes('priority: critical') || labelNames.includes('priority: high');
         });
 
-        const comingSoon = issues.filter((i: any) => {
+        const comingSoon = issues.filter((i) => {
             const labels = i.labels || [];
-            const labelNames = labels.map((l: any) => typeof l === 'string' ? l : l.name);
+            const labelNames = labels.map((l) => typeof l === 'string' ? l : l.name);
             return labelNames.includes('priority: medium');
         });
 
-        const backlog = issues.filter((i: any) => {
+        const backlog = issues.filter((i) => {
             const labels = i.labels || [];
-            const labelNames = labels.map((l: any) => typeof l === 'string' ? l : l.name);
+            const labelNames = labels.map((l) => typeof l === 'string' ? l : l.name);
             const priority = getPriority(labels);
             return priority === 'low' || (!labelNames.includes('priority: critical') && !labelNames.includes('priority: high') && !labelNames.includes('priority: medium'));
         });
 
         const thirtyDaysAgo = new Date();
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-        const recentlyClosed = closed.filter((i: any) => {
+        const recentlyClosed = closed.filter((i) => {
             return i.closed_at && new Date(i.closed_at) > thirtyDaysAgo;
         });
 
@@ -526,18 +542,18 @@ function initRoadmap() {
             if (currentFocus.length === 0) {
                 currentFocusEl.innerHTML = '<div class="empty-state">No high-priority items right now</div>';
             } else {
-                currentFocus.forEach((issue: any) => currentFocusEl.appendChild(createIssueCard(issue)));
+                currentFocus.forEach((issue) => currentFocusEl.appendChild(createIssueCard(issue)));
             }
         }
 
         const milestonesEl = document.getElementById('milestones');
         if (milestonesEl) {
             milestonesEl.innerHTML = '';
-            const openMilestones = milestones.filter((m: any) => m.state === 'open');
+            const openMilestones = milestones.filter((m) => m.state === 'open');
             if (openMilestones.length === 0) {
                 milestonesEl.innerHTML = '<div class="empty-state">No active milestones</div>';
             } else {
-                openMilestones.forEach((m: any) => milestonesEl.appendChild(createMilestoneElement(m)));
+                openMilestones.forEach((m) => milestonesEl.appendChild(createMilestoneElement(m)));
             }
         }
 
@@ -547,7 +563,7 @@ function initRoadmap() {
             if (comingSoon.length === 0) {
                 comingSoonEl.innerHTML = '<div class="empty-state">No medium-priority items queued</div>';
             } else {
-                comingSoon.forEach((issue: any) => comingSoonEl.appendChild(createIssueCard(issue)));
+                comingSoon.forEach((issue) => comingSoonEl.appendChild(createIssueCard(issue)));
             }
         }
 
@@ -557,7 +573,7 @@ function initRoadmap() {
             if (backlog.length === 0) {
                 backlogEl.innerHTML = '<div class="empty-state">Backlog is empty</div>';
             } else {
-                backlog.forEach((issue: any) => backlogEl.appendChild(createIssueCard(issue)));
+                backlog.forEach((issue) => backlogEl.appendChild(createIssueCard(issue)));
             }
         }
 
@@ -567,7 +583,7 @@ function initRoadmap() {
             if (recentlyClosed.length === 0) {
                 completedEl.innerHTML = '<div class="empty-state">No issues closed in the last 30 days</div>';
             } else {
-                recentlyClosed.slice(0, 10).forEach((issue: any) => completedEl.appendChild(createIssueCard(issue, true)));
+                recentlyClosed.slice(0, 10).forEach((issue) => completedEl.appendChild(createIssueCard(issue, true)));
             }
         }
 
@@ -595,7 +611,8 @@ function initRoadmap() {
 
 // Reset flag on page swap (for view transitions)
 document.addEventListener("astro:before-swap", () => {
-    (window as any).__roadmapInitialized = false;
+    // @ts-ignore - Global window property
+    window.__roadmapInitialized = false;
 });
 
 // Listen for both events to handle Astro 5.x edge cases

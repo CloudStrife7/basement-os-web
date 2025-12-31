@@ -1,0 +1,392 @@
+using UnityEngine;
+using System.Collections;
+
+namespace SymbolicGraphics.Examples
+{
+    /// <summary>
+    /// Complete Family Feud game board implementation using symbolic rendering.
+    /// Demonstrates UI layout, answer slots, scoring, and animations.
+    /// </summary>
+    [RequireComponent(typeof(SymbolicRenderer))]
+    public class FamilyFeudBoard : MonoBehaviour
+    {
+        [Header("Game Data")]
+        [SerializeField] private string question = "Name something you find in a kitchen";
+        [SerializeField] private string[] answers = new string[]
+        {
+            "REFRIGERATOR", "STOVE", "SINK", "MICROWAVE",
+            "DISHWASHER", "OVEN", "TOASTER", "BLENDER"
+        };
+        [SerializeField] private int[] points = new int[]
+        {
+            45, 28, 16, 8, 5, 4, 3, 2
+        };
+
+        [Header("Team Scores")]
+        [SerializeField] private string team1Name = "ANDERSON FAMILY";
+        [SerializeField] private string team2Name = "MARTINEZ FAMILY";
+        [SerializeField] private int team1Score = 0;
+        [SerializeField] private int team2Score = 0;
+
+        [Header("Game State")]
+        [SerializeField] private int revealedCount = 0;
+        [SerializeField] private int strikeCount = 0;
+        [SerializeField] private int currentRound = 1;
+        [SerializeField] private int totalRounds = 5;
+
+        [Header("Colors")]
+        [SerializeField] private Color accentColor = new Color(1f, 0.84f, 0f); // Gold
+        [SerializeField] private Color team1Color = new Color(1f, 0.2f, 0.2f); // Red
+        [SerializeField] private Color team2Color = new Color(0.2f, 0.2f, 1f); // Blue
+        [SerializeField] private Color revealColor = new Color(0f, 1f, 0.4f);  // Green
+        [SerializeField] private Color hiddenColor = new Color(0.4f, 0.4f, 0.4f); // Gray
+
+        private SymbolicRenderer renderer;
+        private SymbolicCanvas canvas;
+
+        private const int BOARD_START_X = 2;
+        private const int BOARD_START_Y = 6;
+        private const int BOARD_WIDTH = 45;
+        private const int BOARD_HEIGHT = 19;
+
+        void Start()
+        {
+            renderer = GetComponent<SymbolicRenderer>();
+            canvas = renderer.Canvas;
+
+            InitializeBoard();
+            renderer.UpdateDisplay();
+        }
+
+        /// <summary>
+        /// Initializes the complete game board layout
+        /// </summary>
+        private void InitializeBoard()
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+
+            // Clear canvas
+            canvas.Clear(' ', Color.black);
+
+            // Outer border
+            canvas.DrawBox(0, 0, w, h, accentColor, Color.black, true);
+
+            // Title section
+            DrawTitle();
+
+            // Horizontal divider
+            DrawHorizontalDivider(2);
+
+            // Question area
+            DrawQuestion();
+
+            // Main content divider (vertical)
+            DrawVerticalDivider(48);
+
+            // Answer board
+            DrawAnswerBoard();
+
+            // Strike display
+            DrawStrikeDisplay(52, 6);
+
+            // Team scoreboards
+            DrawTeamScore(52, 11, team1Name, team1Score, team1Color);
+            DrawTeamScore(52, 17, team2Name, team2Score, team2Color);
+
+            // Round and time display
+            DrawRoundInfo(52, 23);
+        }
+
+        private void DrawTitle()
+        {
+            string title = "F A M I L Y   F E U D";
+            int titleX = (canvas.Width - title.Length) / 2 - 2;
+            canvas.DrawText(titleX - 2, 1, "⭐", accentColor);
+            canvas.DrawText(titleX, 1, title, accentColor);
+            canvas.DrawText(titleX + title.Length + 2, 1, "⭐", accentColor);
+        }
+
+        private void DrawHorizontalDivider(int y)
+        {
+            for (int x = 1; x < canvas.Width - 1; x++)
+            {
+                canvas.SetPixel(x, y, SymbolicChars.BOX_H_DBL, accentColor);
+            }
+            // Intersections
+            canvas.SetPixel(0, y, SymbolicChars.BOX_T_R_DBL, accentColor);
+            canvas.SetPixel(canvas.Width - 1, y, SymbolicChars.BOX_T_L_DBL, accentColor);
+        }
+
+        private void DrawVerticalDivider(int x)
+        {
+            for (int y = 3; y < canvas.Height - 1; y++)
+            {
+                canvas.SetPixel(x, y, SymbolicChars.BOX_V_DBL, accentColor);
+            }
+            // Intersections
+            canvas.SetPixel(x, 2, SymbolicChars.BOX_T_B_DBL, accentColor);
+            canvas.SetPixel(x, canvas.Height - 1, SymbolicChars.BOX_T_T_DBL, accentColor);
+        }
+
+        private void DrawQuestion()
+        {
+            string questionText = "QUESTION:  " + question;
+            canvas.DrawText(4, 4, questionText, Color.white);
+        }
+
+        private void DrawAnswerBoard()
+        {
+            // Answer board border
+            canvas.DrawBox(BOARD_START_X, BOARD_START_Y, BOARD_WIDTH, BOARD_HEIGHT,
+                          Color.white, Color.black, false);
+
+            // 8 answer slots
+            for (int i = 0; i < 8; i++)
+            {
+                int slotY = BOARD_START_Y + 1 + (i * 2);
+
+                // Draw answer slot
+                DrawAnswerSlot(BOARD_START_X + 2, slotY, i + 1, i < revealedCount);
+
+                // Divider line (except after last)
+                if (i < 7)
+                {
+                    for (int x = 1; x < BOARD_WIDTH - 1; x++)
+                    {
+                        canvas.SetPixel(BOARD_START_X + x, slotY + 1,
+                                      SymbolicChars.BOX_H, Color.white);
+                    }
+                    // T-junctions
+                    canvas.SetPixel(BOARD_START_X, slotY + 1,
+                                  SymbolicChars.BOX_T_R, Color.white);
+                    canvas.SetPixel(BOARD_START_X + BOARD_WIDTH - 1, slotY + 1,
+                                  SymbolicChars.BOX_T_L, Color.white);
+                }
+            }
+
+            // Total points display
+            DrawTotalPoints();
+        }
+
+        private void DrawAnswerSlot(int x, int y, int number, bool revealed)
+        {
+            int answerIndex = number - 1;
+
+            if (revealed && answerIndex < answers.Length)
+            {
+                string answer = answers[answerIndex];
+                int answerPoints = points[answerIndex];
+
+                // Number and answer text
+                string displayText = $"  #{number}   {answer.PadRight(20)}";
+                canvas.DrawText(x, y, displayText, revealColor);
+
+                // Point bar visualization
+                DrawPointBar(x + 30, y, answerPoints, 45);
+
+                // Point value
+                canvas.DrawText(x + 36, y, answerPoints.ToString().PadLeft(2), accentColor);
+            }
+            else
+            {
+                // Hidden slot
+                string displayText = $"  #{number}   " + new string('?', 20);
+                canvas.DrawText(x, y, displayText, hiddenColor);
+                canvas.DrawText(x + 36, y, "??", hiddenColor);
+            }
+        }
+
+        private void DrawPointBar(int x, int y, int pointValue, int maxPoints)
+        {
+            int barLength = Mathf.Min((pointValue * 8) / maxPoints, 8);
+            for (int i = 0; i < barLength; i++)
+            {
+                canvas.SetPixel(x + i, y, SymbolicChars.FULL_BLOCK, accentColor);
+            }
+        }
+
+        private void DrawStrikeDisplay(int x, int y)
+        {
+            canvas.DrawText(x + 4, y - 1, "STRIKES:", Color.white);
+            canvas.DrawBox(x, y, 14, 4, Color.red, Color.black, true);
+
+            for (int i = 0; i < 3; i++)
+            {
+                char symbol = i < strikeCount ? 'X' : ' ';
+                Color32 color = i < strikeCount ? Color.red : new Color32(60, 60, 60, 255);
+
+                canvas.DrawText(x + 2 + (i * 4), y + 1, symbol.ToString(), color);
+            }
+        }
+
+        private void DrawTeamScore(int x, int y, string teamName, int score, Color color)
+        {
+            canvas.DrawBox(x, y, 18, 5, color, Color.black, false);
+
+            // Team name
+            int nameX = x + (18 - teamName.Length) / 2;
+            canvas.DrawText(nameX, y + 1, teamName, color);
+
+            // Score label
+            canvas.DrawText(x + 2, y + 2, "Score:", Color.white);
+
+            // Score bar
+            int barLength = Mathf.Min(score / 25, 8);
+            for (int i = 0; i < barLength; i++)
+            {
+                canvas.SetPixel(x + 9 + i, y + 2, SymbolicChars.FULL_BLOCK, color);
+            }
+
+            // Score value
+            canvas.DrawText(x + 10, y + 3, score.ToString().PadLeft(3), color);
+        }
+
+        private void DrawRoundInfo(int x, int y)
+        {
+            canvas.DrawText(x + 2, y, $"ROUND: {currentRound} of {totalRounds}", Color.white);
+        }
+
+        private void DrawTotalPoints()
+        {
+            int totalOnBoard = 0;
+            for (int i = 0; i < revealedCount && i < points.Length; i++)
+            {
+                totalOnBoard += points[i];
+            }
+
+            string totalText = $"TOTAL POINTS ON BOARD:  ";
+            canvas.DrawText(BOARD_START_X + 4, BOARD_START_Y + BOARD_HEIGHT + 1,
+                          totalText, Color.white);
+
+            // Points bar
+            int barLength = Mathf.Min(totalOnBoard / 10, 10);
+            for (int i = 0; i < barLength; i++)
+            {
+                canvas.SetPixel(BOARD_START_X + 28 + i, BOARD_START_Y + BOARD_HEIGHT + 1,
+                              SymbolicChars.FULL_BLOCK, accentColor);
+            }
+
+            canvas.DrawText(BOARD_START_X + 30, BOARD_START_Y + BOARD_HEIGHT + 1,
+                          totalOnBoard.ToString().PadLeft(3), accentColor);
+        }
+
+        #region Public Game Control Methods
+
+        /// <summary>
+        /// Reveals the next answer with animation
+        /// </summary>
+        [ContextMenu("Reveal Next Answer")]
+        public void RevealNextAnswer()
+        {
+            if (revealedCount < answers.Length)
+            {
+                StartCoroutine(RevealAnswerAnimated(revealedCount));
+                revealedCount++;
+            }
+        }
+
+        /// <summary>
+        /// Adds a strike to the strike counter
+        /// </summary>
+        [ContextMenu("Add Strike")]
+        public void AddStrike()
+        {
+            if (strikeCount < 3)
+            {
+                strikeCount++;
+                InitializeBoard();
+                renderer.UpdateDisplay();
+            }
+        }
+
+        /// <summary>
+        /// Updates team 1 score
+        /// </summary>
+        public void UpdateTeam1Score(int points)
+        {
+            team1Score += points;
+            InitializeBoard();
+            renderer.UpdateDisplay();
+        }
+
+        /// <summary>
+        /// Updates team 2 score
+        /// </summary>
+        public void UpdateTeam2Score(int points)
+        {
+            team2Score += points;
+            InitializeBoard();
+            renderer.UpdateDisplay();
+        }
+
+        /// <summary>
+        /// Resets the board for a new round
+        /// </summary>
+        [ContextMenu("New Round")]
+        public void NewRound()
+        {
+            revealedCount = 0;
+            strikeCount = 0;
+            currentRound++;
+            InitializeBoard();
+            renderer.UpdateDisplay();
+        }
+
+        /// <summary>
+        /// Completely resets the game
+        /// </summary>
+        [ContextMenu("Reset Game")]
+        public void ResetGame()
+        {
+            revealedCount = 0;
+            strikeCount = 0;
+            team1Score = 0;
+            team2Score = 0;
+            currentRound = 1;
+            InitializeBoard();
+            renderer.UpdateDisplay();
+        }
+
+        #endregion
+
+        #region Animation Coroutines
+
+        private IEnumerator RevealAnswerAnimated(int answerIndex)
+        {
+            int slotY = BOARD_START_Y + 1 + (answerIndex * 2);
+            int textX = BOARD_START_X + 2;
+
+            string answer = answers[answerIndex];
+            int answerPoints = points[answerIndex];
+
+            // Reveal text character by character
+            for (int i = 0; i < answer.Length; i++)
+            {
+                char c = answer[i];
+                canvas.SetPixel(textX + 8 + i, slotY, c, revealColor);
+                renderer.UpdateDisplay();
+                yield return new WaitForSeconds(0.05f);
+            }
+
+            // Animate point bar
+            int barLength = Mathf.Min((answerPoints * 8) / 45, 8);
+            for (int i = 0; i < barLength; i++)
+            {
+                canvas.SetPixel(textX + 30 + i, slotY, SymbolicChars.FULL_BLOCK, accentColor);
+                renderer.UpdateDisplay();
+                yield return new WaitForSeconds(0.03f);
+            }
+
+            // Show point value
+            canvas.DrawText(textX + 36, slotY, answerPoints.ToString().PadLeft(2), accentColor);
+            renderer.UpdateDisplay();
+
+            // Update total points
+            DrawTotalPoints();
+            renderer.UpdateDisplay();
+        }
+
+        #endregion
+    }
+}

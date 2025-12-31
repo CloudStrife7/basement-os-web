@@ -473,12 +473,19 @@ import TerminalShell from '../components/TerminalShell.astro';
 
 <script>
 // Number Spin-Up Animation
-function animateNumber(element: HTMLElement, target: number, duration: number = 1500) {
+/**
+ * @param {HTMLElement} element
+ * @param {number} target
+ * @param {number} [duration=1500]
+ */
+function animateNumber(element, target, duration = 1500) {
     const start = 0;
     const startTime = performance.now();
-    const formatNum = (num: number) => new Intl.NumberFormat().format(Math.floor(num));
+    /** @param {number} num */
+    const formatNum = (num) => new Intl.NumberFormat().format(Math.floor(num));
 
-    function update(currentTime: number) {
+    /** @param {number} currentTime */
+    function update(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
 
@@ -538,7 +545,8 @@ document.addEventListener("astro:page-load", function() {
         return null;
     }
 
-    function setCachedStats(stats: any) {
+    /** @param {any} stats */
+    function setCachedStats(stats) {
         try {
             localStorage.setItem(CACHE_KEY, JSON.stringify({
                 ...stats,
@@ -549,7 +557,8 @@ document.addEventListener("astro:page-load", function() {
         }
     }
 
-    async function fetchWithFallback(proxies: string[]) {
+    /** @param {string[]} proxies */
+    async function fetchWithFallback(proxies) {
         for (let i = 0; i < proxies.length; i++) {
             try {
                 const response = await fetch(proxies[i], {
@@ -568,7 +577,8 @@ document.addEventListener("astro:page-load", function() {
         throw new Error('All proxies failed');
     }
 
-    function formatDate(dateString: string) {
+    /** @param {string} dateString */
+    function formatDate(dateString) {
         try {
             const date = new Date(dateString);
             return date.toLocaleDateString('en-US', {
@@ -582,10 +592,11 @@ document.addEventListener("astro:page-load", function() {
     }
 
     // Animate all stat numbers with spin-up effect
-    function runSpinUpAnimations(worldData?: any) {
+    /** @param {any} [worldData] */
+    function runSpinUpAnimations(worldData) {
         const statNumbers = document.querySelectorAll('.stat-block-compact .stat-number-compact');
         statNumbers.forEach((el, index) => {
-            const element = el as HTMLElement;
+            const element = /** @type {HTMLElement} */ (el);
             let target = parseInt(element.dataset.target || '0', 10);
 
             // Override with live data for visits and favorites
@@ -607,8 +618,10 @@ document.addEventListener("astro:page-load", function() {
         });
     }
 
-    function updateWorldStats(worldData: any) {
-        const formatNum = (num: number) => new Intl.NumberFormat().format(num);
+    /** @param {any} worldData */
+    function updateWorldStats(worldData) {
+        /** @param {number} num */
+        const formatNum = (num) => new Intl.NumberFormat().format(num);
 
         // World Stats section at bottom
         const visits2 = document.getElementById("stat-visits-2");

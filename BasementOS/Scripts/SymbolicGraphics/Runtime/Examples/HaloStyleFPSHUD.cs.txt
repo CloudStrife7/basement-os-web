@@ -1,0 +1,469 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace SymbolicGraphics.Examples
+{
+    /// <summary>
+    /// Halo-style FPS HUD using symbolic rendering.
+    /// Demonstrates a complete game HUD with shields, health, radar, weapon display, and kill feed.
+    /// </summary>
+    [RequireComponent(typeof(SymbolicRenderer))]
+    public class HaloStyleFPSHUD : MonoBehaviour
+    {
+        [Header("Player Stats")]
+        [SerializeField] private int kills = 15;
+        [SerializeField] private int deaths = 3;
+        [SerializeField] private int score = 4500;
+        [SerializeField] [Range(0, 100)] private int shieldPercent = 100;
+        [SerializeField] [Range(0, 100)] private int healthPercent = 100;
+
+        [Header("Weapon")]
+        [SerializeField] private string weaponName = "MA5C ASSAULT RIFLE";
+        [SerializeField] private int currentAmmo = 32;
+        [SerializeField] private int reserveAmmo = 600;
+        [SerializeField] private int fragGrenades = 4;
+        [SerializeField] private int plasmaGrenades = 2;
+
+        [Header("Team Scores")]
+        [SerializeField] private int blueTeamScore = 75;
+        [SerializeField] private int redTeamScore = 60;
+
+        [Header("Radar")]
+        [SerializeField] private bool showRadar = true;
+        [SerializeField] private Vector2[] enemyPositions = new Vector2[]
+        {
+            new Vector2(5, -5),
+            new Vector2(-3, 7),
+            new Vector2(8, 2),
+            new Vector2(-6, -4),
+            new Vector2(3, 8)
+        };
+
+        [Header("Colors")]
+        [SerializeField] private Color hudColor = new Color(0.2f, 0.8f, 1f); // Cyan
+        [SerializeField] private Color shieldColor = new Color(0.3f, 0.7f, 1f); // Blue
+        [SerializeField] private Color healthColor = new Color(0f, 1f, 0.3f); // Green
+        [SerializeField] private Color warningColor = new Color(1f, 0.3f, 0f); // Orange
+        [SerializeField] private Color enemyColor = new Color(1f, 0.2f, 0.2f); // Red
+        [SerializeField] private Color friendlyColor = new Color(0.2f, 0.2f, 1f); // Blue
+
+        private SymbolicRenderer renderer;
+        private SymbolicCanvas canvas;
+        private List<KillFeedEntry> killFeed = new List<KillFeedEntry>();
+
+        private class KillFeedEntry
+        {
+            public string text;
+            public float lifetime;
+            public Color color;
+        }
+
+        void Start()
+        {
+            renderer = GetComponent<SymbolicRenderer>();
+            canvas = renderer.Canvas;
+
+            // Initialize with some kill feed entries
+            AddKillFeedEntry("Player_117", "+10", "HEADSHOT", Color.yellow);
+            AddKillFeedEntry("Elite_Slayer", "+25", "DOUBLE KILL", new Color(1f, 0.5f, 0f));
+
+            RenderHUD();
+            renderer.UpdateDisplay();
+        }
+
+        void Update()
+        {
+            // Simulate shield recharge
+            if (Input.GetKey(KeyCode.R))
+            {
+                shieldPercent = Mathf.Min(100, shieldPercent + (int)(Time.deltaTime * 20));
+                RenderHUD();
+                renderer.UpdateDisplay();
+            }
+
+            // Simulate damage
+            if (Input.GetKey(KeyCode.T))
+            {
+                shieldPercent = Mathf.Max(0, shieldPercent - (int)(Time.deltaTime * 30));
+                if (shieldPercent == 0)
+                {
+                    healthPercent = Mathf.Max(0, healthPercent - (int)(Time.deltaTime * 20));
+                }
+                RenderHUD();
+                renderer.UpdateDisplay();
+            }
+
+            // Simulate shooting
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (currentAmmo > 0)
+                {
+                    currentAmmo--;
+                    RenderHUD();
+                    renderer.UpdateDisplay();
+                }
+            }
+
+            // Update kill feed lifetimes
+            UpdateKillFeed();
+        }
+
+        public void RenderHUD()
+        {
+            canvas.Clear(' ', Color.black);
+
+            int w = canvas.Width;
+            int h = canvas.Height;
+
+            // Outer frame
+            canvas.DrawBox(0, 0, w, h, hudColor, Color.black, false);
+
+            // Top bar - Stats and Vitals
+            DrawTopBar();
+
+            // Center - Crosshair
+            DrawCrosshair();
+
+            // Bottom Left - Motion Tracker
+            DrawMotionTracker(2, h - 13);
+
+            // Bottom Left - Team Scores
+            DrawTeamScores(2, h - 6);
+
+            // Bottom Left - Kill Feed
+            DrawKillFeed(2, h - 4);
+
+            // Bottom Right - Weapon Display
+            DrawWeaponDisplay(w - 38, h - 11);
+
+            // Left side - Grenades
+            DrawGrenadeDisplay(25, h - 8);
+        }
+
+        private void DrawTopBar()
+        {
+            int w = canvas.Width;
+
+            // Left side - Game stats
+            string statsText = $"◄ KILLS: {kills}  DEATHS: {deaths}  SCORE: {score}";
+            canvas.DrawText(2, 2, statsText, hudColor);
+
+            // Objective
+            canvas.DrawText(2, 4, "⚠ OBJECTIVE: Capture Point Alpha", warningColor);
+
+            // Right side - Shield bar
+            DrawVitalBar(w - 38, 2, "SHIELDS", shieldPercent, shieldColor);
+
+            // Right side - Health bar
+            DrawVitalBar(w - 38, 3, "HEALTH ", healthPercent, healthColor);
+        }
+
+        private void DrawVitalBar(int x, int y, string label, int percent, Color barColor)
+        {
+            canvas.DrawText(x, y, "[", Color.white);
+
+            int barWidth = 10;
+            int filled = (percent * barWidth) / 100;
+
+            for (int i = 0; i < barWidth; i++)
+            {
+                char c = i < filled ? SymbolicChars.FULL_BLOCK : SymbolicChars.LIGHT_SHADE;
+                Color color = i < filled ? barColor : new Color32(40, 40, 40, 255);
+                canvas.SetPixel(x + 1 + i, y, c, color);
+            }
+
+            canvas.DrawText(x + 11, y, "]", Color.white);
+            canvas.DrawText(x + 13, y, label, Color.white);
+            canvas.DrawText(x + 23, y, $"{percent,3}%", barColor);
+        }
+
+        private void DrawCrosshair()
+        {
+            int centerX = canvas.Width / 2;
+            int centerY = canvas.Height / 2;
+
+            // Draw crosshair box
+            canvas.DrawBox(centerX - 2, centerY - 2, 5, 5, hudColor, Color.clear, true);
+            canvas.DrawText(centerX - 1, centerY, "+", hudColor);
+        }
+
+        private void DrawMotionTracker(int x, int y)
+        {
+            int radarSize = 20;
+
+            // Radar border
+            canvas.DrawBox(x, y, radarSize + 2, radarSize / 2 + 2, hudColor, Color.black, true);
+            canvas.DrawText(x + 4, y, "MOTION TRACKER", hudColor);
+
+            // Radar center (player position)
+            int centerX = x + radarSize / 2;
+            int centerY = y + radarSize / 4;
+
+            // Draw range circles
+            canvas.DrawCircle(centerX, centerY, 8, SymbolicChars.LIGHT_SHADE, new Color32(20, 40, 40, 255));
+            canvas.DrawCircle(centerX, centerY, 5, SymbolicChars.LIGHT_SHADE, new Color32(30, 50, 50, 255));
+
+            // Player indicator (center)
+            canvas.SetPixel(centerX, centerY, '☼', Color.yellow);
+
+            // North indicator
+            canvas.SetPixel(centerX, centerY - 6, '▲', hudColor);
+
+            // Enemy dots
+            foreach (var enemyPos in enemyPositions)
+            {
+                // Scale and clamp to radar
+                int ex = centerX + (int)(enemyPos.x * 0.8f);
+                int ey = centerY + (int)(enemyPos.y * 0.4f);
+
+                // Clamp to radar bounds
+                int radarLeft = x + 2;
+                int radarRight = x + radarSize;
+                int radarTop = y + 2;
+                int radarBottom = y + radarSize / 2;
+
+                ex = Mathf.Clamp(ex, radarLeft, radarRight);
+                ey = Mathf.Clamp(ey, radarTop, radarBottom);
+
+                canvas.SetPixel(ex, ey, '●', enemyColor);
+            }
+        }
+
+        private void DrawTeamScores(int x, int y)
+        {
+            // Blue team
+            string blueText = "TEAM:  BLUE ";
+            canvas.DrawText(x, y, blueText, Color.white);
+
+            int blueBarLength = (blueTeamScore * 5) / 100;
+            for (int i = 0; i < blueBarLength; i++)
+            {
+                canvas.SetPixel(x + blueText.Length + i, y, SymbolicChars.FULL_BLOCK, friendlyColor);
+            }
+            canvas.DrawText(x + blueText.Length + 6, y, blueTeamScore.ToString(), friendlyColor);
+
+            // Red team
+            string redText = "   RED ";
+            canvas.DrawText(x + blueText.Length + 10, y, redText, Color.white);
+
+            int redBarLength = (redTeamScore * 5) / 100;
+            for (int i = 0; i < redBarLength; i++)
+            {
+                canvas.SetPixel(x + blueText.Length + 10 + redText.Length + i, y, SymbolicChars.FULL_BLOCK, enemyColor);
+            }
+            for (int i = redBarLength; i < 5; i++)
+            {
+                canvas.SetPixel(x + blueText.Length + 10 + redText.Length + i, y, SymbolicChars.LIGHT_SHADE, new Color32(40, 20, 20, 255));
+            }
+            canvas.DrawText(x + blueText.Length + 10 + redText.Length + 6, y, redTeamScore.ToString(), enemyColor);
+        }
+
+        private void DrawKillFeed(int startX, int startY)
+        {
+            int yOffset = 0;
+            foreach (var entry in killFeed)
+            {
+                // Fade based on lifetime
+                float alpha = Mathf.Clamp01(entry.lifetime / 3f);
+                Color32 color = new Color(entry.color.r, entry.color.g, entry.color.b, alpha);
+
+                canvas.DrawText(startX, startY + yOffset, entry.text, color);
+                yOffset++;
+            }
+        }
+
+        private void DrawGrenadeDisplay(int x, int y)
+        {
+            canvas.DrawText(x, y, "┌─ FRAG ×" + fragGrenades, hudColor);
+            canvas.DrawText(x, y + 1, "└─ PLSM ×" + plasmaGrenades, hudColor);
+        }
+
+        private void DrawWeaponDisplay(int x, int y)
+        {
+            int boxWidth = 36;
+            int boxHeight = 10;
+
+            // Weapon info box
+            canvas.DrawBox(x, y, boxWidth, boxHeight, hudColor, Color.black, true);
+
+            // Weapon name
+            int nameX = x + (boxWidth - weaponName.Length) / 2;
+            canvas.DrawText(nameX, y + 1, weaponName, Color.white);
+
+            // Weapon visual (simplified assault rifle)
+            DrawWeaponArt(x + 8, y + 4);
+
+            // Ammo display
+            int ammoBarWidth = 16;
+            int ammoY = y + boxHeight - 2;
+
+            canvas.DrawText(x + 3, ammoY, "[", Color.white);
+
+            // Ammo bar
+            int ammoFilled = Mathf.Min((currentAmmo * ammoBarWidth) / 60, ammoBarWidth); // Assuming 60 max mag
+            for (int i = 0; i < ammoBarWidth; i++)
+            {
+                if (i < ammoFilled)
+                {
+                    canvas.SetPixel(x + 4 + i, ammoY, SymbolicChars.FULL_BLOCK, hudColor);
+                }
+                else
+                {
+                    canvas.SetPixel(x + 4 + i, ammoY, SymbolicChars.LIGHT_SHADE, new Color32(30, 30, 30, 255));
+                }
+            }
+
+            canvas.DrawText(x + 20, ammoY, "]", Color.white);
+
+            // Ammo numbers
+            string ammoText = $"{currentAmmo,2} / {reserveAmmo}";
+            canvas.DrawText(x + 22, ammoY, ammoText, Color.white);
+
+            // Low ammo warning
+            if (currentAmmo < 10)
+            {
+                canvas.DrawText(x + 10, y + 3, "⚠ LOW AMMO", warningColor);
+            }
+        }
+
+        private void DrawWeaponArt(int x, int y)
+        {
+            // Simplified assault rifle ASCII art
+            string[] weaponLines = new string[]
+            {
+                "    ▄▄▄▄▄▄▄▄▄▄    ",
+                "   ███████████▌   ",
+                "  ▐███████████    ",
+                "   ▀▀▀▀▀▀▀▀▀▀     "
+            };
+
+            Color weaponColor = new Color32(150, 150, 150, 255);
+
+            for (int i = 0; i < weaponLines.Length; i++)
+            {
+                canvas.DrawText(x, y + i, weaponLines[i], weaponColor);
+            }
+        }
+
+        #region Kill Feed Management
+
+        public void AddKillFeedEntry(string player, string points, string type, Color color)
+        {
+            string entry = $"[MULTIPLAYER] {player} {points}  {type}";
+            killFeed.Insert(0, new KillFeedEntry
+            {
+                text = entry,
+                lifetime = 5f,
+                color = color
+            });
+
+            // Keep only last 3 entries
+            if (killFeed.Count > 3)
+            {
+                killFeed.RemoveRange(3, killFeed.Count - 3);
+            }
+
+            RenderHUD();
+            renderer.UpdateDisplay();
+        }
+
+        private void UpdateKillFeed()
+        {
+            bool needsUpdate = false;
+
+            for (int i = killFeed.Count - 1; i >= 0; i--)
+            {
+                killFeed[i].lifetime -= Time.deltaTime;
+                if (killFeed[i].lifetime <= 0)
+                {
+                    killFeed.RemoveAt(i);
+                    needsUpdate = true;
+                }
+            }
+
+            if (needsUpdate)
+            {
+                RenderHUD();
+                renderer.UpdateDisplay();
+            }
+        }
+
+        #endregion
+
+        #region Public Control Methods
+
+        [ContextMenu("Take Damage")]
+        public void TakeDamage(int amount = 25)
+        {
+            if (shieldPercent > 0)
+            {
+                shieldPercent = Mathf.Max(0, shieldPercent - amount);
+            }
+            else
+            {
+                healthPercent = Mathf.Max(0, healthPercent - amount);
+            }
+
+            RenderHUD();
+            renderer.UpdateDisplay();
+        }
+
+        [ContextMenu("Recharge Shields")]
+        public void RechargeShields()
+        {
+            StartCoroutine(RechargeShieldsCoroutine());
+        }
+
+        private IEnumerator RechargeShieldsCoroutine()
+        {
+            while (shieldPercent < 100)
+            {
+                shieldPercent = Mathf.Min(100, shieldPercent + 2);
+                RenderHUD();
+                renderer.UpdateDisplay();
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+
+        [ContextMenu("Fire Weapon")]
+        public void FireWeapon()
+        {
+            if (currentAmmo > 0)
+            {
+                currentAmmo--;
+                RenderHUD();
+                renderer.UpdateDisplay();
+            }
+        }
+
+        [ContextMenu("Reload Weapon")]
+        public void ReloadWeapon()
+        {
+            int ammoNeeded = 60 - currentAmmo;
+            int ammoToReload = Mathf.Min(ammoNeeded, reserveAmmo);
+            currentAmmo += ammoToReload;
+            reserveAmmo -= ammoToReload;
+
+            RenderHUD();
+            renderer.UpdateDisplay();
+        }
+
+        [ContextMenu("Add Kill")]
+        public void AddKill()
+        {
+            kills++;
+            score += 10;
+
+            string[] killTypes = { "HEADSHOT", "MELEE", "GRENADE", "ASSASSINATION" };
+            string killType = killTypes[Random.Range(0, killTypes.Length)];
+
+            AddKillFeedEntry($"Player_{Random.Range(100, 999)}", "+10", killType, Color.yellow);
+
+            RenderHUD();
+            renderer.UpdateDisplay();
+        }
+
+        #endregion
+    }
+}

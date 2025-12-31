@@ -1,0 +1,194 @@
+using UnityEngine;
+
+namespace SymbolicGraphics
+{
+    /// <summary>
+    /// Represents a single symbolic pixel - a Unicode character with color.
+    /// This is the fundamental unit of the symbolic rendering system.
+    /// </summary>
+    [System.Serializable]
+    public struct SymbolicPixel
+    {
+        /// <summary>
+        /// The Unicode character to display (e.g., '█', '▀', '░', etc.)
+        /// </summary>
+        public char character;
+
+        /// <summary>
+        /// The color of this character (RGBA)
+        /// Using Color32 for memory efficiency (4 bytes vs 16 bytes for Color)
+        /// </summary>
+        public Color32 color;
+
+        /// <summary>
+        /// Creates a new symbolic pixel with the specified character and color
+        /// </summary>
+        public SymbolicPixel(char c, Color32 col)
+        {
+            character = c;
+            color = col;
+        }
+
+        /// <summary>
+        /// Creates a new symbolic pixel with character and Color (auto-converts to Color32)
+        /// </summary>
+        public SymbolicPixel(char c, Color col)
+        {
+            character = c;
+            color = col;
+        }
+
+        /// <summary>
+        /// Returns true if this pixel is effectively blank (space character or fully transparent)
+        /// </summary>
+        public bool IsBlank()
+        {
+            return character == ' ' || color.a == 0;
+        }
+
+        /// <summary>
+        /// Returns a blank (space) pixel with transparent color
+        /// </summary>
+        public static SymbolicPixel Blank
+        {
+            get { return new SymbolicPixel(' ', new Color32(0, 0, 0, 0)); }
+        }
+
+        public override string ToString()
+        {
+            return $"'{character}' #{ColorUtility.ToHtmlStringRGBA(color)}";
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is SymbolicPixel other)
+            {
+                return character == other.character &&
+                       color.r == other.color.r &&
+                       color.g == other.color.g &&
+                       color.b == other.color.b &&
+                       color.a == other.color.a;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return character.GetHashCode() ^ color.GetHashCode();
+        }
+
+        public static bool operator ==(SymbolicPixel a, SymbolicPixel b)
+        {
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(SymbolicPixel a, SymbolicPixel b)
+        {
+            return !a.Equals(b);
+        }
+    }
+
+    /// <summary>
+    /// Common symbolic characters for quick access
+    /// </summary>
+    public static class SymbolicChars
+    {
+        // Block Elements (U+2580 - U+259F)
+        public const char FULL_BLOCK = '█';           // U+2588
+        public const char UPPER_HALF = '▀';           // U+2580
+        public const char LOWER_HALF = '▄';           // U+2584
+        public const char LEFT_HALF = '▌';            // U+258C
+        public const char RIGHT_HALF = '▐';           // U+2590
+
+        // Shade Characters
+        public const char LIGHT_SHADE = '░';          // U+2591
+        public const char MEDIUM_SHADE = '▒';         // U+2592
+        public const char DARK_SHADE = '▓';           // U+2593
+
+        // Quarter Blocks
+        public const char QUADRANT_LL = '▖';          // U+2596 Lower Left
+        public const char QUADRANT_LR = '▗';          // U+2597 Lower Right
+        public const char QUADRANT_UL = '▘';          // U+2598 Upper Left
+        public const char QUADRANT_UR = '▝';          // U+259D Upper Right
+
+        // Combined Quadrants
+        public const char QUADRANT_UL_LL_LR = '▙';    // U+2599
+        public const char QUADRANT_UL_LR = '▚';       // U+259A
+        public const char QUADRANT_UL_UR_LL = '▛';    // U+259B
+        public const char QUADRANT_UL_UR_LR = '▜';    // U+259C
+        public const char QUADRANT_UR_LL = '▞';       // U+259E
+        public const char QUADRANT_UR_LL_LR = '▟';    // U+259F
+
+        // Box Drawing - Single Line
+        public const char BOX_H = '─';                // U+2500 Horizontal
+        public const char BOX_V = '│';                // U+2502 Vertical
+        public const char BOX_TL = '┌';               // U+250C Top-Left
+        public const char BOX_TR = '┐';               // U+2510 Top-Right
+        public const char BOX_BL = '└';               // U+2514 Bottom-Left
+        public const char BOX_BR = '┘';               // U+2518 Bottom-Right
+        public const char BOX_T_L = '├';              // U+251C T-Left
+        public const char BOX_T_R = '┤';              // U+2524 T-Right
+        public const char BOX_T_T = '┬';              // U+252C T-Top
+        public const char BOX_T_B = '┴';              // U+2534 T-Bottom
+        public const char BOX_CROSS = '┼';            // U+253C Cross
+
+        // Box Drawing - Double Line
+        public const char BOX_H_DBL = '═';            // U+2550 Horizontal
+        public const char BOX_V_DBL = '║';            // U+2551 Vertical
+        public const char BOX_TL_DBL = '╔';           // U+2554 Top-Left
+        public const char BOX_TR_DBL = '╗';           // U+2557 Top-Right
+        public const char BOX_BL_DBL = '╚';           // U+255A Bottom-Left
+        public const char BOX_BR_DBL = '╝';           // U+255D Bottom-Right
+        public const char BOX_T_L_DBL = '╠';          // U+2560 T-Left
+        public const char BOX_T_R_DBL = '╣';          // U+2563 T-Right
+        public const char BOX_T_T_DBL = '╦';          // U+2566 T-Top
+        public const char BOX_T_B_DBL = '╩';          // U+2569 T-Bottom
+        public const char BOX_CROSS_DBL = '╬';        // U+256C Cross
+
+        // Common Symbols
+        public const char SPACE = ' ';
+        public const char BULLET = '•';
+        public const char CIRCLE = '○';
+        public const char FILLED_CIRCLE = '●';
+        public const char STAR = '★';
+        public const char EMPTY_STAR = '☆';
+        public const char HEART = '♥';
+        public const char DIAMOND = '♦';
+        public const char CLUB = '♣';
+        public const char SPADE = '♠';
+
+        /// <summary>
+        /// Returns appropriate shade character based on density (0.0 to 1.0)
+        /// </summary>
+        public static char GetShadeChar(float density)
+        {
+            if (density >= 1.0f) return FULL_BLOCK;
+            if (density >= 0.75f) return DARK_SHADE;
+            if (density >= 0.50f) return MEDIUM_SHADE;
+            if (density >= 0.25f) return LIGHT_SHADE;
+            return SPACE;
+        }
+
+        /// <summary>
+        /// Returns appropriate half-block character based on fill states
+        /// </summary>
+        public static char GetVerticalHalfBlock(bool topFilled, bool bottomFilled)
+        {
+            if (topFilled && bottomFilled) return FULL_BLOCK;
+            if (topFilled && !bottomFilled) return UPPER_HALF;
+            if (!topFilled && bottomFilled) return LOWER_HALF;
+            return SPACE;
+        }
+
+        /// <summary>
+        /// Returns appropriate half-block character based on fill states
+        /// </summary>
+        public static char GetHorizontalHalfBlock(bool leftFilled, bool rightFilled)
+        {
+            if (leftFilled && rightFilled) return FULL_BLOCK;
+            if (leftFilled && !rightFilled) return LEFT_HALF;
+            if (!leftFilled && rightFilled) return RIGHT_HALF;
+            return SPACE;
+        }
+    }
+}

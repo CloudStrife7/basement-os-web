@@ -701,7 +701,6 @@ body::before {
     font-size: 12px;
     cursor: pointer;
     transition: all 0.2s;
-    transition: all 0.2s;
     border-radius: 4px;
     text-decoration: none;
 }

@@ -49,9 +49,9 @@ import TerminalShell from '../components/TerminalShell.astro';
       <!-- THE STORY -->
       <div class="info-card">
         <h3>[ The Story ]</h3>
-        <div class="devlog-content" style="margin-top: 10px;">
+        <div class="devlog-content story-content">
           <p>Lower Level 2.0 started as a simple VRChat world and evolved into an 18,000+ line codebase built entirely with AI collaboration. From zero UdonSharp experience to a fully-featured achievement system, interactive DOS terminal, and real-time weather integration—all developed through systematic Claude Code workflows.</p>
-          <p style="margin-top: 15px;">The project demonstrates what's possible when combining modern AI tools with creative vision: persistent player data, cross-platform optimization, and a nostalgic 2000s basement aesthetic that feels like coming home.</p>
+          <p class="story-paragraph">The project demonstrates what's possible when combining modern AI tools with creative vision: persistent player data, cross-platform optimization, and a nostalgic 2000s basement aesthetic that feels like coming home.</p>
         </div>
       </div>
 
@@ -170,7 +170,7 @@ import TerminalShell from '../components/TerminalShell.astro';
        │ (VRChat PlayerData)     │
        └─────────────────────────┘
           </pre>
-          <p style="text-align: center; color: var(--text-secondary); margin-top: 15px; font-style: italic;">Hub-spoke event-driven architecture optimized for VRChat's UdonSharp environment</p>
+          <p class="architecture-caption">Hub-spoke event-driven architecture optimized for VRChat's UdonSharp environment</p>
         </div>
       </div>
 
@@ -231,7 +231,7 @@ import TerminalShell from '../components/TerminalShell.astro';
 
       <!-- CALL TO ACTION -->
       <div class="cta-section">
-        <p style="color: var(--accent-primary); font-size: 1.1em; margin-bottom: 20px;">Ready to visit?</p>
+        <p class="cta-heading">Ready to visit?</p>
 
         <a href="https://vrchat.com/home/launch?worldId=wrld_7302897c-be0f-4037-ac67-76f0ea065c2b" class="cta-button" target="_blank">
           <span class="cta-icon">▶</span>
@@ -385,6 +385,28 @@ import TerminalShell from '../components/TerminalShell.astro';
     white-space: pre;
   }
 
+  /* Story Content Styles (replacing inline styles) */
+  .story-content {
+    margin-top: 10px;
+  }
+
+  .story-paragraph {
+    margin-top: 15px;
+  }
+
+  .architecture-caption {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-top: 15px;
+    font-style: italic;
+  }
+
+  .cta-heading {
+    color: var(--accent-primary);
+    font-size: 1.1em;
+    margin-bottom: 20px;
+  }
+
   /* CTA Section */
   .cta-section {
     text-align: center;
@@ -476,13 +498,20 @@ import TerminalShell from '../components/TerminalShell.astro';
 </style>
 
 <script>
-// Number Spin-Up Animation
-function animateNumber(element: HTMLElement, target: number, duration: number = 1500) {
+/**
+ * Number Spin-Up Animation
+ * @param {HTMLElement} element - The DOM element to animate
+ * @param {number} target - Target number to count up to
+ * @param {number} duration - Animation duration in ms (default 1500)
+ */
+function animateNumber(element, target, duration = 1500) {
     const start = 0;
     const startTime = performance.now();
-    const formatNum = (num: number) => new Intl.NumberFormat().format(Math.floor(num));
+    /** @param {number} num */
+    const formatNum = (num) => new Intl.NumberFormat().format(Math.floor(num));
 
-    function update(currentTime: number) {
+    /** @param {number} currentTime */
+    function update(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
 
@@ -506,6 +535,8 @@ function animateNumber(element: HTMLElement, target: number, duration: number = 
 // VRChat Stats Fetcher with Caching
 document.addEventListener("astro:page-load", function() {
     const worldId = "wrld_7302897c-be0f-4037-ac67-76f0ea065c2b";
+    // NOTE: This is VRChat's PUBLIC API key used for unauthenticated world info requests.
+    // It is intentionally public and documented in VRChat community resources.
     const apiKey = "JlE5Jldo5Jibnk5O5hTx6XVqsJyIkZVd";
     const CACHE_KEY = "vrchat-world-stats";
     const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
@@ -542,7 +573,8 @@ document.addEventListener("astro:page-load", function() {
         return null;
     }
 
-    function setCachedStats(stats: any) {
+    /** @param {Object} stats */
+    function setCachedStats(stats) {
         try {
             localStorage.setItem(CACHE_KEY, JSON.stringify({
                 ...stats,
@@ -553,7 +585,8 @@ document.addEventListener("astro:page-load", function() {
         }
     }
 
-    async function fetchWithFallback(proxies: string[]) {
+    /** @param {string[]} proxies */
+    async function fetchWithFallback(proxies) {
         for (let i = 0; i < proxies.length; i++) {
             try {
                 const response = await fetch(proxies[i], {
@@ -572,7 +605,8 @@ document.addEventListener("astro:page-load", function() {
         throw new Error('All proxies failed');
     }
 
-    function formatDate(dateString: string) {
+    /** @param {string} dateString */
+    function formatDate(dateString) {
         try {
             const date = new Date(dateString);
             return date.toLocaleDateString('en-US', {
@@ -585,11 +619,15 @@ document.addEventListener("astro:page-load", function() {
         }
     }
 
-    // Animate all stat numbers with spin-up effect
-    function runSpinUpAnimations(worldData?: any) {
+    /**
+     * Animate all stat numbers with spin-up effect
+     * @param {Object} [worldData]
+     */
+    function runSpinUpAnimations(worldData) {
         const statNumbers = document.querySelectorAll('.stat-block-compact .stat-number-compact');
         statNumbers.forEach((el, index) => {
-            const element = el as HTMLElement;
+            /** @type {HTMLElement} */
+            const element = /** @type {HTMLElement} */ (el);
             let target = parseInt(element.dataset.target || '0', 10);
 
             // Override with live data for visits and favorites
@@ -611,8 +649,10 @@ document.addEventListener("astro:page-load", function() {
         });
     }
 
-    function updateWorldStats(worldData: any) {
-        const formatNum = (num: number) => new Intl.NumberFormat().format(num);
+    /** @param {Object} worldData */
+    function updateWorldStats(worldData) {
+        /** @param {number} num */
+        const formatNum = (num) => new Intl.NumberFormat().format(num);
 
         // World Stats section at bottom
         const visits = document.getElementById("stat-visits");

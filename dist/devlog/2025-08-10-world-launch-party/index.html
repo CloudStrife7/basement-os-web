@@ -1,4 +1,11 @@
 <!DOCTYPE html><html lang="en" data-theme="synthwave"> <head><meta charset="UTF-8"><meta name="description" content="Basement OS - An interactive dev blog for the Lower Level 2.0 VRChat world project"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/jpeg" href="/favicon.jpg"><meta name="generator" content="Astro v5.16.5"><title>BASEMENT OS | World Launch Party</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js"></script><script>
+            // Disable browser's scroll restoration to prevent progress bar on scroll
+            // Astro's ClientRouter calls history.replaceState during scroll which
+            // triggers native mobile browser progress indicators
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+        </script><script>
             // Immediately invoked function to set the theme before FOUC
             (function() {
                 try {
@@ -8,42 +15,41 @@
                     console.error('Theme detection failed', e);
                 }
             })();
-        </script><link rel="stylesheet" href="/_astro/businesscards.BCeusq5j.css">
+        </script><link rel="stylesheet" href="/_astro/achievements.BjPYMsCD.css">
 <style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
-#shutdown-screen{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--bg-primary);z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center}.shutdown-msg-1{font-family:var(--font-display);font-size:24px;color:var(--text-primary);margin-bottom:20px;text-transform:uppercase;letter-spacing:2px;text-shadow:0 0 10px var(--accent-primary)}.shutdown-msg-2{font-family:var(--font-mono);font-size:32px;color:var(--accent-primary);display:none;text-shadow:2px 2px 0px #000}html{background-color:#000}@keyframes crtTurnOff{0%{transform:scale(1);filter:brightness(1);opacity:1}40%{transform:scaleY(.002);filter:brightness(20);opacity:1}to{transform:scale(0);filter:brightness(0);opacity:0}}.anim-crt{animation:crtTurnOff .8s ease-out forwards}@keyframes vhsFade{0%{filter:blur(0) grayscale(0);transform:skew(0)}20%{filter:blur(2px) grayscale(.5);transform:skew(10deg)}40%{filter:blur(4px) grayscale(.8);transform:skew(-10deg);height:100vh}60%{filter:blur(10px) grayscale(1);transform:scaleY(.1) skew(50deg);height:10vh;opacity:1}to{filter:blur(20px) grayscale(1);transform:scaleY(0);opacity:0}}.anim-vhs{animation:vhsFade .6s ease-in forwards}@keyframes glitchFail{0%{clip-path:inset(0 0 0 0);filter:invert(0)}20%{clip-path:inset(20% 0 10% 0);filter:invert(1);transform:translate(-5px,5px)}40%{clip-path:inset(50% 0 30% 0);filter:invert(0);transform:translate(5px,-5px)}60%{clip-path:inset(10% 0 60% 0);filter:invert(1);transform:translate(-10px)}80%{clip-path:inset(80% 0 5% 0);filter:invert(0);opacity:1}to{clip-path:inset(50% 50% 50% 50%);opacity:0}}.anim-glitch{animation:glitchFail .4s steps(5) forwards}@keyframes phosphorBurn{0%{filter:brightness(1) blur(0);opacity:1}30%{filter:brightness(3) blur(2px);opacity:1;color:#a6e22e;text-shadow:0 0 20px #a6e22e}to{filter:brightness(0) blur(20px);opacity:0;transform:scale(1.1)}}.anim-phosphor{animation:phosphorBurn 2.5s ease-out forwards}.typewriter-text{min-height:1.2em;display:block}.typewriter-cursor{display:inline-block;width:10px;height:1em;background-color:var(--accent-primary);animation:blink 1s step-end infinite;vertical-align:text-bottom;margin-left:2px}@keyframes blink{0%,to{opacity:1}50%{opacity:0}}.astro-route-announcer{position:absolute;left:0;top:0;clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap;width:1px;height:1px}
-</style><style>[data-astro-transition-scope="astro-z76srij3-1"] { view-transition-name: astro-z76srij3-1; }@layer astro { ::view-transition-old(astro-z76srij3-1) { 
+</style><style>[data-astro-transition-scope="astro-ge2vrsr3-1"] { view-transition-name: astro-ge2vrsr3-1; }@layer astro { ::view-transition-old(astro-ge2vrsr3-1) { 
 	animation-duration: 180ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
 	animation-fill-mode: both;
-	animation-name: astroFadeOut; }::view-transition-new(astro-z76srij3-1) { 
+	animation-name: astroFadeOut; }::view-transition-new(astro-ge2vrsr3-1) { 
 	animation-duration: 180ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
 	animation-fill-mode: both;
-	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-z76srij3-1) { 
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-ge2vrsr3-1) { 
 	animation-duration: 180ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
 	animation-fill-mode: both;
-	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-z76srij3-1) { 
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-ge2vrsr3-1) { 
 	animation-duration: 180ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
 	animation-fill-mode: both;
-	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-z76srij3-1"],
-			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-z76srij3-1"] { 
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-ge2vrsr3-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-ge2vrsr3-1"] { 
 	animation-duration: 180ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
 	animation-fill-mode: both;
-	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-z76srij3-1"],
-			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-z76srij3-1"] { 
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-ge2vrsr3-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-ge2vrsr3-1"] { 
 	animation-duration: 180ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
 	animation-fill-mode: both;
-	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-z76srij3-1"],
-			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-z76srij3-1"] { 
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-ge2vrsr3-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-ge2vrsr3-1"] { 
 	animation-duration: 180ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
 	animation-fill-mode: both;
-	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-z76srij3-1"],
-			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-z76srij3-1"] { 
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-ge2vrsr3-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-ge2vrsr3-1"] { 
 	animation-duration: 180ms;
 	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
 	animation-fill-mode: both;
@@ -51,12 +57,13 @@
 </a> <a href="/devlog" class="nav-btn active"> <span class="type">&lt;LOG&gt;</span> DEVLOG
 </a> <a href="/skills" class="nav-btn "> <span class="type">&lt;AI&gt;</span> SKILLS
 </a> <a href="/support" class="nav-btn "> <span class="type">&lt;NET&gt;</span> SUPPORT
+</a> <a href="/achievements" class="nav-btn "> <span class="type">&lt;360&gt;</span> ACHIEVEMENTS
 </a> <a href="/roadmap" class="nav-btn "> <span class="type">&lt;MAP&gt;</span> ROADMAP
 </a> <button class="nav-btn" id="terminal-toggle"> <span class="type">&lt;SSH&gt;</span> TERMINAL
 </button> <a href="https://vrchat.com/home/launch?worldId=wrld_7302897c-be0f-4037-ac67-76f0ea065c2b" class="nav-btn" target="_blank"> <span class="type">&lt;VRC&gt;</span> VISIT
 </a> </nav> <!-- Terminal Demo Container (inline, replaces main-content when active) --> <div class="terminal-demo-container" id="terminal-demo" style="display:none"> <div class="terminal-demo-screen" id="terminal-demo-root"></div> <div class="terminal-disconnect" id="terminal-disconnect" style="display:none"> <span class="disconnect-text">Disconnecting</span><span class="disconnect-dots" id="disconnect-dots"></span> </div> </div> <!-- AI Disclosure --> <div class="ai-disclosure" id="ai-disclosure"> <div class="ai-disclosure-header">[ NEXT-GEN AI DEVLOG ]</div> <div class="ai-disclosure-content">
 Content Generated by Developer-Led AI Workflows. Reviewed by a Human-In-the-Loop.
-</div> </div> <!-- Boot Screen --> <div class="boot-screen" id="boot-screen" style="display:none"></div> <!-- Shutdown Screen --> <div id="shutdown-screen"> <div class="shutdown-msg-1">Please wait while your computer shuts down...</div> <div class="shutdown-msg-2" style="color: #ff3e8a;">IT'S NOW SAFE TO TURN OFF YOUR COMPUTER</div> </div> <!-- Main Content Slot --> <div class="terminal-content active" id="main-content" data-astro-transition-scope="astro-z76srij3-1">  <div class="content-section active"> <!-- Render the entry using the component which handles title/date/tags/content --> <article class="devlog-entry" id="entry-2025-08-10-world-launch-party" data-searchable> <div class="devlog-date">August 9, 2025</div> <h3 class="devlog-title milestone"> <span class="milestone-badge">★</span> World Launch Party </h3> <div class="devlog-content"> <p>Opened Lower Level 2.0 to the public! Had about 8 friends show up for the launch. Watching the achievement notifications pop as people joined was incredibly satisfying - exactly the vibe I was going for.</p>
+</div> </div> <!-- Boot Screen --> <div class="boot-screen" id="boot-screen" style="display:none"></div> <!-- Shutdown Screen --> <div id="shutdown-screen"> <div class="shutdown-msg-1">Please wait while your computer shuts down...</div> <div class="shutdown-msg-2" style="color: #ff3e8a;">IT'S NOW SAFE TO TURN OFF YOUR COMPUTER</div> </div> <!-- Main Content Slot --> <div class="terminal-content active" id="main-content" data-astro-transition-scope="astro-ge2vrsr3-1">  <div class="content-section active"> <!-- Render the entry using the component which handles title/date/tags/content --> <article class="devlog-entry" id="entry-2025-08-10-world-launch-party" data-searchable> <div class="devlog-date">August 9, 2025</div> <h3 class="devlog-title milestone"> <span class="milestone-badge">★</span> World Launch Party </h3> <div class="devlog-content"> <p>Opened Lower Level 2.0 to the public! Had about 8 friends show up for the launch. Watching the achievement notifications pop as people joined was incredibly satisfying - exactly the vibe I was going for.</p>
 <p>Everything worked smoothly - notifications, persistence, the DOS terminal.</p>
 <p>[![Launch party screenshot with 8 friends](/Manual Change Logs and Images/images/August 2025/VRChat_2025-08-10_20-58-06.405_2560x1440 launch party.png)](/Manual Change Logs and Images/images/August 2025/VRChat_2025-08-10_20-58-06.405_2560x1440 launch party.png)</p>
 <p>[![Achievement notifications during launch](/Manual Change Logs and Images/images/August 2025/hangout verified.jpg)](/Manual Change Logs and Images/images/August 2025/hangout verified.jpg)</p> </div> <!-- Tags removed temporarily --> </article> </div>  </div> <!-- Prompt & Status Bar --> <div class="prompt-line"> <span class="prompt">C:\BASEMENT&gt;</span> <span class="cursor"></span> </div> <div class="status-bar"> <span class="status-item">

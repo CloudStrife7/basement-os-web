@@ -1,0 +1,429 @@
+using UnityEngine;
+
+namespace SymbolicGraphics.Examples
+{
+    /// <summary>
+    /// Demonstrates FULL COLOR symbolic rendering where EVERY character
+    /// has its own individual RGB color creating photo-realistic scenes.
+    ///
+    /// This is the CORE CONCEPT: Each █ is a colored pixel!
+    /// </summary>
+    [RequireComponent(typeof(SymbolicRenderer))]
+    public class ColoredSymbolDemo : MonoBehaviour
+    {
+        [Header("Demo Selection")]
+        public DemoType currentDemo = DemoType.ColorGradient;
+
+        public enum DemoType
+        {
+            ColorGradient,      // Show RGB gradient transitions
+            Sunset,             // Beautiful sunset with full color
+            MetallicSurface,    // Shiny metal with lighting
+            Fire,               // Animated fire effect
+            Water,              // Animated water waves
+            RainbowSpectrum,    // Full spectrum display
+            PhotoRealistic      // Photo-like scene
+        }
+
+        private SymbolicRenderer renderer;
+        private SymbolicCanvas canvas;
+
+        void Start()
+        {
+            renderer = GetComponent<SymbolicRenderer>();
+            canvas = renderer.Canvas;
+
+            RenderCurrentDemo();
+        }
+
+        void Update()
+        {
+            // Animate certain demos
+            if (currentDemo == DemoType.Fire || currentDemo == DemoType.Water || currentDemo == DemoType.RainbowSpectrum)
+            {
+                RenderCurrentDemo();
+                renderer.UpdateDisplay();
+            }
+        }
+
+        [ContextMenu("Render Demo")]
+        public void RenderCurrentDemo()
+        {
+            canvas.Clear(' ', Color.black);
+
+            switch (currentDemo)
+            {
+                case DemoType.ColorGradient:
+                    RenderColorGradient();
+                    break;
+                case DemoType.Sunset:
+                    RenderSunset();
+                    break;
+                case DemoType.MetallicSurface:
+                    RenderMetallicSurface();
+                    break;
+                case DemoType.Fire:
+                    RenderFire();
+                    break;
+                case DemoType.Water:
+                    RenderWater();
+                    break;
+                case DemoType.RainbowSpectrum:
+                    RenderRainbowSpectrum();
+                    break;
+                case DemoType.PhotoRealistic:
+                    RenderPhotoRealistic();
+                    break;
+            }
+
+            if (!Application.isPlaying || currentDemo == DemoType.ColorGradient || currentDemo == DemoType.Sunset)
+            {
+                renderer.UpdateDisplay();
+            }
+        }
+
+        /// <summary>
+        /// Shows smooth RGB gradients - every pixel a different color
+        /// </summary>
+        void RenderColorGradient()
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+
+            // Horizontal Red → Green gradient
+            for (int y = 0; y < h / 3; y++)
+            {
+                for (int x = 0; x < w; x++)
+                {
+                    float t = x / (float)w;
+                    Color32 color = Color32.Lerp(
+                        new Color32(255, 0, 0, 255),      // Red
+                        new Color32(0, 255, 0, 255),      // Green
+                        t
+                    );
+                    canvas.SetPixel(x, y, '█', color);
+                }
+            }
+
+            // Vertical Blue → Yellow gradient
+            for (int y = h / 3; y < 2 * h / 3; y++)
+            {
+                for (int x = 0; x < w; x++)
+                {
+                    float t = (y - h / 3) / (float)(h / 3);
+                    Color32 color = Color32.Lerp(
+                        new Color32(0, 0, 255, 255),      // Blue
+                        new Color32(255, 255, 0, 255),    // Yellow
+                        t
+                    );
+                    canvas.SetPixel(x, y, '█', color);
+                }
+            }
+
+            // Radial Magenta → Cyan gradient
+            int centerX = w / 2;
+            int centerY = 2 * h / 3 + h / 6;
+            int radius = Mathf.Min(w, h / 3) / 2;
+
+            for (int y = 2 * h / 3; y < h; y++)
+            {
+                for (int x = 0; x < w; x++)
+                {
+                    float dist = Vector2.Distance(new Vector2(x, y), new Vector2(centerX, centerY));
+                    float t = Mathf.Clamp01(dist / radius);
+                    Color32 color = Color32.Lerp(
+                        new Color32(255, 0, 255, 255),    // Magenta
+                        new Color32(0, 255, 255, 255),    // Cyan
+                        t
+                    );
+                    canvas.SetPixel(x, y, '█', color);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sunset scene with rich colors
+        /// </summary>
+        void RenderSunset()
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+
+            // Sky gradient (top to horizon)
+            Color32[] skyColors = new Color32[]
+            {
+                new Color32(20, 30, 80, 255),     // Dark blue (top)
+                new Color32(40, 50, 120, 255),    // Medium blue
+                new Color32(255, 140, 100, 255),  // Orange
+                new Color32(255, 100, 80, 255),   // Red-orange
+                new Color32(255, 60, 60, 255)     // Deep red (horizon)
+            };
+
+            for (int y = 0; y < h / 2; y++)
+            {
+                float skyT = y / (float)(h / 2);
+                int segmentIndex = Mathf.Min((int)(skyT * (skyColors.Length - 1)), skyColors.Length - 2);
+                float segmentT = (skyT * (skyColors.Length - 1)) - segmentIndex;
+                Color32 skyColor = Color32.Lerp(skyColors[segmentIndex], skyColors[segmentIndex + 1], segmentT);
+
+                for (int x = 0; x < w; x++)
+                {
+                    // Add cloud variation
+                    float noise = Mathf.PerlinNoise(x * 0.05f, y * 0.05f);
+                    Color32 finalColor = noise > 0.6f
+                        ? Color32.Lerp(skyColor, new Color32(255, 200, 180, 255), (noise - 0.6f) * 2f)
+                        : skyColor;
+
+                    canvas.SetPixel(x, y, '█', finalColor);
+                }
+            }
+
+            // Sun (glowing orb)
+            int sunX = w / 2;
+            int sunY = h / 3;
+            DrawColoredSun(sunX, sunY, 10);
+
+            // Ground silhouette
+            for (int y = h / 2; y < h; y++)
+            {
+                for (int x = 0; x < w; x++)
+                {
+                    // Dark silhouette with some variation
+                    float noise = Mathf.PerlinNoise(x * 0.1f, y * 0.1f);
+                    byte darkness = (byte)(20 + noise * 30);
+                    Color32 groundColor = new Color32(darkness, darkness, (byte)(darkness + 10), 255);
+
+                    canvas.SetPixel(x, y, '█', groundColor);
+                }
+            }
+        }
+
+        void DrawColoredSun(int centerX, int centerY, int radius)
+        {
+            for (int y = centerY - radius; y <= centerY + radius; y++)
+            {
+                for (int x = centerX - radius; x <= centerX + radius; x++)
+                {
+                    float dist = Vector2.Distance(new Vector2(x, y), new Vector2(centerX, centerY));
+
+                    if (dist <= radius)
+                    {
+                        float t = dist / radius;
+
+                        // Sun core colors
+                        Color32 core = new Color32(255, 255, 220, 255);    // Bright yellow-white
+                        Color32 mid = new Color32(255, 200, 100, 255);     // Orange
+                        Color32 outer = new Color32(255, 100, 50, 255);    // Red-orange
+
+                        Color32 sunColor;
+                        if (t < 0.5f)
+                        {
+                            sunColor = Color32.Lerp(core, mid, t * 2f);
+                        }
+                        else
+                        {
+                            sunColor = Color32.Lerp(mid, outer, (t - 0.5f) * 2f);
+                        }
+
+                        canvas.SetPixel(x, y, '█', sunColor);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Metallic surface with colored highlights
+        /// </summary>
+        void RenderMetallicSurface()
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+
+            for (int y = 0; y < h; y++)
+            {
+                for (int x = 0; x < w; x++)
+                {
+                    // Simulate lighting on metal
+                    float noise = Mathf.PerlinNoise(x * 0.1f, y * 0.1f);
+                    float lighting = Mathf.Sin(x * 0.05f) * 0.3f + 0.7f;
+
+                    // Base metal color (steel blue-gray)
+                    Color32 metalBase = new Color32(120, 130, 150, 255);
+                    Color32 highlight = new Color32(200, 210, 230, 255);
+                    Color32 shadow = new Color32(60, 65, 75, 255);
+
+                    Color32 finalColor;
+                    if (lighting > 0.8f)
+                    {
+                        finalColor = Color32.Lerp(metalBase, highlight, (lighting - 0.8f) * 5f);
+                    }
+                    else if (lighting < 0.6f)
+                    {
+                        finalColor = Color32.Lerp(shadow, metalBase, lighting / 0.6f);
+                    }
+                    else
+                    {
+                        finalColor = metalBase;
+                    }
+
+                    // Add noise variation
+                    finalColor.r = (byte)Mathf.Clamp(finalColor.r + (noise - 0.5f) * 20, 0, 255);
+                    finalColor.g = (byte)Mathf.Clamp(finalColor.g + (noise - 0.5f) * 20, 0, 255);
+                    finalColor.b = (byte)Mathf.Clamp(finalColor.b + (noise - 0.5f) * 20, 0, 255);
+
+                    canvas.SetPixel(x, y, '█', finalColor);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Animated fire effect with red/orange/yellow colors
+        /// </summary>
+        void RenderFire()
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+
+            for (int y = 0; y < h; y++)
+            {
+                for (int x = 0; x < w; x++)
+                {
+                    // Animated noise
+                    float noise = Mathf.PerlinNoise(x * 0.1f, y * 0.1f + Time.time * 2f);
+                    float intensity = 1f - (y / (float)h); // Fire is brighter at bottom
+
+                    intensity *= noise;
+
+                    Color32 fireColor;
+                    if (intensity > 0.7f)
+                    {
+                        // White-yellow (hottest)
+                        fireColor = Color32.Lerp(
+                            new Color32(255, 255, 100, 255),
+                            new Color32(255, 255, 255, 255),
+                            (intensity - 0.7f) * 3.3f
+                        );
+                    }
+                    else if (intensity > 0.4f)
+                    {
+                        // Yellow-orange
+                        fireColor = Color32.Lerp(
+                            new Color32(255, 100, 0, 255),
+                            new Color32(255, 255, 100, 255),
+                            (intensity - 0.4f) * 3.3f
+                        );
+                    }
+                    else if (intensity > 0.2f)
+                    {
+                        // Orange-red
+                        fireColor = Color32.Lerp(
+                            new Color32(200, 0, 0, 255),
+                            new Color32(255, 100, 0, 255),
+                            (intensity - 0.2f) * 5f
+                        );
+                    }
+                    else if (intensity > 0.05f)
+                    {
+                        // Dark red-black
+                        fireColor = Color32.Lerp(
+                            new Color32(20, 0, 0, 255),
+                            new Color32(200, 0, 0, 255),
+                            (intensity - 0.05f) * 6.7f
+                        );
+                    }
+                    else
+                    {
+                        fireColor = new Color32(0, 0, 0, 255);
+                    }
+
+                    canvas.SetPixel(x, y, '█', fireColor);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Animated water with blue/cyan colors
+        /// </summary>
+        void RenderWater()
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+
+            for (int y = 0; y < h; y++)
+            {
+                for (int x = 0; x < w; x++)
+                {
+                    // Wave animation
+                    float wave = Mathf.Sin(x * 0.2f + Time.time * 3f) * 0.5f + 0.5f;
+                    float depth = y / (float)h;
+
+                    // Deep water to shallow
+                    Color32 deepBlue = new Color32(10, 50, 100, 255);
+                    Color32 shallowBlue = new Color32(100, 180, 220, 255);
+
+                    Color32 waterColor = Color32.Lerp(shallowBlue, deepBlue, depth);
+
+                    // Add wave highlights
+                    if (wave > 0.7f)
+                    {
+                        Color32 highlight = new Color32(200, 240, 255, 255);
+                        waterColor = Color32.Lerp(waterColor, highlight, (wave - 0.7f) * 3.3f);
+                    }
+
+                    canvas.SetPixel(x, y, '≈', waterColor);  // Use wave symbol
+                }
+            }
+        }
+
+        /// <summary>
+        /// Animated rainbow spectrum
+        /// </summary>
+        void RenderRainbowSpectrum()
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+
+            for (int y = 0; y < h; y++)
+            {
+                for (int x = 0; x < w; x++)
+                {
+                    float hue = (x / (float)w + Time.time * 0.1f) % 1.0f;
+                    Color color = Color.HSVToRGB(hue, 1f, 1f);
+                    canvas.SetPixel(x, y, '█', color);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Photo-realistic scene with full color details
+        /// </summary>
+        void RenderPhotoRealistic()
+        {
+            int w = canvas.Width;
+            int h = canvas.Height;
+
+            // This demonstrates what a photograph would look like
+            // Each pixel sampled from original image and rendered as colored symbol
+
+            for (int y = 0; y < h; y++)
+            {
+                for (int x = 0; x < w; x++)
+                {
+                    // Simulate photo colors (would come from actual texture)
+                    float noiseR = Mathf.PerlinNoise(x * 0.01f, y * 0.01f);
+                    float noiseG = Mathf.PerlinNoise(x * 0.01f + 100, y * 0.01f + 100);
+                    float noiseB = Mathf.PerlinNoise(x * 0.01f + 200, y * 0.01f + 200);
+
+                    Color32 photoColor = new Color32(
+                        (byte)(noiseR * 255),
+                        (byte)(noiseG * 255),
+                        (byte)(noiseB * 255),
+                        255
+                    );
+
+                    canvas.SetPixel(x, y, '█', photoColor);
+                }
+            }
+        }
+    }
+}
