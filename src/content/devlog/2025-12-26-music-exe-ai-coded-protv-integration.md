@@ -12,7 +12,7 @@ The default ProTV playlist UI worked, but doesn't match the asthetic of Lower Le
 
 ### The Challenge
 
-The real challenge wasn't coding—it was picking a task that AI could actually *accomplish* with its "hands and eyes." This was the first real test of my [Full Stack AI Workflow](/devlog#entry-2025-12-07-full-stack-ai) architecture: could Claude Code, equipped with Unity MCP tools and custom Editor scripts, autonomously implement a complete feature?
+The real challenge wasn't coding, it was picking a task that AI could actually *accomplish* with its "hands and eyes." This was the first real test of my [Full Stack AI Workflow](/devlog#entry-2025-12-07-full-stack-ai) architecture: could Claude Code, equipped with Unity MCP tools and custom Editor scripts, autonomously implement a complete feature?
 
 ProTV integration was the perfect candidate:
 - **Well-documented API** ([ProTV 3.x Documentation](https://protv.dev/news/protv3-beta))
