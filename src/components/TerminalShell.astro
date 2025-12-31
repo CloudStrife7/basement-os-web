@@ -1,6 +1,6 @@
 ---
 interface Props {
-  activeSection?: 'home' | 'devlog' | 'skills' | 'support' | 'achievements' | 'roadmap';
+  activeSection?: 'home' | 'story' | 'devlog' | 'skills' | 'support' | 'achievements' | 'roadmap';
 }
 
 const { activeSection = 'home' } = Astro.props;
@@ -42,6 +42,9 @@ const { activeSection = 'home' } = Astro.props;
     <nav class="nav-menu active" id="nav-menu">
       <a href="/" class={`nav-btn ${activeSection === 'home' ? 'active' : ''}`}>
         <span class="type">&lt;BOOT&gt;</span> HOME
+      </a>
+      <a href="/story" class={`nav-btn ${activeSection === 'story' ? 'active' : ''}`}>
+        <span class="type">&lt;OSx&gt;</span> MY STORY
       </a>
       <a href="/devlog" class={`nav-btn ${activeSection === 'devlog' ? 'active' : ''}`}>
         <span class="type">&lt;LOG&gt;</span> DEVLOG
