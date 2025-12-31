@@ -1,0 +1,377 @@
+---
+/**
+ * V1 ACHIEVEMENTS - Easter Egg Chain Link #3
+ * A "corrupted" version of the achievements page
+ * The text continuously glitches and is never fully readable
+ * 
+ * Hidden within the chaos: clues to the remaining 580G
+ * LORE: The first player to reach 1000G unlocks something special
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="???">
+  <div class="corrupted-page" id="corrupted-page">
+    <header class="corrupted-header">
+      <h1 class="corrupted-title" id="title">
+        <span class="glitch-layer" data-text="ACHIEVEMENT SYSTEM v0.1">ACHIEVEMENT SYSTEM v0.1</span>
+      </h1>
+      <p class="corrupted-subtitle">[ LEGACY BUILD - CORRUPTED ]</p>
+    </header>
+
+    <main class="corrupted-content">
+      <div class="data-fragment" id="fragment-1">
+        <div class="fragment-header">RECOVERED DATA FRAGMENT #1</div>
+        <div class="fragment-body glitch-text">
+          <p>...additional achievements discovered in legacy code...</p>
+          <p>Total Gamerscore: <span class="highlight">1000G</span> (420G found, <span class="redacted">580G</span> remaining)</p>
+        </div>
+      </div>
+
+      <div class="data-fragment corrupted" id="fragment-2">
+        <div class="fragment-header">RECOVERED DATA FRAGMENT #2</div>
+        <div class="fragment-body glitch-text">
+          <pre class="code-block">
+// Hidden Achievement Keys - CLASSIFIED
+const HIDDEN_ACHIEVEMENTS = &#123;
+  "S3CR3T_K33P3R": &#123; points: 50, hint: "thr33 c0mm4nds" &#125;,
+  "4RCH430L0G1ST": &#123; points: 100, hint: "365 d4ys" &#125;,
+  "C0MPL3T10N1ST": &#123; points: 50, hint: "4ll st4nd4rd" &#125;,
+  "SP33DRUNN3R": &#123; points: 75, hint: "0n3 v1s1t" &#125;,
+  "S0C14L_BUTT3RFLY": &#123; points: 25, hint: "10 fr13nds" &#125;,
+  "CUR4T0R": &#123; points: 30, hint: "r4t3 g4m3s" &#125;,
+  "DJ_M4ST3R": &#123; points: 50, hint: "100 s0ngs" &#125;,
+  "N0ST4LG14": &#123; points: 50, hint: "N0v 22" &#125;,
+  "Y2K_SURV1V0R": &#123; points: 50, hint: "J4n 1" &#125;,
+  "SOURC3_D1V3R": &#123; points: 0, hint: "c0mm3nts" &#125;,
+  "C0NS0L3_C0WB0Y": &#123; points: 0, hint: "typ3 1t" &#125;,
+  "P4T13NC3": &#123; points: 0, hint: "w41t" &#125;
+&#125;;
+          </pre>
+        </div>
+      </div>
+
+      <div class="data-fragment heavily-corrupted" id="fragment-3">
+        <div class="fragment-header">RECOVERED DATA FRAGMENT #3</div>
+        <div class="fragment-body glitch-text">
+          <p class="warning">DATA INTEGRITY: 23%</p>
+          <p>F1rst t0 r34ch <span class="highlight">1000G</span>...</p>
+          <p>...unl0cks th3 <span class="redacted">GOLDEN TURTLE</span>...</p>
+          <p>...c0nt4ct: <span class="redacted">cloudstrife7</span> on D1sc0rd...</p>
+          <p>...pr00f r3qu1r3d...</p>
+        </div>
+      </div>
+
+      <div class="terminal-prompt">
+        <span class="prompt-symbol">&gt;</span>
+        <span class="prompt-text">MEMORY_DUMP_COMPLETE</span>
+        <span class="cursor">_</span>
+      </div>
+    </main>
+
+    <div class="noise-overlay"></div>
+    <div class="scanline-overlay"></div>
+  </div>
+</BaseLayout>
+
+<style>
+  .corrupted-page {
+    min-height: 100vh;
+    background: #050505;
+    color: #00ff00;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 20px;
+  }
+
+  .noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    z-index: 1000;
+    animation: noiseShift 0.1s infinite;
+  }
+
+  @keyframes noiseShift {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(-1px, 1px); }
+    100% { transform: translate(1px, -1px); }
+  }
+
+  .scanline-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.1) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    z-index: 999;
+  }
+
+  .corrupted-header {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .corrupted-title {
+    font-size: 2rem;
+    margin: 0;
+    position: relative;
+  }
+
+  .glitch-layer {
+    position: relative;
+    display: inline-block;
+    animation: titleGlitch 3s infinite;
+  }
+
+  .glitch-layer::before,
+  .glitch-layer::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .glitch-layer::before {
+    color: #ff0000;
+    animation: glitchLeft 2s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  }
+
+  .glitch-layer::after {
+    color: #00ffff;
+    animation: glitchRight 2.5s infinite;
+    clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  }
+
+  @keyframes titleGlitch {
+    0%, 90%, 100% { opacity: 1; }
+    92% { opacity: 0.8; transform: translateX(-2px); }
+    94% { opacity: 1; transform: translateX(2px); }
+    96% { opacity: 0.9; transform: translateX(0); }
+  }
+
+  @keyframes glitchLeft {
+    0%, 80%, 100% { transform: translateX(0); }
+    82% { transform: translateX(-3px); }
+    84% { transform: translateX(3px); }
+    86% { transform: translateX(-2px); }
+  }
+
+  @keyframes glitchRight {
+    0%, 85%, 100% { transform: translateX(0); }
+    87% { transform: translateX(2px); }
+    89% { transform: translateX(-3px); }
+    91% { transform: translateX(1px); }
+  }
+
+  .corrupted-subtitle {
+    color: #ff4444;
+    font-size: 0.9rem;
+    animation: subtitleBlink 4s infinite;
+  }
+
+  @keyframes subtitleBlink {
+    0%, 95%, 100% { opacity: 1; }
+    96% { opacity: 0.3; }
+    97% { opacity: 0.7; }
+    98% { opacity: 0.4; }
+  }
+
+  .corrupted-content {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .data-fragment {
+    margin-bottom: 30px;
+    border: 1px solid #00ff00;
+    background: rgba(0, 255, 0, 0.02);
+    position: relative;
+  }
+
+  .data-fragment.corrupted {
+    border-color: #ffaa00;
+  }
+
+  .data-fragment.heavily-corrupted {
+    border-color: #ff4444;
+    animation: fragmentShake 5s infinite;
+  }
+
+  @keyframes fragmentShake {
+    0%, 95%, 100% { transform: translateX(0); }
+    96% { transform: translateX(-2px); }
+    97% { transform: translateX(2px); }
+    98% { transform: translateX(-1px); }
+  }
+
+  .fragment-header {
+    padding: 10px 15px;
+    background: rgba(0, 255, 0, 0.1);
+    border-bottom: 1px solid #00ff00;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  .data-fragment.corrupted .fragment-header {
+    background: rgba(255, 170, 0, 0.1);
+    border-color: #ffaa00;
+    color: #ffaa00;
+  }
+
+  .data-fragment.heavily-corrupted .fragment-header {
+    background: rgba(255, 68, 68, 0.1);
+    border-color: #ff4444;
+    color: #ff4444;
+  }
+
+  .fragment-body {
+    padding: 15px;
+    line-height: 1.8;
+  }
+
+  .fragment-body p {
+    margin: 0 0 10px;
+  }
+
+  .glitch-text {
+    animation: textCorrupt 0.5s infinite;
+  }
+
+  @keyframes textCorrupt {
+    0%, 90%, 100% { filter: blur(0); opacity: 1; }
+    92% { filter: blur(1px); opacity: 0.9; }
+    94% { filter: blur(0.5px); opacity: 0.95; }
+  }
+
+  .code-block {
+    background: #0a0a0a;
+    padding: 15px;
+    overflow-x: auto;
+    font-size: 0.8rem;
+    border: 1px solid #333;
+    animation: codeFlicker 8s infinite;
+  }
+
+  @keyframes codeFlicker {
+    0%, 85%, 100% { opacity: 1; }
+    87% { opacity: 0.7; }
+    89% { opacity: 0.9; }
+    91% { opacity: 0.6; }
+    93% { opacity: 1; }
+  }
+
+  .highlight {
+    color: #00ffff;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  }
+
+  .redacted {
+    background: #00ff00;
+    color: #00ff00;
+    animation: redactedPulse 3s infinite;
+    padding: 0 4px;
+  }
+
+  .redacted:hover {
+    background: transparent;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+  }
+
+  @keyframes redactedPulse {
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 0.7; }
+  }
+
+  .warning {
+    color: #ff4444;
+    animation: warningBlink 1s infinite;
+  }
+
+  @keyframes warningBlink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0.5; }
+  }
+
+  .terminal-prompt {
+    margin-top: 40px;
+    padding: 20px;
+    border-top: 1px solid #333;
+    font-size: 1rem;
+  }
+
+  .prompt-symbol {
+    color: #00ff00;
+    margin-right: 10px;
+  }
+
+  .prompt-text {
+    color: #00aa00;
+  }
+
+  .cursor {
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    'use strict';
+
+    function init() {
+      console.log('%cMEMORY CORRUPTION DETECTED', 'color: #ff4444; font-size: 16px;');
+      console.log('%cAttempting data recovery...', 'color: #ffaa00;');
+      
+      setTimeout(function() {
+        console.log('%cPARTIAL RECOVERY SUCCESSFUL', 'color: #00ff00; font-size: 14px;');
+        console.log('%cHidden achievements detected: 12', 'color: #00ff00;');
+        console.log('%cTotal hidden Gamerscore: 580G', 'color: #00ff00;');
+        console.log('%cCombined with standard 420G = 1000G', 'color: #00ff00;');
+        console.log('');
+        console.log('%cFirst to 1000G wins the GOLDEN TURTLE', 'color: #ffaa00;');
+        console.log('%cContact cloudstrife7 on Discord with proof', 'color: #ffaa00;');
+      }, 2000);
+
+      setInterval(function() {
+        if (Math.random() < 0.1) {
+          document.body.style.filter = 'hue-rotate(' + (Math.random() * 20 - 10) + 'deg)';
+          setTimeout(function() {
+            document.body.style.filter = 'none';
+          }, 100);
+        }
+      }, 3000);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>

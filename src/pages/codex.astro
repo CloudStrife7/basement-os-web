@@ -1,0 +1,209 @@
+---
+/**
+ * THE CODEX - Lore Journal
+ * 
+ * A collection of handwritten journal entries from "Z"
+ * Crumpled paper aesthetic, handwritten font
+ * 
+ * Entry 1: September 2004 - On breaking games
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="The Codex">
+  <div class="journal-page">
+    <!-- Paper texture overlay -->
+    <div class="paper-texture"></div>
+    
+    <!-- Journal content -->
+    <article class="journal-entry">
+      <header class="entry-header">
+        <span class="entry-date">September 2004</span>
+      </header>
+
+      <div class="entry-content">
+        <p>
+          Look, this isn't some new idea. People have been breaking games in ways they weren't meant to run since the 1980's. Tilt a cartridge just right, and you don't just glitch the game—you make it start reading memory it was never supposed to. That's the real trick. It's not about what the hardware was designed to do, it's about what it can do when you push it past its limits.
+        </p>
+
+        <p>
+          Old consoles are perfect for this. No modern security patches, no cloud syncing, no hidden firmware updates trying to keep everything locked down. Just raw circuits, reading and executing whatever they're given. And when they start pulling from memory addresses they shouldn't be? That's when things get interesting.
+        </p>
+
+        <p>
+          We already know certain games act weird when pushed in just the right way. Speedrunners have walked into the end credits of games by rewriting code on the fly, just by moving in specific ways. MissingNo in Pokémon exists because the game expects data where there is none, so it just makes something up. What if that doesn't just happen inside the game? What if, for just a few frames, something outside of the game is reading back?
+        </p>
+      </div>
+
+      <footer class="entry-signature">
+        <span class="signature">Z</span>
+      </footer>
+    </article>
+
+    <!-- Navigation hint -->
+    <div class="journal-nav">
+      <span class="nav-hint">[ Entry 1 of ? ]</span>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
+
+  .journal-page {
+    min-height: 100vh;
+    background: #e8e4df;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  /* Paper texture - crumpled effect */
+  .paper-texture {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: 
+      /* Subtle noise */
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E"),
+      /* Subtle fold lines */
+      linear-gradient(135deg, transparent 40%, rgba(0,0,0,0.02) 45%, transparent 50%),
+      linear-gradient(225deg, transparent 40%, rgba(0,0,0,0.02) 45%, transparent 50%),
+      linear-gradient(315deg, transparent 40%, rgba(0,0,0,0.02) 45%, transparent 50%),
+      linear-gradient(45deg, transparent 40%, rgba(0,0,0,0.02) 45%, transparent 50%);
+    z-index: 1;
+  }
+
+  /* Journal Entry */
+  .journal-entry {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    padding: 60px 50px;
+    background: 
+      /* Paper grain */
+      linear-gradient(90deg, rgba(0,0,0,0.01) 1px, transparent 1px),
+      linear-gradient(rgba(0,0,0,0.01) 1px, transparent 1px),
+      /* Base color */
+      #f5f2ed;
+    background-size: 20px 20px, 20px 20px, 100% 100%;
+    box-shadow: 
+      0 2px 10px rgba(0, 0, 0, 0.1),
+      0 0 40px rgba(0, 0, 0, 0.05),
+      /* Slight warp effect */
+      inset 0 0 100px rgba(0, 0, 0, 0.02);
+    font-family: 'Caveat', cursive;
+    color: #2c2c2c;
+    line-height: 1.7;
+    /* Slight rotation for natural feel */
+    transform: rotate(-0.5deg);
+  }
+
+  .entry-header {
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .entry-date {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #444;
+  }
+
+  .entry-content {
+    font-size: 1.5rem;
+  }
+
+  .entry-content p {
+    margin: 0 0 25px;
+    text-indent: 0;
+  }
+
+  .entry-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .entry-signature {
+    margin-top: 40px;
+    text-align: right;
+    padding-right: 20px;
+  }
+
+  .signature {
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-style: italic;
+    color: #333;
+    /* Slight flourish effect */
+    display: inline-block;
+    transform: rotate(-5deg);
+  }
+
+  /* Navigation */
+  .journal-nav {
+    position: relative;
+    z-index: 2;
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  .nav-hint {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: #888;
+    letter-spacing: 2px;
+  }
+
+  /* Ink smudge effect on some letters - subtle */
+  .entry-content p::first-letter {
+    font-size: 1.1em;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .journal-entry {
+      padding: 40px 30px;
+    }
+
+    .entry-content {
+      font-size: 1.3rem;
+    }
+
+    .signature {
+      font-size: 2rem;
+    }
+  }
+
+  /* Scan line animation on hover - subtle hint */
+  .journal-entry:hover {
+    animation: paperShift 10s ease-in-out infinite;
+  }
+
+  @keyframes paperShift {
+    0%, 100% { transform: rotate(-0.5deg); }
+    50% { transform: rotate(-0.3deg); }
+  }
+</style>
+
+<script is:inline>
+  /**
+   * THE CODEX - Journal Page
+   * 
+   * Easter egg: The signature "Z" hints at more entries
+   * Console message for explorers
+   */
+  (function() {
+    console.log('%c📜 THE CODEX', 'color: #8b4513; font-size: 16px; font-weight: bold;');
+    console.log('%cSeptember 2004 - Z\'s first journal entry', 'color: #666;');
+    console.log('%c"What if something outside of the game is reading back?"', 'color: #888; font-style: italic;');
+    console.log('');
+    console.log('%cMore entries exist. Keep looking.', 'color: #444;');
+  })();
+</script>

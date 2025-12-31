@@ -1,0 +1,631 @@
+---
+/**
+ * V1 ACHIEVEMENTS v2 - 2000s Vintage Website Aesthetic
+ * 
+ * Design inspiration: GeoCities, Angelfire, early web
+ * - Beveled buttons and frames
+ * - Animated GIF energy (CSS-recreated)
+ * - Table-based layouts (nostalgic)
+ * - Visitor counter style
+ * - "Under Construction" vibes
+ * - Sparkly/glitter effects
+ * - Bright colors, gradients
+ * - Comic Sans energy (but tasteful)
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="~*~ LOWER LEVEL ACHIEVEMENTS ~*~">
+  <div class="retro-page">
+    <!-- Starfield background -->
+    <div class="starfield" id="starfield"></div>
+
+    <!-- Main Content Frame -->
+    <div class="main-frame">
+      <!-- Header with sparkle text -->
+      <header class="retro-header">
+        <div class="marquee-container">
+          <div class="marquee-text">★ WELCOME TO THE LOWER LEVEL ACHIEVEMENT DATABASE ★ LAST UPDATED: DEC 2005 ★ BEST VIEWED IN 800x600 ★</div>
+        </div>
+        <h1 class="sparkle-text">~*~ SECRET ACHIEVEMENTS ~*~</h1>
+        <p class="subtitle">[ RECOVERED FROM LEGACY ARCHIVE ]</p>
+      </header>
+
+      <!-- Under Construction Banner -->
+      <div class="construction-banner">
+        <span class="blink">⚠</span> PAGE UNDER CONSTRUCTION <span class="blink">⚠</span>
+      </div>
+
+      <!-- Visitor Counter -->
+      <div class="visitor-counter">
+        <span class="counter-label">YOU ARE VISITOR #</span>
+        <span class="counter-digits" id="visitor-count">000000</span>
+      </div>
+
+      <!-- Main Content Table -->
+      <div class="content-table">
+        <table class="achievement-table">
+          <thead>
+            <tr>
+              <th class="th-icon">🏆</th>
+              <th class="th-name">ACHIEVEMENT NAME</th>
+              <th class="th-points">POINTS</th>
+              <th class="th-hint">HINT</th>
+              <th class="th-status">STATUS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row-secret">
+              <td>🔒</td>
+              <td class="name-cell">S3CR3T K33P3R</td>
+              <td class="points-cell">50G</td>
+              <td class="hint-cell">Find all 3 terminal commands</td>
+              <td class="status-locked">???</td>
+            </tr>
+            <tr class="row-epic">
+              <td>🏛️</td>
+              <td class="name-cell">4RCH430L0G1ST</td>
+              <td class="points-cell">100G</td>
+              <td class="hint-cell">Visit the basement 365 days</td>
+              <td class="status-locked">???</td>
+            </tr>
+            <tr class="row-secret">
+              <td>✨</td>
+              <td class="name-cell">C0MPL3T10N1ST</td>
+              <td class="points-cell">50G</td>
+              <td class="hint-cell">Unlock all standard achievements</td>
+              <td class="status-locked">???</td>
+            </tr>
+            <tr class="row-rare">
+              <td>⚡</td>
+              <td class="name-cell">SP33DRUNN3R</td>
+              <td class="points-cell">75G</td>
+              <td class="hint-cell">All time achievements in 1 visit</td>
+              <td class="status-locked">???</td>
+            </tr>
+            <tr class="row-secret">
+              <td>🦋</td>
+              <td class="name-cell">S0C14L BUTT3RFLY</td>
+              <td class="points-cell">25G</td>
+              <td class="hint-cell">10 unique visitors in one day</td>
+              <td class="status-locked">???</td>
+            </tr>
+            <tr class="row-rare">
+              <td>🎮</td>
+              <td class="name-cell">CUR4T0R</td>
+              <td class="points-cell">30G</td>
+              <td class="hint-cell">Rate all arcade games</td>
+              <td class="status-locked">???</td>
+            </tr>
+            <tr class="row-secret">
+              <td>🎵</td>
+              <td class="name-cell">DJ M4ST3R</td>
+              <td class="points-cell">50G</td>
+              <td class="hint-cell">Play 100 songs on music.exe</td>
+              <td class="status-locked">???</td>
+            </tr>
+            <tr class="row-epic">
+              <td>📅</td>
+              <td class="name-cell">N0ST4LG14 TR1P</td>
+              <td class="points-cell">50G</td>
+              <td class="hint-cell">Visit on November 22</td>
+              <td class="status-locked">???</td>
+            </tr>
+            <tr class="row-epic">
+              <td>🎆</td>
+              <td class="name-cell">Y2K SURV1V0R</td>
+              <td class="points-cell">50G</td>
+              <td class="hint-cell">Visit on January 1st</td>
+              <td class="status-locked">???</td>
+            </tr>
+            <tr class="row-meta">
+              <td>💻</td>
+              <td class="name-cell">SOURC3 D1V3R</td>
+              <td class="points-cell">0G</td>
+              <td class="hint-cell">Read all the code comments</td>
+              <td class="status-unlocked">✓</td>
+            </tr>
+            <tr class="row-meta">
+              <td>⌨️</td>
+              <td class="name-cell">C0NS0L3 C0WB0Y</td>
+              <td class="points-cell">0G</td>
+              <td class="hint-cell">Type 'gunter()' in console</td>
+              <td class="status-locked">???</td>
+            </tr>
+            <tr class="row-meta">
+              <td>⏳</td>
+              <td class="name-cell">P4T13NC3</td>
+              <td class="points-cell">0G</td>
+              <td class="hint-cell">Wait 39 seconds on egg-hunt</td>
+              <td class="status-unlocked">✓</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr class="total-row">
+              <td colspan="2">TOTAL HIDDEN GAMERSCORE:</td>
+              <td class="total-points">580G</td>
+              <td colspan="2"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <!-- Prize Section -->
+      <div class="prize-section">
+        <div class="prize-frame">
+          <h2 class="prize-title">🐢 THE GOLDEN TURTLE 🐢</h2>
+          <p class="prize-text">First player to reach <span class="highlight">1000G</span> wins a REAL prize!</p>
+          <p class="prize-text">Combined: 420G (standard) + 580G (hidden) = <span class="highlight">1000G</span></p>
+          <div class="prize-contact">
+            <p>Contact: <span class="email-obfuscate">cloudstrife7 [at] discord</span></p>
+            <p class="small-text">Proof required. One winner only.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guestbook Link -->
+      <div class="guestbook-section">
+        <a href="/devlog" class="guestbook-button">📝 SIGN THE GUESTBOOK (Devlog)</a>
+      </div>
+
+      <!-- Footer -->
+      <footer class="retro-footer">
+        <div class="webrings">
+          <span class="webring-nav">&lt;&lt; PREV</span>
+          <span class="webring-name">[ BASEMENT OS WEBRING ]</span>
+          <span class="webring-nav">NEXT &gt;&gt;</span>
+        </div>
+        <p class="footer-text">Made with 💚 and AI | Best viewed in Netscape Navigator 4.0</p>
+        <p class="footer-text">© 2005-2025 CloudStrife7 | All Rights Reserved</p>
+      </footer>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* === 2000s RETRO AESTHETIC === */
+  
+  @import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
+
+  .retro-page {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #000033 0%, #000066 50%, #000033 100%);
+    font-family: 'Verdana', 'Arial', sans-serif;
+    color: #00ff00;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Starfield Background */
+  .starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Main Frame - beveled border look */
+  .main-frame {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #1a1a4a 0%, #0a0a2a 100%);
+    border: 3px outset #6666cc;
+    box-shadow: 
+      inset 2px 2px 0 #9999ff,
+      inset -2px -2px 0 #333366,
+      0 0 20px rgba(0, 255, 0, 0.2);
+  }
+
+  /* Header */
+  .retro-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* Marquee */
+  .marquee-container {
+    background: #000;
+    border: 2px inset #333;
+    padding: 5px 0;
+    overflow: hidden;
+    margin-bottom: 15px;
+  }
+
+  .marquee-text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+    color: #ffff00;
+    font-size: 12px;
+    font-family: 'VT323', monospace;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* Sparkle Text */
+  .sparkle-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(14px, 3vw, 24px);
+    color: #ff00ff;
+    text-shadow: 
+      0 0 10px #ff00ff,
+      0 0 20px #ff00ff,
+      0 0 30px #ff00ff,
+      2px 2px 0 #00ffff;
+    animation: sparkle 1s ease-in-out infinite alternate;
+    margin: 0;
+  }
+
+  @keyframes sparkle {
+    0% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 2px 2px 0 #00ffff; }
+    100% { text-shadow: 0 0 20px #00ffff, 0 0 30px #ff00ff, 2px 2px 0 #ff00ff; }
+  }
+
+  .subtitle {
+    color: #00ff00;
+    font-size: 12px;
+    font-family: 'VT323', monospace;
+    letter-spacing: 2px;
+  }
+
+  /* Under Construction */
+  .construction-banner {
+    background: repeating-linear-gradient(
+      45deg,
+      #ffcc00,
+      #ffcc00 10px,
+      #000 10px,
+      #000 20px
+    );
+    color: #000;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px;
+    text-align: center;
+    margin: 15px 0;
+    border: 2px solid #000;
+  }
+
+  .blink {
+    animation: blink 0.5s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Visitor Counter */
+  .visitor-counter {
+    text-align: center;
+    margin: 15px 0;
+    padding: 10px;
+    background: #000;
+    border: 2px inset #666;
+  }
+
+  .counter-label {
+    color: #00ffff;
+    font-size: 12px;
+  }
+
+  .counter-digits {
+    font-family: 'VT323', monospace;
+    font-size: 24px;
+    color: #ff0000;
+    background: #111;
+    padding: 5px 15px;
+    border: 1px inset #333;
+    letter-spacing: 3px;
+    margin-left: 10px;
+  }
+
+  /* Achievement Table */
+  .content-table {
+    margin: 20px 0;
+    overflow-x: auto;
+  }
+
+  .achievement-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    background: #0a0a2a;
+  }
+
+  .achievement-table th {
+    background: linear-gradient(180deg, #4444aa 0%, #222266 100%);
+    color: #fff;
+    padding: 10px 8px;
+    border: 2px outset #6666cc;
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+  }
+
+  .achievement-table td {
+    padding: 8px;
+    border: 1px solid #333366;
+    vertical-align: middle;
+  }
+
+  .achievement-table tbody tr:hover {
+    background: rgba(0, 255, 0, 0.1);
+  }
+
+  .row-secret { color: #00ff00; }
+  .row-rare { color: #00ffff; }
+  .row-epic { color: #ff00ff; }
+  .row-meta { color: #888; }
+
+  .name-cell {
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  .points-cell {
+    color: #ffff00;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .hint-cell {
+    color: #aaa;
+    font-style: italic;
+    font-size: 11px;
+  }
+
+  .status-locked {
+    color: #ff4444;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .status-unlocked {
+    color: #00ff00;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00ff00;
+  }
+
+  .total-row {
+    background: #222;
+    font-weight: bold;
+    color: #ffff00;
+  }
+
+  .total-points {
+    font-size: 18px;
+    color: #ff00ff;
+    text-shadow: 0 0 10px #ff00ff;
+  }
+
+  /* Prize Section */
+  .prize-section {
+    margin: 30px 0;
+  }
+
+  .prize-frame {
+    background: linear-gradient(135deg, #330033 0%, #660066 50%, #330033 100%);
+    border: 3px double #ff00ff;
+    padding: 20px;
+    text-align: center;
+    animation: prizePulse 2s ease-in-out infinite;
+  }
+
+  @keyframes prizePulse {
+    0%, 100% { box-shadow: 0 0 10px #ff00ff; }
+    50% { box-shadow: 0 0 30px #ff00ff, 0 0 50px #00ffff; }
+  }
+
+  .prize-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 18px;
+    color: #ffcc00;
+    text-shadow: 2px 2px 0 #ff6600;
+    margin: 0 0 15px;
+    animation: bounce 0.5s ease infinite alternate;
+  }
+
+  @keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-3px); }
+  }
+
+  .prize-text {
+    color: #fff;
+    margin: 10px 0;
+  }
+
+  .highlight {
+    color: #00ffff;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00ffff;
+  }
+
+  .prize-contact {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #ff00ff;
+  }
+
+  .email-obfuscate {
+    color: #00ff00;
+    font-family: 'VT323', monospace;
+  }
+
+  .small-text {
+    font-size: 10px;
+    color: #888;
+  }
+
+  /* Guestbook Button */
+  .guestbook-section {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .guestbook-button {
+    display: inline-block;
+    padding: 10px 30px;
+    background: linear-gradient(180deg, #44aa44 0%, #228822 50%, #116611 100%);
+    border: 3px outset #66cc66;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.1s;
+  }
+
+  .guestbook-button:hover {
+    border-style: inset;
+    background: linear-gradient(180deg, #66cc66 0%, #44aa44 50%, #228822 100%);
+  }
+
+  .guestbook-button:active {
+    transform: translateY(2px);
+  }
+
+  /* Footer */
+  .retro-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px groove #666;
+  }
+
+  .webrings {
+    margin-bottom: 15px;
+  }
+
+  .webring-nav {
+    color: #00ffff;
+    cursor: pointer;
+    padding: 0 10px;
+  }
+
+  .webring-nav:hover {
+    text-decoration: underline;
+  }
+
+  .webring-name {
+    color: #ff00ff;
+    font-family: 'VT323', monospace;
+  }
+
+  .footer-text {
+    font-size: 10px;
+    color: #666;
+    margin: 5px 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .main-frame {
+      margin: 10px;
+      padding: 10px;
+    }
+
+    .sparkle-text {
+      font-size: 12px;
+    }
+
+    .achievement-table {
+      font-size: 10px;
+    }
+
+    .prize-title {
+      font-size: 14px;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    'use strict';
+
+    // Create starfield
+    function createStarfield() {
+      const container = document.getElementById('starfield');
+      if (!container) return;
+
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.style.cssText = `
+          position: absolute;
+          width: ${Math.random() * 3 + 1}px;
+          height: ${Math.random() * 3 + 1}px;
+          background: white;
+          border-radius: 50%;
+          left: ${Math.random() * 100}%;
+          top: ${Math.random() * 100}%;
+          animation: twinkle ${Math.random() * 3 + 1}s ease-in-out infinite;
+          opacity: ${Math.random() * 0.5 + 0.5};
+        `;
+        container.appendChild(star);
+      }
+
+      // Add twinkle animation
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 1; }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    // Animate visitor counter
+    function animateCounter() {
+      const counter = document.getElementById('visitor-count');
+      if (!counter) return;
+
+      let count = 0;
+      const target = 1337; // l33t
+      const duration = 2000;
+      const increment = target / (duration / 50);
+
+      const interval = setInterval(() => {
+        count += increment;
+        if (count >= target) {
+          count = target;
+          clearInterval(interval);
+        }
+        counter.textContent = String(Math.floor(count)).padStart(6, '0');
+      }, 50);
+    }
+
+    // Console easter eggs
+    function initConsole() {
+      console.log('%c★ WELCOME TO THE RETRO ZONE ★', 'color: #ff00ff; font-size: 20px; font-family: monospace;');
+      console.log('%cYou found the vintage achievement archive!', 'color: #00ff00;');
+      console.log('%cEstablished 2005. Never updated. Perfect.', 'color: #00ffff;');
+      console.log('');
+      console.log('%c🐢 The turtle approves of your dedication.', 'font-size: 16px;');
+    }
+
+    function init() {
+      createStarfield();
+      animateCounter();
+      initConsole();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
