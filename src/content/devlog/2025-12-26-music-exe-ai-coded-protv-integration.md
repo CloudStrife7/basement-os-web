@@ -43,7 +43,7 @@ This proves the viability of **full closed-loop autonomous development** for non
 
 1. **AI as Workflow Architect** — The 90/10 split is real. AI handles the bulk of implementation while I focus on architecture decisions, debugging edge cases, and validation.
 
-2. **Reusable Agent Patterns** — The ProTV prompt I created isn't throwaway. It becomes a [reusable agent/skill](https://github.com/CloudStrife7/basement-os-web/blob/main/docs/agents/protv-integration.md) for future ProTV integrations. Each solved problem compounds into institutional knowledge.
+2. **Reusable Agent Patterns** — The ProTV prompt I created isn't throwaway. It becomes a [reusable agent/skill](/skills#protv-integration) for future ProTV integrations. Each solved problem compounds into institutional knowledge.
 
 3. **Scalable Approach** — If MUSIC.EXE works, the same pattern applies to other Basement OS apps: identify scope, create domain-specific prompts, let Claude execute.
 
