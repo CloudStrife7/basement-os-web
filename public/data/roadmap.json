@@ -1,12 +1,21 @@
 {
-  "generated_at": "2026-01-01T02:31:18Z",
+  "generated_at": "2026-01-01T06:45:12Z",
   "issues": [
     {
+      "number": 161,
+      "title": "Add coplay unity-mcp and link to tech stack on website",
+      "state": "open",
+      "created_at": "2026-01-01T02:57:33Z",
+      "updated_at": "2026-01-01T02:57:33Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
       "number": 160,
-      "title": "feat: Dynamic Rain Visibility + Animated Blinds System",
+      "title": "feat: Dynamic Rain Visibility + Blinds Toggle System",
       "state": "open",
       "created_at": "2025-12-31T22:07:17Z",
-      "updated_at": "2025-12-31T22:07:17Z",
+      "updated_at": "2026-01-01T04:47:37Z",
       "milestone": null,
       "labels": [
         {
@@ -135,20 +144,6 @@
       "state": "open",
       "created_at": "2025-12-31T02:19:02Z",
       "updated_at": "2025-12-31T03:49:24Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        }
-      ]
-    },
-    {
-      "number": 153,
-      "title": "Fix GITHUB Page so it links to the existing remote content system to fetch live issues from a hosted JSON/Markdown file.",
-      "state": "open",
-      "created_at": "2025-12-31T02:15:54Z",
-      "updated_at": "2025-12-31T03:50:41Z",
       "milestone": null,
       "labels": [
         {
@@ -1474,6 +1469,21 @@
     }
   ],
   "closed": [
+    {
+      "number": 153,
+      "title": "Fix GITHUB Page so it links to the existing remote content system to fetch live issues from a hosted JSON/Markdown file.",
+      "state": "closed",
+      "created_at": "2025-12-31T02:15:54Z",
+      "updated_at": "2026-01-01T05:48:17Z",
+      "closed_at": "2026-01-01T05:48:17Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
+    },
     {
       "number": 117,
       "title": "Decision: Symbolic Pixel Rendering vs Traditional Unity Sprites for Arcade Games",
