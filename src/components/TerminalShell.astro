@@ -134,6 +134,55 @@ const { activeSection = 'home' } = Astro.props;
   <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
 </div>
 
+<!-- Scroll to Top Button -->
+<button id="scroll-to-top" class="scroll-top-btn" aria-label="Scroll to top">
+  <span class="scroll-arrow">▲</span>
+</button>
+
+<style>
+  /* Scroll to Top Button */
+  .scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 44px;
+    height: 44px;
+    background: var(--accent-primary);
+    border: none;
+    color: #000;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
+    z-index: 1000;
+    font-family: var(--font-mono);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .scroll-top-btn .scroll-arrow {
+    display: block;
+    margin-bottom: 4px; /* Shift arrow up */
+  }
+
+  .scroll-top-btn.visible {
+    opacity: 0.25;
+    visibility: visible;
+  }
+
+  .scroll-top-btn.visible:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .scroll-top-btn:active {
+    transform: scale(0.95);
+  }
+</style>
+
 <script>
   // Boot Sequence Configuration
   const BOOT_SEQUENCE = [
@@ -590,6 +639,29 @@ const { activeSection = 'home' } = Astro.props;
           if (e.key === 'Escape') closeLightbox();
           if (e.key === 'ArrowLeft') showPrevImage();
           if (e.key === 'ArrowRight') showNextImage();
+      });
+  });
+
+  // Scroll to Top Button
+  document.addEventListener("astro:page-load", function() {
+      const scrollBtn = document.getElementById('scroll-to-top');
+      if (!scrollBtn) return;
+
+      const SCROLL_THRESHOLD = 200;
+
+      window.addEventListener('scroll', function() {
+          if (window.scrollY > SCROLL_THRESHOLD) {
+              scrollBtn.classList.add('visible');
+          } else {
+              scrollBtn.classList.remove('visible');
+          }
+      });
+
+      scrollBtn.addEventListener('click', function() {
+          window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+          });
       });
   });
 </script>

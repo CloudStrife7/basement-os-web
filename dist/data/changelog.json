@@ -1,0 +1,319 @@
+{
+  "version": "1.0",
+  "generated": "2026-01-01T06:22:59.908825Z",
+  "formatting": {
+    "dividerWidth": 45,
+    "dividerChar": "═",
+    "sectionDividerChar": "─",
+    "indentSpaces": 3,
+    "bulletChar": "•"
+  },
+  "releases": [
+    {
+      "version": "1.5.1",
+      "title": "DT_REMOTECONTENT V2 ENHANCEMENTS",
+      "date": "2026-01-01",
+      "featured": false,
+      "sections": [
+        {
+          "icon": "✨",
+          "title": "New Feature",
+          "items": [
+            "DT_RemoteContent v2 enhancements +\n     workflow fix"
+          ]
+        }
+      ],
+      "commits": [
+        {
+          "date": "2026-01-01",
+          "type": "feat",
+          "message": "DT_RemoteContent v2 enhancements + workflow fix",
+          "body": "- Enhanced DT_RemoteContent.cs with expanded remote content support"
+        }
+      ]
+    },
+    {
+      "version": "1.5.2",
+      "title": "ISSUE #153 REMOTE",
+      "date": "2025-12-31",
+      "featured": false,
+      "sections": [
+        {
+          "icon": "✨",
+          "title": "New Feature",
+          "items": [
+            "Issue #153 remote content wiring + URL\n     migration + ROADMAP tab"
+          ]
+        }
+      ],
+      "commits": [
+        {
+          "date": "2025-12-31",
+          "type": "feat",
+          "message": "Issue #153 remote content wiring + URL migration + ROADMAP tab",
+          "body": "## Changes"
+        }
+      ]
+    },
+    {
+      "version": "1.5.2",
+      "title": "MERGE BRANCH 'FEAT/ROADMAP-SYNC-WORKFLOW'",
+      "date": "2025-12-29",
+      "featured": false,
+      "sections": [
+        {
+          "icon": "🔧",
+          "title": "Updates",
+          "items": [
+            "Merge branch\n     'feat/roadmap-sync-workflow' into\n     Restructure",
+            "Merge pull request #149 from\n     CloudStrife7/feat/roadmap-sync-workflow"
+          ]
+        },
+        {
+          "icon": "✨",
+          "title": "New Feature",
+          "items": [
+            "add milestone and label colors to\n     roadmap JSON",
+            "add GitHub Action to sync roadmap to\n     website"
+          ]
+        },
+        {
+          "icon": "🐛",
+          "title": "Bug Fixes",
+          "items": [
+            "improve roadmap sync with pagination,\n     error handling, and scheduling",
+            "use curl instead of gh CLI for API calls",
+            "use ROADMAP_SYNC_PAT for both repos",
+            "checkout current repo first for\n     GITHUB_TOKEN context",
+            "use WEB_REPO_PAT for issue access\n     permissions"
+          ]
+        }
+      ],
+      "commits": [
+        {
+          "date": "2025-12-29",
+          "type": "chore",
+          "message": "Merge branch 'feat/roadmap-sync-workflow' into Restructure",
+          "body": ""
+        },
+        {
+          "date": "2025-12-29",
+          "type": "feat",
+          "message": "add milestone and label colors to roadmap JSON",
+          "body": "- Include milestone name per issue for status display"
+        },
+        {
+          "date": "2025-12-29",
+          "type": "fix",
+          "message": "improve roadmap sync with pagination, error handling, and scheduling",
+          "body": "- Add pagination to fetch ALL issues/milestones (not just first page)"
+        },
+        {
+          "date": "2025-12-29",
+          "type": "chore",
+          "message": "Merge pull request #149 from CloudStrife7/feat/roadmap-sync-workflow",
+          "body": "feat: add GitHub Action to sync roadmap to website"
+        },
+        {
+          "date": "2025-12-29",
+          "type": "fix",
+          "message": "use curl instead of gh CLI for API calls",
+          "body": ""
+        },
+        {
+          "date": "2025-12-29",
+          "type": "fix",
+          "message": "use ROADMAP_SYNC_PAT for both repos",
+          "body": ""
+        },
+        {
+          "date": "2025-12-29",
+          "type": "fix",
+          "message": "checkout current repo first for GITHUB_TOKEN context",
+          "body": ""
+        },
+        {
+          "date": "2025-12-29",
+          "type": "fix",
+          "message": "use WEB_REPO_PAT for issue access permissions",
+          "body": ""
+        },
+        {
+          "date": "2025-12-29",
+          "type": "feat",
+          "message": "add GitHub Action to sync roadmap to website",
+          "body": "Triggers on issue events (opened, edited, closed, labeled, etc.)"
+        }
+      ]
+    },
+    {
+      "version": "1.5.2",
+      "title": "MENU SYSTEM",
+      "date": "2025-12-26",
+      "featured": false,
+      "sections": [
+        {
+          "icon": "🔧",
+          "title": "Updates",
+          "items": [
+            "feat(BasementOS): Add MUSIC.EXE settings\n     menu with mute toggle",
+            "fix(BasementOS): Fix terminal UI\n     alignment and padding issues",
+            "style(BasementOS): Unify terminal UI\n     with box borders and emerald palette",
+            "feat(TerminalTales): Add loading screen\n     animation + story file cleanup",
+            "feat(TerminalTales): Add all story\n     Markdown files + fix [D] navigation",
+            "refactor(TerminalTales): Style guide\n     compliance + Markdown support",
+            "chore(BasementOS): Add editor utilities,\n     music.exe assets, and session docs",
+            "fix(BasementOS): Remove WEATHER from\n     Shell menu and update Screen display",
+            "style(BasementOS): Unify terminal colors\n     to #10B981 and add AM/PM clock",
+            "fix(BasementOS): Add Settings app and\n     fix changelog auto-update",
+            "Merge branch 'Restructure' into\n     claude/issue-134-basement-os-v2-enhancements-NFrOX",
+            "docs(BasementOS): Add ProTV integration\n     expert skill and reference guide",
+            "fix(BasementOS): UdonSharp compliance\n     validation per Claude.MD",
+            "fix(BasementOS): Complete DT_App_Music\n     event-driven ProTV integration",
+            "feat(BasementOS): Implement Issue #134\n     v2 enhancements",
+            "docs(specs): Update Issue #134 specs per\n     user feedback",
+            "docs(specs): Add Issue #134 BasementOS\n     v2 enhancement specifications",
+            "fix(BasementOS): Complete autonomous\n     music.exe setup wiring"
+          ]
+        }
+      ],
+      "commits": [
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "feat(BasementOS): Add MUSIC.EXE settings menu with mute toggle",
+          "body": "- Add settings view accessible via [>] from playlist"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "fix(BasementOS): Fix terminal UI alignment and padding issues",
+          "body": "- Shell: Fix BoxRow color tag truncation, pad description column"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "style(BasementOS): Unify terminal UI with box borders and emerald palette",
+          "body": "- Add Terminal_Style_Guide.md documenting unified format"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "feat(TerminalTales): Add loading screen animation + story file cleanup",
+          "body": "- Add animated loading screen between story selection and reading"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "feat(TerminalTales): Add all story Markdown files + fix [D] navigation",
+          "body": "Stories with content:"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "refactor(TerminalTales): Style guide compliance + Markdown support",
+          "body": "BREAKING: Complete rewrite of DT_App_Tales (972 -> 389 lines)"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "chore(BasementOS): Add editor utilities, music.exe assets, and session docs",
+          "body": "- Add DT_App_Music.asset and DT_App_Changelog.asset (compiled UdonSharp)"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "fix(BasementOS): Remove WEATHER from Shell menu and update Screen display",
+          "body": "- Created RemoveWeatherFromMenu.cs editor script for clean array removal"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "style(BasementOS): Unify terminal colors to #10B981 and add AM/PM clock",
+          "body": "- Set all terminal colors (STRUCT, PRIMARY, HIGHLIGHT, DIM) to #10B981"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "fix(BasementOS): Add Settings app and fix changelog auto-update",
+          "body": "- Add UserSettings GameObject with DT_App_Settings component"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "Merge branch 'Restructure' into claude/issue-134-basement-os-v2-enhancements-NFrOX",
+          "body": ""
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "docs(BasementOS): Add ProTV integration expert skill and reference guide",
+          "body": "- Create /protv-integration skill with event-driven vs polling patterns"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "fix(BasementOS): UdonSharp compliance validation per Claude.MD",
+          "body": "All 5 Issue #134 implementations validated against project constitution:"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "fix(BasementOS): Complete DT_App_Music event-driven ProTV integration",
+          "body": "- Fix playlist loading by accessing titles/mainUrls arrays directly from playlistPlugin"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "feat(BasementOS): Implement Issue #134 v2 enhancements",
+          "body": "Implement all 5 major enhancements from Issue #134 specifications:"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "docs(specs): Update Issue #134 specs per user feedback",
+          "body": "Applied user preferences to all 5 feature specs:"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "docs(specs): Add Issue #134 BasementOS v2 enhancement specifications",
+          "body": "Add comprehensive UdonSharp-compliant specs for five features:"
+        },
+        {
+          "date": "2025-12-26",
+          "type": "chore",
+          "message": "fix(BasementOS): Complete autonomous music.exe setup wiring",
+          "body": "Fixed three critical bugs in SetupDTAppMusic.cs for full autonomous setup:"
+        }
+      ]
+    },
+    {
+      "version": "1.5.2",
+      "title": "DOCS(BASEMENTOS): ADD DT_APP_MUSIC",
+      "date": "2025-12-17",
+      "featured": false,
+      "sections": [
+        {
+          "icon": "🔧",
+          "title": "Updates",
+          "items": [
+            "docs(BasementOS): Add DT_App_Music setup\n     guide and changelog"
+          ]
+        }
+      ],
+      "commits": [
+        {
+          "date": "2025-12-17",
+          "type": "chore",
+          "message": "docs(BasementOS): Add DT_App_Music setup guide and changelog",
+          "body": "- Unity Inspector setup instructions"
+        }
+      ]
+    }
+  ],
+  "footer": {
+    "text": "Showing 5 recent versions | Full: github.com/CloudStrife7/LL2PCVR",
+    "controls": "[Arrow ←] back to menu | [Space] exit"
+  }
+}

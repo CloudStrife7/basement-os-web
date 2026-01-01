@@ -1,22 +1,103 @@
 ═════════════════════════════════════════════
-           > WELCOME TO THE LOWER LEVEL! <
+        LOWER LEVEL 2.0 - CHANGELOG
+═════════════════════════════════════════════
 
-This terminal shows live stats, achievements, and more.
-Screens auto-cycle—feel free to explore!
+VERSION 1.5.1 - DT_REMOTECONTENT V2 ENHANCEMENTS (2026-01-01)
+─────────────────────────────────────────────
+✨ New Feature
+   • DT_RemoteContent v2 enhancements +
+     workflow fix
 
-—UPDATE 10-15-25 🎉 TIME TO CELEBRATE! 🎉-
+─────────────────────────────────────────────
 
-In just 2 months, we've hit amazing milestones:
-• 417 visits
-• 46 favorites
-• OUT OF COMMUNITY LABS!
+VERSION 1.5.2 - ISSUE #153 REMOTE (2025-12-31)
+─────────────────────────────────────────────
+✨ New Feature
+   • Issue #153 remote content wiring + URL
+     migration + ROADMAP tab
 
-Thanks to YOU for making this happen - Every visit and favorite helped!  
+─────────────────────────────────────────────
 
-Let’s keep this momentum!  Share the world with a friend!
+VERSION 1.5.2 - MERGE BRANCH 'FEAT/ROADMAP-SYNC-WORKFLOW' (2025-12-29)
+─────────────────────────────────────────────
+🔧 Updates
+   • Merge branch
+     'feat/roadmap-sync-workflow' into
+     Restructure
+   • Merge pull request #149 from
+     CloudStrife7/feat/roadmap-sync-workflow
 
-Want to join the journey? Hit Favorite and join
-“Lower Level Legends” VRC Group.
-══════ 💬 FEEDBACK ══════
-VRChat: GameFuel
-Discord: game.fuel
+✨ New Feature
+   • add milestone and label colors to
+     roadmap JSON
+   • add GitHub Action to sync roadmap to
+     website
+
+🐛 Bug Fixes
+   • improve roadmap sync with pagination,
+     error handling, and scheduling
+   • use curl instead of gh CLI for API calls
+   • use ROADMAP_SYNC_PAT for both repos
+   • checkout current repo first for
+     GITHUB_TOKEN context
+   • use WEB_REPO_PAT for issue access
+     permissions
+
+─────────────────────────────────────────────
+
+VERSION 1.5.2 - MENU SYSTEM (2025-12-26)
+─────────────────────────────────────────────
+🔧 Updates
+   • feat(BasementOS): Add MUSIC.EXE settings
+     menu with mute toggle
+   • fix(BasementOS): Fix terminal UI
+     alignment and padding issues
+   • style(BasementOS): Unify terminal UI
+     with box borders and emerald palette
+   • feat(TerminalTales): Add loading screen
+     animation + story file cleanup
+   • feat(TerminalTales): Add all story
+     Markdown files + fix [D] navigation
+   • refactor(TerminalTales): Style guide
+     compliance + Markdown support
+   • chore(BasementOS): Add editor utilities,
+     music.exe assets, and session docs
+   • fix(BasementOS): Remove WEATHER from
+     Shell menu and update Screen display
+   • style(BasementOS): Unify terminal colors
+     to #10B981 and add AM/PM clock
+   • fix(BasementOS): Add Settings app and
+     fix changelog auto-update
+   • Merge branch 'Restructure' into
+     claude/issue-134-basement-os-v2-enhancements-NFrOX
+   • docs(BasementOS): Add ProTV integration
+     expert skill and reference guide
+   • fix(BasementOS): UdonSharp compliance
+     validation per Claude.MD
+   • fix(BasementOS): Complete DT_App_Music
+     event-driven ProTV integration
+   • feat(BasementOS): Implement Issue #134
+     v2 enhancements
+   • docs(specs): Update Issue #134 specs per
+     user feedback
+   • docs(specs): Add Issue #134 BasementOS
+     v2 enhancement specifications
+   • fix(BasementOS): Complete autonomous
+     music.exe setup wiring
+
+─────────────────────────────────────────────
+
+VERSION 1.5.2 - DOCS(BASEMENTOS): ADD DT_APP_MUSIC (2025-12-17)
+─────────────────────────────────────────────
+🔧 Updates
+   • docs(BasementOS): Add DT_App_Music setup
+     guide and changelog
+
+─────────────────────────────────────────────
+
+═════════════════════════════════════════════
+Showing 5 recent versions | Full: github.com/CloudStrife7/LL2PCVR
+═════════════════════════════════════════════
+[Arrow ←] back to menu | [Space] exit
+
+C:\BASEMENT> _

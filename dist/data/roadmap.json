@@ -1,12 +1,131 @@
 {
-  "generated_at": "2025-12-31T18:39:29Z",
+  "generated_at": "2026-01-01T18:39:53Z",
   "issues": [
+    {
+      "number": 161,
+      "title": "Add coplay unity-mcp and link to tech stack on website",
+      "state": "open",
+      "created_at": "2026-01-01T02:57:33Z",
+      "updated_at": "2026-01-01T02:57:33Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 160,
+      "title": "feat: Dynamic Rain Visibility + Blinds Toggle System",
+      "state": "open",
+      "created_at": "2025-12-31T22:07:17Z",
+      "updated_at": "2026-01-01T04:47:37Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        }
+      ]
+    },
+    {
+      "number": 159,
+      "title": "feat: Enable @claude tagging in GitHub issue comments",
+      "state": "open",
+      "created_at": "2025-12-31T19:57:58Z",
+      "updated_at": "2025-12-31T20:42:39Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        },
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        }
+      ]
+    },
+    {
+      "number": 158,
+      "title": "bug: Custom skills in .claude/skills/ not appearing in available_skills list",
+      "state": "open",
+      "created_at": "2025-12-31T19:57:56Z",
+      "updated_at": "2025-12-31T19:59:31Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        }
+      ]
+    },
+    {
+      "number": 157,
+      "title": "feat: Sync Issue #153 Updates to Quest (Remote Content + ROADMAP Tab)",
+      "state": "open",
+      "created_at": "2025-12-31T19:55:05Z",
+      "updated_at": "2025-12-31T19:55:05Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 156,
+      "title": "maintenance: Branch Review and Cleanup - 30 Branches",
+      "state": "open",
+      "created_at": "2025-12-31T19:18:16Z",
+      "updated_at": "2025-12-31T19:18:16Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        }
+      ]
+    },
     {
       "number": 155,
       "title": "tech-debt: Remove DOSTerminalController.cs after BasementOS v2 migration complete",
       "state": "open",
       "created_at": "2025-12-31T17:20:38Z",
-      "updated_at": "2025-12-31T17:20:38Z",
+      "updated_at": "2025-12-31T21:49:25Z",
       "milestone": null,
       "labels": [
         {
@@ -25,20 +144,6 @@
       "state": "open",
       "created_at": "2025-12-31T02:19:02Z",
       "updated_at": "2025-12-31T03:49:24Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        }
-      ]
-    },
-    {
-      "number": 153,
-      "title": "Fix GITHUB Page so it links to the existing remote content system to fetch live issues from a hosted JSON/Markdown file.",
-      "state": "open",
-      "created_at": "2025-12-31T02:15:54Z",
-      "updated_at": "2025-12-31T03:50:41Z",
       "milestone": null,
       "labels": [
         {
@@ -1364,6 +1469,21 @@
     }
   ],
   "closed": [
+    {
+      "number": 153,
+      "title": "Fix GITHUB Page so it links to the existing remote content system to fetch live issues from a hosted JSON/Markdown file.",
+      "state": "closed",
+      "created_at": "2025-12-31T02:15:54Z",
+      "updated_at": "2026-01-01T05:48:17Z",
+      "closed_at": "2026-01-01T05:48:17Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
+    },
     {
       "number": 117,
       "title": "Decision: Symbolic Pixel Rendering vs Traditional Unity Sprites for Arcade Games",
