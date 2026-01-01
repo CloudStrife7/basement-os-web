@@ -176,51 +176,27 @@ import TerminalShell from '../components/TerminalShell.astro';
 
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
-      <!-- TECH STACK & WORLD STATS -->
-      <div class="info-grid">
-        <div class="info-card">
-          <h3>[ Tech Stack ]</h3>
-          <div class="stat-row">
-            <span class="stat-label">Engine</span>
-            <span class="stat-value">Unity 2022.3.22f1</span>
-          </div>
-          <div class="stat-row">
-            <span class="stat-label">SDK</span>
-            <span class="stat-value">VRChat SDK 3.8.2+</span>
-          </div>
-          <div class="stat-row">
-            <span class="stat-label">Scripting</span>
-            <span class="stat-value">UdonSharp</span>
-          </div>
-          <div class="stat-row">
-            <span class="stat-label">Platform</span>
-            <span class="stat-value">PC VR + Quest</span>
-          </div>
-          <div class="stat-row">
-            <span class="stat-label">Status</span>
-            <span class="stat-value">Active Development</span>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <h3>[ Lower Level Stats ]</h3>
-          <div class="stat-row">
+      <!-- LOWER LEVEL STATS -->
+      <div class="info-card">
+        <h3>[ Lower Level Stats ]</h3>
+        <div class="stats-row-inline">
+          <div class="stat-item">
             <span class="stat-label">Total Visits</span>
             <span class="stat-value" id="stat-visits">Loading...</span>
           </div>
-          <div class="stat-row">
-            <span class="stat-label">Total Favorites</span>
+          <div class="stat-item">
+            <span class="stat-label">Favorites</span>
             <span class="stat-value" id="stat-favorites">--</span>
           </div>
-          <div class="stat-row">
+          <div class="stat-item">
             <span class="stat-label">Popularity</span>
             <span class="stat-value" id="stat-popularity">--</span>
           </div>
-          <div class="stat-row">
+          <div class="stat-item">
             <span class="stat-label">Last Updated</span>
             <span class="stat-value" id="stat-updated">--</span>
           </div>
-          <div class="stat-row">
+          <div class="stat-item">
             <span class="stat-label">First Uploaded</span>
             <span class="stat-value" id="stat-created">--</span>
           </div>
@@ -242,6 +218,29 @@ import TerminalShell from '../components/TerminalShell.astro';
           <span class="platform-badge">PC VR</span>
           <span class="platform-badge">Meta Quest</span>
           <span class="platform-badge">Desktop</span>
+        </div>
+
+        <div class="cta-divider">─────────────────────────────</div>
+
+        <!-- Tech Stack (boxed card) -->
+        <div class="info-card tech-stack-card">
+          <h3>[ Tech Stack ]</h3>
+          <div class="badge-row centered">
+            <a href="https://unity.com/releases/editor/whats-new/2022.3.22" class="dep-badge-sm unity" target="_blank">Unity 2022.3</a>
+            <a href="https://developers.vrchat.com/sdk/" class="dep-badge-sm vrchat" target="_blank">VRChat SDK</a>
+            <a href="https://udonsharp.docs.vrchat.com/" class="dep-badge-sm udon" target="_blank">UdonSharp</a>
+            <a href="https://geom.io/bakery/" class="dep-badge-sm bakery" target="_blank">Bakery</a>
+            <a href="https://github.com/pimaker/ltcgi" class="dep-badge-sm ltcgi" target="_blank">LTCGI</a>
+            <a href="https://shaders.orels.sh/" class="dep-badge-sm orl" target="_blank">ORL Shaders</a>
+            <a href="https://gitlab.com/techanon/protv" class="dep-badge-sm protv" target="_blank">ProTV</a>
+          </div>
+          <div class="badge-row centered">
+            <a href="https://github.com/CyanLaser/CyanTrigger" class="dep-badge-sm cyan" target="_blank">CyanTrigger</a>
+            <a href="https://github.com/oneVR/VRWorldToolkit" class="dep-badge-sm vrworld" target="_blank">VRWorld Toolkit</a>
+            <a href="https://github.com/CoplayDev/unity-mcp" class="dep-badge-sm mcp" target="_blank">UnityMCP</a>
+            <a href="https://claude.ai" class="dep-badge-sm claude" target="_blank">Claude Code</a>
+            <span class="dep-badge-sm platform">PC VR | Quest</span>
+          </div>
         </div>
       </div>
 
@@ -494,6 +493,116 @@ import TerminalShell from '../components/TerminalShell.astro';
     .architecture-diagram {
       font-size: 0.45em;
     }
+  }
+
+  /* Inline Stats Row */
+  .stats-row-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .stat-item .stat-label {
+    font-size: 0.7em;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+
+  .stat-item .stat-value {
+    font-size: 1.1em;
+    color: var(--accent-primary);
+    font-weight: bold;
+  }
+
+  /* Dependency Badges */
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 8px 0;
+  }
+
+  .dep-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    border-radius: 3px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .dep-badge:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
+
+  .dep-badge.unity { background: #222; color: #fff; border: 1px solid #555; }
+  .dep-badge.vrchat { background: #1778f2; color: #fff; }
+  .dep-badge.udon { background: #9b59b6; color: #fff; }
+  .dep-badge.platform { background: #27ae60; color: #fff; }
+  .dep-badge.bakery { background: #e67e22; color: #fff; }
+  .dep-badge.gpu { background: #f1c40f; color: #222; }
+  .dep-badge.cyan { background: #00bcd4; color: #222; }
+  .dep-badge.ltcgi { background: #e91e63; color: #fff; }
+  .dep-badge.orl { background: #3498db; color: #fff; }
+  .dep-badge.protv { background: #2ecc71; color: #222; }
+  .dep-badge.vrworld { background: #9c27b0; color: #fff; }
+  .dep-badge.mcp { background: var(--accent-primary); color: #000; }
+  .dep-badge.claude { background: #d4a574; color: #222; }
+
+  /* Centered badge rows */
+  .badge-row.centered {
+    justify-content: center;
+  }
+
+  /* CTA Divider */
+  .cta-divider {
+    color: var(--text-dim);
+    margin: 20px 0;
+    font-size: 0.8em;
+  }
+
+  /* Tech Stack Card (boxed) */
+  .tech-stack-card {
+    margin-top: 0;
+  }
+
+  .tech-stack-card h3 {
+    margin-bottom: 12px;
+    text-align: left;
+  }
+
+  /* Smaller badges - unified theme matching platform badges */
+  .dep-badge-sm {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    border-radius: 3px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s, background 0.2s;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+  }
+
+  .dep-badge-sm:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+    background: rgba(16, 185, 129, 0.2);
   }
 </style>
 
