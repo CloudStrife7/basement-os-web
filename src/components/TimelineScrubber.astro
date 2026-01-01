@@ -1,0 +1,301 @@
+---
+import { type CollectionEntry } from 'astro:content';
+
+interface Props {
+  posts: CollectionEntry<'devlog'>[];
+}
+
+const { posts } = Astro.props;
+
+// Group posts by Year -> Month for timeline data
+const grouped = posts.reduce((acc, post) => {
+  const year = post.data.date.getFullYear();
+  const monthNum = post.data.date.getMonth(); // 0-11
+  const month = post.data.date.toLocaleString('default', { month: 'short' });
+  
+  if (!acc[year]) acc[year] = {};
+  if (!acc[year][monthNum]) {
+    acc[year][monthNum] = {
+      name: month,
+      entries: []
+    };
+  }
+  
+  acc[year][monthNum].entries.push(post);
+  return acc;
+}, {} as Record<number, Record<number, { name: string; entries: CollectionEntry<'devlog'>[] }>>);
+
+// Sort years descending (newest first)
+const years = Object.keys(grouped).map(Number).sort((a, b) => b - a);
+
+// Flatten all months with their positions for vertical distribution
+type TimelineItem = { year: number; monthNum: number; monthName: string; slug: string };
+const allItems: TimelineItem[] = [];
+
+years.forEach(year => {
+  Object.keys(grouped[year])
+    .map(Number)
+    .sort((a, b) => b - a)
+    .forEach(monthNum => {
+      allItems.push({
+        year,
+        monthNum,
+        monthName: grouped[year][monthNum].name,
+        slug: grouped[year][monthNum].entries[0]?.slug || ''
+      });
+    });
+});
+---
+
+<!-- Timeline Scrubber - Full Height Vertical -->
+<div class="timeline-scrubber" id="timeline-scrubber">
+  <!-- Current position indicator (moves with scroll) -->
+  <div class="timeline-current" id="timeline-current">
+    <span class="timeline-month-label" id="timeline-month-label"></span>
+    <span class="timeline-year-label" id="timeline-year-label"></span>
+  </div>
+  
+  <!-- Vertical track with dots -->
+  <div class="timeline-track" id="timeline-track">
+    <div class="timeline-line"></div>
+    {allItems.map((item, index) => (
+      <a 
+        href={`#entry-${item.slug}`}
+        class="timeline-dot"
+        data-year={item.year}
+        data-month={item.monthNum}
+        data-month-name={item.monthName}
+        data-index={index}
+        style={`top: ${(index / Math.max(allItems.length - 1, 1)) * 100}%`}
+      >
+        <span class="dot-marker">•</span>
+        <span class="dot-label">{item.year}</span>
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  /* Timeline Scrubber - Full height vertical bar */
+  .timeline-scrubber {
+    position: fixed;
+    right: 12px;
+    top: 100px;
+    bottom: 100px;
+    width: 50px;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+  }
+
+  .timeline-scrubber.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Current position indicator */
+  .timeline-current {
+    position: absolute;
+    right: 40px;
+    background: var(--accent-primary);
+    color: #000;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: flex;
+    gap: 6px;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-50%);
+    z-index: 10;
+    transition: top 0.15s ease-out;
+  }
+
+  /* Timeline track - full height */
+  .timeline-track {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  /* Vertical line */
+  .timeline-line {
+    position: absolute;
+    right: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--accent-primary) 10%,
+      var(--accent-primary) 90%,
+      transparent 100%
+    );
+    opacity: 0.3;
+  }
+
+  /* Individual dot markers */
+  .timeline-dot {
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transform: translateY(-50%);
+    opacity: 0.25;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+  }
+
+  .timeline-dot:hover,
+  .timeline-dot.active {
+    opacity: 1;
+  }
+
+  .timeline-dot:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .dot-marker {
+    font-size: 1.2rem;
+    color: var(--accent-primary);
+    line-height: 1;
+  }
+
+  .dot-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--accent-primary);
+    opacity: 0;
+    transition: opacity 0.2s;
+    position: absolute;
+    right: 20px;
+    white-space: nowrap;
+  }
+
+  .timeline-dot:hover .dot-label,
+  .timeline-dot.active .dot-label {
+    opacity: 1;
+  }
+
+  .timeline-dot.active .dot-marker {
+    color: #000;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+  }
+
+  /* Mobile: hide timeline */
+  @media (max-width: 900px) {
+    .timeline-scrubber {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener("astro:page-load", function() {
+  const scrubber = document.getElementById('timeline-scrubber');
+  const currentIndicator = document.getElementById('timeline-current');
+  const monthLabel = document.getElementById('timeline-month-label');
+  const yearLabel = document.getElementById('timeline-year-label');
+  const dots = document.querySelectorAll('.timeline-dot');
+  const track = document.getElementById('timeline-track');
+  
+  if (!scrubber || !currentIndicator || !track) return;
+
+  const SCROLL_THRESHOLD = 200;
+  let currentYear = null;
+  let currentMonth = null;
+
+  // Show/hide scrubber based on scroll
+  function updateScrubberVisibility() {
+    if (window.scrollY > SCROLL_THRESHOLD) {
+      scrubber.classList.add('visible');
+    } else {
+      scrubber.classList.remove('visible');
+    }
+  }
+
+  // Find which entry is currently in viewport and update indicator position
+  function updateCurrentPosition() {
+    const entries = document.querySelectorAll('.devlog-entry');
+    const viewportMid = window.innerHeight / 3;
+    
+    let currentEntry = null;
+    let entryIndex = 0;
+    
+    entries.forEach((entry, idx) => {
+      const rect = entry.getBoundingClientRect();
+      if (rect.top <= viewportMid && rect.bottom > 0) {
+        currentEntry = entry;
+        entryIndex = idx;
+      }
+    });
+
+    if (currentEntry) {
+      const dateEl = currentEntry.querySelector('.devlog-date');
+      if (dateEl) {
+        const dateText = dateEl.textContent;
+        const date = new Date(dateText);
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        const monthName = date.toLocaleString('default', { month: 'short' });
+        
+        // Update current label
+        monthLabel.textContent = monthName;
+        yearLabel.textContent = year;
+        
+        // Calculate position based on scroll progress
+        const scrollProgress = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+        const trackHeight = track.offsetHeight;
+        const indicatorTop = scrollProgress * trackHeight;
+        currentIndicator.style.top = `${indicatorTop}px`;
+        
+        // Update active dot
+        dots.forEach(dot => {
+          const dotYear = parseInt(dot.dataset.year);
+          const dotMonth = parseInt(dot.dataset.month);
+          if (dotYear === year && dotMonth === month) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+        
+        currentYear = year;
+        currentMonth = month;
+      }
+    }
+  }
+
+  // Throttle scroll events
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateScrubberVisibility();
+        updateCurrentPosition();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // Initial check
+  updateScrubberVisibility();
+  updateCurrentPosition();
+});
+</script>
