@@ -258,22 +258,24 @@ document.addEventListener("astro:page-load", function() {
         monthLabel.textContent = monthName;
         yearLabel.textContent = year;
         
-        // Calculate position based on scroll progress
-        const scrollProgress = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-        const trackHeight = track.offsetHeight;
-        const indicatorTop = scrollProgress * trackHeight;
-        currentIndicator.style.top = `${indicatorTop}px`;
-        
-        // Update active dot
+        // Update active dot and position indicator at the active dot
+        let activeDot = null;
         dots.forEach(dot => {
           const dotYear = parseInt(dot.dataset.year);
           const dotMonth = parseInt(dot.dataset.month);
           if (dotYear === year && dotMonth === month) {
             dot.classList.add('active');
+            activeDot = dot;
           } else {
             dot.classList.remove('active');
           }
         });
+        
+        // Position indicator at the active dot
+        if (activeDot) {
+          const dotTop = activeDot.offsetTop;
+          currentIndicator.style.top = `${dotTop}px`;
+        }
         
         currentYear = year;
         currentMonth = month;
