@@ -301,6 +301,68 @@ import TerminalShell from '../components/TerminalShell.astro';
 
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
+      <!-- COMING SOON ACHIEVEMENTS -->
+      <div class="achievement-category">
+        <h3 class="category-header">
+          <span class="category-icon">❓</span>
+          [ ??? ]
+          <span class="category-stats">? achievements • 580G</span>
+        </h3>
+        <p class="category-desc">More achievements coming soon...</p>
+
+        <div class="achievements-grid">
+          <div class="achievement-card locked">
+            <div class="achievement-icon">❓</div>
+            <div class="achievement-info">
+              <div class="achievement-title">???</div>
+              <div class="achievement-desc">???</div>
+              <div class="achievement-meta">
+                <span class="achievement-requirement">???</span>
+                <span class="achievement-points">??G</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="achievement-card locked">
+            <div class="achievement-icon">❓</div>
+            <div class="achievement-info">
+              <div class="achievement-title">???</div>
+              <div class="achievement-desc">???</div>
+              <div class="achievement-meta">
+                <span class="achievement-requirement">???</span>
+                <span class="achievement-points">??G</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="achievement-card locked">
+            <div class="achievement-icon">❓</div>
+            <div class="achievement-info">
+              <div class="achievement-title">???</div>
+              <div class="achievement-desc">???</div>
+              <div class="achievement-meta">
+                <span class="achievement-requirement">???</span>
+                <span class="achievement-points">??G</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="achievement-card locked">
+            <div class="achievement-icon">❓</div>
+            <div class="achievement-info">
+              <div class="achievement-title">???</div>
+              <div class="achievement-desc">???</div>
+              <div class="achievement-meta">
+                <span class="achievement-requirement">???</span>
+                <span class="achievement-points">??G</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
       <!-- CTA -->
       <div class="cta-section">
         <p class="cta-text">Ready to start earning achievements?</p>
@@ -408,6 +470,29 @@ import TerminalShell from '../components/TerminalShell.astro';
   .achievement-card.legendary:hover {
     border-color: #ffd700;
     box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  }
+
+  .achievement-card.locked {
+    background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+    border-color: #333;
+    opacity: 0.7;
+  }
+
+  .achievement-card.locked:hover {
+    border-color: #555;
+    box-shadow: 0 0 10px rgba(100, 100, 100, 0.2);
+    opacity: 0.85;
+  }
+
+  .achievement-card.locked .achievement-title,
+  .achievement-card.locked .achievement-desc,
+  .achievement-card.locked .achievement-requirement,
+  .achievement-card.locked .achievement-points {
+    color: #555;
+  }
+
+  .achievement-card.locked .achievement-icon {
+    opacity: 0.5;
   }
 
   .achievement-icon {
