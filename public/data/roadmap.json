@@ -1,6 +1,96 @@
 {
-  "generated_at": "2026-01-02T12:57:04Z",
+  "generated_at": "2026-01-02T18:39:37Z",
   "issues": [
+    {
+      "number": 180,
+      "title": "[TRAJECTORY] PRISM Agent - Unified Issue Intake & Spec",
+      "state": "open",
+      "created_at": "2026-01-02T16:30:00Z",
+      "updated_at": "2026-01-02T16:30:00Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        }
+      ]
+    },
+    {
+      "number": 179,
+      "title": "[TRAJECTORY] Auto-Generated Devlogs from Closed Issues",
+      "state": "open",
+      "created_at": "2026-01-02T16:29:57Z",
+      "updated_at": "2026-01-02T16:29:57Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        }
+      ]
+    },
+    {
+      "number": 178,
+      "title": "[TRAJECTORY] Automated PlayMode Test Validation",
+      "state": "open",
+      "created_at": "2026-01-02T16:29:55Z",
+      "updated_at": "2026-01-02T16:29:55Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        }
+      ]
+    },
+    {
+      "number": 177,
+      "title": "[WORKFLOW] Implement Issue Lifecycle Automation (GitHub Action)",
+      "state": "open",
+      "created_at": "2026-01-02T16:25:31Z",
+      "updated_at": "2026-01-02T16:25:31Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        }
+      ]
+    },
+    {
+      "number": 176,
+      "title": "[AUTONOMOUS] Investigate VM/NAS for Independent Claude Unity Access",
+      "state": "open",
+      "created_at": "2026-01-02T16:25:29Z",
+      "updated_at": "2026-01-02T16:28:06Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        }
+      ]
+    },
     {
       "number": 175,
       "title": "[MAINTENANCE] Clean Up Stale/Unused Project Folders",
@@ -216,7 +306,7 @@
       "title": "maintenance: Branch Review and Cleanup - 30 Branches",
       "state": "open",
       "created_at": "2025-12-31T19:18:16Z",
-      "updated_at": "2025-12-31T19:18:16Z",
+      "updated_at": "2026-01-02T16:49:46Z",
       "milestone": null,
       "labels": [
         {
