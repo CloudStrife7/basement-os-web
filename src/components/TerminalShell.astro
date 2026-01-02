@@ -107,7 +107,7 @@ const { activeSection = 'home' } = Astro.props;
 
     <div class="status-bar">
       <span class="status-item">
-        MEM: <span class="status-value">640K OK</span>
+        MEM: <span class="status-value" id="visit-counter">640K OK</span>
       </span>
       <span class="status-item">
         TIME: <span class="status-value" id="clock">00:00:00</span>
@@ -663,5 +663,32 @@ const { activeSection = 'home' } = Astro.props;
               behavior: 'smooth'
           });
       });
+  });
+
+  // Page Visit Counter (hidden as memory display)
+  document.addEventListener("astro:page-load", function() {
+      const visitCounter = document.getElementById('visit-counter');
+      if (!visitCounter) return;
+
+      // Use CountAPI for simple page view counting
+      const namespace = 'basementos';
+      const key = 'pageviews';
+      
+      fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+          .then(response => response.json())
+          .then(data => {
+              // Format as KB with "OK" suffix for retro feel
+              const viewsK = Math.floor(data.value / 1000);
+              const viewsRemainder = data.value % 1000;
+              if (data.value >= 1000) {
+                  visitCounter.textContent = `${viewsK},${viewsRemainder.toString().padStart(3, '0')}K OK`;
+              } else {
+                  visitCounter.textContent = `${data.value}K OK`;
+              }
+          })
+          .catch(() => {
+              // Fallback to static value if API fails
+              visitCounter.textContent = '640K OK';
+          });
   });
 </script>
