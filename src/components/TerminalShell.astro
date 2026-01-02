@@ -670,6 +670,41 @@ const { activeSection = 'home' } = Astro.props;
       const visitCounter = document.getElementById('visit-counter');
       if (!visitCounter) return;
 
+      // Map visit count to realistic historic RAM sizes
+      function getMemoryTier(visits) {
+          // Memory tiers based on historic RAM sizes
+          const tiers = [
+              { threshold: 0, memory: '64K' },
+              { threshold: 64, memory: '128K' },
+              { threshold: 128, memory: '256K' },
+              { threshold: 256, memory: '512K' },
+              { threshold: 512, memory: '640K' },
+              { threshold: 640, memory: '1MB' },
+              { threshold: 1024, memory: '2MB' },
+              { threshold: 2048, memory: '4MB' },
+              { threshold: 4096, memory: '8MB' },
+              { threshold: 8192, memory: '16MB' },
+              { threshold: 16384, memory: '32MB' },
+              { threshold: 32768, memory: '64MB' },
+              { threshold: 65536, memory: '128MB' },
+              { threshold: 131072, memory: '256MB' },
+              { threshold: 262144, memory: '512MB' },
+              { threshold: 524288, memory: '1GB' },
+              { threshold: 1048576, memory: '2GB' },
+              { threshold: 2097152, memory: '4GB' },
+              { threshold: 4194304, memory: '8GB' },
+              { threshold: 8388608, memory: '16GB' },
+              { threshold: 16777216, memory: '32GB' },
+          ];
+          
+          for (let i = tiers.length - 1; i >= 0; i--) {
+              if (visits >= tiers[i].threshold) {
+                  return tiers[i].memory;
+              }
+          }
+          return '64K';
+      }
+
       // Use CountAPI for simple page view counting
       const namespace = 'basementos';
       const key = 'pageviews';
@@ -677,14 +712,8 @@ const { activeSection = 'home' } = Astro.props;
       fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
           .then(response => response.json())
           .then(data => {
-              // Format as KB with "OK" suffix for retro feel
-              const viewsK = Math.floor(data.value / 1000);
-              const viewsRemainder = data.value % 1000;
-              if (data.value >= 1000) {
-                  visitCounter.textContent = `${viewsK},${viewsRemainder.toString().padStart(3, '0')}K OK`;
-              } else {
-                  visitCounter.textContent = `${data.value}K OK`;
-              }
+              const memoryDisplay = getMemoryTier(data.value);
+              visitCounter.textContent = `${memoryDisplay} OK`;
           })
           .catch(() => {
               // Fallback to static value if API fails
