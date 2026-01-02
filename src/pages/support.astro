@@ -15,42 +15,31 @@ import TerminalShell from '../components/TerminalShell.astro';
 
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
-      <div class="info-grid">
-        <div class="info-card">
-          <h3>[ Financial Support ]</h3>
-          <p style="color: var(--text-secondary); margin-bottom: 15px;">Help cover hosting costs and fund new features.</p>
-          <a href="https://ko-fi.com/cloudstrife7" target="_blank" class="support-link">
-            ☕ Support on Ko-fi
-          </a>
-        </div>
-
-        <div class="info-card">
-          <h3>[ Looking For Collaborators ]</h3>
-          <p style="color: var(--text-secondary); margin-bottom: 10px;">I'm actively looking for:</p>
-          <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-secondary);">
-            <li><strong>3D Modelers</strong> — Expand the basement with new rooms and props</li>
-            <li><strong>Lighting Experts</strong> — Improve atmosphere and Quest optimization</li>
-            <li><strong>VRChat World Builders</strong> — Help with SDK setup and deployment</li>
-            <li><strong>UdonSharp Developers</strong> — Build new interactive features</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="separator">────────────────────────────────────────────────────────────────────</div>
-
+      <!-- Looking For Collaborators - Full width CTA with 4 positions -->
       <div class="info-card">
-        <h3>[ Contact ]</h3>
-        <div class="stat-row">
-          <span class="stat-label">VRChat</span>
-          <span class="stat-value">GameFuel</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-label">GitHub</span>
-          <span class="stat-value"><a href="https://github.com/CloudStrife7" target="_blank" style="color: var(--accent-primary);">CloudStrife7</a></span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-label">Email</span>
-          <span class="stat-value">admin@BasementOS.com</span>
+        <h3>[ Looking For Collaborators ]</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 15px;">I'm actively looking for passionate creators to help expand the basement:</p>
+        <div class="collaborator-grid">
+          <div class="collab-card">
+            <span class="collab-icon">🎨</span>
+            <span class="collab-title">3D Modelers</span>
+            <span class="collab-desc">Expand the basement with new rooms and props</span>
+          </div>
+          <div class="collab-card">
+            <span class="collab-icon">💡</span>
+            <span class="collab-title">Lighting Experts</span>
+            <span class="collab-desc">Improve atmosphere and Quest optimization</span>
+          </div>
+          <div class="collab-card">
+            <span class="collab-icon">🏠</span>
+            <span class="collab-title">VRChat World Builders</span>
+            <span class="collab-desc">Help with SDK setup and deployment</span>
+          </div>
+          <div class="collab-card">
+            <span class="collab-icon">💻</span>
+            <span class="collab-title">UdonSharp Developers</span>
+            <span class="collab-desc">Build new interactive features</span>
+          </div>
         </div>
       </div>
 
@@ -62,19 +51,36 @@ import TerminalShell from '../components/TerminalShell.astro';
           <li><strong>Visit the world</strong> — Every visit helps with VRChat's discovery algorithm</li>
           <li><strong>Favorite the world</strong> — Boosts visibility in search results</li>
           <li><strong>Share with friends</strong> — Word of mouth is the best marketing</li>
-          <li><strong>Report bugs</strong> — <a href="https://github.com/CloudStrife7/LL2PCVR/issues" target="_blank" style="color: var(--accent-primary);">Open an issue on GitHub</a></li>
-          <li><strong>Star the repo</strong> — <a href="https://github.com/CloudStrife7/LL2PCVR" target="_blank" style="color: var(--accent-primary);">GitHub Repository</a></li>
         </ul>
       </div>
 
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
-      <div style="text-align: center; padding: 20px 0;">
-        <p style="color: var(--text-secondary); margin-bottom: 15px;">Thank you for your support!</p>
-        <a href="https://vrchat.com/home/launch?worldId=wrld_7302897c-be0f-4037-ac67-76f0ea065c2b" class="cta-button" target="_blank">
-          <span>▶</span>
-          <span>LAUNCH IN VRCHAT</span>
-        </a>
+      <!-- Bottom CTA: Donate and Contact -->
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>[ Donate ]</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 15px;">Help cover hosting costs and fund new features.</p>
+          <a href="https://ko-fi.com/cloudstrife7" target="_blank" class="support-link">
+            ☕ Support on Ko-fi
+          </a>
+        </div>
+
+        <div class="info-card">
+          <h3>[ Contact ]</h3>
+          <div class="stat-row">
+            <span class="stat-label">VRChat</span>
+            <span class="stat-value">GameFuel</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">GitHub</span>
+            <span class="stat-value"><a href="https://github.com/CloudStrife7" target="_blank" style="color: var(--accent-primary);">CloudStrife7</a></span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Email</span>
+            <span class="stat-value"><a href="mailto:admin@BasementOS.com" style="color: var(--accent-primary);">admin@BasementOS.com</a></span>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -118,5 +124,43 @@ import TerminalShell from '../components/TerminalShell.astro';
     background: transparent;
     color: var(--accent-primary);
     box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+  }
+
+  /* Collaborator Grid - 4 cards like Core Features */
+  .collaborator-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .collab-card {
+    padding: 20px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .collab-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+  }
+
+  .collab-icon {
+    font-size: 2em;
+  }
+
+  .collab-title {
+    font-weight: bold;
+    color: var(--text-primary);
+  }
+
+  .collab-desc {
+    font-size: 0.85em;
+    color: var(--text-secondary);
   }
 </style>
