@@ -112,14 +112,14 @@ const { activeSection = 'home' } = Astro.props;
           <div class="mem-tooltip-title">🖥️ Memory = Page Views</div>
           <div class="mem-tooltip-row current"><span>→</span><span id="tooltip-current">640K</span><span id="tooltip-visits">0</span></div>
           <div class="mem-tooltip-divider"></div>
-          <div class="mem-tooltip-row"><span></span><span>64K</span><span>0-63</span></div>
-          <div class="mem-tooltip-row"><span></span><span>128K</span><span>64-127</span></div>
-          <div class="mem-tooltip-row"><span></span><span>256K</span><span>128-255</span></div>
-          <div class="mem-tooltip-row"><span></span><span>512K</span><span>256-511</span></div>
-          <div class="mem-tooltip-row"><span></span><span>640K</span><span>512-639</span></div>
-          <div class="mem-tooltip-row"><span></span><span>1MB</span><span>640-1023</span></div>
-          <div class="mem-tooltip-row"><span></span><span>2MB</span><span>1024-2047</span></div>
-          <div class="mem-tooltip-row"><span></span><span>4MB</span><span>2048+</span></div>
+          <div class="mem-tooltip-row" data-tier="64K"><span class="tier-arrow"></span><span>64K</span><span>0-63</span></div>
+          <div class="mem-tooltip-row" data-tier="128K"><span class="tier-arrow"></span><span>128K</span><span>64-127</span></div>
+          <div class="mem-tooltip-row" data-tier="256K"><span class="tier-arrow"></span><span>256K</span><span>128-255</span></div>
+          <div class="mem-tooltip-row" data-tier="512K"><span class="tier-arrow"></span><span>512K</span><span>256-511</span></div>
+          <div class="mem-tooltip-row" data-tier="640K"><span class="tier-arrow"></span><span>640K</span><span>512-639</span></div>
+          <div class="mem-tooltip-row" data-tier="1MB"><span class="tier-arrow"></span><span>1MB</span><span>640-1023</span></div>
+          <div class="mem-tooltip-row" data-tier="2MB"><span class="tier-arrow"></span><span>2MB</span><span>1024-2047</span></div>
+          <div class="mem-tooltip-row" data-tier="4MB"><span class="tier-arrow"></span><span>4MB</span><span>2048+</span></div>
         </div>
       </span>
       <span class="status-item">
@@ -786,6 +786,19 @@ const { activeSection = 'home' } = Astro.props;
               const tooltipVisits = document.getElementById('tooltip-visits');
               if (tooltipCurrent) tooltipCurrent.textContent = memoryDisplay;
               if (tooltipVisits) tooltipVisits.textContent = data.value.toLocaleString() + ' views';
+              
+              // Highlight matching tier in the list
+              const allTierRows = document.querySelectorAll('.mem-tooltip-row[data-tier]');
+              allTierRows.forEach(row => {
+                  const tierArrow = row.querySelector('.tier-arrow');
+                  if (row.dataset.tier === memoryDisplay) {
+                      row.classList.add('active-tier');
+                      if (tierArrow) tierArrow.textContent = '→';
+                  } else {
+                      row.classList.remove('active-tier');
+                      if (tierArrow) tierArrow.textContent = '';
+                  }
+              });
           })
           .catch(() => {
               // Fallback to static value if API fails
