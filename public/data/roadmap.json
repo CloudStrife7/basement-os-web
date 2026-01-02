@@ -1,6 +1,51 @@
 {
-  "generated_at": "2026-01-01T18:39:53Z",
+  "generated_at": "2026-01-02T02:21:26Z",
   "issues": [
+    {
+      "number": 169,
+      "title": "Add api call for visits to lower level terminal",
+      "state": "open",
+      "created_at": "2026-01-02T01:49:46Z",
+      "updated_at": "2026-01-02T01:49:46Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 168,
+      "title": "feat: In-World Feature Voting System (VRChat + Website)",
+      "state": "open",
+      "created_at": "2026-01-01T19:52:41Z",
+      "updated_at": "2026-01-01T20:47:23Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 167,
+      "title": "feat: Assigned-Only 'Coming Soon' Roadmap with AI Summaries",
+      "state": "open",
+      "created_at": "2026-01-01T19:52:07Z",
+      "updated_at": "2026-01-01T19:57:51Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
+    },
     {
       "number": 161,
       "title": "Add coplay unity-mcp and link to tech stack on website",
@@ -1469,6 +1514,98 @@
     }
   ],
   "closed": [
+    {
+      "number": 166,
+      "title": "[FEATURE] basementos.com/vote - External Voting Page",
+      "state": "closed",
+      "created_at": "2026-01-01T19:29:58Z",
+      "updated_at": "2026-01-01T21:08:10Z",
+      "closed_at": "2026-01-01T21:08:10Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "sub-issue",
+          "color": "c5def5"
+        }
+      ]
+    },
+    {
+      "number": 165,
+      "title": "[FEATURE] In-World QR Code for Voting",
+      "state": "closed",
+      "created_at": "2026-01-01T19:29:42Z",
+      "updated_at": "2026-01-01T21:08:06Z",
+      "closed_at": "2026-01-01T21:08:06Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "sub-issue",
+          "color": "c5def5"
+        }
+      ]
+    },
+    {
+      "number": 164,
+      "title": "[FEATURE] DT_App_Vote - In-World Poll Display Module",
+      "state": "closed",
+      "created_at": "2026-01-01T19:29:38Z",
+      "updated_at": "2026-01-01T21:08:03Z",
+      "closed_at": "2026-01-01T21:08:03Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "sub-issue",
+          "color": "c5def5"
+        }
+      ]
+    },
+    {
+      "number": 163,
+      "title": "[FEATURE] In-World Voting System Integration",
+      "state": "closed",
+      "created_at": "2026-01-01T19:29:05Z",
+      "updated_at": "2026-01-01T21:08:00Z",
+      "closed_at": "2026-01-01T21:08:00Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "epic",
+          "color": "7057ff"
+        }
+      ]
+    },
     {
       "number": 153,
       "title": "Fix GITHUB Page so it links to the existing remote content system to fetch live issues from a hosted JSON/Markdown file.",
