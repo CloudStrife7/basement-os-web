@@ -1,6 +1,52 @@
 {
-  "generated_at": "2026-01-02T06:45:06Z",
+  "generated_at": "2026-01-02T12:57:04Z",
   "issues": [
+    {
+      "number": 175,
+      "title": "[MAINTENANCE] Clean Up Stale/Unused Project Folders",
+      "state": "open",
+      "created_at": "2026-01-02T11:27:25Z",
+      "updated_at": "2026-01-02T11:27:25Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        }
+      ]
+    },
+    {
+      "number": 174,
+      "title": "[MAINTENANCE] Update Project Roadmap",
+      "state": "open",
+      "created_at": "2026-01-02T11:27:23Z",
+      "updated_at": "2026-01-02T11:27:23Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        }
+      ]
+    },
+    {
+      "number": 173,
+      "title": "2D clone of nfs hp2 2 player",
+      "state": "open",
+      "created_at": "2026-01-02T11:19:00Z",
+      "updated_at": "2026-01-02T11:19:00Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 172,
+      "title": "2D clone of X-men mutant accademy",
+      "state": "open",
+      "created_at": "2026-01-02T11:18:30Z",
+      "updated_at": "2026-01-02T11:18:30Z",
+      "milestone": null,
+      "labels": []
+    },
     {
       "number": 170,
       "title": "feat: Achievement External Logging POC - basementos.net statistics",
@@ -1089,7 +1135,7 @@
       "title": "[QA] Test FIFO Notifications",
       "state": "open",
       "created_at": "2025-11-17T21:50:36Z",
-      "updated_at": "2026-01-02T05:01:23Z",
+      "updated_at": "2026-01-02T10:32:30Z",
       "milestone": "BASEMENT OS Revamp",
       "labels": [
         {
