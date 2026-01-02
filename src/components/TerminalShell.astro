@@ -202,20 +202,18 @@ const { activeSection = 'home' } = Astro.props;
 
   .mem-tooltip {
     position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.95);
+    bottom: calc(100% + 10px);
+    left: 0;
+    background: rgba(0, 0, 0, 0.98);
     border: 1px solid var(--accent-primary);
     padding: 10px 12px;
     font-family: var(--font-mono);
     font-size: 0.7rem;
     white-space: nowrap;
-    z-index: 1000;
+    z-index: 9999;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease, visibility 0.2s ease;
-    margin-bottom: 8px;
     box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
   }
 
