@@ -106,8 +106,21 @@ const { activeSection = 'home' } = Astro.props;
     </div>
 
     <div class="status-bar">
-      <span class="status-item">
+      <span class="status-item mem-tooltip-container">
         MEM: <span class="status-value" id="visit-counter">640K OK</span>
+        <div class="mem-tooltip" id="mem-tooltip">
+          <div class="mem-tooltip-title">🖥️ Memory = Page Views</div>
+          <div class="mem-tooltip-row current"><span>→</span><span id="tooltip-current">640K</span><span id="tooltip-visits">0</span></div>
+          <div class="mem-tooltip-divider"></div>
+          <div class="mem-tooltip-row"><span></span><span>64K</span><span>0-63</span></div>
+          <div class="mem-tooltip-row"><span></span><span>128K</span><span>64-127</span></div>
+          <div class="mem-tooltip-row"><span></span><span>256K</span><span>128-255</span></div>
+          <div class="mem-tooltip-row"><span></span><span>512K</span><span>256-511</span></div>
+          <div class="mem-tooltip-row"><span></span><span>640K</span><span>512-639</span></div>
+          <div class="mem-tooltip-row"><span></span><span>1MB</span><span>640-1023</span></div>
+          <div class="mem-tooltip-row"><span></span><span>2MB</span><span>1024-2047</span></div>
+          <div class="mem-tooltip-row"><span></span><span>4MB</span><span>2048+</span></div>
+        </div>
       </span>
       <span class="status-item">
         TIME: <span class="status-value" id="clock">00:00:00</span>
@@ -180,6 +193,61 @@ const { activeSection = 'home' } = Astro.props;
 
   .scroll-top-btn:active {
     transform: scale(0.95);
+  }
+
+  /* Memory Tooltip */
+  .mem-tooltip-container {
+    position: relative;
+  }
+
+  .mem-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid var(--accent-primary);
+    padding: 10px 12px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    margin-bottom: 8px;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+  }
+
+  .mem-tooltip-container:hover .mem-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mem-tooltip-title {
+    color: var(--accent-primary);
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .mem-tooltip-row {
+    display: grid;
+    grid-template-columns: 15px 50px 70px;
+    gap: 5px;
+    color: var(--text-secondary);
+    padding: 2px 0;
+  }
+
+  .mem-tooltip-row.current {
+    color: var(--accent-primary);
+    font-weight: bold;
+  }
+
+  .mem-tooltip-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 6px 0;
   }
 </style>
 
@@ -714,6 +782,12 @@ const { activeSection = 'home' } = Astro.props;
           .then(data => {
               const memoryDisplay = getMemoryTier(data.value);
               visitCounter.textContent = `${memoryDisplay} OK`;
+              
+              // Update tooltip with current values
+              const tooltipCurrent = document.getElementById('tooltip-current');
+              const tooltipVisits = document.getElementById('tooltip-visits');
+              if (tooltipCurrent) tooltipCurrent.textContent = memoryDisplay;
+              if (tooltipVisits) tooltipVisits.textContent = data.value.toLocaleString() + ' views';
           })
           .catch(() => {
               // Fallback to static value if API fails
