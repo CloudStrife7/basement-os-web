@@ -144,46 +144,86 @@ import TerminalShell from '../components/TerminalShell.astro';
       <!-- ARCHITECTURE -->
       <div class="info-card">
         <h3>[ Architecture ]</h3>
-        <div class="architecture-container">
-          <pre class="architecture-diagram">
-                 ┌─────────────────────────────────────────┐
-                 │           User Interaction              │
-                 └─────────────────────┬───────────────────┘
-                                       │
-       ┌───────────────────────────────┼───────────────────────────────┐
-       │                    │                    │                     │
-       ▼                    ▼                    ▼                     ▼
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│ Achievement │    │ DOS Terminal│    │ Weather API │    │   ProTV 3   │
-│ Tracker     │    │ Controller  │    │ Integration │    │ (MUSIC.EXE) │
-└──────┬──────┘    └──────┬──────┘    └──────┬──────┘    └──────┬──────┘
-       │                  │                  │                  │
-       │                  └─────────┬────────┘                  │
-       │                            │                           │
-       ▼                            ▼                           │
-┌────────────────────────────────────────────────────────┐      │
-│           NotificationEventHub (Bridge)                │◄─────┘
-│  ─────────────────────────────────────────────────     │
-│  • Network Broadcasting  • Event Routing               │
-│  • Queue Management      • Music State Sync            │
-└────────────────────────────┬───────────────────────────┘
-                             │
-                 ┌───────────┴───────────┐
-                 │                       │
-                 ▼                       ▼
-       ┌─────────────────┐     ┌─────────────────┐
-       │ XboxNotification│     │ Notification    │
-       │ UI (FIFO)       │     │ Roles Module    │
-       └────────┬────────┘     └─────────────────┘
-                │
-                ▼
-       ┌─────────────────────────┐
-       │ AchievementDataManager  │
-       │ (VRChat PlayerData)     │
-       └─────────────────────────┘
-          </pre>
-          <p class="architecture-caption">Hub-spoke event-driven architecture optimized for VRChat's UdonSharp environment</p>
+        <div class="architecture-v2">
+          <div class="arch-bg-overlay"></div>
+          
+          <div class="arch-content">
+            <!-- Top Node -->
+            <div class="arch-row">
+              <div class="arch-node primary neon">
+                <span class="node-icon">👤</span>
+                <span class="node-title">User Interaction</span>
+              </div>
+            </div>
+
+            <!-- Middle Nodes -->
+            <div class="arch-row spread">
+              <div class="arch-node sm neon">
+                <span class="node-title">Achievement Tracker</span>
+              </div>
+              <div class="arch-node sm neon">
+                <span class="node-title">DOS Terminal controller</span>
+              </div>
+              <div class="arch-node sm neon">
+                <span class="node-title">Weather API Integration</span>
+              </div>
+              <div class="arch-node sm neon">
+                <span class="node-title">ProTV 3 (MUSIC.EXE)</span>
+              </div>
+            </div>
+
+            <!-- The Core / Hub -->
+            <div class="arch-row">
+              <div class="arch-node hub neon">
+                <span class="node-header">NotificationEventHub (Bridge)</span>
+                <div class="node-features">
+                  <span>• Network Broadcasting</span>
+                  <span>• Event Routing</span>
+                  <span>• Queue Management</span>
+                  <span>• Music State Sync</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Output Levels -->
+            <div class="arch-row spread tight">
+              <div class="arch-node sm">
+                <span class="node-title">XboxNotification UI</span>
+              </div>
+              <div class="arch-node sm">
+                <span class="node-title">Notification Roles</span>
+              </div>
+            </div>
+
+            <!-- Data Store -->
+            <div class="arch-row">
+              <div class="arch-node storage">
+                <span class="node-icon">💾</span>
+                <span class="node-title">AchievementDataManager</span>
+              </div>
+            </div>
+          </div>
+
+          <svg class="arch-lines-svg" viewBox="0 0 800 500" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="line-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="var(--accent-primary)" stop-opacity="0.2" />
+                <stop offset="50%" stop-color="var(--accent-primary)" stop-opacity="0.8" />
+                <stop offset="100%" stop-color="var(--accent-primary)" stop-opacity="0.2" />
+              </linearGradient>
+            </defs>
+            <!-- Top to Middle -->
+            <path d="M400,60 L400,100 M120,100 L680,100 M120,100 L120,130 M310,100 L310,130 M500,100 L500,130 M680,100 L680,130" class="arch-svg-line" />
+            <!-- Middle to Hub -->
+            <path d="M120,180 L120,220 L280,220 M310,180 L310,220 L350,220 M500,180 L500,220 L450,220 M680,180 L680,250 L580,250" class="arch-svg-line" />
+            <path d="M400,220 L400,250" class="arch-svg-line" />
+            <!-- Hub to Footer -->
+            <path d="M400,340 L400,370 M250,370 L550,370 M250,370 L250,400 M550,370 L550,400" class="arch-svg-line" />
+            <!-- Footer to Storage -->
+            <path d="M250,440 L250,460 L400,460 L400,480" class="arch-svg-line" />
+          </svg>
         </div>
+        <p class="architecture-caption">Hub-spoke event-driven architecture optimized for VRChat's UdonSharp environment</p>
       </div>
 
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
@@ -377,23 +417,172 @@ import TerminalShell from '../components/TerminalShell.astro';
     line-height: 1.4;
   }
 
-  /* Architecture Container */
-  .architecture-container {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--border);
-    padding: 20px;
-    margin-top: 10px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    overflow-x: auto;
+  /* Architecture V2 */
+  .architecture-v2 {
+    position: relative;
+    background: #000;
+    border: 1px solid var(--border-color);
+    padding: 60px 40px;
+    margin-top: 20px;
+    border-radius: 4px;
+    overflow: hidden;
+    min-height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
   }
 
-  .architecture-diagram {
-    color: var(--accent-primary);
+  .arch-bg-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle, rgba(10, 10, 25, 0.4) 0%, rgba(5, 5, 15, 0.9) 100%);
+    z-index: 1;
+  }
+
+  .arch-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    width: 100%;
+  }
+
+  .arch-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .arch-row.spread {
+    justify-content: space-around;
+  }
+
+  .arch-row.tight {
+    gap: 15px;
+    margin-top: -10px;
+  }
+
+  .arch-node {
+    background: rgba(15, 15, 30, 0.9);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 12px 15px;
+    border-radius: 2px;
+    font-size: 0.85em;
+    color: var(--text-primary);
+    text-align: center;
+    min-width: 140px;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
     font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .arch-node.sm {
+    min-width: 120px;
+    font-size: 0.7em;
+    padding: 10px;
+  }
+
+  .arch-node.primary {
+    border-color: var(--accent-primary);
+    background: rgba(16, 185, 129, 0.15);
+    font-weight: bold;
+    font-size: 1em;
+    padding: 15px 30px;
+  }
+
+  .arch-node.hub {
+    min-width: 320px;
+    background: rgba(16, 185, 129, 0.1);
+    border-bottom: 2px solid var(--accent-primary);
+  }
+
+  .arch-node.storage {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px dashed var(--accent-primary);
+    color: var(--text-secondary);
+  }
+
+  .node-header {
+    color: var(--accent-primary);
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    font-size: 1.1em;
+  }
+
+  .node-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    text-align: left;
     font-size: 0.65em;
-    line-height: 1.2;
-    margin: 0;
-    white-space: pre;
+    color: var(--text-muted);
+  }
+
+  .node-icon {
+    font-size: 1.4em;
+  }
+
+  .arch-node.neon {
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
+  }
+
+  .arch-node:hover {
+    border-color: var(--accent-primary);
+    background: rgba(16, 185, 129, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+  }
+
+  /* SVG Connections */
+  .arch-lines-svg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .arch-svg-line {
+    fill: none;
+    stroke: var(--accent-primary);
+    stroke-width: 1;
+    stroke-opacity: 0.3;
+    stroke-dasharray: 5, 5;
+    animation: dash 30s linear infinite;
+  }
+
+  @keyframes dash {
+    to { stroke-dashoffset: -1000; }
+  }
+
+  @media (max-width: 850px) {
+    .arch-row.spread {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .arch-lines-svg {
+      display: none;
+    }
+    .arch-node.hub {
+      min-width: auto;
+      width: 100%;
+    }
+    .arch-content {
+      gap: 30px;
+    }
+    .architecture-v2 {
+      padding: 30px 15px;
+      min-height: auto;
+    }
   }
 
   /* Story Content Styles (replacing inline styles) */
