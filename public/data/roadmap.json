@@ -1,6 +1,24 @@
 {
-  "generated_at": "2026-01-03T12:55:07Z",
+  "generated_at": "2026-01-03T18:38:03Z",
   "issues": [
+    {
+      "number": 183,
+      "title": "[REVIEW] Skills Roadmap Checkpoint - January 15, 2026",
+      "state": "open",
+      "created_at": "2026-01-03T13:49:14Z",
+      "updated_at": "2026-01-03T13:49:14Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        }
+      ]
+    },
     {
       "number": 182,
       "title": "[CRITICAL] Fix Duplicate Claude Code Installation - Skills/Agents Not Loading",
