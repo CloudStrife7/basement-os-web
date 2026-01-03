@@ -1,6 +1,24 @@
 {
-  "generated_at": "2026-01-03T02:08:42Z",
+  "generated_at": "2026-01-03T06:41:13Z",
   "issues": [
+    {
+      "number": 182,
+      "title": "[CRITICAL] Fix Duplicate Claude Code Installation - Skills/Agents Not Loading",
+      "state": "open",
+      "created_at": "2026-01-03T04:29:37Z",
+      "updated_at": "2026-01-03T04:30:23Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        }
+      ]
+    },
     {
       "number": 180,
       "title": "[TRAJECTORY] PRISM Agent - Unified Issue Intake & Spec",
@@ -254,7 +272,7 @@
       "title": "bug: Custom skills in .claude/skills/ not appearing in available_skills list",
       "state": "open",
       "created_at": "2025-12-31T19:57:56Z",
-      "updated_at": "2025-12-31T19:59:31Z",
+      "updated_at": "2026-01-03T04:31:35Z",
       "milestone": null,
       "labels": [
         {
@@ -1221,32 +1239,6 @@
       ]
     },
     {
-      "number": 63,
-      "title": "[QA] Test FIFO Notifications",
-      "state": "open",
-      "created_at": "2025-11-17T21:50:36Z",
-      "updated_at": "2026-01-02T10:32:30Z",
-      "milestone": "BASEMENT OS Revamp",
-      "labels": [
-        {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "area: notifications",
-          "color": "e99695"
-        },
-        {
-          "name": "needs-testing",
-          "color": "fef2c0"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        }
-      ]
-    },
-    {
       "number": 62,
       "title": "[EPIC] Notifications System",
       "state": "open",
@@ -1638,6 +1630,33 @@
     }
   ],
   "closed": [
+    {
+      "number": 63,
+      "title": "[QA] Test FIFO Notifications",
+      "state": "closed",
+      "created_at": "2025-11-17T21:50:36Z",
+      "updated_at": "2026-01-03T04:14:42Z",
+      "closed_at": "2026-01-03T04:14:42Z",
+      "milestone": "BASEMENT OS Revamp",
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: notifications",
+          "color": "e99695"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
+    },
     {
       "number": 67,
       "title": "[QA] Test All Achievements",
@@ -2472,8 +2491,8 @@
       "title": "BASEMENT OS Revamp",
       "description": "Modernized terminal experience: 80-char width, unified design, MOTD, Snake complete, all systems tested",
       "state": "open",
-      "open_issues": 7,
-      "closed_issues": 9,
+      "open_issues": 6,
+      "closed_issues": 10,
       "due_on": "2025-12-31T00:00:00Z"
     },
     {
