@@ -107,12 +107,12 @@ const { activeSection = 'home' } = Astro.props;
 
     <div class="status-bar">
       <span class="status-item mem-tooltip-container">
-        MEM: <span class="status-value" id="visit-counter">640K OK</span>
+        MEM: <span class="status-value" id="visit-counter">64K OK</span>
         <div class="mem-tooltip" id="mem-tooltip">
           <div class="mem-tooltip-title">🖥️ Memory = Page Views</div>
-          <div class="mem-tooltip-row current"><span>→</span><span id="tooltip-current">640K</span><span id="tooltip-visits">0</span></div>
+          <div class="mem-tooltip-row current"><span>→</span><span id="tooltip-current">64K</span><span id="tooltip-visits">0</span></div>
           <div class="mem-tooltip-divider"></div>
-          <div class="mem-tooltip-row" data-tier="64K"><span class="tier-arrow"></span><span>64K</span><span>0-63</span></div>
+          <div class="mem-tooltip-row active-tier" data-tier="64K"><span class="tier-arrow">→</span><span>64K</span><span>0-63</span></div>
           <div class="mem-tooltip-row" data-tier="128K"><span class="tier-arrow"></span><span>128K</span><span>64-127</span></div>
           <div class="mem-tooltip-row" data-tier="256K"><span class="tier-arrow"></span><span>256K</span><span>128-255</span></div>
           <div class="mem-tooltip-row" data-tier="512K"><span class="tier-arrow"></span><span>512K</span><span>256-511</span></div>
@@ -802,7 +802,7 @@ const { activeSection = 'home' } = Astro.props;
           })
           .catch(() => {
               // Fallback to static value if API fails
-              visitCounter.textContent = '640K OK';
+              visitCounter.textContent = '64K OK';
           });
   });
 </script>
