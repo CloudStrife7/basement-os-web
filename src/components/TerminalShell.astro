@@ -771,21 +771,22 @@ const { activeSection = 'home' } = Astro.props;
           return '64K';
       }
 
-      // Use CountAPI for simple page view counting
+      // Use CounterAPI.dev for simple page view counting
       const namespace = 'basementos';
       const key = 'pageviews';
       
-      fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+      fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/up`)
           .then(response => response.json())
           .then(data => {
-              const memoryDisplay = getMemoryTier(data.value);
+              const count = data.count || 0;
+              const memoryDisplay = getMemoryTier(count);
               visitCounter.textContent = `${memoryDisplay} OK`;
               
               // Update tooltip with current values
               const tooltipCurrent = document.getElementById('tooltip-current');
               const tooltipVisits = document.getElementById('tooltip-visits');
               if (tooltipCurrent) tooltipCurrent.textContent = memoryDisplay;
-              if (tooltipVisits) tooltipVisits.textContent = data.value.toLocaleString() + ' views';
+              if (tooltipVisits) tooltipVisits.textContent = count.toLocaleString() + ' views';
               
               // Highlight matching tier in the list
               const allTierRows = document.querySelectorAll('.mem-tooltip-row[data-tier]');
