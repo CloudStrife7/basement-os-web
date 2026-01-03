@@ -62,10 +62,22 @@ import TerminalShell from '../components/TerminalShell.astro';
         <h3>[ Screenshots ]</h3>
         <div class="screenshot-grid-compact">
           <div class="crt-screen screenshot-compact">
+            <a href="/images/2026/01/basement-os-v2.png" target="_blank">
+              <img src="/images/2026/01/basement-os-v2.png" alt="Basement OS V2" loading="lazy" />
+            </a>
+            <p class="screenshot-caption">OS VERSION 2</p>
+          </div>
+          <div class="crt-screen screenshot-compact">
             <a href="https://i.imgur.com/N8da6pU.jpeg" target="_blank">
               <img src="https://i.imgur.com/N8da6pU.jpeg" alt="The Gaming Area" loading="lazy" />
             </a>
             <p class="screenshot-caption">THE GAMING AREA</p>
+          </div>
+          <div class="crt-screen screenshot-compact">
+            <a href="/images/2026/01/basement-view.png" target="_blank">
+              <img src="/images/2026/01/basement-view.png" alt="Basement Perspective" loading="lazy" />
+            </a>
+            <p class="screenshot-caption">BASEMENT VIEW</p>
           </div>
           <div class="crt-screen screenshot-compact">
             <a href="https://i.imgur.com/Kpu5VSp.png" target="_blank">
@@ -289,7 +301,7 @@ import TerminalShell from '../components/TerminalShell.astro';
   /* Compact Screenshot Grid - 3 items in one row */
   .screenshot-grid-compact {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 15px;
   }
 
