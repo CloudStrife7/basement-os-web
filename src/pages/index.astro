@@ -1,6 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TerminalShell from '../components/TerminalShell.astro';
+import { Image } from 'astro:assets';
+import imgBasementV2 from '../assets/images/basement-os-v2.png';
+import imgGamingArea from '../assets/images/gaming-area.jpeg';
+import imgBasementView from '../assets/images/basement-view.png';
+import imgNotifications from '../assets/images/notifications.png';
+import imgArcadeTheater from '../assets/images/arcade-theater.jpeg';
 ---
 
 <BaseLayout title="BASEMENT OS">
@@ -62,32 +68,32 @@ import TerminalShell from '../components/TerminalShell.astro';
         <h3>[ Screenshots ]</h3>
         <div class="screenshot-grid-compact">
           <div class="crt-screen screenshot-compact">
-            <a href="/images/2026/01/basement-os-v2.png" target="_blank">
-              <img src="/images/2026/01/basement-os-v2.png" alt="Basement OS V2" loading="lazy" />
+            <a href={imgBasementV2.src} target="_blank">
+              <Image src={imgBasementV2} alt="Basement OS V2" />
             </a>
             <p class="screenshot-caption">OS VERSION 2</p>
           </div>
           <div class="crt-screen screenshot-compact">
-            <a href="https://i.imgur.com/N8da6pU.jpeg" target="_blank">
-              <img src="https://i.imgur.com/N8da6pU.jpeg" alt="The Gaming Area" loading="lazy" />
+            <a href={imgGamingArea.src} target="_blank">
+              <Image src={imgGamingArea} alt="The Gaming Area" />
             </a>
             <p class="screenshot-caption">THE GAMING AREA</p>
           </div>
           <div class="crt-screen screenshot-compact">
-            <a href="/images/2026/01/basement-view.png" target="_blank">
-              <img src="/images/2026/01/basement-view.png" alt="Basement Perspective" loading="lazy" />
+            <a href={imgBasementView.src} target="_blank">
+              <Image src={imgBasementView} alt="Basement Perspective" />
             </a>
             <p class="screenshot-caption">BASEMENT VIEW</p>
           </div>
           <div class="crt-screen screenshot-compact">
-            <a href="https://i.imgur.com/Kpu5VSp.png" target="_blank">
-              <img src="https://i.imgur.com/Kpu5VSp.png" alt="Achievement Notification" loading="lazy" />
+            <a href={imgNotifications.src} target="_blank">
+              <Image src={imgNotifications} alt="Achievement Notification" />
             </a>
             <p class="screenshot-caption">NOTIFICATIONS</p>
           </div>
           <div class="crt-screen screenshot-compact">
-            <a href="https://i.imgur.com/BOlvKfD.jpeg" target="_blank">
-              <img src="https://i.imgur.com/BOlvKfD.jpeg" alt="Arcade and Theater" loading="lazy" />
+            <a href={imgArcadeTheater.src} target="_blank">
+              <Image src={imgArcadeTheater} alt="Arcade and Theater" />
             </a>
             <p class="screenshot-caption">ARCADE & THEATER</p>
           </div>
@@ -142,7 +148,7 @@ import TerminalShell from '../components/TerminalShell.astro';
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
       <!-- ARCHITECTURE -->
-      <div class="info-card">
+      <div class="info-card developer-only">
         <h3>[ Architecture ]</h3>
         <div class="architecture-v2">
           <div class="arch-bg-overlay"></div>
@@ -205,22 +211,23 @@ import TerminalShell from '../components/TerminalShell.astro';
           </div>
 
           <svg class="arch-lines-svg" viewBox="0 0 800 500" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="line-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="var(--accent-primary)" stop-opacity="0.2" />
-                <stop offset="50%" stop-color="var(--accent-primary)" stop-opacity="0.8" />
-                <stop offset="100%" stop-color="var(--accent-primary)" stop-opacity="0.2" />
-              </linearGradient>
-            </defs>
-            <!-- Top to Middle -->
-            <path d="M400,60 L400,100 M120,100 L680,100 M120,100 L120,130 M310,100 L310,130 M500,100 L500,130 M680,100 L680,130" class="arch-svg-line" />
-            <!-- Middle to Hub -->
-            <path d="M120,180 L120,220 L280,220 M310,180 L310,220 L350,220 M500,180 L500,220 L450,220 M680,180 L680,250 L580,250" class="arch-svg-line" />
-            <path d="M400,220 L400,250" class="arch-svg-line" />
-            <!-- Hub to Footer -->
-            <path d="M400,340 L400,370 M250,370 L550,370 M250,370 L250,400 M550,370 L550,400" class="arch-svg-line" />
-            <!-- Footer to Storage -->
-            <path d="M250,440 L250,460 L400,460 L400,480" class="arch-svg-line" />
+            <!-- Simple SVG Paths (Static) -->
+            <path d="M400,60 L400,100" class="arch-svg-line-static" />
+            <path d="M100,100 L700,100" class="arch-svg-line-static" />
+            <path d="M100,100 L100,130" class="arch-svg-line-static" />
+            <path d="M300,100 L300,130" class="arch-svg-line-static" />
+            <path d="M500,100 L500,130" class="arch-svg-line-static" />
+            <path d="M700,100 L700,130" class="arch-svg-line-static" />
+            <path d="M100,180 L100,220 L280,220" class="arch-svg-line-static" />
+            <path d="M300,180 L300,220 L350,220" class="arch-svg-line-static" />
+            <path d="M500,180 L500,220 L450,220" class="arch-svg-line-static" />
+            <path d="M700,180 L700,220 L580,220" class="arch-svg-line-static" />
+            <path d="M400,220 L400,250" class="arch-svg-line-static" />
+            <path d="M400,340 L400,370" class="arch-svg-line-static" />
+            <path d="M200,370 L600,370" class="arch-svg-line-static" />
+            <path d="M200,370 L200,400" class="arch-svg-line-static" />
+            <path d="M600,370 L600,400" class="arch-svg-line-static" />
+            <path d="M200,440 L200,460 L400,460 L400,480" class="arch-svg-line-static" />
           </svg>
         </div>
         <p class="architecture-caption">Hub-spoke event-driven architecture optimized for VRChat's UdonSharp environment</p>
@@ -275,7 +282,7 @@ import TerminalShell from '../components/TerminalShell.astro';
         <div class="cta-divider">─────────────────────────────</div>
 
         <!-- Tech Stack (boxed card) -->
-        <div class="info-card tech-stack-card">
+        <div class="info-card tech-stack-card developer-only">
           <h3>[ Tech Stack ]</h3>
           <div class="badge-row centered">
             <a href="https://unity.com/releases/editor/whats-new/2022.3.22" class="dep-badge-sm unity" target="_blank">Unity 2022.3</a>
@@ -551,13 +558,12 @@ import TerminalShell from '../components/TerminalShell.astro';
     pointer-events: none;
   }
 
-  .arch-svg-line {
+  .arch-svg-line-static {
     fill: none;
     stroke: var(--accent-primary);
-    stroke-width: 1;
-    stroke-opacity: 0.3;
-    stroke-dasharray: 5, 5;
-    animation: dash 30s linear infinite;
+    stroke-width: 1.5;
+    stroke-opacity: 0.4;
+    stroke-dasharray: 4, 4;
   }
 
   @keyframes dash {

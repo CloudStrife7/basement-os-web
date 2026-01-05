@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TerminalShell from '../../components/TerminalShell.astro';
+import RoadmapContent from '../../components/RoadmapContent.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { audience: 'player' } },
+    { params: { audience: 'dev' } },
+  ];
+}
+
+const { audience } = Astro.params;
+const title = `BASEMENT OS | ${audience === 'player' ? 'Player' : 'Developer'} Roadmap`;
+---
+
+<BaseLayout title={title} audience={audience as 'player' | 'dev'}>
+  <TerminalShell activeSection="roadmap">
+    <RoadmapContent audience={audience as 'player' | 'dev'} />
+  </TerminalShell>
+</BaseLayout>

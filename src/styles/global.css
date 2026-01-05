@@ -393,6 +393,20 @@ body {
     overflow-x: hidden;
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   AUDIENCE MODE FILTERING
+═══════════════════════════════════════════════════════════════════ */
+
+/* Player mode: hide developer-only content */
+.mode-player .developer-only {
+    display: none !important;
+}
+
+/* Developer mode: show everything (per user request to match BOTH) */
+/* .mode-developer .player-only { display: none !important; } */
+
+/* Both mode: show everything (default behavior, no specific rules needed) */
+
 /* Background grid effect */
 body::before {
     content: '';

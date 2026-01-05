@@ -1,37 +1,48 @@
-<!DOCTYPE html><html lang="en" data-theme="synthwave"> <head><meta charset="UTF-8"><meta name="description" content="Basement OS - An interactive dev blog for the Lower Level 2.0 VRChat world project"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/jpeg" href="/favicon.jpg"><meta name="generator" content="Astro v5.16.5"><title>???</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js"></script><script>
+```astro
+---
+import '../styles/global.css';
+import '../styles/shutdown.css';
+import { ClientRouter } from 'astro:transitions';
+import SEO from '../components/SEO.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+    image?: string;
+    article?: boolean;
+    audience?: 'player' | 'dev';
+    noIndex?: boolean;
+}
+
+const { title, description, image, article, audience, noIndex } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="synthwave">
+	<head>
+        <SEO 
+            title={title} 
+            description={description} 
+            image={image} 
+            article={article} 
+            audience={audience} 
+            noIndex={noIndex} 
+        />
+		<ClientRouter />
+        <script is:inline>
             // Disable browser's scroll restoration to prevent progress bar on scroll
             // Astro's ClientRouter calls history.replaceState during scroll which
             // triggers native mobile browser progress indicators
             if ('scrollRestoration' in history) {
                 history.scrollRestoration = 'manual';
             }
-        </script><script>
-            // Immediately invoked function to set the theme before FOUC
-            (function() {
-                try {
-                    const savedTheme = localStorage.getItem('basement-os-theme') || 'synthwave';
-                    document.documentElement.setAttribute('data-theme', savedTheme);
-                } catch (e) {
-                    console.error('Theme detection failed', e);
-                }
-            })();
-        </script><link rel="stylesheet" href="/_astro/achievements.BjPYMsCD.css">
-<link rel="stylesheet" href="/_astro/gunter.BpV5WrOO.css"></head> <body>  <div class="gunter-page" id="gunter-page" data-astro-cid-purez4in> <!-- Matrix Binary Rain Background --> <canvas id="matrix-rain" class="matrix-canvas" data-astro-cid-purez4in></canvas> <!-- Accessibility Toggle --> <button class="effects-toggle" id="effects-toggle" title="Toggle glitch effects" data-astro-cid-purez4in> <span class="toggle-icon" data-astro-cid-purez4in>◉</span> <span class="toggle-text" data-astro-cid-purez4in>EFFECTS</span> </button> <!-- Main Content --> <div class="gunter-content" data-astro-cid-purez4in> <!-- Hero Section --> <header class="gunter-hero" data-astro-cid-purez4in> <div class="glitch-container" data-astro-cid-purez4in> <h1 class="glitch-text" data-text="GUNTER PROTOCOL DETECTED" data-astro-cid-purez4in>GUNTER PROTOCOL DETECTED</h1> </div> <p class="hero-subtitle" data-astro-cid-purez4in>Egg Hunters of the Forgotten Millennium</p> <div class="scanline" data-astro-cid-purez4in></div> </header> <!-- Main Narrative --> <main class="gunter-narrative" data-astro-cid-purez4in> <section class="codex-section" data-astro-cid-purez4in> <p class="narrative-text" data-glitch="true" data-astro-cid-purez4in>
-Hello.
-</p> <p class="narrative-text" data-glitch="true" data-astro-cid-purez4in>
-If you're seeing this, I'm probably still alive—just busy debugging something at 3AM. But I wanted to leave this message for those who find it. The curious ones. The ones who <code data-astro-cid-purez4in>view-source</code>. The ones who remember.
-</p> <p class="narrative-text" data-glitch="true" data-astro-cid-purez4in>
-I grew up in a basement in Wisconsin. Shag carpet. Wood paneling. A CRT TV that took 30 seconds to warm up. We played Halo 2 on system link. We burned mix CDs with Sharpie labels. We left away messages on AIM that were basically poetry. <span class="highlight" data-astro-cid-purez4in>It was the golden age</span>, and we didn't even know it.
-</p> <p class="narrative-text" data-glitch="true" data-astro-cid-purez4in>
-So I rebuilt it. Every detail I could remember. And then I hid things inside it. <span class="highlight" data-astro-cid-purez4in>Nineteen achievements</span>. Four hundred and twenty Gamerscore. But that's just what's on the surface.
-</p> <p class="narrative-text" data-glitch="true" data-astro-cid-purez4in> <span class="highlight" data-astro-cid-purez4in>How do you earn the other 580?</span> </p> <p class="narrative-text" data-glitch="true" data-astro-cid-purez4in>
-This website documents how I built it—with AI, with obsession, with far too many late nights. The devlog entries are breadcrumbs. The GitHub commits are clues. The terminal commands respond to things you might remember from 2005. <span class="highlight" data-astro-cid-purez4in>Study them.</span> </p> <p class="narrative-text" data-glitch="true" data-astro-cid-purez4in>
-The first player to reach <span class="highlight" data-astro-cid-purez4in>1000G</span> wins something real. I'm not saying what. But it exists. And I'm watching.
-</p> <p class="narrative-text" data-glitch="true" data-astro-cid-purez4in>
-I'm not offering fortune or fame. Just the satisfaction of finding something hidden. The joy of remembering an era that shaped us. And maybe—if you're very lucky—a turtle.
-</p> <p class="narrative-text final-line" data-glitch="true" data-astro-cid-purez4in>
-The basement is waiting. Come find what I've hidden.
-</p> </section> <!-- Separator --> <div class="terminal-separator" data-astro-cid-purez4in> <span data-astro-cid-purez4in>═══════════════════ PROTOCOL INITIALIZED ═══════════════════</span> </div> <!-- Call to Action --> <section class="cta-section" data-astro-cid-purez4in> <p class="cta-text" data-astro-cid-purez4in>The hunt begins now.</p> <a href="/codex" class="cta-button" data-astro-cid-purez4in> <span class="button-text" data-astro-cid-purez4in>READ THE CODEX</span> <span class="button-cursor" data-astro-cid-purez4in>_</span> </a> </section> <!-- Footer --> <footer class="gunter-footer" data-astro-cid-purez4in> <p class="footer-text" data-astro-cid-purez4in>The basement remembers. Do you?</p> <p class="footer-emoji" data-astro-cid-purez4in>🐢</p> </footer> </main> </div> <!-- Scan Line Overlay --> <div class="scan-line-overlay" id="scan-line" data-astro-cid-purez4in></div> </div>  </body></html>  <script>
+        </script>
+        <!-- Script temporarily removed for debugging -->
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>  <script>
   /**
    * ╭──────────────────────────────────────────────────────────────╮
    * │  GUNTER PROTOCOL - Glitch Effects Engine                    │

@@ -2,25 +2,32 @@
 import '../styles/global.css';
 import '../styles/shutdown.css';
 import { ClientRouter } from 'astro:transitions';
+import SEO from '../components/SEO.astro';
 
 interface Props {
 	title: string;
 	description?: string;
+    image?: string;
+    article?: boolean;
+    audience?: 'player' | 'dev';
+    noIndex?: boolean;
 }
 
-const { title, description = "Basement OS - An interactive dev blog for the Lower Level 2.0 VRChat world project" } = Astro.props;
+const { title, description, image, article, audience, noIndex } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en" data-theme="synthwave">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/jpeg" href="/favicon.jpg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-        <ClientRouter />
+        <SEO 
+            title={title} 
+            description={description} 
+            image={image} 
+            article={article} 
+            audience={audience} 
+            noIndex={noIndex} 
+        />
+		<ClientRouter />
         <script is:inline>
             // Disable browser's scroll restoration to prevent progress bar on scroll
             // Astro's ClientRouter calls history.replaceState during scroll which
@@ -30,13 +37,16 @@ const { title, description = "Basement OS - An interactive dev blog for the Lowe
             }
         </script>
         <script is:inline>
-            // Immediately invoked function to set the theme before FOUC
+            // Immediately invoked function to set the theme and mode before FOUC
             (function() {
                 try {
-                    const savedTheme = localStorage.getItem('basement-os-theme') || 'synthwave';
+                    var savedTheme = localStorage.getItem('basement-os-theme') || 'synthwave';
                     document.documentElement.setAttribute('data-theme', savedTheme);
+                    
+                    var savedMode = localStorage.getItem('basement-os-mode') || 'both';
+                    document.documentElement.classList.add('mode-' + savedMode);
                 } catch (e) {
-                    console.error('Theme detection failed', e);
+                    console.error('System initialization failed', e);
                 }
             })();
         </script>

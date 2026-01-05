@@ -16,6 +16,10 @@
         {
           "name": "maintenance",
           "color": "fbca04"
+        },
+        {
+          "name": "player",
+          "color": "000000"
         }
       ]
     },
@@ -34,6 +38,10 @@
         {
           "name": "priority: critical",
           "color": "b60205"
+        },
+        {
+          "name": "dev",
+          "color": "000000"
         }
       ]
     },

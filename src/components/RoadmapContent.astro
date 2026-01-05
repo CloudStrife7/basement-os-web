@@ -1,0 +1,451 @@
+---
+import { getEntry } from 'astro:content';
+
+interface Props {
+  audience?: 'player' | 'dev' | 'both';
+}
+
+const { audience = 'both' } = Astro.props;
+
+// Fetch data from Content Collection
+const roadmapEntry = await getEntry('roadmap', 'data');
+const { issues = [], milestones = [], closed = [] } = roadmapEntry?.data || {};
+
+// Helper Types
+type Label = string | { name: string; color?: string };
+
+// Helper Functions
+function getLabels(item: any): string[] {
+  const labels = item.labels || [];
+  return labels.map((l: any) => (typeof l === 'string' ? l : l.name).toLowerCase());
+}
+
+function getPriority(item: any): 'critical' | 'high' | 'medium' | 'low' {
+  const labelNames = getLabels(item);
+  if (labelNames.includes('priority: critical')) return 'critical';
+  if (labelNames.includes('priority: high')) return 'high';
+  if (labelNames.includes('priority: medium')) return 'medium';
+  return 'low';
+}
+
+function getTimeAgo(dateString?: string) {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  
+  if (diffDays === 0) return 'Today';
+  if (diffDays === 1) return 'Yesterday';
+  if (diffDays < 7) return `${diffDays} days ago`;
+  if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+  if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
+  return `${Math.floor(diffDays / 365)} years ago`;
+}
+
+// 1. Filter by Audience
+const filteredIssues = issues.filter((i: any) => {
+  if (audience === 'both') return true;
+  const labels = getLabels(i);
+  if (audience === 'player') return labels.includes('audience: player') || labels.includes('player');
+  if (audience === 'dev') return labels.includes('audience: developer') || labels.includes('dev');
+  return true;
+});
+
+const filteredClosed = closed.filter((i: any) => {
+  if (audience === 'both') return true;
+  const labels = getLabels(i);
+  if (audience === 'player') return labels.includes('audience: player') || labels.includes('player');
+  if (audience === 'dev') return labels.includes('audience: developer') || labels.includes('dev');
+  return true;
+});
+
+// 2. Segment Data
+const currentFocus = filteredIssues.filter((i: any) => {
+  const p = getPriority(i);
+  return p === 'critical' || p === 'high';
+});
+
+const comingSoon = filteredIssues.filter((i: any) => {
+  const p = getPriority(i);
+  return p === 'medium';
+});
+
+const backlog = filteredIssues.filter((i: any) => {
+  const p = getPriority(i);
+  return p === 'low';
+});
+
+const thirtyDaysAgo = new Date();
+thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+const recentlyClosed = filteredClosed
+  .filter((i: any) => i.closed_at && new Date(i.closed_at) > thirtyDaysAgo)
+  .slice(0, 10);
+
+const openMilestones = milestones.filter((m: any) => m.state === 'open');
+---
+
+<div class="content-section active">
+  <h2 class="section-header">C:\BASEMENT\ROADMAP.TXT</h2>
+
+  <div class="mission-statement">
+    <h3>{audience === 'both' ? 'Unified' : audience.toUpperCase()} Development Roadmap</h3>
+    <p>Live project status from GitHub Issues. Track what's being worked on, what's coming next, and the full backlog.</p>
+  </div>
+
+  <!-- CURRENT FOCUS -->
+  <details class="roadmap-section section-primary" open>
+    <summary>[ Current Focus ]</summary>
+    <p class="section-desc">High priority items actively being worked on</p>
+    <div class="issues-grid">
+      {currentFocus.length === 0 ? (
+        <div class="empty-state">No items for this segment</div>
+      ) : (
+        currentFocus.map((issue: any) => {
+          const priority = getPriority(issue);
+          const title = issue.title.replace(/^\[.*?\]\s*/, '');
+          return (
+            <div class={`info-card issue-card priority-${priority}`}>
+              <h3>[ {title} #{issue.number} ]</h3>
+              <div class="stat-row">
+                <span class="stat-label">Priority</span>
+                <span class={`stat-value priority-${priority}`}>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span>
+              </div>
+              {issue.milestone && (
+                <div class="stat-row milestone-row">
+                  <span class="stat-label">Milestone</span>
+                  <span class="stat-value">{issue.milestone}</span>
+                </div>
+              )}
+              <div class="stat-row created-row">
+                <span class="stat-label">Created</span>
+                <span class="stat-value">{getTimeAgo(issue.created_at)}</span>
+              </div>
+            </div>
+          );
+        })
+      )}
+    </div>
+  </details>
+
+  <!-- MILESTONES -->
+  <details class="roadmap-section section-primary">
+    <summary>[ Milestones ]</summary>
+    <p class="section-desc">Major releases and feature sets</p>
+    <div class="milestones-grid">
+      {openMilestones.length === 0 ? (
+        <div class="empty-state">No active milestones</div>
+      ) : (
+        openMilestones.map((m: any) => {
+          const progress = (m.open_issues + m.closed_issues > 0)
+            ? Math.round((m.closed_issues / (m.open_issues + m.closed_issues)) * 100)
+            : 0;
+          return (
+            <div class="milestone-card">
+              <div class="milestone-title">{m.title}</div>
+              <div class="milestone-progress">
+                <div class="milestone-progress-bar" style={`width: ${progress}%`}></div>
+              </div>
+              <div class="milestone-stats">
+                <span>{m.closed_issues} done</span>
+                <span>{m.open_issues} remaining</span>
+                <span>{progress}%</span>
+              </div>
+            </div>
+          );
+        })
+      )}
+    </div>
+  </details>
+
+  <!-- COMING SOON -->
+  <details class="roadmap-section section-secondary">
+    <summary>[ Coming Soon ]</summary>
+    <p class="section-desc">Medium priority - planned for upcoming releases</p>
+    <div class="issues-grid">
+      {comingSoon.length === 0 ? (
+        <div class="empty-state">None queued</div>
+      ) : (
+        comingSoon.map((issue: any) => {
+          const priority = getPriority(issue);
+          const title = issue.title.replace(/^\[.*?\]\s*/, '');
+          return (
+            <div class={`info-card issue-card priority-${priority}`}>
+              <h3>[ {title} #{issue.number} ]</h3>
+              <div class="stat-row">
+                <span class="stat-label">Priority</span>
+                <span class={`stat-value priority-${priority}`}>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span>
+              </div>
+              {issue.milestone && (
+                <div class="stat-row milestone-row">
+                  <span class="stat-label">Milestone</span>
+                  <span class="stat-value">{issue.milestone}</span>
+                </div>
+              )}
+              <div class="stat-row created-row">
+                <span class="stat-label">Created</span>
+                <span class="stat-value">{getTimeAgo(issue.created_at)}</span>
+              </div>
+            </div>
+          );
+        })
+      )}
+    </div>
+  </details>
+
+  <!-- BACKLOG -->
+  <details class="roadmap-section section-muted">
+    <summary>[ Backlog ]</summary>
+    <p class="section-desc">Ideas and enhancements for the future</p>
+    <div class="issues-grid">
+      {backlog.length === 0 ? (
+        <div class="empty-state">Backlog is empty</div>
+      ) : (
+        backlog.map((issue: any) => {
+          const priority = getPriority(issue);
+          const title = issue.title.replace(/^\[.*?\]\s*/, '');
+          return (
+            <div class={`info-card issue-card priority-${priority}`}>
+              <h3>[ {title} #{issue.number} ]</h3>
+              <div class="stat-row">
+                <span class="stat-label">Priority</span>
+                <span class={`stat-value priority-${priority}`}>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span>
+              </div>
+              {issue.milestone && (
+                <div class="stat-row milestone-row">
+                  <span class="stat-label">Milestone</span>
+                  <span class="stat-value">{issue.milestone}</span>
+                </div>
+              )}
+              <div class="stat-row created-row">
+                <span class="stat-label">Created</span>
+                <span class="stat-value">{getTimeAgo(issue.created_at)}</span>
+              </div>
+            </div>
+          );
+        })
+      )}
+    </div>
+  </details>
+
+  <!-- RECENTLY COMPLETED -->
+  <details class="roadmap-section section-completed">
+    <summary>[ Recently Completed ]</summary>
+    <p class="section-desc">Shipped in the last 30 days</p>
+    <div class="issues-grid">
+      {recentlyClosed.length === 0 ? (
+        <div class="empty-state">None recently</div>
+      ) : (
+        recentlyClosed.map((issue: any) => {
+          const priority = getPriority(issue);
+          const title = issue.title.replace(/^\[.*?\]\s*/, '');
+          return (
+            <div class="info-card issue-card completed">
+              <h3>[ {title} #{issue.number} ]</h3>
+              <div class="stat-row">
+                <span class="stat-label">Priority</span>
+                <span class={`stat-value priority-${priority}`}>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span>
+              </div>
+              {issue.milestone && (
+                <div class="stat-row milestone-row">
+                  <span class="stat-label">Milestone</span>
+                  <span class="stat-value">{issue.milestone}</span>
+                </div>
+              )}
+              <div class="stat-row created-row">
+                <span class="stat-label">Created</span>
+                <span class="stat-value">{getTimeAgo(issue.created_at)}</span>
+              </div>
+            </div>
+          );
+        })
+      )}
+    </div>
+  </details>
+
+  <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+  <div class="cta-section">
+    <p style="color: var(--text-secondary); margin-bottom: 15px;">Want to suggest a feature or report a bug?</p>
+    <a href="mailto:admin@BasementOS.com" class="cta-button-small">
+      <span>@</span>
+      <span>E-MAIL ME</span>
+    </a>
+  </div>
+
+</div>
+
+<style>
+  .roadmap-section {
+    margin-bottom: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--bg-secondary);
+  }
+
+  .roadmap-section summary {
+    color: var(--accent-primary);
+    font-size: 1em;
+    font-weight: bold;
+    padding: 10px 15px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .roadmap-section summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .roadmap-section summary::after {
+    content: '+';
+    font-size: 1.2em;
+    color: var(--text-dim);
+  }
+
+  .roadmap-section[open] summary::after {
+    content: '−';
+    font-size: 1.2em;
+  }
+
+  .roadmap-section[open] summary {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .roadmap-section .section-desc {
+    color: var(--text-dim);
+    font-size: 0.8em;
+    margin: 0;
+    padding: 8px 15px;
+    font-style: italic;
+  }
+
+  .roadmap-section .issues-grid,
+  .roadmap-section .milestones-grid {
+    padding: 10px 15px 15px 15px;
+  }
+
+  .section-primary summary { color: var(--accent-primary); }
+  .section-secondary summary { color: var(--accent-secondary); }
+  .section-secondary .issue-card { opacity: 0.9; }
+  .section-muted summary { color: var(--text-dim); }
+  .section-muted .issue-card { opacity: 0.75; }
+  .section-completed summary { color: var(--accent-primary); }
+  .section-completed .issue-card { opacity: 0.7; }
+
+  .issues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
+  }
+
+  .issue-card {
+    padding: 10px !important;
+    font-size: 0.8em;
+  }
+
+  .issue-card h3 {
+    color: var(--accent-secondary);
+    margin-bottom: 6px;
+    font-size: 0.9em;
+    line-height: 1.2;
+  }
+
+  .issue-card .stat-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 3px 0;
+    border-bottom: 1px dotted var(--border-color);
+    font-size: 0.9em;
+  }
+
+  .issue-card .stat-row:last-child {
+    border-bottom: none;
+  }
+
+  .issue-card .stat-label {
+    color: var(--text-dim);
+    flex-shrink: 0;
+    min-width: 55px;
+  }
+
+  .issue-card .stat-value {
+    color: var(--accent-primary);
+    text-align: right;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .issue-card .stat-value.priority-critical { color: #ff4444; }
+  .issue-card .stat-value.priority-high { color: #ff8844; }
+  .issue-card .stat-value.priority-medium { color: #ffcc44; }
+
+  .milestones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+  }
+
+  .milestone-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .milestone-title {
+    color: var(--accent-primary);
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+  }
+
+  .milestone-progress {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+
+  .milestone-progress-bar {
+    height: 100%;
+    background: var(--accent-primary);
+    transition: width 0.5s ease;
+  }
+
+  .milestone-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+    color: var(--text-dim);
+  }
+
+  .cta-button-small {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-primary);
+    color: #000;
+    padding: 10px 20px;
+    font-family: var(--font-mono);
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid var(--accent-primary);
+    transition: all 0.3s ease;
+  }
+
+  .cta-button-small:hover { background: transparent; color: var(--accent-primary); }
+  .cta-section { text-align: center; padding: 20px 0; }
+  .loading-indicator { color: var(--text-dim); font-style: italic; padding: 20px; text-align: center; grid-column: 1 / -1; }
+  .empty-state { color: var(--text-dim); font-style: italic; padding: 15px; text-align: center; grid-column: 1 / -1; }
+
+  @media (max-width: 600px) {
+    .issues-grid { grid-template-columns: 1fr; }
+    .milestones-grid { grid-template-columns: 1fr; }
+  }
+</style>

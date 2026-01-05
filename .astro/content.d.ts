@@ -180,6 +180,14 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
+"roadmap": Record<string, {
+  id: string;
+  body?: string;
+  collection: "roadmap";
+  data: InferEntrySchema<"roadmap">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
 
 	};
 

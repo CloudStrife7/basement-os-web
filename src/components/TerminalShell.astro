@@ -3,53 +3,65 @@ interface Props {
   activeSection?: 'home' | 'story' | 'devlog' | 'skills' | 'support' | 'achievements' | 'roadmap';
 }
 
+import ModeSelection from './ModeSelection.astro';
+
 const { activeSection = 'home' } = Astro.props;
 ---
 
 <div class="terminal-wrapper">
   <div class="terminal">
     <!-- Header -->
-    <div class="terminal-header">
+    <header class="terminal-header">
       <div class="window-controls">
-        <span class="window-btn btn-close" id="btn-reboot" title="Reboot Me!"></span>
-        <a href="/businesscards.html" class="window-btn btn-minimize" title="Back to Business Cards" style="display:block"></a>
-        <a href="/egg-hunt" class="window-btn btn-maximize" title="???" style="display:block"></a>
+        <button class="window-btn btn-close" id="btn-reboot" title="Reboot Me!" aria-label="Reboot System"></button>
+        <a href="/businesscards.html" class="window-btn btn-minimize" title="Back to Business Cards" aria-label="Minimize Window" style="display:block"></a>
+        <a href="/egg-hunt" class="window-btn btn-maximize" title="???" aria-label="Maximize Window" style="display:block"></a>
       </div>
       <div class="terminal-title">BASEMENT OS</div>
-      <div class="theme-selector">
-        <label for="theme-select">THEME:</label>
-        <select id="theme-select">
-          <option value="high-contrast">High Contrast</option>
-          <option value="synthwave">Synthwave</option>
-          <option value="framer-dark">Framer Dark</option>
-          <option value="framer-light">Framer Light</option>
-          <option value="solarized-dark">Solarized Dark</option>
-          <option value="solarized-light">Solarized Light</option>
-          <option value="catppuccin">Catppuccin</option>
-          <option value="monokai">Monokai</option>
-          <option value="gruvbox-dark">Gruvbox Dark</option>
-          <option value="gruvbox-light">Gruvbox Light</option>
-          <option value="rose-pine">Rose Pine</option>
-          <option value="rose-pine-dawn">Rose Pine Dawn</option>
-          <option value="rose-pine-moon">Rose Pine Moon</option>
-          <option value="cappuccino">Cappuccino</option>
-          <option value="basementos">BasementOS</option>
-        </select>
+      <div class="system-selectors">
+        <div class="mode-selector-header">
+          <label for="mode-select">MODE:</label>
+          <select id="mode-select" aria-label="Select Audience Mode">
+            <option value="player">Player</option>
+            <option value="developer">Developer</option>
+            <option value="both">Both</option>
+          </select>
+        </div>
+        <div class="theme-selector">
+          <label for="theme-select">THEME:</label>
+          <select id="theme-select" aria-label="Select Color Theme">
+            <option value="high-contrast">High Contrast</option>
+            <option value="synthwave">Synthwave</option>
+            <option value="framer-dark">Framer Dark</option>
+            <option value="framer-light">Framer Light</option>
+            <option value="solarized-dark">Solarized Dark</option>
+            <option value="solarized-light">Solarized Light</option>
+            <option value="catppuccin">Catppuccin</option>
+            <option value="monokai">Monokai</option>
+            <option value="gruvbox-dark">Gruvbox Dark</option>
+            <option value="gruvbox-light">Gruvbox Light</option>
+            <option value="rose-pine">Rose Pine</option>
+            <option value="rose-pine-dawn">Rose Pine Dawn</option>
+            <option value="rose-pine-moon">Rose Pine Moon</option>
+            <option value="cappuccino">Cappuccino</option>
+            <option value="basementos">BasementOS</option>
+          </select>
+        </div>
       </div>
-    </div>
+    </header>
 
     <!-- Navigation -->
-    <nav class="nav-menu active" id="nav-menu">
+    <nav class="nav-menu active" id="nav-menu" aria-label="Main Navigation">
       <a href="/" class={`nav-btn ${activeSection === 'home' ? 'active' : ''}`}>
         <span class="type">&lt;BOOT&gt;</span> HOME
       </a>
       <a href="/story" class={`nav-btn ${activeSection === 'story' ? 'active' : ''}`}>
         <span class="type">&lt;OSx&gt;</span> MY STORY
       </a>
-      <a href="/devlog" class={`nav-btn ${activeSection === 'devlog' ? 'active' : ''}`}>
+      <a href="/devlog" class={`nav-btn developer-only ${activeSection === 'devlog' ? 'active' : ''}`}>
         <span class="type">&lt;LOG&gt;</span> DEVLOG
       </a>
-      <a href="/skills" class={`nav-btn ${activeSection === 'skills' ? 'active' : ''}`}>
+      <a href="/skills" class={`nav-btn developer-only ${activeSection === 'skills' ? 'active' : ''}`}>
         <span class="type">&lt;AI&gt;</span> SKILLS
       </a>
       <a href="/support" class={`nav-btn ${activeSection === 'support' ? 'active' : ''}`}>
@@ -58,10 +70,10 @@ const { activeSection = 'home' } = Astro.props;
       <a href="/achievements" class={`nav-btn ${activeSection === 'achievements' ? 'active' : ''}`}>
         <span class="type">&lt;360&gt;</span> ACHIEVEMENTS
       </a>
-      <a href="/roadmap" class={`nav-btn ${activeSection === 'roadmap' ? 'active' : ''}`}>
+      <a href="/roadmap" id="roadmap-link" class={`nav-btn ${activeSection === 'roadmap' ? 'active' : ''}`}>
         <span class="type">&lt;MAP&gt;</span> ROADMAP
       </a>
-      <button class="nav-btn" id="terminal-toggle">
+      <button class="nav-btn" id="terminal-toggle" aria-label="Toggle Terminal Simulation">
         <span class="type">&lt;SSH&gt;</span> TERMINAL
       </button>
       <a href="https://vrchat.com/home/launch?worldId=wrld_7302897c-be0f-4037-ac67-76f0ea065c2b" class="nav-btn" target="_blank">
@@ -70,7 +82,7 @@ const { activeSection = 'home' } = Astro.props;
     </nav>
 
     <!-- Terminal Demo Container (inline, replaces main-content when active) -->
-    <div class="terminal-demo-container" id="terminal-demo" style="display:none">
+    <div class="terminal-demo-container" id="terminal-demo" style="display:none" role="application" aria-label="Terminal Simulation">
       <div class="terminal-demo-screen" id="terminal-demo-root"></div>
       <div class="terminal-disconnect" id="terminal-disconnect" style="display:none">
         <span class="disconnect-text">Disconnecting</span><span class="disconnect-dots" id="disconnect-dots"></span>
@@ -78,7 +90,7 @@ const { activeSection = 'home' } = Astro.props;
     </div>
 
     <!-- AI Disclosure -->
-    <div class="ai-disclosure" id="ai-disclosure">
+    <div class="ai-disclosure" id="ai-disclosure" role="status">
       <div class="ai-disclosure-header">[ NEXT-GEN AI DEVLOG ]</div>
       <div class="ai-disclosure-content">
         Content Generated by Developer-Led AI Workflows. Reviewed by a Human-In-the-Loop.
@@ -86,26 +98,26 @@ const { activeSection = 'home' } = Astro.props;
     </div>
 
     <!-- Boot Screen -->
-    <div class="boot-screen" id="boot-screen" style="display:none"></div>
+    <div class="boot-screen" id="boot-screen" style="display:none" role="status" aria-live="polite"></div>
 
     <!-- Shutdown Screen -->
-    <div id="shutdown-screen">
+    <div id="shutdown-screen" role="alert" aria-live="assertive">
         <div class="shutdown-msg-1">Please wait while your computer shuts down...</div>
         <div class="shutdown-msg-2" style="color: #ff3e8a;">IT'S NOW SAFE TO TURN OFF YOUR COMPUTER</div>
     </div>
 
     <!-- Main Content Slot -->
-    <div class="terminal-content active" id="main-content" transition:animate="fade">
+    <main class="terminal-content active" id="main-content" transition:animate="fade">
       <slot />
-    </div>
+    </main>
 
     <!-- Prompt & Status Bar -->
-    <div class="prompt-line">
+    <div class="prompt-line" aria-hidden="true">
       <span class="prompt">C:\BASEMENT&gt;</span>
       <span class="cursor"></span>
     </div>
 
-    <div class="status-bar">
+    <div class="status-bar" role="complementary" aria-label="System Status">
       <span class="status-item mem-tooltip-container">
         MEM: <span class="status-value" id="visit-counter">64K OK</span>
         <div class="mem-tooltip" id="mem-tooltip">
@@ -135,6 +147,8 @@ const { activeSection = 'home' } = Astro.props;
     <p>&copy; 2025 <a href="https://github.com/CloudStrife7" class="link">CloudStrife7</a> | Lower Level 2.0</p>
   </footer>
 </div>
+
+<ModeSelection />
 
 <!-- Lightbox for devlog images -->
 <div class="lightbox" id="lightbox">
@@ -242,6 +256,39 @@ const { activeSection = 'home' } = Astro.props;
     font-weight: bold;
   }
 
+  .system-selectors {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .mode-selector-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mode-selector-header label {
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+
+  .mode-selector-header select {
+    background: var(--bg-primary);
+    color: var(--accent-primary);
+    border: 1px solid var(--border-color);
+    padding: 5px 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .mode-selector-header select:focus {
+    outline: 1px solid var(--accent-primary);
+  }
+
   .mem-tooltip-divider {
     height: 1px;
     background: var(--border-color);
@@ -250,6 +297,8 @@ const { activeSection = 'home' } = Astro.props;
 </style>
 
 <script>
+  import { getSavedMode, setAudienceMode, updateDynamicLinks } from '../scripts/modeStore';
+
   // Boot Sequence Configuration
   const BOOT_SEQUENCE = [
     { text: '════════════════════════════════════════════════════════════════════════════════', delay: 0 },
@@ -301,13 +350,28 @@ const { activeSection = 'home' } = Astro.props;
                   : 500;
               setTimeout(runBootSequence, nextDelay);
           } else {
-              setTimeout(() => {
-                  bootScreen.style.display = 'none';
-                  if (mainContent) mainContent.classList.add('active');
-                  if (navMenu) navMenu.classList.add('active');
-                  if (aiDisclosure) aiDisclosure.style.display = 'block';
-              }, 800);
+              // Wait for mode selection if not already done
+              const hasSelectedMode = sessionStorage.getItem('basement-os-mode-selected');
+              if (!hasSelectedMode) {
+                  window.dispatchEvent(new Event('basement-os-request-mode-selection'));
+                  
+                  // Wait for selection to complete
+                  window.addEventListener('basement-os-mode-ready', () => {
+                      finishBoot();
+                  }, { once: true });
+              } else {
+                  finishBoot();
+              }
           }
+      }
+
+      function finishBoot() {
+          setTimeout(() => {
+              if (bootScreen) bootScreen.style.display = 'none';
+              if (mainContent) mainContent.classList.add('active');
+              if (navMenu) navMenu.classList.add('active');
+              if (aiDisclosure) aiDisclosure.style.display = 'block';
+          }, 800);
       }
 
       // Check if already booted
@@ -367,6 +431,31 @@ const { activeSection = 'home' } = Astro.props;
           setTheme(/** @type {HTMLSelectElement} */ (e.target).value);
         });
       }
+
+      // Mode Logic
+
+      /** @type {HTMLSelectElement} */
+      const modeSelect = /** @type {HTMLSelectElement} */ (document.getElementById('mode-select'));
+
+      // Initial Sync
+      if (modeSelect) {
+        modeSelect.value = getSavedMode();
+        modeSelect.addEventListener('change', (e) => {
+          setAudienceMode(/** @type {HTMLSelectElement} */ (e.target).value);
+        });
+      }
+
+      // Sync header mode selector when mode changes from other places
+      window.addEventListener('basement-os-mode-change', (e) => {
+        // @ts-ignore
+        const mode = e.detail.mode;
+        if (modeSelect) modeSelect.value = mode;
+      });
+
+      // Ensure dynamic links are correct on first load
+      document.addEventListener("astro:page-load", () => {
+        updateDynamicLinks(getSavedMode());
+      });
 
       // Clock
       function updateClock() {

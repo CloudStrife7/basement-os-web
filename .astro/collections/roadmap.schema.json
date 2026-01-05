@@ -1,0 +1,7 @@
+{
+  "$ref": "#/definitions/roadmap",
+  "definitions": {
+    "roadmap": {}
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

@@ -1,23 +1,45 @@
-<!DOCTYPE html><html lang="en" data-theme="synthwave"> <head><meta charset="UTF-8"><meta name="description" content="Basement OS - An interactive dev blog for the Lower Level 2.0 VRChat world project"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/jpeg" href="/favicon.jpg"><meta name="generator" content="Astro v5.16.5"><title>BASEMENT OS | Business Cards</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js"></script><script>
+```astro
+---
+import '../styles/global.css';
+import '../styles/shutdown.css';
+import { ClientRouter } from 'astro:transitions';
+import SEO from '../components/SEO.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+    image?: string;
+    article?: boolean;
+    audience?: 'player' | 'dev';
+    noIndex?: boolean;
+}
+
+const { title, description, image, article, audience, noIndex } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="synthwave">
+	<head>
+        <SEO 
+            title={title} 
+            description={description} 
+            image={image} 
+            article={article} 
+            audience={audience} 
+            noIndex={noIndex} 
+        />
+		<ClientRouter />
+        <script is:inline>
             // Disable browser's scroll restoration to prevent progress bar on scroll
             // Astro's ClientRouter calls history.replaceState during scroll which
             // triggers native mobile browser progress indicators
             if ('scrollRestoration' in history) {
                 history.scrollRestoration = 'manual';
             }
-        </script><script>
-            // Immediately invoked function to set the theme before FOUC
-            (function() {
-                try {
-                    const savedTheme = localStorage.getItem('basement-os-theme') || 'synthwave';
-                    document.documentElement.setAttribute('data-theme', savedTheme);
-                } catch (e) {
-                    console.error('Theme detection failed', e);
-                }
-            })();
-        </script><link rel="stylesheet" href="/_astro/achievements.BjPYMsCD.css">
-<link rel="stylesheet" href="/_astro/businesscards.BxOLWwG6.css"></head> <body>  <div class="cards-page-container" data-astro-cid-yn7f7tmx> <h1 class="page-title" data-astro-cid-yn7f7tmx>// BASEMENT_OS.BUSINESS_CARDS</h1> <div class="cards-container" data-astro-cid-yn7f7tmx> <!-- FRONT CARD --> <div class="card-wrapper" data-astro-cid-yn7f7tmx> <div class="card card-front" data-astro-cid-yn7f7tmx> <div class="window-controls" data-astro-cid-yn7f7tmx> <div class="window-button close" data-astro-cid-yn7f7tmx></div> <div class="window-button minimize" data-astro-cid-yn7f7tmx></div> <div class="window-button maximize" data-astro-cid-yn7f7tmx></div> </div> <div class="front-header-section" data-astro-cid-yn7f7tmx> <div class="dos-header" data-astro-cid-yn7f7tmx>BASEMENT OS</div> <div class="terminal-label" data-astro-cid-yn7f7tmx>&lt;TERMINAL&gt;</div> </div> <div class="dos-content" data-astro-cid-yn7f7tmx> <div class="dos-lines" data-astro-cid-yn7f7tmx> <div class="dos-line" data-astro-cid-yn7f7tmx>BIOS Ver <span class="dos-value" data-astro-cid-yn7f7tmx>2.0</span></div> <div class="dos-line" data-astro-cid-yn7f7tmx>CPU: <span class="dos-value" data-astro-cid-yn7f7tmx>Creativity Core</span></div> <div class="dos-line" data-astro-cid-yn7f7tmx>RAM: <span class="dos-value" data-astro-cid-yn7f7tmx>Infinite Ideas</span></div> <div class="dos-line" data-astro-cid-yn7f7tmx>GPU: <span class="dos-value" data-astro-cid-yn7f7tmx>Unity Renderer</span></div> <div class="dos-line" data-astro-cid-yn7f7tmx>AI: <span class="dos-value" data-astro-cid-yn7f7tmx>Claude Integrated</span></div> </div> <div class="dos-prompt" data-astro-cid-yn7f7tmx>
-C:\BASEMENT&gt;<span class="cursor" data-astro-cid-yn7f7tmx></span> </div> </div> <div class="dos-status-bar" data-astro-cid-yn7f7tmx> <span class="status-item" data-astro-cid-yn7f7tmx>
-MEM: <span class="status-value" data-astro-cid-yn7f7tmx>640K OK</span> </span> <span class="status-item" data-astro-cid-yn7f7tmx>
-TIME: <span class="status-value" id="card-clock" data-astro-cid-yn7f7tmx>00:00:00</span> </span> <span class="status-item" data-astro-cid-yn7f7tmx>
-SYS: <span class="status-value" data-astro-cid-yn7f7tmx>BASEMENT OS</span> </span> </div> </div> <div class="card-label" data-astro-cid-yn7f7tmx>FRONT</div> </div> <!-- BACK CARD --> <div class="card-wrapper" data-astro-cid-yn7f7tmx> <div class="card card-back" data-astro-cid-yn7f7tmx> <div class="window-controls" data-astro-cid-yn7f7tmx> <div class="window-button close" data-astro-cid-yn7f7tmx></div> <div class="window-button minimize" data-astro-cid-yn7f7tmx></div> <div class="window-button maximize" data-astro-cid-yn7f7tmx></div> </div> <div class="header-section" data-astro-cid-yn7f7tmx> <div class="skills-header" data-astro-cid-yn7f7tmx>ZACH WAGNER</div> <div class="ai-skills-label" data-astro-cid-yn7f7tmx>&lt;AI&gt; SKILLS</div> </div> <div class="skills-content" data-astro-cid-yn7f7tmx> <div class="skills-grid" data-astro-cid-yn7f7tmx> <div class="skill-item" data-astro-cid-yn7f7tmx> <div class="skill-name" data-astro-cid-yn7f7tmx>C# / UdonSharp</div> <div class="skill-desc" data-astro-cid-yn7f7tmx>VRChat scripting</div> </div> <div class="skill-item" data-astro-cid-yn7f7tmx> <div class="skill-name" data-astro-cid-yn7f7tmx>AI Integration</div> <div class="skill-desc" data-astro-cid-yn7f7tmx>Claude Code</div> </div> <div class="skill-item" data-astro-cid-yn7f7tmx> <div class="skill-name" data-astro-cid-yn7f7tmx>Agent Swarms</div> <div class="skill-desc" data-astro-cid-yn7f7tmx>Parallel Tasks</div> </div> <div class="skill-item" data-astro-cid-yn7f7tmx> <div class="skill-name" data-astro-cid-yn7f7tmx>API Design</div> <div class="skill-desc" data-astro-cid-yn7f7tmx>Cloud persistence</div> </div> <div class="skill-item" data-astro-cid-yn7f7tmx> <div class="skill-name" data-astro-cid-yn7f7tmx>UI/UX Design</div> <div class="skill-desc" data-astro-cid-yn7f7tmx>Interactive systems</div> </div> <div class="skill-item" data-astro-cid-yn7f7tmx> <div class="skill-name" data-astro-cid-yn7f7tmx>Git Workflow</div> <div class="skill-desc" data-astro-cid-yn7f7tmx>CI/CD automation</div> </div> </div> <div class="contact-section" data-astro-cid-yn7f7tmx> <a href="/" class="website-link" data-astro-cid-yn7f7tmx>ENTER BASEMENT OS</a> </div> </div> </div> <div class="card-label" data-astro-cid-yn7f7tmx>BACK</div> </div> </div> </div>  </body></html> <script type="module">function t(){const n=new Date,e=document.getElementById("card-clock");e&&(e.textContent=n.toLocaleTimeString("en-US",{hour12:!1}))}setInterval(t,1e3);t();</script> 
+        </script>
+        <!-- Script temporarily removed for debugging -->
+	</head>
+	<body>
+		<slot />
+	</body>
+</html> <script type="module">function t(){const n=new Date,e=document.getElementById("card-clock");e&&(e.textContent=n.toLocaleTimeString("en-US",{hour12:!1}))}setInterval(t,1e3);t();</script> 
