@@ -1,5 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
+import { getContrastColor } from '../utils/colors';
 
 interface Props {
   audience?: 'player' | 'dev' | 'both';
@@ -11,13 +12,54 @@ const { audience = 'both' } = Astro.props;
 const roadmapEntry = await getEntry('roadmap', 'data');
 const { issues = [], milestones = [], closed = [] } = roadmapEntry?.data || {};
 
-// Helper Types
-type Label = string | { name: string; color?: string };
+// Extended Types
+interface Label {
+  name: string;
+  color: string;
+}
 
 // Helper Functions
-function getLabels(item: any): string[] {
+function getLabels(item: any): Label[] {
   const labels = item.labels || [];
-  return labels.map((l: any) => (typeof l === 'string' ? l : l.name).toLowerCase());
+  return labels.map((l: any) => {
+    if (typeof l === 'string') {
+        // Fallback for legacy string labels
+        return { name: l.toLowerCase(), color: 'aaaaaa' };
+    }
+    return { name: l.name.toLowerCase(), color: l.color || 'aaaaaa' };
+  });
+}
+
+function getLabelPriority(label: Label): number {
+  if (['player', 'dev', 'player-focused', 'dev-focused', 'audience: player', 'audience: developer'].includes(label.name)) return 0;
+  if (label.name.includes('priority')) return 1;
+  return 2;
+}
+
+function getVisibleLabels(labels: Label[], audience: string): Label[] {
+    // Sort first: Audience -> Priority -> Functional
+    const sorted = [...labels].sort((a, b) => getLabelPriority(a) - getLabelPriority(b));
+
+    if (audience === 'both') return sorted;
+
+    return sorted.filter(l => {
+        const n = l.name;
+        // Hide "player" label on player view (redundant)
+        if (audience === 'player' && (n === 'player' || n === 'player-focused' || n === 'audience: player')) return false;
+        // Hide "dev" label on dev view (redundant)
+        if (audience === 'dev' && (n === 'dev' || n === 'dev-focused' || n === 'developer' || n === 'audience: developer')) return false;
+        
+        return true;
+    });
+}
+
+function getPriority(item: any): 'critical' | 'high' | 'medium' | 'low' {
+  const labels = getLabels(item);
+  const labelNames = labels.map(l => l.name);
+  if (labelNames.includes('priority: critical')) return 'critical';
+  if (labelNames.includes('priority: high')) return 'high';
+  if (labelNames.includes('priority: medium')) return 'medium';
+  return 'low';
 }
 
 function getPriority(item: any): 'critical' | 'high' | 'medium' | 'low' {
@@ -43,20 +85,28 @@ function getTimeAgo(dateString?: string) {
   return `${Math.floor(diffDays / 365)} years ago`;
 }
 
+const missionStatements = {
+  both: "Live project status from GitHub Issues. Track what's being worked on, what's coming next, and the full backlog.",
+  player: "Unlock New Features. Track game updates, upcoming content drops, and major milestones.",
+  dev: "Technical Debt & Refactoring. Deep dive into the backend, AI agent workflows, and system architecture."
+};
+
+const missionText = missionStatements[audience] || missionStatements.both;
+
 // 1. Filter by Audience
 const filteredIssues = issues.filter((i: any) => {
   if (audience === 'both') return true;
   const labels = getLabels(i);
-  if (audience === 'player') return labels.includes('audience: player') || labels.includes('player');
-  if (audience === 'dev') return labels.includes('audience: developer') || labels.includes('dev');
+  if (audience === 'player') return labels.some(l => l.name === 'audience: player' || l.name === 'player' || l.name === 'player-focused');
+  if (audience === 'dev') return labels.some(l => l.name === 'audience: developer' || l.name === 'dev' || l.name === 'dev-focused');
   return true;
 });
 
 const filteredClosed = closed.filter((i: any) => {
   if (audience === 'both') return true;
   const labels = getLabels(i);
-  if (audience === 'player') return labels.includes('audience: player') || labels.includes('player');
-  if (audience === 'dev') return labels.includes('audience: developer') || labels.includes('dev');
+  if (audience === 'player') return labels.some(l => l.name === 'audience: player' || l.name === 'player' || l.name === 'player-focused');
+  if (audience === 'dev') return labels.some(l => l.name === 'audience: developer' || l.name === 'dev' || l.name === 'dev-focused');
   return true;
 });
 
@@ -90,7 +140,7 @@ const openMilestones = milestones.filter((m: any) => m.state === 'open');
 
   <div class="mission-statement">
     <h3>{audience === 'both' ? 'Unified' : audience.toUpperCase()} Development Roadmap</h3>
-    <p>Live project status from GitHub Issues. Track what's being worked on, what's coming next, and the full backlog.</p>
+    <p>{missionText}</p>
   </div>
 
   <!-- CURRENT FOCUS -->
@@ -104,9 +154,20 @@ const openMilestones = milestones.filter((m: any) => m.state === 'open');
         currentFocus.map((issue: any) => {
           const priority = getPriority(issue);
           const title = issue.title.replace(/^\[.*?\]\s*/, '');
+          const visibleLabels = getVisibleLabels(getLabels(issue), audience);
           return (
             <div class={`info-card issue-card priority-${priority}`}>
               <h3>[ {title} #{issue.number} ]</h3>
+              <div class="label-container">
+                {visibleLabels.map((label: Label) => (
+                    <span 
+                        class={`label ${label.name === 'player-focused' || label.name === 'dev-focused' ? 'label-audience' : ''}`}
+                        style={`background-color: #${label.color}; color: ${getContrastColor(label.color)}`}
+                    >
+                        {label.name}
+                    </span>
+                ))}
+              </div>
               <div class="stat-row">
                 <span class="stat-label">Priority</span>
                 <span class={`stat-value priority-${priority}`}>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span>
@@ -169,9 +230,20 @@ const openMilestones = milestones.filter((m: any) => m.state === 'open');
         comingSoon.map((issue: any) => {
           const priority = getPriority(issue);
           const title = issue.title.replace(/^\[.*?\]\s*/, '');
+          const visibleLabels = getVisibleLabels(getLabels(issue), audience);
           return (
             <div class={`info-card issue-card priority-${priority}`}>
               <h3>[ {title} #{issue.number} ]</h3>
+              <div class="label-container">
+                {visibleLabels.map((label: Label) => (
+                    <span 
+                        class={`label ${label.name === 'player-focused' || label.name === 'dev-focused' ? 'label-audience' : ''}`}
+                        style={`background-color: #${label.color}; color: ${getContrastColor(label.color)}`}
+                    >
+                        {label.name}
+                    </span>
+                ))}
+              </div>
               <div class="stat-row">
                 <span class="stat-label">Priority</span>
                 <span class={`stat-value priority-${priority}`}>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span>
@@ -204,9 +276,20 @@ const openMilestones = milestones.filter((m: any) => m.state === 'open');
         backlog.map((issue: any) => {
           const priority = getPriority(issue);
           const title = issue.title.replace(/^\[.*?\]\s*/, '');
+          const visibleLabels = getVisibleLabels(getLabels(issue), audience);
           return (
             <div class={`info-card issue-card priority-${priority}`}>
               <h3>[ {title} #{issue.number} ]</h3>
+              <div class="label-container">
+                {visibleLabels.map((label: Label) => (
+                    <span 
+                        class={`label ${label.name === 'player-focused' || label.name === 'dev-focused' ? 'label-audience' : ''}`}
+                        style={`background-color: #${label.color}; color: ${getContrastColor(label.color)}`}
+                    >
+                        {label.name}
+                    </span>
+                ))}
+              </div>
               <div class="stat-row">
                 <span class="stat-label">Priority</span>
                 <span class={`stat-value priority-${priority}`}>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span>
@@ -239,9 +322,20 @@ const openMilestones = milestones.filter((m: any) => m.state === 'open');
         recentlyClosed.map((issue: any) => {
           const priority = getPriority(issue);
           const title = issue.title.replace(/^\[.*?\]\s*/, '');
+          const visibleLabels = getVisibleLabels(getLabels(issue), audience);
           return (
             <div class="info-card issue-card completed">
               <h3>[ {title} #{issue.number} ]</h3>
+              <div class="label-container">
+                {visibleLabels.map((label: Label) => (
+                    <span 
+                        class={`label ${label.name === 'player-focused' || label.name === 'dev-focused' ? 'label-audience' : ''}`}
+                        style={`background-color: #${label.color}; color: ${getContrastColor(label.color)}`}
+                    >
+                        {label.name}
+                    </span>
+                ))}
+              </div>
               <div class="stat-row">
                 <span class="stat-label">Priority</span>
                 <span class={`stat-value priority-${priority}`}>{priority.charAt(0).toUpperCase() + priority.slice(1)}</span>
@@ -276,6 +370,7 @@ const openMilestones = milestones.filter((m: any) => m.state === 'open');
 </div>
 
 <style>
+  /* Existing styles */
   .roadmap-section {
     margin-bottom: 8px;
     border: 1px solid var(--border-color);
@@ -351,6 +446,35 @@ const openMilestones = milestones.filter((m: any) => m.state === 'open');
     margin-bottom: 6px;
     font-size: 0.9em;
     line-height: 1.2;
+  }
+  
+  /* NEW LABEL STYLES */
+  .label-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .label {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7em;
+    font-weight: bold;
+    text-transform: lowercase;
+    opacity: 0.9;
+    /* Border to make black labels pop on dark theme */
+    border: 1px solid rgba(255,255,255,0.1); 
+  }
+
+  .label-audience {
+    padding: 3px 8px;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(255,255,255,0.3);
   }
 
   .issue-card .stat-row {
