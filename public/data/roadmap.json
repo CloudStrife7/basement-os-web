@@ -1,17 +1,21 @@
 {
-  "generated_at": "2026-01-05T06:51:08Z",
+  "generated_at": "2026-01-05T13:03:19Z",
   "issues": [
     {
       "number": 188,
       "title": "Add achievement unlock descriptions to Dashboard app",
       "state": "open",
       "created_at": "2026-01-05T01:52:24Z",
-      "updated_at": "2026-01-05T01:52:24Z",
+      "updated_at": "2026-01-05T07:18:13Z",
       "milestone": null,
       "labels": [
         {
           "name": "enhancement",
           "color": "a2eeef"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -170,30 +174,44 @@
       "title": "2D clone of nfs hp2 2 player",
       "state": "open",
       "created_at": "2026-01-02T11:19:00Z",
-      "updated_at": "2026-01-02T11:19:00Z",
+      "updated_at": "2026-01-05T07:18:14Z",
       "milestone": null,
-      "labels": []
+      "labels": [
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
     },
     {
       "number": 172,
       "title": "2D clone of X-men mutant accademy",
       "state": "open",
       "created_at": "2026-01-02T11:18:30Z",
-      "updated_at": "2026-01-02T11:18:30Z",
+      "updated_at": "2026-01-05T07:18:15Z",
       "milestone": null,
-      "labels": []
+      "labels": [
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
     },
     {
       "number": 170,
       "title": "feat: Achievement External Logging POC - basementos.net statistics",
       "state": "open",
       "created_at": "2026-01-02T04:01:10Z",
-      "updated_at": "2026-01-02T04:01:10Z",
+      "updated_at": "2026-01-05T07:18:16Z",
       "milestone": null,
       "labels": [
         {
           "name": "enhancement",
           "color": "a2eeef"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -202,16 +220,21 @@
       "title": "Add api call for visits to lower level terminal",
       "state": "open",
       "created_at": "2026-01-02T01:49:46Z",
-      "updated_at": "2026-01-02T01:49:46Z",
+      "updated_at": "2026-01-05T07:18:18Z",
       "milestone": null,
-      "labels": []
+      "labels": [
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
     },
     {
       "number": 168,
       "title": "feat: In-World Feature Voting System (VRChat + Website)",
       "state": "open",
       "created_at": "2026-01-01T19:52:41Z",
-      "updated_at": "2026-01-01T20:47:23Z",
+      "updated_at": "2026-01-05T07:18:19Z",
       "milestone": null,
       "labels": [
         {
@@ -221,6 +244,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -256,7 +283,7 @@
       "title": "feat: Dynamic Rain Visibility + Blinds Toggle System",
       "state": "open",
       "created_at": "2025-12-31T22:07:17Z",
-      "updated_at": "2026-01-01T04:47:37Z",
+      "updated_at": "2026-01-05T07:18:20Z",
       "milestone": null,
       "labels": [
         {
@@ -266,6 +293,10 @@
         {
           "name": "priority: medium",
           "color": "fbca04"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -372,7 +403,7 @@
       "title": "[REQUEST] Add VRC Lightvolumes",
       "state": "open",
       "created_at": "2025-12-28T17:38:59Z",
-      "updated_at": "2025-12-31T03:49:10Z",
+      "updated_at": "2026-01-05T07:18:21Z",
       "milestone": null,
       "labels": [
         {
@@ -382,6 +413,10 @@
         {
           "name": "priority: low",
           "color": "0e8a16"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -390,16 +425,21 @@
       "title": "[REQUEST] L33T Speakers",
       "state": "open",
       "created_at": "2025-12-28T13:00:33Z",
-      "updated_at": "2025-12-29T16:53:53Z",
+      "updated_at": "2026-01-05T07:18:22Z",
       "milestone": null,
-      "labels": []
+      "labels": [
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
     },
     {
       "number": 145,
       "title": "[REQUEST] Add LCD Screen Filter",
       "state": "open",
       "created_at": "2025-12-28T04:44:50Z",
-      "updated_at": "2025-12-31T02:41:39Z",
+      "updated_at": "2026-01-05T07:18:24Z",
       "milestone": null,
       "labels": [
         {
@@ -409,6 +449,10 @@
         {
           "name": "priority: low",
           "color": "0e8a16"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -530,12 +574,16 @@
       "title": "[FEATURE] Retro DOS Profile Picture on Stats",
       "state": "open",
       "created_at": "2025-12-23T03:03:41Z",
-      "updated_at": "2025-12-31T03:50:43Z",
+      "updated_at": "2026-01-05T07:18:25Z",
       "milestone": null,
       "labels": [
         {
           "name": "blocked",
           "color": "000000"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -558,21 +606,30 @@
       "title": "[FEATURE] Boot Screen Mockups",
       "state": "open",
       "created_at": "2025-12-17T14:42:25Z",
-      "updated_at": "2025-12-31T02:39:37Z",
+      "updated_at": "2026-01-05T07:18:26Z",
       "milestone": null,
-      "labels": []
+      "labels": [
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
     },
     {
       "number": 130,
       "title": "[FEATURE] Total Visit Stats Display",
       "state": "open",
       "created_at": "2025-12-17T04:16:50Z",
-      "updated_at": "2025-12-31T02:41:40Z",
+      "updated_at": "2026-01-05T07:18:28Z",
       "milestone": null,
       "labels": [
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -599,7 +656,7 @@
       "title": "[CONCEPT] Establish Lore Behind Lower Level 1.0, 2.0, and Basement OS",
       "state": "open",
       "created_at": "2025-12-08T18:54:36Z",
-      "updated_at": "2025-12-31T03:46:46Z",
+      "updated_at": "2026-01-05T07:18:29Z",
       "milestone": null,
       "labels": [
         {
@@ -613,6 +670,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -621,7 +682,7 @@
       "title": "[QA] Test Achievement and Notification System",
       "state": "open",
       "created_at": "2025-12-07T15:45:25Z",
-      "updated_at": "2025-12-31T02:57:40Z",
+      "updated_at": "2026-01-05T07:18:31Z",
       "milestone": "BASEMENT OS Revamp",
       "labels": [
         {
@@ -647,6 +708,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -655,7 +720,7 @@
       "title": "[REQUEST] Add Donation QR Code",
       "state": "open",
       "created_at": "2025-11-29T05:33:12Z",
-      "updated_at": "2025-12-31T02:43:59Z",
+      "updated_at": "2026-01-05T07:18:32Z",
       "milestone": null,
       "labels": [
         {
@@ -673,6 +738,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -837,7 +906,7 @@
       "title": "[EPIC] Models and Assets",
       "state": "open",
       "created_at": "2025-11-24T21:55:34Z",
-      "updated_at": "2025-12-31T03:49:44Z",
+      "updated_at": "2026-01-05T07:19:08Z",
       "milestone": null,
       "labels": [
         {
@@ -851,6 +920,10 @@
         {
           "name": "area: models",
           "color": "bfdadc"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -885,7 +958,7 @@
       "title": "[FEATURE] Community Relay Protocol",
       "state": "open",
       "created_at": "2025-11-24T13:42:17Z",
-      "updated_at": "2025-12-30T02:17:13Z",
+      "updated_at": "2026-01-05T07:18:33Z",
       "milestone": "Remake Snake",
       "labels": [
         {
@@ -915,6 +988,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -923,7 +1000,7 @@
       "title": "[CONCEPT] Working Nokia Prefab",
       "state": "open",
       "created_at": "2025-11-23T13:52:45Z",
-      "updated_at": "2025-12-31T03:44:59Z",
+      "updated_at": "2026-01-05T07:18:34Z",
       "milestone": null,
       "labels": [
         {
@@ -937,6 +1014,10 @@
         {
           "name": "area: games",
           "color": "c5def5"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -945,7 +1026,7 @@
       "title": "[CONCEPT] Toggle State Items for Different Feel",
       "state": "open",
       "created_at": "2025-11-23T13:21:46Z",
-      "updated_at": "2025-12-31T03:50:40Z",
+      "updated_at": "2026-01-05T07:18:36Z",
       "milestone": null,
       "labels": [
         {
@@ -959,6 +1040,10 @@
         {
           "name": "area: models",
           "color": "bfdadc"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -967,7 +1052,7 @@
       "title": "[CONCEPT] Mom Email Terminal App",
       "state": "open",
       "created_at": "2025-11-22T14:43:42Z",
-      "updated_at": "2025-12-31T02:38:40Z",
+      "updated_at": "2026-01-05T07:18:37Z",
       "milestone": null,
       "labels": [
         {
@@ -985,6 +1070,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -993,7 +1082,7 @@
       "title": "[REQUEST] Update Theater Posters",
       "state": "open",
       "created_at": "2025-11-20T14:48:46Z",
-      "updated_at": "2025-12-31T02:44:00Z",
+      "updated_at": "2026-01-05T07:18:38Z",
       "milestone": null,
       "labels": [
         {
@@ -1007,6 +1096,10 @@
         {
           "name": "area: models",
           "color": "bfdadc"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1041,7 +1134,7 @@
       "title": "DT -RSS- Ko-FI Notifications",
       "state": "open",
       "created_at": "2025-11-20T10:34:25Z",
-      "updated_at": "2025-12-31T02:57:38Z",
+      "updated_at": "2026-01-05T07:18:39Z",
       "milestone": null,
       "labels": [
         {
@@ -1059,6 +1152,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1067,7 +1164,7 @@
       "title": "[FEATURE] DT_Roles Module Re-establish",
       "state": "open",
       "created_at": "2025-11-20T10:30:00Z",
-      "updated_at": "2025-12-31T02:57:38Z",
+      "updated_at": "2026-01-05T07:18:40Z",
       "milestone": null,
       "labels": [
         {
@@ -1085,6 +1182,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1119,7 +1220,7 @@
       "title": "[CONCEPT] RSS Feed/Scrolling Text Ticker",
       "state": "open",
       "created_at": "2025-11-20T09:41:26Z",
-      "updated_at": "2025-12-31T02:57:37Z",
+      "updated_at": "2026-01-05T07:18:42Z",
       "milestone": null,
       "labels": [
         {
@@ -1137,6 +1238,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1145,7 +1250,7 @@
       "title": "[CONCEPT] Working Video Tape",
       "state": "open",
       "created_at": "2025-11-18T06:08:09Z",
-      "updated_at": "2025-12-31T02:43:57Z",
+      "updated_at": "2026-01-05T07:18:43Z",
       "milestone": null,
       "labels": [
         {
@@ -1163,6 +1268,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1171,7 +1280,7 @@
       "title": "[CONCEPT] Taking Immersion to the Next Level",
       "state": "open",
       "created_at": "2025-11-18T02:38:20Z",
-      "updated_at": "2025-12-31T03:45:46Z",
+      "updated_at": "2026-01-05T07:18:44Z",
       "milestone": null,
       "labels": [
         {
@@ -1185,6 +1294,10 @@
         {
           "name": "area: terminal",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1193,7 +1306,7 @@
       "title": "[REQUEST] Dynamic Poster System with VRCImageDownloader",
       "state": "open",
       "created_at": "2025-11-18T02:23:56Z",
-      "updated_at": "2025-12-30T02:48:21Z",
+      "updated_at": "2026-01-05T07:18:45Z",
       "milestone": null,
       "labels": [
         {
@@ -1211,6 +1324,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1219,7 +1336,7 @@
       "title": "[EPIC] Achievements System",
       "state": "open",
       "created_at": "2025-11-17T22:28:41Z",
-      "updated_at": "2025-12-31T03:49:55Z",
+      "updated_at": "2026-01-05T07:18:47Z",
       "milestone": null,
       "labels": [
         {
@@ -1237,6 +1354,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1245,7 +1366,7 @@
       "title": "[EPIC] Notifications System",
       "state": "open",
       "created_at": "2025-11-17T21:47:57Z",
-      "updated_at": "2025-12-31T03:49:39Z",
+      "updated_at": "2026-01-05T07:18:48Z",
       "milestone": null,
       "labels": [
         {
@@ -1259,6 +1380,10 @@
         {
           "name": "area: notifications",
           "color": "e99695"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1267,7 +1392,7 @@
       "title": "[CONCEPT] Tournament Functionality",
       "state": "open",
       "created_at": "2025-11-17T21:43:33Z",
-      "updated_at": "2025-12-31T03:49:13Z",
+      "updated_at": "2026-01-05T07:18:50Z",
       "milestone": null,
       "labels": [
         {
@@ -1281,6 +1406,10 @@
         {
           "name": "area: games",
           "color": "c5def5"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1289,7 +1418,7 @@
       "title": "[REQUEST] Antique Chair Model",
       "state": "open",
       "created_at": "2025-11-17T19:53:56Z",
-      "updated_at": "2025-12-31T03:49:14Z",
+      "updated_at": "2026-01-05T07:18:51Z",
       "milestone": null,
       "labels": [
         {
@@ -1303,6 +1432,10 @@
         {
           "name": "area: models",
           "color": "bfdadc"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1311,7 +1444,7 @@
       "title": "[REQUEST] Recliner Model",
       "state": "open",
       "created_at": "2025-11-17T19:52:00Z",
-      "updated_at": "2025-12-31T03:48:50Z",
+      "updated_at": "2026-01-05T07:18:52Z",
       "milestone": null,
       "labels": [
         {
@@ -1325,6 +1458,10 @@
         {
           "name": "area: models",
           "color": "bfdadc"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1333,7 +1470,7 @@
       "title": "[EPIC] Models and Assets",
       "state": "open",
       "created_at": "2025-11-17T19:49:36Z",
-      "updated_at": "2025-12-31T03:49:24Z",
+      "updated_at": "2026-01-05T07:18:54Z",
       "milestone": null,
       "labels": [
         {
@@ -1347,6 +1484,10 @@
         {
           "name": "area: models",
           "color": "bfdadc"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1355,7 +1496,7 @@
       "title": "[BUG] Snake Sharp Turn Death",
       "state": "open",
       "created_at": "2025-11-17T19:32:54Z",
-      "updated_at": "2025-12-31T02:57:26Z",
+      "updated_at": "2026-01-05T07:18:55Z",
       "milestone": "Remake Snake",
       "labels": [
         {
@@ -1377,6 +1518,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1385,7 +1530,7 @@
       "title": "[EPIC] Interactive Games",
       "state": "open",
       "created_at": "2025-11-17T19:27:20Z",
-      "updated_at": "2025-12-31T03:49:53Z",
+      "updated_at": "2026-01-05T07:18:56Z",
       "milestone": null,
       "labels": [
         {
@@ -1399,6 +1544,10 @@
         {
           "name": "area: games",
           "color": "c5def5"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1407,7 +1556,7 @@
       "title": "[CONCEPT] 2D Side Scrolling Shooter",
       "state": "open",
       "created_at": "2025-11-17T19:15:25Z",
-      "updated_at": "2025-12-31T03:45:54Z",
+      "updated_at": "2026-01-05T07:18:57Z",
       "milestone": null,
       "labels": [
         {
@@ -1421,6 +1570,10 @@
         {
           "name": "area: games",
           "color": "c5def5"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1429,7 +1582,7 @@
       "title": "[FEATURE] Persistent Snake High Score Screen w/ Link to Terminal High Scores",
       "state": "open",
       "created_at": "2025-11-17T13:41:10Z",
-      "updated_at": "2025-12-31T04:34:24Z",
+      "updated_at": "2026-01-05T07:18:59Z",
       "milestone": "Remake Snake",
       "labels": [
         {
@@ -1451,6 +1604,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1459,7 +1616,7 @@
       "title": "[FEATURE] Snake Game",
       "state": "open",
       "created_at": "2025-11-17T13:40:27Z",
-      "updated_at": "2025-12-31T03:48:05Z",
+      "updated_at": "2026-01-05T07:19:00Z",
       "milestone": "Remake Snake",
       "labels": [
         {
@@ -1489,6 +1646,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1497,7 +1658,7 @@
       "title": "[FEATURE] Arcade Games",
       "state": "open",
       "created_at": "2025-11-16T18:40:31Z",
-      "updated_at": "2025-12-31T02:57:25Z",
+      "updated_at": "2026-01-05T07:19:01Z",
       "milestone": null,
       "labels": [
         {
@@ -1519,6 +1680,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1527,7 +1692,7 @@
       "title": "[FEATURE] Family Feud Minigame",
       "state": "open",
       "created_at": "2025-11-16T04:44:06Z",
-      "updated_at": "2025-12-31T03:50:00Z",
+      "updated_at": "2026-01-05T07:19:03Z",
       "milestone": null,
       "labels": [
         {
@@ -1545,6 +1710,10 @@
         {
           "name": "area: games",
           "color": "c5def5"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -1605,7 +1774,7 @@
       "title": "[BUG] Conflicting Audio Sources Theater/Game Room",
       "state": "open",
       "created_at": "2025-11-15T16:24:59Z",
-      "updated_at": "2025-12-31T02:57:23Z",
+      "updated_at": "2026-01-05T07:19:07Z",
       "milestone": "BASEMENT OS Revamp",
       "labels": [
         {
@@ -1627,11 +1796,69 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     }
   ],
   "closed": [
+    {
+      "number": 34,
+      "title": "[FEATURE] MCP Agent Changelog Automation",
+      "state": "closed",
+      "created_at": "2025-11-16T04:16:13Z",
+      "updated_at": "2026-01-05T07:19:05Z",
+      "closed_at": "2025-12-06T03:45:51Z",
+      "milestone": "v2.3 - Terminal Tales & Integration",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "title": "[FEATURE] Dev Journey Navigation in Terminal",
+      "state": "closed",
+      "created_at": "2025-11-16T04:22:14Z",
+      "updated_at": "2026-01-05T07:19:04Z",
+      "closed_at": "2025-12-06T03:46:56Z",
+      "milestone": "Remake Snake",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
     {
       "number": 158,
       "title": "bug: Custom skills in .claude/skills/ not appearing in available_skills list",
@@ -1896,52 +2123,6 @@
       "created_at": "2025-11-15T10:43:32Z",
       "updated_at": "2025-12-29T23:03:45Z",
       "closed_at": "2025-12-29T23:03:45Z",
-      "milestone": "v2.3 - Terminal Tales & Integration",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "area: terminal",
-          "color": "1d76db"
-        }
-      ]
-    },
-    {
-      "number": 38,
-      "title": "[FEATURE] Dev Journey Navigation in Terminal",
-      "state": "closed",
-      "created_at": "2025-11-16T04:22:14Z",
-      "updated_at": "2025-12-29T16:54:18Z",
-      "closed_at": "2025-12-06T03:46:56Z",
-      "milestone": "Remake Snake",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "area: terminal",
-          "color": "1d76db"
-        }
-      ]
-    },
-    {
-      "number": 34,
-      "title": "[FEATURE] MCP Agent Changelog Automation",
-      "state": "closed",
-      "created_at": "2025-11-16T04:16:13Z",
-      "updated_at": "2025-12-29T16:54:17Z",
-      "closed_at": "2025-12-06T03:45:51Z",
       "milestone": "v2.3 - Terminal Tales & Integration",
       "labels": [
         {
