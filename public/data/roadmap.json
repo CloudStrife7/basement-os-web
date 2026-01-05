@@ -1,6 +1,20 @@
 {
-  "generated_at": "2026-01-04T18:38:19Z",
+  "generated_at": "2026-01-05T02:32:03Z",
   "issues": [
+    {
+      "number": 188,
+      "title": "Add achievement unlock descriptions to Dashboard app",
+      "state": "open",
+      "created_at": "2026-01-05T01:52:24Z",
+      "updated_at": "2026-01-05T01:52:24Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        }
+      ]
+    },
     {
       "number": 184,
       "title": "Website UX: Separate Player vs Developer Content",
