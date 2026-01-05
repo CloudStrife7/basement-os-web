@@ -138,7 +138,7 @@ const { activeSection = 'home' } = Astro.props;
         TIME: <span class="status-value" id="clock">00:00:00</span>
       </span>
       <span class="status-item">
-        SYS: <span class="status-value">BASEMENT OS</span>
+        MODE: <span class="status-value" id="status-mode">...</span>
       </span>
     </div>
   </div>
@@ -445,16 +445,29 @@ const { activeSection = 'home' } = Astro.props;
         });
       }
 
-      // Sync header mode selector when mode changes from other places
+      // Ensure dynamic links are correct on first load
+      document.addEventListener("astro:page-load", () => {
+        const currentMode = getSavedMode();
+        updateDynamicLinks(currentMode);
+        
+        // Update Footer Mode
+        const statusMode = document.getElementById('status-mode');
+        if (statusMode) {
+            statusMode.textContent = currentMode.toUpperCase();
+        }
+      });
+
+      // Sync header mode selector and footer when mode changes from other places
       window.addEventListener('basement-os-mode-change', (e) => {
         // @ts-ignore
         const mode = e.detail.mode;
         if (modeSelect) modeSelect.value = mode;
-      });
-
-      // Ensure dynamic links are correct on first load
-      document.addEventListener("astro:page-load", () => {
-        updateDynamicLinks(getSavedMode());
+        
+        // Update Footer Mode
+        const statusMode = document.getElementById('status-mode');
+        if (statusMode) {
+            statusMode.textContent = mode.toUpperCase();
+        }
       });
 
       // Clock
