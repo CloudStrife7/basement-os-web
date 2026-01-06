@@ -45,7 +45,7 @@ The website content largely reflects the actual Unity project state. Most claims
 | Page | Current Claim | Actual Reality | Severity | Recommended Fix |
 |------|--------------|----------------|----------|-----------------|
 | **index.astro** | "14 Terminal Tales" | Terminal Tales is POC (Issue #30), not live | 🟡 Moderate | Change to "Interactive terminal stories (coming soon)" or remove until shipped |
-| **index.astro** | "80-char DOS terminal" | Actual implementation is 45 chars; 80-char is planned upgrade | 🟡 Moderate | Change to "Interactive DOS terminal" (remove specific char count) |
+| **index.astro** | "80-char DOS terminal" | Verified: `SCREEN_WIDTH = 80` in DT_Core.cs and DT_Format.cs | ✅ Accurate | No change needed |
 | **index.astro** | "18,000 LINES" static | May drift over time | 🟢 Minor | Make dynamic or update periodically |
 | **index.astro** | "47 SCRIPTS" static | May drift as project grows | 🟢 Minor | Make dynamic or update periodically |
 | **index.astro** | "FIFO notification queue" | FIFO queue is "in development", not deployed | 🟡 Moderate | Remove from feature list until v2.1 ships |
@@ -231,7 +231,7 @@ HOME | STORY | DEVLOG | SKILLS | SUPPORT | ACHIEVEMENTS | ROADMAP | TERMINAL | V
 ### Content Accuracy Fixes
 
 - [ ] **index.astro line 117**: Change "14 Terminal Tales" to "Interactive stories (coming soon)" or remove
-- [ ] **index.astro line 114**: Change "80-char DOS terminal" to "Interactive DOS terminal"
+- [x] **index.astro line 114**: "80-char DOS terminal" ✅ VERIFIED ACCURATE (SCREEN_WIDTH = 80)
 - [ ] **index.astro line 133**: Add "(v2.1)" or "(planned)" to FIFO queue mention
 - [ ] **achievements.astro**: Verify all achievement names/requirements match AchievementKeys.cs exactly
 - [ ] **support.astro**: Add Discord link (Issue #26)
@@ -263,7 +263,7 @@ HOME | STORY | DEVLOG | SKILLS | SUPPORT | ACHIEVEMENTS | ROADMAP | TERMINAL | V
 
 1. **Terminal Tales Launch Date:** When will Terminal Tales ship? Website should not claim it exists until live.
 
-2. **80-char Terminal Upgrade:** Is this scheduled? If imminent, website claim is acceptable. If delayed, update copy.
+2. ~~**80-char Terminal Upgrade:**~~ ✅ VERIFIED - Terminal IS 80 chars (`SCREEN_WIDTH = 80` in DT_Core.cs, DT_Format.cs)
 
 3. **FIFO Queue Deployment:** When will v2.1 with FIFO queue deploy? Remove from feature list until shipped.
 
