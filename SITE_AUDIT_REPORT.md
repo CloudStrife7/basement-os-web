@@ -8,17 +8,23 @@
 
 ## Executive Summary
 
-**Overall Accuracy Score:** 🟢 **Mostly Accurate** (85-90%)
+**Overall Accuracy Score:** 🟢 **Highly Accurate** (95%+)
+
+**NOTE:** Initial audit contained errors. After re-verification against actual Unity code, most website claims are accurate.
 
 The website content largely reflects the actual Unity project state. Most claims are accurate, with a few areas of drift related to in-development features being presented as complete.
 
 ### Top 5 Issues to Address
 
-1. **🟡 Terminal Tales** - Website claims "14 Terminal Tales" but feature is POC/in-development
-2. **🟡 Terminal Width** - Website mentions "80-char DOS terminal" but actual is 45 chars (upgrade planned)
-3. **🟡 FIFO Notification Queue** - Described as implemented but marked "in development" in Unity
-4. **🟢 Stats May Be Stale** - Project stats (visits, lines, scripts) should be dynamically sourced
+1. **🟢 Role Tiers** - Website claims "7 tiers" but code has 9 (including Regular) - minor discrepancy
+2. **🟢 Script Count** - Website claims "47 scripts" but actual is 44 - minor discrepancy
+3. **🟢 Weather Types** - Website claims "7 weather conditions" but weather is dynamic from API
+4. **🟢 Stats May Be Stale** - Project stats should be dynamically sourced
 5. **🟢 Mode Filtering** - Developer content leaking to default/player view (no filtering implemented)
+
+### CORRECTED FROM ORIGINAL AUDIT
+~~Terminal Width (45 chars)~~ → ✅ Verified 80 chars (`SCREEN_WIDTH = 80`)
+~~FIFO Queue (in development)~~ → ✅ Verified LIVE in HUDNotificationUI.cs
 
 ---
 
