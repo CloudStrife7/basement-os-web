@@ -1,0 +1,175 @@
+---
+---
+<div id="mode-selection" class="mode-selection-overlay" style="display: none;">
+  <div class="mode-selection-window">
+    <div class="mode-header">BASEMENT OS - BOOT MODE SELECTION</div>
+    <div class="mode-content">
+      <p class="mode-instruction">Select system focus for this session:</p>
+
+      <div class="mode-options">
+        <button class="mode-opt-btn" data-mode="player">
+          <span class="key">[ P ]</span> PLAYER (World Info, Achievements, Vibe)
+        </button>
+        <button class="mode-opt-btn" data-mode="developer">
+          <span class="key">[ D ]</span> DEVELOPER (AI Workflow, UdonSharp, Docs)
+        </button>
+        <button class="mode-opt-btn" data-mode="both">
+          <span class="key">[ B ]</span> BOTH (Unified OS View)
+        </button>
+      </div>
+
+      <div class="mode-footer">
+        <p>Use keyboard shortcuts or mouse to select.</p>
+        <p class="mode-persistence">Preference will be saved to local storage.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .mode-selection-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-mono);
+  }
+
+  .mode-selection-window {
+    width: 90%;
+    max-width: 600px;
+    border: 2px solid var(--accent-primary);
+    background: var(--bg-primary);
+    box-shadow: 0 0 40px rgba(16, 185, 129, 0.2);
+  }
+
+  .mode-header {
+    background: var(--accent-primary);
+    color: #000;
+    padding: 8px 15px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+
+  .mode-content {
+    padding: 30px;
+  }
+
+  .mode-instruction {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-size: 1.1em;
+  }
+
+  .mode-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .mode-opt-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 15px;
+    text-align: left;
+    font-family: inherit;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .mode-opt-btn:hover {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    transform: translateX(10px);
+  }
+
+  .mode-opt-btn .key {
+    color: var(--accent-primary);
+    font-weight: bold;
+  }
+
+  .mode-footer {
+    margin-top: 40px;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 20px;
+    color: var(--text-dim);
+    font-size: 0.85em;
+    text-align: center;
+  }
+
+  .mode-persistence {
+    margin-top: 10px;
+    font-style: italic;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 600px) {
+    .mode-content { padding: 20px; }
+    .mode-opt-btn { font-size: 0.9em; padding: 12px; }
+  }
+</style>
+
+<script>
+  import { setAudienceMode } from '../scripts/modeStore';
+
+  function initModeSelection() {
+    const overlay = document.getElementById('mode-selection');
+    if (!overlay) return;
+
+    const buttons = overlay.querySelectorAll('.mode-opt-btn');
+
+    function setMode(mode: string) {
+      // Use centralized logic for state, DOM, and event dispatch
+      setAudienceMode(mode as 'player' | 'developer' | 'both');
+
+      // Component-specific UI handling
+      overlay.style.display = 'none';
+
+      // Mark selection as complete for this session
+      sessionStorage.setItem('basement-os-mode-selected', 'true');
+
+      // Notify TerminalShell to resume with the selected mode
+      window.dispatchEvent(new CustomEvent('basement-os-mode-ready', {
+        detail: { mode }
+      }));
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const mode = btn.getAttribute('data-mode');
+        if (mode) setMode(mode);
+      });
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (overlay.style.display === 'none') return;
+
+      const key = e.key.toLowerCase();
+      if (key === 'p') setMode('player');
+      if (key === 'd') setMode('developer');
+      if (key === 'b') setMode('both');
+    });
+
+    // Global listener to show selection
+    window.addEventListener('basement-os-request-mode-selection', () => {
+      overlay.style.display = 'flex';
+    });
+  }
+
+  // Initialize on page load
+  document.addEventListener('astro:page-load', initModeSelection);
+</script>

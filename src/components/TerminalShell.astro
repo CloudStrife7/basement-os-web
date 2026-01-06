@@ -3,6 +3,8 @@ interface Props {
   activeSection?: 'home' | 'story' | 'devlog' | 'skills' | 'support' | 'achievements' | 'roadmap';
 }
 
+import ModeSelection from './ModeSelection.astro';
+
 const { activeSection = 'home' } = Astro.props;
 ---
 
@@ -16,25 +18,35 @@ const { activeSection = 'home' } = Astro.props;
         <a href="/egg-hunt" class="window-btn btn-maximize" title="???" style="display:block"></a>
       </div>
       <div class="terminal-title">BASEMENT OS</div>
-      <div class="theme-selector">
-        <label for="theme-select">THEME:</label>
-        <select id="theme-select">
-          <option value="high-contrast">High Contrast</option>
-          <option value="synthwave">Synthwave</option>
-          <option value="framer-dark">Framer Dark</option>
-          <option value="framer-light">Framer Light</option>
-          <option value="solarized-dark">Solarized Dark</option>
-          <option value="solarized-light">Solarized Light</option>
-          <option value="catppuccin">Catppuccin</option>
-          <option value="monokai">Monokai</option>
-          <option value="gruvbox-dark">Gruvbox Dark</option>
-          <option value="gruvbox-light">Gruvbox Light</option>
-          <option value="rose-pine">Rose Pine</option>
-          <option value="rose-pine-dawn">Rose Pine Dawn</option>
-          <option value="rose-pine-moon">Rose Pine Moon</option>
-          <option value="cappuccino">Cappuccino</option>
-          <option value="basementos">BasementOS</option>
-        </select>
+      <div class="system-selectors">
+        <div class="mode-selector-header">
+          <label for="mode-select">MODE:</label>
+          <select id="mode-select" aria-label="Select Audience Mode">
+            <option value="player">Player</option>
+            <option value="developer">Developer</option>
+            <option value="both">Both</option>
+          </select>
+        </div>
+        <div class="theme-selector">
+          <label for="theme-select">THEME:</label>
+          <select id="theme-select">
+            <option value="high-contrast">High Contrast</option>
+            <option value="synthwave">Synthwave</option>
+            <option value="framer-dark">Framer Dark</option>
+            <option value="framer-light">Framer Light</option>
+            <option value="solarized-dark">Solarized Dark</option>
+            <option value="solarized-light">Solarized Light</option>
+            <option value="catppuccin">Catppuccin</option>
+            <option value="monokai">Monokai</option>
+            <option value="gruvbox-dark">Gruvbox Dark</option>
+            <option value="gruvbox-light">Gruvbox Light</option>
+            <option value="rose-pine">Rose Pine</option>
+            <option value="rose-pine-dawn">Rose Pine Dawn</option>
+            <option value="rose-pine-moon">Rose Pine Moon</option>
+            <option value="cappuccino">Cappuccino</option>
+            <option value="basementos">BasementOS</option>
+          </select>
+        </div>
       </div>
     </div>
 
@@ -46,10 +58,10 @@ const { activeSection = 'home' } = Astro.props;
       <a href="/story" class={`nav-btn ${activeSection === 'story' ? 'active' : ''}`}>
         <span class="type">&lt;OSx&gt;</span> MY STORY
       </a>
-      <a href="/devlog" class={`nav-btn ${activeSection === 'devlog' ? 'active' : ''}`}>
+      <a href="/devlog" class={`nav-btn developer-only ${activeSection === 'devlog' ? 'active' : ''}`}>
         <span class="type">&lt;LOG&gt;</span> DEVLOG
       </a>
-      <a href="/skills" class={`nav-btn ${activeSection === 'skills' ? 'active' : ''}`}>
+      <a href="/skills" class={`nav-btn developer-only ${activeSection === 'skills' ? 'active' : ''}`}>
         <span class="type">&lt;AI&gt;</span> SKILLS
       </a>
       <a href="/support" class={`nav-btn ${activeSection === 'support' ? 'active' : ''}`}>
@@ -58,7 +70,7 @@ const { activeSection = 'home' } = Astro.props;
       <a href="/achievements" class={`nav-btn ${activeSection === 'achievements' ? 'active' : ''}`}>
         <span class="type">&lt;360&gt;</span> ACHIEVEMENTS
       </a>
-      <a href="/roadmap" class={`nav-btn ${activeSection === 'roadmap' ? 'active' : ''}`}>
+      <a href="/roadmap" id="roadmap-link" class={`nav-btn ${activeSection === 'roadmap' ? 'active' : ''}`}>
         <span class="type">&lt;MAP&gt;</span> ROADMAP
       </a>
       <button class="nav-btn" id="terminal-toggle">
@@ -109,10 +121,10 @@ const { activeSection = 'home' } = Astro.props;
       <span class="status-item mem-tooltip-container">
         MEM: <span class="status-value" id="visit-counter">64K OK</span>
         <div class="mem-tooltip" id="mem-tooltip">
-          <div class="mem-tooltip-title">🖥️ Memory = Page Views</div>
-          <div class="mem-tooltip-row current"><span>→</span><span id="tooltip-current">64K</span><span id="tooltip-visits">0</span></div>
+          <div class="mem-tooltip-title">Memory = Page Views</div>
+          <div class="mem-tooltip-row current"><span></span><span id="tooltip-current">64K</span><span id="tooltip-visits">0</span></div>
           <div class="mem-tooltip-divider"></div>
-          <div class="mem-tooltip-row active-tier" data-tier="64K"><span class="tier-arrow">→</span><span>64K</span><span>0-63</span></div>
+          <div class="mem-tooltip-row active-tier" data-tier="64K"><span class="tier-arrow"></span><span>64K</span><span>0-63</span></div>
           <div class="mem-tooltip-row" data-tier="128K"><span class="tier-arrow"></span><span>128K</span><span>64-127</span></div>
           <div class="mem-tooltip-row" data-tier="256K"><span class="tier-arrow"></span><span>256K</span><span>128-255</span></div>
           <div class="mem-tooltip-row" data-tier="512K"><span class="tier-arrow"></span><span>512K</span><span>256-511</span></div>
@@ -126,7 +138,7 @@ const { activeSection = 'home' } = Astro.props;
         TIME: <span class="status-value" id="clock">00:00:00</span>
       </span>
       <span class="status-item">
-        SYS: <span class="status-value">BASEMENT OS</span>
+        MODE: <span class="status-value" id="status-mode">...</span>
       </span>
     </div>
   </div>
@@ -136,20 +148,22 @@ const { activeSection = 'home' } = Astro.props;
   </footer>
 </div>
 
+<ModeSelection />
+
 <!-- Lightbox for devlog images -->
 <div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lightbox-close">✕ CLOSE</button>
-  <button class="lightbox-nav lightbox-prev" id="lightbox-prev">‹</button>
+  <button class="lightbox-close" id="lightbox-close">CLOSE</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev">&lt;</button>
   <div class="lightbox-content">
     <img class="lightbox-image" id="lightbox-image" src="" alt="">
   </div>
-  <button class="lightbox-nav lightbox-next" id="lightbox-next">›</button>
+  <button class="lightbox-nav lightbox-next" id="lightbox-next">&gt;</button>
   <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
 </div>
 
 <!-- Scroll to Top Button -->
 <button id="scroll-to-top" class="scroll-top-btn" aria-label="Scroll to top">
-  <span class="scroll-arrow">▲</span>
+  <span class="scroll-arrow">^</span>
 </button>
 
 <style>
@@ -247,17 +261,53 @@ const { activeSection = 'home' } = Astro.props;
     background: var(--border-color);
     margin: 6px 0;
   }
+
+  /* System Selectors in Header */
+  .system-selectors {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .mode-selector-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mode-selector-header label {
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+
+  .mode-selector-header select {
+    background: var(--bg-primary);
+    color: var(--accent-primary);
+    border: 1px solid var(--border-color);
+    padding: 5px 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .mode-selector-header select:focus {
+    outline: 1px solid var(--accent-primary);
+  }
 </style>
 
 <script>
+  import { getSavedMode, setAudienceMode, updateDynamicLinks } from '../scripts/modeStore';
+
   // Boot Sequence Configuration
   const BOOT_SEQUENCE = [
-    { text: '════════════════════════════════════════════════════════════════════════════════', delay: 0 },
+    { text: '================================================================================', delay: 0 },
     { text: '', delay: 50 },
     { text: 'BASEMENT OS (Web Terminal)', delay: 100, class: 'text-secondary' },
     { text: '(C) 2025 CloudStrife7', delay: 150, class: 'text-dim' },
     { text: '', delay: 200 },
-    { text: '════════════════════════════════════════════════════════════════════════════════', delay: 250 },
+    { text: '================================================================================', delay: 250 },
     { text: '', delay: 300 },
     { text: 'POST: Power-On Self Test...', delay: 400 },
     { text: '  Checking BIOS.................... OK', delay: 600, class: 'boot-ok' },
@@ -269,23 +319,96 @@ const { activeSection = 'home' } = Astro.props;
     { text: '  Loading blog entries............. OK', delay: 1700, class: 'boot-ok' },
     { text: '  Initializing search.............. OK', delay: 1900, class: 'boot-ok' },
     { text: '', delay: 2000 },
-    { text: '════════════════════════════════════════════════════════════════════════════════', delay: 2100 },
+    { text: '================================================================================', delay: 2100 },
     { text: 'Boot complete. Welcome to Basement OS.', delay: 2300, class: 'boot-info' },
-    { text: '════════════════════════════════════════════════════════════════════════════════', delay: 2500 },
+    { text: '================================================================================', delay: 2500 },
   ];
 
   document.addEventListener('astro:page-load', () => {
-      // Boot Logic
+      // DOM References
       const bootScreen = document.getElementById('boot-screen');
       const mainContent = document.getElementById('main-content');
       const navMenu = document.getElementById('nav-menu');
       const aiDisclosure = document.getElementById('ai-disclosure');
-      
+
       let bootIndex = 0;
 
+      // =========================================================================
+      // BOOT SEQUENCE FUNCTIONS (properly scoped at astro:page-load level)
+      // =========================================================================
+
+      /**
+       * Completes the boot process by hiding boot screen and showing main content
+       */
+      function finishBoot() {
+          setTimeout(() => {
+              if (bootScreen) bootScreen.style.display = 'none';
+              if (mainContent) mainContent.classList.add('active');
+              if (navMenu) navMenu.classList.add('active');
+              if (aiDisclosure) aiDisclosure.style.display = 'block';
+          }, 800);
+      }
+
+      /**
+       * Runs the login sequence after mode selection
+       * Displays username based on selected mode, simulates password entry, and shows access granted
+       * @param mode - The selected mode ('player', 'developer', or 'both')
+       */
+      function runLoginSequence(mode: string) {
+          if (!bootScreen) {
+              finishBoot();
+              return;
+          }
+
+          // Determine username based on mode
+          let username = 'guest';
+          if (mode === 'player') username = 'player';
+          else if (mode === 'developer') username = 'developer';
+          else if (mode === 'both') username = 'admin';
+
+          // Login sequence steps with timing
+          const loginSteps = [
+              { text: '', delay: 200 },
+              { text: `[login: ${username}]`, delay: 600 },
+              { text: 'password: *******', delay: 1800 },
+              { text: 'Access Granted.', delay: 2600, class: 'boot-ok' },
+              { text: '', delay: 3000 }
+          ];
+
+          let stepIndex = 0;
+
+          function nextLoginStep() {
+              if (stepIndex >= loginSteps.length) {
+                  finishBoot();
+                  return;
+              }
+
+              const step = loginSteps[stepIndex];
+              const line = document.createElement('div');
+              line.className = 'boot-line';
+              if (step.class) line.classList.add(step.class);
+              line.textContent = step.text;
+              bootScreen?.appendChild(line);
+
+              stepIndex++;
+
+              const nextDelay = (stepIndex < loginSteps.length)
+                  ? loginSteps[stepIndex].delay - step.delay
+                  : 500;
+
+              setTimeout(nextLoginStep, nextDelay);
+          }
+
+          nextLoginStep();
+      }
+
+      /**
+       * Runs the main boot sequence, displaying POST messages and system checks
+       * After boot sequence completes, triggers mode selection (if needed) then login sequence
+       */
       function runBootSequence() {
           if (!bootScreen) return;
-          
+
           if (bootIndex < BOOT_SEQUENCE.length) {
               const item = BOOT_SEQUENCE[bootIndex];
               const line = document.createElement('div');
@@ -301,19 +424,31 @@ const { activeSection = 'home' } = Astro.props;
                   : 500;
               setTimeout(runBootSequence, nextDelay);
           } else {
-              setTimeout(() => {
-                  bootScreen.style.display = 'none';
-                  if (mainContent) mainContent.classList.add('active');
-                  if (navMenu) navMenu.classList.add('active');
-                  if (aiDisclosure) aiDisclosure.style.display = 'block';
-              }, 800);
+              // Boot sequence complete - check if mode selection is needed
+              const hasSelectedMode = sessionStorage.getItem('basement-os-mode-selected');
+
+              if (!hasSelectedMode) {
+                  // Request mode selection overlay
+                  window.dispatchEvent(new Event('basement-os-request-mode-selection'));
+
+                  // Wait for mode selection to complete, then run login sequence
+                  window.addEventListener('basement-os-mode-ready', (e: Event) => {
+                      const customEvent = e as CustomEvent;
+                      const mode = customEvent.detail?.mode || getSavedMode();
+                      runLoginSequence(mode);
+                  }, { once: true });
+              } else {
+                  // Mode already selected - skip to finish
+                  finishBoot();
+              }
           }
       }
 
-      // Check if already booted
+      // =========================================================================
+      // BOOT INITIALIZATION
+      // =========================================================================
+
       const hasBooted = sessionStorage.getItem('basement-os-booted');
-      
-      // Override for forced reboot (optional, for debugging)
       const urlParams = new URLSearchParams(window.location.search);
       const forceBoot = urlParams.get('boot') === 'true';
 
@@ -324,21 +459,24 @@ const { activeSection = 'home' } = Astro.props;
               if (mainContent) mainContent.classList.remove('active');
               if (navMenu) navMenu.classList.remove('active');
               if (aiDisclosure) aiDisclosure.style.display = 'none';
-              
+
               bootIndex = 0;
-              bootScreen.innerHTML = ''; // clear previous if any
+              bootScreen.innerHTML = '';
               runBootSequence();
               sessionStorage.setItem('basement-os-booted', 'true');
           }
       } else {
-          // Ensure immediate display if already booted
-           if (bootScreen) bootScreen.style.display = 'none';
-           if (mainContent) mainContent.classList.add('active');
-           if (navMenu) navMenu.classList.add('active');
-           if (aiDisclosure) aiDisclosure.style.display = 'block';
+          // Already booted - show content immediately
+          if (bootScreen) bootScreen.style.display = 'none';
+          if (mainContent) mainContent.classList.add('active');
+          if (navMenu) navMenu.classList.add('active');
+          if (aiDisclosure) aiDisclosure.style.display = 'block';
       }
 
-      // Theme Logic
+      // =========================================================================
+      // THEME LOGIC
+      // =========================================================================
+
       const THEMES = [
         'high-contrast', 'synthwave', 'framer-dark', 'framer-light',
         'solarized-dark', 'solarized-light', 'catppuccin',
@@ -348,105 +486,134 @@ const { activeSection = 'home' } = Astro.props;
       ];
 
       /** @type {HTMLSelectElement} */
-      const themeSelect = /** @type {HTMLSelectElement} */ (document.getElementById('theme-select'));
+      const themeSelect = /** @type {HTMLSelectElement} */ (document.getElementById('theme-select')) as HTMLSelectElement;
 
-      /** @param {string} theme */
-      function setTheme(theme) {
+      function setTheme(theme: string) {
         if (!THEMES.includes(theme)) theme = 'synthwave';
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('basement-os-theme', theme);
         if (themeSelect) themeSelect.value = theme;
       }
 
-      // Apply saved theme immediately on page load
       const savedTheme = localStorage.getItem('basement-os-theme') || 'synthwave';
       setTheme(savedTheme);
 
       if (themeSelect) {
         themeSelect.addEventListener('change', (e) => {
-          setTheme(/** @type {HTMLSelectElement} */ (e.target).value);
+          setTheme((e.target as HTMLSelectElement).value);
         });
       }
 
-      // Clock
+      // =========================================================================
+      // MODE LOGIC
+      // =========================================================================
+
+      const modeSelect = document.getElementById('mode-select') as HTMLSelectElement;
+
+      // Sync header mode selector with saved mode
+      if (modeSelect) {
+        modeSelect.value = getSavedMode();
+        modeSelect.addEventListener('change', (e) => {
+          setAudienceMode((e.target as HTMLSelectElement).value as 'player' | 'developer' | 'both');
+        });
+      }
+
+      // Update footer mode display and dynamic links on page load
+      const currentMode = getSavedMode();
+      updateDynamicLinks(currentMode);
+
+      const statusMode = document.getElementById('status-mode');
+      if (statusMode) {
+          statusMode.textContent = currentMode.toUpperCase();
+      }
+
+      // Sync when mode changes from other places (like ModeSelection)
+      window.addEventListener('basement-os-mode-change', (e: Event) => {
+        const customEvent = e as CustomEvent;
+        const mode = customEvent.detail.mode;
+        if (modeSelect) modeSelect.value = mode;
+
+        const statusModeEl = document.getElementById('status-mode');
+        if (statusModeEl) {
+            statusModeEl.textContent = mode.toUpperCase();
+        }
+      });
+
+      // =========================================================================
+      // CLOCK
+      // =========================================================================
+
       function updateClock() {
         const now = new Date();
         const time = now.toLocaleTimeString('en-US', { hour12: true });
         const clock = document.getElementById('clock');
         if (clock) clock.textContent = time;
       }
-      
-      // Clear existing interval to prevent duplicates on nav
+
       // @ts-ignore - Global window property for cleanup
       if (window.clockInterval) clearInterval(window.clockInterval);
       // @ts-ignore - Global window property for cleanup
       window.clockInterval = setInterval(updateClock, 1000);
       updateClock();
 
-      // Reboot Logic
+      // =========================================================================
+      // REBOOT LOGIC
+      // =========================================================================
+
       const rebootBtn = document.getElementById('btn-reboot');
       const shutdownScreen = document.getElementById('shutdown-screen');
-      
+
       if (rebootBtn && shutdownScreen) {
           rebootBtn.addEventListener('click', () => {
-              // 1. Show waiting screen
               shutdownScreen.style.display = 'flex';
               document.body.style.cursor = 'wait';
-              
+
               setTimeout(() => {
-                  // 2. Show "Safe to turn off"
                   const msg1 = shutdownScreen.querySelector('.shutdown-msg-1') as HTMLElement;
                   const msg2 = shutdownScreen.querySelector('.shutdown-msg-2') as HTMLElement;
-                  
+
                   if (msg1) msg1.style.display = 'none';
                   if (msg2) msg2.style.display = 'block';
-                  
+
                   setTimeout(() => {
-                      // 3. Random Turn Off Animation
                       const animations = ['anim-crt', 'anim-vhs', 'anim-phosphor'];
                       const randomAnim = animations[Math.floor(Math.random() * animations.length)];
-                      
-                      // For CRT effect, we need to center the transform origin to the viewport
+
                       if (randomAnim === 'anim-crt') {
                           const scrollY = window.scrollY;
                           const viewportHeight = window.innerHeight;
-                          const docHeight = document.body.scrollHeight;
                           const centerY = scrollY + (viewportHeight / 2);
-                          
-                          // Set origin to center of current viewport
                           document.body.style.transformOrigin = `50% ${centerY}px`;
                       }
 
                       document.body.classList.add(randomAnim);
-                      
+
                       setTimeout(() => {
-                          // 4. Reset and Reboot
                           sessionStorage.removeItem('basement-os-booted');
+                          sessionStorage.removeItem('basement-os-mode-selected');
                           window.location.reload();
-                      }, 2500); // Increased wait for slower animations (phosphor is 2.5s)
-                  }, 2000); // Read text duration
-              }, 2000); // Shutdown wait duration
+                      }, 2500);
+                  }, 2000);
+              }, 2000);
           });
       }
 
+      // =========================================================================
+      // TERMINAL DEMO LOGIC
+      // =========================================================================
 
-      // Terminal Demo Logic
       const terminalToggle = document.getElementById('terminal-toggle');
       const terminalDemo = document.getElementById('terminal-demo');
       const terminalRoot = document.getElementById('terminal-demo-root');
       const terminalDisconnect = document.getElementById('terminal-disconnect');
       const disconnectDots = document.getElementById('disconnect-dots');
-      
-      let terminalInstance = null;
-      /** @type {string|null} */
-      let originalTheme = null;
-      /** @type {Element|null} */
-      let originalActiveBtn = null;
+
+      let terminalInstance: any = null;
+      let originalTheme: string | null = null;
+      let originalActiveBtn: Element | null = null;
       let isTerminalActive = false;
 
-      // Load terminal script dynamically
-      /** @returns {Promise<void>} */
-      function loadTerminalScript() {
+      function loadTerminalScript(): Promise<void> {
         return new Promise((resolve, reject) => {
           // @ts-ignore - Global window property
           if (window.BasementOSDemo) {
@@ -465,22 +632,18 @@ const { activeSection = 'home' } = Astro.props;
         if (isTerminalActive) return;
         isTerminalActive = true;
 
-        // Save current theme and fade to basementos
         originalTheme = localStorage.getItem('basement-os-theme') || 'synthwave';
         document.documentElement.style.transition = 'all 0.3s ease';
         document.documentElement.setAttribute('data-theme', 'basementos');
 
-        // Update disclosure text for terminal mode
         const disclosureHeader = document.querySelector('.ai-disclosure-header');
         const disclosureContent = document.querySelector('.ai-disclosure-content');
         if (disclosureHeader) disclosureHeader.textContent = '[ BASEMENT OS SIMULATION ACTIVE ]';
-        if (disclosureContent) disclosureContent.textContent = 'Terminal code simulates VRChat environment and is direct copy of C# Code modified for Web View. Navigate with ↑ ↓ ← → , Enter to select, Esc to go back.';
+        if (disclosureContent) disclosureContent.textContent = 'Terminal code simulates VRChat environment. Navigate with arrow keys, Enter to select, Esc to go back.';
 
-        // Hide main content, show terminal
         if (mainContent) mainContent.style.display = 'none';
         if (terminalDemo) terminalDemo.style.display = 'block';
 
-        // Load and init terminal
         try {
           await loadTerminalScript();
           // @ts-ignore - Global window property
@@ -495,7 +658,6 @@ const { activeSection = 'home' } = Astro.props;
           console.error('Terminal init error:', e);
         }
 
-        // Mark terminal button as active - save and remove active from others first
         originalActiveBtn = document.querySelector('.nav-btn.active');
         document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
         if (terminalToggle) terminalToggle.classList.add('active');
@@ -504,32 +666,27 @@ const { activeSection = 'home' } = Astro.props;
       function closeTerminal() {
         if (!isTerminalActive) return;
 
-        // Show disconnect animation
         if (terminalDisconnect && disconnectDots && terminalRoot) {
           terminalRoot.style.opacity = '0.3';
           terminalDisconnect.style.display = 'flex';
-          
-          // Animate dots: . -> .. -> ...
+
           let dotCount = 0;
           const dotInterval = setInterval(() => {
             dotCount++;
             if (disconnectDots) disconnectDots.textContent = '.'.repeat(dotCount);
             if (dotCount >= 3) {
               clearInterval(dotInterval);
-              
-              // After animation, clean up and show content
               setTimeout(() => {
-                finishClose();
+                finishCloseTerminal();
               }, 300);
             }
           }, 400);
         } else {
-          finishClose();
+          finishCloseTerminal();
         }
       }
 
-      function finishClose() {
-        // Destroy terminal instance
+      function finishCloseTerminal() {
         if (terminalInstance && terminalInstance.destroy) {
           terminalInstance.destroy();
         }
@@ -538,7 +695,6 @@ const { activeSection = 'home' } = Astro.props;
         window.basementOSInstance = null;
         isTerminalActive = false;
 
-        // Clear terminal container
         if (terminalRoot) {
           terminalRoot.innerHTML = '';
           terminalRoot.style.opacity = '1';
@@ -546,27 +702,22 @@ const { activeSection = 'home' } = Astro.props;
         if (terminalDisconnect) terminalDisconnect.style.display = 'none';
         if (disconnectDots) disconnectDots.textContent = '';
 
-        // Fade back to original theme
         if (originalTheme) {
           document.documentElement.setAttribute('data-theme', originalTheme);
         }
 
-        // Restore disclosure text
         const disclosureHeader = document.querySelector('.ai-disclosure-header');
         const disclosureContent = document.querySelector('.ai-disclosure-content');
         if (disclosureHeader) disclosureHeader.textContent = '[ NEXT-GEN AI DEVLOG ]';
         if (disclosureContent) disclosureContent.textContent = 'Content Generated by Developer-Led AI Workflows. Reviewed by a Human-In-the-Loop.';
 
-        // Show main content, hide terminal
         if (terminalDemo) terminalDemo.style.display = 'none';
         if (mainContent) mainContent.style.display = 'block';
 
-        // Remove active state from terminal button and restore original
         if (terminalToggle) terminalToggle.classList.remove('active');
         if (originalActiveBtn) originalActiveBtn.classList.add('active');
       }
 
-      // Terminal toggle click
       if (terminalToggle) {
         terminalToggle.addEventListener('click', () => {
           if (isTerminalActive) {
@@ -577,7 +728,6 @@ const { activeSection = 'home' } = Astro.props;
         });
       }
 
-      // Close terminal when clicking other nav buttons
       document.querySelectorAll('.nav-btn').forEach(btn => {
         if (btn.id !== 'terminal-toggle') {
           btn.addEventListener('click', () => {
@@ -588,7 +738,6 @@ const { activeSection = 'home' } = Astro.props;
         }
       });
 
-      // ESC to close terminal (but not to interfere with terminal's internal ESC handling)
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && isTerminalActive && terminalInstance?.currentApp === 'SHELL') {
           closeTerminal();
@@ -596,52 +745,53 @@ const { activeSection = 'home' } = Astro.props;
         }
       });
 
-      // Typewriter Effect for Section Headers
+      // =========================================================================
+      // TYPEWRITER EFFECT
+      // =========================================================================
+
       const headers = document.querySelectorAll('.section-header');
       headers.forEach(header => {
-          // Prevent re-running on same element if already processed (though page-load usually resets DOM)
           if (header.classList.contains('typewriter-text')) return;
 
           const text = header.textContent || '';
           header.innerHTML = '<span class="typewriter-cursor"></span>';
           header.classList.add('typewriter-text');
-          
+
           let index = 0;
           function typeChar() {
               if (index < text.length) {
                   header.innerHTML = text.substring(0, index + 1) + '<span class="typewriter-cursor"></span>';
                   index++;
-                  setTimeout(typeChar, 50); // Speed for headers
+                  setTimeout(typeChar, 50);
               }
           }
-          
-          // Slight delay before starting to simulate "loading"
+
           setTimeout(typeChar, 200);
       });
 
-      // Lightbox Logic for devlog images
+      // =========================================================================
+      // LIGHTBOX LOGIC
+      // =========================================================================
+
       const lightbox = document.getElementById('lightbox');
-      /** @type {HTMLImageElement} */
-      const lightboxImage = /** @type {HTMLImageElement} */ (document.getElementById('lightbox-image'));
+      const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
       const lightboxClose = document.getElementById('lightbox-close');
       const lightboxPrev = document.getElementById('lightbox-prev');
       const lightboxNext = document.getElementById('lightbox-next');
       const lightboxCounter = document.getElementById('lightbox-counter');
-      
-      let currentImageIndex = 0;
-      /** @type {HTMLImageElement[]} */
-      let devlogImages = [];
 
-      /** @param {number} index */
-      function openLightbox(index) {
+      let currentImageIndex = 0;
+      let devlogImages: HTMLImageElement[] = [];
+
+      function openLightbox(index: number) {
           if (!lightbox || !lightboxImage || devlogImages.length === 0) return;
-          
+
           currentImageIndex = index;
           lightboxImage.src = devlogImages[index].src;
           lightboxImage.alt = devlogImages[index].alt || 'Devlog image';
           lightbox.classList.add('active');
-          document.body.style.overflow = 'hidden'; // Prevent scroll
-          updateCounter();
+          document.body.style.overflow = 'hidden';
+          updateLightboxCounter();
       }
 
       function closeLightbox() {
@@ -657,7 +807,7 @@ const { activeSection = 'home' } = Astro.props;
               lightboxImage.src = devlogImages[currentImageIndex].src;
               lightboxImage.alt = devlogImages[currentImageIndex].alt || 'Devlog image';
           }
-          updateCounter();
+          updateLightboxCounter();
       }
 
       function showNextImage() {
@@ -667,48 +817,47 @@ const { activeSection = 'home' } = Astro.props;
               lightboxImage.src = devlogImages[currentImageIndex].src;
               lightboxImage.alt = devlogImages[currentImageIndex].alt || 'Devlog image';
           }
-          updateCounter();
+          updateLightboxCounter();
       }
 
-      function updateCounter() {
+      function updateLightboxCounter() {
           if (lightboxCounter) {
               lightboxCounter.textContent = `${currentImageIndex + 1} / ${devlogImages.length}`;
           }
       }
 
-      // Collect images from devlog content AND main landing page (crt-screen)
-      devlogImages = /** @type {HTMLImageElement[]} */ (Array.from(document.querySelectorAll('.devlog-content img, .crt-screen img')));
+      devlogImages = Array.from(document.querySelectorAll('.devlog-content img, .crt-screen img')) as HTMLImageElement[];
       devlogImages.forEach((img, index) => {
-          img.style.cursor = 'pointer'; // Ensure pointer cursor
+          img.style.cursor = 'pointer';
           img.addEventListener('click', (e) => {
-              e.preventDefault(); // Prevent anchor links from opening
+              e.preventDefault();
               openLightbox(index);
           });
       });
 
-      // Event listeners
       if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
       if (lightboxPrev) lightboxPrev.addEventListener('click', showPrevImage);
       if (lightboxNext) lightboxNext.addEventListener('click', showNextImage);
-      
-      // Close on background click
+
       if (lightbox) {
           lightbox.addEventListener('click', (e) => {
               if (e.target === lightbox) closeLightbox();
           });
       }
 
-      // Keyboard navigation
       document.addEventListener('keydown', (e) => {
           if (!lightbox?.classList.contains('active')) return;
-          
+
           if (e.key === 'Escape') closeLightbox();
           if (e.key === 'ArrowLeft') showPrevImage();
           if (e.key === 'ArrowRight') showNextImage();
       });
   });
 
-  // Scroll to Top Button
+  // =========================================================================
+  // SCROLL TO TOP BUTTON (separate listener)
+  // =========================================================================
+
   document.addEventListener("astro:page-load", function() {
       const scrollBtn = document.getElementById('scroll-to-top');
       if (!scrollBtn) return;
@@ -731,14 +880,15 @@ const { activeSection = 'home' } = Astro.props;
       });
   });
 
-  // Page Visit Counter (hidden as memory display)
+  // =========================================================================
+  // PAGE VISIT COUNTER (separate listener)
+  // =========================================================================
+
   document.addEventListener("astro:page-load", function() {
       const visitCounter = document.getElementById('visit-counter');
       if (!visitCounter) return;
 
-      // Map visit count to realistic historic RAM sizes
-      function getMemoryTier(visits) {
-          // Memory tiers based on historic RAM sizes
+      function getMemoryTier(visits: number): string {
           const tiers = [
               { threshold: 0, memory: '64K' },
               { threshold: 64, memory: '128K' },
@@ -762,7 +912,7 @@ const { activeSection = 'home' } = Astro.props;
               { threshold: 8388608, memory: '16GB' },
               { threshold: 16777216, memory: '32GB' },
           ];
-          
+
           for (let i = tiers.length - 1; i >= 0; i--) {
               if (visits >= tiers[i].threshold) {
                   return tiers[i].memory;
@@ -771,30 +921,28 @@ const { activeSection = 'home' } = Astro.props;
           return '64K';
       }
 
-      // Use CounterAPI.dev for simple page view counting
       const namespace = 'basementos';
       const key = 'pageviews';
-      
+
       fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/up`)
           .then(response => response.json())
           .then(data => {
               const count = data.count || 0;
               const memoryDisplay = getMemoryTier(count);
               visitCounter.textContent = `${memoryDisplay} OK`;
-              
-              // Update tooltip with current values
+
               const tooltipCurrent = document.getElementById('tooltip-current');
               const tooltipVisits = document.getElementById('tooltip-visits');
               if (tooltipCurrent) tooltipCurrent.textContent = memoryDisplay;
               if (tooltipVisits) tooltipVisits.textContent = count.toLocaleString() + ' views';
-              
-              // Highlight matching tier in the list
+
               const allTierRows = document.querySelectorAll('.mem-tooltip-row[data-tier]');
               allTierRows.forEach(row => {
                   const tierArrow = row.querySelector('.tier-arrow');
-                  if (row.dataset.tier === memoryDisplay) {
+                  const rowEl = row as HTMLElement;
+                  if (rowEl.dataset.tier === memoryDisplay) {
                       row.classList.add('active-tier');
-                      if (tierArrow) tierArrow.textContent = '→';
+                      if (tierArrow) tierArrow.textContent = '>';
                   } else {
                       row.classList.remove('active-tier');
                       if (tierArrow) tierArrow.textContent = '';
@@ -802,7 +950,6 @@ const { activeSection = 'home' } = Astro.props;
               });
           })
           .catch(() => {
-              // Fallback to static value if API fails
               visitCounter.textContent = '64K OK';
           });
   });
