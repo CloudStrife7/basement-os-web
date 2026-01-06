@@ -86,7 +86,7 @@ HOME | STORY | DEVLOG | SKILLS | SUPPORT | ACHIEVEMENTS | ROADMAP | TERMINAL | V
 | ACHIEVEMENTS | Achievement list, requirements, gamerscore |
 | SUPPORT | Community links, how to visit |
 | TERMINAL | Interactive demo (fun for players) |
-| CODEX | Lore content (narrative/mystery) |
+| ~~CODEX~~ | *(Hidden easter egg - not for main nav)* |
 
 #### PLAYER MODE - Should NOT See
 
@@ -140,14 +140,14 @@ HOME | STORY | DEVLOG | SKILLS | SUPPORT | ACHIEVEMENTS | ROADMAP | TERMINAL | V
 | ACHIEVEMENTS | Gamerscore info | Keep | Keep |
 | SUPPORT | Community/contact | Keep | Keep |
 | TERMINAL | Demo | Keep | Keep |
-| CODEX | Lore | N/A | **Add** |
+| ~~CODEX~~ | Easter egg | Hidden | Keep hidden |
 | VISIT | Launch VRChat | Keep | Keep |
 | STORY | Dev narrative | Show | **Hide** |
 | DEVLOG | Tech logs | Show | **Hide** |
 | SKILLS | AI docs | Show | **Hide** |
 | ROADMAP | Project tracking | Show | **Hide** |
 
-**Player Nav Result:** `HOME | ACHIEVEMENTS | SUPPORT | TERMINAL | CODEX | VISIT`
+**Player Nav Result:** `HOME | ACHIEVEMENTS | SUPPORT | TERMINAL | VISIT`
 
 #### DEVELOPER Navigation (Recommended)
 
