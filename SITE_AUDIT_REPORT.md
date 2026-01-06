@@ -48,7 +48,7 @@ The website content largely reflects the actual Unity project state. Most claims
 | **index.astro** | "80-char DOS terminal" | Verified: `SCREEN_WIDTH = 80` in DT_Core.cs and DT_Format.cs | ✅ Accurate | No change needed |
 | **index.astro** | "18,000 LINES" static | May drift over time | 🟢 Minor | Make dynamic or update periodically |
 | **index.astro** | "47 SCRIPTS" static | May drift as project grows | 🟢 Minor | Make dynamic or update periodically |
-| **index.astro** | "FIFO notification queue" | FIFO queue is "in development", not deployed | 🟡 Moderate | Remove from feature list until v2.1 ships |
+| **index.astro** | "FIFO notification queue" | Verified: FIFO implemented in HUDNotificationUI.cs (AddToQueue/RemoveFromQueue) | ✅ Accurate | No change needed |
 | **achievements.astro** | Visit achievement names | "Shag Squad" (10 visits) vs website shows different order | 🟢 Minor | Verify exact achievement list matches AchievementKeys.cs |
 | **story.astro** | "365+ AI Conversations" | Cannot verify; likely accurate but unverifiable | 🟢 Minor | Keep as-is (self-reported metric) |
 | **showcase.astro** | Duplicate of index content | Same claims as index - no unique value | 🟢 Minor | Consider removing or differentiating |
@@ -232,7 +232,7 @@ HOME | STORY | DEVLOG | SKILLS | SUPPORT | ACHIEVEMENTS | ROADMAP | TERMINAL | V
 
 - [ ] **index.astro line 117**: Change "14 Terminal Tales" to "Interactive stories (coming soon)" or remove
 - [x] **index.astro line 114**: "80-char DOS terminal" ✅ VERIFIED ACCURATE (SCREEN_WIDTH = 80)
-- [ ] **index.astro line 133**: Add "(v2.1)" or "(planned)" to FIFO queue mention
+- [x] **index.astro line 133**: "FIFO notification queue" ✅ VERIFIED ACCURATE (HUDNotificationUI.cs)
 - [ ] **achievements.astro**: Verify all achievement names/requirements match AchievementKeys.cs exactly
 - [ ] **support.astro**: Add Discord link (Issue #26)
 
@@ -265,7 +265,7 @@ HOME | STORY | DEVLOG | SKILLS | SUPPORT | ACHIEVEMENTS | ROADMAP | TERMINAL | V
 
 2. ~~**80-char Terminal Upgrade:**~~ ✅ VERIFIED - Terminal IS 80 chars (`SCREEN_WIDTH = 80` in DT_Core.cs, DT_Format.cs)
 
-3. **FIFO Queue Deployment:** When will v2.1 with FIFO queue deploy? Remove from feature list until shipped.
+3. ~~**FIFO Queue Deployment:**~~ ✅ VERIFIED - FIFO is LIVE in HUDNotificationUI.cs (AddToQueue/RemoveFromQueue methods)
 
 4. **Showcase Page Purpose:** Is showcase.astro intentionally duplicate of index? Consider differentiating or removing.
 
