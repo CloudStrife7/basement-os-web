@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-06T21:07:16Z",
+  "generated_at": "2026-01-07T02:21:01Z",
   "focus": "dev",
   "description": "Developer experience: AI workflow, UdonSharp, docs, automation",
   "issues": [
@@ -248,8 +248,8 @@
       "title": "feat: Assigned-Only 'Coming Soon' Roadmap with AI Summaries",
       "state": "open",
       "created_at": "2026-01-01T19:52:07Z",
-      "updated_at": "2026-01-05T13:28:23Z",
-      "milestone": null,
+      "updated_at": "2026-01-07T00:12:46Z",
+      "milestone": "Remake Snake",
       "labels": [
         {
           "name": "enhancement",
@@ -915,7 +915,7 @@
       "description": "Modernized terminal experience: 80-char width, unified design, MOTD, Snake complete, all systems tested",
       "state": "open",
       "open_issues": 6,
-      "closed_issues": 10,
+      "closed_issues": 12,
       "due_on": "2025-12-31T00:00:00Z"
     },
     {
@@ -923,7 +923,7 @@
       "description": "Games and dynamic content: Snake complete with achievements, high scores, VRCStringDownloader framework, remote content",
       "state": "open",
       "open_issues": 4,
-      "closed_issues": 5,
+      "closed_issues": 6,
       "due_on": "2026-01-14T00:00:00Z"
     },
     {
