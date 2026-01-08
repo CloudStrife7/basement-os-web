@@ -1,6 +1,29 @@
 {
-  "generated_at": "2026-01-08T13:02:49Z",
+  "generated_at": "2026-01-08T18:39:24Z",
   "issues": [
+    {
+      "number": 208,
+      "title": "docs: Update all documentation to reflect TDD-first methodology",
+      "state": "open",
+      "created_at": "2026-01-08T14:03:49Z",
+      "updated_at": "2026-01-08T14:03:49Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        }
+      ]
+    },
+    {
+      "number": 207,
+      "title": "01-08-26_Agent_Skill_Audit",
+      "state": "open",
+      "created_at": "2026-01-08T13:24:37Z",
+      "updated_at": "2026-01-08T13:39:03Z",
+      "milestone": null,
+      "labels": []
+    },
     {
       "number": 206,
       "title": "[Feature] DT_Ticker: Live basement feed with dynamic events, less flavor text",
@@ -1977,6 +2000,16 @@
     }
   ],
   "closed": [
+    {
+      "number": 209,
+      "title": "[Docs] Comprehensive Review of Skill and Command Files - Standardization & BBP Formula Update",
+      "state": "closed",
+      "created_at": "2026-01-08T14:49:47Z",
+      "updated_at": "2026-01-08T17:55:12Z",
+      "closed_at": "2026-01-08T17:55:12Z",
+      "milestone": null,
+      "labels": []
+    },
     {
       "number": 50,
       "title": "[FEATURE] Snake Game",
