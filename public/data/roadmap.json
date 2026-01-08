@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-07T18:44:24Z",
+  "generated_at": "2026-01-08T02:21:36Z",
   "issues": [
     {
       "number": 204,
@@ -339,24 +339,6 @@
       "state": "open",
       "created_at": "2026-01-02T11:27:25Z",
       "updated_at": "2026-01-05T13:28:20Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "maintenance",
-          "color": "fbca04"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 174,
-      "title": "[MAINTENANCE] Update Project Roadmap",
-      "state": "open",
-      "created_at": "2026-01-02T11:27:23Z",
-      "updated_at": "2026-01-05T13:28:22Z",
       "milestone": null,
       "labels": [
         {
@@ -932,74 +914,6 @@
         {
           "name": "priority: low",
           "color": "0e8a16"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
-      "number": 127,
-      "title": "[QA] Test Achievement and Notification System",
-      "state": "open",
-      "created_at": "2025-12-07T15:45:25Z",
-      "updated_at": "2026-01-05T07:18:31Z",
-      "milestone": "BASEMENT OS Revamp",
-      "labels": [
-        {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "area: terminal",
-          "color": "1d76db"
-        },
-        {
-          "name": "area: achievements",
-          "color": "f9d0c4"
-        },
-        {
-          "name": "area: notifications",
-          "color": "e99695"
-        },
-        {
-          "name": "needs-testing",
-          "color": "fef2c0"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
-      "number": 125,
-      "title": "[REQUEST] Add Donation QR Code",
-      "state": "open",
-      "created_at": "2025-11-29T05:33:12Z",
-      "updated_at": "2026-01-05T07:18:32Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "good first issue",
-          "color": "7057ff"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "area: terminal",
-          "color": "1d76db"
         },
         {
           "name": "Good Agentic Build",
@@ -2074,6 +1988,95 @@
   ],
   "closed": [
     {
+      "number": 125,
+      "title": "[REQUEST] Add Donation QR Code",
+      "state": "closed",
+      "created_at": "2025-11-29T05:33:12Z",
+      "updated_at": "2026-01-08T00:55:51Z",
+      "closed_at": "2026-01-08T00:55:51Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "good first issue",
+          "color": "7057ff"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 127,
+      "title": "[QA] Test Achievement and Notification System",
+      "state": "closed",
+      "created_at": "2025-12-07T15:45:25Z",
+      "updated_at": "2026-01-08T00:10:12Z",
+      "closed_at": "2026-01-08T00:10:11Z",
+      "milestone": "BASEMENT OS Revamp",
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "area: achievements",
+          "color": "f9d0c4"
+        },
+        {
+          "name": "area: notifications",
+          "color": "e99695"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 174,
+      "title": "[MAINTENANCE] Update Project Roadmap",
+      "state": "closed",
+      "created_at": "2026-01-02T11:27:23Z",
+      "updated_at": "2026-01-07T22:42:30Z",
+      "closed_at": "2026-01-07T22:42:30Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
       "number": 188,
       "title": "Add achievement unlock descriptions to Dashboard app",
       "state": "closed",
@@ -3099,8 +3102,8 @@
       "title": "BASEMENT OS Revamp",
       "description": "Modernized terminal experience: 80-char width, unified design, MOTD, Snake complete, all systems tested",
       "state": "open",
-      "open_issues": 6,
-      "closed_issues": 12,
+      "open_issues": 5,
+      "closed_issues": 13,
       "due_on": "2025-12-31T00:00:00Z"
     },
     {
