@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-08T06:46:08Z",
+  "generated_at": "2026-01-08T13:02:49Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
@@ -298,7 +298,7 @@
       "title": "[FEATURE] Retro DOS Profile Picture on Stats",
       "state": "open",
       "created_at": "2025-12-23T03:03:41Z",
-      "updated_at": "2026-01-05T07:18:25Z",
+      "updated_at": "2026-01-08T12:29:54Z",
       "milestone": null,
       "labels": [
         {
@@ -934,82 +934,6 @@
       ]
     },
     {
-      "number": 51,
-      "title": "[FEATURE] Persistent Snake High Score Screen w/ Link to Terminal High Scores",
-      "state": "open",
-      "created_at": "2025-11-17T13:41:10Z",
-      "updated_at": "2026-01-05T07:18:59Z",
-      "milestone": "Remake Snake",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
-        },
-        {
-          "name": "area: games",
-          "color": "c5def5"
-        },
-        {
-          "name": "blocked",
-          "color": "000000"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
-      "number": 50,
-      "title": "[FEATURE] Snake Game",
-      "state": "open",
-      "created_at": "2025-11-17T13:40:27Z",
-      "updated_at": "2026-01-05T07:19:00Z",
-      "milestone": "Remake Snake",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
-        },
-        {
-          "name": "area: games",
-          "color": "c5def5"
-        },
-        {
-          "name": "blocked",
-          "color": "000000"
-        },
-        {
-          "name": "needs-design",
-          "color": "c2e0c6"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
       "number": 44,
       "title": "[FEATURE] Arcade Games",
       "state": "open",
@@ -1109,6 +1033,84 @@
     }
   ],
   "closed": [
+    {
+      "number": 50,
+      "title": "[FEATURE] Snake Game",
+      "state": "closed",
+      "created_at": "2025-11-17T13:40:27Z",
+      "updated_at": "2026-01-08T12:44:26Z",
+      "closed_at": "2026-01-08T12:43:58Z",
+      "milestone": "Remake Snake",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "needs-design",
+          "color": "c2e0c6"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "title": "[FEATURE] Persistent Snake High Score Screen w/ Link to Terminal High Scores",
+      "state": "closed",
+      "created_at": "2025-11-17T13:41:10Z",
+      "updated_at": "2026-01-08T12:34:37Z",
+      "closed_at": "2026-01-08T12:34:36Z",
+      "milestone": "Remake Snake",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
     {
       "number": 125,
       "title": "[REQUEST] Add Donation QR Code",
