@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-09T02:30:55Z",
+  "generated_at": "2026-01-09T06:54:57Z",
   "focus": "assigned",
   "description": "Issues assigned to CloudStrife7 - What I am currently working on",
   "assignee": "CloudStrife7",
@@ -170,8 +170,8 @@
       "title": "v2.2 - Foundation",
       "description": "Weeks 1-2: Workflow infrastructure + Testing validation",
       "state": "open",
-      "open_issues": 5,
-      "closed_issues": 3,
+      "open_issues": 4,
+      "closed_issues": 4,
       "due_on": "2026-01-18T00:00:00Z"
     },
     {
