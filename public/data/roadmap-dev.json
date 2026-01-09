@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-09T02:22:02Z",
+  "generated_at": "2026-01-09T06:47:05Z",
   "focus": "dev",
   "description": "Developer experience: AI workflow, UdonSharp, docs, automation",
   "issues": [
@@ -216,7 +216,7 @@
       "title": "[AUTONOMOUS] Investigate VM/NAS for Independent Claude Unity Access",
       "state": "open",
       "created_at": "2026-01-02T16:25:29Z",
-      "updated_at": "2026-01-08T23:17:55Z",
+      "updated_at": "2026-01-09T04:15:15Z",
       "milestone": "v2.5 - Polish",
       "labels": [
         {
@@ -454,37 +454,11 @@
       ]
     },
     {
-      "number": 140,
-      "title": "[DOCS] Consolidate Docs Folder Structure",
-      "state": "open",
-      "created_at": "2025-12-26T02:56:17Z",
-      "updated_at": "2026-01-08T23:17:49Z",
-      "milestone": "v2.2 - Foundation",
-      "labels": [
-        {
-          "name": "documentation",
-          "color": "0075ca"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 138,
       "title": "[REQUEST] Stream Videos from NAS",
       "state": "open",
       "created_at": "2025-12-24T22:10:36Z",
-      "updated_at": "2026-01-08T23:03:48Z",
+      "updated_at": "2026-01-09T04:18:25Z",
       "milestone": null,
       "labels": [
         {
@@ -860,6 +834,33 @@
   ],
   "closed": [
     {
+      "number": 140,
+      "title": "[DOCS] Consolidate Docs Folder Structure",
+      "state": "closed",
+      "created_at": "2025-12-26T02:56:17Z",
+      "updated_at": "2026-01-09T04:49:20Z",
+      "closed_at": "2026-01-09T04:49:20Z",
+      "milestone": "v2.2 - Foundation",
+      "labels": [
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
       "number": 158,
       "title": "bug: Custom skills in .claude/skills/ not appearing in available_skills list",
       "state": "closed",
@@ -988,8 +989,8 @@
       "title": "v2.2 - Foundation",
       "description": "Weeks 1-2: Workflow infrastructure + Testing validation",
       "state": "open",
-      "open_issues": 5,
-      "closed_issues": 3,
+      "open_issues": 4,
+      "closed_issues": 4,
       "due_on": "2026-01-18T00:00:00Z"
     },
     {

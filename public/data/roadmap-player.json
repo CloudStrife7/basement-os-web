@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-09T02:22:02Z",
+  "generated_at": "2026-01-09T06:47:05Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
@@ -1402,8 +1402,8 @@
       "title": "v2.2 - Foundation",
       "description": "Weeks 1-2: Workflow infrastructure + Testing validation",
       "state": "open",
-      "open_issues": 5,
-      "closed_issues": 3,
+      "open_issues": 4,
+      "closed_issues": 4,
       "due_on": "2026-01-18T00:00:00Z"
     },
     {
