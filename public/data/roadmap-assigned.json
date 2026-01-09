@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-08T18:50:13Z",
+  "generated_at": "2026-01-09T02:30:55Z",
   "focus": "assigned",
   "description": "Issues assigned to CloudStrife7 - What I am currently working on",
   "assignee": "CloudStrife7",
@@ -154,8 +154,8 @@
       "title": "BASEMENT OS Revamp",
       "description": "Modernized terminal experience: 80-char width, unified design, MOTD, Snake complete, all systems tested",
       "state": "open",
-      "open_issues": 5,
-      "closed_issues": 13,
+      "open_issues": 2,
+      "closed_issues": 11,
       "due_on": "2025-12-31T00:00:00Z"
     },
     {
@@ -167,12 +167,36 @@
       "due_on": "2026-01-14T00:00:00Z"
     },
     {
-      "title": "v2.3 - Terminal Tales & Integration",
-      "description": "Story content and automation: Terminal Tales, roadmap in terminal, MCP changelog, Quest optimizations",
+      "title": "v2.2 - Foundation",
+      "description": "Weeks 1-2: Workflow infrastructure + Testing validation",
       "state": "open",
-      "open_issues": 0,
+      "open_issues": 5,
       "closed_issues": 3,
-      "due_on": "2026-02-14T00:00:00Z"
+      "due_on": "2026-01-18T00:00:00Z"
+    },
+    {
+      "title": "v2.3 - Automation",
+      "description": "Weeks 3-4: PRISM agent + Workflow automation",
+      "state": "open",
+      "open_issues": 6,
+      "closed_issues": 3,
+      "due_on": "2026-02-02T00:00:00Z"
+    },
+    {
+      "title": "v2.4 - Quest Sync",
+      "description": "Weeks 5-6: Quest sync fixes + Feature development",
+      "state": "open",
+      "open_issues": 7,
+      "closed_issues": 0,
+      "due_on": "2026-02-15T00:00:00Z"
+    },
+    {
+      "title": "v2.5 - Polish",
+      "description": "Weeks 7-8: PlayMode automation + VM investigation",
+      "state": "open",
+      "open_issues": 4,
+      "closed_issues": 1,
+      "due_on": "2026-03-01T00:00:00Z"
     }
   ]
 }
