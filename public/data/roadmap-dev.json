@@ -1,8 +1,34 @@
 {
-  "generated_at": "2026-01-08T18:39:24Z",
+  "generated_at": "2026-01-09T02:22:02Z",
   "focus": "dev",
   "description": "Developer experience: AI workflow, UdonSharp, docs, automation",
   "issues": [
+    {
+      "number": 211,
+      "title": "[SKILL] Ko-Fi Agent - Autonomous Supporter Engagement",
+      "state": "open",
+      "created_at": "2026-01-08T23:47:14Z",
+      "updated_at": "2026-01-08T23:47:28Z",
+      "milestone": "v2.5 - Polish",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
     {
       "number": 192,
       "title": "feat: Claude Memory Fabric (CMF) - Persistent Memory System for Claude Code",
@@ -102,8 +128,8 @@
       "title": "[TRAJECTORY] PRISM Agent - Unified Issue Intake & Spec",
       "state": "open",
       "created_at": "2026-01-02T16:30:00Z",
-      "updated_at": "2026-01-05T13:28:14Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:17:50Z",
+      "milestone": "v2.3 - Automation",
       "labels": [
         {
           "name": "enhancement",
@@ -124,8 +150,8 @@
       "title": "[TRAJECTORY] Auto-Generated Devlogs from Closed Issues",
       "state": "open",
       "created_at": "2026-01-02T16:29:57Z",
-      "updated_at": "2026-01-05T13:28:15Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:17:54Z",
+      "milestone": "v2.5 - Polish",
       "labels": [
         {
           "name": "enhancement",
@@ -146,8 +172,8 @@
       "title": "[TRAJECTORY] Automated PlayMode Test Validation",
       "state": "open",
       "created_at": "2026-01-02T16:29:55Z",
-      "updated_at": "2026-01-05T13:28:16Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:17:53Z",
+      "milestone": "v2.5 - Polish",
       "labels": [
         {
           "name": "enhancement",
@@ -168,8 +194,8 @@
       "title": "[WORKFLOW] Implement Issue Lifecycle Automation (GitHub Action)",
       "state": "open",
       "created_at": "2026-01-02T16:25:31Z",
-      "updated_at": "2026-01-05T13:28:18Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:17:51Z",
+      "milestone": "v2.3 - Automation",
       "labels": [
         {
           "name": "maintenance",
@@ -190,8 +216,8 @@
       "title": "[AUTONOMOUS] Investigate VM/NAS for Independent Claude Unity Access",
       "state": "open",
       "created_at": "2026-01-02T16:25:29Z",
-      "updated_at": "2026-01-05T13:28:19Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:17:55Z",
+      "milestone": "v2.5 - Polish",
       "labels": [
         {
           "name": "enhancement",
@@ -212,8 +238,8 @@
       "title": "[MAINTENANCE] Clean Up Stale/Unused Project Folders",
       "state": "open",
       "created_at": "2026-01-02T11:27:25Z",
-      "updated_at": "2026-01-05T13:28:20Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:17:47Z",
+      "milestone": "v2.2 - Foundation",
       "labels": [
         {
           "name": "maintenance",
@@ -266,8 +292,8 @@
       "title": "feat: Enable @claude tagging in GitHub issue comments",
       "state": "open",
       "created_at": "2025-12-31T19:57:58Z",
-      "updated_at": "2026-01-05T13:28:26Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:18:01Z",
+      "milestone": "v2.3 - Automation",
       "labels": [
         {
           "name": "documentation",
@@ -296,8 +322,8 @@
       "title": "feat: Sync Issue #153 Updates to Quest (Remote Content + ROADMAP Tab)",
       "state": "open",
       "created_at": "2025-12-31T19:55:05Z",
-      "updated_at": "2026-01-05T13:28:27Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:18:03Z",
+      "milestone": "v2.4 - Quest Sync",
       "labels": [
         {
           "name": "enhancement",
@@ -326,8 +352,8 @@
       "title": "maintenance: Branch Review and Cleanup - 30 Branches",
       "state": "open",
       "created_at": "2025-12-31T19:18:16Z",
-      "updated_at": "2026-01-06T03:15:38Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:17:48Z",
+      "milestone": "v2.2 - Foundation",
       "labels": [
         {
           "name": "maintenance",
@@ -384,8 +410,8 @@
       "title": "[QA] Verify VRChat Networking Best Practices",
       "state": "open",
       "created_at": "2025-12-27T23:07:33Z",
-      "updated_at": "2026-01-05T13:28:33Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:17:57Z",
+      "milestone": "v2.2 - Foundation",
       "labels": [
         {
           "name": "Good Agentic Build",
@@ -432,8 +458,8 @@
       "title": "[DOCS] Consolidate Docs Folder Structure",
       "state": "open",
       "created_at": "2025-12-26T02:56:17Z",
-      "updated_at": "2026-01-05T13:28:36Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:17:49Z",
+      "milestone": "v2.2 - Foundation",
       "labels": [
         {
           "name": "documentation",
@@ -458,7 +484,7 @@
       "title": "[REQUEST] Stream Videos from NAS",
       "state": "open",
       "created_at": "2025-12-24T22:10:36Z",
-      "updated_at": "2026-01-05T13:28:37Z",
+      "updated_at": "2026-01-08T23:03:48Z",
       "milestone": null,
       "labels": [
         {
@@ -604,8 +630,8 @@
       "title": "[MAINTENANCE] Unity MCP Multi-Instance Workflow",
       "state": "open",
       "created_at": "2025-11-25T02:48:11Z",
-      "updated_at": "2026-01-05T13:28:47Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:18:02Z",
+      "milestone": "v2.4 - Quest Sync",
       "labels": [
         {
           "name": "enhancement",
@@ -638,8 +664,8 @@
       "title": "[MAINTENANCE] PCVR to Quest UdonSharp Script Sync",
       "state": "open",
       "created_at": "2025-11-24T22:17:15Z",
-      "updated_at": "2026-01-05T13:28:48Z",
-      "milestone": "BASEMENT OS Revamp",
+      "updated_at": "2026-01-08T23:18:04Z",
+      "milestone": "v2.4 - Quest Sync",
       "labels": [
         {
           "name": "enhancement",
@@ -694,8 +720,8 @@
       "title": "[MAINTENANCE] Automation and Workflow Improvements",
       "state": "open",
       "created_at": "2025-11-24T21:56:02Z",
-      "updated_at": "2026-01-05T13:28:51Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:17:52Z",
+      "milestone": "v2.3 - Automation",
       "labels": [
         {
           "name": "enhancement",
@@ -720,8 +746,8 @@
       "title": "[QA] Testing and Quality Assurance",
       "state": "open",
       "created_at": "2025-11-24T21:55:47Z",
-      "updated_at": "2026-01-05T13:28:52Z",
-      "milestone": "BASEMENT OS Revamp",
+      "updated_at": "2026-01-08T23:17:58Z",
+      "milestone": "v2.2 - Foundation",
       "labels": [
         {
           "name": "enhancement",
@@ -776,8 +802,8 @@
       "title": "[MAINTENANCE] Automation Idea - Issues",
       "state": "open",
       "created_at": "2025-11-20T10:59:26Z",
-      "updated_at": "2026-01-05T13:28:55Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:18:00Z",
+      "milestone": "v2.3 - Automation",
       "labels": [
         {
           "name": "enhancement",
@@ -806,8 +832,8 @@
       "title": "[MAINTENANCE] Automate Issue Creation",
       "state": "open",
       "created_at": "2025-11-20T10:01:08Z",
-      "updated_at": "2026-01-05T13:28:57Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:17:59Z",
+      "milestone": "v2.3 - Automation",
       "labels": [
         {
           "name": "enhancement",
@@ -834,13 +860,44 @@
   ],
   "closed": [
     {
+      "number": 158,
+      "title": "bug: Custom skills in .claude/skills/ not appearing in available_skills list",
+      "state": "closed",
+      "created_at": "2025-12-31T19:57:56Z",
+      "updated_at": "2026-01-08T23:18:06Z",
+      "closed_at": "2026-01-04T18:28:02Z",
+      "milestone": "v2.5 - Polish",
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
       "number": 174,
       "title": "[MAINTENANCE] Update Project Roadmap",
       "state": "closed",
       "created_at": "2026-01-02T11:27:23Z",
-      "updated_at": "2026-01-07T22:42:30Z",
+      "updated_at": "2026-01-08T23:17:46Z",
       "closed_at": "2026-01-07T22:42:30Z",
-      "milestone": null,
+      "milestone": "v2.2 - Foundation",
       "labels": [
         {
           "name": "maintenance",
@@ -915,8 +972,8 @@
       "title": "BASEMENT OS Revamp",
       "description": "Modernized terminal experience: 80-char width, unified design, MOTD, Snake complete, all systems tested",
       "state": "open",
-      "open_issues": 5,
-      "closed_issues": 13,
+      "open_issues": 2,
+      "closed_issues": 11,
       "due_on": "2025-12-31T00:00:00Z"
     },
     {
@@ -928,12 +985,36 @@
       "due_on": "2026-01-14T00:00:00Z"
     },
     {
-      "title": "v2.3 - Terminal Tales & Integration",
-      "description": "Story content and automation: Terminal Tales, roadmap in terminal, MCP changelog, Quest optimizations",
+      "title": "v2.2 - Foundation",
+      "description": "Weeks 1-2: Workflow infrastructure + Testing validation",
       "state": "open",
-      "open_issues": 0,
+      "open_issues": 5,
       "closed_issues": 3,
-      "due_on": "2026-02-14T00:00:00Z"
+      "due_on": "2026-01-18T00:00:00Z"
+    },
+    {
+      "title": "v2.3 - Automation",
+      "description": "Weeks 3-4: PRISM agent + Workflow automation",
+      "state": "open",
+      "open_issues": 6,
+      "closed_issues": 3,
+      "due_on": "2026-02-02T00:00:00Z"
+    },
+    {
+      "title": "v2.4 - Quest Sync",
+      "description": "Weeks 5-6: Quest sync fixes + Feature development",
+      "state": "open",
+      "open_issues": 7,
+      "closed_issues": 0,
+      "due_on": "2026-02-15T00:00:00Z"
+    },
+    {
+      "title": "v2.5 - Polish",
+      "description": "Weeks 7-8: PlayMode automation + VM investigation",
+      "state": "open",
+      "open_issues": 4,
+      "closed_issues": 1,
+      "due_on": "2026-03-01T00:00:00Z"
     }
   ]
 }
