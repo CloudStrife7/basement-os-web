@@ -1,12 +1,66 @@
 {
-  "generated_at": "2026-01-10T12:55:13Z",
+  "generated_at": "2026-01-10T18:38:58Z",
   "issues": [
+    {
+      "number": 223,
+      "title": "Fix idle agents/issues",
+      "state": "open",
+      "created_at": "2026-01-10T14:33:00Z",
+      "updated_at": "2026-01-10T14:58:04Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 221,
+      "title": "Claude Notification Settings",
+      "state": "open",
+      "created_at": "2026-01-10T13:54:09Z",
+      "updated_at": "2026-01-10T14:06:47Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 220,
+      "title": "Improve start skill to this format:",
+      "state": "open",
+      "created_at": "2026-01-10T13:33:32Z",
+      "updated_at": "2026-01-10T14:57:58Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
     {
       "number": 219,
       "title": "Weather is not accurate on pc version on terminal header. @claude please troubleshoot why and propose a fix with minimal disruption to other functions",
       "state": "open",
       "created_at": "2026-01-10T05:21:20Z",
-      "updated_at": "2026-01-10T05:25:31Z",
+      "updated_at": "2026-01-10T13:55:21Z",
       "milestone": null,
       "labels": [
         {
@@ -24,7 +78,7 @@
       "title": "Have Claude announce on my home speakers when it is ready for my review for an issue or push request",
       "state": "open",
       "created_at": "2026-01-09T18:15:26Z",
-      "updated_at": "2026-01-09T18:15:26Z",
+      "updated_at": "2026-01-10T15:03:06Z",
       "milestone": null,
       "labels": []
     },
@@ -313,28 +367,6 @@
       ]
     },
     {
-      "number": 180,
-      "title": "[TRAJECTORY] PRISM Agent - Unified Issue Intake & Spec",
-      "state": "open",
-      "created_at": "2026-01-02T16:30:00Z",
-      "updated_at": "2026-01-10T05:39:11Z",
-      "milestone": "v2.3 - Automation",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 179,
       "title": "[TRAJECTORY] Auto-Generated Devlogs from Closed Issues",
       "state": "open",
@@ -405,7 +437,7 @@
       "title": "[AUTONOMOUS] Investigate VM/NAS for Independent Claude Unity Access",
       "state": "open",
       "created_at": "2026-01-02T16:25:29Z",
-      "updated_at": "2026-01-10T05:05:36Z",
+      "updated_at": "2026-01-10T15:25:07Z",
       "milestone": "v2.5 - Polish",
       "labels": [
         {
@@ -413,8 +445,8 @@
           "color": "a2eeef"
         },
         {
-          "name": "priority: high",
-          "color": "d93f0b"
+          "name": "blocked",
+          "color": "000000"
         },
         {
           "name": "dev-focused",
@@ -492,10 +524,10 @@
     },
     {
       "number": 169,
-      "title": "Add api call for visits to lower level terminal",
+      "title": "Add api call for world visits from vrchat  to lower level terminal",
       "state": "open",
       "created_at": "2026-01-02T01:49:46Z",
-      "updated_at": "2026-01-05T07:18:18Z",
+      "updated_at": "2026-01-10T15:09:12Z",
       "milestone": null,
       "labels": [
         {
@@ -549,20 +581,6 @@
       ]
     },
     {
-      "number": 161,
-      "title": "Add coplay unity-mcp and link to tech stack on website",
-      "state": "open",
-      "created_at": "2026-01-01T02:57:33Z",
-      "updated_at": "2026-01-05T13:28:25Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 160,
       "title": "feat: Dynamic Rain Visibility + Blinds Toggle System",
       "state": "open",
@@ -581,36 +599,6 @@
         {
           "name": "player-focused",
           "color": "2ea44f"
-        }
-      ]
-    },
-    {
-      "number": 159,
-      "title": "feat: Enable @claude tagging in GitHub issue comments",
-      "state": "open",
-      "created_at": "2025-12-31T19:57:58Z",
-      "updated_at": "2026-01-08T23:18:01Z",
-      "milestone": "v2.3 - Automation",
-      "labels": [
-        {
-          "name": "documentation",
-          "color": "0075ca"
-        },
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: critical",
-          "color": "b60205"
-        },
-        {
-          "name": "blocked",
-          "color": "000000"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
         }
       ]
     },
@@ -667,7 +655,7 @@
       "title": "tech-debt: Remove DOSTerminalController.cs after BasementOS v2 migration complete",
       "state": "open",
       "created_at": "2025-12-31T17:20:38Z",
-      "updated_at": "2026-01-05T13:28:30Z",
+      "updated_at": "2026-01-10T15:11:48Z",
       "milestone": null,
       "labels": [
         {
@@ -783,7 +771,7 @@
       "title": "[REQUEST] Migrate to Single Unity Project (EasyQuestSwitch)",
       "state": "open",
       "created_at": "2025-12-27T22:53:34Z",
-      "updated_at": "2026-01-05T13:28:34Z",
+      "updated_at": "2026-01-10T15:23:36Z",
       "milestone": null,
       "labels": [
         {
@@ -2035,6 +2023,75 @@
   ],
   "closed": [
     {
+      "number": 159,
+      "title": "feat: Enable @claude tagging in GitHub issue comments",
+      "state": "closed",
+      "created_at": "2025-12-31T19:57:58Z",
+      "updated_at": "2026-01-10T15:05:30Z",
+      "closed_at": "2026-01-10T15:05:29Z",
+      "milestone": "v2.3 - Automation",
+      "labels": [
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        },
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 161,
+      "title": "Add coplay unity-mcp and link to tech stack on website",
+      "state": "closed",
+      "created_at": "2026-01-01T02:57:33Z",
+      "updated_at": "2026-01-10T15:04:51Z",
+      "closed_at": "2026-01-10T15:04:51Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 180,
+      "title": "[TRAJECTORY] PRISM Agent - Unified Issue Intake & Spec",
+      "state": "closed",
+      "created_at": "2026-01-02T16:30:00Z",
+      "updated_at": "2026-01-10T14:27:16Z",
+      "closed_at": "2026-01-10T14:23:10Z",
+      "milestone": "v2.3 - Automation",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
       "number": 218,
       "title": "Test: @claude OAuth Token Verification",
       "state": "closed",
@@ -3283,8 +3340,8 @@
       "title": "v2.3 - Automation",
       "description": "Weeks 3-4: PRISM agent + Workflow automation",
       "state": "open",
-      "open_issues": 6,
-      "closed_issues": 3,
+      "open_issues": 4,
+      "closed_issues": 5,
       "due_on": "2026-02-02T00:00:00Z"
     },
     {

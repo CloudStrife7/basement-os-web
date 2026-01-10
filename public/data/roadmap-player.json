@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-10T12:55:13Z",
+  "generated_at": "2026-01-10T18:38:58Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
@@ -8,7 +8,7 @@
       "title": "Weather is not accurate on pc version on terminal header. @claude please troubleshoot why and propose a fix with minimal disruption to other functions",
       "state": "open",
       "created_at": "2026-01-10T05:21:20Z",
-      "updated_at": "2026-01-10T05:25:31Z",
+      "updated_at": "2026-01-10T13:55:21Z",
       "milestone": null,
       "labels": [
         {
@@ -227,10 +227,10 @@
     },
     {
       "number": 169,
-      "title": "Add api call for visits to lower level terminal",
+      "title": "Add api call for world visits from vrchat  to lower level terminal",
       "state": "open",
       "created_at": "2026-01-02T01:49:46Z",
-      "updated_at": "2026-01-05T07:18:18Z",
+      "updated_at": "2026-01-10T15:09:12Z",
       "milestone": null,
       "labels": [
         {
@@ -1458,8 +1458,8 @@
       "title": "v2.3 - Automation",
       "description": "Weeks 3-4: PRISM agent + Workflow automation",
       "state": "open",
-      "open_issues": 6,
-      "closed_issues": 3,
+      "open_issues": 4,
+      "closed_issues": 5,
       "due_on": "2026-02-02T00:00:00Z"
     },
     {
