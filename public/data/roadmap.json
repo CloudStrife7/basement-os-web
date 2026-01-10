@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-09T18:43:01Z",
+  "generated_at": "2026-01-10T02:11:56Z",
   "issues": [
     {
       "number": 217,
@@ -820,7 +820,7 @@
       "title": "[FEATURE] Basement OS Version 2",
       "state": "open",
       "created_at": "2025-12-24T13:21:08Z",
-      "updated_at": "2026-01-08T04:33:25Z",
+      "updated_at": "2026-01-09T22:38:42Z",
       "milestone": "BASEMENT OS Revamp",
       "labels": [
         {
@@ -1991,6 +1991,16 @@
     }
   ],
   "closed": [
+    {
+      "number": 218,
+      "title": "Test: @claude OAuth Token Verification",
+      "state": "closed",
+      "created_at": "2026-01-09T22:36:43Z",
+      "updated_at": "2026-01-09T22:43:35Z",
+      "closed_at": "2026-01-09T22:43:35Z",
+      "milestone": null,
+      "labels": []
+    },
     {
       "number": 211,
       "title": "[SKILL] Ko-Fi Agent - Autonomous Supporter Engagement",
