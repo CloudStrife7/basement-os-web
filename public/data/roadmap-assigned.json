@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-10T13:04:01Z",
+  "generated_at": "2026-01-10T18:48:45Z",
   "focus": "assigned",
   "description": "Issues assigned to CloudStrife7 - What I am currently working on",
   "assignee": "CloudStrife7",
@@ -247,8 +247,8 @@
       "title": "v2.3 - Automation",
       "description": "Weeks 3-4: PRISM agent + Workflow automation",
       "state": "open",
-      "open_issues": 6,
-      "closed_issues": 3,
+      "open_issues": 4,
+      "closed_issues": 5,
       "due_on": "2026-02-02T00:00:00Z"
     },
     {
