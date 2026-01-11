@@ -1,6 +1,50 @@
 {
-  "generated_at": "2026-01-11T12:56:16Z",
+  "generated_at": "2026-01-11T18:38:30Z",
   "issues": [
+    {
+      "number": 238,
+      "title": "VRChat_stream for music from nas as YouTube alternative",
+      "state": "open",
+      "created_at": "2026-01-11T17:38:04Z",
+      "updated_at": "2026-01-11T18:31:02Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 237,
+      "title": "fix: Wire DT_Interact terminalStation + delete deprecated symbolic objects",
+      "state": "open",
+      "created_at": "2026-01-11T16:32:18Z",
+      "updated_at": "2026-01-11T16:35:29Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
     {
       "number": 236,
       "title": "Vtuber creation",
@@ -476,7 +520,7 @@
       "title": "[AUTONOMOUS] Investigate VM/NAS for Independent Claude Unity Access",
       "state": "open",
       "created_at": "2026-01-02T16:25:29Z",
-      "updated_at": "2026-01-10T15:25:07Z",
+      "updated_at": "2026-01-11T16:24:21Z",
       "milestone": "v2.5 - Polish",
       "labels": [
         {

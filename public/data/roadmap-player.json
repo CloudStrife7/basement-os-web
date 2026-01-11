@@ -1,8 +1,30 @@
 {
-  "generated_at": "2026-01-11T12:56:16Z",
+  "generated_at": "2026-01-11T18:38:30Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
+    {
+      "number": 238,
+      "title": "VRChat_stream for music from nas as YouTube alternative",
+      "state": "open",
+      "created_at": "2026-01-11T17:38:04Z",
+      "updated_at": "2026-01-11T18:31:02Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
     {
       "number": 226,
       "title": "VRChat_streaming to give my ai presentation virtually",
