@@ -1,9 +1,39 @@
 {
-  "generated_at": "2026-01-11T02:41:32Z",
+  "generated_at": "2026-01-11T06:51:41Z",
   "focus": "assigned",
   "description": "Issues assigned to CloudStrife7 - What I am currently working on",
   "assignee": "CloudStrife7",
   "issues": [
+    {
+      "number": 235,
+      "title": "feat: Add Home Assistant actionable notifications for PRISM review workflow",
+      "state": "open",
+      "created_at": "2026-01-11T05:32:09Z",
+      "updated_at": "2026-01-11T05:33:32Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
     {
       "number": 199,
       "title": "[BUG] Quest: GITHUB tab navigation broken on Basement OS terminal",
