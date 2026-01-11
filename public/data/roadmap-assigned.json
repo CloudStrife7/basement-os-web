@@ -1,9 +1,53 @@
 {
-  "generated_at": "2026-01-11T13:05:17Z",
+  "generated_at": "2026-01-11T18:48:03Z",
   "focus": "assigned",
   "description": "Issues assigned to CloudStrife7 - What I am currently working on",
   "assignee": "CloudStrife7",
   "issues": [
+    {
+      "number": 238,
+      "title": "VRChat_stream for music from nas as YouTube alternative",
+      "state": "open",
+      "created_at": "2026-01-11T17:38:04Z",
+      "updated_at": "2026-01-11T18:31:02Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 237,
+      "title": "fix: Wire DT_Interact terminalStation + delete deprecated symbolic objects",
+      "state": "open",
+      "created_at": "2026-01-11T16:32:18Z",
+      "updated_at": "2026-01-11T16:35:29Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
     {
       "number": 235,
       "title": "feat: Add Home Assistant actionable notifications for PRISM review workflow",
