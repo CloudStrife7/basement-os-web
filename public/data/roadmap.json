@@ -1,6 +1,42 @@
 {
-  "generated_at": "2026-01-12T13:03:44Z",
+  "generated_at": "2026-01-12T18:44:03Z",
   "issues": [
+    {
+      "number": 245,
+      "title": "Make Claude Speak through home assistant",
+      "state": "open",
+      "created_at": "2026-01-12T15:16:29Z",
+      "updated_at": "2026-01-12T15:19:15Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 244,
+      "title": "[MODULE] High Score Persistence System",
+      "state": "open",
+      "created_at": "2026-01-12T13:57:19Z",
+      "updated_at": "2026-01-12T14:21:50Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
     {
       "number": 243,
       "title": "Community relay protocol doodle board",
@@ -146,7 +182,7 @@
       "title": "feat: Add Home Assistant actionable notifications for PRISM review workflow",
       "state": "open",
       "created_at": "2026-01-11T05:32:09Z",
-      "updated_at": "2026-01-11T05:33:32Z",
+      "updated_at": "2026-01-12T14:56:28Z",
       "milestone": null,
       "labels": [
         {
@@ -576,28 +612,6 @@
       ]
     },
     {
-      "number": 176,
-      "title": "[AUTONOMOUS] Investigate VM/NAS for Independent Claude Unity Access",
-      "state": "open",
-      "created_at": "2026-01-02T16:25:29Z",
-      "updated_at": "2026-01-11T16:24:21Z",
-      "milestone": "v2.5 - Polish",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "blocked",
-          "color": "000000"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 175,
       "title": "[MAINTENANCE] Clean Up Stale/Unused Assets/Scripts",
       "state": "open",
@@ -659,20 +673,6 @@
           "name": "enhancement",
           "color": "a2eeef"
         },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
-      "number": 169,
-      "title": "Add api call for world visits from vrchat  to lower level terminal",
-      "state": "open",
-      "created_at": "2026-01-02T01:49:46Z",
-      "updated_at": "2026-01-10T15:09:12Z",
-      "milestone": null,
-      "labels": [
         {
           "name": "player-focused",
           "color": "2ea44f"
@@ -798,7 +798,7 @@
       "title": "tech-debt: Remove DOSTerminalController.cs after BasementOS v2 migration complete",
       "state": "open",
       "created_at": "2025-12-31T17:20:38Z",
-      "updated_at": "2026-01-11T04:29:52Z",
+      "updated_at": "2026-01-12T14:58:01Z",
       "milestone": null,
       "labels": [
         {
@@ -910,36 +910,6 @@
       ]
     },
     {
-      "number": 143,
-      "title": "[REQUEST] Migrate to Single Unity Project (EasyQuestSwitch)",
-      "state": "open",
-      "created_at": "2025-12-27T22:53:34Z",
-      "updated_at": "2026-01-10T15:23:36Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "concept",
-          "color": "04bbd9"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
-        },
-        {
-          "name": "needs-testing",
-          "color": "fef2c0"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 138,
       "title": "[REQUEST] Stream Videos from NAS",
       "state": "open",
@@ -958,7 +928,7 @@
       "title": "# GitHub Copilot: Update Issues #117 and Related Game Issues",
       "state": "open",
       "created_at": "2025-12-24T21:07:16Z",
-      "updated_at": "2026-01-05T13:28:38Z",
+      "updated_at": "2026-01-12T14:50:23Z",
       "milestone": null,
       "labels": [
         {
@@ -1062,7 +1032,7 @@
       "title": "[DEVLOG] First Test of Closed-Loop Agent System",
       "state": "open",
       "created_at": "2025-12-09T03:33:59Z",
-      "updated_at": "2026-01-05T13:28:44Z",
+      "updated_at": "2026-01-12T14:45:41Z",
       "milestone": null,
       "labels": [
         {
@@ -1320,7 +1290,7 @@
       "title": "[FEATURE] Community Relay Protocol",
       "state": "open",
       "created_at": "2025-11-24T13:42:17Z",
-      "updated_at": "2026-01-05T07:18:33Z",
+      "updated_at": "2026-01-12T14:52:35Z",
       "milestone": "Remake Snake",
       "labels": [
         {
@@ -2000,7 +1970,7 @@
       "title": "[FEATURE] Family Feud Minigame",
       "state": "open",
       "created_at": "2025-11-16T04:44:06Z",
-      "updated_at": "2026-01-12T13:03:25Z",
+      "updated_at": "2026-01-12T15:09:31Z",
       "milestone": null,
       "labels": [
         {
@@ -2012,12 +1982,16 @@
           "color": "04bbd9"
         },
         {
-          "name": "priority: low",
-          "color": "0e8a16"
+          "name": "priority: medium",
+          "color": "fbca04"
         },
         {
           "name": "area: games",
           "color": "c5def5"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
         },
         {
           "name": "player-focused",
@@ -2121,6 +2095,153 @@
     }
   ],
   "closed": [
+    {
+      "number": 169,
+      "title": "Add api call for world visits from vrchat  to lower level terminal",
+      "state": "closed",
+      "created_at": "2026-01-02T01:49:46Z",
+      "updated_at": "2026-01-12T14:57:51Z",
+      "closed_at": "2026-01-12T14:57:51Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 176,
+      "title": "[AUTONOMOUS] Investigate VM/NAS for Independent Claude Unity Access",
+      "state": "closed",
+      "created_at": "2026-01-02T16:25:29Z",
+      "updated_at": "2026-01-12T14:56:55Z",
+      "closed_at": "2026-01-12T14:56:54Z",
+      "milestone": "v2.5 - Polish",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 143,
+      "title": "[REQUEST] Migrate to Single Unity Project (EasyQuestSwitch)",
+      "state": "closed",
+      "created_at": "2025-12-27T22:53:34Z",
+      "updated_at": "2026-01-12T14:53:06Z",
+      "closed_at": "2026-01-12T14:52:51Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "title": "[BUG] Snake Sharp Turn Death",
+      "state": "closed",
+      "created_at": "2025-11-17T19:32:54Z",
+      "updated_at": "2026-01-12T14:49:51Z",
+      "closed_at": "2026-01-07T00:11:49Z",
+      "milestone": "Remake Snake",
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "title": "[FEATURE] Snake Game",
+      "state": "closed",
+      "created_at": "2025-11-17T13:40:27Z",
+      "updated_at": "2026-01-12T14:49:31Z",
+      "closed_at": "2026-01-08T12:43:58Z",
+      "milestone": "Remake Snake",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "needs-design",
+          "color": "c2e0c6"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
     {
       "number": 242,
       "title": "Compare Photo Management Solutions: ENTE vs Synology Photos vs Immich",
@@ -2520,41 +2641,6 @@
       ]
     },
     {
-      "number": 57,
-      "title": "[BUG] Snake Sharp Turn Death",
-      "state": "closed",
-      "created_at": "2025-11-17T19:32:54Z",
-      "updated_at": "2026-01-08T23:05:13Z",
-      "closed_at": "2026-01-07T00:11:49Z",
-      "milestone": "Remake Snake",
-      "labels": [
-        {
-          "name": "bug",
-          "color": "d73a4a"
-        },
-        {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
-        },
-        {
-          "name": "area: games",
-          "color": "c5def5"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
       "number": 63,
       "title": "[QA] Test FIFO Notifications",
       "state": "closed",
@@ -2633,49 +2719,6 @@
       "closed_at": "2026-01-08T17:55:12Z",
       "milestone": null,
       "labels": []
-    },
-    {
-      "number": 50,
-      "title": "[FEATURE] Snake Game",
-      "state": "closed",
-      "created_at": "2025-11-17T13:40:27Z",
-      "updated_at": "2026-01-08T12:44:26Z",
-      "closed_at": "2026-01-08T12:43:58Z",
-      "milestone": "Remake Snake",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
-        },
-        {
-          "name": "area: games",
-          "color": "c5def5"
-        },
-        {
-          "name": "blocked",
-          "color": "000000"
-        },
-        {
-          "name": "needs-design",
-          "color": "c2e0c6"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
     },
     {
       "number": 51,
@@ -3647,8 +3690,8 @@
       "title": "v2.5 - Polish",
       "description": "Weeks 7-8: PlayMode automation + VM investigation",
       "state": "open",
-      "open_issues": 3,
-      "closed_issues": 2,
+      "open_issues": 2,
+      "closed_issues": 3,
       "due_on": "2026-03-01T00:00:00Z"
     }
   ]
