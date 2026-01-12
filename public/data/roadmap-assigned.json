@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-12T13:12:55Z",
+  "generated_at": "2026-01-12T18:53:33Z",
   "focus": "assigned",
   "description": "Issues assigned to CloudStrife7 - What I am currently working on",
   "assignee": "CloudStrife7",
@@ -53,7 +53,7 @@
       "title": "feat: Add Home Assistant actionable notifications for PRISM review workflow",
       "state": "open",
       "created_at": "2026-01-11T05:32:09Z",
-      "updated_at": "2026-01-11T05:33:32Z",
+      "updated_at": "2026-01-12T14:56:28Z",
       "milestone": null,
       "labels": [
         {
@@ -213,7 +213,7 @@
       "title": "[FEATURE] Family Feud Minigame",
       "state": "open",
       "created_at": "2025-11-16T04:44:06Z",
-      "updated_at": "2026-01-12T13:10:54Z",
+      "updated_at": "2026-01-12T15:09:31Z",
       "milestone": null,
       "labels": [
         {
@@ -229,20 +229,16 @@
           "color": "fbca04"
         },
         {
-          "name": "priority: low",
-          "color": "0e8a16"
-        },
-        {
           "name": "area: games",
           "color": "c5def5"
         },
         {
-          "name": "player-focused",
-          "color": "2ea44f"
+          "name": "blocked",
+          "color": "000000"
         },
         {
-          "name": "needs-review",
-          "color": "FBCA04"
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     }
@@ -292,8 +288,8 @@
       "title": "v2.5 - Polish",
       "description": "Weeks 7-8: PlayMode automation + VM investigation",
       "state": "open",
-      "open_issues": 3,
-      "closed_issues": 2,
+      "open_issues": 2,
+      "closed_issues": 3,
       "due_on": "2026-03-01T00:00:00Z"
     }
   ]
