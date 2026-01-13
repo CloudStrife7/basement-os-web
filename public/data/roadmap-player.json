@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-12T18:44:03Z",
+  "generated_at": "2026-01-13T02:19:22Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
@@ -126,9 +126,13 @@
       "title": "[Feature] DT_Ticker: Live basement feed with dynamic events, less flavor text",
       "state": "open",
       "created_at": "2026-01-08T03:53:32Z",
-      "updated_at": "2026-01-10T05:29:40Z",
+      "updated_at": "2026-01-12T20:26:24Z",
       "milestone": null,
       "labels": [
+        {
+          "name": "question",
+          "color": "d876e3"
+        },
         {
           "name": "priority: low",
           "color": "0e8a16"
@@ -148,6 +152,10 @@
         {
           "name": "player-focused",
           "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
         }
       ]
     },
@@ -174,32 +182,6 @@
       ]
     },
     {
-      "number": 199,
-      "title": "[BUG] Quest: GITHUB tab navigation broken on Basement OS terminal",
-      "state": "open",
-      "created_at": "2026-01-06T01:41:39Z",
-      "updated_at": "2026-01-07T00:11:20Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "bug",
-          "color": "d73a4a"
-        },
-        {
-          "name": "quest-specific",
-          "color": "5319e7"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
       "number": 196,
       "title": "Add video of H2/3 matchmaking",
       "state": "open",
@@ -207,32 +189,6 @@
       "updated_at": "2026-01-06T02:16:40Z",
       "milestone": null,
       "labels": [
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
-      "number": 193,
-      "title": "[FEATURE] DT_App_Keypad - Combination Lock Video Unlock System",
-      "state": "open",
-      "created_at": "2026-01-05T19:33:23Z",
-      "updated_at": "2026-01-11T04:43:54Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "area: terminal",
-          "color": "1d76db"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
         {
           "name": "player-focused",
           "color": "2ea44f"
@@ -492,7 +448,7 @@
       "title": "[CONCEPT] Working Nokia Prefab",
       "state": "open",
       "created_at": "2025-11-23T13:52:45Z",
-      "updated_at": "2026-01-05T07:18:34Z",
+      "updated_at": "2026-01-12T20:04:28Z",
       "milestone": null,
       "labels": [
         {
@@ -1022,16 +978,12 @@
       "title": "[FEATURE] Family Feud Minigame",
       "state": "open",
       "created_at": "2025-11-16T04:44:06Z",
-      "updated_at": "2026-01-12T15:09:31Z",
+      "updated_at": "2026-01-12T19:51:18Z",
       "milestone": null,
       "labels": [
         {
           "name": "enhancement",
           "color": "a2eeef"
-        },
-        {
-          "name": "concept",
-          "color": "04bbd9"
         },
         {
           "name": "priority: medium",
@@ -1042,8 +994,12 @@
           "color": "c5def5"
         },
         {
-          "name": "blocked",
-          "color": "000000"
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         },
         {
           "name": "player-focused",
@@ -1086,7 +1042,7 @@
       "title": "[REQUEST] Main Menu Message of the Day",
       "state": "open",
       "created_at": "2025-11-16T04:17:29Z",
-      "updated_at": "2026-01-08T23:05:09Z",
+      "updated_at": "2026-01-12T19:59:39Z",
       "milestone": "v2.4 - Quest Sync",
       "labels": [
         {
@@ -1148,6 +1104,107 @@
   ],
   "closed": [
     {
+      "number": 193,
+      "title": "[FEATURE] DT_App_Keypad - Combination Lock Video Unlock System",
+      "state": "closed",
+      "created_at": "2026-01-05T19:33:23Z",
+      "updated_at": "2026-01-13T01:17:35Z",
+      "closed_at": "2026-01-13T01:17:35Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 199,
+      "title": "[BUG] Quest: GITHUB tab navigation broken on Basement OS terminal",
+      "state": "closed",
+      "created_at": "2026-01-06T01:41:39Z",
+      "updated_at": "2026-01-12T20:22:42Z",
+      "closed_at": "2026-01-12T20:22:35Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "title": "[FEATURE] Snake Game",
+      "state": "closed",
+      "created_at": "2025-11-17T13:40:27Z",
+      "updated_at": "2026-01-12T20:19:51Z",
+      "closed_at": "2026-01-08T12:43:58Z",
+      "milestone": "Remake Snake",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "needs-design",
+          "color": "c2e0c6"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
       "number": 169,
       "title": "Add api call for world visits from vrchat  to lower level terminal",
       "state": "closed",
@@ -1186,49 +1243,6 @@
         {
           "name": "area: games",
           "color": "c5def5"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
-      "number": 50,
-      "title": "[FEATURE] Snake Game",
-      "state": "closed",
-      "created_at": "2025-11-17T13:40:27Z",
-      "updated_at": "2026-01-12T14:49:31Z",
-      "closed_at": "2026-01-08T12:43:58Z",
-      "milestone": "Remake Snake",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
-        },
-        {
-          "name": "area: games",
-          "color": "c5def5"
-        },
-        {
-          "name": "blocked",
-          "color": "000000"
-        },
-        {
-          "name": "needs-design",
-          "color": "c2e0c6"
         },
         {
           "name": "Good Agentic Build",
@@ -1594,16 +1608,16 @@
       "title": "v2.3 - Automation",
       "description": "Weeks 3-4: PRISM agent + Workflow automation",
       "state": "open",
-      "open_issues": 4,
-      "closed_issues": 5,
+      "open_issues": 3,
+      "closed_issues": 6,
       "due_on": "2026-02-02T00:00:00Z"
     },
     {
       "title": "v2.4 - Quest Sync",
       "description": "Weeks 5-6: Quest sync fixes + Feature development",
       "state": "open",
-      "open_issues": 7,
-      "closed_issues": 0,
+      "open_issues": 5,
+      "closed_issues": 2,
       "due_on": "2026-02-15T00:00:00Z"
     },
     {

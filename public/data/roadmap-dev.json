@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-12T18:44:03Z",
+  "generated_at": "2026-01-13T02:19:22Z",
   "focus": "dev",
   "description": "Developer experience: AI workflow, UdonSharp, docs, automation",
   "issues": [
@@ -134,24 +134,6 @@
       ]
     },
     {
-      "number": 223,
-      "title": "Fix idle agents/issues",
-      "state": "open",
-      "created_at": "2026-01-10T14:33:00Z",
-      "updated_at": "2026-01-10T14:58:04Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 221,
       "title": "Claude Notification Settings",
       "state": "open",
@@ -174,7 +156,7 @@
       "title": "Improve start skill to this format:",
       "state": "open",
       "created_at": "2026-01-10T13:33:32Z",
-      "updated_at": "2026-01-10T14:57:58Z",
+      "updated_at": "2026-01-12T20:33:25Z",
       "milestone": null,
       "labels": [
         {
@@ -308,7 +290,7 @@
       "title": "[TRAJECTORY] Automated PlayMode Test Validation",
       "state": "open",
       "created_at": "2026-01-02T16:29:55Z",
-      "updated_at": "2026-01-08T23:17:53Z",
+      "updated_at": "2026-01-12T20:25:08Z",
       "milestone": "v2.5 - Polish",
       "labels": [
         {
@@ -352,7 +334,7 @@
       "title": "[MAINTENANCE] Clean Up Stale/Unused Assets/Scripts",
       "state": "open",
       "created_at": "2026-01-02T11:27:25Z",
-      "updated_at": "2026-01-10T05:33:49Z",
+      "updated_at": "2026-01-12T20:27:39Z",
       "milestone": "v2.2 - Foundation",
       "labels": [
         {
@@ -360,12 +342,20 @@
           "color": "fbca04"
         },
         {
-          "name": "priority: low",
-          "color": "0e8a16"
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         },
         {
           "name": "dev-focused",
           "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
         }
       ]
     },
@@ -426,7 +416,7 @@
       "title": "maintenance: Branch Review and Cleanup - 30 Branches",
       "state": "open",
       "created_at": "2025-12-31T19:18:16Z",
-      "updated_at": "2026-01-08T23:17:48Z",
+      "updated_at": "2026-01-12T20:21:33Z",
       "milestone": "v2.2 - Foundation",
       "labels": [
         {
@@ -462,29 +452,11 @@
       ]
     },
     {
-      "number": 154,
-      "title": "Add this same functionality to display Issues, readme, and roadmap.",
-      "state": "open",
-      "created_at": "2025-12-31T02:19:02Z",
-      "updated_at": "2026-01-05T13:28:32Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 144,
       "title": "[QA] Verify VRChat Networking Best Practices",
       "state": "open",
       "created_at": "2025-12-27T23:07:33Z",
-      "updated_at": "2026-01-08T23:17:57Z",
+      "updated_at": "2026-01-12T20:19:19Z",
       "milestone": "v2.2 - Foundation",
       "labels": [
         {
@@ -505,24 +477,6 @@
       "updated_at": "2026-01-10T02:16:07Z",
       "milestone": null,
       "labels": [
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 137,
-      "title": "# GitHub Copilot: Update Issues #117 and Related Game Issues",
-      "state": "open",
-      "created_at": "2025-12-24T21:07:16Z",
-      "updated_at": "2026-01-12T14:50:23Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
         {
           "name": "dev-focused",
           "color": "6f42c1"
@@ -584,28 +538,6 @@
       ]
     },
     {
-      "number": 129,
-      "title": "[DEVLOG] First Test of Closed-Loop Agent System",
-      "state": "open",
-      "created_at": "2025-12-09T03:33:59Z",
-      "updated_at": "2026-01-12T14:45:41Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Devlog",
-          "color": "aaaaaa"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 124,
       "title": "[REQUEST] MIDI Exporter for Terminal Web Version",
       "state": "open",
@@ -636,74 +568,6 @@
         {
           "name": "needs-testing",
           "color": "fef2c0"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 119,
-      "title": "[MAINTENANCE] Unity MCP Multi-Instance Workflow",
-      "state": "open",
-      "created_at": "2025-11-25T02:48:11Z",
-      "updated_at": "2026-01-08T23:18:02Z",
-      "milestone": "v2.4 - Quest Sync",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "maintenance",
-          "color": "fbca04"
-        },
-        {
-          "name": "needs-testing",
-          "color": "fef2c0"
-        },
-        {
-          "name": "quest-specific",
-          "color": "5319e7"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 116,
-      "title": "[MAINTENANCE] PCVR to Quest UdonSharp Script Sync",
-      "state": "open",
-      "created_at": "2025-11-24T22:17:15Z",
-      "updated_at": "2026-01-09T14:30:37Z",
-      "milestone": "v2.4 - Quest Sync",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "maintenance",
-          "color": "fbca04"
-        },
-        {
-          "name": "priority: critical",
-          "color": "b60205"
-        },
-        {
-          "name": "quest-specific",
-          "color": "5319e7"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
         },
         {
           "name": "dev-focused",
@@ -816,36 +680,6 @@
       ]
     },
     {
-      "number": 97,
-      "title": "[MAINTENANCE] Automation Idea - Issues",
-      "state": "open",
-      "created_at": "2025-11-20T10:59:26Z",
-      "updated_at": "2026-01-08T23:18:00Z",
-      "milestone": "v2.3 - Automation",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "maintenance",
-          "color": "fbca04"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 89,
       "title": "[MAINTENANCE] Automate Issue Creation",
       "state": "open",
@@ -877,6 +711,187 @@
     }
   ],
   "closed": [
+    {
+      "number": 154,
+      "title": "Add this same functionality to display Issues, readme, and roadmap.",
+      "state": "closed",
+      "created_at": "2025-12-31T02:19:02Z",
+      "updated_at": "2026-01-13T00:12:49Z",
+      "closed_at": "2026-01-13T00:12:49Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 137,
+      "title": "# GitHub Copilot: Update Issues #117 and Related Game Issues",
+      "state": "closed",
+      "created_at": "2025-12-24T21:07:16Z",
+      "updated_at": "2026-01-12T20:15:09Z",
+      "closed_at": "2026-01-12T20:15:04Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 129,
+      "title": "[DEVLOG] First Test of Closed-Loop Agent System",
+      "state": "closed",
+      "created_at": "2025-12-09T03:33:59Z",
+      "updated_at": "2026-01-12T20:00:42Z",
+      "closed_at": "2026-01-12T20:00:25Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Devlog",
+          "color": "aaaaaa"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 119,
+      "title": "[MAINTENANCE] Unity MCP Multi-Instance Workflow",
+      "state": "closed",
+      "created_at": "2025-11-25T02:48:11Z",
+      "updated_at": "2026-01-12T19:58:28Z",
+      "closed_at": "2026-01-12T19:58:21Z",
+      "milestone": "v2.4 - Quest Sync",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 116,
+      "title": "[MAINTENANCE] PCVR to Quest UdonSharp Script Sync",
+      "state": "closed",
+      "created_at": "2025-11-24T22:17:15Z",
+      "updated_at": "2026-01-12T19:58:07Z",
+      "closed_at": "2026-01-12T19:57:48Z",
+      "milestone": "v2.4 - Quest Sync",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 97,
+      "title": "[MAINTENANCE] Automation Idea - Issues",
+      "state": "closed",
+      "created_at": "2025-11-20T10:59:26Z",
+      "updated_at": "2026-01-12T19:55:23Z",
+      "closed_at": "2026-01-12T19:55:23Z",
+      "milestone": "v2.3 - Automation",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 223,
+      "title": "Fix idle agents/issues",
+      "state": "closed",
+      "created_at": "2026-01-10T14:33:00Z",
+      "updated_at": "2026-01-12T19:16:04Z",
+      "closed_at": "2026-01-12T19:16:04Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
     {
       "number": 176,
       "title": "[AUTONOMOUS] Investigate VM/NAS for Independent Claude Unity Access",
@@ -1229,16 +1244,16 @@
       "title": "v2.3 - Automation",
       "description": "Weeks 3-4: PRISM agent + Workflow automation",
       "state": "open",
-      "open_issues": 4,
-      "closed_issues": 5,
+      "open_issues": 3,
+      "closed_issues": 6,
       "due_on": "2026-02-02T00:00:00Z"
     },
     {
       "title": "v2.4 - Quest Sync",
       "description": "Weeks 5-6: Quest sync fixes + Feature development",
       "state": "open",
-      "open_issues": 7,
-      "closed_issues": 0,
+      "open_issues": 5,
+      "closed_issues": 2,
       "due_on": "2026-02-15T00:00:00Z"
     },
     {
