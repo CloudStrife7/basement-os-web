@@ -1,6 +1,56 @@
 {
-  "generated_at": "2026-01-13T02:19:22Z",
+  "generated_at": "2026-01-13T06:46:48Z",
   "issues": [
+    {
+      "number": 248,
+      "title": "Create Divoom Pixoo64 Live Visit Counter",
+      "state": "open",
+      "created_at": "2026-01-13T05:19:12Z",
+      "updated_at": "2026-01-13T05:21:36Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 247,
+      "title": "[Bug] Missing UdonBehaviour scripts: DT_MenuInput, DT_PageRenderer, Station",
+      "state": "open",
+      "created_at": "2026-01-13T02:58:25Z",
+      "updated_at": "2026-01-13T02:58:25Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        }
+      ]
+    },
+    {
+      "number": 246,
+      "title": "Redesign Dashboard Terminal UI Layout",
+      "state": "open",
+      "created_at": "2026-01-13T02:22:33Z",
+      "updated_at": "2026-01-13T02:22:33Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        }
+      ]
+    },
     {
       "number": 245,
       "title": "Make Claude Speak through home assistant",
@@ -1886,6 +1936,25 @@
   ],
   "closed": [
     {
+      "number": 133,
+      "title": "[FEATURE] Retro DOS Profile Picture on Stats",
+      "state": "closed",
+      "created_at": "2025-12-23T03:03:41Z",
+      "updated_at": "2026-01-13T02:56:24Z",
+      "closed_at": "2026-01-11T22:33:07Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
       "number": 193,
       "title": "[FEATURE] DT_App_Keypad - Combination Lock Video Unlock System",
       "state": "closed",
@@ -2316,25 +2385,6 @@
         {
           "name": "dev-focused",
           "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 133,
-      "title": "[FEATURE] Retro DOS Profile Picture on Stats",
-      "state": "closed",
-      "created_at": "2025-12-23T03:03:41Z",
-      "updated_at": "2026-01-11T22:33:07Z",
-      "closed_at": "2026-01-11T22:33:07Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
         }
       ]
     },
