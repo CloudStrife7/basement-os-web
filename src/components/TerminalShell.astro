@@ -19,14 +19,6 @@ const { activeSection = 'home' } = Astro.props;
       </div>
       <div class="terminal-title">BASEMENT OS</div>
       <div class="system-selectors">
-        <div class="mode-selector-header">
-          <label for="mode-select">MODE:</label>
-          <select id="mode-select" aria-label="Select Audience Mode">
-            <option value="player">Player</option>
-            <option value="developer">Developer</option>
-            <option value="both">Both</option>
-          </select>
-        </div>
         <div class="theme-selector">
           <label for="theme-select">THEME:</label>
           <select id="theme-select">
@@ -55,7 +47,7 @@ const { activeSection = 'home' } = Astro.props;
       <a href="/" class={`nav-btn ${activeSection === 'home' ? 'active' : ''}`}>
         <span class="type">&lt;BOOT&gt;</span> HOME
       </a>
-      <a href="/story" class={`nav-btn ${activeSection === 'story' ? 'active' : ''}`}>
+      <a href="/story" class={`nav-btn developer-only ${activeSection === 'story' ? 'active' : ''}`}>
         <span class="type">&lt;OSx&gt;</span> MY STORY
       </a>
       <a href="/devlog" class={`nav-btn developer-only ${activeSection === 'devlog' ? 'active' : ''}`}>
@@ -138,7 +130,12 @@ const { activeSection = 'home' } = Astro.props;
         TIME: <span class="status-value" id="clock">00:00:00</span>
       </span>
       <span class="status-item">
-        MODE: <span class="status-value" id="status-mode">...</span>
+        <label for="mode-select" style="margin-right: 5px;">MODE:</label>
+        <select id="mode-select" class="status-mode-select" aria-label="Select Audience Mode">
+          <option value="player">Player</option>
+          <option value="developer">Developer</option>
+          <option value="both">Both</option>
+        </select>
       </span>
     </div>
   </div>
@@ -269,31 +266,29 @@ const { activeSection = 'home' } = Astro.props;
     gap: 15px;
   }
 
-  .mode-selector-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .mode-selector-header label {
-    color: var(--text-dim);
-    font-size: 12px;
-  }
-
-  .mode-selector-header select {
+  /* Footer Mode Selector - Matches Header Theme Selector style */
+  .status-mode-select {
     background: var(--bg-primary);
     color: var(--accent-primary);
     border: 1px solid var(--border-color);
-    padding: 5px 10px;
+    padding: 2px 5px; /* Slightly smaller padding for footer */
     font-family: var(--font-mono);
-    font-size: 12px;
-    border-radius: 4px;
+    font-size: 11px; /* Slightly smaller font for footer */
+    border-radius: 2px;
     cursor: pointer;
     font-weight: bold;
+    text-transform: uppercase;
+    height: 24px; /* Fix height for alignment */
   }
 
-  .mode-selector-header select:focus {
+  .status-mode-select:focus {
     outline: 1px solid var(--accent-primary);
+    text-decoration: none;
+  }
+
+  .status-mode-select option {
+    background: var(--bg-primary);
+    color: var(--text-primary);
   }
 </style>
 

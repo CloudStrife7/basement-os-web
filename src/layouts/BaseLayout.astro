@@ -41,6 +41,15 @@ const { title, description = "Basement OS - An interactive dev blog for the Lowe
             })();
         </script>
 	</head>
+    <script>
+        import { initModeState } from '../scripts/modeStore';
+        
+        // Run on initial load
+        initModeState();
+        
+        // Run after every view transition to restore persistent state
+        document.addEventListener('astro:after-swap', initModeState);
+    </script>
 	<body>
 		<slot />
 	</body>

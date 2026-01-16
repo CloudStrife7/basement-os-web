@@ -1,15 +1,15 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import TerminalShell from '../components/TerminalShell.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TerminalShell from '../../components/TerminalShell.astro';
 ---
 
-<BaseLayout title="BASEMENT OS | Roadmap">
+<BaseLayout title="BASEMENT OS | Roadmap (Player)">
   <TerminalShell activeSection="roadmap">
     <div class="content-section active">
       <h2 class="section-header">C:\BASEMENT\ROADMAP.TXT</h2>
 
       <div class="mission-statement">
-        <h3>Development Roadmap</h3>
+        <h3>Development Roadmap (Player)</h3>
         <p>Live project status synced from GitHub Issues every 6 hours. Track what's being worked on, what's coming next, and the full backlog.</p>
       </div>
 
@@ -361,7 +361,7 @@ function initRoadmap() {
     // @ts-ignore - Global window property
     window.__roadmapInitialized = true;
 
-    const ROADMAP_URL = '/data/roadmap.json';
+    const ROADMAP_URL = '/data/roadmap-player.json';
 
     /** @param {any[]} labels @returns {string} */
     function getPriority(labels) {

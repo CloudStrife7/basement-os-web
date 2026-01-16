@@ -2029,3 +2029,21 @@ body::before {
         linear-gradient(90deg, transparent 24%, rgba(16, 185, 129, 0.03) 25%, rgba(16, 185, 129, 0.03) 26%, transparent 27%, transparent 74%, rgba(16, 185, 129, 0.03) 75%, rgba(16, 185, 129, 0.03) 76%, transparent 77%, transparent);
     background-size: 50px 50px;
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   BOOT MODE FILTERING
+   These rules hide content based on the user's selected persona.
+   Classes are applied to <html> via modeStore.ts
+═══════════════════════════════════════════════════════════════════ */
+
+/* Player Mode: Hide developer tools, logs, and technical docs */
+.mode-player .developer-only {
+    display: none !important;
+}
+
+/* Developer Mode: Hide immersive player content (achievements, world info) if tagged as player-only */
+.mode-developer .player-only {
+    display: none !important;
+}
+
+/* Both Mode: Shows everything (default behavior) */
