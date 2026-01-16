@@ -1,6 +1,62 @@
 {
-  "generated_at": "2026-01-16T02:22:45Z",
+  "generated_at": "2026-01-16T06:46:15Z",
   "issues": [
+    {
+      "number": 264,
+      "title": "[FEATURE] Snake Game Achievements",
+      "state": "open",
+      "created_at": "2026-01-16T04:53:05Z",
+      "updated_at": "2026-01-16T04:53:05Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: achievements",
+          "color": "f9d0c4"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 263,
+      "title": "[FEATURE] Wire Snake to HighScoreManager for Persistent Scores",
+      "state": "open",
+      "created_at": "2026-01-16T04:52:36Z",
+      "updated_at": "2026-01-16T04:52:36Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
+    },
     {
       "number": 262,
       "title": "claude-code-app with out API token",
@@ -435,12 +491,16 @@
       "title": "VRChat_stream for music from nas as YouTube alternative",
       "state": "open",
       "created_at": "2026-01-11T17:38:04Z",
-      "updated_at": "2026-01-11T18:31:02Z",
+      "updated_at": "2026-01-16T03:59:14Z",
       "milestone": null,
       "labels": [
         {
           "name": "priority: high",
           "color": "d93f0b"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
         },
         {
           "name": "player-focused",
