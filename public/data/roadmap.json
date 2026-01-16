@@ -1,59 +1,41 @@
 {
-  "generated_at": "2026-01-16T13:01:23Z",
+  "generated_at": "2026-01-16T18:43:51Z",
   "issues": [
     {
-      "number": 264,
-      "title": "[FEATURE] Snake Game Achievements",
+      "number": 267,
+      "title": "Terminal Tales Achievement Planning",
       "state": "open",
-      "created_at": "2026-01-16T04:53:05Z",
-      "updated_at": "2026-01-16T04:53:05Z",
+      "created_at": "2026-01-16T17:45:27Z",
+      "updated_at": "2026-01-16T17:48:24Z",
       "milestone": null,
       "labels": [
         {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
           "name": "priority: medium",
           "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
         },
         {
           "name": "area: achievements",
           "color": "f9d0c4"
         },
         {
-          "name": "area: games",
-          "color": "c5def5"
+          "name": "needs-design",
+          "color": "c2e0c6"
         },
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
-        }
-      ]
-    },
-    {
-      "number": 263,
-      "title": "[FEATURE] Wire Snake to HighScoreManager for Persistent Scores",
-      "state": "open",
-      "created_at": "2026-01-16T04:52:36Z",
-      "updated_at": "2026-01-16T04:52:36Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
         },
         {
-          "name": "priority: medium",
-          "color": "fbca04"
+          "name": "player-focused",
+          "color": "2ea44f"
         },
         {
-          "name": "area: games",
-          "color": "c5def5"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
+          "name": "needs-review",
+          "color": "FBCA04"
         }
       ]
     },
@@ -1279,6 +1261,24 @@
       ]
     },
     {
+      "number": 133,
+      "title": "[FEATURE] Retro DOS Profile Picture on Stats",
+      "state": "open",
+      "created_at": "2025-12-23T03:03:41Z",
+      "updated_at": "2026-01-16T15:39:14Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
       "number": 132,
       "title": "[DEVLOG] Latest Experiments Automated Agent Installs",
       "state": "open",
@@ -2273,6 +2273,91 @@
   ],
   "closed": [
     {
+      "number": 265,
+      "title": "[UNITY] Wire DT_App_HighScores Terminal App to Scene",
+      "state": "closed",
+      "created_at": "2026-01-16T15:08:43Z",
+      "updated_at": "2026-01-16T17:05:07Z",
+      "closed_at": "2026-01-16T17:05:07Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 264,
+      "title": "[FEATURE] Snake Game Achievements",
+      "state": "closed",
+      "created_at": "2026-01-16T04:53:05Z",
+      "updated_at": "2026-01-16T17:05:07Z",
+      "closed_at": "2026-01-16T17:05:07Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: achievements",
+          "color": "f9d0c4"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 263,
+      "title": "[FEATURE] Wire Snake to HighScoreManager for Persistent Scores",
+      "state": "closed",
+      "created_at": "2026-01-16T04:52:36Z",
+      "updated_at": "2026-01-16T17:05:07Z",
+      "closed_at": "2026-01-16T17:05:07Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
       "number": 253,
       "title": "Impliment Spec Kit",
       "state": "closed",
@@ -2300,25 +2385,6 @@
         {
           "name": "needs-review",
           "color": "FBCA04"
-        }
-      ]
-    },
-    {
-      "number": 133,
-      "title": "[FEATURE] Retro DOS Profile Picture on Stats",
-      "state": "closed",
-      "created_at": "2025-12-23T03:03:41Z",
-      "updated_at": "2026-01-13T02:56:24Z",
-      "closed_at": "2026-01-11T22:33:07Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
         }
       ]
     },
