@@ -1,6 +1,37 @@
 {
-  "generated_at": "2026-01-16T18:43:51Z",
+  "generated_at": "2026-01-17T02:10:01Z",
   "issues": [
+    {
+      "number": 271,
+      "title": "📋 Roadmap Tracker: Jan-Feb 2026 (8-Week Plan)",
+      "state": "open",
+      "created_at": "2026-01-16T22:12:01Z",
+      "updated_at": "2026-01-16T22:12:01Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 269,
+      "title": "feat: Phase 2 - Unity MCP Integration for Auto-Merge Compile Validation",
+      "state": "open",
+      "created_at": "2026-01-16T21:43:21Z",
+      "updated_at": "2026-01-16T21:48:51Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
     {
       "number": 267,
       "title": "Terminal Tales Achievement Planning",
@@ -70,7 +101,7 @@
       "title": "feat: Rewrite Starry Night tale with subtle glowing code easter egg",
       "state": "open",
       "created_at": "2026-01-15T00:42:13Z",
-      "updated_at": "2026-01-15T00:45:07Z",
+      "updated_at": "2026-01-16T22:05:57Z",
       "milestone": null,
       "labels": [
         {
@@ -222,32 +253,6 @@
       ]
     },
     {
-      "number": 252,
-      "title": "Alignment auditor",
-      "state": "open",
-      "created_at": "2026-01-13T20:38:39Z",
-      "updated_at": "2026-01-13T23:01:45Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "priority: critical",
-          "color": "b60205"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        },
-        {
-          "name": "ready-for-dev",
-          "color": "0E8A16"
-        }
-      ]
-    },
-    {
       "number": 251,
       "title": "add to presentation (no prism needed)",
       "state": "open",
@@ -287,7 +292,7 @@
       "title": "Reconnect. Where's the roadmap? What's the plan?",
       "state": "open",
       "created_at": "2026-01-13T14:41:37Z",
-      "updated_at": "2026-01-13T19:20:45Z",
+      "updated_at": "2026-01-16T22:13:05Z",
       "milestone": null,
       "labels": [
         {
@@ -610,24 +615,6 @@
       "state": "open",
       "created_at": "2026-01-10T13:54:09Z",
       "updated_at": "2026-01-10T14:06:47Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 220,
-      "title": "Improve start skill to this format:",
-      "state": "open",
-      "created_at": "2026-01-10T13:33:32Z",
-      "updated_at": "2026-01-12T20:33:25Z",
       "milestone": null,
       "labels": [
         {
@@ -2272,6 +2259,52 @@
     }
   ],
   "closed": [
+    {
+      "number": 252,
+      "title": "Alignment auditor",
+      "state": "closed",
+      "created_at": "2026-01-13T20:38:39Z",
+      "updated_at": "2026-01-16T21:57:10Z",
+      "closed_at": "2026-01-16T21:57:10Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
+    {
+      "number": 220,
+      "title": "Improve start skill to this format:",
+      "state": "closed",
+      "created_at": "2026-01-10T13:33:32Z",
+      "updated_at": "2026-01-16T19:23:00Z",
+      "closed_at": "2026-01-16T19:23:00Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
     {
       "number": 265,
       "title": "[UNITY] Wire DT_App_HighScores Terminal App to Scene",
