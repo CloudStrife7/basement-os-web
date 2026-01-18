@@ -1,6 +1,85 @@
 {
-  "generated_at": "2026-01-18T02:30:46Z",
+  "generated_at": "2026-01-18T06:41:47Z",
   "issues": [
+    {
+      "number": 284,
+      "title": "Quest-Primary Development Migration",
+      "state": "open",
+      "created_at": "2026-01-18T04:58:25Z",
+      "updated_at": "2026-01-18T04:58:25Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 283,
+      "title": "High Score system missing NotificationEventHub integration",
+      "state": "open",
+      "created_at": "2026-01-18T04:13:17Z",
+      "updated_at": "2026-01-18T04:55:21Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 282,
+      "title": "Productivity stats in /start skill show stale data",
+      "state": "open",
+      "created_at": "2026-01-18T04:08:11Z",
+      "updated_at": "2026-01-18T04:55:38Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 281,
+      "title": "Weather API endpoint returns 404 - placeholder values shown",
+      "state": "open",
+      "created_at": "2026-01-18T04:08:09Z",
+      "updated_at": "2026-01-18T04:10:29Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
     {
       "number": 277,
       "title": "Claude Idea Agent",
@@ -384,7 +463,7 @@
       "title": "Quest Local Sync Plan w/ Local Script (change from existing github action workflow)",
       "state": "open",
       "created_at": "2026-01-13T19:17:24Z",
-      "updated_at": "2026-01-18T01:52:51Z",
+      "updated_at": "2026-01-18T04:55:24Z",
       "milestone": null,
       "labels": [
         {
