@@ -1,17 +1,21 @@
 {
-  "generated_at": "2026-01-17T18:38:08Z",
+  "generated_at": "2026-01-18T02:30:46Z",
   "issues": [
     {
-      "number": 275,
-      "title": "Add connector between GitHub and local Claude code",
+      "number": 277,
+      "title": "Claude Idea Agent",
       "state": "open",
-      "created_at": "2026-01-17T17:38:27Z",
-      "updated_at": "2026-01-17T18:00:01Z",
+      "created_at": "2026-01-17T20:29:12Z",
+      "updated_at": "2026-01-17T20:33:43Z",
       "milestone": null,
       "labels": [
         {
-          "name": "priority: critical",
-          "color": "b60205"
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         },
         {
           "name": "dev-focused",
@@ -24,11 +28,29 @@
       ]
     },
     {
+      "number": 275,
+      "title": "Add connector between GitHub and local Claude code",
+      "state": "open",
+      "created_at": "2026-01-17T17:38:27Z",
+      "updated_at": "2026-01-17T21:18:44Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
       "number": 274,
       "title": "claude code broken",
       "state": "open",
       "created_at": "2026-01-17T15:42:31Z",
-      "updated_at": "2026-01-17T17:26:34Z",
+      "updated_at": "2026-01-17T19:38:46Z",
       "milestone": null,
       "labels": [
         {
@@ -47,10 +69,10 @@
     },
     {
       "number": 273,
-      "title": "Proprioception discussion",
+      "title": "PRISM Sub Agents",
       "state": "open",
       "created_at": "2026-01-17T14:31:59Z",
-      "updated_at": "2026-01-17T15:27:13Z",
+      "updated_at": "2026-01-17T20:49:27Z",
       "milestone": null,
       "labels": [
         {
@@ -62,8 +84,8 @@
           "color": "6f42c1"
         },
         {
-          "name": "needs-review",
-          "color": "FBCA04"
+          "name": "ready-for-dev",
+          "color": "0E8A16"
         }
       ]
     },
@@ -362,7 +384,7 @@
       "title": "Quest Local Sync Plan w/ Local Script (change from existing github action workflow)",
       "state": "open",
       "created_at": "2026-01-13T19:17:24Z",
-      "updated_at": "2026-01-13T20:39:20Z",
+      "updated_at": "2026-01-18T01:52:51Z",
       "milestone": null,
       "labels": [
         {
@@ -378,8 +400,8 @@
           "color": "6f42c1"
         },
         {
-          "name": "needs-review",
-          "color": "FBCA04"
+          "name": "ready-for-dev",
+          "color": "0E8A16"
         }
       ]
     },
@@ -482,7 +504,7 @@
       "title": "[MODULE] High Score Persistence System",
       "state": "open",
       "created_at": "2026-01-12T13:57:19Z",
-      "updated_at": "2026-01-12T14:21:50Z",
+      "updated_at": "2026-01-18T00:37:50Z",
       "milestone": null,
       "labels": [
         {
@@ -2100,7 +2122,7 @@
       "title": "Add High Score Functionality",
       "state": "open",
       "created_at": "2025-11-17T19:32:03Z",
-      "updated_at": "2026-01-08T12:34:55Z",
+      "updated_at": "2026-01-18T00:41:31Z",
       "milestone": "Remake Snake",
       "labels": [
         {
@@ -2355,6 +2377,33 @@
     }
   ],
   "closed": [
+    {
+      "number": 276,
+      "title": "Create an ## Automated Cleanup Script",
+      "state": "closed",
+      "created_at": "2026-01-17T20:25:57Z",
+      "updated_at": "2026-01-17T22:39:52Z",
+      "closed_at": "2026-01-17T22:39:52Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
     {
       "number": 252,
       "title": "Alignment auditor",
