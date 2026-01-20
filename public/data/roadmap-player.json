@@ -1,8 +1,30 @@
 {
-  "generated_at": "2026-01-19T13:07:03Z",
+  "generated_at": "2026-01-20T02:23:02Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
+    {
+      "number": 289,
+      "title": "[BUG] Nokia Snake phone doesn't display player's saved high score",
+      "state": "open",
+      "created_at": "2026-01-19T21:07:39Z",
+      "updated_at": "2026-01-19T21:07:39Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
     {
       "number": 287,
       "title": "[BUG] Fix Quest Seating",
