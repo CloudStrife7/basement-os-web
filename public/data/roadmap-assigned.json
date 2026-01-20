@@ -1,9 +1,65 @@
 {
-  "generated_at": "2026-01-19T18:52:33Z",
+  "generated_at": "2026-01-20T02:32:34Z",
   "focus": "assigned",
   "description": "Issues assigned to CloudStrife7 - What I am currently working on",
   "assignee": "CloudStrife7",
   "issues": [
+    {
+      "number": 291,
+      "title": "[Quest] Wire BasementOS v2 Scene References After Sidecar Migration",
+      "state": "open",
+      "created_at": "2026-01-19T22:30:45Z",
+      "updated_at": "2026-01-19T22:33:35Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 288,
+      "title": "[MOTIVATION] Dishwasher Connection",
+      "state": "open",
+      "created_at": "2026-01-19T20:35:40Z",
+      "updated_at": "2026-01-19T20:38:06Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
     {
       "number": 287,
       "title": "[BUG] Fix Quest Seating",
