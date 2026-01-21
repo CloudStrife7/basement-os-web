@@ -52,7 +52,7 @@ I'm using this site to document what I'm building in VRChat, showcase my AI-assi
 If you're curious:
 - **Visit the site** and toggle between Player/Dev mode
 - **Check out the devlogs** to see the build process of my world and see how I'm using AI to build it.
-- **Leave feedback** — Feel free to reach out, whether you're using AI for solo creation or for your team.
+- **Leave feedback** — Feel free to reach out, whether you're using AI for solo creation or for your team - you can reach out at admin @ BasementOS . com
 
 ## Open Questions
 
