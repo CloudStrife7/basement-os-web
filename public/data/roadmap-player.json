@@ -1,8 +1,34 @@
 {
-  "generated_at": "2026-01-20T18:57:55Z",
+  "generated_at": "2026-01-21T02:25:51Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
+    {
+      "number": 292,
+      "title": "TERMINAL UPDATES",
+      "state": "open",
+      "created_at": "2026-01-20T21:04:49Z",
+      "updated_at": "2026-01-20T23:31:01Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
     {
       "number": 289,
       "title": "[BUG] Nokia Snake phone doesn't display player's saved high score",
