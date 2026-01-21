@@ -1,5 +1,7 @@
 # Basement OS Web 2.0 (Astro)
+This is my website that explains how I'm creating in virtual reality using AI assisted development.
 
+Description Written by AI:
 This is the Astro-based implementation of the Basement OS Devlog.
 It replicates the "Terminal" aesthetic of the original VRChat internal browser site but using modern Static Site Generation for better performance, SEO, and content management.
 
@@ -8,7 +10,7 @@ It replicates the "Terminal" aesthetic of the original VRChat internal browser s
 - `src/pages`: Main entry points (`index.astro`, `devlog/index.astro`).
 - `src/layouts`: `BaseLayout` containing global `<head>` and Theme logic.
 - `src/components`:
-  - `TerminalShell.astro`: The persistent UI wrapper (Header, Nav, Footer).
+  - `TerminalShastro`: The persistent UI wrapper (Header, Nav, Footer).
   - `DevlogEntry.astro`: Post rendering.
 - `src/content/devlog`: Markdown content for the blog.
 - `public/images`: Static assets.
