@@ -1,6 +1,8 @@
 # Basement OS Web 2.0 (Astro)
 This is my website that explains how I'm creating in virtual reality using AI assisted development.
 
+I created it by directing AI to intake my vr chat dos terminal code and make a website based on it, and after tweaking and refining this is the result.  Content is created as I work on my workd through automated github actions and agents so I can still share development updates and knowledge but stay focused on what I find fun - developing and implementing new ideas in my VR World.
+
 Description Written by AI:
 This is the Astro-based implementation of the Basement OS Devlog.
 It replicates the "Terminal" aesthetic of the original VRChat internal browser site but using modern Static Site Generation for better performance, SEO, and content management.
