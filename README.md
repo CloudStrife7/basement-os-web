@@ -6,13 +6,13 @@ I don't know HTML. I don't know Astro. But I knew exactly what I wanted — and 
 
 ## What This Is
 
-This is the website for **Basement OS**, a retro-futuristic virtual basement in [VRChat](https://hello.vrchat.com/) (a social VR platform where people hang out in custom 3D worlds). Think of it as a digital space where visitors can explore, interact, and see what I'm building.
+This is the website for **Basement OS**, a retro-futuristic virtual basement in [VRChat](https://hello.vrchat.com/](https://vrchat.com/home/launch?worldId=wrld_7302897c-be0f-4037-ac67-76f0ea065c2b) (a social VR platform where people hang out in custom 3D worlds). Think of it as a digital space where visitors can explore, interact, and see what I'm building.
 
 The site itself serves two completely different audiences:
 - **Players** who want an immersive, diegetic terminal interface
 - **Developers** who want clean technical documentation
 
-Visit the live site: **[basement-os.com](https://cloudstrife7.github.io/basement-os-web/)**
+Visit the live site: **[BasementOS.com](https://cloudstrife7.github.io/basement-os-web/)**
 
 ## Why This Matters
 
