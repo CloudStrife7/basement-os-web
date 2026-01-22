@@ -1,8 +1,42 @@
 {
-  "generated_at": "2026-01-22T13:07:53Z",
+  "generated_at": "2026-01-22T18:46:28Z",
   "focus": "dev",
   "description": "Developer experience: AI workflow, UdonSharp, docs, automation",
   "issues": [
+    {
+      "number": 301,
+      "title": "Fix empty UdonBehaviour on DT_BootSequence GameObject (Issue #296 blocker)",
+      "state": "open",
+      "created_at": "2026-01-22T15:02:56Z",
+      "updated_at": "2026-01-22T15:06:07Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
     {
       "number": 298,
       "title": "Enhancement: MCP-based external trigger for Bifrost automation",
@@ -982,7 +1016,7 @@
       "title": "[REQUEST] Stream Videos from NAS",
       "state": "open",
       "created_at": "2025-12-24T22:10:36Z",
-      "updated_at": "2026-01-14T14:50:29Z",
+      "updated_at": "2026-01-22T17:28:56Z",
       "milestone": null,
       "labels": [
         {
