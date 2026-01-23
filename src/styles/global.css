@@ -571,22 +571,20 @@ body::before {
     min-height: 400px;
     position: relative;
     padding: 0;
-    display: flex;
-    flex-direction: column;
 }
 
 .terminal-demo-screen {
     font-family: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
     font-size: 14px;
     line-height: 1.3;
-    padding: 10px 15px;
+    padding: 10px 20px;
     min-height: 400px;
-    white-space: pre-wrap;
+    white-space: pre;
     color: #10B981;
     transition: opacity 0.3s ease;
-    overflow: hidden;
-    /* Flexible width */
-    width: 100%;
+    overflow-x: auto;
+    width: fit-content;
+    min-width: min(70ch, 100%);
     max-width: 100%;
     margin: 0 auto;
     letter-spacing: 0;

@@ -1,0 +1,206 @@
+/* ==========================================================================
+   CRT Effects — CSS-Only (Approach A)
+   Scoped to .terminal-demo-container.crt-active
+   ========================================================================== */
+
+/* Container setup for pseudo-element layering */
+.terminal-demo-container.crt-active {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow:
+    inset 0 0 60px rgba(0, 0, 0, 0.4),
+    inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 1. Scanlines --- */
+.terminal-demo-container.crt-active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.12) 2px,
+    rgba(0, 0, 0, 0.12) 4px
+  );
+  animation: crt-scanline-drift 8s linear infinite;
+}
+
+@keyframes crt-scanline-drift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+/* --- 2. Static Noise --- */
+.terminal-demo-container.crt-active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 11;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  animation: crt-noise-shift 0.15s steps(5) infinite;
+}
+
+@keyframes crt-noise-shift {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(-1px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* --- 3. Subtle Flicker --- */
+.terminal-demo-container.crt-active .terminal-demo-screen {
+  animation: crt-flicker 0.08s infinite alternate;
+}
+
+@keyframes crt-flicker {
+  0% { opacity: 1; }
+  100% { opacity: 0.985; }
+}
+
+/* --- 4. Phosphor Text Glow --- */
+.terminal-demo-container.crt-active .terminal-demo-screen {
+  text-shadow:
+    0 0 2px currentColor,
+    0 0 5px rgba(16, 185, 129, 0.4),
+    0 0 10px rgba(16, 185, 129, 0.15);
+}
+
+/* --- 5. RGB Chromatic Aberration (applied to text) --- */
+.terminal-demo-container.crt-active .terminal-demo-screen pre,
+.terminal-demo-container.crt-active .terminal-demo-screen code,
+.terminal-demo-container.crt-active .terminal-demo-screen span {
+  text-shadow:
+    -0.5px 0 rgba(255, 0, 0, 0.12),
+    0.5px 0 rgba(0, 255, 255, 0.12),
+    0 0 3px currentColor,
+    0 0 8px rgba(16, 185, 129, 0.3);
+}
+
+/* --- 6. CRT Vignette (edge darkening) --- */
+.terminal-demo-container.crt-active {
+  box-shadow:
+    inset 0 0 80px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(0, 0, 0, 0.3),
+    0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+/* --- 7. Screen Curvature Approximation --- */
+.terminal-demo-container.crt-active .terminal-demo-screen {
+  border-radius: 8px;
+}
+
+/* ==========================================================================
+   CRT Effects — Section Headers (always active)
+   ========================================================================== */
+
+.section-header {
+  position: relative;
+}
+
+.section-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  animation: crt-scanline-drift 8s linear infinite;
+}
+
+/* ==========================================================================
+   CRT Effects — Boot Screen (always active)
+   ========================================================================== */
+
+.boot-screen {
+  position: relative;
+}
+
+.boot-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  animation: crt-scanline-drift 8s linear infinite;
+}
+
+/* ==========================================================================
+   CRT Effects — Shutdown Screen (always active)
+   ========================================================================== */
+
+#shutdown-screen::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10000;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  animation: crt-scanline-drift 8s linear infinite;
+}
+
+.shutdown-msg-1 {
+  text-shadow:
+    0 0 3px currentColor,
+    0 0 10px currentColor;
+  animation: crt-flicker 0.08s infinite alternate;
+}
+
+.shutdown-msg-2 {
+  text-shadow:
+    0 0 5px currentColor,
+    0 0 15px currentColor,
+    0 0 30px currentColor;
+  animation: crt-flicker 0.08s infinite alternate;
+}
+
+/* ==========================================================================
+   Accessibility: Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal-demo-container.crt-active::before,
+  .section-header::before,
+  .boot-screen::before,
+  #shutdown-screen::before {
+    animation: none;
+  }
+
+  .terminal-demo-container.crt-active::after {
+    animation: none;
+    opacity: 0.015;
+  }
+
+  .terminal-demo-container.crt-active .terminal-demo-screen,
+  .shutdown-msg-1,
+  .shutdown-msg-2 {
+    animation: none;
+  }
+}
