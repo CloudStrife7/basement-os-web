@@ -1,0 +1,84 @@
+name: Update Weather Data
+
+on:
+  schedule:
+    # Hourly - weather doesn't change fast enough for 5-min polling
+    # VRChat module caches for 2-10 min anyway
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: weather-update
+  cancel-in-progress: true
+
+jobs:
+  update-weather:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Fetch Weather Data
+      run: |
+        mkdir -p public/data
+        
+        # Fetch current weather for Fond du Lac, WI
+        curl -s "http://api.weatherapi.com/v1/current.json?key=${{ secrets.WEATHER_API_KEY }}&q=Fond%20du%20Lac,%20WI" \
+        | jq '{
+          temperature: (.current.temp_f | round | tostring + "°F"),
+          condition: .current.condition.text,
+          location: "Fond du Lac, WI",
+          timestamp: (now | strftime("%Y-%m-%d %H:%M:%S")),
+          last_updated: now,
+          status: "online"
+        }' > public/data/weather.json
+        
+        echo "Weather data updated:"
+        cat public/data/weather.json
+    
+    - name: Create Fallback Data on API Failure
+      if: failure()
+      run: |
+        mkdir -p public/data
+        echo '{
+          "temperature": "73°F",
+          "condition": "Data Unavailable",
+          "location": "Fond du Lac, WI",
+          "timestamp": "'$(date -u +"%Y-%m-%d %H:%M:%S")'",
+          "last_updated": '$(date +%s)',
+          "status": "offline"
+        }' > public/data/weather.json
+    
+    - name: Commit Weather Updates
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "Weather Bot"
+        
+        # Only commit if actual weather data changed (not just timestamp)
+        if [ -f public/data/weather.json ]; then
+          NEW_TEMP=$(jq -r '.temperature' public/data/weather.json)
+          NEW_COND=$(jq -r '.condition' public/data/weather.json)
+          
+          OLD_TEMP=$(git show HEAD:public/data/weather.json 2>/dev/null | jq -r '.temperature // ""')
+          OLD_COND=$(git show HEAD:public/data/weather.json 2>/dev/null | jq -r '.condition // ""')
+          
+          if [ "$OLD_TEMP" = "$NEW_TEMP" ] && [ "$OLD_COND" = "$NEW_COND" ]; then
+            echo "Weather unchanged ($NEW_TEMP, $NEW_COND) - skipping commit"
+            exit 0
+          fi
+          
+          echo "Weather changed: $OLD_TEMP/$OLD_COND -> $NEW_TEMP/$NEW_COND"
+        fi
+        
+        git add public/data/weather.json
+        
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "weather: $NEW_TEMP $NEW_COND"
+          git push
+          echo "Weather data committed and pushed"
+        fi
