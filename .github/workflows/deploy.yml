@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+  workflow_run:
+    workflows: ["Update Weather Data"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -12,11 +16,13 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Only deploy if the triggering workflow succeeded (or if push/manual)
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
