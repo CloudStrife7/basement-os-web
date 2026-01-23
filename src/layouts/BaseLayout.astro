@@ -9,7 +9,7 @@ interface Props {
 	description?: string;
 }
 
-const { title, description = "Basement OS - An interactive dev blog for the Lower Level 2.0 VRChat world project" } = Astro.props;
+const { title, description = "AI-driven development experiments in VRChat — 20,000+ lines built with Claude Code, from zero to a fully-featured interactive world." } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -20,6 +20,14 @@ const { title, description = "Basement OS - An interactive dev blog for the Lowe
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/jpeg" href="/favicon.jpg" />
 		<meta name="generator" content={Astro.generator} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://basementos.com" />
+		<meta property="og:image" content="https://basementos.com/favicon.jpg" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
 		<title>{title}</title>
         <ClientRouter />
         <script is:inline>
