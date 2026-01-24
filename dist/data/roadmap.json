@@ -1,17 +1,245 @@
 {
-  "generated_at": "2026-01-06T13:00:38Z",
+  "generated_at": "2026-01-23T02:23:05Z",
   "issues": [
     {
-      "number": 203,
-      "title": "Fix date time and weather on quest terminal",
+      "number": 301,
+      "title": "Fix empty UdonBehaviour on DT_BootSequence GameObject (Issue #296 blocker)",
       "state": "open",
-      "created_at": "2026-01-06T03:55:39Z",
-      "updated_at": "2026-01-06T03:57:04Z",
+      "created_at": "2026-01-22T15:02:56Z",
+      "updated_at": "2026-01-22T15:06:07Z",
       "milestone": null,
       "labels": [
         {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
+    {
+      "number": 300,
+      "title": "[ENHANCEMENT] Bifrost Event Driven",
+      "state": "open",
+      "created_at": "2026-01-22T14:14:22Z",
+      "updated_at": "2026-01-22T20:52:32Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 298,
+      "title": "Enhancement: MCP-based external trigger for Bifrost automation",
+      "state": "open",
+      "created_at": "2026-01-22T00:24:51Z",
+      "updated_at": "2026-01-22T19:45:53Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 296,
+      "title": "Add Boot Screen +  Sounds and boot screen to Terminal",
+      "state": "open",
+      "created_at": "2026-01-21T17:12:39Z",
+      "updated_at": "2026-01-22T02:31:16Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
+    {
+      "number": 295,
+      "title": "Retro crt terminal effects in LL2.0",
+      "state": "open",
+      "created_at": "2026-01-21T16:31:44Z",
+      "updated_at": "2026-01-22T22:02:59Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
+    {
+      "number": 292,
+      "title": "TERMINAL UPDATES",
+      "state": "open",
+      "created_at": "2026-01-20T21:04:49Z",
+      "updated_at": "2026-01-20T23:31:01Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
+    {
+      "number": 291,
+      "title": "[Quest] Wire BasementOS v2 Scene References After Sidecar Migration",
+      "state": "open",
+      "created_at": "2026-01-19T22:30:45Z",
+      "updated_at": "2026-01-19T22:33:35Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 290,
+      "title": "[TECH DEBT] Refactor SidecarManager.cs - Remove blocking dialogs for MCP automation",
+      "state": "open",
+      "created_at": "2026-01-19T21:21:01Z",
+      "updated_at": "2026-01-19T21:21:01Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 289,
+      "title": "[BUG] Nokia Snake phone doesn't display player's saved high score",
+      "state": "open",
+      "created_at": "2026-01-19T21:07:39Z",
+      "updated_at": "2026-01-19T21:07:39Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
         },
         {
           "name": "player-focused",
@@ -20,16 +248,38 @@
       ]
     },
     {
-      "number": 199,
-      "title": "[BUG] Quest: GITHUB tab navigation broken on Basement OS terminal",
+      "number": 288,
+      "title": "[MOTIVATION] Dishwasher Connection",
       "state": "open",
-      "created_at": "2026-01-06T01:41:39Z",
-      "updated_at": "2026-01-06T01:51:10Z",
+      "created_at": "2026-01-19T20:35:40Z",
+      "updated_at": "2026-01-19T20:38:06Z",
       "milestone": null,
       "labels": [
         {
-          "name": "bug",
-          "color": "d73a4a"
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 287,
+      "title": "[BUG] Fix Quest Seating",
+      "state": "open",
+      "created_at": "2026-01-18T17:44:21Z",
+      "updated_at": "2026-01-18T17:48:30Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
         },
         {
           "name": "quest-specific",
@@ -42,35 +292,321 @@
         {
           "name": "player-focused",
           "color": "2ea44f"
-        }
-      ]
-    },
-    {
-      "number": 196,
-      "title": "Add video of H2/3 matchmaking",
-      "state": "open",
-      "created_at": "2026-01-06T00:43:21Z",
-      "updated_at": "2026-01-06T02:16:40Z",
-      "milestone": null,
-      "labels": [
+        },
         {
-          "name": "player-focused",
-          "color": "2ea44f"
+          "name": "needs-review",
+          "color": "FBCA04"
         }
       ]
     },
     {
-      "number": 194,
-      "title": "[SUB-ISSUE #193] Network Sync Terminal Display for Spectators",
+      "number": 285,
+      "title": "[ARCHITECTURE] Sidecar Sync Workflow - Unified Cross-Platform Strategy",
       "state": "open",
-      "created_at": "2026-01-05T19:44:51Z",
-      "updated_at": "2026-01-06T02:08:48Z",
+      "created_at": "2026-01-18T13:13:42Z",
+      "updated_at": "2026-01-18T17:23:44Z",
       "milestone": null,
       "labels": [
         {
           "name": "enhancement",
           "color": "a2eeef"
         },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        },
+        {
+          "name": "epic",
+          "color": "7057ff"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 283,
+      "title": "High Score system missing NotificationEventHub integration",
+      "state": "open",
+      "created_at": "2026-01-18T04:13:17Z",
+      "updated_at": "2026-01-18T04:55:21Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 282,
+      "title": "Productivity stats in /start skill show stale data",
+      "state": "open",
+      "created_at": "2026-01-18T04:08:11Z",
+      "updated_at": "2026-01-18T04:55:38Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 281,
+      "title": "Weather API endpoint returns 404 - placeholder values shown",
+      "state": "open",
+      "created_at": "2026-01-18T04:08:09Z",
+      "updated_at": "2026-01-18T04:10:29Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 277,
+      "title": "Claude Idea Agent",
+      "state": "open",
+      "created_at": "2026-01-17T20:29:12Z",
+      "updated_at": "2026-01-17T20:33:43Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 275,
+      "title": "Add connector between GitHub and local Claude code",
+      "state": "open",
+      "created_at": "2026-01-17T17:38:27Z",
+      "updated_at": "2026-01-17T21:18:44Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 274,
+      "title": "claude code broken",
+      "state": "open",
+      "created_at": "2026-01-17T15:42:31Z",
+      "updated_at": "2026-01-17T19:38:46Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 273,
+      "title": "PRISM Sub Agents",
+      "state": "open",
+      "created_at": "2026-01-17T14:31:59Z",
+      "updated_at": "2026-01-17T20:49:27Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
+    {
+      "number": 272,
+      "title": "Interface webpage for interacting with vr/streaming in vr",
+      "state": "open",
+      "created_at": "2026-01-17T13:58:21Z",
+      "updated_at": "2026-01-17T14:01:52Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 271,
+      "title": "📋 Roadmap Tracker: Jan-Feb 2026 (8-Week Plan)",
+      "state": "open",
+      "created_at": "2026-01-16T22:12:01Z",
+      "updated_at": "2026-01-16T22:12:01Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 269,
+      "title": "feat: Phase 2 - Unity MCP Integration for Auto-Merge Compile Validation",
+      "state": "open",
+      "created_at": "2026-01-16T21:43:21Z",
+      "updated_at": "2026-01-17T17:33:15Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 267,
+      "title": "Terminal Tales Achievement Planning",
+      "state": "open",
+      "created_at": "2026-01-16T17:45:27Z",
+      "updated_at": "2026-01-16T17:48:24Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "area: achievements",
+          "color": "f9d0c4"
+        },
+        {
+          "name": "needs-design",
+          "color": "c2e0c6"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 262,
+      "title": "claude-code-app with out API token",
+      "state": "open",
+      "created_at": "2026-01-15T01:54:08Z",
+      "updated_at": "2026-01-15T02:08:42Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "invalid",
+          "color": "e4e669"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 261,
+      "title": "feat: Rewrite Starry Night tale with subtle glowing code easter egg",
+      "state": "open",
+      "created_at": "2026-01-15T00:42:13Z",
+      "updated_at": "2026-01-16T22:05:57Z",
+      "milestone": null,
+      "labels": [
         {
           "name": "priority: high",
           "color": "d93f0b"
@@ -86,20 +622,54 @@
         {
           "name": "player-focused",
           "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
         }
       ]
     },
     {
-      "number": 193,
-      "title": "[FEATURE] DT_App_Keypad - Combination Lock Video Unlock System",
+      "number": 260,
+      "title": "📊 Sprint Report - Auto-Updated Dashboard",
       "state": "open",
-      "created_at": "2026-01-05T19:33:23Z",
-      "updated_at": "2026-01-05T19:33:23Z",
+      "created_at": "2026-01-14T22:15:22Z",
+      "updated_at": "2026-01-14T22:25:53Z",
       "milestone": null,
       "labels": [
         {
-          "name": "enhancement",
-          "color": "a2eeef"
+          "name": "documentation",
+          "color": "0075ca"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 258,
+      "title": "Add Easter egg URL to keypad on terminal",
+      "state": "open",
+      "created_at": "2026-01-14T15:27:09Z",
+      "updated_at": "2026-01-14T16:49:31Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
         },
         {
           "name": "area: terminal",
@@ -109,6 +679,557 @@
           "name": "Good Agentic Build",
           "color": "1d76db"
         },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 257,
+      "title": "Create Siri shortcut to create git hub issue",
+      "state": "open",
+      "created_at": "2026-01-14T15:25:21Z",
+      "updated_at": "2026-01-14T16:48:46Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 256,
+      "title": "Local copy of GitHub issues",
+      "state": "open",
+      "created_at": "2026-01-14T14:54:58Z",
+      "updated_at": "2026-01-14T14:57:27Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 255,
+      "title": "evaluate mooserunner",
+      "state": "open",
+      "created_at": "2026-01-13T23:56:52Z",
+      "updated_at": "2026-01-14T17:56:19Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 251,
+      "title": "add to presentation (no prism needed)",
+      "state": "open",
+      "created_at": "2026-01-13T19:17:49Z",
+      "updated_at": "2026-01-13T20:23:53Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 250,
+      "title": "Quest Local Sync Plan w/ Local Script (change from existing github action workflow)",
+      "state": "open",
+      "created_at": "2026-01-13T19:17:24Z",
+      "updated_at": "2026-01-18T13:13:54Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
+    {
+      "number": 249,
+      "title": "Reconnect. Where's the roadmap? What's the plan?",
+      "state": "open",
+      "created_at": "2026-01-13T14:41:37Z",
+      "updated_at": "2026-01-16T22:13:05Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 248,
+      "title": "Create Divoom Pixoo64 Live Visit Counter",
+      "state": "open",
+      "created_at": "2026-01-13T05:19:12Z",
+      "updated_at": "2026-01-13T05:21:36Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 247,
+      "title": "[Bug] Missing UdonBehaviour scripts: DT_MenuInput, DT_PageRenderer, Station",
+      "state": "open",
+      "created_at": "2026-01-13T02:58:25Z",
+      "updated_at": "2026-01-14T00:14:31Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        }
+      ]
+    },
+    {
+      "number": 246,
+      "title": "Redesign Dashboard Terminal UI Layout",
+      "state": "open",
+      "created_at": "2026-01-13T02:22:33Z",
+      "updated_at": "2026-01-13T02:22:33Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        }
+      ]
+    },
+    {
+      "number": 245,
+      "title": "Make Claude Speak through home assistant",
+      "state": "open",
+      "created_at": "2026-01-12T15:16:29Z",
+      "updated_at": "2026-01-12T15:19:15Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 244,
+      "title": "[MODULE] High Score Persistence System",
+      "state": "open",
+      "created_at": "2026-01-12T13:57:19Z",
+      "updated_at": "2026-01-18T00:37:50Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
+    {
+      "number": 243,
+      "title": "Community relay protocol doodle board",
+      "state": "open",
+      "created_at": "2026-01-12T05:02:02Z",
+      "updated_at": "2026-01-12T05:05:36Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 240,
+      "title": "DT_App_Music: ProTV integration missing OUT_* symbols",
+      "state": "open",
+      "created_at": "2026-01-12T02:18:35Z",
+      "updated_at": "2026-01-12T02:21:34Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 239,
+      "title": "AI skill chart grid",
+      "state": "open",
+      "created_at": "2026-01-11T21:21:58Z",
+      "updated_at": "2026-01-11T23:33:28Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 238,
+      "title": "VRChat_stream for music from nas as YouTube alternative",
+      "state": "open",
+      "created_at": "2026-01-11T17:38:04Z",
+      "updated_at": "2026-01-17T17:40:55Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 237,
+      "title": "fix: Wire DT_Interact terminalStation + delete deprecated symbolic objects",
+      "state": "open",
+      "created_at": "2026-01-11T16:32:18Z",
+      "updated_at": "2026-01-12T20:33:16Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
+    {
+      "number": 236,
+      "title": "Vtuber creation",
+      "state": "open",
+      "created_at": "2026-01-11T05:38:40Z",
+      "updated_at": "2026-01-14T23:34:41Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 235,
+      "title": "feat: Add Home Assistant actionable notifications for PRISM review workflow",
+      "state": "open",
+      "created_at": "2026-01-11T05:32:09Z",
+      "updated_at": "2026-01-12T14:56:28Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 227,
+      "title": "Copying cloud code PCVR workflow to project Haven",
+      "state": "open",
+      "created_at": "2026-01-10T20:34:22Z",
+      "updated_at": "2026-01-11T04:46:57Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 226,
+      "title": "VRChat_streaming to give my ai presentation virtually",
+      "state": "open",
+      "created_at": "2026-01-10T20:31:29Z",
+      "updated_at": "2026-01-10T20:32:48Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 221,
+      "title": "Claude Notification Settings",
+      "state": "open",
+      "created_at": "2026-01-10T13:54:09Z",
+      "updated_at": "2026-01-10T14:06:47Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 217,
+      "title": "Have Claude announce on my home speakers when it is ready for my review for an issue or push request",
+      "state": "open",
+      "created_at": "2026-01-09T18:15:26Z",
+      "updated_at": "2026-01-10T15:03:06Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 208,
+      "title": "docs: Update all documentation to reflect TDD-first methodology",
+      "state": "open",
+      "created_at": "2026-01-08T14:03:49Z",
+      "updated_at": "2026-01-08T14:03:49Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        }
+      ]
+    },
+    {
+      "number": 207,
+      "title": "01-08-26_Agent_Skill_Audit",
+      "state": "open",
+      "created_at": "2026-01-08T13:24:37Z",
+      "updated_at": "2026-01-08T13:39:03Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 206,
+      "title": "[Feature] DT_Ticker: Live basement feed with dynamic events, less flavor text",
+      "state": "open",
+      "created_at": "2026-01-08T03:53:32Z",
+      "updated_at": "2026-01-12T20:26:24Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "question",
+          "color": "d876e3"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "area: notifications",
+          "color": "e99695"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 204,
+      "title": "Setup LTCGI (Linear Transformed Cosines Global Illumination)",
+      "state": "open",
+      "created_at": "2026-01-06T22:16:51Z",
+      "updated_at": "2026-01-11T03:47:53Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "Lighting",
+          "color": "521133"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 196,
+      "title": "Add video of H2/3 matchmaking",
+      "state": "open",
+      "created_at": "2026-01-06T00:43:21Z",
+      "updated_at": "2026-01-06T02:16:40Z",
+      "milestone": null,
+      "labels": [
         {
           "name": "player-focused",
           "color": "2ea44f"
@@ -170,24 +1291,6 @@
       ]
     },
     {
-      "number": 188,
-      "title": "Add achievement unlock descriptions to Dashboard app",
-      "state": "open",
-      "created_at": "2026-01-05T01:52:24Z",
-      "updated_at": "2026-01-05T07:18:13Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
       "number": 184,
       "title": "Website UX: Separate Player vs Developer Content",
       "state": "open",
@@ -228,34 +1331,12 @@
       ]
     },
     {
-      "number": 180,
-      "title": "[TRAJECTORY] PRISM Agent - Unified Issue Intake & Spec",
-      "state": "open",
-      "created_at": "2026-01-02T16:30:00Z",
-      "updated_at": "2026-01-05T13:28:14Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 179,
       "title": "[TRAJECTORY] Auto-Generated Devlogs from Closed Issues",
       "state": "open",
       "created_at": "2026-01-02T16:29:57Z",
-      "updated_at": "2026-01-05T13:28:15Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:17:54Z",
+      "milestone": "v2.5 - Polish",
       "labels": [
         {
           "name": "enhancement",
@@ -276,8 +1357,8 @@
       "title": "[TRAJECTORY] Automated PlayMode Test Validation",
       "state": "open",
       "created_at": "2026-01-02T16:29:55Z",
-      "updated_at": "2026-01-05T13:28:16Z",
-      "milestone": null,
+      "updated_at": "2026-01-12T20:25:08Z",
+      "milestone": "v2.5 - Polish",
       "labels": [
         {
           "name": "enhancement",
@@ -298,34 +1379,12 @@
       "title": "[WORKFLOW] Implement Issue Lifecycle Automation (GitHub Action)",
       "state": "open",
       "created_at": "2026-01-02T16:25:31Z",
-      "updated_at": "2026-01-05T13:28:18Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:17:51Z",
+      "milestone": "v2.3 - Automation",
       "labels": [
         {
           "name": "maintenance",
           "color": "fbca04"
-        },
-        {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 176,
-      "title": "[AUTONOMOUS] Investigate VM/NAS for Independent Claude Unity Access",
-      "state": "open",
-      "created_at": "2026-01-02T16:25:29Z",
-      "updated_at": "2026-01-05T13:28:19Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
         },
         {
           "name": "priority: high",
@@ -339,37 +1398,31 @@
     },
     {
       "number": 175,
-      "title": "[MAINTENANCE] Clean Up Stale/Unused Project Folders",
+      "title": "[MAINTENANCE] Clean Up Stale/Unused Assets/Scripts",
       "state": "open",
       "created_at": "2026-01-02T11:27:25Z",
-      "updated_at": "2026-01-05T13:28:20Z",
-      "milestone": null,
+      "updated_at": "2026-01-12T20:27:39Z",
+      "milestone": "v2.2 - Foundation",
       "labels": [
         {
           "name": "maintenance",
           "color": "fbca04"
         },
         {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 174,
-      "title": "[MAINTENANCE] Update Project Roadmap",
-      "state": "open",
-      "created_at": "2026-01-02T11:27:23Z",
-      "updated_at": "2026-01-05T13:28:22Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "maintenance",
+          "name": "priority: medium",
           "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         },
         {
           "name": "dev-focused",
           "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
         }
       ]
     },
@@ -406,27 +1459,13 @@
       "title": "feat: Achievement External Logging POC - basementos.net statistics",
       "state": "open",
       "created_at": "2026-01-02T04:01:10Z",
-      "updated_at": "2026-01-05T07:18:16Z",
+      "updated_at": "2026-01-10T05:38:41Z",
       "milestone": null,
       "labels": [
         {
           "name": "enhancement",
           "color": "a2eeef"
         },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
-      "number": 169,
-      "title": "Add api call for visits to lower level terminal",
-      "state": "open",
-      "created_at": "2026-01-02T01:49:46Z",
-      "updated_at": "2026-01-05T07:18:18Z",
-      "milestone": null,
-      "labels": [
         {
           "name": "player-focused",
           "color": "2ea44f"
@@ -460,8 +1499,8 @@
       "title": "feat: Assigned-Only 'Coming Soon' Roadmap with AI Summaries",
       "state": "open",
       "created_at": "2026-01-01T19:52:07Z",
-      "updated_at": "2026-01-05T13:28:23Z",
-      "milestone": null,
+      "updated_at": "2026-01-07T00:12:46Z",
+      "milestone": "Remake Snake",
       "labels": [
         {
           "name": "enhancement",
@@ -478,26 +1517,12 @@
       ]
     },
     {
-      "number": 161,
-      "title": "Add coplay unity-mcp and link to tech stack on website",
-      "state": "open",
-      "created_at": "2026-01-01T02:57:33Z",
-      "updated_at": "2026-01-05T13:28:25Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 160,
       "title": "feat: Dynamic Rain Visibility + Blinds Toggle System",
       "state": "open",
       "created_at": "2025-12-31T22:07:17Z",
-      "updated_at": "2026-01-05T07:18:20Z",
-      "milestone": null,
+      "updated_at": "2026-01-14T18:05:13Z",
+      "milestone": "v2.4 - Quest Sync",
       "labels": [
         {
           "name": "enhancement",
@@ -514,42 +1539,12 @@
       ]
     },
     {
-      "number": 159,
-      "title": "feat: Enable @claude tagging in GitHub issue comments",
-      "state": "open",
-      "created_at": "2025-12-31T19:57:58Z",
-      "updated_at": "2026-01-05T13:28:26Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "documentation",
-          "color": "0075ca"
-        },
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: critical",
-          "color": "b60205"
-        },
-        {
-          "name": "blocked",
-          "color": "000000"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 157,
       "title": "feat: Sync Issue #153 Updates to Quest (Remote Content + ROADMAP Tab)",
       "state": "open",
       "created_at": "2025-12-31T19:55:05Z",
-      "updated_at": "2026-01-05T13:28:27Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:18:03Z",
+      "milestone": "v2.4 - Quest Sync",
       "labels": [
         {
           "name": "enhancement",
@@ -578,8 +1573,8 @@
       "title": "maintenance: Branch Review and Cleanup - 30 Branches",
       "state": "open",
       "created_at": "2025-12-31T19:18:16Z",
-      "updated_at": "2026-01-06T03:15:38Z",
-      "milestone": null,
+      "updated_at": "2026-01-12T20:21:33Z",
+      "milestone": "v2.2 - Foundation",
       "labels": [
         {
           "name": "maintenance",
@@ -596,7 +1591,7 @@
       "title": "tech-debt: Remove DOSTerminalController.cs after BasementOS v2 migration complete",
       "state": "open",
       "created_at": "2025-12-31T17:20:38Z",
-      "updated_at": "2026-01-05T13:28:30Z",
+      "updated_at": "2026-01-12T14:58:01Z",
       "milestone": null,
       "labels": [
         {
@@ -605,24 +1600,6 @@
         },
         {
           "name": "area: terminal",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 154,
-      "title": "Add this same functionality to display Issues, readme, and roadmap.",
-      "state": "open",
-      "created_at": "2025-12-31T02:19:02Z",
-      "updated_at": "2026-01-05T13:28:32Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Good Agentic Build",
           "color": "1d76db"
         },
         {
@@ -672,7 +1649,7 @@
       "title": "[REQUEST] Add LCD Screen Filter",
       "state": "open",
       "created_at": "2025-12-28T04:44:50Z",
-      "updated_at": "2026-01-05T07:18:24Z",
+      "updated_at": "2026-01-06T22:16:17Z",
       "milestone": null,
       "labels": [
         {
@@ -694,8 +1671,8 @@
       "title": "[QA] Verify VRChat Networking Best Practices",
       "state": "open",
       "created_at": "2025-12-27T23:07:33Z",
-      "updated_at": "2026-01-05T13:28:33Z",
-      "milestone": null,
+      "updated_at": "2026-01-14T14:51:38Z",
+      "milestone": "v2.2 - Foundation",
       "labels": [
         {
           "name": "Good Agentic Build",
@@ -704,25 +1681,21 @@
         {
           "name": "dev-focused",
           "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
         }
       ]
     },
     {
-      "number": 143,
-      "title": "[REQUEST] Migrate to Single Unity Project (EasyQuestSwitch)",
+      "number": 138,
+      "title": "[REQUEST] Stream Videos from NAS",
       "state": "open",
-      "created_at": "2025-12-27T22:53:34Z",
-      "updated_at": "2026-01-05T13:28:34Z",
+      "created_at": "2025-12-24T22:10:36Z",
+      "updated_at": "2026-01-22T17:28:56Z",
       "milestone": null,
       "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "concept",
-          "color": "04bbd9"
-        },
         {
           "name": "priority: low",
           "color": "0e8a16"
@@ -732,62 +1705,8 @@
           "color": "fef2c0"
         },
         {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 140,
-      "title": "[DOCS] Consolidate Docs Folder Structure",
-      "state": "open",
-      "created_at": "2025-12-26T02:56:17Z",
-      "updated_at": "2026-01-05T13:28:36Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "documentation",
-          "color": "0075ca"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 138,
-      "title": "[REQUEST] Stream Videos from NAS",
-      "state": "open",
-      "created_at": "2025-12-24T22:10:36Z",
-      "updated_at": "2026-01-05T13:28:37Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 137,
-      "title": "# GitHub Copilot: Update Issues #117 and Related Game Issues",
-      "state": "open",
-      "created_at": "2025-12-24T21:07:16Z",
-      "updated_at": "2026-01-05T13:28:38Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
+          "name": "player-focused",
+          "color": "2ea44f"
         },
         {
           "name": "dev-focused",
@@ -818,7 +1737,7 @@
       "title": "[FEATURE] Basement OS Version 2",
       "state": "open",
       "created_at": "2025-12-24T13:21:08Z",
-      "updated_at": "2026-01-05T13:28:41Z",
+      "updated_at": "2026-01-09T22:38:42Z",
       "milestone": "BASEMENT OS Revamp",
       "labels": [
         {
@@ -836,12 +1755,12 @@
       "title": "[FEATURE] Retro DOS Profile Picture on Stats",
       "state": "open",
       "created_at": "2025-12-23T03:03:41Z",
-      "updated_at": "2026-01-05T07:18:25Z",
+      "updated_at": "2026-01-16T15:39:14Z",
       "milestone": null,
       "labels": [
         {
-          "name": "blocked",
-          "color": "000000"
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         },
         {
           "name": "player-focused",
@@ -900,122 +1819,6 @@
       ]
     },
     {
-      "number": 129,
-      "title": "[DEVLOG] First Test of Closed-Loop Agent System",
-      "state": "open",
-      "created_at": "2025-12-09T03:33:59Z",
-      "updated_at": "2026-01-05T13:28:44Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Devlog",
-          "color": "aaaaaa"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 128,
-      "title": "[CONCEPT] Establish Lore Behind Lower Level 1.0, 2.0, and Basement OS",
-      "state": "open",
-      "created_at": "2025-12-08T18:54:36Z",
-      "updated_at": "2026-01-05T07:18:29Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "concept",
-          "color": "04bbd9"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
-      "number": 127,
-      "title": "[QA] Test Achievement and Notification System",
-      "state": "open",
-      "created_at": "2025-12-07T15:45:25Z",
-      "updated_at": "2026-01-05T07:18:31Z",
-      "milestone": "BASEMENT OS Revamp",
-      "labels": [
-        {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "area: terminal",
-          "color": "1d76db"
-        },
-        {
-          "name": "area: achievements",
-          "color": "f9d0c4"
-        },
-        {
-          "name": "area: notifications",
-          "color": "e99695"
-        },
-        {
-          "name": "needs-testing",
-          "color": "fef2c0"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
-      "number": 125,
-      "title": "[REQUEST] Add Donation QR Code",
-      "state": "open",
-      "created_at": "2025-11-29T05:33:12Z",
-      "updated_at": "2026-01-05T07:18:32Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "good first issue",
-          "color": "7057ff"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "area: terminal",
-          "color": "1d76db"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
       "number": 124,
       "title": "[REQUEST] MIDI Exporter for Terminal Web Version",
       "state": "open",
@@ -1054,74 +1857,6 @@
       ]
     },
     {
-      "number": 119,
-      "title": "[MAINTENANCE] Unity MCP Multi-Instance Workflow",
-      "state": "open",
-      "created_at": "2025-11-25T02:48:11Z",
-      "updated_at": "2026-01-05T13:28:47Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "maintenance",
-          "color": "fbca04"
-        },
-        {
-          "name": "needs-testing",
-          "color": "fef2c0"
-        },
-        {
-          "name": "quest-specific",
-          "color": "5319e7"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 116,
-      "title": "[MAINTENANCE] PCVR to Quest UdonSharp Script Sync",
-      "state": "open",
-      "created_at": "2025-11-24T22:17:15Z",
-      "updated_at": "2026-01-05T13:28:48Z",
-      "milestone": "BASEMENT OS Revamp",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "maintenance",
-          "color": "fbca04"
-        },
-        {
-          "name": "priority: critical",
-          "color": "b60205"
-        },
-        {
-          "name": "quest-specific",
-          "color": "5319e7"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 115,
       "title": "[EPIC] Concepts and Future Ideas",
       "state": "open",
@@ -1148,8 +1883,8 @@
       "title": "[MAINTENANCE] Automation and Workflow Improvements",
       "state": "open",
       "created_at": "2025-11-24T21:56:02Z",
-      "updated_at": "2026-01-05T13:28:51Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:17:52Z",
+      "milestone": "v2.3 - Automation",
       "labels": [
         {
           "name": "enhancement",
@@ -1174,8 +1909,8 @@
       "title": "[QA] Testing and Quality Assurance",
       "state": "open",
       "created_at": "2025-11-24T21:55:47Z",
-      "updated_at": "2026-01-05T13:28:52Z",
-      "milestone": "BASEMENT OS Revamp",
+      "updated_at": "2026-01-08T23:17:58Z",
+      "milestone": "v2.2 - Foundation",
       "labels": [
         {
           "name": "enhancement",
@@ -1256,7 +1991,7 @@
       "title": "[FEATURE] Community Relay Protocol",
       "state": "open",
       "created_at": "2025-11-24T13:42:17Z",
-      "updated_at": "2026-01-05T07:18:33Z",
+      "updated_at": "2026-01-12T14:52:35Z",
       "milestone": "Remake Snake",
       "labels": [
         {
@@ -1298,7 +2033,7 @@
       "title": "[CONCEPT] Working Nokia Prefab",
       "state": "open",
       "created_at": "2025-11-23T13:52:45Z",
-      "updated_at": "2026-01-05T07:18:34Z",
+      "updated_at": "2026-01-12T20:04:28Z",
       "milestone": null,
       "labels": [
         {
@@ -1402,36 +2137,6 @@
       ]
     },
     {
-      "number": 97,
-      "title": "[MAINTENANCE] Automation Idea - Issues",
-      "state": "open",
-      "created_at": "2025-11-20T10:59:26Z",
-      "updated_at": "2026-01-05T13:28:55Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "maintenance",
-          "color": "fbca04"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 93,
       "title": "DT -RSS- Ko-FI Notifications",
       "state": "open",
@@ -1466,8 +2171,8 @@
       "title": "[FEATURE] DT_Roles Module Re-establish",
       "state": "open",
       "created_at": "2025-11-20T10:30:00Z",
-      "updated_at": "2026-01-05T07:18:40Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:05:08Z",
+      "milestone": "v2.4 - Quest Sync",
       "labels": [
         {
           "name": "enhancement",
@@ -1496,8 +2201,8 @@
       "title": "[MAINTENANCE] Automate Issue Creation",
       "state": "open",
       "created_at": "2025-11-20T10:01:08Z",
-      "updated_at": "2026-01-05T13:28:57Z",
-      "milestone": null,
+      "updated_at": "2026-01-17T14:04:25Z",
+      "milestone": "v2.3 - Automation",
       "labels": [
         {
           "name": "enhancement",
@@ -1724,7 +2429,7 @@
       "title": "[REQUEST] Antique Chair Model",
       "state": "open",
       "created_at": "2025-11-17T19:53:56Z",
-      "updated_at": "2026-01-05T07:18:51Z",
+      "updated_at": "2026-01-07T00:12:26Z",
       "milestone": null,
       "labels": [
         {
@@ -1776,7 +2481,7 @@
       "title": "[EPIC] Models and Assets",
       "state": "open",
       "created_at": "2025-11-17T19:49:36Z",
-      "updated_at": "2026-01-05T07:18:54Z",
+      "updated_at": "2026-01-07T00:12:28Z",
       "milestone": null,
       "labels": [
         {
@@ -1798,36 +2503,50 @@
       ]
     },
     {
-      "number": 57,
-      "title": "[BUG] Snake Sharp Turn Death",
+      "number": 56,
+      "title": "Add High Score Functionality",
       "state": "open",
-      "created_at": "2025-11-17T19:32:54Z",
-      "updated_at": "2026-01-05T07:18:55Z",
+      "created_at": "2025-11-17T19:32:03Z",
+      "updated_at": "2026-01-21T14:13:18Z",
       "milestone": "Remake Snake",
       "labels": [
         {
-          "name": "bug",
-          "color": "d73a4a"
+          "name": "enhancement",
+          "color": "a2eeef"
         },
         {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
+          "name": "priority: medium",
+          "color": "fbca04"
         },
         {
           "name": "area: games",
           "color": "c5def5"
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "title": "Add Achievement Functionality",
+      "state": "open",
+      "created_at": "2025-11-17T19:31:48Z",
+      "updated_at": "2026-01-08T12:34:48Z",
+      "milestone": "Remake Snake",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
         },
         {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
+          "name": "priority: medium",
+          "color": "fbca04"
         },
         {
-          "name": "player-focused",
-          "color": "2ea44f"
+          "name": "area: achievements",
+          "color": "f9d0c4"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
         }
       ]
     },
@@ -1884,82 +2603,6 @@
       ]
     },
     {
-      "number": 51,
-      "title": "[FEATURE] Persistent Snake High Score Screen w/ Link to Terminal High Scores",
-      "state": "open",
-      "created_at": "2025-11-17T13:41:10Z",
-      "updated_at": "2026-01-05T07:18:59Z",
-      "milestone": "Remake Snake",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
-        },
-        {
-          "name": "area: games",
-          "color": "c5def5"
-        },
-        {
-          "name": "blocked",
-          "color": "000000"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
-      "number": 50,
-      "title": "[FEATURE] Snake Game",
-      "state": "open",
-      "created_at": "2025-11-17T13:40:27Z",
-      "updated_at": "2026-01-05T07:19:00Z",
-      "milestone": "Remake Snake",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
-        },
-        {
-          "name": "area: games",
-          "color": "c5def5"
-        },
-        {
-          "name": "blocked",
-          "color": "000000"
-        },
-        {
-          "name": "needs-design",
-          "color": "c2e0c6"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        }
-      ]
-    },
-    {
       "number": 44,
       "title": "[FEATURE] Arcade Games",
       "state": "open",
@@ -1998,7 +2641,7 @@
       "title": "[FEATURE] Family Feud Minigame",
       "state": "open",
       "created_at": "2025-11-16T04:44:06Z",
-      "updated_at": "2026-01-05T07:19:03Z",
+      "updated_at": "2026-01-14T20:46:56Z",
       "milestone": null,
       "labels": [
         {
@@ -2006,16 +2649,20 @@
           "color": "a2eeef"
         },
         {
-          "name": "concept",
-          "color": "04bbd9"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
+          "name": "priority: medium",
+          "color": "fbca04"
         },
         {
           "name": "area: games",
           "color": "c5def5"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         },
         {
           "name": "player-focused",
@@ -2028,8 +2675,8 @@
       "title": "[REQUEST] Remote Achievement Descriptions",
       "state": "open",
       "created_at": "2025-11-16T04:18:33Z",
-      "updated_at": "2025-12-31T02:57:24Z",
-      "milestone": null,
+      "updated_at": "2026-01-08T23:05:10Z",
+      "milestone": "v2.4 - Quest Sync",
       "labels": [
         {
           "name": "enhancement",
@@ -2046,6 +2693,10 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
         }
       ]
     },
@@ -2054,8 +2705,227 @@
       "title": "[REQUEST] Main Menu Message of the Day",
       "state": "open",
       "created_at": "2025-11-16T04:17:29Z",
-      "updated_at": "2025-12-31T02:40:36Z",
+      "updated_at": "2026-01-12T19:59:39Z",
+      "milestone": "v2.4 - Quest Sync",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "title": "[BUG] Conflicting Audio Sources Theater/Game Room",
+      "state": "open",
+      "created_at": "2025-11-15T16:24:59Z",
+      "updated_at": "2026-01-14T14:49:29Z",
       "milestone": "BASEMENT OS Revamp",
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: audio",
+          "color": "d4c5f9"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    }
+  ],
+  "closed": [
+    {
+      "number": 294,
+      "title": "audit and re-evaluate Claude MD",
+      "state": "closed",
+      "created_at": "2026-01-21T14:43:59Z",
+      "updated_at": "2026-01-22T20:50:35Z",
+      "closed_at": "2026-01-22T20:50:35Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 284,
+      "title": "Quest-Primary Development Migration",
+      "state": "closed",
+      "created_at": "2026-01-18T04:58:25Z",
+      "updated_at": "2026-01-22T19:47:56Z",
+      "closed_at": "2026-01-22T19:43:17Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 286,
+      "title": "[MAINTENANCE] GitHub LFS Storage Budget Exceeded - Need Cleanup Strategy",
+      "state": "closed",
+      "created_at": "2026-01-18T13:23:45Z",
+      "updated_at": "2026-01-22T19:43:14Z",
+      "closed_at": "2026-01-22T19:43:14Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 299,
+      "title": "[BUG FIX] NotificationEventHub race condition - OnPlayerJoined fires before Start()",
+      "state": "closed",
+      "created_at": "2026-01-22T01:12:40Z",
+      "updated_at": "2026-01-22T01:12:47Z",
+      "closed_at": "2026-01-22T01:12:47Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        }
+      ]
+    },
+    {
+      "number": 252,
+      "title": "Alignment auditor",
+      "state": "closed",
+      "created_at": "2026-01-13T20:38:39Z",
+      "updated_at": "2026-01-18T13:13:55Z",
+      "closed_at": "2026-01-16T21:57:10Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
+    {
+      "number": 276,
+      "title": "Create an ## Automated Cleanup Script",
+      "state": "closed",
+      "created_at": "2026-01-17T20:25:57Z",
+      "updated_at": "2026-01-17T22:39:52Z",
+      "closed_at": "2026-01-17T22:39:52Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
+    {
+      "number": 220,
+      "title": "Improve start skill to this format:",
+      "state": "closed",
+      "created_at": "2026-01-10T13:33:32Z",
+      "updated_at": "2026-01-16T19:23:00Z",
+      "closed_at": "2026-01-16T19:23:00Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 265,
+      "title": "[UNITY] Wire DT_App_HighScores Terminal App to Scene",
+      "state": "closed",
+      "created_at": "2026-01-16T15:08:43Z",
+      "updated_at": "2026-01-16T17:05:07Z",
+      "closed_at": "2026-01-16T17:05:07Z",
+      "milestone": null,
       "labels": [
         {
           "name": "enhancement",
@@ -2076,17 +2946,14 @@
       ]
     },
     {
-      "number": 32,
-      "title": "[BUG] Conflicting Audio Sources Theater/Game Room",
-      "state": "open",
-      "created_at": "2025-11-15T16:24:59Z",
-      "updated_at": "2026-01-05T07:19:07Z",
-      "milestone": "BASEMENT OS Revamp",
+      "number": 264,
+      "title": "[FEATURE] Snake Game Achievements",
+      "state": "closed",
+      "created_at": "2026-01-16T04:53:05Z",
+      "updated_at": "2026-01-16T17:05:07Z",
+      "closed_at": "2026-01-16T17:05:07Z",
+      "milestone": null,
       "labels": [
-        {
-          "name": "bug",
-          "color": "d73a4a"
-        },
         {
           "name": "enhancement",
           "color": "a2eeef"
@@ -2096,8 +2963,97 @@
           "color": "fbca04"
         },
         {
-          "name": "area: audio",
-          "color": "d4c5f9"
+          "name": "area: achievements",
+          "color": "f9d0c4"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 263,
+      "title": "[FEATURE] Wire Snake to HighScoreManager for Persistent Scores",
+      "state": "closed",
+      "created_at": "2026-01-16T04:52:36Z",
+      "updated_at": "2026-01-16T17:05:07Z",
+      "closed_at": "2026-01-16T17:05:07Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 253,
+      "title": "Impliment Spec Kit",
+      "state": "closed",
+      "created_at": "2026-01-13T22:10:18Z",
+      "updated_at": "2026-01-13T23:13:38Z",
+      "closed_at": "2026-01-13T23:13:21Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 193,
+      "title": "[FEATURE] DT_App_Keypad - Combination Lock Video Unlock System",
+      "state": "closed",
+      "created_at": "2026-01-05T19:33:23Z",
+      "updated_at": "2026-01-13T01:17:35Z",
+      "closed_at": "2026-01-13T01:17:35Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
         },
         {
           "name": "Good Agentic Build",
@@ -2108,9 +3064,933 @@
           "color": "2ea44f"
         }
       ]
-    }
-  ],
-  "closed": [
+    },
+    {
+      "number": 154,
+      "title": "Add this same functionality to display Issues, readme, and roadmap.",
+      "state": "closed",
+      "created_at": "2025-12-31T02:19:02Z",
+      "updated_at": "2026-01-13T00:12:49Z",
+      "closed_at": "2026-01-13T00:12:49Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 199,
+      "title": "[BUG] Quest: GITHUB tab navigation broken on Basement OS terminal",
+      "state": "closed",
+      "created_at": "2026-01-06T01:41:39Z",
+      "updated_at": "2026-01-12T20:22:42Z",
+      "closed_at": "2026-01-12T20:22:35Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "title": "[FEATURE] Snake Game",
+      "state": "closed",
+      "created_at": "2025-11-17T13:40:27Z",
+      "updated_at": "2026-01-12T20:19:51Z",
+      "closed_at": "2026-01-08T12:43:58Z",
+      "milestone": "Remake Snake",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "needs-design",
+          "color": "c2e0c6"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 137,
+      "title": "# GitHub Copilot: Update Issues #117 and Related Game Issues",
+      "state": "closed",
+      "created_at": "2025-12-24T21:07:16Z",
+      "updated_at": "2026-01-12T20:15:09Z",
+      "closed_at": "2026-01-12T20:15:04Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 129,
+      "title": "[DEVLOG] First Test of Closed-Loop Agent System",
+      "state": "closed",
+      "created_at": "2025-12-09T03:33:59Z",
+      "updated_at": "2026-01-12T20:00:42Z",
+      "closed_at": "2026-01-12T20:00:25Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Devlog",
+          "color": "aaaaaa"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 119,
+      "title": "[MAINTENANCE] Unity MCP Multi-Instance Workflow",
+      "state": "closed",
+      "created_at": "2025-11-25T02:48:11Z",
+      "updated_at": "2026-01-12T19:58:28Z",
+      "closed_at": "2026-01-12T19:58:21Z",
+      "milestone": "v2.4 - Quest Sync",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 116,
+      "title": "[MAINTENANCE] PCVR to Quest UdonSharp Script Sync",
+      "state": "closed",
+      "created_at": "2025-11-24T22:17:15Z",
+      "updated_at": "2026-01-12T19:58:07Z",
+      "closed_at": "2026-01-12T19:57:48Z",
+      "milestone": "v2.4 - Quest Sync",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "quest-specific",
+          "color": "5319e7"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 97,
+      "title": "[MAINTENANCE] Automation Idea - Issues",
+      "state": "closed",
+      "created_at": "2025-11-20T10:59:26Z",
+      "updated_at": "2026-01-12T19:55:23Z",
+      "closed_at": "2026-01-12T19:55:23Z",
+      "milestone": "v2.3 - Automation",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 223,
+      "title": "Fix idle agents/issues",
+      "state": "closed",
+      "created_at": "2026-01-10T14:33:00Z",
+      "updated_at": "2026-01-12T19:16:04Z",
+      "closed_at": "2026-01-12T19:16:04Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 169,
+      "title": "Add api call for world visits from vrchat  to lower level terminal",
+      "state": "closed",
+      "created_at": "2026-01-02T01:49:46Z",
+      "updated_at": "2026-01-12T14:57:51Z",
+      "closed_at": "2026-01-12T14:57:51Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 176,
+      "title": "[AUTONOMOUS] Investigate VM/NAS for Independent Claude Unity Access",
+      "state": "closed",
+      "created_at": "2026-01-02T16:25:29Z",
+      "updated_at": "2026-01-12T14:56:55Z",
+      "closed_at": "2026-01-12T14:56:54Z",
+      "milestone": "v2.5 - Polish",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 143,
+      "title": "[REQUEST] Migrate to Single Unity Project (EasyQuestSwitch)",
+      "state": "closed",
+      "created_at": "2025-12-27T22:53:34Z",
+      "updated_at": "2026-01-12T14:53:06Z",
+      "closed_at": "2026-01-12T14:52:51Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "title": "[BUG] Snake Sharp Turn Death",
+      "state": "closed",
+      "created_at": "2025-11-17T19:32:54Z",
+      "updated_at": "2026-01-12T14:49:51Z",
+      "closed_at": "2026-01-07T00:11:49Z",
+      "milestone": "Remake Snake",
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 242,
+      "title": "Compare Photo Management Solutions: ENTE vs Synology Photos vs Immich",
+      "state": "closed",
+      "created_at": "2026-01-12T03:28:07Z",
+      "updated_at": "2026-01-12T03:33:03Z",
+      "closed_at": "2026-01-12T03:33:03Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 241,
+      "title": "Investigate Tailscale Funnel for Immich External Sharing",
+      "state": "closed",
+      "created_at": "2026-01-12T03:27:31Z",
+      "updated_at": "2026-01-12T03:33:02Z",
+      "closed_at": "2026-01-12T03:33:02Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "invalid",
+          "color": "e4e669"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 231,
+      "title": "Quest repo push failing - GitHub LFS HTTP 500",
+      "state": "closed",
+      "created_at": "2026-01-11T03:01:17Z",
+      "updated_at": "2026-01-11T22:55:43Z",
+      "closed_at": "2026-01-11T22:55:43Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 228,
+      "title": "Cool down timer for working together",
+      "state": "closed",
+      "created_at": "2026-01-10T20:50:58Z",
+      "updated_at": "2026-01-11T00:17:07Z",
+      "closed_at": "2026-01-11T00:17:07Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 219,
+      "title": "Weather is not accurate on pc version on terminal header. @claude please troubleshoot why and propose a fix with minimal disruption to other functions",
+      "state": "closed",
+      "created_at": "2026-01-10T05:21:20Z",
+      "updated_at": "2026-01-11T00:17:07Z",
+      "closed_at": "2026-01-11T00:17:07Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 194,
+      "title": "[SUB-ISSUE #193] Network Sync Terminal Display for Spectators",
+      "state": "closed",
+      "created_at": "2026-01-05T19:44:51Z",
+      "updated_at": "2026-01-10T20:57:55Z",
+      "closed_at": "2026-01-10T20:57:55Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 128,
+      "title": "[CONCEPT] Establish Lore Behind Lower Level 1.0, 2.0, and Basement OS",
+      "state": "closed",
+      "created_at": "2025-12-08T18:54:36Z",
+      "updated_at": "2026-01-10T20:20:48Z",
+      "closed_at": "2026-01-10T20:20:48Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 205,
+      "title": "[Refactor] Add VisibleLength() to DT_Format and update all PadRight implementations",
+      "state": "closed",
+      "created_at": "2026-01-08T03:04:37Z",
+      "updated_at": "2026-01-10T20:17:44Z",
+      "closed_at": "2026-01-10T20:17:44Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 203,
+      "title": "Fix date time and weather on quest terminal",
+      "state": "closed",
+      "created_at": "2026-01-06T03:55:39Z",
+      "updated_at": "2026-01-10T20:09:01Z",
+      "closed_at": "2026-01-10T20:09:00Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 159,
+      "title": "feat: Enable @claude tagging in GitHub issue comments",
+      "state": "closed",
+      "created_at": "2025-12-31T19:57:58Z",
+      "updated_at": "2026-01-10T15:05:30Z",
+      "closed_at": "2026-01-10T15:05:29Z",
+      "milestone": "v2.3 - Automation",
+      "labels": [
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        },
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 161,
+      "title": "Add coplay unity-mcp and link to tech stack on website",
+      "state": "closed",
+      "created_at": "2026-01-01T02:57:33Z",
+      "updated_at": "2026-01-10T15:04:51Z",
+      "closed_at": "2026-01-10T15:04:51Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 180,
+      "title": "[TRAJECTORY] PRISM Agent - Unified Issue Intake & Spec",
+      "state": "closed",
+      "created_at": "2026-01-02T16:30:00Z",
+      "updated_at": "2026-01-10T14:27:16Z",
+      "closed_at": "2026-01-10T14:23:10Z",
+      "milestone": "v2.3 - Automation",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 218,
+      "title": "Test: @claude OAuth Token Verification",
+      "state": "closed",
+      "created_at": "2026-01-09T22:36:43Z",
+      "updated_at": "2026-01-09T22:43:35Z",
+      "closed_at": "2026-01-09T22:43:35Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 211,
+      "title": "[SKILL] Ko-Fi Agent - Autonomous Supporter Engagement",
+      "state": "closed",
+      "created_at": "2026-01-08T23:47:14Z",
+      "updated_at": "2026-01-09T16:34:06Z",
+      "closed_at": "2026-01-09T16:34:05Z",
+      "milestone": "v2.5 - Polish",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 140,
+      "title": "[DOCS] Consolidate Docs Folder Structure",
+      "state": "closed",
+      "created_at": "2025-12-26T02:56:17Z",
+      "updated_at": "2026-01-09T04:49:20Z",
+      "closed_at": "2026-01-09T04:49:20Z",
+      "milestone": "v2.2 - Foundation",
+      "labels": [
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "title": "[FEATURE] Terminal Modernization",
+      "state": "closed",
+      "created_at": "2025-11-16T18:37:22Z",
+      "updated_at": "2026-01-09T00:28:34Z",
+      "closed_at": "2025-12-06T03:47:38Z",
+      "milestone": "BASEMENT OS Revamp",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
+      ]
+    },
+    {
+      "number": 158,
+      "title": "bug: Custom skills in .claude/skills/ not appearing in available_skills list",
+      "state": "closed",
+      "created_at": "2025-12-31T19:57:56Z",
+      "updated_at": "2026-01-08T23:18:06Z",
+      "closed_at": "2026-01-04T18:28:02Z",
+      "milestone": "v2.5 - Polish",
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 174,
+      "title": "[MAINTENANCE] Update Project Roadmap",
+      "state": "closed",
+      "created_at": "2026-01-02T11:27:23Z",
+      "updated_at": "2026-01-08T23:17:46Z",
+      "closed_at": "2026-01-07T22:42:30Z",
+      "milestone": "v2.2 - Foundation",
+      "labels": [
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 63,
+      "title": "[QA] Test FIFO Notifications",
+      "state": "closed",
+      "created_at": "2025-11-17T21:50:36Z",
+      "updated_at": "2026-01-08T23:05:12Z",
+      "closed_at": "2026-01-03T04:14:42Z",
+      "milestone": "v2.2 - Foundation",
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: notifications",
+          "color": "e99695"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 127,
+      "title": "[QA] Test Achievement and Notification System",
+      "state": "closed",
+      "created_at": "2025-12-07T15:45:25Z",
+      "updated_at": "2026-01-08T23:05:11Z",
+      "closed_at": "2026-01-08T00:10:11Z",
+      "milestone": "v2.2 - Foundation",
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "area: achievements",
+          "color": "f9d0c4"
+        },
+        {
+          "name": "area: notifications",
+          "color": "e99695"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 209,
+      "title": "[Docs] Comprehensive Review of Skill and Command Files - Standardization & BBP Formula Update",
+      "state": "closed",
+      "created_at": "2026-01-08T14:49:47Z",
+      "updated_at": "2026-01-08T17:55:12Z",
+      "closed_at": "2026-01-08T17:55:12Z",
+      "milestone": null,
+      "labels": []
+    },
+    {
+      "number": 51,
+      "title": "[FEATURE] Persistent Snake High Score Screen w/ Link to Terminal High Scores",
+      "state": "closed",
+      "created_at": "2025-11-17T13:41:10Z",
+      "updated_at": "2026-01-08T12:34:37Z",
+      "closed_at": "2026-01-08T12:34:36Z",
+      "milestone": "Remake Snake",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 125,
+      "title": "[REQUEST] Add Donation QR Code",
+      "state": "closed",
+      "created_at": "2025-11-29T05:33:12Z",
+      "updated_at": "2026-01-08T00:55:51Z",
+      "closed_at": "2026-01-08T00:55:51Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "good first issue",
+          "color": "7057ff"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 188,
+      "title": "Add achievement unlock descriptions to Dashboard app",
+      "state": "closed",
+      "created_at": "2026-01-05T01:52:24Z",
+      "updated_at": "2026-01-07T00:13:12Z",
+      "closed_at": "2026-01-07T00:11:48Z",
+      "milestone": "BASEMENT OS Revamp",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
+    {
+      "number": 164,
+      "title": "[FEATURE] DT_App_Vote - In-World Poll Display Module",
+      "state": "closed",
+      "created_at": "2026-01-01T19:29:38Z",
+      "updated_at": "2026-01-07T00:13:10Z",
+      "closed_at": "2026-01-01T21:08:03Z",
+      "milestone": "BASEMENT OS Revamp",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "sub-issue",
+          "color": "c5def5"
+        }
+      ]
+    },
     {
       "number": 200,
       "title": "Test: BBP workflow permission fix",
@@ -2175,7 +4055,7 @@
       "created_at": "2025-11-16T04:16:13Z",
       "updated_at": "2026-01-05T07:19:05Z",
       "closed_at": "2025-12-06T03:45:51Z",
-      "milestone": "v2.3 - Terminal Tales & Integration",
+      "milestone": "v2.3 - Automation",
       "labels": [
         {
           "name": "enhancement",
@@ -2223,33 +4103,6 @@
       ]
     },
     {
-      "number": 158,
-      "title": "bug: Custom skills in .claude/skills/ not appearing in available_skills list",
-      "state": "closed",
-      "created_at": "2025-12-31T19:57:56Z",
-      "updated_at": "2026-01-04T18:28:02Z",
-      "closed_at": "2026-01-04T18:28:02Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "bug",
-          "color": "d73a4a"
-        },
-        {
-          "name": "documentation",
-          "color": "0075ca"
-        },
-        {
-          "name": "priority: critical",
-          "color": "b60205"
-        },
-        {
-          "name": "blocked",
-          "color": "000000"
-        }
-      ]
-    },
-    {
       "number": 182,
       "title": "[CRITICAL] Fix Duplicate Claude Code Installation - Skills/Agents Not Loading",
       "state": "closed",
@@ -2265,33 +4118,6 @@
         {
           "name": "priority: critical",
           "color": "b60205"
-        }
-      ]
-    },
-    {
-      "number": 63,
-      "title": "[QA] Test FIFO Notifications",
-      "state": "closed",
-      "created_at": "2025-11-17T21:50:36Z",
-      "updated_at": "2026-01-03T04:14:42Z",
-      "closed_at": "2026-01-03T04:14:42Z",
-      "milestone": "BASEMENT OS Revamp",
-      "labels": [
-        {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "area: notifications",
-          "color": "e99695"
-        },
-        {
-          "name": "needs-testing",
-          "color": "fef2c0"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
         }
       ]
     },
@@ -2356,33 +4182,6 @@
         },
         {
           "name": "area: terminal",
-          "color": "1d76db"
-        },
-        {
-          "name": "sub-issue",
-          "color": "c5def5"
-        }
-      ]
-    },
-    {
-      "number": 164,
-      "title": "[FEATURE] DT_App_Vote - In-World Poll Display Module",
-      "state": "closed",
-      "created_at": "2026-01-01T19:29:38Z",
-      "updated_at": "2026-01-01T21:08:03Z",
-      "closed_at": "2026-01-01T21:08:03Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "area: terminal",
-          "color": "1d76db"
-        },
-        {
-          "name": "Good Agentic Build",
           "color": "1d76db"
         },
         {
@@ -2486,7 +4285,7 @@
       "created_at": "2025-11-15T10:43:32Z",
       "updated_at": "2025-12-29T23:03:45Z",
       "closed_at": "2025-12-29T23:03:45Z",
-      "milestone": "v2.3 - Terminal Tales & Integration",
+      "milestone": "v2.3 - Automation",
       "labels": [
         {
           "name": "enhancement",
@@ -2522,79 +4321,6 @@
         {
           "name": "area: terminal",
           "color": "1d76db"
-        }
-      ]
-    },
-    {
-      "number": 43,
-      "title": "[FEATURE] Terminal Modernization",
-      "state": "closed",
-      "created_at": "2025-11-16T18:37:22Z",
-      "updated_at": "2025-12-29T16:53:18Z",
-      "closed_at": "2025-12-06T03:47:38Z",
-      "milestone": "BASEMENT OS Revamp",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "area: terminal",
-          "color": "1d76db"
-        }
-      ]
-    },
-    {
-      "number": 56,
-      "title": "Add High Score Functionality",
-      "state": "closed",
-      "created_at": "2025-11-17T19:32:03Z",
-      "updated_at": "2025-12-26T02:44:53Z",
-      "closed_at": "2025-12-26T02:44:53Z",
-      "milestone": "Remake Snake",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "area: games",
-          "color": "c5def5"
-        }
-      ]
-    },
-    {
-      "number": 55,
-      "title": "Add Achievement Functionality",
-      "state": "closed",
-      "created_at": "2025-11-17T19:31:48Z",
-      "updated_at": "2025-12-26T02:44:50Z",
-      "closed_at": "2025-12-26T02:44:50Z",
-      "milestone": "Remake Snake",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "area: achievements",
-          "color": "f9d0c4"
-        },
-        {
-          "name": "area: games",
-          "color": "c5def5"
         }
       ]
     },
@@ -2770,7 +4496,7 @@
       "created_at": "2025-11-18T02:37:44Z",
       "updated_at": "2025-12-06T03:46:46Z",
       "closed_at": "2025-12-06T03:46:45Z",
-      "milestone": "v2.3 - Terminal Tales & Integration",
+      "milestone": "v2.3 - Automation",
       "labels": [
         {
           "name": "enhancement",
@@ -3083,8 +4809,8 @@
       "title": "BASEMENT OS Revamp",
       "description": "Modernized terminal experience: 80-char width, unified design, MOTD, Snake complete, all systems tested",
       "state": "open",
-      "open_issues": 6,
-      "closed_issues": 10,
+      "open_issues": 2,
+      "closed_issues": 11,
       "due_on": "2025-12-31T00:00:00Z"
     },
     {
@@ -3092,16 +4818,40 @@
       "description": "Games and dynamic content: Snake complete with achievements, high scores, VRCStringDownloader framework, remote content",
       "state": "open",
       "open_issues": 4,
-      "closed_issues": 5,
+      "closed_issues": 6,
       "due_on": "2026-01-14T00:00:00Z"
     },
     {
-      "title": "v2.3 - Terminal Tales & Integration",
-      "description": "Story content and automation: Terminal Tales, roadmap in terminal, MCP changelog, Quest optimizations",
+      "title": "v2.2 - Foundation",
+      "description": "Weeks 1-2: Workflow infrastructure + Testing validation",
       "state": "open",
-      "open_issues": 0,
+      "open_issues": 4,
+      "closed_issues": 4,
+      "due_on": "2026-01-18T00:00:00Z"
+    },
+    {
+      "title": "v2.3 - Automation",
+      "description": "Weeks 3-4: PRISM agent + Workflow automation",
+      "state": "open",
+      "open_issues": 3,
+      "closed_issues": 6,
+      "due_on": "2026-02-02T00:00:00Z"
+    },
+    {
+      "title": "v2.4 - Quest Sync",
+      "description": "Weeks 5-6: Quest sync fixes + Feature development",
+      "state": "open",
+      "open_issues": 5,
+      "closed_issues": 2,
+      "due_on": "2026-02-15T00:00:00Z"
+    },
+    {
+      "title": "v2.5 - Polish",
+      "description": "Weeks 7-8: PlayMode automation + VM investigation",
+      "state": "open",
+      "open_issues": 2,
       "closed_issues": 3,
-      "due_on": "2026-02-14T00:00:00Z"
+      "due_on": "2026-03-01T00:00:00Z"
     }
   ]
 }

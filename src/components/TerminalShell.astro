@@ -1065,35 +1065,54 @@ const { activeSection = 'home' } = Astro.props;
       }
 
       const namespace = 'basementos';
-      const key = 'pageviews';
+      const key = 'views';
+      const cacheKey = 'basement-os-pageviews';
+      const isProduction = window.location.hostname === 'basementos.com';
+
+      function updateDisplay(count: number) {
+          const memoryDisplay = getMemoryTier(count);
+          visitCounter.textContent = `${memoryDisplay} OK`;
+
+          const tooltipCurrent = document.getElementById('tooltip-current');
+          const tooltipVisits = document.getElementById('tooltip-visits');
+          if (tooltipCurrent) tooltipCurrent.textContent = memoryDisplay;
+          if (tooltipVisits) tooltipVisits.textContent = count.toLocaleString() + ' views';
+
+          const allTierRows = document.querySelectorAll('.mem-tooltip-row[data-tier]');
+          allTierRows.forEach(row => {
+              const tierArrow = row.querySelector('.tier-arrow');
+              const rowEl = row as HTMLElement;
+              if (rowEl.dataset.tier === memoryDisplay) {
+                  row.classList.add('active-tier');
+                  if (tierArrow) tierArrow.textContent = '>';
+              } else {
+                  row.classList.remove('active-tier');
+                  if (tierArrow) tierArrow.textContent = '';
+              }
+          });
+      }
+
+      if (!isProduction) {
+          const cached = localStorage.getItem(cacheKey);
+          if (cached) updateDisplay(parseInt(cached, 10));
+          return;
+      }
 
       fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/up`)
-          .then(response => response.json())
+          .then(response => {
+              if (!response.ok) throw new Error(`HTTP ${response.status}`);
+              return response.json();
+          })
           .then(data => {
               const count = data.count || 0;
-              const memoryDisplay = getMemoryTier(count);
-              visitCounter.textContent = `${memoryDisplay} OK`;
-
-              const tooltipCurrent = document.getElementById('tooltip-current');
-              const tooltipVisits = document.getElementById('tooltip-visits');
-              if (tooltipCurrent) tooltipCurrent.textContent = memoryDisplay;
-              if (tooltipVisits) tooltipVisits.textContent = count.toLocaleString() + ' views';
-
-              const allTierRows = document.querySelectorAll('.mem-tooltip-row[data-tier]');
-              allTierRows.forEach(row => {
-                  const tierArrow = row.querySelector('.tier-arrow');
-                  const rowEl = row as HTMLElement;
-                  if (rowEl.dataset.tier === memoryDisplay) {
-                      row.classList.add('active-tier');
-                      if (tierArrow) tierArrow.textContent = '>';
-                  } else {
-                      row.classList.remove('active-tier');
-                      if (tierArrow) tierArrow.textContent = '';
-                  }
-              });
+              localStorage.setItem(cacheKey, String(count));
+              updateDisplay(count);
           })
           .catch(() => {
-              visitCounter.textContent = '64K OK';
+              const cached = localStorage.getItem(cacheKey);
+              if (cached) {
+                  updateDisplay(parseInt(cached, 10));
+              }
           });
   });
 </script>
