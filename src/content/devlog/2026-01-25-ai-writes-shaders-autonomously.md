@@ -1,19 +1,15 @@
-# AI Writes Shaders Autonomously: A VRChat CRT Terminal Case Study
-
-**Date:** January 25, 2026
-**Tags:** `[Milestone]` `[TIL]` `[AI Development]` `[Shaders]`
-
+---
+title: "AI Writes Shaders Autonomously: A VRChat CRT Terminal Case Study"
+date: 2026-01-25
+tags: ["ai", "shaders", "vrchat", "milestone", "automation"]
+type: milestone
 ---
 
-## The Challenge I Didn't Think Was Possible
-
-When I created [Issue #295: Retro CRT Terminal Effects](https://github.com/CloudStrife7/LL2PCVR/issues/295), I genuinely didn't think an AI could handle it. Shader programming is notoriously difficult - it requires understanding GPU architecture, HLSL/GLSL syntax, platform-specific quirks, and the subtle art of making things look good while maintaining performance.
+When I created Issue #295: Retro CRT Terminal Effects, I genuinely didn't think an AI could handle it. Shader programming is notoriously difficult - it requires understanding GPU architecture, HLSL/GLSL syntax, platform-specific quirks, and the subtle art of making things look good while maintaining performance.
 
 I was wrong.
 
----
-
-## The Inspiration: Remo H Jansen's CRT Terminal
+### The Inspiration: Remo H Jansen's CRT Terminal
 
 I have to give a huge shoutout to **Remo H Jansen** and his excellent article: [Building a Retro CRT Terminal Website with WebGL and GitHub Copilot/Claude Opus 3.5](https://dev.to/remojansen/building-a-retro-crt-terminal-website-with-webgl-and-github-copilot-claude-opus-35-3jfd).
 
@@ -24,13 +20,11 @@ Key resources from the issue:
 - [remojansen.github.io](https://github.com/CloudStrife7/remojansen.github.io) - Remo's implementation
 - The challenge: Make it work in VRChat, on Quest standalone, with TextMeshPro
 
----
-
-## The Vision
+### The Vision
 
 Lower Level 2.0 is a nostalgic 2000s basement VRChat world featuring a DOS-style terminal. The terminal worked great, but I wanted to take it further - bring it to life with that authentic CRT glow, the subtle flicker of phosphors warming up, scanlines rolling across the screen. The kind of details that make you feel like you're back in a dimly lit basement at 2 AM, the monitor humming quietly as you type.
 
-**Requirements from Issue #295:**
+**Requirements:**
 - Scanline effects (those horizontal lines from CRT displays)
 - Phosphor glow (that characteristic green bloom)
 - Screen curvature (barrel distortion)
@@ -40,9 +34,7 @@ Lower Level 2.0 is a nostalgic 2000s basement VRChat world featuring a DOS-style
 - **Easy to apply for Unity beginners** (step-by-step guide)
 - **Bonus: Works on TV displays too**
 
----
-
-## The Solution: Autonomous Shader Development
+### The Solution: Autonomous Shader Development
 
 Claude researched the reference materials, studied HLSL shader patterns, and wrote three complete shader variants:
 
@@ -52,7 +44,7 @@ Claude researched the reference materials, studied HLSL shader patterns, and wro
 | `TerminalCRT_PC.shader` | PCVR enhanced | 5-10ms GPU |
 | `TerminalCRT_Standard.shader` | Fallback/MeshRenderer | Variable |
 
-### What Claude Actually Wrote
+#### What Claude Actually Wrote
 
 ```hlsl
 // Terminal CRT Shader - Quest Compatible
@@ -82,7 +74,7 @@ The shader includes:
 - Radial vignette calculations
 - Full TextMeshPro SDF compatibility (the tricky part)
 
-### The Comprehensive Guide
+#### The Comprehensive Guide
 
 Claude also produced a 368-line beginner-friendly setup guide:
 
@@ -97,13 +89,11 @@ Contents:
 - Accessibility warnings (flicker intensity)
 - Platform-specific material switching code
 
----
-
-## How Autonomous Was It?
+### How Autonomous Was It?
 
 **~80% autonomous, ~20% Unity sync session**
 
-### What Claude Did Autonomously:
+#### What Claude Did Autonomously:
 1. Researched Remo's WebGL implementation
 2. Translated Three.js shader concepts to Unity HLSL
 3. Wrote Quest-compatible variant with SM 3.0 constraints
@@ -113,7 +103,7 @@ Contents:
 7. Added shader files to correct project locations
 8. Created README in Assets/Shaders/ explaining the system
 
-### What Required Unity Sync Session:
+#### What Required Unity Sync Session:
 1. Applying materials to TextMeshPro components (MCP can't serialize font materials)
 2. Visual tuning of parameters in Play Mode
 3. Creating TV material variant
@@ -121,9 +111,7 @@ Contents:
 
 The blocking factor was **Unity MCP's limitation with TextMeshPro material assignment** - everything else was done without human intervention.
 
----
-
-## Evidence: The Commits
+### Evidence: The Commits
 
 ```
 a498e57d feat: Add two-layer CRT terminal system with full-screen scanlines (#295)
@@ -140,9 +128,7 @@ Files created:
 - `Assets/Shaders/README.md`
 - `Docs/Modules/CRT_Effect_Setup.md`
 
----
-
-## Why This Matters
+### Why This Matters
 
 I genuinely believed shader programming was beyond AI capabilities. It requires:
 - Deep graphics programming knowledge
@@ -159,9 +145,7 @@ But Claude handled it. Not perfectly on the first try - there was iteration. But
 
 This changes what I think is possible with agentic AI development.
 
----
-
-## Try It Yourself
+### Try It Yourself
 
 If you're working on a VRChat world and want that retro CRT look:
 
@@ -169,20 +153,10 @@ If you're working on a VRChat world and want that retro CRT look:
 2. Study [Remo's original implementation](https://dev.to/remojansen/building-a-retro-crt-terminal-website-with-webgl-and-github-copilot-claude-opus-35-3jfd) for the WebGL approach
 3. The shaders and guide are MIT licensed - adapt freely for your own projects
 
----
-
-## Thanks
+### Thanks
 
 - **Remo H Jansen** - For the inspiration and proving AI-assisted shader dev is viable
 - **cool-retro-term** team - For the original CRT effect reference
 - **Claude** - For proving me wrong about AI shader capabilities
 
----
-
 *This devlog documents the first autonomous shader work in the Lower Level 2.0 project. It turned out well.*
-
----
-
-**Links:**
-- [CRT Effect Setup Guide](https://github.com/CloudStrife7/basement-os-web/blob/main/docs/CRT_Effect_Setup.md) - Full shader documentation
-- [Remo's Article](https://dev.to/remojansen/building-a-retro-crt-terminal-website-with-webgl-and-github-copilot-claude-opus-35-3jfd) - The inspiration
