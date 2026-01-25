@@ -1154,6 +1154,17 @@ body::before {
     margin-bottom: 15px;
 }
 
+.devlog-content a {
+    color: var(--accent-link);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.devlog-content a:hover {
+    color: var(--accent-primary);
+    text-decoration: underline;
+}
+
 /* Code blocks in devlog - responsive with horizontal scroll */
 .devlog-content pre {
     background: var(--bg-secondary);
@@ -1637,6 +1648,20 @@ body::before {
     border-radius: 8px;
     cursor: pointer;
     transition: opacity 0.2s;
+}
+
+/* Icon gallery for devlog - compact grid of small images */
+.devlog-content .icon-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 100px));
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.devlog-content .icon-gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
 }
 
 /* Landing page CRT screen images - also lightbox enabled */

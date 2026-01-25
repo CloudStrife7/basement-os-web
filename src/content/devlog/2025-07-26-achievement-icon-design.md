@@ -1,9 +1,15 @@
----title: "Achievement Icon Design"
+---
+title: "Achievement Icon Design"
 date: 2025-07-26
 tags: ["art", "ui", "achievements", "Photopea", "Unity"]
 ---
-Finished designing custom icons for all 19 achievements using Photopea.com. Referenced actual Xbox 360 achievement art to match that 2000s gaming aesthetic.
+Finished designing custom icons for all 19 achievements using [Photopea](https://www.photopea.com/). I highly recommend it as a free Photoshop alternative. Referenced actual Xbox 360 achievement art to match that 2000s gaming aesthetic.
 
-[![Achievement icon sketches](/images/devlog/legacy/achievement-icon-sketches.png)](/images/devlog/legacy/achievement-icon-sketches.png)
+Achievement icons were unique to the Xbox 360 dashboard, so I made custom ones for my world for founding members and new visitors.
 
-[![Custom achievement icons in Unity](/images/devlog/legacy/custom-icons.jpg)](/images/devlog/legacy/custom-icons.jpg)
+<div class="icon-gallery">
+  <img src="/images/devlog/achievement-icons/pwnerer.png" alt="Pwnerer achievement icon" />
+  <img src="/images/devlog/achievement-icons/trek.png" alt="Trek achievement icon" />
+  <img src="/images/devlog/achievement-icons/trooper.png" alt="Trooper achievement icon" />
+  <img src="/images/devlog/achievement-icons/bobomb.png" alt="Bob-omb achievement icon" />
+</div>
