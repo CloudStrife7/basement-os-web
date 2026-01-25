@@ -6,6 +6,6 @@ First achievement notification popped in-world today! "First Time Visitor" - the
 
 The FIFO queue, animation timing, and sound cues all working together. This is the moment I've been building toward since starting this project.
 
-[![First achievement notification in production](/Manual Change Logs and Images/images/July 2025/First Welcome Message in prod 7 10 25.png)](/Manual Change Logs and Images/images/July 2025/First Welcome Message in prod 7 10 25.png)
+[![First achievement notification in production](/images/devlog/legacy/first-welcome-message-prod.png)](/images/devlog/legacy/first-welcome-message-prod.png)
 
-[![First achievement unlocked screenshot](/Manual Change Logs and Images/images/July 2025/first achievement unlocked 7 10 25.png)](/Manual Change Logs and Images/images/July 2025/first achievement unlocked 7 10 25.png)
+[![First achievement unlocked screenshot](/images/devlog/legacy/first-achievement-unlocked.png)](/images/devlog/legacy/first-achievement-unlocked.png)

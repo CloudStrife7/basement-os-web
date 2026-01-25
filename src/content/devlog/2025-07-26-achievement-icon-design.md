@@ -4,6 +4,6 @@ tags: ["art", "ui", "achievements", "Photopea", "Unity"]
 ---
 Finished designing custom icons for all 19 achievements using Photopea.com. Referenced actual Xbox 360 achievement art to match that 2000s gaming aesthetic.
 
-[![Achievement icon sketches](/Manual Change Logs and Images/images/360 Icons/Photo Jul 26 2025, 9 17 32 PM.png)](/Manual Change Logs and Images/images/360 Icons/Photo Jul 26 2025, 9 17 32 PM.png)
+[![Achievement icon sketches](/images/devlog/legacy/achievement-icon-sketches.png)](/images/devlog/legacy/achievement-icon-sketches.png)
 
-[![Custom achievement icons in Unity](/Manual Change Logs and Images/images/July 2025/Custom Icons.jpg)](/Manual Change Logs and Images/images/July 2025/Custom Icons.jpg)
+[![Custom achievement icons in Unity](/images/devlog/legacy/custom-icons.jpg)](/images/devlog/legacy/custom-icons.jpg)

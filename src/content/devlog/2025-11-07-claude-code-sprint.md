@@ -9,8 +9,8 @@ Spent the session adding comprehensive XML docstrings to all major scripts. The 
 
 Also started setting up project automation - automatic UdonSharp validation before commits, organized GitHub issues with story points, and established milestones. Treating Claude like a jr developer is really showing how much leadership and project management coordination I have in this area.
 
-[![Adding XML docstrings with Claude Code](/Manual Change Logs and Images/images/Claude Code Jam Session November/Adding Doc Strings 2025-11-07 180219.png)](/Manual Change Logs and Images/images/Claude Code Jam Session November/Adding Doc Strings 2025-11-07 180219.png)
+[![Adding XML docstrings with Claude Code](/images/devlog/legacy/adding-docstrings.png)](/images/devlog/legacy/adding-docstrings.png)
 
-[![First git upload with Claude Code](/Manual Change Logs and Images/images/Claude Code Jam Session November/first upload using git.png)](/Manual Change Logs and Images/images/Claude Code Jam Session November/first upload using git.png)
+[![First git upload with Claude Code](/images/devlog/legacy/first-git-upload.png)](/images/devlog/legacy/first-git-upload.png)
 
-[![GitHub issue organization](/Manual Change Logs and Images/images/Claude Code Jam Session November/organizing issues using github and roadmap.png)](/Manual Change Logs and Images/images/Claude Code Jam Session November/organizing issues using github and roadmap.png)
+[![GitHub issue organization](/images/devlog/legacy/organizing-issues-github.png)](/images/devlog/legacy/organizing-issues-github.png)

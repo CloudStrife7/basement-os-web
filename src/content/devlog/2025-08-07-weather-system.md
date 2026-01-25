@@ -6,6 +6,6 @@ Integrated real-time weather from Fond du Lac, WI using a GitHub Pages JSON endp
 
 Rain shader source: [PLACEHOLDER - Please specify the rain shader source (Unity Asset Store, GitHub repo, custom made, etc.)]
 
-[![Thundery outbreaks weather condition](/Manual Change Logs and Images/images/August 2025/'Thunderyoutbreaksinnearby' Screenshot 2025-08-07 195825.jpg)](/Manual Change Logs and Images/images/August 2025/'Thunderyoutbreaksinnearby' Screenshot 2025-08-07 195825.jpg)
+[![Thundery outbreaks weather condition](/images/devlog/legacy/thundery-outbreaks.jpg)](/images/devlog/legacy/thundery-outbreaks.jpg)
 
-[![Weather system working on terminal](/Manual Change Logs and Images/images/July 2025/working weather.png)](/Manual Change Logs and Images/images/July 2025/working weather.png)
+[![Weather system working on terminal](/images/devlog/legacy/working-weather.png)](/images/devlog/legacy/working-weather.png)

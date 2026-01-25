@@ -9,6 +9,6 @@ Can't use Dictionary or List in UdonSharp, so I'm tracking players with parallel
 
 The 11-hour debugging marathon was worth it. This is the foundation for the entire achievement system.
 
-[![PlayerData persistence working](/Manual Change Logs and Images/images/July 2025/Persistence Working.jpg)](/Manual Change Logs and Images/images/July 2025/Persistence Working.jpg)
+[![PlayerData persistence working](/images/devlog/legacy/persistence-working.jpg)](/images/devlog/legacy/persistence-working.jpg)
 
-[![Successfully tracking 3 visits](/Manual Change Logs and Images/images/July 2025/tracking 3 visits.png)](/Manual Change Logs and Images/images/July 2025/tracking 3 visits.png)
+[![Successfully tracking 3 visits](/images/devlog/legacy/tracking-3-visits.png)](/images/devlog/legacy/tracking-3-visits.png)

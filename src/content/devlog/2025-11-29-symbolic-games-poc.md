@@ -6,6 +6,6 @@ Experimented with terminal-based games using unicode characters instead of sprit
 
 Interesting concept, but after testing found sprites are significantly less resource-intensive on Quest. Keeping the code for reference but won't ship in prod.
 
-[![Symbolic rendering engine working](/Manual Change Logs and Images/images/Claude Code Jam Session November/11-29-25 Symbolic Rendering Engine WORKING.png)](/Manual Change Logs and Images/images/Claude Code Jam Session November/11-29-25 Symbolic Rendering Engine WORKING.png)
+[![Symbolic rendering engine working](/images/devlog/legacy/symbolic-rendering-engine.png)](/images/devlog/legacy/symbolic-rendering-engine.png)
 
-[![Symbolic breakout game](/Manual Change Logs and Images/images/Claude Code Jam Session November/Symbolic Breakout .png)](/Manual Change Logs and Images/images/Claude Code Jam Session November/Symbolic Breakout .png)
+[![Symbolic breakout game](/images/devlog/legacy/symbolic-breakout.png)](/images/devlog/legacy/symbolic-breakout.png)

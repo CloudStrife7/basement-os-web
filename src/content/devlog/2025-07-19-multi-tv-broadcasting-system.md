@@ -6,6 +6,6 @@ Got notifications working on all 3 TVs simultaneously! The NotificationEventHub 
 
 Each TV maintains its own FIFO queue and animation timing. Had to be careful with the ProTV prefab integration - it uses a different Canvas setup than standard UI.
 
-[![Notifications working on all 3 TVs](/Manual Change Logs and Images/images/July 2025/Notifications working on 3 Tvs!!!.jpg)](/Manual Change Logs and Images/images/July 2025/Notifications working on 3 Tvs!!!.jpg)
+[![Notifications working on all 3 TVs](/images/devlog/legacy/notifications-3-tvs.jpg)](/images/devlog/legacy/notifications-3-tvs.jpg)
 
-[![Multi-TV setup in basement](/Manual Change Logs and Images/images/July 2025/Multiple TVs.jpg)](/Manual Change Logs and Images/images/July 2025/Multiple TVs.jpg)
+[![Multi-TV setup in basement](/images/devlog/legacy/multiple-tvs.jpg)](/images/devlog/legacy/multiple-tvs.jpg)
