@@ -13,3 +13,5 @@ Achievement icons were unique to the Xbox 360 dashboard, so I made custom ones f
   <img src="/images/devlog/achievement-icons/trooper.png" alt="Trooper achievement icon" />
   <img src="/images/devlog/achievement-icons/bobomb.png" alt="Bob-omb achievement icon" />
 </div>
+
+[![Custom achievement icons in Unity](/images/devlog/legacy/custom-icons.jpg)](/images/devlog/legacy/custom-icons.jpg)
