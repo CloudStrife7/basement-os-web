@@ -2,6 +2,19 @@
         LOWER LEVEL 2.0 - CHANGELOG
 ═════════════════════════════════════════════
 
+VERSION 1.6.0 - STATS APP RESTRUCTURE (2026-01-28)
+─────────────────────────────────────────────
+✨ New Feature
+   • Stats app now has 5 tabs: STATS,
+     VISITS, TIME, ACTIVITY, and ???
+   • Time Challenges have their own
+     dedicated tab
+   • Mystery achievements teaser tab added
+   • STATS tab shows your next time
+     achievement goal
+
+─────────────────────────────────────────────
+
 VERSION 1.5.1 - DT_REMOTECONTENT V2 ENHANCEMENTS (2026-01-01)
 ─────────────────────────────────────────────
 ✨ New Feature
