@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-01T16:50:05Z",
+  "generated_at": "2026-02-01T16:55:49Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
@@ -1126,7 +1126,7 @@
       "title": "[REQUEST] Main Menu Message of the Day",
       "state": "open",
       "created_at": "2025-11-16T04:17:29Z",
-      "updated_at": "2026-01-27T02:52:58Z",
+      "updated_at": "2026-02-01T16:55:32Z",
       "milestone": "v2.4 - Quest Sync",
       "labels": [
         {
@@ -1140,6 +1140,10 @@
         {
           "name": "area: terminal",
           "color": "1d76db"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
         },
         {
           "name": "Good Agentic Build",
