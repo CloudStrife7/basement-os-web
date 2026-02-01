@@ -1,0 +1,801 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TerminalShell from '../components/TerminalShell.astro';
+---
+
+<BaseLayout title="BASEMENT OS | Project BIFROST">
+  <TerminalShell activeSection="bifrost">
+    <div class="content-section active">
+      <h2 class="section-header">C:\BASEMENT\BIFROST.EXE</h2>
+
+      <div class="poc-banner">
+        <span class="poc-label">PROOF OF CONCEPT</span>
+        <span class="poc-text">This system is actively in development. The pipeline works end-to-end but is still being hardened for reliability.</span>
+      </div>
+
+      <div class="mission-statement">
+        <h3>Shipping Code While I Sleep</h3>
+        <p>How I built an autonomous AI development pipeline that picks up GitHub issues, writes code, tests in Unity, and creates pull requests—without me touching the keyboard.</p>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- THE PROBLEM -->
+      <div class="info-card">
+        <h3>[ The Problem ]</h3>
+        <div class="devlog-content">
+          <blockquote class="story-quote">
+            "On the left is how most teams use AI today. Ask, copy, paste, fix, repeat. The human does all the work."
+          </blockquote>
+          <p>Even with AI as a development partner, every feature still started the same way: I opened a chat, described what I wanted, reviewed the output, pasted it into Unity, fixed the errors, and went back and forth until it worked. I was the bottleneck in my own pipeline.</p>
+          <p>My backlog was growing faster than I could work through it. I had the ideas. I had the AI. But the <em>glue</em> between intent and execution was still me, sitting at the keyboard, for every single issue.</p>
+          <p class="story-emphasis">What if I could go to sleep and wake up to a pull request?</p>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- THE CONCEPT -->
+      <div class="info-card">
+        <h3>[ The Concept ]</h3>
+        <div class="devlog-content">
+          <p><strong>BIFROST</strong> is the bridge between intent and execution. In Norse mythology, it connects Midgard to Asgard—the mortal world to the realm of the gods. Here, it connects a GitHub issue to a finished pull request.</p>
+          <p><strong>The idea is simple:</strong></p>
+          <div class="pipeline-flow">
+            <div class="pipeline-step">
+              <span class="pipeline-icon">💡</span>
+              <span class="pipeline-label">Idea</span>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-step">
+              <span class="pipeline-icon">📋</span>
+              <span class="pipeline-label">GitHub Issue</span>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-step">
+              <span class="pipeline-icon">📐</span>
+              <span class="pipeline-label">PRISM Spec</span>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-step highlight">
+              <span class="pipeline-icon">✅</span>
+              <span class="pipeline-label">Human Approval</span>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-step">
+              <span class="pipeline-icon">⚡</span>
+              <span class="pipeline-label">BIFROST</span>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-step">
+              <span class="pipeline-icon">🔀</span>
+              <span class="pipeline-label">Pull Request</span>
+            </div>
+          </div>
+          <p>I write the <em>what</em> and <em>why</em>. BIFROST handles the <em>how</em>. The human stays in the loop for intent and approval—the AI handles execution.</p>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- HOW IT WORKS -->
+      <div class="info-card">
+        <h3>[ How It Works ]</h3>
+        <div class="devlog-content">
+          <div class="vertical-flow">
+
+            <div class="flow-step">
+              <div class="flow-icon">💡</div>
+              <div class="flow-body">
+                <div class="flow-label">Idea</div>
+                <div class="flow-desc">It starts with something I want to build. A feature, a bug fix, a new system. I write it down as a plain-language description of what I want and why it matters. No code yet—just intent.</div>
+              </div>
+            </div>
+            <div class="flow-arrow">↓</div>
+
+            <div class="flow-step">
+              <div class="flow-icon">📋</div>
+              <div class="flow-body">
+                <div class="flow-label">GitHub Issue</div>
+                <div class="flow-desc">The idea becomes a GitHub issue with acceptance criteria, context, and any reference materials. This is the contract—everything BIFROST needs to understand the scope. Labels and priority scores determine queue order.</div>
+              </div>
+            </div>
+            <div class="flow-arrow">↓</div>
+
+            <div class="flow-step">
+              <div class="flow-icon">📐</div>
+              <div class="flow-body">
+                <div class="flow-label">PRISM Spec <span class="flow-tag">Intent</span></div>
+                <div class="flow-desc">An AI triage system called PRISM reads the issue and auto-generates a technical specification. It identifies which skill agent to route to (UdonSharp, Terminal UI, Game Dev), estimates story points, and writes acceptance criteria. This is the blueprint the AI will follow.</div>
+              </div>
+            </div>
+            <div class="flow-arrow">↓</div>
+
+            <div class="flow-step highlighted">
+              <div class="flow-icon">✅</div>
+              <div class="flow-body">
+                <div class="flow-label">Ready-for-Dev <span class="flow-tag human">Human Approval</span></div>
+                <div class="flow-desc">This is the gate. I review the PRISM spec, confirm the approach makes sense, and add the <code>ready-for-dev</code> label. BIFROST detects it and sends a notification to my phone. I reply <code>APPROVE</code> from anywhere—phone, laptop, watch. Nothing runs without this step.</div>
+              </div>
+            </div>
+            <div class="flow-arrow">↓</div>
+
+            <div class="flow-step">
+              <div class="flow-icon">⚡</div>
+              <div class="flow-body">
+                <div class="flow-label">BIFROST <span class="flow-tag auto">Autonomous Run</span></div>
+                <div class="flow-desc">The pipeline takes over. BIFROST spins up a Claude Code session with the PRISM spec, routes to the correct skill agent, and the AI starts building. It writes code, triggers Unity compilation via MCP, reads the console for errors, fixes them, and loops until clean. Then it tests in Play mode, validates the results, and moves to delivery.</div>
+              </div>
+            </div>
+            <div class="flow-arrow">↓</div>
+
+            <div class="flow-step">
+              <div class="flow-icon">🔀</div>
+              <div class="flow-body">
+                <div class="flow-label">Pull Request</div>
+                <div class="flow-desc">A PR appears on GitHub with a full summary, self-review checklist, and test evidence. A structured event log provides a complete audit trail of every action the AI took. I review it in the morning—merge, request changes, or close. The human gets the final word.</div>
+              </div>
+            </div>
+
+          </div>
+
+          <p class="flow-caption">AI executes <em>after</em> human intent, never before.</p>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- THE TRANSFORMATION -->
+      <div class="info-card">
+        <h3>[ The Transformation ]</h3>
+        <div class="transformation-grid">
+          <div class="transform-card before">
+            <span class="transform-label">BEFORE (Generative AI)</span>
+            <span class="transform-title">"Human Drives Every Step"</span>
+            <span class="transform-desc">Idea → Ask AI → Copy Code → Paste into Editor → Fix Errors → Re-ask AI</span>
+          </div>
+          <div class="transform-arrow">→</div>
+          <div class="transform-card after">
+            <span class="transform-label">AFTER (Project BIFROST)</span>
+            <span class="transform-title">"AI Executes After Human Intent"</span>
+            <span class="transform-desc">Idea → GitHub Issue → PRISM Spec → Approve → BIFROST → Pull Request</span>
+          </div>
+        </div>
+        <blockquote class="story-quote center">
+          "I stopped being the middleware between the AI and my codebase."
+        </blockquote>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- THE INFRASTRUCTURE -->
+      <div class="info-card">
+        <h3>[ The Infrastructure ]</h3>
+        <div class="devlog-content">
+          <p>BIFROST isn't one script—it's an orchestration system built from five components that work together:</p>
+          <div class="options-grid">
+            <div class="option-card">
+              <span class="option-title">GitHub Bridge</span>
+              <span class="option-result">Polls for <code>ready-for-dev</code> issues, orchestrates the full workflow</span>
+            </div>
+            <div class="option-card">
+              <span class="option-title">Queue Manager</span>
+              <span class="option-result">FIFO with BBP priority scoring, persistence across restarts</span>
+            </div>
+            <div class="option-card">
+              <span class="option-title">Session Manager</span>
+              <span class="option-result">Launches Claude Code + Unity Editor, manages lifecycle and timeouts</span>
+            </div>
+            <div class="option-card">
+              <span class="option-title">Approval Manager</span>
+              <span class="option-result">Human gate via Home Assistant notifications or email from phone</span>
+            </div>
+            <div class="option-card highlight">
+              <span class="option-title">Email System</span>
+              <span class="option-result">A dedicated Bifrost mailbox for approving issues from anywhere</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- FIRST TEST -->
+      <div class="info-card">
+        <h3>[ The First Test ]</h3>
+        <div class="devlog-content">
+          <p><strong>January 21, 2026.</strong> The first end-to-end autonomous run.</p>
+          <p>Issue #296—"Add Boot Screen + Sounds to Terminal"—was labeled <code>ready-for-dev</code>. BIFROST picked it up, queued it, requested approval via Home Assistant, spun up Claude Code with the <code>/terminal-ui</code> skill, and produced PR #297.</p>
+
+          <div class="test-results">
+            <div class="result-item pass">
+              <span class="result-status">PASS</span>
+              <span class="result-desc">GitHub polling detected the label</span>
+            </div>
+            <div class="result-item pass">
+              <span class="result-status">PASS</span>
+              <span class="result-desc">Queue system with persistence</span>
+            </div>
+            <div class="result-item pass">
+              <span class="result-status">PASS</span>
+              <span class="result-desc">Dry-run approval via HA notification</span>
+            </div>
+            <div class="result-item pass">
+              <span class="result-status">PASS</span>
+              <span class="result-desc">Claude invoked with correct skill routing</span>
+            </div>
+            <div class="result-item pass">
+              <span class="result-status">PASS</span>
+              <span class="result-desc">Code written, compiled, PR created</span>
+            </div>
+            <div class="result-item pass">
+              <span class="result-status">PASS</span>
+              <span class="result-desc">10+ HA notification events fired</span>
+            </div>
+            <div class="result-item pass">
+              <span class="result-status">PASS</span>
+              <span class="result-desc">Full structured audit trail logged</span>
+            </div>
+            <div class="result-item fail">
+              <span class="result-status">FAIL</span>
+              <span class="result-desc">Unity MCP scene navigation—couldn't wire GameObject references</span>
+            </div>
+          </div>
+
+          <blockquote class="story-quote">
+            "The infrastructure works. The failure was at the execution layer, not the orchestration layer."
+          </blockquote>
+          <p>The PR was closed because Unity wiring wasn't completed. But the pipeline—from issue detection to PR creation—worked flawlessly. The gap was solvable.</p>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- THE EMAIL SYSTEM -->
+      <div class="info-card">
+        <h3>[ Remote Approval ]</h3>
+        <div class="devlog-content">
+          <p>The first test used Home Assistant notifications for approval—functional, but limited. I wanted to approve issues from my phone, my laptop, even my watch. So I built an email approval system.</p>
+          <p>BIFROST has a dedicated mailbox that only accepts emails from one authorized address. When BIFROST needs approval, it sends a request. I reply <code>APPROVE</code> from any device. That's it.</p>
+          <div class="options-grid" style="grid-template-columns: 1fr 1fr;">
+            <div class="option-card">
+              <span class="option-title">Security Model</span>
+              <span class="option-result">ProtonMail with sender whitelist, DKIM/SPF/DMARC validation, Message-ID replay prevention</span>
+            </div>
+            <div class="option-card">
+              <span class="option-title">Architecture</span>
+              <span class="option-result">ProtonMail Split Mode → Proton Bridge (local IMAP/SMTP) → BIFROST polling</span>
+            </div>
+          </div>
+          <p class="timeline-lesson"><strong>Problem solved along the way:</strong> ProtonMail marks emails as "read" at the conversation level, not per-mailbox. Switched from read/unread tracking to Message-ID based deduplication.</p>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- BY THE NUMBERS -->
+      <div class="info-card">
+        <h3>[ By The Numbers ]</h3>
+        <div class="stats-grid-story">
+          <div class="stat-block-story">
+            <span class="stat-number-story">1,500+</span>
+            <span class="stat-label-story">Lines of Python</span>
+          </div>
+          <div class="stat-block-story">
+            <span class="stat-number-story">6</span>
+            <span class="stat-label-story">Orchestration Modules</span>
+          </div>
+          <div class="stat-block-story">
+            <span class="stat-number-story">10+</span>
+            <span class="stat-label-story">Notification Events</span>
+          </div>
+          <div class="stat-block-story">
+            <span class="stat-number-story">2</span>
+            <span class="stat-label-story">Weeks to Build</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- WHAT I LEARNED -->
+      <div class="info-card">
+        <h3>[ What I Learned ]</h3>
+        <div class="lessons-grid">
+          <div class="lesson-card">
+            <span class="lesson-icon">🔐</span>
+            <span class="lesson-title">Human-in-the-Loop</span>
+            <span class="lesson-desc">AI should execute after human intent, never autonomously decide what to build. The approval gate is the feature.</span>
+          </div>
+          <div class="lesson-card">
+            <span class="lesson-icon">🏗️</span>
+            <span class="lesson-title">Orchestration > Execution</span>
+            <span class="lesson-desc">The hard part isn't getting AI to write code. It's building the pipeline around it—queue, approval, session, cleanup.</span>
+          </div>
+          <div class="lesson-card">
+            <span class="lesson-icon">🔄</span>
+            <span class="lesson-title">Fail at the Right Layer</span>
+            <span class="lesson-desc">The first test "failed" but proved the architecture. Infrastructure worked; only the last-mile execution needed fixing.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- THE INVITATION -->
+      <div class="info-card">
+        <h3>[ What's Next ]</h3>
+        <div class="devlog-content">
+          <p class="story-emphasis center">The bridge is built. Now I'm scaling what crosses it.</p>
+          <p class="center">BIFROST is running. Issues go in, pull requests come out. The overnight agent is real.</p>
+        </div>
+        <div class="cta-buttons">
+          <a href="/story" class="cta-button secondary">← Read My Story</a>
+          <a href="/devlog" class="cta-button secondary">Read The Devlog →</a>
+          <a href="/roadmap" class="cta-button secondary">See The Roadmap →</a>
+        </div>
+      </div>
+
+    </div>
+  </TerminalShell>
+</BaseLayout>
+
+<style>
+  /* POC Banner */
+  .poc-banner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: rgba(255, 170, 0, 0.08);
+    border: 1px solid #ffaa00;
+    margin-bottom: 20px;
+  }
+
+  .poc-label {
+    font-family: var(--font-mono);
+    font-size: 0.75em;
+    font-weight: bold;
+    color: #000;
+    background: #ffaa00;
+    padding: 3px 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .poc-text {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 600px) {
+    .poc-banner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  }
+
+  /* Story-specific styles (inherited from story.astro pattern) */
+  .story-emphasis {
+    font-size: 1.2em;
+    color: var(--accent-primary);
+    font-weight: bold;
+  }
+
+  .story-emphasis.center,
+  .center {
+    text-align: center;
+  }
+
+  .story-quote {
+    border-left: 3px solid var(--accent-primary);
+    padding-left: 20px;
+    margin: 20px 0;
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 1.1em;
+  }
+
+  .story-quote.center {
+    border-left: none;
+    text-align: center;
+    padding-left: 0;
+  }
+
+  /* Pipeline Flow */
+  .pipeline-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+
+  .pipeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 16px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    min-width: 80px;
+  }
+
+  .pipeline-step.highlight {
+    border-color: var(--accent-primary);
+    background: rgba(16, 185, 129, 0.1);
+  }
+
+  .pipeline-icon {
+    font-size: 1.4em;
+  }
+
+  .pipeline-label {
+    font-size: 0.75em;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .pipeline-arrow {
+    font-size: 1.4em;
+    color: var(--accent-primary);
+    font-family: var(--font-mono);
+  }
+
+  /* Options Grid */
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .option-card {
+    padding: 15px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .option-card.highlight {
+    border-color: var(--accent-primary);
+    background: rgba(16, 185, 129, 0.1);
+  }
+
+  .option-title {
+    font-weight: bold;
+    color: var(--text-primary);
+  }
+
+  .option-result {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+  }
+
+  .option-result code {
+    color: var(--accent-primary);
+    font-family: var(--font-mono);
+  }
+
+  /* Vertical Flow (How It Works) */
+  .vertical-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 20px 0;
+  }
+
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    width: 100%;
+  }
+
+  .flow-step.highlighted {
+    border-color: var(--accent-primary);
+    background: rgba(16, 185, 129, 0.08);
+  }
+
+  .flow-icon {
+    font-size: 2em;
+    flex-shrink: 0;
+    width: 48px;
+    text-align: center;
+    line-height: 1;
+    padding-top: 2px;
+  }
+
+  .flow-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .flow-label {
+    font-weight: bold;
+    font-size: 1.05em;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    margin-bottom: 6px;
+  }
+
+  .flow-tag {
+    font-size: 0.65em;
+    font-weight: normal;
+    padding: 2px 8px;
+    margin-left: 8px;
+    vertical-align: middle;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .flow-tag.human {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+  }
+
+  .flow-tag.auto {
+    border-color: #00ccff;
+    color: #00ccff;
+  }
+
+  .flow-desc {
+    font-size: 0.88em;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .flow-arrow {
+    font-size: 1.4em;
+    color: var(--accent-primary);
+    text-align: center;
+    line-height: 1;
+    padding: 6px 0;
+    padding-left: 24px;
+    font-family: var(--font-mono);
+    user-select: none;
+  }
+
+  .flow-caption {
+    text-align: center;
+    color: var(--accent-primary);
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 0.95em;
+  }
+
+  @media (max-width: 600px) {
+    .flow-step {
+      gap: 14px;
+      padding: 16px 14px;
+    }
+
+    .flow-icon {
+      font-size: 1.5em;
+      width: 36px;
+    }
+
+    .flow-arrow {
+      padding-left: 18px;
+    }
+  }
+
+  /* Transformation Grid */
+  .transformation-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+
+  .transform-card {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 200px;
+  }
+
+  .transform-card.before {
+    background: rgba(255, 68, 68, 0.1);
+    border: 1px solid #ff4444;
+  }
+
+  .transform-card.after {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--accent-primary);
+  }
+
+  .transform-label {
+    font-size: 0.75em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+  }
+
+  .transform-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--text-primary);
+  }
+
+  .transform-desc {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+  }
+
+  .transform-arrow {
+    font-size: 2em;
+    color: var(--accent-primary);
+  }
+
+  /* Stats Grid */
+  .stats-grid-story {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    text-align: center;
+  }
+
+  .stat-block-story {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .stat-number-story {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--accent-primary);
+    font-family: var(--font-mono);
+  }
+
+  .stat-label-story {
+    font-size: 0.8em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Test Results */
+  .test-results {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 15px 0;
+  }
+
+  .result-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: var(--bg-secondary);
+    border-left: 3px solid var(--border-color);
+  }
+
+  .result-item.pass {
+    border-left-color: var(--accent-primary);
+  }
+
+  .result-item.fail {
+    border-left-color: #ff4444;
+  }
+
+  .result-status {
+    font-family: var(--font-mono);
+    font-weight: bold;
+    font-size: 0.8em;
+    min-width: 40px;
+  }
+
+  .result-item.pass .result-status {
+    color: var(--accent-primary);
+  }
+
+  .result-item.fail .result-status {
+    color: #ff4444;
+  }
+
+  .result-desc {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+  }
+
+  /* Lessons Grid */
+  .lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .lesson-card {
+    padding: 20px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .lesson-icon {
+    font-size: 2em;
+  }
+
+  .lesson-title {
+    font-weight: bold;
+    color: var(--text-primary);
+  }
+
+  .lesson-desc {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+  }
+
+  /* CTA Buttons */
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .cta-button.secondary {
+    background: transparent;
+    color: var(--accent-primary);
+    padding: 12px 24px;
+    font-family: var(--font-mono);
+    text-decoration: none;
+    border: 1px solid var(--accent-primary);
+    transition: all 0.3s ease;
+  }
+
+  .cta-button.secondary:hover {
+    background: var(--accent-primary);
+    color: #000;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .timeline-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .transformation-grid {
+      flex-direction: column;
+    }
+
+    .transform-arrow {
+      transform: rotate(90deg);
+    }
+
+    .pipeline-flow {
+      flex-direction: column;
+    }
+
+    .pipeline-arrow {
+      transform: rotate(90deg);
+    }
+  }
+</style>
