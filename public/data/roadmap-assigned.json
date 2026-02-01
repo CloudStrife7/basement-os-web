@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-01T03:07:49Z",
+  "generated_at": "2026-02-01T06:23:48Z",
   "focus": "assigned",
   "description": "Issues assigned to CloudStrife7 - What I am currently working on",
   "assignee": "CloudStrife7",
@@ -9,7 +9,7 @@
       "title": "Game Idea: Scorched Earth",
       "state": "open",
       "created_at": "2026-02-01T03:05:46Z",
-      "updated_at": "2026-02-01T03:07:25Z",
+      "updated_at": "2026-02-01T06:23:36Z",
       "milestone": null,
       "labels": [
         {
@@ -25,8 +25,8 @@
           "color": "2ea44f"
         },
         {
-          "name": "needs-review",
-          "color": "FBCA04"
+          "name": "ready-for-dev",
+          "color": "0E8A16"
         },
         {
           "name": "unity-required",
