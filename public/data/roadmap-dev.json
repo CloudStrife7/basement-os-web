@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-01-23T02:23:05Z",
+  "generated_at": "2026-02-01T03:06:02Z",
   "focus": "dev",
   "description": "Developer experience: AI workflow, UdonSharp, docs, automation",
   "issues": [
     {
-      "number": 301,
-      "title": "Fix empty UdonBehaviour on DT_BootSequence GameObject (Issue #296 blocker)",
+      "number": 353,
+      "title": "bug: /start skips session-state.json when user jumps to work before task selection",
       "state": "open",
-      "created_at": "2026-01-22T15:02:56Z",
-      "updated_at": "2026-01-22T15:06:07Z",
+      "created_at": "2026-01-31T16:23:10Z",
+      "updated_at": "2026-01-31T16:23:10Z",
       "milestone": null,
       "labels": [
         {
@@ -16,12 +16,48 @@
           "color": "d73a4a"
         },
         {
-          "name": "priority: medium",
+          "name": "maintenance",
           "color": "fbca04"
         },
         {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 333,
+      "title": "[ENHANCEMENT] Roadmap automation CLI",
+      "state": "open",
+      "created_at": "2026-01-28T00:22:05Z",
+      "updated_at": "2026-01-30T14:18:02Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
+        }
+      ]
+    },
+    {
+      "number": 307,
+      "title": "Investigate coplay mcp version v9.1.0",
+      "state": "open",
+      "created_at": "2026-01-23T20:51:39Z",
+      "updated_at": "2026-01-27T02:33:44Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
         },
         {
           "name": "dev-focused",
@@ -34,6 +70,10 @@
         {
           "name": "unity-required",
           "color": "5319E7"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -42,7 +82,7 @@
       "title": "Enhancement: MCP-based external trigger for Bifrost automation",
       "state": "open",
       "created_at": "2026-01-22T00:24:51Z",
-      "updated_at": "2026-01-22T19:45:53Z",
+      "updated_at": "2026-01-27T02:31:46Z",
       "milestone": null,
       "labels": [
         {
@@ -60,66 +100,10 @@
         {
           "name": "needs-review",
           "color": "FBCA04"
-        }
-      ]
-    },
-    {
-      "number": 291,
-      "title": "[Quest] Wire BasementOS v2 Scene References After Sidecar Migration",
-      "state": "open",
-      "created_at": "2026-01-19T22:30:45Z",
-      "updated_at": "2026-01-19T22:33:35Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "maintenance",
-          "color": "fbca04"
         },
         {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "quest-specific",
-          "color": "5319e7"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        },
-        {
-          "name": "needs-review",
-          "color": "FBCA04"
-        }
-      ]
-    },
-    {
-      "number": 290,
-      "title": "[TECH DEBT] Refactor SidecarManager.cs - Remove blocking dialogs for MCP automation",
-      "state": "open",
-      "created_at": "2026-01-19T21:21:01Z",
-      "updated_at": "2026-01-19T21:21:01Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "maintenance",
-          "color": "fbca04"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -128,7 +112,7 @@
       "title": "[MOTIVATION] Dishwasher Connection",
       "state": "open",
       "created_at": "2026-01-19T20:35:40Z",
-      "updated_at": "2026-01-19T20:38:06Z",
+      "updated_at": "2026-01-27T02:31:45Z",
       "milestone": null,
       "labels": [
         {
@@ -142,36 +126,10 @@
         {
           "name": "needs-review",
           "color": "FBCA04"
-        }
-      ]
-    },
-    {
-      "number": 285,
-      "title": "[ARCHITECTURE] Sidecar Sync Workflow - Unified Cross-Platform Strategy",
-      "state": "open",
-      "created_at": "2026-01-18T13:13:42Z",
-      "updated_at": "2026-01-18T17:23:44Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
         },
         {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "quest-specific",
-          "color": "5319e7"
-        },
-        {
-          "name": "epic",
-          "color": "7057ff"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -180,7 +138,7 @@
       "title": "Productivity stats in /start skill show stale data",
       "state": "open",
       "created_at": "2026-01-18T04:08:11Z",
-      "updated_at": "2026-01-18T04:55:38Z",
+      "updated_at": "2026-01-27T02:31:45Z",
       "milestone": null,
       "labels": [
         {
@@ -198,6 +156,10 @@
         {
           "name": "needs-review",
           "color": "FBCA04"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -206,7 +168,7 @@
       "title": "Claude Idea Agent",
       "state": "open",
       "created_at": "2026-01-17T20:29:12Z",
-      "updated_at": "2026-01-17T20:33:43Z",
+      "updated_at": "2026-01-27T02:31:44Z",
       "milestone": null,
       "labels": [
         {
@@ -224,6 +186,10 @@
         {
           "name": "needs-review",
           "color": "FBCA04"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -232,30 +198,12 @@
       "title": "Add connector between GitHub and local Claude code",
       "state": "open",
       "created_at": "2026-01-17T17:38:27Z",
-      "updated_at": "2026-01-17T21:18:44Z",
+      "updated_at": "2026-01-27T02:31:44Z",
       "milestone": null,
       "labels": [
         {
           "name": "priority: critical",
           "color": "b60205"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 274,
-      "title": "claude code broken",
-      "state": "open",
-      "created_at": "2026-01-17T15:42:31Z",
-      "updated_at": "2026-01-17T19:38:46Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
         },
         {
           "name": "dev-focused",
@@ -264,28 +212,10 @@
         {
           "name": "needs-review",
           "color": "FBCA04"
-        }
-      ]
-    },
-    {
-      "number": 273,
-      "title": "PRISM Sub Agents",
-      "state": "open",
-      "created_at": "2026-01-17T14:31:59Z",
-      "updated_at": "2026-01-17T20:49:27Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "priority: critical",
-          "color": "b60205"
         },
         {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        },
-        {
-          "name": "ready-for-dev",
-          "color": "0E8A16"
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -294,7 +224,7 @@
       "title": "feat: Phase 2 - Unity MCP Integration for Auto-Merge Compile Validation",
       "state": "open",
       "created_at": "2026-01-16T21:43:21Z",
-      "updated_at": "2026-01-17T17:33:15Z",
+      "updated_at": "2026-01-27T02:31:42Z",
       "milestone": null,
       "labels": [
         {
@@ -312,15 +242,19 @@
         {
           "name": "dev-focused",
           "color": "6f42c1"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
     {
       "number": 262,
-      "title": "claude-code-app with out API token",
+      "title": "configure 9cat/claude-code-app",
       "state": "open",
       "created_at": "2026-01-15T01:54:08Z",
-      "updated_at": "2026-01-15T02:08:42Z",
+      "updated_at": "2026-01-27T02:31:41Z",
       "milestone": null,
       "labels": [
         {
@@ -338,36 +272,10 @@
         {
           "name": "needs-review",
           "color": "FBCA04"
-        }
-      ]
-    },
-    {
-      "number": 260,
-      "title": "📊 Sprint Report - Auto-Updated Dashboard",
-      "state": "open",
-      "created_at": "2026-01-14T22:15:22Z",
-      "updated_at": "2026-01-14T22:25:53Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "documentation",
-          "color": "0075ca"
         },
         {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        },
-        {
-          "name": "needs-review",
-          "color": "FBCA04"
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -376,46 +284,16 @@
       "title": "Create Siri shortcut to create git hub issue",
       "state": "open",
       "created_at": "2026-01-14T15:25:21Z",
-      "updated_at": "2026-01-14T16:48:46Z",
+      "updated_at": "2026-01-27T02:28:54Z",
       "milestone": null,
       "labels": [
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
         {
           "name": "dev-focused",
           "color": "6f42c1"
         },
         {
-          "name": "needs-review",
-          "color": "FBCA04"
-        }
-      ]
-    },
-    {
-      "number": 256,
-      "title": "Local copy of GitHub issues",
-      "state": "open",
-      "created_at": "2026-01-14T14:54:58Z",
-      "updated_at": "2026-01-14T14:57:27Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        },
-        {
-          "name": "needs-review",
-          "color": "FBCA04"
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -424,7 +302,7 @@
       "title": "evaluate mooserunner",
       "state": "open",
       "created_at": "2026-01-13T23:56:52Z",
-      "updated_at": "2026-01-14T17:56:19Z",
+      "updated_at": "2026-01-27T02:31:41Z",
       "milestone": null,
       "labels": [
         {
@@ -434,76 +312,10 @@
         {
           "name": "needs-review",
           "color": "FBCA04"
-        }
-      ]
-    },
-    {
-      "number": 250,
-      "title": "Quest Local Sync Plan w/ Local Script (change from existing github action workflow)",
-      "state": "open",
-      "created_at": "2026-01-13T19:17:24Z",
-      "updated_at": "2026-01-18T13:13:54Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "priority: critical",
-          "color": "b60205"
         },
         {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        },
-        {
-          "name": "ready-for-dev",
-          "color": "0E8A16"
-        }
-      ]
-    },
-    {
-      "number": 249,
-      "title": "Reconnect. Where's the roadmap? What's the plan?",
-      "state": "open",
-      "created_at": "2026-01-13T14:41:37Z",
-      "updated_at": "2026-01-16T22:13:05Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "documentation",
-          "color": "0075ca"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        },
-        {
-          "name": "needs-review",
-          "color": "FBCA04"
-        }
-      ]
-    },
-    {
-      "number": 248,
-      "title": "Create Divoom Pixoo64 Live Visit Counter",
-      "state": "open",
-      "created_at": "2026-01-13T05:19:12Z",
-      "updated_at": "2026-01-13T05:21:36Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        },
-        {
-          "name": "needs-review",
-          "color": "FBCA04"
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -512,7 +324,7 @@
       "title": "Make Claude Speak through home assistant",
       "state": "open",
       "created_at": "2026-01-12T15:16:29Z",
-      "updated_at": "2026-01-12T15:19:15Z",
+      "updated_at": "2026-01-27T02:31:40Z",
       "milestone": null,
       "labels": [
         {
@@ -526,44 +338,10 @@
         {
           "name": "needs-review",
           "color": "FBCA04"
-        }
-      ]
-    },
-    {
-      "number": 240,
-      "title": "DT_App_Music: ProTV integration missing OUT_* symbols",
-      "state": "open",
-      "created_at": "2026-01-12T02:18:35Z",
-      "updated_at": "2026-01-12T02:21:34Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "bug",
-          "color": "d73a4a"
         },
         {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        },
-        {
-          "name": "needs-review",
-          "color": "FBCA04"
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -572,7 +350,7 @@
       "title": "Vtuber creation",
       "state": "open",
       "created_at": "2026-01-11T05:38:40Z",
-      "updated_at": "2026-01-14T23:34:41Z",
+      "updated_at": "2026-01-27T02:33:43Z",
       "milestone": null,
       "labels": [
         {
@@ -582,6 +360,14 @@
         {
           "name": "dev-focused",
           "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -590,7 +376,7 @@
       "title": "feat: Add Home Assistant actionable notifications for PRISM review workflow",
       "state": "open",
       "created_at": "2026-01-11T05:32:09Z",
-      "updated_at": "2026-01-12T14:56:28Z",
+      "updated_at": "2026-01-27T02:33:43Z",
       "milestone": null,
       "labels": [
         {
@@ -612,15 +398,49 @@
         {
           "name": "needs-review",
           "color": "FBCA04"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
     {
-      "number": 227,
-      "title": "Copying cloud code PCVR workflow to project Haven",
+      "number": 221,
+      "title": "Claude Notification Settings",
       "state": "open",
-      "created_at": "2026-01-10T20:34:22Z",
-      "updated_at": "2026-01-11T04:46:57Z",
+      "created_at": "2026-01-10T13:54:09Z",
+      "updated_at": "2026-01-27T02:33:42Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
+        }
+      ]
+    },
+    {
+      "number": 217,
+      "title": "Have Claude announce on my home speakers when it is ready for my review for an issue or push request",
+      "state": "open",
+      "created_at": "2026-01-09T18:15:26Z",
+      "updated_at": "2026-01-27T02:33:41Z",
       "milestone": null,
       "labels": [
         {
@@ -634,24 +454,14 @@
         {
           "name": "dev-focused",
           "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 221,
-      "title": "Claude Notification Settings",
-      "state": "open",
-      "created_at": "2026-01-10T13:54:09Z",
-      "updated_at": "2026-01-10T14:06:47Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
         },
         {
-          "name": "dev-focused",
-          "color": "6f42c1"
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -660,7 +470,7 @@
       "title": "feat: Claude Memory Fabric (CMF) - Persistent Memory System for Claude Code",
       "state": "open",
       "created_at": "2026-01-05T17:58:19Z",
-      "updated_at": "2026-01-05T17:58:19Z",
+      "updated_at": "2026-01-27T02:36:21Z",
       "milestone": null,
       "labels": [
         {
@@ -670,6 +480,10 @@
         {
           "name": "dev-focused",
           "color": "6f42c1"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -678,7 +492,7 @@
       "title": "Design persistent memory system for Claude Code cross-session context",
       "state": "open",
       "created_at": "2026-01-05T15:17:22Z",
-      "updated_at": "2026-01-05T15:17:22Z",
+      "updated_at": "2026-01-27T02:36:20Z",
       "milestone": null,
       "labels": [
         {
@@ -688,6 +502,10 @@
         {
           "name": "dev-focused",
           "color": "6f42c1"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -696,7 +514,7 @@
       "title": "Install gemini-mcp for Claude Code ↔ Gemini collaboration",
       "state": "open",
       "created_at": "2026-01-05T14:28:01Z",
-      "updated_at": "2026-01-05T14:28:01Z",
+      "updated_at": "2026-01-27T02:35:16Z",
       "milestone": null,
       "labels": [
         {
@@ -706,24 +524,10 @@
         {
           "name": "dev-focused",
           "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 184,
-      "title": "Website UX: Separate Player vs Developer Content",
-      "state": "open",
-      "created_at": "2026-01-03T21:35:40Z",
-      "updated_at": "2026-01-05T13:28:11Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
         },
         {
-          "name": "dev-focused",
-          "color": "6f42c1"
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -754,7 +558,7 @@
       "title": "[TRAJECTORY] Auto-Generated Devlogs from Closed Issues",
       "state": "open",
       "created_at": "2026-01-02T16:29:57Z",
-      "updated_at": "2026-01-08T23:17:54Z",
+      "updated_at": "2026-01-27T02:36:20Z",
       "milestone": "v2.5 - Polish",
       "labels": [
         {
@@ -768,6 +572,10 @@
         {
           "name": "dev-focused",
           "color": "6f42c1"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -776,7 +584,7 @@
       "title": "[TRAJECTORY] Automated PlayMode Test Validation",
       "state": "open",
       "created_at": "2026-01-02T16:29:55Z",
-      "updated_at": "2026-01-12T20:25:08Z",
+      "updated_at": "2026-01-27T02:36:19Z",
       "milestone": "v2.5 - Polish",
       "labels": [
         {
@@ -790,6 +598,10 @@
         {
           "name": "dev-focused",
           "color": "6f42c1"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -798,7 +610,7 @@
       "title": "[WORKFLOW] Implement Issue Lifecycle Automation (GitHub Action)",
       "state": "open",
       "created_at": "2026-01-02T16:25:31Z",
-      "updated_at": "2026-01-08T23:17:51Z",
+      "updated_at": "2026-01-27T02:36:19Z",
       "milestone": "v2.3 - Automation",
       "labels": [
         {
@@ -812,6 +624,10 @@
         {
           "name": "dev-focused",
           "color": "6f42c1"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -820,7 +636,7 @@
       "title": "[MAINTENANCE] Clean Up Stale/Unused Assets/Scripts",
       "state": "open",
       "created_at": "2026-01-02T11:27:25Z",
-      "updated_at": "2026-01-12T20:27:39Z",
+      "updated_at": "2026-01-27T02:36:18Z",
       "milestone": "v2.2 - Foundation",
       "labels": [
         {
@@ -842,76 +658,10 @@
         {
           "name": "needs-review",
           "color": "FBCA04"
-        }
-      ]
-    },
-    {
-      "number": 167,
-      "title": "feat: Assigned-Only 'Coming Soon' Roadmap with AI Summaries",
-      "state": "open",
-      "created_at": "2026-01-01T19:52:07Z",
-      "updated_at": "2026-01-07T00:12:46Z",
-      "milestone": "Remake Snake",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
         },
         {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 157,
-      "title": "feat: Sync Issue #153 Updates to Quest (Remote Content + ROADMAP Tab)",
-      "state": "open",
-      "created_at": "2025-12-31T19:55:05Z",
-      "updated_at": "2026-01-08T23:18:03Z",
-      "milestone": "v2.4 - Quest Sync",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "area: terminal",
-          "color": "1d76db"
-        },
-        {
-          "name": "quest-specific",
-          "color": "5319e7"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 156,
-      "title": "maintenance: Branch Review and Cleanup - 30 Branches",
-      "state": "open",
-      "created_at": "2025-12-31T19:18:16Z",
-      "updated_at": "2026-01-12T20:21:33Z",
-      "milestone": "v2.2 - Foundation",
-      "labels": [
-        {
-          "name": "maintenance",
-          "color": "fbca04"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
@@ -938,11 +688,36 @@
       ]
     },
     {
+      "number": 136,
+      "title": "[FEATURE] VRChat API to GitHub Stats Sync",
+      "state": "open",
+      "created_at": "2025-12-24T21:04:57Z",
+      "updated_at": "2026-01-27T02:49:41Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
+        }
+      ]
+    }
+  ],
+  "closed": [
+    {
       "number": 144,
       "title": "[QA] Verify VRChat Networking Best Practices",
-      "state": "open",
+      "state": "closed",
       "created_at": "2025-12-27T23:07:33Z",
-      "updated_at": "2026-01-14T14:51:38Z",
+      "updated_at": "2026-01-29T23:11:11Z",
+      "closed_at": "2026-01-29T23:11:11Z",
       "milestone": "v2.2 - Foundation",
       "labels": [
         {
@@ -960,55 +735,12 @@
       ]
     },
     {
-      "number": 138,
-      "title": "[REQUEST] Stream Videos from NAS",
-      "state": "open",
-      "created_at": "2025-12-24T22:10:36Z",
-      "updated_at": "2026-01-22T17:28:56Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
-        },
-        {
-          "name": "needs-testing",
-          "color": "fef2c0"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 136,
-      "title": "[FEATURE] VRChat API to GitHub Stats Sync",
-      "state": "open",
-      "created_at": "2025-12-24T21:04:57Z",
-      "updated_at": "2026-01-05T13:28:40Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
       "number": 134,
       "title": "[FEATURE] Basement OS Version 2",
-      "state": "open",
+      "state": "closed",
       "created_at": "2025-12-24T13:21:08Z",
-      "updated_at": "2026-01-09T22:38:42Z",
+      "updated_at": "2026-01-29T03:53:05Z",
+      "closed_at": "2026-01-27T02:45:46Z",
       "milestone": "BASEMENT OS Revamp",
       "labels": [
         {
@@ -1022,11 +754,213 @@
       ]
     },
     {
+      "number": 318,
+      "title": "[INFRA] Migrate Proton Bridge to NAS for 24/7 Bifrost availability",
+      "state": "closed",
+      "created_at": "2026-01-25T18:20:17Z",
+      "updated_at": "2026-01-27T20:55:25Z",
+      "closed_at": "2026-01-27T20:55:25Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
+        }
+      ]
+    },
+    {
+      "number": 115,
+      "title": "[EPIC] Concepts and Future Ideas",
+      "state": "closed",
+      "created_at": "2025-11-24T21:56:17Z",
+      "updated_at": "2026-01-27T02:50:29Z",
+      "closed_at": "2026-01-27T02:50:29Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "concept",
+          "color": "04bbd9"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 249,
+      "title": "Reconnect. Where's the roadmap? What's the plan?",
+      "state": "closed",
+      "created_at": "2026-01-13T14:41:37Z",
+      "updated_at": "2026-01-27T02:49:55Z",
+      "closed_at": "2026-01-27T02:49:55Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 113,
+      "title": "[QA] Testing and Quality Assurance",
+      "state": "closed",
+      "created_at": "2025-11-24T21:55:47Z",
+      "updated_at": "2026-01-27T02:49:22Z",
+      "closed_at": "2026-01-27T02:49:22Z",
+      "milestone": "v2.2 - Foundation",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 114,
+      "title": "[MAINTENANCE] Automation and Workflow Improvements",
+      "state": "closed",
+      "created_at": "2025-11-24T21:56:02Z",
+      "updated_at": "2026-01-27T02:48:55Z",
+      "closed_at": "2026-01-27T02:48:55Z",
+      "milestone": "v2.3 - Automation",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 111,
+      "title": "[FEATURE] Remote Content System",
+      "state": "closed",
+      "created_at": "2025-11-24T21:55:21Z",
+      "updated_at": "2026-01-27T02:48:34Z",
+      "closed_at": "2026-01-27T02:48:34Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 240,
+      "title": "DT_App_Music: ProTV integration missing OUT_* symbols",
+      "state": "closed",
+      "created_at": "2026-01-12T02:18:35Z",
+      "updated_at": "2026-01-27T02:48:07Z",
+      "closed_at": "2026-01-27T02:48:07Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
       "number": 132,
       "title": "[DEVLOG] Latest Experiments Automated Agent Installs",
-      "state": "open",
+      "state": "closed",
       "created_at": "2025-12-18T14:06:56Z",
-      "updated_at": "2026-01-05T13:28:42Z",
+      "updated_at": "2026-01-27T02:38:07Z",
+      "closed_at": "2026-01-27T02:38:07Z",
       "milestone": null,
       "labels": [
         {
@@ -1040,11 +974,159 @@
       ]
     },
     {
+      "number": 260,
+      "title": "📊 Sprint Report - Auto-Updated Dashboard",
+      "state": "closed",
+      "created_at": "2026-01-14T22:15:22Z",
+      "updated_at": "2026-01-27T02:26:22Z",
+      "closed_at": "2026-01-27T02:26:22Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "documentation",
+          "color": "0075ca"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 310,
+      "title": "Add UdonSharp lifecycle entry point validation to PRISM/Bifrost pipeline",
+      "state": "closed",
+      "created_at": "2026-01-24T03:31:25Z",
+      "updated_at": "2026-01-27T02:15:55Z",
+      "closed_at": "2026-01-27T02:15:55Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
+    {
+      "number": 290,
+      "title": "[TECH DEBT] Refactor SidecarManager.cs - Remove blocking dialogs for MCP automation",
+      "state": "closed",
+      "created_at": "2026-01-19T21:21:01Z",
+      "updated_at": "2026-01-27T02:11:11Z",
+      "closed_at": "2026-01-27T02:11:11Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 274,
+      "title": "claude code broken",
+      "state": "closed",
+      "created_at": "2026-01-17T15:42:31Z",
+      "updated_at": "2026-01-26T23:09:24Z",
+      "closed_at": "2026-01-26T23:09:24Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 89,
+      "title": "[MAINTENANCE] Automate Issue Creation",
+      "state": "closed",
+      "created_at": "2025-11-20T10:01:08Z",
+      "updated_at": "2026-01-25T23:17:46Z",
+      "closed_at": "2026-01-25T23:17:46Z",
+      "milestone": "v2.3 - Automation",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
       "number": 124,
       "title": "[REQUEST] MIDI Exporter for Terminal Web Version",
-      "state": "open",
+      "state": "closed",
       "created_at": "2025-11-29T05:32:25Z",
-      "updated_at": "2026-01-05T13:28:45Z",
+      "updated_at": "2026-01-25T22:55:03Z",
+      "closed_at": "2026-01-25T22:55:03Z",
       "milestone": null,
       "labels": [
         {
@@ -1078,20 +1160,17 @@
       ]
     },
     {
-      "number": 115,
-      "title": "[EPIC] Concepts and Future Ideas",
-      "state": "open",
-      "created_at": "2025-11-24T21:56:17Z",
-      "updated_at": "2026-01-05T13:28:49Z",
-      "milestone": null,
+      "number": 156,
+      "title": "maintenance: Branch Review and Cleanup - 30 Branches",
+      "state": "closed",
+      "created_at": "2025-12-31T19:18:16Z",
+      "updated_at": "2026-01-25T22:34:12Z",
+      "closed_at": "2026-01-25T22:34:12Z",
+      "milestone": "v2.2 - Foundation",
       "labels": [
         {
-          "name": "concept",
-          "color": "04bbd9"
-        },
-        {
-          "name": "priority: low",
-          "color": "0e8a16"
+          "name": "maintenance",
+          "color": "fbca04"
         },
         {
           "name": "dev-focused",
@@ -1100,24 +1179,29 @@
       ]
     },
     {
-      "number": 114,
-      "title": "[MAINTENANCE] Automation and Workflow Improvements",
-      "state": "open",
-      "created_at": "2025-11-24T21:56:02Z",
-      "updated_at": "2026-01-08T23:17:52Z",
-      "milestone": "v2.3 - Automation",
+      "number": 157,
+      "title": "feat: Sync Issue #153 Updates to Quest (Remote Content + ROADMAP Tab)",
+      "state": "closed",
+      "created_at": "2025-12-31T19:55:05Z",
+      "updated_at": "2026-01-25T22:34:04Z",
+      "closed_at": "2026-01-25T22:34:04Z",
+      "milestone": "v2.4 - Quest Sync",
       "labels": [
         {
           "name": "enhancement",
           "color": "a2eeef"
         },
         {
-          "name": "maintenance",
-          "color": "fbca04"
+          "name": "area: terminal",
+          "color": "1d76db"
         },
         {
-          "name": "priority: medium",
-          "color": "fbca04"
+          "name": "quest-specific",
+          "color": "5319e7"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
         },
         {
           "name": "dev-focused",
@@ -1126,12 +1210,140 @@
       ]
     },
     {
-      "number": 113,
-      "title": "[QA] Testing and Quality Assurance",
-      "state": "open",
-      "created_at": "2025-11-24T21:55:47Z",
-      "updated_at": "2026-01-08T23:17:58Z",
-      "milestone": "v2.2 - Foundation",
+      "number": 167,
+      "title": "feat: Assigned-Only 'Coming Soon' Roadmap with AI Summaries",
+      "state": "closed",
+      "created_at": "2026-01-01T19:52:07Z",
+      "updated_at": "2026-01-25T22:33:48Z",
+      "closed_at": "2026-01-25T22:33:48Z",
+      "milestone": "Remake Snake",
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 184,
+      "title": "Website UX: Separate Player vs Developer Content",
+      "state": "closed",
+      "created_at": "2026-01-03T21:35:40Z",
+      "updated_at": "2026-01-25T22:16:51Z",
+      "closed_at": "2026-01-25T22:16:51Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
+    {
+      "number": 227,
+      "title": "Copying cloud code PCVR workflow to project Haven",
+      "state": "closed",
+      "created_at": "2026-01-10T20:34:22Z",
+      "updated_at": "2026-01-25T22:16:16Z",
+      "closed_at": "2026-01-25T22:16:16Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 250,
+      "title": "Quest Local Sync Plan w/ Local Script (change from existing github action workflow)",
+      "state": "closed",
+      "created_at": "2026-01-13T19:17:24Z",
+      "updated_at": "2026-01-25T22:14:43Z",
+      "closed_at": "2026-01-25T22:14:43Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "ready-for-dev",
+          "color": "0E8A16"
+        }
+      ]
+    },
+    {
+      "number": 256,
+      "title": "Local copy of GitHub issues",
+      "state": "closed",
+      "created_at": "2026-01-14T14:54:58Z",
+      "updated_at": "2026-01-25T22:13:42Z",
+      "closed_at": "2026-01-25T22:13:42Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 285,
+      "title": "[ARCHITECTURE] Sidecar Sync Workflow - Unified Cross-Platform Strategy",
+      "state": "closed",
+      "created_at": "2026-01-18T13:13:42Z",
+      "updated_at": "2026-01-25T22:11:53Z",
+      "closed_at": "2026-01-25T22:11:32Z",
+      "milestone": null,
       "labels": [
         {
           "name": "enhancement",
@@ -1142,8 +1354,12 @@
           "color": "d93f0b"
         },
         {
-          "name": "needs-testing",
-          "color": "fef2c0"
+          "name": "quest-specific",
+          "color": "5319e7"
+        },
+        {
+          "name": "epic",
+          "color": "7057ff"
         },
         {
           "name": "dev-focused",
@@ -1152,47 +1368,14 @@
       ]
     },
     {
-      "number": 111,
-      "title": "[FEATURE] Remote Content System",
-      "state": "open",
-      "created_at": "2025-11-24T21:55:21Z",
-      "updated_at": "2026-01-05T13:28:54Z",
+      "number": 291,
+      "title": "[Quest] Wire BasementOS v2 Scene References After Sidecar Migration",
+      "state": "closed",
+      "created_at": "2026-01-19T22:30:45Z",
+      "updated_at": "2026-01-25T03:51:35Z",
+      "closed_at": "2026-01-25T03:51:35Z",
       "milestone": null,
       "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "area: terminal",
-          "color": "1d76db"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
-    {
-      "number": 89,
-      "title": "[MAINTENANCE] Automate Issue Creation",
-      "state": "open",
-      "created_at": "2025-11-20T10:01:08Z",
-      "updated_at": "2026-01-17T14:04:25Z",
-      "milestone": "v2.3 - Automation",
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
         {
           "name": "maintenance",
           "color": "fbca04"
@@ -1202,17 +1385,85 @@
           "color": "fbca04"
         },
         {
+          "name": "quest-specific",
+          "color": "5319e7"
+        },
+        {
           "name": "Good Agentic Build",
           "color": "1d76db"
         },
         {
           "name": "dev-focused",
           "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
         }
       ]
-    }
-  ],
-  "closed": [
+    },
+    {
+      "number": 248,
+      "title": "Create Divoom Pixoo64 Live Visit Counter",
+      "state": "closed",
+      "created_at": "2026-01-13T05:19:12Z",
+      "updated_at": "2026-01-25T03:47:35Z",
+      "closed_at": "2026-01-25T03:47:35Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
+    {
+      "number": 301,
+      "title": "Fix empty UdonBehaviour on DT_BootSequence GameObject (Issue #296 blocker)",
+      "state": "closed",
+      "created_at": "2026-01-22T15:02:56Z",
+      "updated_at": "2026-01-23T23:14:41Z",
+      "closed_at": "2026-01-23T23:14:41Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
     {
       "number": 284,
       "title": "Quest-Primary Development Migration",
@@ -1879,41 +2130,41 @@
     {
       "title": "BASEMENT OS Revamp",
       "description": "Modernized terminal experience: 80-char width, unified design, MOTD, Snake complete, all systems tested",
-      "state": "open",
-      "open_issues": 2,
-      "closed_issues": 11,
+      "state": "closed",
+      "open_issues": 0,
+      "closed_issues": 13,
       "due_on": "2025-12-31T00:00:00Z"
     },
     {
       "title": "Remake Snake",
       "description": "Games and dynamic content: Snake complete with achievements, high scores, VRCStringDownloader framework, remote content",
       "state": "open",
-      "open_issues": 4,
-      "closed_issues": 6,
+      "open_issues": 0,
+      "closed_issues": 9,
       "due_on": "2026-01-14T00:00:00Z"
     },
     {
       "title": "v2.2 - Foundation",
       "description": "Weeks 1-2: Workflow infrastructure + Testing validation",
       "state": "open",
-      "open_issues": 4,
-      "closed_issues": 4,
+      "open_issues": 1,
+      "closed_issues": 7,
       "due_on": "2026-01-18T00:00:00Z"
     },
     {
       "title": "v2.3 - Automation",
       "description": "Weeks 3-4: PRISM agent + Workflow automation",
       "state": "open",
-      "open_issues": 3,
-      "closed_issues": 6,
+      "open_issues": 1,
+      "closed_issues": 8,
       "due_on": "2026-02-02T00:00:00Z"
     },
     {
       "title": "v2.4 - Quest Sync",
       "description": "Weeks 5-6: Quest sync fixes + Feature development",
       "state": "open",
-      "open_issues": 5,
-      "closed_issues": 2,
+      "open_issues": 3,
+      "closed_issues": 4,
       "due_on": "2026-02-15T00:00:00Z"
     },
     {
