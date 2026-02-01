@@ -1,8 +1,38 @@
 {
-  "generated_at": "2026-02-01T03:06:02Z",
+  "generated_at": "2026-02-01T03:07:41Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
+    {
+      "number": 355,
+      "title": "Game Idea: Scorched Earth",
+      "state": "open",
+      "created_at": "2026-02-01T03:05:46Z",
+      "updated_at": "2026-02-01T03:07:25Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
     {
       "number": 352,
       "title": "[EXPLORE] 2D Whiteboard Drawing System - Flat Surface with Persistence",
