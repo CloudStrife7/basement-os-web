@@ -1,8 +1,26 @@
 {
-  "generated_at": "2026-02-01T17:11:54Z",
+  "generated_at": "2026-02-01T17:13:30Z",
   "focus": "dev",
   "description": "Developer experience: AI workflow, UdonSharp, docs, automation",
   "issues": [
+    {
+      "number": 362,
+      "title": "investigate discord webhooks",
+      "state": "open",
+      "created_at": "2026-02-01T17:11:36Z",
+      "updated_at": "2026-02-01T17:13:02Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
     {
       "number": 360,
       "title": "Test: Terminal ProTV Enhancements (Video Controls, Audio Ducking, Timer)",
