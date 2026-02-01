@@ -1,9 +1,27 @@
 {
-  "generated_at": "2026-02-01T17:11:48Z",
+  "generated_at": "2026-02-01T17:13:15Z",
   "focus": "assigned",
   "description": "Issues assigned to CloudStrife7 - What I am currently working on",
   "assignee": "CloudStrife7",
   "issues": [
+    {
+      "number": 362,
+      "title": "investigate discord webhooks",
+      "state": "open",
+      "created_at": "2026-02-01T17:11:36Z",
+      "updated_at": "2026-02-01T17:13:02Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
+    },
     {
       "number": 361,
       "title": "Text message Email, shoutout feature",
