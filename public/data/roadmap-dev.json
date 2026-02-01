@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-01T17:13:30Z",
+  "generated_at": "2026-02-01T17:14:19Z",
   "focus": "dev",
   "description": "Developer experience: AI workflow, UdonSharp, docs, automation",
   "issues": [
@@ -8,9 +8,17 @@
       "title": "investigate discord webhooks",
       "state": "open",
       "created_at": "2026-02-01T17:11:36Z",
-      "updated_at": "2026-02-01T17:13:02Z",
+      "updated_at": "2026-02-01T17:14:01Z",
       "milestone": null,
       "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
         {
           "name": "dev-focused",
           "color": "6f42c1"
