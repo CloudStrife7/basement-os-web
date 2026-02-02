@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-02T00:14:03Z",
+  "generated_at": "2026-02-02T00:14:31Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
@@ -72,7 +72,7 @@
       "title": "[EXPLORE] 2D Whiteboard Drawing System - Flat Surface with Persistence",
       "state": "open",
       "created_at": "2026-01-31T14:48:11Z",
-      "updated_at": "2026-01-31T14:48:11Z",
+      "updated_at": "2026-02-02T00:14:15Z",
       "milestone": null,
       "labels": [
         {
@@ -94,6 +94,10 @@
         {
           "name": "player-focused",
           "color": "2ea44f"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
