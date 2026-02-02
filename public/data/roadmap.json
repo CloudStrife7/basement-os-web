@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-02T00:13:03Z",
+  "generated_at": "2026-02-02T00:14:03Z",
   "issues": [
     {
       "number": 362,
@@ -66,36 +66,6 @@
       ]
     },
     {
-      "number": 360,
-      "title": "Test: Terminal ProTV Enhancements (Video Controls, Audio Ducking, Timer)",
-      "state": "open",
-      "created_at": "2026-02-01T14:27:34Z",
-      "updated_at": "2026-02-01T22:26:27Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "needs-testing",
-          "color": "fef2c0"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        },
-        {
-          "name": "needs-review",
-          "color": "FBCA04"
-        },
-        {
-          "name": "unity-required",
-          "color": "5319E7"
-        }
-      ]
-    },
-    {
       "number": 359,
       "title": "[DESIGN] Hidden achievement point budget planning",
       "state": "open",
@@ -130,7 +100,7 @@
       "title": "[FEATURE] EGG-005: The Glitch Tale — Terminal Tales Completion Easter Egg",
       "state": "open",
       "created_at": "2026-02-01T14:08:05Z",
-      "updated_at": "2026-02-01T14:11:50Z",
+      "updated_at": "2026-02-02T00:13:23Z",
       "milestone": null,
       "labels": [
         {
@@ -144,6 +114,10 @@
         {
           "name": "unity-required",
           "color": "5319E7"
+        },
+        {
+          "name": "EGG",
+          "color": "FFD700"
         }
       ]
     },
@@ -152,12 +126,16 @@
       "title": "[DOCS] Master Easter Egg Tracking List",
       "state": "open",
       "created_at": "2026-02-01T14:08:03Z",
-      "updated_at": "2026-02-01T14:08:03Z",
+      "updated_at": "2026-02-02T00:13:44Z",
       "milestone": null,
       "labels": [
         {
           "name": "documentation",
           "color": "0075ca"
+        },
+        {
+          "name": "EGG",
+          "color": "FFD700"
         }
       ]
     },
@@ -221,32 +199,6 @@
       "updated_at": "2026-02-01T06:43:51Z",
       "milestone": null,
       "labels": []
-    },
-    {
-      "number": 350,
-      "title": "Bug: Nokia Top 5 high score display not showing on Snake leaderboard",
-      "state": "open",
-      "created_at": "2026-01-30T16:32:31Z",
-      "updated_at": "2026-02-01T22:36:19Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "bug",
-          "color": "d73a4a"
-        },
-        {
-          "name": "area: games",
-          "color": "c5def5"
-        },
-        {
-          "name": "needs-testing",
-          "color": "fef2c0"
-        },
-        {
-          "name": "unity-required",
-          "color": "5319E7"
-        }
-      ]
     },
     {
       "number": 349,
@@ -2373,6 +2325,64 @@
     }
   ],
   "closed": [
+    {
+      "number": 350,
+      "title": "Bug: Nokia Top 5 high score display not showing on Snake leaderboard",
+      "state": "closed",
+      "created_at": "2026-01-30T16:32:31Z",
+      "updated_at": "2026-02-02T00:13:32Z",
+      "closed_at": "2026-02-02T00:13:32Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
+    {
+      "number": 360,
+      "title": "Test: Terminal ProTV Enhancements (Video Controls, Audio Ducking, Timer)",
+      "state": "closed",
+      "created_at": "2026-02-01T14:27:34Z",
+      "updated_at": "2026-02-02T00:13:31Z",
+      "closed_at": "2026-02-02T00:13:31Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
     {
       "number": 337,
       "title": "bug: VRChat build fails with ArgumentNullException after Community Relay setup",
