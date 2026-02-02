@@ -1,6 +1,15 @@
 {
-  "generated_at": "2026-02-02T00:14:49Z",
+  "generated_at": "2026-02-02T04:42:34Z",
   "issues": [
+    {
+      "number": 363,
+      "title": "GitHub copilot",
+      "state": "open",
+      "created_at": "2026-02-02T04:42:15Z",
+      "updated_at": "2026-02-02T04:42:15Z",
+      "milestone": null,
+      "labels": []
+    },
     {
       "number": 362,
       "title": "investigate discord webhooks",
@@ -405,7 +414,7 @@
       "title": "AI Cat using Sisters In Gaming NavMesh NPC/AI System",
       "state": "open",
       "created_at": "2026-01-26T16:07:20Z",
-      "updated_at": "2026-01-28T14:42:50Z",
+      "updated_at": "2026-02-02T01:16:19Z",
       "milestone": null,
       "labels": [
         {
@@ -2335,38 +2344,11 @@
   ],
   "closed": [
     {
-      "number": 350,
-      "title": "Bug: Nokia Top 5 high score display not showing on Snake leaderboard",
-      "state": "closed",
-      "created_at": "2026-01-30T16:32:31Z",
-      "updated_at": "2026-02-02T00:13:32Z",
-      "closed_at": "2026-02-02T00:13:32Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "bug",
-          "color": "d73a4a"
-        },
-        {
-          "name": "area: games",
-          "color": "c5def5"
-        },
-        {
-          "name": "needs-testing",
-          "color": "fef2c0"
-        },
-        {
-          "name": "unity-required",
-          "color": "5319E7"
-        }
-      ]
-    },
-    {
       "number": 360,
       "title": "Test: Terminal ProTV Enhancements (Video Controls, Audio Ducking, Timer)",
       "state": "closed",
       "created_at": "2026-02-01T14:27:34Z",
-      "updated_at": "2026-02-02T00:13:31Z",
+      "updated_at": "2026-02-02T00:22:54Z",
       "closed_at": "2026-02-02T00:13:31Z",
       "milestone": null,
       "labels": [
@@ -2385,6 +2367,33 @@
         {
           "name": "needs-review",
           "color": "FBCA04"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
+    {
+      "number": 350,
+      "title": "Bug: Nokia Top 5 high score display not showing on Snake leaderboard",
+      "state": "closed",
+      "created_at": "2026-01-30T16:32:31Z",
+      "updated_at": "2026-02-02T00:22:52Z",
+      "closed_at": "2026-02-02T00:13:32Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
         },
         {
           "name": "unity-required",
