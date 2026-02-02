@@ -1,14 +1,23 @@
 {
-  "generated_at": "2026-02-02T04:42:34Z",
+  "generated_at": "2026-02-02T04:44:02Z",
   "issues": [
     {
       "number": 363,
       "title": "GitHub copilot",
       "state": "open",
       "created_at": "2026-02-02T04:42:15Z",
-      "updated_at": "2026-02-02T04:42:15Z",
+      "updated_at": "2026-02-02T04:43:43Z",
       "milestone": null,
-      "labels": []
+      "labels": [
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        }
+      ]
     },
     {
       "number": 362,
