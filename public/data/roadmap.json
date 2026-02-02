@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-02-02T00:12:46Z",
+  "generated_at": "2026-02-02T00:13:03Z",
   "issues": [
     {
       "number": 362,
       "title": "investigate discord webhooks",
       "state": "open",
       "created_at": "2026-02-01T17:11:36Z",
-      "updated_at": "2026-02-01T17:14:01Z",
+      "updated_at": "2026-02-02T00:12:47Z",
       "milestone": null,
       "labels": [
         {
@@ -24,6 +24,10 @@
         {
           "name": "needs-review",
           "color": "FBCA04"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
         }
       ]
     },
