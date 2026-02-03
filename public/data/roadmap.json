@@ -1,14 +1,18 @@
 {
-  "generated_at": "2026-02-03T23:40:05Z",
+  "generated_at": "2026-02-03T23:42:23Z",
   "issues": [
     {
       "number": 367,
       "title": "Verify HEATNET Terminal Tale displays correctly in-world",
       "state": "open",
       "created_at": "2026-02-03T23:39:31Z",
-      "updated_at": "2026-02-03T23:39:31Z",
+      "updated_at": "2026-02-03T23:42:06Z",
       "milestone": null,
       "labels": [
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
         {
           "name": "area: terminal",
           "color": "1d76db"
@@ -16,6 +20,22 @@
         {
           "name": "needs-testing",
           "color": "fef2c0"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
         }
       ]
     },
