@@ -1,6 +1,24 @@
 {
-  "generated_at": "2026-02-03T06:37:32Z",
+  "generated_at": "2026-02-03T11:59:53Z",
   "issues": [
+    {
+      "number": 365,
+      "title": "fix: Game Room & Theatre ProTV speakers at max volume with 2D audio bleed",
+      "state": "open",
+      "created_at": "2026-02-03T11:59:34Z",
+      "updated_at": "2026-02-03T11:59:34Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        }
+      ]
+    },
     {
       "number": 364,
       "title": "Investigate Proton Pass CLI for credential management and workflow automation",
@@ -184,7 +202,7 @@
       "title": "Game Idea: Scorched Earth",
       "state": "open",
       "created_at": "2026-02-01T03:05:46Z",
-      "updated_at": "2026-02-02T18:14:19Z",
+      "updated_at": "2026-02-03T11:55:01Z",
       "milestone": null,
       "labels": [
         {
