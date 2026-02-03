@@ -1,9 +1,27 @@
 {
-  "generated_at": "2026-02-03T07:14:08Z",
+  "generated_at": "2026-02-03T11:59:47Z",
   "focus": "assigned",
   "description": "Issues assigned to CloudStrife7 - What I am currently working on",
   "assignee": "CloudStrife7",
   "issues": [
+    {
+      "number": 365,
+      "title": "fix: Game Room & Theatre ProTV speakers at max volume with 2D audio bleed",
+      "state": "open",
+      "created_at": "2026-02-03T11:59:34Z",
+      "updated_at": "2026-02-03T11:59:34Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        }
+      ]
+    },
     {
       "number": 363,
       "title": "GitHub copilot",
@@ -121,7 +139,7 @@
       "title": "Game Idea: Scorched Earth",
       "state": "open",
       "created_at": "2026-02-01T03:05:46Z",
-      "updated_at": "2026-02-02T18:14:19Z",
+      "updated_at": "2026-02-03T11:55:01Z",
       "milestone": null,
       "labels": [
         {
