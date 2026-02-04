@@ -1,15 +1,91 @@
 {
-  "generated_at": "2026-02-04T22:24:14Z",
+  "generated_at": "2026-02-04T22:25:08Z",
   "focus": "assigned",
   "description": "Issues assigned to CloudStrife7 - What I am currently working on",
   "assignee": "CloudStrife7",
   "issues": [
     {
+      "number": 378,
+      "title": "AI Cat: Cat cam - first-person camera from Rags' perspective",
+      "state": "open",
+      "created_at": "2026-02-04T22:23:37Z",
+      "updated_at": "2026-02-04T22:24:44Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
+    {
+      "number": 376,
+      "title": "AI Cat: Stuck detection system",
+      "state": "open",
+      "created_at": "2026-02-04T22:23:01Z",
+      "updated_at": "2026-02-04T22:24:33Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
+    {
       "number": 374,
       "title": "AI Cat: Detailed behavior logging system",
       "state": "open",
       "created_at": "2026-02-04T22:22:48Z",
-      "updated_at": "2026-02-04T22:23:59Z",
+      "updated_at": "2026-02-04T22:25:05Z",
       "milestone": null,
       "labels": [
         {
@@ -43,12 +119,20 @@
       "title": "Heatmap: Output room analytics to in-world terminal and website",
       "state": "open",
       "created_at": "2026-02-04T22:22:33Z",
-      "updated_at": "2026-02-04T22:23:47Z",
+      "updated_at": "2026-02-04T22:24:54Z",
       "milestone": null,
       "labels": [
         {
           "name": "enhancement",
           "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
         },
         {
           "name": "player-focused",
@@ -69,7 +153,7 @@
       "title": "Heatmap: Auto-refresh interval for visualizer",
       "state": "open",
       "created_at": "2026-02-04T22:22:30Z",
-      "updated_at": "2026-02-04T22:23:38Z",
+      "updated_at": "2026-02-04T22:24:15Z",
       "milestone": null,
       "labels": [
         {
