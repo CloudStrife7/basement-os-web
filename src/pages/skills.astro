@@ -226,6 +226,34 @@ import TerminalShell from '../components/TerminalShell.astro';
                 </p>
             </div>
         </div>
+
+        <div class="separator">────────────────────────────────────────────────────────────────────────────────</div>
+
+        <h2 class="section-header">C:\BASEMENT\TOOLS.EXE</h2>
+
+        <div class="devlog-content">
+            <p>Open-source Unity Editor tools built during development. Each tool was created to solve a real problem in the project and works standalone in any Unity project. Scripts, documentation, and setup instructions included.</p>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card" id="npc-heatmap">
+                <h3>
+                    <span class="term" tabindex="0">
+                        <a href="https://github.com/CloudStrife7/basement-os-web/blob/main/docs/tools/npc-heatmap.md" class="link" target="_blank">[ npc-heatmap.md ]</a>
+                        <span class="tooltip">Two Editor scripts that track any NavMesh agent's position during Play mode and render a color-coded heatmap overlay in the Scene view. Logarithmic color scale, CSV crash recovery, zero configuration. Drop in and go.</span>
+                    </span>
+                </h3>
+                <p class="text-dim" style="margin-top: 8px;">
+                    Position tracking + heatmap visualization for NavMesh NPCs. Identifies dead zones, pathfinding bottlenecks, and coverage gaps.
+                </p>
+                <p style="margin-top: 8px;">
+                    <span class="text-primary">Includes:</span> NpcHeatmapTracker.cs, NpcHeatmapVisualizer.cs, setup guide, CSV format spec
+                </p>
+                <p style="margin-top: 8px;">
+                    <a href="/devlog/2026-02-04-ai-cat-became-my-qa-tester" class="link">→ Feb 4: How an AI Cat Became My QA Tester</a>
+                </p>
+            </div>
+        </div>
     </div>
   </TerminalShell>
 </BaseLayout>

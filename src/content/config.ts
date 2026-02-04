@@ -4,7 +4,7 @@ const devlog = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
-    // tags: z.array(z.string()).optional(),
+    tags: z.array(z.string()).optional(),
     type: z.enum(['milestone', 'update', 'meta', 'skip']).default('update'),
     description: z.string().optional(),
     layout: z.string().optional(),
