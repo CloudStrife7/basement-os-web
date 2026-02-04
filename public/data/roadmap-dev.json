@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-04T14:19:28Z",
+  "generated_at": "2026-02-04T22:22:48Z",
   "focus": "dev",
   "description": "Developer experience: AI workflow, UdonSharp, docs, automation",
   "issues": [
@@ -8,7 +8,7 @@
       "title": "Permission prompts spam breaks autonomous Claude Code flow",
       "state": "open",
       "created_at": "2026-02-04T14:07:24Z",
-      "updated_at": "2026-02-04T14:19:04Z",
+      "updated_at": "2026-02-04T14:19:23Z",
       "milestone": null,
       "labels": [
         {
