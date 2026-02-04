@@ -1,8 +1,34 @@
 {
-  "generated_at": "2026-02-04T22:23:25Z",
+  "generated_at": "2026-02-04T22:23:58Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
+    {
+      "number": 378,
+      "title": "AI Cat: Cat cam - first-person camera from Rags' perspective",
+      "state": "open",
+      "created_at": "2026-02-04T22:23:37Z",
+      "updated_at": "2026-02-04T22:23:37Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
     {
       "number": 375,
       "title": "AI Cat: Personality notes generated from analytics data",
@@ -26,7 +52,7 @@
       "title": "Heatmap: Output room analytics to in-world terminal and website",
       "state": "open",
       "created_at": "2026-02-04T22:22:33Z",
-      "updated_at": "2026-02-04T22:22:33Z",
+      "updated_at": "2026-02-04T22:23:47Z",
       "milestone": null,
       "labels": [
         {
@@ -36,6 +62,10 @@
         {
           "name": "player-focused",
           "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
         },
         {
           "name": "unity-required",
@@ -278,7 +308,7 @@
       "title": "AI Cat using Sisters In Gaming NavMesh NPC/AI System",
       "state": "open",
       "created_at": "2026-01-26T16:07:20Z",
-      "updated_at": "2026-02-04T20:30:30Z",
+      "updated_at": "2026-02-04T22:23:51Z",
       "milestone": null,
       "labels": [
         {
