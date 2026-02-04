@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-04T14:07:48Z",
+  "generated_at": "2026-02-04T14:19:28Z",
   "focus": "dev",
   "description": "Developer experience: AI workflow, UdonSharp, docs, automation",
   "issues": [
@@ -8,12 +8,16 @@
       "title": "Permission prompts spam breaks autonomous Claude Code flow",
       "state": "open",
       "created_at": "2026-02-04T14:07:24Z",
-      "updated_at": "2026-02-04T14:07:24Z",
+      "updated_at": "2026-02-04T14:19:04Z",
       "milestone": null,
       "labels": [
         {
           "name": "bug",
           "color": "d73a4a"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
         },
         {
           "name": "Good Agentic Build",
@@ -30,12 +34,16 @@
       "title": "Session timing breaks - monitor agent not persisting across sessions",
       "state": "open",
       "created_at": "2026-02-04T14:07:08Z",
-      "updated_at": "2026-02-04T14:07:08Z",
+      "updated_at": "2026-02-04T14:19:21Z",
       "milestone": null,
       "labels": [
         {
           "name": "bug",
           "color": "d73a4a"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
         },
         {
           "name": "Good Agentic Build",
