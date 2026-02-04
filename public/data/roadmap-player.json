@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-04T02:47:17Z",
+  "generated_at": "2026-02-04T03:56:43Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
@@ -238,7 +238,7 @@
       "title": "AI Cat using Sisters In Gaming NavMesh NPC/AI System",
       "state": "open",
       "created_at": "2026-01-26T16:07:20Z",
-      "updated_at": "2026-02-02T01:16:19Z",
+      "updated_at": "2026-02-04T03:56:18Z",
       "milestone": null,
       "labels": [
         {
@@ -248,6 +248,10 @@
         {
           "name": "priority: high",
           "color": "d93f0b"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
         },
         {
           "name": "player-focused",
