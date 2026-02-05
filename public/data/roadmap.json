@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-02-05T06:44:20Z",
+  "generated_at": "2026-02-05T14:24:51Z",
   "issues": [
     {
       "number": 379,
       "title": "AI Cat: Context-aware behaviors — watch TV, react to players, cat personality",
       "state": "open",
       "created_at": "2026-02-04T22:30:02Z",
-      "updated_at": "2026-02-05T02:49:30Z",
+      "updated_at": "2026-02-05T14:24:23Z",
       "milestone": null,
       "labels": [
         {
@@ -256,7 +256,7 @@
       "title": "Heatmap: Auto-refresh interval for visualizer",
       "state": "open",
       "created_at": "2026-02-04T22:22:30Z",
-      "updated_at": "2026-02-04T22:24:15Z",
+      "updated_at": "2026-02-05T14:24:32Z",
       "milestone": null,
       "labels": [
         {
@@ -266,6 +266,10 @@
         {
           "name": "priority: medium",
           "color": "fbca04"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
         },
         {
           "name": "Good Agentic Build",
@@ -961,7 +965,7 @@
       "title": "AI Cat using Sisters In Gaming NavMesh NPC/AI System",
       "state": "open",
       "created_at": "2026-01-26T16:07:20Z",
-      "updated_at": "2026-02-05T04:42:51Z",
+      "updated_at": "2026-02-05T14:24:22Z",
       "milestone": null,
       "labels": [
         {
