@@ -1,12 +1,86 @@
 {
-  "generated_at": "2026-02-06T14:46:38Z",
+  "generated_at": "2026-02-06T22:22:06Z",
   "issues": [
+    {
+      "number": 396,
+      "title": "Fix string interpolation in Blackjack ChipController.cs",
+      "state": "open",
+      "created_at": "2026-02-06T22:21:48Z",
+      "updated_at": "2026-02-06T22:21:48Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: high",
+          "color": "d93f0b"
+        },
+        {
+          "name": "area: games",
+          "color": "c5def5"
+        }
+      ]
+    },
+    {
+      "number": 395,
+      "title": "Fix DT_CacheManager maintenance loop never starts",
+      "state": "open",
+      "created_at": "2026-02-06T22:21:46Z",
+      "updated_at": "2026-02-06T22:21:46Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        }
+      ]
+    },
+    {
+      "number": 394,
+      "title": "Fix forbidden foreach loop in DT_WeatherModule.cs",
+      "state": "open",
+      "created_at": "2026-02-06T22:21:44Z",
+      "updated_at": "2026-02-06T22:21:44Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "maintenance",
+          "color": "fbca04"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "area: terminal",
+          "color": "1d76db"
+        }
+      ]
+    },
     {
       "number": 392,
       "title": "Using behavioral tracker from Unity IMPLIMENT into divoom and basement os on pv in world",
       "state": "open",
       "created_at": "2026-02-06T14:44:35Z",
-      "updated_at": "2026-02-06T14:45:56Z",
+      "updated_at": "2026-02-06T14:46:38Z",
       "milestone": null,
       "labels": [
         {
@@ -24,24 +98,6 @@
         {
           "name": "unity-required",
           "color": "5319E7"
-        }
-      ]
-    },
-    {
-      "number": 391,
-      "title": "Remove obsolete session-monitor spawn from /start skill",
-      "state": "open",
-      "created_at": "2026-02-06T13:21:00Z",
-      "updated_at": "2026-02-06T13:21:00Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
         }
       ]
     },
@@ -3154,6 +3210,25 @@
     }
   ],
   "closed": [
+    {
+      "number": 391,
+      "title": "Remove obsolete session-monitor spawn from /start skill",
+      "state": "closed",
+      "created_at": "2026-02-06T13:21:00Z",
+      "updated_at": "2026-02-06T20:48:21Z",
+      "closed_at": "2026-02-06T20:48:21Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
     {
       "number": 287,
       "title": "[BUG] Fix Quest Seating",

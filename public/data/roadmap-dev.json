@@ -1,26 +1,8 @@
 {
-  "generated_at": "2026-02-06T14:46:38Z",
+  "generated_at": "2026-02-06T22:22:06Z",
   "focus": "dev",
   "description": "Developer experience: AI workflow, UdonSharp, docs, automation",
   "issues": [
-    {
-      "number": 391,
-      "title": "Remove obsolete session-monitor spawn from /start skill",
-      "state": "open",
-      "created_at": "2026-02-06T13:21:00Z",
-      "updated_at": "2026-02-06T13:21:00Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
     {
       "number": 382,
       "title": "Revert AudioSource.maxDistance on Speakers children from 5 to 6.5",
@@ -1029,6 +1011,25 @@
     }
   ],
   "closed": [
+    {
+      "number": 391,
+      "title": "Remove obsolete session-monitor spawn from /start skill",
+      "state": "closed",
+      "created_at": "2026-02-06T13:21:00Z",
+      "updated_at": "2026-02-06T20:48:21Z",
+      "closed_at": "2026-02-06T20:48:21Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
     {
       "number": 360,
       "title": "Test: Terminal ProTV Enhancements (Video Controls, Audio Ducking, Timer)",
