@@ -1,6 +1,15 @@
 {
-  "generated_at": "2026-02-06T06:40:07Z",
+  "generated_at": "2026-02-06T12:40:56Z",
   "issues": [
+    {
+      "number": 390,
+      "title": "Fix window reflection- it doesn't line up with what's inside.  Glass may need to be flipped",
+      "state": "open",
+      "created_at": "2026-02-06T12:40:39Z",
+      "updated_at": "2026-02-06T12:40:39Z",
+      "milestone": null,
+      "labels": []
+    },
     {
       "number": 389,
       "title": "feat(npc): Cat blackjack table awareness - room-based detection",
