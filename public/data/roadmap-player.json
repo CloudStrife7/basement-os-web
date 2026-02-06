@@ -1,8 +1,26 @@
 {
-  "generated_at": "2026-02-06T02:46:48Z",
+  "generated_at": "2026-02-06T03:00:48Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
+    {
+      "number": 384,
+      "title": "Snake Game: Add pause/resume on trigger release with countdown",
+      "state": "open",
+      "created_at": "2026-02-06T03:00:32Z",
+      "updated_at": "2026-02-06T03:00:32Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        }
+      ]
+    },
     {
       "number": 381,
       "title": "Bugs 2/5",
