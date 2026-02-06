@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-06T02:46:25Z",
+  "generated_at": "2026-02-06T02:46:48Z",
   "focus": "dev",
   "description": "Developer experience: AI workflow, UdonSharp, docs, automation",
   "issues": [
@@ -8,7 +8,7 @@
       "title": "Revert AudioSource.maxDistance on Speakers children from 5 to 6.5",
       "state": "open",
       "created_at": "2026-02-06T02:44:52Z",
-      "updated_at": "2026-02-06T02:46:08Z",
+      "updated_at": "2026-02-06T02:46:38Z",
       "milestone": null,
       "labels": [
         {
