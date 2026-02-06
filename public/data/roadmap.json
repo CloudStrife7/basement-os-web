@@ -1,12 +1,30 @@
 {
-  "generated_at": "2026-02-06T01:54:36Z",
+  "generated_at": "2026-02-06T02:45:13Z",
   "issues": [
+    {
+      "number": 382,
+      "title": "Revert AudioSource.maxDistance on Speakers children from 5 to 6.5",
+      "state": "open",
+      "created_at": "2026-02-06T02:44:52Z",
+      "updated_at": "2026-02-06T02:44:52Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
     {
       "number": 381,
       "title": "Bugs 2/5",
       "state": "open",
       "created_at": "2026-02-06T01:52:58Z",
-      "updated_at": "2026-02-06T01:54:20Z",
+      "updated_at": "2026-02-06T02:30:52Z",
       "milestone": null,
       "labels": [
         {
