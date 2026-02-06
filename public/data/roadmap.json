@@ -1,14 +1,31 @@
 {
-  "generated_at": "2026-02-06T14:44:54Z",
+  "generated_at": "2026-02-06T14:46:14Z",
   "issues": [
     {
       "number": 392,
       "title": "Using behavioral tracker from Unity IMPLIMENT into divoom and basement os on pv in world",
       "state": "open",
       "created_at": "2026-02-06T14:44:35Z",
-      "updated_at": "2026-02-06T14:44:35Z",
+      "updated_at": "2026-02-06T14:45:56Z",
       "milestone": null,
-      "labels": []
+      "labels": [
+        {
+          "name": "priority: low",
+          "color": "0e8a16"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
     },
     {
       "number": 391,
