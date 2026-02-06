@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-05T23:23:19Z",
+  "generated_at": "2026-02-06T01:54:36Z",
   "focus": "dev",
   "description": "Developer experience: AI workflow, UdonSharp, docs, automation",
   "issues": [
@@ -114,7 +114,7 @@
       "title": "Heatmap: Auto-refresh interval for visualizer",
       "state": "open",
       "created_at": "2026-02-04T22:22:30Z",
-      "updated_at": "2026-02-05T14:24:32Z",
+      "updated_at": "2026-02-05T23:42:45Z",
       "milestone": null,
       "labels": [
         {
