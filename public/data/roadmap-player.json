@@ -1,34 +1,8 @@
 {
-  "generated_at": "2026-02-07T16:42:46Z",
+  "generated_at": "2026-02-07T21:40:45Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
-    {
-      "number": 401,
-      "title": "Rags NPC stuck 'walking in place' at NavMesh edges",
-      "state": "open",
-      "created_at": "2026-02-07T00:50:21Z",
-      "updated_at": "2026-02-07T00:54:58Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "bug",
-          "color": "d73a4a"
-        },
-        {
-          "name": "priority: critical",
-          "color": "b60205"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        },
-        {
-          "name": "unity-required",
-          "color": "5319E7"
-        }
-      ]
-    },
     {
       "number": 392,
       "title": "Using behavioral tracker from Unity IMPLIMENT into divoom and basement os on pv in world",
@@ -1593,6 +1567,33 @@
     }
   ],
   "closed": [
+    {
+      "number": 401,
+      "title": "Rags NPC stuck 'walking in place' at NavMesh edges",
+      "state": "closed",
+      "created_at": "2026-02-07T00:50:21Z",
+      "updated_at": "2026-02-07T21:40:36Z",
+      "closed_at": "2026-02-07T21:40:24Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "priority: critical",
+          "color": "b60205"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
     {
       "number": 287,
       "title": "[BUG] Fix Quest Seating",
