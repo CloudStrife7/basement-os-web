@@ -18,6 +18,11 @@ on:
     # Run every 5 minutes
     - cron: '*/5 * * * *'
   workflow_dispatch: # Allow manual trigger
+  # Also trigger after other workflows to keep repo active
+  workflow_run:
+    workflows: ["Deploy to GitHub Pages", "Update Weather Data"]
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: write
