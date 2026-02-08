@@ -1,66 +1,37 @@
 {
   "counters": {
-    "room-enter": 1,
-    "state_change": 11
+    "session-start": 0,
+    "session-end": 0,
+    "jump": 0,
+    "stuck": 0,
+    "unstuck": 0
+  },
+  "state_counts": {
+    "Idle": 0,
+    "Meow": 0,
+    "Stretch": 0,
+    "SitIdle": 0,
+    "CleanFace": 0,
+    "Sleep": 0,
+    "SlowWalk": 0,
+    "Walk": 0,
+    "Trot": 0,
+    "Run": 0
+  },
+  "room_counts": {
+    "Basement": 0,
+    "Theater": 0,
+    "Hallway": 0,
+    "Bathroom": 0,
+    "Bedroom": 0,
+    "Kitchen": 0,
+    "LivingRoom": 0,
+    "Garage": 0
   },
   "session_count": 0,
+  "total_jumps": 0,
+  "total_stuck_events": 0,
   "favorite_room": "Unknown",
   "favorite_state": "Unknown",
-  "room_counts": {},
-  "state_counts": {},
-  "total_stuck_events": 0,
-  "total_jumps": 0,
-  "recent_events": [
-    {
-      "type": "state_change",
-      "ts": 1770514823597,
-      "time": "2026-02-08T01:40:23.597Z"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770514818552,
-      "time": "2026-02-08T01:40:18.552Z"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770514813548,
-      "time": "2026-02-08T01:40:13.548Z"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770514788522,
-      "time": "2026-02-08T01:39:48.522Z"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770514778510,
-      "time": "2026-02-08T01:39:38.510Z"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770514773606,
-      "time": "2026-02-08T01:39:33.606Z"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770514758483,
-      "time": "2026-02-08T01:39:18.483Z"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770514743460,
-      "time": "2026-02-08T01:39:03.460Z"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770514738459,
-      "time": "2026-02-08T01:38:58.459Z"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770514728434,
-      "time": "2026-02-08T01:38:48.434Z"
-    }
-  ],
-  "last_updated": "2026-02-08T01:40:38.652Z"
+  "last_updated": ""
 }
