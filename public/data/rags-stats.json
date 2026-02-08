@@ -7,16 +7,16 @@
     "unstuck": 0
   },
   "state_counts": {
-    "Idle": 2,
+    "Idle": 4,
     "Meow": 1,
-    "Stretch": 0,
-    "SitIdle": 1,
-    "CleanFace": 1,
+    "Stretch": 1,
+    "SitIdle": 3,
+    "CleanFace": 2,
     "Sleep": 0,
-    "SlowWalk": 0,
-    "Walk": 3,
+    "SlowWalk": 1,
+    "Walk": 4,
     "Trot": 1,
-    "Run": 3
+    "Run": 4
   },
   "room_counts": {
     "Basement": 1,
@@ -32,6 +32,6 @@
   "total_jumps": 1,
   "total_stuck_events": 0,
   "favorite_room": "Basement",
-  "favorite_state": "Walk",
-  "last_updated": "2026-02-08T16:57:58.156Z"
+  "favorite_state": "Idle",
+  "last_updated": "2026-02-08T16:59:33.295Z"
 }
