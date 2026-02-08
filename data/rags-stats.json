@@ -7,7 +7,7 @@
     "unstuck": 0
   },
   "state_counts": {
-    "Idle": 2,
+    "Idle": 3,
     "Meow": 1,
     "Stretch": 0,
     "SitIdle": 1,
@@ -33,5 +33,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Basement",
   "favorite_state": "Run",
-  "last_updated": "2026-02-08T16:58:33.213Z"
+  "last_updated": "2026-02-08T16:58:43.188Z"
 }
