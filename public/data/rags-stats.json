@@ -1,88 +1,37 @@
 {
   "counters": {
-    "room-enter": 1,
-    "state_change": 381,
-    "jump": 14,
-    "room_enter": 23
+    "session-start": 0,
+    "session-end": 0,
+    "jump": 0,
+    "stuck": 0,
+    "unstuck": 0
+  },
+  "state_counts": {
+    "Idle": 1,
+    "Meow": 0,
+    "Stretch": 0,
+    "SitIdle": 0,
+    "CleanFace": 0,
+    "Sleep": 0,
+    "SlowWalk": 0,
+    "Walk": 0,
+    "Trot": 0,
+    "Run": 0
+  },
+  "room_counts": {
+    "Basement": 0,
+    "Theater": 0,
+    "Hallway": 0,
+    "Bathroom": 0,
+    "Bedroom": 0,
+    "Kitchen": 0,
+    "LivingRoom": 0,
+    "Garage": 0
   },
   "session_count": 0,
-  "favorite_room": "Unknown",
-  "favorite_state": "Walk",
-  "room_counts": {},
-  "state_counts": {
-    "Walk": 58,
-    "Run": 39,
-    "Idle": 26,
-    "Trot": 25,
-    "SlowWalk": 32,
-    "Stretch": 21,
-    "Meow": 20,
-    "SitIdle": 28,
-    "CleanFace": 23
-  },
+  "total_jumps": 0,
   "total_stuck_events": 0,
-  "total_jumps": 14,
-  "recent_events": [
-    {
-      "type": "state_change",
-      "ts": 1770532654371,
-      "time": "2026-02-08T06:37:34.371Z",
-      "state": "CleanFace"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770532624042,
-      "time": "2026-02-08T06:37:04.042Z",
-      "state": "CleanFace"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770532614021,
-      "time": "2026-02-08T06:36:54.021Z",
-      "state": "Meow"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770532593988,
-      "time": "2026-02-08T06:36:33.988Z",
-      "state": "Run"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770532583966,
-      "time": "2026-02-08T06:36:23.966Z",
-      "state": "Walk"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770532578938,
-      "time": "2026-02-08T06:36:18.938Z",
-      "state": "Stretch"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770532548865,
-      "time": "2026-02-08T06:35:48.865Z",
-      "state": "Trot"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770532523793,
-      "time": "2026-02-08T06:35:23.793Z",
-      "state": "Walk"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770532503730,
-      "time": "2026-02-08T06:35:03.730Z",
-      "state": "Walk"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770532498726,
-      "time": "2026-02-08T06:34:58.726Z",
-      "state": "Meow"
-    }
-  ],
-  "last_updated": "2026-02-08T16:02:03.492Z"
+  "favorite_room": "Unknown",
+  "favorite_state": "Idle",
+  "last_updated": "2026-02-08T16:29:05.670Z"
 }
