@@ -9,7 +9,7 @@
   "state_counts": {
     "Idle": 7,
     "Meow": 2,
-    "Stretch": 3,
+    "Stretch": 4,
     "SitIdle": 3,
     "CleanFace": 4,
     "Sleep": 0,
@@ -33,5 +33,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Basement",
   "favorite_state": "Idle",
-  "last_updated": "2026-02-08T17:03:43.619Z"
+  "last_updated": "2026-02-08T17:03:48.589Z"
 }
