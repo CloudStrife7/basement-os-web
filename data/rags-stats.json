@@ -2,7 +2,7 @@
   "counters": {
     "session-start": 0,
     "session-end": 0,
-    "jump": 4,
+    "jump": 5,
     "stuck": 0,
     "unstuck": 0
   },
@@ -29,9 +29,9 @@
     "Garage": 0
   },
   "session_count": 0,
-  "total_jumps": 4,
+  "total_jumps": 5,
   "total_stuck_events": 0,
   "favorite_room": "Basement",
   "favorite_state": "Idle",
-  "last_updated": "2026-02-08T17:07:18.908Z"
+  "last_updated": "2026-02-08T17:07:28.894Z"
 }
