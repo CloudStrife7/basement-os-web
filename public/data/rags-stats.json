@@ -1,87 +1,88 @@
 {
   "counters": {
     "room-enter": 1,
-    "state_change": 351,
-    "jump": 11,
-    "room_enter": 22
+    "state_change": 381,
+    "jump": 14,
+    "room_enter": 23
   },
   "session_count": 0,
   "favorite_room": "Unknown",
   "favorite_state": "Walk",
   "room_counts": {},
   "state_counts": {
-    "Walk": 48,
-    "Run": 37,
-    "Idle": 24,
-    "Trot": 23,
-    "SlowWalk": 31,
-    "Stretch": 19,
-    "Meow": 17,
-    "SitIdle": 26,
-    "CleanFace": 17
+    "Walk": 58,
+    "Run": 39,
+    "Idle": 26,
+    "Trot": 25,
+    "SlowWalk": 32,
+    "Stretch": 21,
+    "Meow": 20,
+    "SitIdle": 28,
+    "CleanFace": 23
   },
   "total_stuck_events": 0,
-  "total_jumps": 11,
+  "total_jumps": 14,
   "recent_events": [
     {
       "type": "state_change",
-      "ts": 1770530753772,
-      "time": "2026-02-08T06:05:53.772Z",
-      "state": "SlowWalk"
-    },
-    {
-      "type": "room_enter",
-      "ts": 1770530743765,
-      "time": "2026-02-08T06:05:43.765Z"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770530728727,
-      "time": "2026-02-08T06:05:28.727Z",
+      "ts": 1770532654371,
+      "time": "2026-02-08T06:37:34.371Z",
       "state": "CleanFace"
     },
     {
       "type": "state_change",
-      "ts": 1770530713702,
-      "time": "2026-02-08T06:05:13.702Z",
-      "state": "Run"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770530703687,
-      "time": "2026-02-08T06:05:03.687Z",
-      "state": "SitIdle"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770530693688,
-      "time": "2026-02-08T06:04:53.688Z",
+      "ts": 1770532624042,
+      "time": "2026-02-08T06:37:04.042Z",
       "state": "CleanFace"
     },
     {
       "type": "state_change",
-      "ts": 1770530678666,
-      "time": "2026-02-08T06:04:38.666Z",
-      "state": "Walk"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770530673662,
-      "time": "2026-02-08T06:04:33.662Z",
-      "state": "SitIdle"
-    },
-    {
-      "type": "state_change",
-      "ts": 1770530663730,
-      "time": "2026-02-08T06:04:23.730Z",
+      "ts": 1770532614021,
+      "time": "2026-02-08T06:36:54.021Z",
       "state": "Meow"
     },
     {
       "type": "state_change",
-      "ts": 1770530648632,
-      "time": "2026-02-08T06:04:08.632Z",
+      "ts": 1770532593988,
+      "time": "2026-02-08T06:36:33.988Z",
+      "state": "Run"
+    },
+    {
+      "type": "state_change",
+      "ts": 1770532583966,
+      "time": "2026-02-08T06:36:23.966Z",
       "state": "Walk"
+    },
+    {
+      "type": "state_change",
+      "ts": 1770532578938,
+      "time": "2026-02-08T06:36:18.938Z",
+      "state": "Stretch"
+    },
+    {
+      "type": "state_change",
+      "ts": 1770532548865,
+      "time": "2026-02-08T06:35:48.865Z",
+      "state": "Trot"
+    },
+    {
+      "type": "state_change",
+      "ts": 1770532523793,
+      "time": "2026-02-08T06:35:23.793Z",
+      "state": "Walk"
+    },
+    {
+      "type": "state_change",
+      "ts": 1770532503730,
+      "time": "2026-02-08T06:35:03.730Z",
+      "state": "Walk"
+    },
+    {
+      "type": "state_change",
+      "ts": 1770532498726,
+      "time": "2026-02-08T06:34:58.726Z",
+      "state": "Meow"
     }
   ],
-  "last_updated": "2026-02-08T06:10:28.172Z"
+  "last_updated": "2026-02-08T06:38:32.314Z"
 }
