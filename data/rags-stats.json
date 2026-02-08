@@ -19,19 +19,14 @@
     "Run": 6
   },
   "room_counts": {
-    "Basement": 1,
-    "Theater": 0,
-    "Hallway": 0,
-    "Bathroom": 0,
-    "Bedroom": 0,
-    "Kitchen": 0,
-    "LivingRoom": 0,
-    "Garage": 0
+    "Main Room": 0,
+    "Theater + Arcade": 0,
+    "Hot Tub": 0
   },
   "session_count": 0,
   "total_jumps": 5,
   "total_stuck_events": 0,
-  "favorite_room": "Basement",
+  "favorite_room": "Unknown",
   "favorite_state": "Walk",
   "last_updated": "2026-02-08T17:14:52.581Z"
 }
