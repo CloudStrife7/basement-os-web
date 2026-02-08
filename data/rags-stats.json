@@ -16,7 +16,7 @@
     "SlowWalk": 0,
     "Walk": 1,
     "Trot": 0,
-    "Run": 0
+    "Run": 1
   },
   "room_counts": {
     "Basement": 1,
@@ -33,5 +33,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Basement",
   "favorite_state": "Idle",
-  "last_updated": "2026-02-08T16:56:43.088Z"
+  "last_updated": "2026-02-08T16:56:58.105Z"
 }
