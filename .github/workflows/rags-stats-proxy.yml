@@ -1,0 +1,52 @@
+# GitHub Action: Rags Analytics Stats Proxy
+#
+# PURPOSE: Fetches cat behavior stats from Cloudflare Worker and saves to GitHub Pages
+# This creates a trusted URL (github.io) that VRChat can access without allowlist approval
+#
+# SETUP:
+# 1. Copy this file to your basement-os-web repo at: .github/workflows/rags-stats-proxy.yml
+# 2. Create the data directory if it doesn't exist
+# 3. Commit and push
+# 4. The action runs every 5 minutes and on manual trigger
+#
+# OUTPUT: https://cloudstrife7.github.io/basement-os-web/data/rags-stats.json
+
+name: Rags Stats Proxy
+
+on:
+  schedule:
+    # Run every 5 minutes
+    - cron: '*/5 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch Rags stats from Cloudflare Worker
+        run: |
+          mkdir -p data
+          curl -s "https://rags-analytics.cloudflare-landscape202.workers.dev/rags/stats" > data/rags-stats.json
+
+          # Validate JSON
+          if jq empty data/rags-stats.json 2>/dev/null; then
+            echo "Valid JSON received"
+            cat data/rags-stats.json
+          else
+            echo "Invalid JSON, keeping previous version"
+            git checkout data/rags-stats.json 2>/dev/null || echo "{}" > data/rags-stats.json
+          fi
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/rags-stats.json
+          git diff --staged --quiet || git commit -m "Update Rags stats [automated]"
+          git push
