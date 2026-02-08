@@ -1,68 +1,87 @@
 {
   "counters": {
     "room-enter": 1,
-    "state_change": 109,
+    "state_change": 124,
     "jump": 2,
     "room_enter": 6
   },
   "session_count": 0,
   "favorite_room": "Unknown",
-  "favorite_state": "Unknown",
+  "favorite_state": "Run",
   "room_counts": {},
-  "state_counts": {},
+  "state_counts": {
+    "Walk": 2,
+    "Run": 5,
+    "Idle": 3,
+    "Trot": 1,
+    "SlowWalk": 1,
+    "Stretch": 1,
+    "Meow": 1,
+    "SitIdle": 1
+  },
   "total_stuck_events": 0,
   "total_jumps": 2,
   "recent_events": [
     {
       "type": "state_change",
-      "ts": 1770517903890,
-      "time": "2026-02-08T02:31:43.890Z"
+      "ts": 1770521131621,
+      "time": "2026-02-08T03:25:31.621Z",
+      "state": "SitIdle"
     },
     {
       "type": "state_change",
-      "ts": 1770517888868,
-      "time": "2026-02-08T02:31:28.868Z"
+      "ts": 1770521116606,
+      "time": "2026-02-08T03:25:16.606Z",
+      "state": "Run"
     },
     {
       "type": "state_change",
-      "ts": 1770517883859,
-      "time": "2026-02-08T02:31:23.859Z"
+      "ts": 1770521111606,
+      "time": "2026-02-08T03:25:11.606Z",
+      "state": "Idle"
     },
     {
       "type": "state_change",
-      "ts": 1770517878851,
-      "time": "2026-02-08T02:31:18.851Z"
+      "ts": 1770521106606,
+      "time": "2026-02-08T03:25:06.606Z",
+      "state": "Meow"
     },
     {
       "type": "state_change",
-      "ts": 1770517873851,
-      "time": "2026-02-08T02:31:13.851Z"
+      "ts": 1770521091599,
+      "time": "2026-02-08T03:24:51.599Z",
+      "state": "Stretch"
     },
     {
       "type": "state_change",
-      "ts": 1770517863834,
-      "time": "2026-02-08T02:31:03.834Z"
+      "ts": 1770521081567,
+      "time": "2026-02-08T03:24:41.567Z",
+      "state": "Idle"
     },
     {
       "type": "state_change",
-      "ts": 1770517833806,
-      "time": "2026-02-08T02:30:33.806Z"
+      "ts": 1770521066558,
+      "time": "2026-02-08T03:24:26.558Z",
+      "state": "Run"
     },
     {
       "type": "state_change",
-      "ts": 1770517813583,
-      "time": "2026-02-08T02:30:13.583Z"
+      "ts": 1770521051536,
+      "time": "2026-02-08T03:24:11.536Z",
+      "state": "SlowWalk"
     },
     {
       "type": "state_change",
-      "ts": 1770517798551,
-      "time": "2026-02-08T02:29:58.551Z"
+      "ts": 1770521046529,
+      "time": "2026-02-08T03:24:06.529Z",
+      "state": "Trot"
     },
     {
       "type": "state_change",
-      "ts": 1770517793538,
-      "time": "2026-02-08T02:29:53.538Z"
+      "ts": 1770521036505,
+      "time": "2026-02-08T03:23:56.505Z",
+      "state": "Run"
     }
   ],
-  "last_updated": "2026-02-08T03:04:01.085Z"
+  "last_updated": "2026-02-08T03:25:46.483Z"
 }
