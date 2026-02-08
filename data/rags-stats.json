@@ -20,7 +20,7 @@
   },
   "room_counts": {
     "Main Room": 0,
-    "Theater + Arcade": 2,
+    "Theater + Arcade": 3,
     "Hot Tub": 1
   },
   "session_count": 0,
@@ -28,5 +28,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Theater + Arcade",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-08T23:32:01.234Z"
+  "last_updated": "2026-02-08T23:32:06.235Z"
 }
