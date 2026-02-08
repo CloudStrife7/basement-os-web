@@ -31,22 +31,22 @@ jobs:
 
       - name: Fetch Rags stats from Cloudflare Worker
         run: |
-          mkdir -p data
-          curl -s "https://rags-analytics.cloudflare-landscape202.workers.dev/rags/stats" > data/rags-stats.json
+          mkdir -p dist/data
+          curl -s "https://rags-analytics.cloudflare-landscape202.workers.dev/rags/stats" > dist/data/rags-stats.json
 
           # Validate JSON
-          if jq empty data/rags-stats.json 2>/dev/null; then
+          if jq empty dist/data/rags-stats.json 2>/dev/null; then
             echo "Valid JSON received"
-            cat data/rags-stats.json
+            cat dist/data/rags-stats.json
           else
             echo "Invalid JSON, keeping previous version"
-            git checkout data/rags-stats.json 2>/dev/null || echo "{}" > data/rags-stats.json
+            git checkout dist/data/rags-stats.json 2>/dev/null || echo "{}" > dist/data/rags-stats.json
           fi
 
       - name: Commit and push if changed
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add data/rags-stats.json
+          git add dist/data/rags-stats.json
           git diff --staged --quiet || git commit -m "Update Rags stats [automated]"
           git push
