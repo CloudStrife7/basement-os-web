@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-08T06:37:32Z",
+  "generated_at": "2026-02-09T00:02:38Z",
   "issues": [
     {
       "number": 402,
@@ -328,24 +328,6 @@
         {
           "name": "player-focused",
           "color": "2ea44f"
-        }
-      ]
-    },
-    {
-      "number": 383,
-      "title": "Easter Egg System: Yellow text glitch, incorrect glow, quiet videos",
-      "state": "open",
-      "created_at": "2026-02-06T03:00:30Z",
-      "updated_at": "2026-02-06T03:00:30Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "bug",
-          "color": "d73a4a"
-        },
-        {
-          "name": "unity-required",
-          "color": "5319E7"
         }
       ]
     },
@@ -3306,6 +3288,25 @@
     }
   ],
   "closed": [
+    {
+      "number": 383,
+      "title": "Easter Egg System: Yellow text glitch, incorrect glow, quiet videos",
+      "state": "closed",
+      "created_at": "2026-02-06T03:00:30Z",
+      "updated_at": "2026-02-09T00:02:22Z",
+      "closed_at": "2026-02-09T00:02:21Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
     {
       "number": 401,
       "title": "Rags NPC stuck 'walking in place' at NavMesh edges",
