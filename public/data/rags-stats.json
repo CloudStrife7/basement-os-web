@@ -14,12 +14,12 @@
     "CleanFace": 60,
     "Sleep": 2,
     "SlowWalk": 96,
-    "Walk": 184,
+    "Walk": 185,
     "Trot": 97,
     "Run": 102
   },
   "room_counts": {
-    "Main Room": 21,
+    "Main Room": 22,
     "Theater + Arcade": 10,
     "Hot Tub": 5
   },
@@ -28,5 +28,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Main Room",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-10T13:12:27.393Z"
+  "last_updated": "2026-02-10T13:12:52.488Z"
 }
