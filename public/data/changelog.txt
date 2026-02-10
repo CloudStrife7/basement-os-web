@@ -1,4 +1,10 @@
 What's new in the basement:
+
+Added on 2/9/26:
+- Added Rags the NPC Cat + behavior analytics tracking dashboard RAGS.EXE
+- Added Read/Unread Tracking with Player Persistence to Terminal Tales
+
+Previous updates:
 - Beat your best Snake run? It'll be here next time you are
 - The Nokia keeps track of the top 5 Snake scores
 - SCORES app added to the terminal - see where you stand on the leaderboards
