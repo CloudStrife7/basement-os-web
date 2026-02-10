@@ -14,7 +14,7 @@
     "CleanFace": 30,
     "Sleep": 0,
     "SlowWalk": 51,
-    "Walk": 89,
+    "Walk": 90,
     "Trot": 41,
     "Run": 49
   },
@@ -28,5 +28,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Main Room",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-10T11:30:15.919Z"
+  "last_updated": "2026-02-10T11:30:20.928Z"
 }
