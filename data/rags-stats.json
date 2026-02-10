@@ -11,7 +11,7 @@
     "Meow": 37,
     "Stretch": 32,
     "SitIdle": 44,
-    "CleanFace": 32,
+    "CleanFace": 33,
     "Sleep": 0,
     "SlowWalk": 55,
     "Walk": 103,
@@ -28,5 +28,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Main Room",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-10T11:42:07.995Z"
+  "last_updated": "2026-02-10T11:42:28.163Z"
 }
