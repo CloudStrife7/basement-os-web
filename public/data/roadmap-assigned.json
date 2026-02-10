@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-10T02:27:07Z",
+  "generated_at": "2026-02-10T02:30:48Z",
   "focus": "assigned",
   "description": "Issues assigned to CloudStrife7 - What I am currently working on",
   "assignee": "CloudStrife7",
@@ -669,28 +669,6 @@
         {
           "name": "needs-review",
           "color": "FBCA04"
-        }
-      ]
-    },
-    {
-      "number": 342,
-      "title": "[FEATURE] Jellyfin Music Streaming ",
-      "state": "open",
-      "created_at": "2026-01-29T14:34:07Z",
-      "updated_at": "2026-01-30T12:57:36Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "needs-review",
-          "color": "FBCA04"
-        },
-        {
-          "name": "backlog",
-          "color": "aaaaaa"
         }
       ]
     },
