@@ -2,7 +2,7 @@
   "counters": {
     "session-start": 8,
     "session-end": 0,
-    "jump": 106,
+    "jump": 108,
     "stuck": 0,
     "unstuck": 0
   },
@@ -24,9 +24,9 @@
     "Hot Tub": 1
   },
   "session_count": 23,
-  "total_jumps": 106,
+  "total_jumps": 108,
   "total_stuck_events": 0,
   "favorite_room": "Theater + Arcade",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-10T03:30:10.422Z"
+  "last_updated": "2026-02-10T03:32:31.147Z"
 }
