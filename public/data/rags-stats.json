@@ -10,16 +10,16 @@
     "Idle": 110,
     "Meow": 75,
     "Stretch": 60,
-    "SitIdle": 88,
+    "SitIdle": 89,
     "CleanFace": 68,
     "Sleep": 2,
     "SlowWalk": 102,
-    "Walk": 198,
-    "Trot": 107,
-    "Run": 113
+    "Walk": 199,
+    "Trot": 110,
+    "Run": 115
   },
   "room_counts": {
-    "Main Room": 25,
+    "Main Room": 26,
     "Theater + Arcade": 10,
     "Hot Tub": 5
   },
@@ -28,5 +28,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Main Room",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-10T13:34:21.458Z"
+  "last_updated": "2026-02-10T13:36:01.672Z"
 }
