@@ -2,20 +2,20 @@
   "counters": {
     "session-start": 13,
     "session-end": 0,
-    "jump": 166,
+    "jump": 167,
     "stuck": 0,
     "unstuck": 0
   },
   "state_counts": {
-    "Idle": 69,
+    "Idle": 70,
     "Meow": 43,
     "Stretch": 36,
     "SitIdle": 54,
-    "CleanFace": 41,
+    "CleanFace": 42,
     "Sleep": 1,
     "SlowWalk": 67,
     "Walk": 123,
-    "Trot": 66,
+    "Trot": 67,
     "Run": 73
   },
   "room_counts": {
@@ -24,9 +24,9 @@
     "Hot Tub": 3
   },
   "session_count": 28,
-  "total_jumps": 166,
+  "total_jumps": 167,
   "total_stuck_events": 0,
   "favorite_room": "Main Room",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-10T12:06:52.383Z"
+  "last_updated": "2026-02-10T12:07:42.569Z"
 }
