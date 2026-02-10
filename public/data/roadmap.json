@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-10T02:27:11Z",
+  "generated_at": "2026-02-10T02:30:49Z",
   "issues": [
     {
       "number": 402,
@@ -1164,28 +1164,6 @@
         {
           "name": "enhancement",
           "color": "a2eeef"
-        },
-        {
-          "name": "backlog",
-          "color": "aaaaaa"
-        }
-      ]
-    },
-    {
-      "number": 342,
-      "title": "[FEATURE] Jellyfin Music Streaming ",
-      "state": "open",
-      "created_at": "2026-01-29T14:34:07Z",
-      "updated_at": "2026-01-30T12:57:36Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "needs-review",
-          "color": "FBCA04"
         },
         {
           "name": "backlog",
@@ -3182,6 +3160,29 @@
     }
   ],
   "closed": [
+    {
+      "number": 342,
+      "title": "[FEATURE] Jellyfin Music Streaming ",
+      "state": "closed",
+      "created_at": "2026-01-29T14:34:07Z",
+      "updated_at": "2026-02-10T02:30:33Z",
+      "closed_at": "2026-02-10T02:30:33Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "backlog",
+          "color": "aaaaaa"
+        }
+      ]
+    },
     {
       "number": 376,
       "title": "AI Cat: Stuck detection system",
