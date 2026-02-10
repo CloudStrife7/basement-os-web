@@ -15,7 +15,7 @@
     "Sleep": 1,
     "SlowWalk": 76,
     "Walk": 143,
-    "Trot": 75,
+    "Trot": 77,
     "Run": 83
   },
   "room_counts": {
@@ -28,5 +28,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Main Room",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-10T12:25:20.782Z"
+  "last_updated": "2026-02-10T12:25:45.500Z"
 }
