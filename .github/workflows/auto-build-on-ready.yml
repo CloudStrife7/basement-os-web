@@ -1,0 +1,102 @@
+name: Auto-Build on Ready
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  check-and-build:
+    # Only run when ready-for-dev label is added
+    if: github.event.label.name == 'ready-for-dev'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+
+    steps:
+      - name: Check for Good Agentic Build label
+        id: check-gab
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = context.payload.issue.labels.map(l => l.name);
+            const hasGAB = labels.includes('Good Agentic Build');
+            const issueNumber = context.payload.issue.number;
+            const issueTitle = context.payload.issue.title;
+
+            console.log(`Issue #${issueNumber}: ${issueTitle}`);
+            console.log(`Labels: ${labels.join(', ')}`);
+            console.log(`Has Good Agentic Build: ${hasGAB}`);
+
+            if (!hasGAB) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `## Auto-Build Skipped\n\nThis issue has \`ready-for-dev\` but NOT \`Good Agentic Build\` label.\n\n**Reason**: Low agentic feasibility (<70%) - requires manual guidance.\n\n**To start manually**: \`@claude Resume issue #${issueNumber}\`\n\n---\n*Auto-build requires both \`ready-for-dev\` AND \`Good Agentic Build\` labels.*`
+              });
+              return { proceed: false };
+            }
+
+            return {
+              proceed: true,
+              issueNumber: issueNumber,
+              issueTitle: issueTitle
+            };
+
+      - name: Checkout repository
+        if: fromJSON(steps.check-gab.outputs.result).proceed
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Run Claude Implementation
+        if: fromJSON(steps.check-gab.outputs.result).proceed
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            ## Auto-Build Triggered
+
+            Issue #${{ github.event.issue.number }} has been approved for autonomous development.
+
+            **Title**: ${{ github.event.issue.title }}
+            **Labels**: ${{ join(github.event.issue.labels.*.name, ', ') }}
+
+            ## Project Context
+            This is the Basement OS website - a retro-futuristic CRT terminal experience.
+            - Frontend: Astro with vanilla CSS
+            - Style: Retro DOS/CRT terminal aesthetic
+            - Key directories: src/components/, src/pages/, src/styles/
+
+            ## Instructions
+
+            1. **Read the PRISM spec** from the issue comments (look for "## PRISM Analysis")
+            2. **Follow the implementation plan** from the PRISM spec
+            3. **Create a feature branch**: Use the branch name from the spec
+            4. **Implement the feature** following the phased plan
+            5. **Create a PR** with proper description and link to issue
+
+            ## Issue Body
+
+            ```
+            ${{ github.event.issue.body }}
+            ```
+
+            ## Key Reminders
+
+            - Maintain the retro CRT terminal aesthetic
+            - Use vanilla CSS (no frameworks)
+            - Follow existing component patterns in src/components/
+            - Test locally with `npm run dev` before committing
+
+            ## On Completion
+
+            - Create PR linking to issue #${{ github.event.issue.number }}
+            - Comment on the issue with progress summary
+            - If blocked, document blockers clearly in a comment
+
+          # Full tool access for implementation
+          claude_args: '--allowedTools Bash Read Write Edit Glob Grep'
