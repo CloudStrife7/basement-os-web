@@ -1,6 +1,8 @@
----title: "Symbolic Games POC"
+---
+title: "Symbolic Games POC"
 date: 2025-11-29
 tags: ["terminal", "games", "optimization", "TextMeshPro", "UdonSharp"]
+description: "Testing unicode-based games in the terminal — worked, but sprites won on Quest."
 ---
 Experimented with terminal-based games using unicode characters instead of sprites. Built breakout and pong prototypes that render using block characters.
 

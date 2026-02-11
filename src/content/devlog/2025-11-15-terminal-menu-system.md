@@ -1,6 +1,8 @@
----title: "Terminal Menu System Complete"
+---
+title: "Terminal Menu System Complete"
 date: 2025-11-15
 tags: ["terminal", "input", "weather", "VRCStation", "UdonSharp", "GitHub Pages API"]
+description: "Turning the terminal from an auto-cycling display into an interactive DOS-style menu."
 ---
 In a development instance I ran a POC that replaces the original auto-cycling display with an actual interactive menu. Players could use their movement controls to navigate up/down through options and select with the interact button.
 

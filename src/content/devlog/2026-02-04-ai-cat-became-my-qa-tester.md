@@ -3,6 +3,7 @@ title: "How an AI Cat Became My QA Tester"
 date: 2026-02-04
 tags: ["ai", "navmesh", "vrchat", "meta", "debugging"]
 type: meta
+description: "Turning a wandering NPC into an autonomous stress-tester that revealed bugs no scripted test ever would."
 ---
 
 ![Rags the cat wandering through the basement](/images/devlog/ai-cat-qa/rags-basement.png)

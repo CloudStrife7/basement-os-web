@@ -1,7 +1,9 @@
----title: "VRChat PlayerData Persistence"
+---
+title: "VRChat PlayerData Persistence"
 date: 2025-07-13
 tags: ["MILESTONE", "persistence", "vrchat", "udonsharp", "VRChat PlayerData API", "UdonSharp"]
 type: milestone
+description: "11-hour debugging marathon to make visit counts persist — the foundation for everything."
 ---
 Finally got VRChat's [PlayerData API](https://docs.vrchat.com/docs/player-persistence) working! Visit counts now persist between sessions. This took way longer than expected because of UdonSharp's limitations.
 

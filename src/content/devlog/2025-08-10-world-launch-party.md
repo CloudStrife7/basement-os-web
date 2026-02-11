@@ -3,6 +3,7 @@ title: "World Launch Party"
 date: 2025-08-10
 tags: ["MILESTONE", "launch", "social", "VRChat"]
 type: milestone
+description: "Watching achievements pop as friends joined for the first time."
 ---
 Hosted a private launch event for our founding members before opening Lower Level 2.0 to the public. Watching the achievement notifications pop as people joined was incredibly satisfying - exactly the vibe I was going for.
 

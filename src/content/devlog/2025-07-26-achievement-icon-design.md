@@ -2,6 +2,7 @@
 title: "Achievement Icon Design"
 date: 2025-07-26
 tags: ["art", "ui", "achievements", "Photopea", "Unity"]
+description: "Custom Xbox 360-style achievement icons made in Photopea."
 ---
 Designed custom icons for the Founders and Supporters achievements using [Photopea](https://www.photopea.com/). I highly recommend it as a free Photoshop alternative. Referenced actual Xbox 360 achievement art to match that 2000s gaming aesthetic.
 

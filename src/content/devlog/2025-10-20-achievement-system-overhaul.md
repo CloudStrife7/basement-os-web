@@ -1,7 +1,9 @@
----title: "Achievement System Overhaul"
+---
+title: "Achievement System Overhaul"
 date: 2025-10-20
 tags: ["MILESTONE", "achievements", "persistence", "xbox", "VRChat PlayerData API", "UdonSharp", "TextMeshPro"]
 type: milestone
+description: "19 achievements, 420G, Xbox 360-style popups — persistence without fancy C# features."
 ---
 Finally finished the Xbox 360-style achievement system! 19 achievements worth 420G implemented out of 1,000G leaves plenty of room for expansion with future ideas. This matches the original Xbox 360 gamer score point structure. The notifications pop up just like they did on the 360 - that satisfying sound effect and the animated banner!
 

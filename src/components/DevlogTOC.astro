@@ -49,6 +49,9 @@ const years = Object.keys(grouped).map(Number).sort((a, b) => b - a);
                                     </span>
                                     <span class="date">{post.data.date.getDate().toString().padStart(2, '0')}</span>
                                 </a>
+                                {post.data.description && (
+                                    <div class="toc-summary">{post.data.description}</div>
+                                )}
                             </div>
                         ))}
                     </div>

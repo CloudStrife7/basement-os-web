@@ -2,6 +2,7 @@
 title: "Introducing BBP: An AI-Driven Issue Prioritization System"
 date: 2025-12-29
 tags: ["automation", "ai", "workflow", "project-management", "meta"]
+description: "Building a system where agents don't just log bugs — they triage and prioritize them like a real team."
 ---
 
 After successfully having Claude Code autonomously implement `music.exe`—a Basement OS terminal app that integrates with ProTV 3.x for real-time playlist browsing and playback control—I wanted to scale that approach. Instead of picking issues randomly or by gut feeling, what if AI could act as a SCRUM master and pre-spec *everything*?

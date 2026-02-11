@@ -3,6 +3,7 @@ title: "MUSIC.EXE: 90% AI-Coded ProTV Integration for Basement OS"
 date: 2025-12-26
 tags: ["automation", "ai", "vrchat", "udonsharp", "milestone"]
 type: milestone
+description: "A terminal-native music player built almost entirely by AI — the first real test of the full-stack workflow."
 ---
 
 The default ProTV playlist UI worked, but doesn't match the asthetic of Lower Level 2.0, which is realism and nostalgia. I wanted a terminal-native music player that matched the DOS aesthetic and could be navigated with keyboard or joystick controls. Enter **MUSIC.EXE**: a fully functional ProTV music player app, coded 90% by AI with my guidance.

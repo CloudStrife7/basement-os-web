@@ -1,6 +1,8 @@
----title: "Refactoring CLAUDE.md"
+---
+title: "Refactoring CLAUDE.md"
 date: 2025-12-03
 tags: ["documentation", "meta-learning", "ai", "Claude Opus", "Claude Code"]
+description: "Using AI to improve how you work with AI. Meta-learning in practice."
 ---
 A coworker sent me [HumanLayer's guide to writing good CLAUDE.md files](https://www.humanlayer.dev/blog/writing-a-good-claude-md), and I couldn't help myself - had to try it immediately.
 

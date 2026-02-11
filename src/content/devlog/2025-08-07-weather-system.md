@@ -1,6 +1,8 @@
----title: "Weather System + Rain Shaders"
+---
+title: "Weather System + Rain Shaders"
 date: 2025-08-07
 tags: ["weather", "api", "shaders", "GitHub Pages", "VRCUrlLoader", "UdonSharp"]
+description: "Real-time Fond du Lac weather in VRChat — when it rains outside, it rains in the basement."
 ---
 Integrated real-time weather from Fond du Lac, WI using a GitHub Pages JSON endpoint. The terminal displays current conditions and when it's actually raining outside, the basement windows show rain effects.
 

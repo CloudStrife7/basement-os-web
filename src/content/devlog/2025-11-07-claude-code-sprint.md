@@ -1,7 +1,9 @@
----title: "Claude Code + Documentation Sprint"
+---
+title: "Claude Code + Documentation Sprint"
 date: 2025-11-07
 tags: ["MILESTONE", "documentation", "automation", "ai", "Claude Code", "GitHub", "Git"]
 type: milestone
+description: "First session with Claude Code — the moment AI stopped being a chatbot and became a collaborator."
 ---
 Started my first session with [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) - this is a game changer. Instead of copying code snippets back and forth, Claude can directly read my project files, write code, and even help with git commits.
 

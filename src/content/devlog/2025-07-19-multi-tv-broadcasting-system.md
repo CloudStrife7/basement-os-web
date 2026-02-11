@@ -1,6 +1,8 @@
----title: "Multi-TV Broadcasting System"
+---
+title: "Multi-TV Broadcasting System"
 date: 2025-07-19
 tags: ["notifications", "ui", "networking", "UdonSharp", "ProTV"]
+description: "Achievement notifications on all 3 TVs simultaneously via NotificationEventHub."
 ---
 Got notifications working on all 3 TVs simultaneously! The NotificationEventHub broadcasts to each display independently, so everyone in the basement sees achievements pop regardless of which room they're in.
 

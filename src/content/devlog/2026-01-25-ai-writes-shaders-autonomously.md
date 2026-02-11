@@ -3,6 +3,7 @@ title: "AI Writes Shaders Autonomously: A VRChat CRT Terminal Case Study"
 date: 2026-01-25
 tags: ["ai", "shaders", "vrchat", "milestone", "automation"]
 type: milestone
+description: "Letting an agent generate and validate shader code inside the project — and seeing where autonomy succeeds (and fails)."
 ---
 
 When I created Issue #295: Retro CRT Terminal Effects, I genuinely didn't think an AI could handle it. Shader programming is notoriously difficult - it requires understanding GPU architecture, HLSL/GLSL syntax, platform-specific quirks, and the subtle art of making things look good while maintaining performance.
