@@ -25,7 +25,7 @@ Or is this just where the constraints naturally lead?
 
 Then I saw the title of Stripe's post: ["Minions: Stripe's one-shot, end-to-end coding agents"](https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents).
 
-Before I even read it, I had a feeling.
+Just reading the title, I had a feeling.
 
 The phrasing. The scope. One-shot autonomous agents coordinating tools.
 
