@@ -23,7 +23,7 @@ How many other people are building systems like this?
 Am I exploring something unusual?
 Or is this just where the constraints naturally lead?
 
-Then I saw the title of Stripe's post about their ["Minions" coding agents](https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents).
+Then I saw the title of Stripe's post: ["Minions: Stripe's one-shot, end-to-end coding agents"](https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents).
 
 Before I even read it, I had a feeling.
 
