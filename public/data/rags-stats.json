@@ -10,12 +10,12 @@
     "Idle": 145,
     "Meow": 96,
     "Stretch": 83,
-    "SitIdle": 125,
+    "SitIdle": 126,
     "CleanFace": 92,
     "Sleep": 2,
     "SlowWalk": 135,
-    "Walk": 279,
-    "Trot": 149,
+    "Walk": 280,
+    "Trot": 151,
     "Run": 150
   },
   "room_counts": {
@@ -29,5 +29,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Main Room",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-11T06:08:49.923Z"
+  "last_updated": "2026-02-11T06:09:25.031Z"
 }
