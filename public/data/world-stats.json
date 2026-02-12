@@ -81,9 +81,9 @@
     }
   },
   "keypad": {
-    "total_attempts": 4,
+    "total_attempts": 5,
     "successes": 1,
-    "failed_attempts": 3,
+    "failed_attempts": 4,
     "codes_discovered": {
       "EGG1": 0,
       "EGG2": 0,
@@ -91,5 +91,5 @@
       "EGG4": 0
     }
   },
-  "last_updated": "2026-02-12T17:50:12.466Z"
+  "last_updated": "2026-02-12T17:51:42.619Z"
 }
