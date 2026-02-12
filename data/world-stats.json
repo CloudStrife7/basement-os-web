@@ -1,0 +1,25 @@
+{
+  "sessions": {
+    "total": 0,
+    "ended": 0
+  },
+  "achievements": {
+    "total_unlocks": 0,
+    "counts": {}
+  },
+  "tales": {
+    "total_reads": 0,
+    "story_reads": {}
+  },
+  "apps": {
+    "total_opens": 0,
+    "app_opens": {}
+  },
+  "keypad": {
+    "total_attempts": 0,
+    "successes": 0,
+    "failed_attempts": 0,
+    "codes_discovered": {}
+  },
+  "last_updated": "2026-02-12T02:49:11.830Z"
+}
