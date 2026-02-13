@@ -19,9 +19,14 @@ import TerminalShell from '../components/TerminalShell.astro';
         <p style="color: var(--text-secondary);">
           Become part of the <strong>Lower Level Legends</strong>—our official VRChat group. Get early access to new features, exclusive events, and connect with fellow basement dwellers who share your nostalgia for the golden era of gaming. Whether you're hunting achievements, exploring Terminal Tales, or just vibing to the lo-fi beats, this is where the community hangs out.
         </p>
-        <a href="https://vrchat.com/home/group/grp_039fe164-783f-4cdb-bee1-e44d9ccae229" target="_blank" class="support-link" style="margin-top: 15px;">
-          🎮 Join the Group on VRChat
-        </a>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+          <a href="https://vrchat.com/home/group/grp_039fe164-783f-4cdb-bee1-e44d9ccae229" target="_blank" class="support-link">
+            🎮 Join the Group on VRChat
+          </a>
+          <a href="https://bit.ly/LL2Discord" target="_blank" class="support-link discord-link">
+            💬 Join us on Discord
+          </a>
+        </div>
       </div>
 
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
@@ -69,6 +74,7 @@ import TerminalShell from '../components/TerminalShell.astro';
 
       <!-- Bottom CTA: Donate and Contact -->
       <div class="info-grid">
+<!-- Ko-fi link temporarily disabled
         <div class="info-card">
           <h3>[ Donate ]</h3>
           <p style="color: var(--text-secondary); margin-bottom: 15px;">Help cover hosting costs and fund new features.</p>
@@ -76,6 +82,7 @@ import TerminalShell from '../components/TerminalShell.astro';
             ☕ Support on Ko-fi
           </a>
         </div>
+-->
 
         <div class="info-card">
           <h3>[ Contact ]</h3>
@@ -115,6 +122,18 @@ import TerminalShell from '../components/TerminalShell.astro';
     background: transparent;
     color: var(--accent-primary);
     box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+  }
+
+  .discord-link {
+    background: #5865F2;
+    border-color: #5865F2;
+    color: #fff;
+  }
+
+  .discord-link:hover {
+    background: transparent;
+    color: #5865F2;
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
   }
 
   .cta-button {
