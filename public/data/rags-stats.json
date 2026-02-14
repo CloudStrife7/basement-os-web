@@ -13,7 +13,7 @@
     "SitIdle": 168,
     "CleanFace": 116,
     "Sleep": 18,
-    "SlowWalk": 169,
+    "SlowWalk": 170,
     "Walk": 358,
     "Trot": 206,
     "Run": 192
@@ -29,5 +29,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Main Room",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-14T01:29:48.998Z"
+  "last_updated": "2026-02-14T01:29:53.981Z"
 }
