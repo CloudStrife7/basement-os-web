@@ -62,7 +62,7 @@
     }
   },
   "apps": {
-    "total_opens": 10,
+    "total_opens": 11,
     "app_opens": {
       "Dashboard": 0,
       "Weather": 0,
@@ -74,7 +74,7 @@
       "CatStats": 0,
       "Changelog": 0,
       "GitHub": 2,
-      "Support": 0,
+      "Support": 1,
       "Analytics": 0,
       "Keypad": 3,
       "Tales": 1
@@ -91,5 +91,5 @@
       "EGG4": 0
     }
   },
-  "last_updated": "2026-02-14T23:23:53.626Z"
+  "last_updated": "2026-02-14T23:23:58.588Z"
 }
