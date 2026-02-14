@@ -62,13 +62,13 @@
     }
   },
   "apps": {
-    "total_opens": 8,
+    "total_opens": 9,
     "app_opens": {
       "Dashboard": 0,
       "Weather": 0,
       "Settings": 0,
       "Games": 1,
-      "HighScores": 0,
+      "HighScores": 1,
       "Music": 0,
       "Stats": 1,
       "CatStats": 0,
@@ -91,5 +91,5 @@
       "EGG4": 0
     }
   },
-  "last_updated": "2026-02-14T23:23:03.500Z"
+  "last_updated": "2026-02-14T23:23:38.548Z"
 }
