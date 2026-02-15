@@ -8,7 +8,7 @@
   },
   "state_counts": {
     "Idle": 269,
-    "Meow": 191,
+    "Meow": 192,
     "Stretch": 172,
     "SitIdle": 236,
     "CleanFace": 157,
@@ -29,5 +29,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Main Room",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-15T22:57:04.946Z"
+  "last_updated": "2026-02-15T22:57:09.952Z"
 }
