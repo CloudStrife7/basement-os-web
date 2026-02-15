@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-14T06:32:14Z",
+  "generated_at": "2026-02-15T06:38:17Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
@@ -1174,7 +1174,7 @@
       "title": "[CONCEPT] Working Video Tape",
       "state": "open",
       "created_at": "2025-11-18T06:08:09Z",
-      "updated_at": "2026-01-27T02:42:03Z",
+      "updated_at": "2026-02-14T14:13:19Z",
       "milestone": null,
       "labels": [
         {
