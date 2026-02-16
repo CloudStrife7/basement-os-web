@@ -62,7 +62,7 @@
     }
   },
   "apps": {
-    "total_opens": 140,
+    "total_opens": 141,
     "app_opens": {
       "Dashboard": 0,
       "Weather": 0,
@@ -77,7 +77,7 @@
       "Support": 5,
       "Analytics": 0,
       "Keypad": 8,
-      "Tales": 7
+      "Tales": 8
     }
   },
   "keypad": {
@@ -91,5 +91,5 @@
       "EGG4": 0
     }
   },
-  "last_updated": "2026-02-16T07:36:51.290Z"
+  "last_updated": "2026-02-16T07:37:06.294Z"
 }
