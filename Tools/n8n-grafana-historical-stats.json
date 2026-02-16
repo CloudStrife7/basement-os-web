@@ -1,22 +1,22 @@
 {
-  "name": "Grafana Historical Stats to GitHub",
+  "name": "VRChat Stats to GitHub (Historical + Live)",
   "nodes": [
     {
       "parameters": {
         "rule": {
           "interval": [
             {
-              "field": "hours",
-              "hoursInterval": 1
+              "field": "minutes",
+              "minutesInterval": 30
             }
           ]
         }
       },
       "id": "schedule-trigger",
-      "name": "Hourly Trigger",
+      "name": "Every 30 Minutes",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
-      "position": [0, 0]
+      "position": [0, 100]
     },
     {
       "parameters": {
@@ -35,14 +35,14 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"queries\": [\n    {\n      \"datasource\": { \"type\": \"influxdb\", \"uid\": \"acbd2a70-f5a8-4dd8-8447-a64c4bbf54a0\" },\n      \"query\": \"from(bucket: \\\"vrchat-stats\\\") |> range(start: -6mo) |> filter(fn: (r) => r._measurement == \\\"world_stats\\\" and r._field == \\\"visits\\\") |> aggregateWindow(every: 1w, fn: last, createEmpty: false)\",\n      \"refId\": \"visits\"\n    },\n    {\n      \"datasource\": { \"type\": \"influxdb\", \"uid\": \"acbd2a70-f5a8-4dd8-8447-a64c4bbf54a0\" },\n      \"query\": \"from(bucket: \\\"vrchat-stats\\\") |> range(start: -6mo) |> filter(fn: (r) => r._measurement == \\\"world_stats\\\" and r._field == \\\"favorites\\\") |> aggregateWindow(every: 1w, fn: last, createEmpty: false)\",\n      \"refId\": \"favorites\"\n    }\n  ],\n  \"from\": \"now-6M\",\n  \"to\": \"now\"\n}",
+        "jsonBody": "={\n  \"queries\": [\n    {\n      \"datasource\": { \"type\": \"influxdb\", \"uid\": \"acbd2a70-f5a8-4dd8-8447-a64c4bbf54a0\" },\n      \"query\": \"from(bucket: \\\"vrchat-stats\\\") |> range(start: -6mo) |> filter(fn: (r) => r._measurement == \\\"vrchat_world\\\" and r._field == \\\"visits\\\") |> aggregateWindow(every: 1w, fn: last, createEmpty: false)\",\n      \"refId\": \"visits\"\n    },\n    {\n      \"datasource\": { \"type\": \"influxdb\", \"uid\": \"acbd2a70-f5a8-4dd8-8447-a64c4bbf54a0\" },\n      \"query\": \"from(bucket: \\\"vrchat-stats\\\") |> range(start: -6mo) |> filter(fn: (r) => r._measurement == \\\"vrchat_world\\\" and r._field == \\\"favorites\\\") |> aggregateWindow(every: 1w, fn: last, createEmpty: false)\",\n      \"refId\": \"favorites\"\n    }\n  ],\n  \"from\": \"now-6M\",\n  \"to\": \"now\"\n}",
         "options": {}
       },
       "id": "query-grafana",
       "name": "Query Grafana",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [220, 0],
+      "position": [240, 0],
       "credentials": {
         "httpHeaderAuth": {
           "id": "YOUR_CREDENTIAL_ID",
@@ -53,13 +53,13 @@
     {
       "parameters": {
         "mode": "runOnceForAllItems",
-        "jsCode": "// Parse Grafana response and format for stats page\nconst results = $input.first().json.results || {};\n\nfunction extractData(refId) {\n  const frames = results[refId]?.frames || [];\n  const data = [];\n  \n  for (const frame of frames) {\n    const times = frame.data?.values?.[0] || [];\n    const values = frame.data?.values?.[1] || [];\n    \n    for (let i = 0; i < times.length; i++) {\n      const date = new Date(times[i]).toISOString().split('T')[0];\n      const value = Math.round(values[i] || 0);\n      data.push({ date, value });\n    }\n  }\n  \n  // Sort by date and dedupe\n  data.sort((a, b) => a.date.localeCompare(b.date));\n  return data;\n}\n\nconst visits = extractData('visits');\nconst favorites = extractData('favorites');\n\nconst output = {\n  updated_at: new Date().toISOString(),\n  description: \"Historical stats from Grafana via n8n. Auto-updated hourly.\",\n  visits,\n  favorites\n};\n\nreturn [{ json: output }];"
+        "jsCode": "// Parse Grafana response and format for stats page\nconst results = $input.first().json.results || {};\n\nfunction extractData(refId) {\n  const frames = results[refId]?.frames || [];\n  const data = [];\n  \n  for (const frame of frames) {\n    const times = frame.data?.values?.[0] || [];\n    const values = frame.data?.values?.[1] || [];\n    \n    for (let i = 0; i < times.length; i++) {\n      const date = new Date(times[i]).toISOString().split('T')[0];\n      const value = Math.round(values[i] || 0);\n      data.push({ date, value });\n    }\n  }\n  \n  // Sort by date and dedupe\n  data.sort((a, b) => a.date.localeCompare(b.date));\n  return data;\n}\n\nconst visits = extractData('visits');\nconst favorites = extractData('favorites');\n\nconst output = {\n  updated_at: new Date().toISOString(),\n  description: \"Historical stats from Grafana via n8n. Auto-updated every 30 minutes.\",\n  visits,\n  favorites\n};\n\nreturn [{ json: output }];"
       },
-      "id": "transform-json",
-      "name": "Transform to JSON",
+      "id": "transform-historical",
+      "name": "Transform Historical",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [440, 0]
+      "position": [460, 0]
     },
     {
       "parameters": {
@@ -67,9 +67,9 @@
         "operation": "edit",
         "owner": {
           "__rl": true,
-          "value": "YOUR_GITHUB_USERNAME",
+          "value": "CloudStrife7",
           "mode": "list",
-          "cachedResultName": "YOUR_GITHUB_USERNAME"
+          "cachedResultName": "CloudStrife7"
         },
         "repository": {
           "__rl": true,
@@ -82,11 +82,67 @@
         "commitMessage": "chore: update historical stats [automated]",
         "additionalParameters": {}
       },
-      "id": "github-commit",
-      "name": "Commit to GitHub",
+      "id": "github-commit-historical",
+      "name": "Commit Historical",
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
-      "position": [660, 0],
+      "position": [680, 0],
+      "credentials": {
+        "githubApi": {
+          "id": "YOUR_GITHUB_CREDENTIAL_ID",
+          "name": "GitHub"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.vrchat.cloud/api/1/worlds/wrld_7302897c-be0f-4037-ac67-76f0ea065c2b?apiKey=JlE5Jldo5Jibnk5O5hTx6XVqsJyIkZVd",
+        "options": {}
+      },
+      "id": "fetch-vrchat",
+      "name": "Fetch VRChat API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [240, 200]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const data = $input.first().json;\n\nconst output = {\n  visits: data.visits || 0,\n  favorites: data.favorites || 0,\n  popularity: data.popularity || 0,\n  occupants: data.occupants || 0,\n  publicOccupants: data.publicOccupants || 0,\n  privateOccupants: data.privateOccupants || 0,\n  heat: data.heat || 0,\n  name: data.name || 'The Lower Level 2.0',\n  updated_at: new Date().toISOString()\n};\n\nreturn [{ json: output }];"
+      },
+      "id": "transform-live",
+      "name": "Transform Live Stats",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 200]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "CloudStrife7",
+          "mode": "list",
+          "cachedResultName": "CloudStrife7"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "basement-os-web",
+          "mode": "list",
+          "cachedResultName": "basement-os-web"
+        },
+        "filePath": "public/data/vrchat-world.json",
+        "fileContent": "={{ JSON.stringify($json, null, 2) }}",
+        "commitMessage": "chore: update VRChat world stats [automated]",
+        "additionalParameters": {}
+      },
+      "id": "github-commit-live",
+      "name": "Commit Live Stats",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [680, 200],
       "credentials": {
         "githubApi": {
           "id": "YOUR_GITHUB_CREDENTIAL_ID",
@@ -96,11 +152,16 @@
     }
   ],
   "connections": {
-    "Hourly Trigger": {
+    "Every 30 Minutes": {
       "main": [
         [
           {
             "node": "Query Grafana",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch VRChat API",
             "type": "main",
             "index": 0
           }
@@ -111,18 +172,40 @@
       "main": [
         [
           {
-            "node": "Transform to JSON",
+            "node": "Transform Historical",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Transform to JSON": {
+    "Transform Historical": {
       "main": [
         [
           {
-            "node": "Commit to GitHub",
+            "node": "Commit Historical",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch VRChat API": {
+      "main": [
+        [
+          {
+            "node": "Transform Live Stats",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transform Live Stats": {
+      "main": [
+        [
+          {
+            "node": "Commit Live Stats",
             "type": "main",
             "index": 0
           }
