@@ -1,6 +1,6 @@
 ---
 interface Props {
-  activeSection?: 'home' | 'story' | 'devlog' | 'skills' | 'support' | 'achievements' | 'roadmap' | 'bifrost';
+  activeSection?: 'home' | 'story' | 'devlog' | 'skills' | 'support' | 'achievements' | 'roadmap' | 'bifrost' | 'stats';
 }
 
 import ModeSelection from './ModeSelection.astro';
@@ -67,6 +67,9 @@ const { activeSection = 'home' } = Astro.props;
       </a>
       <a href="/roadmap" id="roadmap-link" class={`nav-btn ${activeSection === 'roadmap' ? 'active' : ''}`}>
         <span class="type">&lt;MAP&gt;</span> ROADMAP
+      </a>
+      <a href="/stats" class={`nav-btn ${activeSection === 'stats' ? 'active' : ''}`}>
+        <span class="type">&lt;DB&gt;</span> STATS
       </a>
       <button class="nav-btn" id="terminal-toggle">
         <span class="type">&lt;SSH&gt;</span> TERMINAL

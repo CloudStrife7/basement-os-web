@@ -1,0 +1,714 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TerminalShell from '../components/TerminalShell.astro';
+---
+
+<BaseLayout title="STATS - BASEMENT OS">
+  <TerminalShell activeSection="stats">
+    <div class="content-section active">
+      <h2 class="section-header">C:\BASEMENT\STATS.EXE</h2>
+
+      <!-- World Status + Cat Telemetry Row -->
+      <div class="stats-row-cards">
+        <div class="info-card">
+          <h3>[ World Status ]</h3>
+          <div class="stats-grid-compact stats-4col">
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="stat-visits">--</span>
+              <span class="stat-label-compact">VISITS</span>
+            </div>
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="stat-favorites">--</span>
+              <span class="stat-label-compact">FAVORITES</span>
+            </div>
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="stat-online">--</span>
+              <span class="stat-label-compact">ONLINE</span>
+            </div>
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="stat-popularity">--</span>
+              <span class="stat-label-compact">POPULARITY</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>[ Cat Telemetry ]</h3>
+          <div class="stats-grid-compact stats-4col">
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="cat-sessions">--</span>
+              <span class="stat-label-compact">SESSIONS</span>
+            </div>
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="cat-jumps">--</span>
+              <span class="stat-label-compact">JUMPS</span>
+            </div>
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="cat-favorite-state">--</span>
+              <span class="stat-label-compact">FAVORITE</span>
+            </div>
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="cat-favorite-room">--</span>
+              <span class="stat-label-compact">ROOM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- Room Preferences Chart -->
+      <div class="info-card chart-card">
+        <h3>[ Room Preferences ]</h3>
+        <div class="chart-container">
+          <canvas id="room-chart"></canvas>
+        </div>
+        <p class="chart-caption" id="room-chart-caption">Loading cat room data...</p>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- Visits Over Time Chart -->
+      <div class="info-card chart-card">
+        <h3>[ Visits Over Time ]</h3>
+        <div class="chart-container chart-line">
+          <canvas id="visits-chart"></canvas>
+        </div>
+        <p class="chart-caption" id="visits-chart-caption">Loading historical data...</p>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- Achievements + Terminal Tales Row -->
+      <div class="stats-row-cards">
+        <div class="info-card">
+          <h3>[ Achievements ]</h3>
+          <div class="stats-grid-compact stats-2col">
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="achievement-unlocks">--</span>
+              <span class="stat-label-compact">UNLOCKS</span>
+            </div>
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="achievement-total">39</span>
+              <span class="stat-label-compact">TOTAL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>[ Terminal Tales ]</h3>
+          <div class="stats-grid-compact stats-2col">
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="tales-reads">--</span>
+              <span class="stat-label-compact">READS</span>
+            </div>
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="tales-total">17</span>
+              <span class="stat-label-compact">STORIES</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- Keypad Secrets + DOS Apps Row -->
+      <div class="stats-row-cards">
+        <div class="info-card">
+          <h3>[ Keypad Secrets ]</h3>
+          <div class="stats-grid-compact stats-2col">
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="keypad-attempts">--</span>
+              <span class="stat-label-compact">ATTEMPTS</span>
+            </div>
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="keypad-success">--</span>
+              <span class="stat-label-compact">SUCCESS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>[ DOS Apps ]</h3>
+          <div class="stats-grid-compact stats-2col">
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="apps-opens">--</span>
+              <span class="stat-label-compact">OPENS</span>
+            </div>
+            <div class="stat-block-compact">
+              <span class="stat-number-compact" id="apps-most-used">--</span>
+              <span class="stat-label-compact">MOST USED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- Footer with refresh button -->
+      <div class="stats-footer">
+        <span class="stats-updated" id="last-updated">Last Updated: Loading...</span>
+        <button class="cta-button-small" id="refresh-btn">Refresh</button>
+      </div>
+
+    </div>
+  </TerminalShell>
+</BaseLayout>
+
+<style>
+  /* Stats page specific styles */
+  .stats-row-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  .stats-4col {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .stats-2col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats-grid-compact {
+    display: grid;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .stat-block-compact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 5px;
+  }
+
+  .stat-number-compact {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: var(--accent-primary);
+    font-family: var(--font-mono);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label-compact {
+    font-size: 0.55em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: var(--font-mono);
+  }
+
+  /* Chart containers */
+  .chart-card {
+    padding: 15px;
+  }
+
+  .chart-container {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .chart-container.chart-line {
+    height: 250px;
+  }
+
+  .chart-caption {
+    text-align: center;
+    font-size: 0.75em;
+    color: var(--text-dim);
+    margin-top: 10px;
+  }
+
+  /* Stats footer */
+  .stats-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .stats-updated {
+    color: var(--text-dim);
+    font-size: 0.85em;
+  }
+
+  .cta-button-small {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    border: 1px solid var(--accent-primary);
+    padding: 8px 16px;
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .cta-button-small:hover {
+    background: transparent;
+    color: var(--accent-primary);
+  }
+
+  .cta-button-small:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .stats-row-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .stats-4col {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-container {
+      height: 180px;
+    }
+
+    .chart-container.chart-line {
+      height: 200px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-4col {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-number-compact {
+      font-size: 1.2em;
+    }
+
+    .stats-footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<script>
+  import Chart from 'chart.js/auto';
+
+  // =========================================================================
+  // THEME-AWARE CHART COLORS
+  // =========================================================================
+
+  function getThemeColors() {
+    const style = getComputedStyle(document.documentElement);
+    return {
+      primary: style.getPropertyValue('--accent-primary').trim() || '#10b981',
+      secondary: style.getPropertyValue('--accent-secondary').trim() || '#34d399',
+      bg: style.getPropertyValue('--bg-secondary').trim() || '#0a0a0a',
+      text: style.getPropertyValue('--text-primary').trim() || '#ffffff',
+      textDim: style.getPropertyValue('--text-dim').trim() || '#888888',
+      border: style.getPropertyValue('--border-color').trim() || '#333333',
+      link: style.getPropertyValue('--accent-link').trim() || '#00ffff',
+      alert: style.getPropertyValue('--accent-alert').trim() || '#ffb347',
+    };
+  }
+
+  // =========================================================================
+  // API ENDPOINTS
+  // =========================================================================
+
+  const WORLD_ID = "wrld_7302897c-be0f-4037-ac67-76f0ea065c2b";
+  const VRCHAT_API_KEY = "JlE5Jldo5Jibnk5O5hTx6XVqsJyIkZVd"; // Public API key
+  const WORLD_STATS_API = 'https://rags-analytics.cloudflare-landscape202.workers.dev/world/stats';
+  const CAT_STATS_API = 'https://rags-analytics.cloudflare-landscape202.workers.dev/rags/stats';
+  const HISTORICAL_STATS_URL = '/data/historical-stats.json';
+
+  // =========================================================================
+  // CHART INSTANCES (for cleanup on theme change)
+  // =========================================================================
+
+  let roomChart: Chart | null = null;
+  let visitsChart: Chart | null = null;
+
+  // =========================================================================
+  // FETCH FUNCTIONS
+  // =========================================================================
+
+  async function fetchVRChatStats() {
+    const targetUrl = `https://api.vrchat.cloud/api/1/worlds/${WORLD_ID}?apiKey=${VRCHAT_API_KEY}`;
+    const corsProxies = [
+      `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`,
+      `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`,
+    ];
+
+    for (const proxy of corsProxies) {
+      try {
+        const response = await fetch(proxy, {
+          method: 'GET',
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!response.ok) continue;
+        const data = await response.json();
+        return data.contents ? JSON.parse(data.contents) : data;
+      } catch (e) {
+        continue;
+      }
+    }
+    throw new Error('All VRChat API proxies failed');
+  }
+
+  async function fetchWorldStats() {
+    try {
+      const response = await fetch(WORLD_STATS_API);
+      if (!response.ok) throw new Error('Failed to fetch world stats');
+      return await response.json();
+    } catch (e) {
+      console.error('World stats fetch failed:', e);
+      return null;
+    }
+  }
+
+  async function fetchCatStats() {
+    try {
+      const response = await fetch(CAT_STATS_API);
+      if (!response.ok) throw new Error('Failed to fetch cat stats');
+      return await response.json();
+    } catch (e) {
+      console.error('Cat stats fetch failed:', e);
+      return null;
+    }
+  }
+
+  async function fetchHistoricalStats() {
+    try {
+      const response = await fetch(HISTORICAL_STATS_URL);
+      if (!response.ok) throw new Error('Failed to fetch historical stats');
+      return await response.json();
+    } catch (e) {
+      console.error('Historical stats fetch failed:', e);
+      return null;
+    }
+  }
+
+  // =========================================================================
+  // UI UPDATE FUNCTIONS
+  // =========================================================================
+
+  function updateElement(id: string, value: string | number) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = String(value);
+  }
+
+  function formatNumber(num: number): string {
+    return new Intl.NumberFormat().format(num);
+  }
+
+  function updateVRChatStats(data: any) {
+    if (!data) return;
+    updateElement('stat-visits', formatNumber(data.visits || 0));
+    updateElement('stat-favorites', formatNumber(data.favorites || 0));
+    updateElement('stat-online', formatNumber(data.occupants || 0));
+    updateElement('stat-popularity', formatNumber(data.popularity || 0));
+  }
+
+  function updateWorldStats(data: any) {
+    if (!data) return;
+    // Achievements
+    updateElement('achievement-unlocks', formatNumber(data.achievement_unlocks || 0));
+    // Tales
+    updateElement('tales-reads', formatNumber(data.tales_reads || 0));
+    // Keypad
+    updateElement('keypad-attempts', formatNumber(data.keypad_attempts || 0));
+    updateElement('keypad-success', formatNumber(data.keypad_success || 0));
+    // Apps
+    updateElement('apps-opens', formatNumber(data.apps_opens || 0));
+    updateElement('apps-most-used', data.apps_most_used || 'Stats');
+  }
+
+  function updateCatStats(data: any) {
+    if (!data) return;
+    updateElement('cat-sessions', formatNumber(data.session_count || 0));
+    updateElement('cat-jumps', formatNumber(data.total_jumps || 0));
+    updateElement('cat-favorite-state', data.favorite_state || 'Walk');
+    updateElement('cat-favorite-room', data.favorite_room || 'Main');
+  }
+
+  // =========================================================================
+  // CHART CREATION
+  // =========================================================================
+
+  function createRoomChart(data: any) {
+    const ctx = document.getElementById('room-chart') as HTMLCanvasElement;
+    if (!ctx) return;
+
+    const colors = getThemeColors();
+    const roomCounts = data?.room_counts || {};
+
+    // Sort rooms by count and get top entries
+    const entries = Object.entries(roomCounts)
+      .sort(([, a]: any, [, b]: any) => b - a)
+      .slice(0, 6);
+
+    if (entries.length === 0) {
+      updateElement('room-chart-caption', 'No room data available');
+      return;
+    }
+
+    const labels = entries.map(([room]) => room);
+    const values = entries.map(([, count]) => count as number);
+    const total = values.reduce((sum, v) => sum + v, 0);
+
+    // Generate color palette from theme
+    const colorPalette = [
+      colors.primary,
+      colors.secondary,
+      colors.link,
+      colors.alert,
+      colors.textDim,
+      colors.border,
+    ];
+
+    // Destroy existing chart if present
+    if (roomChart) {
+      roomChart.destroy();
+    }
+
+    roomChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: values,
+          backgroundColor: colorPalette.map(c => c + '80'), // Add alpha
+          borderColor: colorPalette,
+          borderWidth: 1,
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (context) => {
+                const value = context.raw as number;
+                const percent = total > 0 ? Math.round((value / total) * 100) : 0;
+                return `${value} (${percent}%)`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: colors.border + '40' },
+            ticks: { color: colors.textDim }
+          },
+          y: {
+            grid: { display: false },
+            ticks: { color: colors.text }
+          }
+        }
+      }
+    });
+
+    updateElement('room-chart-caption', `Cat room preferences across ${total} observations`);
+  }
+
+  function createVisitsChart(data: any) {
+    const ctx = document.getElementById('visits-chart') as HTMLCanvasElement;
+    if (!ctx) return;
+
+    const colors = getThemeColors();
+
+    // Use historical data if available, otherwise show placeholder
+    const visits = data?.visits || [];
+
+    if (visits.length === 0) {
+      updateElement('visits-chart-caption', 'Historical data coming soon via n8n workflow');
+      // Create placeholder with sample data
+      const placeholderLabels = ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'];
+      const placeholderData = [0, 150, 400, 700, 1000, 1400, 1848];
+
+      if (visitsChart) visitsChart.destroy();
+
+      visitsChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: placeholderLabels,
+          datasets: [{
+            label: 'Visits',
+            data: placeholderData,
+            borderColor: colors.primary,
+            backgroundColor: colors.primary + '20',
+            fill: true,
+            tension: 0.3,
+            pointBackgroundColor: colors.primary,
+            pointBorderColor: colors.primary,
+            pointRadius: 4,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+          },
+          scales: {
+            x: {
+              grid: { color: colors.border + '40' },
+              ticks: { color: colors.textDim }
+            },
+            y: {
+              grid: { color: colors.border + '40' },
+              ticks: { color: colors.textDim },
+              beginAtZero: true,
+            }
+          }
+        }
+      });
+      return;
+    }
+
+    // Parse actual historical data
+    const labels = visits.map((v: any) => {
+      const date = new Date(v.date);
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    });
+    const values = visits.map((v: any) => v.value);
+
+    if (visitsChart) visitsChart.destroy();
+
+    visitsChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Visits',
+          data: values,
+          borderColor: colors.primary,
+          backgroundColor: colors.primary + '20',
+          fill: true,
+          tension: 0.3,
+          pointBackgroundColor: colors.primary,
+          pointBorderColor: colors.primary,
+          pointRadius: 3,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+        },
+        scales: {
+          x: {
+            grid: { color: colors.border + '40' },
+            ticks: { color: colors.textDim, maxRotation: 45 }
+          },
+          y: {
+            grid: { color: colors.border + '40' },
+            ticks: { color: colors.textDim },
+            beginAtZero: true,
+          }
+        }
+      }
+    });
+
+    const latestValue = values[values.length - 1] || 0;
+    updateElement('visits-chart-caption', `Total visits: ${formatNumber(latestValue)} (updated ${data?.updated_at ? new Date(data.updated_at).toLocaleDateString() : 'recently'})`);
+  }
+
+  // =========================================================================
+  // THEME CHANGE HANDLER
+  // =========================================================================
+
+  function handleThemeChange() {
+    // Recreate charts with new theme colors
+    if (roomChart) {
+      const data = (window as any).__catStatsCache;
+      if (data) createRoomChart(data);
+    }
+    if (visitsChart) {
+      const data = (window as any).__historicalStatsCache;
+      createVisitsChart(data);
+    }
+  }
+
+  // =========================================================================
+  // MAIN INITIALIZATION
+  // =========================================================================
+
+  async function loadAllStats() {
+    const refreshBtn = document.getElementById('refresh-btn') as HTMLButtonElement;
+    if (refreshBtn) refreshBtn.disabled = true;
+
+    try {
+      // Fetch all data in parallel
+      const [vrchatData, worldData, catData, historicalData] = await Promise.all([
+        fetchVRChatStats().catch(() => null),
+        fetchWorldStats().catch(() => null),
+        fetchCatStats().catch(() => null),
+        fetchHistoricalStats().catch(() => null),
+      ]);
+
+      // Update UI
+      updateVRChatStats(vrchatData);
+      updateWorldStats(worldData);
+      updateCatStats(catData);
+
+      // Cache for theme change rebuilds
+      (window as any).__catStatsCache = catData;
+      (window as any).__historicalStatsCache = historicalData;
+
+      // Create charts
+      createRoomChart(catData);
+      createVisitsChart(historicalData);
+
+      // Update timestamp
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+      updateElement('last-updated', `Last Updated: ${dateStr} ${timeStr}`);
+
+    } catch (e) {
+      console.error('Error loading stats:', e);
+    } finally {
+      if (refreshBtn) refreshBtn.disabled = false;
+    }
+  }
+
+  // =========================================================================
+  // EVENT LISTENERS
+  // =========================================================================
+
+  document.addEventListener('astro:page-load', () => {
+    loadAllStats();
+
+    // Refresh button
+    const refreshBtn = document.getElementById('refresh-btn');
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', loadAllStats);
+    }
+
+    // Theme change observer
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.attributeName === 'data-theme') {
+          handleThemeChange();
+        }
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+  });
+</script>

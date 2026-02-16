@@ -1,0 +1,140 @@
+{
+  "name": "Grafana Historical Stats to GitHub",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Hourly Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.1.128:3001/api/ds/query",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"queries\": [\n    {\n      \"datasource\": { \"type\": \"influxdb\", \"uid\": \"acbd2a70-f5a8-4dd8-8447-a64c4bbf54a0\" },\n      \"query\": \"from(bucket: \\\"vrchat-stats\\\") |> range(start: -6mo) |> filter(fn: (r) => r._measurement == \\\"world_stats\\\" and r._field == \\\"visits\\\") |> aggregateWindow(every: 1w, fn: last, createEmpty: false)\",\n      \"refId\": \"visits\"\n    },\n    {\n      \"datasource\": { \"type\": \"influxdb\", \"uid\": \"acbd2a70-f5a8-4dd8-8447-a64c4bbf54a0\" },\n      \"query\": \"from(bucket: \\\"vrchat-stats\\\") |> range(start: -6mo) |> filter(fn: (r) => r._measurement == \\\"world_stats\\\" and r._field == \\\"favorites\\\") |> aggregateWindow(every: 1w, fn: last, createEmpty: false)\",\n      \"refId\": \"favorites\"\n    }\n  ],\n  \"from\": \"now-6M\",\n  \"to\": \"now\"\n}",
+        "options": {}
+      },
+      "id": "query-grafana",
+      "name": "Query Grafana",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 0],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "Grafana Service Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Parse Grafana response and format for stats page\nconst results = $input.first().json.results || {};\n\nfunction extractData(refId) {\n  const frames = results[refId]?.frames || [];\n  const data = [];\n  \n  for (const frame of frames) {\n    const times = frame.data?.values?.[0] || [];\n    const values = frame.data?.values?.[1] || [];\n    \n    for (let i = 0; i < times.length; i++) {\n      const date = new Date(times[i]).toISOString().split('T')[0];\n      const value = Math.round(values[i] || 0);\n      data.push({ date, value });\n    }\n  }\n  \n  // Sort by date and dedupe\n  data.sort((a, b) => a.date.localeCompare(b.date));\n  return data;\n}\n\nconst visits = extractData('visits');\nconst favorites = extractData('favorites');\n\nconst output = {\n  updated_at: new Date().toISOString(),\n  description: \"Historical stats from Grafana via n8n. Auto-updated hourly.\",\n  visits,\n  favorites\n};\n\nreturn [{ json: output }];"
+      },
+      "id": "transform-json",
+      "name": "Transform to JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "YOUR_GITHUB_USERNAME",
+          "mode": "list",
+          "cachedResultName": "YOUR_GITHUB_USERNAME"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "basement-os-web",
+          "mode": "list",
+          "cachedResultName": "basement-os-web"
+        },
+        "filePath": "public/data/historical-stats.json",
+        "fileContent": "={{ JSON.stringify($json, null, 2) }}",
+        "commitMessage": "chore: update historical stats [automated]",
+        "additionalParameters": {}
+      },
+      "id": "github-commit",
+      "name": "Commit to GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [660, 0],
+      "credentials": {
+        "githubApi": {
+          "id": "YOUR_GITHUB_CREDENTIAL_ID",
+          "name": "GitHub"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Hourly Trigger": {
+      "main": [
+        [
+          {
+            "node": "Query Grafana",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query Grafana": {
+      "main": [
+        [
+          {
+            "node": "Transform to JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transform to JSON": {
+      "main": [
+        [
+          {
+            "node": "Commit to GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0
+}
