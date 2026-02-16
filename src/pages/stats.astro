@@ -449,8 +449,9 @@ import TerminalShell from '../components/TerminalShell.astro';
     const colors = getThemeColors();
     const roomCounts = data?.room_counts || {};
 
-    // Sort rooms by count and get top entries
+    // Sort rooms by count, filter out "Other"/"Unknown", get top entries
     const entries = Object.entries(roomCounts)
+      .filter(([room]) => room !== 'Other' && room !== 'Unknown')
       .sort(([, a]: any, [, b]: any) => b - a)
       .slice(0, 6);
 
