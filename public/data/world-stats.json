@@ -4,7 +4,7 @@
     "ended": 1
   },
   "achievements": {
-    "total_unlocks": 135,
+    "total_unlocks": 136,
     "counts": {
       "basement_first_visit_achievement": 40,
       "basement_regular_visitor_achievement": 0,
@@ -14,7 +14,7 @@
       "basement_hottub_hero_achievement": 0,
       "basement_century_club_achievement": 0,
       "basement_lower_legend_achievement": 0,
-      "basement_quick_visit_earned": 14,
+      "basement_quick_visit_earned": 15,
       "basement_hangout_earned": 4,
       "basement_party_time_earned": 0,
       "basement_2_legit_2_quit_earned": 0,
@@ -91,5 +91,5 @@
       "EGG4": 0
     }
   },
-  "last_updated": "2026-02-16T05:24:50.409Z"
+  "last_updated": "2026-02-16T05:27:21.801Z"
 }
