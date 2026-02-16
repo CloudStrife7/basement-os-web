@@ -4,9 +4,9 @@
     "ended": 1
   },
   "achievements": {
-    "total_unlocks": 89,
+    "total_unlocks": 90,
     "counts": {
-      "basement_first_visit_achievement": 25,
+      "basement_first_visit_achievement": 26,
       "basement_regular_visitor_achievement": 0,
       "basement_shag_squad_achievement": 0,
       "basement_basement_dweller_achievement": 0,
@@ -91,5 +91,5 @@
       "EGG4": 0
     }
   },
-  "last_updated": "2026-02-16T01:52:27.569Z"
+  "last_updated": "2026-02-16T01:52:32.523Z"
 }
