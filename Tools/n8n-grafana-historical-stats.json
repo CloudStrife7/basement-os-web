@@ -98,6 +98,19 @@
       "parameters": {
         "method": "GET",
         "url": "https://api.vrchat.cloud/api/1/worlds/wrld_7302897c-be0f-4037-ac67-76f0ea065c2b?apiKey=JlE5Jldo5Jibnk5O5hTx6XVqsJyIkZVd",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "BasementOS-Stats/1.0 (n8n automation)"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
         "options": {}
       },
       "id": "fetch-vrchat",
