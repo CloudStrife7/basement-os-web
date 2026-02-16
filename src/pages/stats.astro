@@ -8,49 +8,61 @@ import TerminalShell from '../components/TerminalShell.astro';
     <div class="content-section active">
       <h2 class="section-header">C:\BASEMENT\STATS.EXE</h2>
 
-      <!-- World Status + Cat Telemetry Row -->
-      <div class="stats-row-cards">
-        <div class="info-card">
-          <h3>[ World Status ]</h3>
-          <div class="stats-grid-compact stats-4col">
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="stat-visits">--</span>
-              <span class="stat-label-compact">VISITS</span>
-            </div>
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="stat-favorites">--</span>
-              <span class="stat-label-compact">FAVORITES</span>
-            </div>
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="stat-online">--</span>
-              <span class="stat-label-compact">ONLINE</span>
-            </div>
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="stat-popularity">--</span>
-              <span class="stat-label-compact">POPULARITY</span>
-            </div>
+      <!-- World Status -->
+      <div class="info-card">
+        <h3>[ World Status ]</h3>
+        <div class="stats-grid-compact stats-4col">
+          <div class="stat-block-compact">
+            <span class="stat-number-compact" id="stat-visits">--</span>
+            <span class="stat-label-compact">VISITS</span>
+          </div>
+          <div class="stat-block-compact">
+            <span class="stat-number-compact" id="stat-favorites">--</span>
+            <span class="stat-label-compact">FAVORITES</span>
+          </div>
+          <div class="stat-block-compact">
+            <span class="stat-number-compact" id="stat-online">--</span>
+            <span class="stat-label-compact">ONLINE</span>
+          </div>
+          <div class="stat-block-compact">
+            <span class="stat-number-compact" id="stat-popularity">--</span>
+            <span class="stat-label-compact">POPULARITY</span>
           </div>
         </div>
+      </div>
 
-        <div class="info-card">
-          <h3>[ Cat Telemetry ]</h3>
-          <div class="stats-grid-compact stats-4col">
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="cat-sessions">--</span>
-              <span class="stat-label-compact">SESSIONS</span>
-            </div>
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="cat-jumps">--</span>
-              <span class="stat-label-compact">JUMPS</span>
-            </div>
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="cat-favorite-state">--</span>
-              <span class="stat-label-compact">FAVORITE</span>
-            </div>
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="cat-favorite-room">--</span>
-              <span class="stat-label-compact">ROOM</span>
-            </div>
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- Visits Over Time Chart -->
+      <div class="info-card chart-card">
+        <h3>[ Visits Over Time ]</h3>
+        <div class="chart-container chart-line">
+          <canvas id="visits-chart"></canvas>
+        </div>
+        <p class="chart-caption" id="visits-chart-caption">Loading historical data...</p>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- Cat Telemetry -->
+      <div class="info-card">
+        <h3>[ Cat Telemetry ]</h3>
+        <div class="stats-grid-compact stats-4col">
+          <div class="stat-block-compact">
+            <span class="stat-number-compact" id="cat-sessions">--</span>
+            <span class="stat-label-compact">SESSIONS</span>
+          </div>
+          <div class="stat-block-compact">
+            <span class="stat-number-compact" id="cat-jumps">--</span>
+            <span class="stat-label-compact">JUMPS</span>
+          </div>
+          <div class="stat-block-compact">
+            <span class="stat-number-compact" id="cat-favorite-state">--</span>
+            <span class="stat-label-compact">FAVORITE</span>
+          </div>
+          <div class="stat-block-compact">
+            <span class="stat-number-compact" id="cat-favorite-room">--</span>
+            <span class="stat-label-compact">ROOM</span>
           </div>
         </div>
       </div>
@@ -64,17 +76,6 @@ import TerminalShell from '../components/TerminalShell.astro';
           <canvas id="room-chart"></canvas>
         </div>
         <p class="chart-caption" id="room-chart-caption">Loading cat room data...</p>
-      </div>
-
-      <div class="separator">────────────────────────────────────────────────────────────────────</div>
-
-      <!-- Visits Over Time Chart -->
-      <div class="info-card chart-card">
-        <h3>[ Visits Over Time ]</h3>
-        <div class="chart-container chart-line">
-          <canvas id="visits-chart"></canvas>
-        </div>
-        <p class="chart-caption" id="visits-chart-caption">Loading historical data...</p>
       </div>
 
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
@@ -445,16 +446,20 @@ import TerminalShell from '../components/TerminalShell.astro';
 
   function updateWorldStats(data: any) {
     if (!data) return;
-    // Achievements
-    updateElement('achievement-unlocks', formatNumber(data.achievement_unlocks || 0));
-    // Tales
-    updateElement('tales-reads', formatNumber(data.tales_reads || 0));
-    // Keypad
-    updateElement('keypad-attempts', formatNumber(data.keypad_attempts || 0));
-    updateElement('keypad-success', formatNumber(data.keypad_success || 0));
-    // Apps
-    updateElement('apps-opens', formatNumber(data.apps_opens || 0));
-    updateElement('apps-most-used', data.apps_most_used || 'Stats');
+    // Achievements (nested under data.achievements)
+    updateElement('achievement-unlocks', formatNumber(data.achievements?.total_unlocks || 0));
+    // Tales (nested under data.tales)
+    updateElement('tales-reads', formatNumber(data.tales?.total_reads || 0));
+    // Keypad (nested under data.keypad)
+    updateElement('keypad-attempts', formatNumber(data.keypad?.total_attempts || 0));
+    updateElement('keypad-success', formatNumber(data.keypad?.successes || 0));
+    // Apps (nested under data.apps)
+    updateElement('apps-opens', formatNumber(data.apps?.total_opens || 0));
+    // Find most used app from app_opens object
+    const appOpens = data.apps?.app_opens || {};
+    const mostUsed = Object.entries(appOpens)
+      .sort(([, a]: any, [, b]: any) => b - a)[0];
+    updateElement('apps-most-used', mostUsed ? mostUsed[0] : 'Stats');
   }
 
   function updateCatStats(data: any) {
