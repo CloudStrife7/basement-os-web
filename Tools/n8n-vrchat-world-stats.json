@@ -1,0 +1,114 @@
+{
+  "name": "VRChat World Stats to GitHub",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Every 30 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.vrchat.cloud/api/1/worlds/wrld_7302897c-be0f-4037-ac67-76f0ea065c2b?apiKey=JlE5Jldo5Jibnk5O5hTx6XVqsJyIkZVd",
+        "options": {}
+      },
+      "id": "fetch-vrchat",
+      "name": "Fetch VRChat API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const data = $input.first().json;\n\nconst output = {\n  visits: data.visits || 0,\n  favorites: data.favorites || 0,\n  popularity: data.popularity || 0,\n  occupants: data.occupants || 0,\n  publicOccupants: data.publicOccupants || 0,\n  privateOccupants: data.privateOccupants || 0,\n  heat: data.heat || 0,\n  name: data.name || 'The Lower Level 2.0',\n  updated_at: new Date().toISOString()\n};\n\nreturn [{ json: output }];"
+      },
+      "id": "transform-json",
+      "name": "Transform to JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "CloudStrife7",
+          "mode": "list",
+          "cachedResultName": "CloudStrife7"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "basement-os-web",
+          "mode": "list",
+          "cachedResultName": "basement-os-web"
+        },
+        "filePath": "public/data/vrchat-world.json",
+        "fileContent": "={{ JSON.stringify($json, null, 2) }}",
+        "commitMessage": "Update VRChat world stats [automated]",
+        "additionalParameters": {}
+      },
+      "id": "github-commit",
+      "name": "Commit to GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [660, 0]
+    }
+  ],
+  "connections": {
+    "Every 30 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Fetch VRChat API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch VRChat API": {
+      "main": [
+        [
+          {
+            "node": "Transform to JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transform to JSON": {
+      "main": [
+        [
+          {
+            "node": "Commit to GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0
+}
