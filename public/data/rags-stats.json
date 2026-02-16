@@ -16,7 +16,7 @@
     "SlowWalk": 326,
     "Walk": 634,
     "Trot": 362,
-    "Run": 341
+    "Run": 342
   },
   "room_counts": {
     "Main Room": 66,
@@ -29,5 +29,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Theater + Arcade",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-16T01:17:27.373Z"
+  "last_updated": "2026-02-16T01:17:31.219Z"
 }
