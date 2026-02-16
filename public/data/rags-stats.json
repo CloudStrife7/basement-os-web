@@ -14,7 +14,7 @@
     "CleanFace": 311,
     "Sleep": 128,
     "SlowWalk": 583,
-    "Walk": 1067,
+    "Walk": 1068,
     "Trot": 619,
     "Run": 599
   },
@@ -29,5 +29,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Theater + Arcade",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-16T23:05:28.567Z"
+  "last_updated": "2026-02-16T23:05:33.602Z"
 }
