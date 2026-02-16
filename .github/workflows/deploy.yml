@@ -3,6 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'public/data/rags-stats.json'
+      - 'public/data/world-stats.json'
+      - 'public/data/vrchat-world.json'
+      - 'public/data/historical-stats.json'
   workflow_run:
     workflows: ["Update Weather Data"]
     types: [completed]
