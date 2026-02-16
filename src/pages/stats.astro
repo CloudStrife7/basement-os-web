@@ -102,33 +102,28 @@ import TerminalShell from '../components/TerminalShell.astro';
 
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
-      <!-- Terminal Tales + Keypad Secrets Row -->
-      <div class="stats-row-cards">
-        <div class="info-card">
-          <h3>[ Terminal Tales ]</h3>
-          <div class="stats-grid-compact stats-2col">
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="tales-reads">--</span>
-              <span class="stat-label-compact">READS</span>
-            </div>
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="tales-total">17</span>
-              <span class="stat-label-compact">STORIES</span>
-            </div>
-          </div>
+      <!-- Terminal Tales Chart -->
+      <div class="info-card chart-card">
+        <h3>[ Terminal Tales ]</h3>
+        <div class="chart-container">
+          <canvas id="tales-chart"></canvas>
         </div>
+        <p class="chart-caption" id="tales-chart-caption">Loading tales data...</p>
+      </div>
 
-        <div class="info-card">
-          <h3>[ Keypad Secrets ]</h3>
-          <div class="stats-grid-compact stats-2col">
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="keypad-attempts">--</span>
-              <span class="stat-label-compact">ATTEMPTS</span>
-            </div>
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="keypad-success">--</span>
-              <span class="stat-label-compact">SUCCESS</span>
-            </div>
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- Keypad Secrets -->
+      <div class="info-card">
+        <h3>[ Keypad Secrets ]</h3>
+        <div class="stats-grid-compact stats-2col">
+          <div class="stat-block-compact">
+            <span class="stat-number-compact" id="keypad-attempts">--</span>
+            <span class="stat-label-compact">ATTEMPTS</span>
+          </div>
+          <div class="stat-block-compact">
+            <span class="stat-number-compact" id="keypad-success">--</span>
+            <span class="stat-label-compact">SUCCESS</span>
           </div>
         </div>
       </div>
@@ -327,6 +322,7 @@ import TerminalShell from '../components/TerminalShell.astro';
   let visitsChart: Chart | null = null;
   let appsChart: Chart | null = null;
   let achievementsChart: Chart | null = null;
+  let talesChart: Chart | null = null;
 
   // =========================================================================
   // FETCH FUNCTIONS
@@ -437,20 +433,9 @@ import TerminalShell from '../components/TerminalShell.astro';
 
   function updateWorldStats(data: any) {
     if (!data) return;
-    // Achievements (nested under data.achievements)
-    updateElement('achievement-unlocks', formatNumber(data.achievements?.total_unlocks || 0));
-    // Tales (nested under data.tales)
-    updateElement('tales-reads', formatNumber(data.tales?.total_reads || 0));
     // Keypad (nested under data.keypad)
     updateElement('keypad-attempts', formatNumber(data.keypad?.total_attempts || 0));
     updateElement('keypad-success', formatNumber(data.keypad?.successes || 0));
-    // Apps (nested under data.apps)
-    updateElement('apps-opens', formatNumber(data.apps?.total_opens || 0));
-    // Find most used app from app_opens object
-    const appOpens = data.apps?.app_opens || {};
-    const mostUsed = Object.entries(appOpens)
-      .sort(([, a]: any, [, b]: any) => b - a)[0];
-    updateElement('apps-most-used', mostUsed ? mostUsed[0] : 'Stats');
   }
 
   function updateCatStats(data: any) {
@@ -818,6 +803,81 @@ import TerminalShell from '../components/TerminalShell.astro';
     updateElement('achievements-chart-caption', `${total} total achievement unlocks`);
   }
 
+  function createTalesChart(data: any) {
+    const ctx = document.getElementById('tales-chart') as HTMLCanvasElement;
+    if (!ctx) return;
+
+    const colors = getThemeColors();
+    const storyReads = data?.tales?.story_reads || {};
+
+    // Sort stories by reads, filter out zeros, get top 5
+    const entries = Object.entries(storyReads)
+      .filter(([, count]) => (count as number) > 0)
+      .sort(([, a]: any, [, b]: any) => b - a)
+      .slice(0, 5);
+
+    if (entries.length === 0) {
+      updateElement('tales-chart-caption', 'No stories read yet - be the first!');
+      return;
+    }
+
+    const labels = entries.map(([story]) => story);
+    const values = entries.map(([, count]) => count as number);
+    const total = data?.tales?.total_reads || values.reduce((sum, v) => sum + v, 0);
+
+    // Generate color palette from theme
+    const colorPalette = [
+      colors.primary,
+      colors.secondary,
+      colors.link,
+      colors.alert,
+      colors.textDim,
+    ];
+
+    if (talesChart) talesChart.destroy();
+
+    talesChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: values,
+          backgroundColor: colorPalette.map(c => c + '80'),
+          borderColor: colorPalette,
+          borderWidth: 1,
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (context) => {
+                const value = context.raw as number;
+                return `${value} reads`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: colors.border + '40' },
+            ticks: { color: colors.textDim }
+          },
+          y: {
+            grid: { display: false },
+            ticks: { color: colors.text }
+          }
+        }
+      }
+    });
+
+    updateElement('tales-chart-caption', `${total} total reads across 17 stories`);
+  }
+
   // =========================================================================
   // THEME CHANGE HANDLER
   // =========================================================================
@@ -832,11 +892,12 @@ import TerminalShell from '../components/TerminalShell.astro';
       const data = (window as any).__historicalStatsCache;
       createVisitsChart(data);
     }
-    if (appsChart || achievementsChart) {
+    if (appsChart || achievementsChart || talesChart) {
       const data = (window as any).__worldStatsCache;
       if (data) {
         createAppsChart(data);
         createAchievementsChart(data);
+        createTalesChart(data);
       }
     }
   }
@@ -873,6 +934,7 @@ import TerminalShell from '../components/TerminalShell.astro';
       createVisitsChart(historicalData);
       createAppsChart(worldData);
       createAchievementsChart(worldData);
+      createTalesChart(worldData);
 
       // Update timestamp
       const now = new Date();
