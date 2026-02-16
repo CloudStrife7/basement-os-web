@@ -8,7 +8,7 @@
   },
   "state_counts": {
     "Idle": 491,
-    "Meow": 337,
+    "Meow": 338,
     "Stretch": 319,
     "SitIdle": 445,
     "CleanFace": 252,
@@ -29,5 +29,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Theater + Arcade",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-16T09:41:11.537Z"
+  "last_updated": "2026-02-16T09:41:19.339Z"
 }
