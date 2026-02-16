@@ -80,22 +80,30 @@ import TerminalShell from '../components/TerminalShell.astro';
 
       <div class="separator">────────────────────────────────────────────────────────────────────</div>
 
-      <!-- Achievements + Terminal Tales Row -->
-      <div class="stats-row-cards">
-        <div class="info-card">
-          <h3>[ Achievements ]</h3>
-          <div class="stats-grid-compact stats-2col">
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="achievement-unlocks">--</span>
-              <span class="stat-label-compact">UNLOCKS</span>
-            </div>
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="achievement-total">39</span>
-              <span class="stat-label-compact">TOTAL</span>
-            </div>
-          </div>
+      <!-- DOS Apps Chart -->
+      <div class="info-card chart-card">
+        <h3>[ DOS Apps Usage ]</h3>
+        <div class="chart-container">
+          <canvas id="apps-chart"></canvas>
         </div>
+        <p class="chart-caption" id="apps-chart-caption">Loading app usage data...</p>
+      </div>
 
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- Achievements Chart -->
+      <div class="info-card chart-card">
+        <h3>[ Top Achievements ]</h3>
+        <div class="chart-container">
+          <canvas id="achievements-chart"></canvas>
+        </div>
+        <p class="chart-caption" id="achievements-chart-caption">Loading achievement data...</p>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- Terminal Tales + Keypad Secrets Row -->
+      <div class="stats-row-cards">
         <div class="info-card">
           <h3>[ Terminal Tales ]</h3>
           <div class="stats-grid-compact stats-2col">
@@ -109,12 +117,7 @@ import TerminalShell from '../components/TerminalShell.astro';
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="separator">────────────────────────────────────────────────────────────────────</div>
-
-      <!-- Keypad Secrets + DOS Apps Row -->
-      <div class="stats-row-cards">
         <div class="info-card">
           <h3>[ Keypad Secrets ]</h3>
           <div class="stats-grid-compact stats-2col">
@@ -125,20 +128,6 @@ import TerminalShell from '../components/TerminalShell.astro';
             <div class="stat-block-compact">
               <span class="stat-number-compact" id="keypad-success">--</span>
               <span class="stat-label-compact">SUCCESS</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <h3>[ DOS Apps ]</h3>
-          <div class="stats-grid-compact stats-2col">
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="apps-opens">--</span>
-              <span class="stat-label-compact">OPENS</span>
-            </div>
-            <div class="stat-block-compact">
-              <span class="stat-number-compact" id="apps-most-used">--</span>
-              <span class="stat-label-compact">MOST USED</span>
             </div>
           </div>
         </div>
@@ -336,6 +325,8 @@ import TerminalShell from '../components/TerminalShell.astro';
 
   let roomChart: Chart | null = null;
   let visitsChart: Chart | null = null;
+  let appsChart: Chart | null = null;
+  let achievementsChart: Chart | null = null;
 
   // =========================================================================
   // FETCH FUNCTIONS
@@ -658,6 +649,175 @@ import TerminalShell from '../components/TerminalShell.astro';
     updateElement('visits-chart-caption', `Total visits: ${formatNumber(latestValue)} (updated ${data?.updated_at ? new Date(data.updated_at).toLocaleDateString() : 'recently'})`);
   }
 
+  function createAppsChart(data: any) {
+    const ctx = document.getElementById('apps-chart') as HTMLCanvasElement;
+    if (!ctx) return;
+
+    const colors = getThemeColors();
+    const appOpens = data?.apps?.app_opens || {};
+
+    // Sort apps by usage, filter out zeros, get top entries
+    const entries = Object.entries(appOpens)
+      .filter(([, count]) => (count as number) > 0)
+      .sort(([, a]: any, [, b]: any) => b - a)
+      .slice(0, 8);
+
+    if (entries.length === 0) {
+      updateElement('apps-chart-caption', 'No app usage data available');
+      return;
+    }
+
+    const labels = entries.map(([app]) => app);
+    const values = entries.map(([, count]) => count as number);
+    const total = values.reduce((sum, v) => sum + v, 0);
+
+    // Generate color palette from theme
+    const colorPalette = [
+      colors.primary,
+      colors.secondary,
+      colors.link,
+      colors.alert,
+      colors.textDim,
+      colors.border,
+      colors.primary + 'aa',
+      colors.secondary + 'aa',
+    ];
+
+    if (appsChart) appsChart.destroy();
+
+    appsChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: values,
+          backgroundColor: colorPalette.map(c => c + '80'),
+          borderColor: colorPalette,
+          borderWidth: 1,
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (context) => {
+                const value = context.raw as number;
+                const percent = total > 0 ? Math.round((value / total) * 100) : 0;
+                return `${value} opens (${percent}%)`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: colors.border + '40' },
+            ticks: { color: colors.textDim }
+          },
+          y: {
+            grid: { display: false },
+            ticks: { color: colors.text }
+          }
+        }
+      }
+    });
+
+    updateElement('apps-chart-caption', `${total} total app opens`);
+  }
+
+  function createAchievementsChart(data: any) {
+    const ctx = document.getElementById('achievements-chart') as HTMLCanvasElement;
+    if (!ctx) return;
+
+    const colors = getThemeColors();
+    const achievementCounts = data?.achievements?.counts || {};
+
+    // Clean up achievement names and sort by count
+    const entries = Object.entries(achievementCounts)
+      .filter(([, count]) => (count as number) > 0)
+      .map(([key, count]) => {
+        // Convert key like "basement_first_visit_achievement" to "First Visit"
+        let name = key
+          .replace(/^basement_/, '')
+          .replace(/_achievement$/, '')
+          .replace(/_earned$/, '')
+          .replace(/_/g, ' ')
+          .split(' ')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ');
+        return [name, count] as [string, number];
+      })
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 8);
+
+    if (entries.length === 0) {
+      updateElement('achievements-chart-caption', 'No achievement data available');
+      return;
+    }
+
+    const labels = entries.map(([name]) => name);
+    const values = entries.map(([, count]) => count);
+    const total = data?.achievements?.total_unlocks || values.reduce((sum, v) => sum + v, 0);
+
+    // Generate color palette from theme
+    const colorPalette = [
+      colors.primary,
+      colors.secondary,
+      colors.link,
+      colors.alert,
+      colors.textDim,
+      colors.border,
+      colors.primary + 'aa',
+      colors.secondary + 'aa',
+    ];
+
+    if (achievementsChart) achievementsChart.destroy();
+
+    achievementsChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: values,
+          backgroundColor: colorPalette.map(c => c + '80'),
+          borderColor: colorPalette,
+          borderWidth: 1,
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (context) => {
+                const value = context.raw as number;
+                return `${value} unlocks`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: colors.border + '40' },
+            ticks: { color: colors.textDim }
+          },
+          y: {
+            grid: { display: false },
+            ticks: { color: colors.text }
+          }
+        }
+      }
+    });
+
+    updateElement('achievements-chart-caption', `${total} total achievement unlocks`);
+  }
+
   // =========================================================================
   // THEME CHANGE HANDLER
   // =========================================================================
@@ -671,6 +831,13 @@ import TerminalShell from '../components/TerminalShell.astro';
     if (visitsChart) {
       const data = (window as any).__historicalStatsCache;
       createVisitsChart(data);
+    }
+    if (appsChart || achievementsChart) {
+      const data = (window as any).__worldStatsCache;
+      if (data) {
+        createAppsChart(data);
+        createAchievementsChart(data);
+      }
     }
   }
 
@@ -699,10 +866,13 @@ import TerminalShell from '../components/TerminalShell.astro';
       // Cache for theme change rebuilds
       (window as any).__catStatsCache = catData;
       (window as any).__historicalStatsCache = historicalData;
+      (window as any).__worldStatsCache = worldData;
 
       // Create charts
       createRoomChart(catData);
       createVisitsChart(historicalData);
+      createAppsChart(worldData);
+      createAchievementsChart(worldData);
 
       // Update timestamp
       const now = new Date();
