@@ -7,7 +7,7 @@
     "unstuck": 0
   },
   "state_counts": {
-    "Idle": 312,
+    "Idle": 313,
     "Meow": 225,
     "Stretch": 200,
     "SitIdle": 271,
@@ -29,5 +29,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Theater + Arcade",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-16T00:36:32.914Z"
+  "last_updated": "2026-02-16T00:36:42.933Z"
 }
