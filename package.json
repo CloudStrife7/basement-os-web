@@ -12,6 +12,7 @@
     "@astrojs/check": "^0.9.6",
     "@astrojs/sitemap": "^3.0.0",
     "astro": "^5.16.5",
+    "chart.js": "^4.5.1",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
