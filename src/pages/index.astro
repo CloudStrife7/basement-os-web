@@ -623,8 +623,15 @@ document.addEventListener("astro:page-load", function() {
         }
     }
 
+    /** Fetch from local JSON file (n8n-updated) */
+    async function fetchLocalStats() {
+        const response = await fetch('/data/vrchat-world.json');
+        if (!response.ok) throw new Error('Local fetch failed');
+        return await response.json();
+    }
+
     /** @param {string[]} proxies */
-    async function fetchWithFallback(proxies) {
+    async function fetchWithCorsProxies(proxies) {
         for (let i = 0; i < proxies.length; i++) {
             try {
                 const response = await fetch(proxies[i], {
@@ -641,6 +648,23 @@ document.addEventListener("astro:page-load", function() {
             }
         }
         throw new Error('All proxies failed');
+    }
+
+    /** Fetch with fallback chain: local JSON -> CORS proxies */
+    async function fetchWithFallback(proxies) {
+        // Try local JSON first (most reliable)
+        try {
+            const localData = await fetchLocalStats();
+            if (localData && localData.visits > 0) {
+                console.log('Using local n8n-updated stats');
+                return localData;
+            }
+        } catch (e) {
+            console.log('Local stats unavailable, trying CORS proxies');
+        }
+
+        // Fall back to CORS proxies
+        return fetchWithCorsProxies(proxies);
     }
 
     /** @param {string} dateString */

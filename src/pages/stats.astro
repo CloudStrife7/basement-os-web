@@ -327,6 +327,7 @@ import TerminalShell from '../components/TerminalShell.astro';
   const WORLD_STATS_API = 'https://rags-analytics.cloudflare-landscape202.workers.dev/world/stats';
   const CAT_STATS_API = 'https://rags-analytics.cloudflare-landscape202.workers.dev/rags/stats';
   const HISTORICAL_STATS_URL = '/data/historical-stats.json';
+  const LOCAL_VRCHAT_STATS_URL = '/data/vrchat-world.json';
 
   // =========================================================================
   // CHART INSTANCES (for cleanup on theme change)
@@ -339,7 +340,21 @@ import TerminalShell from '../components/TerminalShell.astro';
   // FETCH FUNCTIONS
   // =========================================================================
 
-  async function fetchVRChatStats() {
+  /** Fetch from local JSON file (n8n-updated, most reliable) */
+  async function fetchLocalVRChatStats() {
+    const response = await fetch(LOCAL_VRCHAT_STATS_URL);
+    if (!response.ok) throw new Error('Local fetch failed');
+    const data = await response.json();
+    // Validate data has actual stats (not placeholder)
+    if (data && data.visits > 0) {
+      console.log('Using local n8n-updated VRChat stats');
+      return data;
+    }
+    throw new Error('Local data is placeholder');
+  }
+
+  /** Fetch via CORS proxies (fallback) */
+  async function fetchVRChatStatsViaProxy() {
     const targetUrl = `https://api.vrchat.cloud/api/1/worlds/${WORLD_ID}?apiKey=${VRCHAT_API_KEY}`;
     const corsProxies = [
       `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`,
@@ -360,6 +375,18 @@ import TerminalShell from '../components/TerminalShell.astro';
       }
     }
     throw new Error('All VRChat API proxies failed');
+  }
+
+  /** Fetch VRChat stats with fallback: local JSON -> CORS proxies */
+  async function fetchVRChatStats() {
+    // Try local JSON first (most reliable, updated by n8n)
+    try {
+      return await fetchLocalVRChatStats();
+    } catch (e) {
+      console.log('Local stats unavailable, trying CORS proxies');
+    }
+    // Fall back to CORS proxies
+    return fetchVRChatStatsViaProxy();
   }
 
   async function fetchWorldStats() {
