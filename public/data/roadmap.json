@@ -1,32 +1,6 @@
 {
-  "generated_at": "2026-02-17T16:51:29Z",
+  "generated_at": "2026-02-17T22:41:29Z",
   "issues": [
-    {
-      "number": 402,
-      "title": "feat: Rags NPC Stats to Discord via n8n",
-      "state": "open",
-      "created_at": "2026-02-07T16:42:04Z",
-      "updated_at": "2026-02-07T16:42:04Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        }
-      ]
-    },
     {
       "number": 399,
       "title": "Fix DT_App_Dashboard typed references (replace GetProgramVariable)",
@@ -2944,6 +2918,33 @@
     }
   ],
   "closed": [
+    {
+      "number": 402,
+      "title": "feat: Rags NPC Stats to Discord via n8n",
+      "state": "closed",
+      "created_at": "2026-02-07T16:42:04Z",
+      "updated_at": "2026-02-17T22:41:10Z",
+      "closed_at": "2026-02-17T22:41:10Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        }
+      ]
+    },
     {
       "number": 363,
       "title": "GitHub copilot",
