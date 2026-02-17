@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-17T02:25:01Z",
+  "generated_at": "2026-02-17T02:25:29Z",
   "issues": [
     {
       "number": 402,
@@ -208,20 +208,6 @@
         {
           "name": "player-focused",
           "color": "2ea44f"
-        }
-      ]
-    },
-    {
-      "number": 387,
-      "title": "README ends with cut-off sentence",
-      "state": "open",
-      "created_at": "2026-02-06T03:01:17Z",
-      "updated_at": "2026-02-06T03:01:17Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "bug",
-          "color": "d73a4a"
         }
       ]
     },
@@ -3108,6 +3094,21 @@
     }
   ],
   "closed": [
+    {
+      "number": 387,
+      "title": "README ends with cut-off sentence",
+      "state": "closed",
+      "created_at": "2026-02-06T03:01:17Z",
+      "updated_at": "2026-02-17T02:25:14Z",
+      "closed_at": "2026-02-17T02:25:14Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a"
+        }
+      ]
+    },
     {
       "number": 392,
       "title": "Using behavioral tracker from Unity IMPLIMENT into divoom and basement os on pv in world",
