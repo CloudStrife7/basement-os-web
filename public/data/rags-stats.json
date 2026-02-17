@@ -19,7 +19,7 @@
     "Run": 709
   },
   "room_counts": {
-    "Main Room": 137,
+    "Main Room": 138,
     "Theater + Arcade": 210,
     "Hot Tub": 140,
     "Other": 73
@@ -29,5 +29,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Theater + Arcade",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-17T21:43:22.380Z"
+  "last_updated": "2026-02-17T21:43:27.281Z"
 }
