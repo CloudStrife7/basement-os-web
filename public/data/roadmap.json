@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-17T06:44:53Z",
+  "generated_at": "2026-02-17T16:50:09Z",
   "issues": [
     {
       "number": 402,
@@ -231,10 +231,10 @@
     },
     {
       "number": 385,
-      "title": "Monitor interaction prompt obstructs view (blue box over 5G text)",
+      "title": "Monitor interaction prompt obstructs view (blue box over text)",
       "state": "open",
       "created_at": "2026-02-06T03:00:34Z",
-      "updated_at": "2026-02-06T03:00:34Z",
+      "updated_at": "2026-02-17T16:48:48Z",
       "milestone": null,
       "labels": [
         {
@@ -420,112 +420,6 @@
         {
           "name": "player-focused",
           "color": "2ea44f"
-        },
-        {
-          "name": "needs-review",
-          "color": "FBCA04"
-        },
-        {
-          "name": "unity-required",
-          "color": "5319E7"
-        }
-      ]
-    },
-    {
-      "number": 377,
-      "title": "AI Cat: Unified activity log (position + room + state + pathfinding)",
-      "state": "open",
-      "created_at": "2026-02-04T22:23:05Z",
-      "updated_at": "2026-02-04T22:25:18Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
-        },
-        {
-          "name": "needs-review",
-          "color": "FBCA04"
-        },
-        {
-          "name": "unity-required",
-          "color": "5319E7"
-        }
-      ]
-    },
-    {
-      "number": 373,
-      "title": "Heatmap: Output room analytics to in-world terminal and website",
-      "state": "open",
-      "created_at": "2026-02-04T22:22:33Z",
-      "updated_at": "2026-02-04T22:24:54Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "blocked",
-          "color": "000000"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        },
-        {
-          "name": "needs-review",
-          "color": "FBCA04"
-        },
-        {
-          "name": "unity-required",
-          "color": "5319E7"
-        }
-      ]
-    },
-    {
-      "number": 372,
-      "title": "Heatmap: Auto-refresh interval for visualizer",
-      "state": "open",
-      "created_at": "2026-02-04T22:22:30Z",
-      "updated_at": "2026-02-05T23:42:45Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "needs-testing",
-          "color": "fef2c0"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
-        },
-        {
-          "name": "dev-focused",
-          "color": "6f42c1"
         },
         {
           "name": "needs-review",
@@ -3094,6 +2988,115 @@
     }
   ],
   "closed": [
+    {
+      "number": 377,
+      "title": "AI Cat: Unified activity log (position + room + state + pathfinding)",
+      "state": "closed",
+      "created_at": "2026-02-04T22:23:05Z",
+      "updated_at": "2026-02-17T16:49:51Z",
+      "closed_at": "2026-02-17T16:49:51Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
+    {
+      "number": 373,
+      "title": "Heatmap: Output room analytics to in-world terminal and website",
+      "state": "closed",
+      "created_at": "2026-02-04T22:22:33Z",
+      "updated_at": "2026-02-17T16:49:44Z",
+      "closed_at": "2026-02-17T16:49:44Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
+    {
+      "number": 372,
+      "title": "Heatmap: Auto-refresh interval for visualizer",
+      "state": "closed",
+      "created_at": "2026-02-04T22:22:30Z",
+      "updated_at": "2026-02-17T16:49:37Z",
+      "closed_at": "2026-02-17T16:49:37Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "needs-testing",
+          "color": "fef2c0"
+        },
+        {
+          "name": "Good Agentic Build",
+          "color": "1d76db"
+        },
+        {
+          "name": "dev-focused",
+          "color": "6f42c1"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
     {
       "number": 387,
       "title": "README ends with cut-off sentence",

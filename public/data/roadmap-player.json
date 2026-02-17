@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-17T06:44:53Z",
+  "generated_at": "2026-02-17T16:50:09Z",
   "focus": "player",
   "description": "Player experience: world features, games, achievements, vibe",
   "issues": [
@@ -186,40 +186,6 @@
         {
           "name": "Good Agentic Build",
           "color": "1d76db"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        },
-        {
-          "name": "needs-review",
-          "color": "FBCA04"
-        },
-        {
-          "name": "unity-required",
-          "color": "5319E7"
-        }
-      ]
-    },
-    {
-      "number": 373,
-      "title": "Heatmap: Output room analytics to in-world terminal and website",
-      "state": "open",
-      "created_at": "2026-02-04T22:22:33Z",
-      "updated_at": "2026-02-04T22:24:54Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "enhancement",
-          "color": "a2eeef"
-        },
-        {
-          "name": "priority: medium",
-          "color": "fbca04"
-        },
-        {
-          "name": "blocked",
-          "color": "000000"
         },
         {
           "name": "player-focused",
@@ -1507,6 +1473,41 @@
     }
   ],
   "closed": [
+    {
+      "number": 373,
+      "title": "Heatmap: Output room analytics to in-world terminal and website",
+      "state": "closed",
+      "created_at": "2026-02-04T22:22:33Z",
+      "updated_at": "2026-02-17T16:49:44Z",
+      "closed_at": "2026-02-17T16:49:44Z",
+      "milestone": null,
+      "labels": [
+        {
+          "name": "enhancement",
+          "color": "a2eeef"
+        },
+        {
+          "name": "priority: medium",
+          "color": "fbca04"
+        },
+        {
+          "name": "blocked",
+          "color": "000000"
+        },
+        {
+          "name": "player-focused",
+          "color": "2ea44f"
+        },
+        {
+          "name": "needs-review",
+          "color": "FBCA04"
+        },
+        {
+          "name": "unity-required",
+          "color": "5319E7"
+        }
+      ]
+    },
     {
       "number": 392,
       "title": "Using behavioral tracker from Unity IMPLIMENT into divoom and basement os on pv in world",
