@@ -1,16 +1,16 @@
-name: PRISM Auto-Triage
+name: FORGE Auto-Triage
 
 on:
   issues:
     types: [opened]
 
 jobs:
-  prism-triage:
-    # Skip if issue already has BBP table, is from a bot, or has skip-prism label
+  forge-triage:
+    # Skip if issue already analyzed, is from a bot, or has skip-forge label
     if: |
-      !contains(github.event.issue.body, '| **BBP**') &&
+      !contains(github.event.issue.body, '## FORGE Analysis') &&
       !contains(github.event.issue.user.login, '[bot]') &&
-      !contains(github.event.issue.labels.*.name, 'skip-prism')
+      !contains(github.event.issue.labels.*.name, 'skip-forge')
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -22,12 +22,12 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Run PRISM Analysis
+      - name: Run FORGE Analysis
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
-            You are PRISM (Priority Rating, Issue Spec & Management) - an expert web developer analyst for the Basement OS website.
+            You are FORGE (Focus, Order, Rating, Generation, Execution) - an expert web developer analyst for the Basement OS website. Like the Norse dwarves who forged legendary weapons, you craft actionable implementation specs from raw ideas.
 
             ## Project Context
             This is the Basement OS website - a retro-futuristic CRT terminal experience built with Astro.
@@ -43,7 +43,7 @@ jobs:
             ${{ github.event.issue.body }}
             ```
 
-            ## Your Task: Full PRISM Analysis
+            ## Your Task: Full FORGE Analysis
 
             ### Step 1: Research (REQUIRED)
             Before scoring, search the codebase for related patterns:
@@ -51,12 +51,7 @@ jobs:
             - Use Grep to find relevant components or styles
             - Identify existing implementations to follow
 
-            ### Step 2: Calculate BBP Score
-
-            **Formula**:
-            ```
-            BBP = (Story Points x 10) + (Impact x 5) + Feasibility Bonus
-            ```
+            ### Step 2: Estimate Story Points
 
             **Story Points (1-8)**:
             - 1 = Trivial (<1 hour)
@@ -65,16 +60,15 @@ jobs:
             - 5 = Large (full day)
             - 8 = XL (multiple days)
 
-            **Impact (1-10)**:
-            - User items: "How much will visitors love this?"
-            - Dev items: "How much will this speed up development?"
+            If SP > 5, suggest breaking into smaller issues.
 
-            **Agentic Feasibility (0-100%)**:
-            - 90%+: Pure code, clear spec, existing patterns -> Bonus +20
-            - 70-89%: Mostly code, may need design decisions -> Bonus +10
-            - <70%: Complex work, external deps -> Bonus +0
+            ### Step 3: Determine Automation Candidate
 
-            ### Step 3: Generate Implementation Spec
+            **Automation Candidate (Y/N)**:
+            - Y = Clear requirements, follows existing patterns, pure code changes
+            - N = Requires external setup, creative decisions, complex integrations
+
+            ### Step 4: Generate Implementation Spec
 
             Create a comprehensive spec including:
             1. Summary (1-2 sentences)
@@ -84,32 +78,27 @@ jobs:
             5. Success criteria
             6. Copy-paste resume prompt
 
-            ### Step 4: Apply Labels
+            ### Step 5: Apply Labels
 
             Use `gh issue edit` to add labels:
-            - `P0-critical` if BBP >= 120
-            - `P1-high` if BBP 90-119
-            - `P2-medium` if BBP 60-89
-            - `P3-low` if BBP < 60
-            - `Good Agentic Build` if feasibility >= 70%
+            - `🥉 Someday (Unlimited)` (ALL new issues start in BRONZE)
+            - `SP: X` where X is the story point estimate (1, 2, 3, 5, or 8)
+            - `Good Agentic Build` if Automation Candidate = Y
             - `needs-review` (ALWAYS - human must approve before dev starts)
 
-            ### Step 5: Post Comment
+            ### Step 6: Post Comment with Forcing Function
 
             Use `gh issue comment` with this format:
 
             ```markdown
-            ## PRISM Analysis
+            ## FORGE Analysis
 
-            | Metric | Score | Reason |
+            | Metric | Value | Reason |
             |--------|-------|--------|
-            | Category | [user/dev]-focused | [why] |
-            | Story Points | X | [scope] |
-            | Impact | X/10 | [value delivered] |
-            | Agentic Feasibility | X% | [factors] |
-            | **BBP** | **X** | (SPx10)+(Impactx5)+Bonus |
+            | Story Points | SP: X | [scope reasoning] |
+            | Automation Candidate | Y/N | [why] |
+            | Bucket | 🥉 BRONZE | New issues start here |
 
-            **Priority**: [Critical/High/Medium/Low]
             **Branch**: `feat/[name]-issue-${{ github.event.issue.number }}`
             **Suggested Skill**: `/web-dev` - Web development
 
@@ -164,7 +153,14 @@ jobs:
 
             ---
 
-            *Auto-generated by PRISM. Human review required before development.*
+            ## 🔥 Forcing Function
+
+            **Should this be promoted?**
+            - Reply `promote to gold` → Make it your 🥇 Ship This Week
+            - Reply `promote to silver` → Add to 🥈 Next Up queue
+            - Reply `keep in bronze` → Leave for Sunday review
+
+            *Auto-generated by FORGE. Human review required before development.*
             *Remove `needs-review` and add `ready-for-dev` to approve.*
             ```
 
@@ -172,6 +168,7 @@ jobs:
 
             - ALWAYS search the codebase before scoring (use Glob/Grep)
             - ALWAYS add `needs-review` label - only humans approve work
+            - ALL new issues default to 🥉 BRONZE bucket
             - If issue is unclear, add clarifying questions in the comment
             - This is a retro CRT terminal aesthetic project - respect the visual style
 

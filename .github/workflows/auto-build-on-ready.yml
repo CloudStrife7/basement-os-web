@@ -35,7 +35,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issueNumber,
-                body: `## Auto-Build Skipped\n\nThis issue has \`ready-for-dev\` but NOT \`Good Agentic Build\` label.\n\n**Reason**: Low agentic feasibility (<70%) - requires manual guidance.\n\n**To start manually**: \`@claude Resume issue #${issueNumber}\`\n\n---\n*Auto-build requires both \`ready-for-dev\` AND \`Good Agentic Build\` labels.*`
+                body: `## Auto-Build Skipped\n\nThis issue has \`ready-for-dev\` but NOT \`Good Agentic Build\` label.\n\n**Reason**: Automation Candidate = N - requires manual guidance.\n\n**To start manually**: \`@claude Resume issue #${issueNumber}\`\n\n---\n*Auto-build requires both \`ready-for-dev\` AND \`Good Agentic Build\` labels.*`
               });
               return { proceed: false };
             }
@@ -73,8 +73,8 @@ jobs:
 
             ## Instructions
 
-            1. **Read the PRISM spec** from the issue comments (look for "## PRISM Analysis")
-            2. **Follow the implementation plan** from the PRISM spec
+            1. **Read the FORGE spec** from the issue comments (look for "## FORGE Analysis")
+            2. **Follow the implementation plan** from the FORGE spec
             3. **Create a feature branch**: Use the branch name from the spec
             4. **Implement the feature** following the phased plan
             5. **Create a PR** with proper description and link to issue

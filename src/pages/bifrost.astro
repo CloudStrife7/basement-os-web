@@ -54,7 +54,7 @@ import TerminalShell from '../components/TerminalShell.astro';
             <div class="pipeline-arrow">→</div>
             <div class="pipeline-step">
               <span class="pipeline-icon">📐</span>
-              <span class="pipeline-label">PRISM Spec</span>
+              <span class="pipeline-label">FORGE Spec</span>
             </div>
             <div class="pipeline-arrow">→</div>
             <div class="pipeline-step highlight">
@@ -105,8 +105,8 @@ import TerminalShell from '../components/TerminalShell.astro';
             <div class="flow-step">
               <div class="flow-icon">📐</div>
               <div class="flow-body">
-                <div class="flow-label">PRISM Spec <span class="flow-tag">Intent</span></div>
-                <div class="flow-desc">An AI triage system called PRISM reads the issue and auto-generates a technical specification. It identifies which skill agent to route to (UdonSharp, Terminal UI, Game Dev), estimates story points, and writes acceptance criteria. This is the blueprint the AI will follow.</div>
+                <div class="flow-label">FORGE Spec <span class="flow-tag">Intent</span></div>
+                <div class="flow-desc">An AI triage system called FORGE reads the issue and auto-generates a technical specification. Like the Norse dwarves who forged legendary weapons, FORGE crafts actionable plans from raw materials—identifying which skill agent to route to (UdonSharp, Terminal UI, Game Dev), estimating story points, and writing acceptance criteria. This is the blueprint the AI will follow.</div>
               </div>
             </div>
             <div class="flow-arrow">↓</div>
@@ -115,7 +115,7 @@ import TerminalShell from '../components/TerminalShell.astro';
               <div class="flow-icon">✅</div>
               <div class="flow-body">
                 <div class="flow-label">Ready-for-Dev <span class="flow-tag human">Human Approval</span></div>
-                <div class="flow-desc">This is the gate. I review the PRISM spec, confirm the approach makes sense, and add the <code>ready-for-dev</code> label. BIFROST detects it and sends a notification to my phone. I reply <code>APPROVE</code> from anywhere—phone, laptop, watch. Nothing runs without this step.</div>
+                <div class="flow-desc">This is the gate. I review the FORGE spec, confirm the approach makes sense, and add the <code>ready-for-dev</code> label. BIFROST detects it and sends a notification to my phone. I reply <code>APPROVE</code> from anywhere—phone, laptop, watch. Nothing runs without this step.</div>
               </div>
             </div>
             <div class="flow-arrow">↓</div>
@@ -124,7 +124,7 @@ import TerminalShell from '../components/TerminalShell.astro';
               <div class="flow-icon">⚡</div>
               <div class="flow-body">
                 <div class="flow-label">BIFROST <span class="flow-tag auto">Autonomous Run</span></div>
-                <div class="flow-desc">The pipeline takes over. BIFROST spins up a Claude Code session with the PRISM spec, routes to the correct skill agent, and the AI starts building. It writes code, triggers Unity compilation via MCP, reads the console for errors, fixes them, and loops until clean. Then it tests in Play mode, validates the results, and moves to delivery.</div>
+                <div class="flow-desc">The pipeline takes over. BIFROST spins up a Claude Code session with the FORGE spec, routes to the correct skill agent, and the AI starts building. It writes code, triggers Unity compilation via MCP, reads the console for errors, fixes them, and loops until clean. Then it tests in Play mode, validates the results, and moves to delivery.</div>
               </div>
             </div>
             <div class="flow-arrow">↓</div>
@@ -158,7 +158,7 @@ import TerminalShell from '../components/TerminalShell.astro';
           <div class="transform-card after">
             <span class="transform-label">AFTER (Project BIFROST)</span>
             <span class="transform-title">"AI Executes After Human Intent"</span>
-            <span class="transform-desc">Idea → GitHub Issue → PRISM Spec → Approve → BIFROST → Pull Request</span>
+            <span class="transform-desc">Idea → GitHub Issue → FORGE Spec → Approve → BIFROST → Pull Request</span>
           </div>
         </div>
         <blockquote class="story-quote center">
@@ -180,7 +180,7 @@ import TerminalShell from '../components/TerminalShell.astro';
             </div>
             <div class="option-card">
               <span class="option-title">Queue Manager</span>
-              <span class="option-result">FIFO with BBP priority scoring, persistence across restarts</span>
+              <span class="option-result">FIFO with bucket-based priority (🥇/🥈/🥉), persistence across restarts</span>
             </div>
             <div class="option-card">
               <span class="option-title">Session Manager</span>

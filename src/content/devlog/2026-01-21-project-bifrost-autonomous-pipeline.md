@@ -39,7 +39,7 @@ Idea<br>
 <div style="font-size: 0.85em; color: var(--text-secondary); line-height: 1.8;">
 Idea<br>
 &darr; GitHub Issue<br>
-&darr; PRISM Spec (Intent)<br>
+&darr; FORGE Spec (Intent)<br>
 &darr; Ready-for-Dev (Human Approval)<br>
 &darr; <strong style="color: var(--accent-primary);">BIFROST (Autonomous Run)</strong><br>
 &darr; Pull Request<br>
@@ -71,7 +71,7 @@ I was the middleware between the AI and my codebase. The backlog grew faster tha
 <span style="color: var(--accent-primary); font-family: var(--font-mono);">&rarr;</span>
 <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 14px; background: var(--bg-secondary); border: 1px solid var(--border-color);">
 <span style="font-size: 1.3em;">&#x1f4d0;</span>
-<span style="font-size: 0.7em; font-family: var(--font-mono); color: var(--text-secondary); text-transform: uppercase;">PRISM Spec</span>
+<span style="font-size: 0.7em; font-family: var(--font-mono); color: var(--text-secondary); text-transform: uppercase;">FORGE Spec</span>
 </div>
 <span style="color: var(--accent-primary); font-family: var(--font-mono);">&rarr;</span>
 <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 14px; background: rgba(16, 185, 129, 0.1); border: 1px solid var(--accent-primary);">
@@ -103,7 +103,7 @@ I write the *what* and *why*. BIFROST handles the *how*.
 <div>
 <strong>Issue Creation & Triage</strong><br>
 <span style="font-size: 0.8em; font-family: var(--font-mono); color: var(--accent-primary);">Automated</span><br>
-<span style="color: var(--text-secondary);">I create a GitHub issue. <span class="term" tabindex="0">PRISM<span class="tooltip">AI triage system that auto-generates technical specs with skill routing, scope, and acceptance criteria</span></span> auto-generates a technical spec with skill routing, scope, and acceptance criteria. The issue gets a BBP priority score for queue ordering.</span>
+<span style="color: var(--text-secondary);">I create a GitHub issue. <span class="term" tabindex="0">FORGE<span class="tooltip">Focus, Order, Rating, Generation, Execution - AI triage system that forges technical specs from raw ideas, like the Norse dwarves who crafted legendary weapons</span></span> auto-generates a technical spec with skill routing, scope, and acceptance criteria. The issue gets a bucket assignment (🥇/🥈/🥉) for queue ordering.</span>
 </div>
 </div>
 
@@ -122,7 +122,7 @@ I write the *what* and *why*. BIFROST handles the *how*.
 <div>
 <strong>Autonomous Execution</strong><br>
 <span style="font-size: 0.8em; font-family: var(--font-mono); color: #00ccff;">Fully Autonomous</span><br>
-<span style="color: var(--text-secondary);">BIFROST spins up a <span class="term" tabindex="0">Claude Code<span class="tooltip">Anthropic's AI coding agent that can read, write, and execute code autonomously via CLI</span></span> session with the PRISM spec. Routes to the correct skill agent (UdonSharp, Terminal UI, Game Dev, etc.). Claude writes code, compiles via <span class="term" tabindex="0">Unity MCP<span class="tooltip">Model Context Protocol&mdash;lets AI agents communicate directly with Unity Editor</span></span>, reads console errors, fixes them, tests in Play mode, and creates a PR.</span><br>
+<span style="color: var(--text-secondary);">BIFROST spins up a <span class="term" tabindex="0">Claude Code<span class="tooltip">Anthropic's AI coding agent that can read, write, and execute code autonomously via CLI</span></span> session with the FORGE spec. Routes to the correct skill agent (UdonSharp, Terminal UI, Game Dev, etc.). Claude writes code, compiles via <span class="term" tabindex="0">Unity MCP<span class="tooltip">Model Context Protocol&mdash;lets AI agents communicate directly with Unity Editor</span></span>, reads console errors, fixes them, tests in Play mode, and creates a PR.</span><br>
 <span style="font-size: 0.9em; color: var(--accent-primary); margin-top: 8px; display: inline-block;"><strong>The loop:</strong> Write &rarr; Compile &rarr; Read Console &rarr; Fix &rarr; Repeat. No human needed.</span>
 </div>
 </div>

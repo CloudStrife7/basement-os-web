@@ -1,8 +1,8 @@
-# PRISM Setup Guide
+# FORGE Setup Guide
 
-**Priority Rating, Issue Spec & Management**
+**Focus, Order, Rating, Generation, Execution**
 
-A drop-in GitHub Action framework that uses Claude to automatically analyze, score, and spec out new issues - turning vague requests into actionable development tickets.
+Our issue intake system that transforms raw ideas into priority-scored, implementation-ready specs. Like the Norse dwarves who forged legendary weapons, FORGE crafts actionable plans from raw materials.
 
 ---
 
@@ -10,7 +10,7 @@ A drop-in GitHub Action framework that uses Claude to automatically analyze, sco
 
 1. [Value Proposition](#value-proposition)
 2. [Quick Start](#quick-start)
-3. [BBP Scoring System](#bbp-scoring-system)
+3. [Scoring System](#scoring-system)
 4. [Label Workflow](#label-workflow)
 5. [Workflow Files](#workflow-files)
 6. [Customization](#customization)
@@ -34,9 +34,9 @@ A drop-in GitHub Action framework that uses Claude to automatically analyze, sco
 │    ─────────────────────────────────────────────────                     │
 │    TOTAL per issue:                       27-60 min                      │
 │                                                                          │
-│  PRISM Automated (per issue):                                            │
+│  FORGE Automated (per issue):                                            │
 │    - Workflow runs automatically:         0 min (human)                  │
-│    - Human review of PRISM output:        2-5 min                        │
+│    - Human review of FORGE output:        2-5 min                        │
 │    ─────────────────────────────────────────────────                     │
 │    TOTAL per issue:                       2-5 min                        │
 │                                                                          │
@@ -47,14 +47,14 @@ A drop-in GitHub Action framework that uses Claude to automatically analyze, sco
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
-### What PRISM Does
+### What FORGE Does
 
 1. **Triggers** on new issue creation
 2. **Searches** your codebase for related patterns
-3. **Calculates** a priority score (BBP)
+3. **Estimates** story points and automation candidacy
 4. **Generates** an implementation spec with phases
-5. **Applies** labels and assigns for review
-6. **Posts** a structured analysis comment
+5. **Applies** labels (bucket + automation candidate)
+6. **Posts** a structured analysis comment with forcing function
 
 ---
 
@@ -71,94 +71,119 @@ A drop-in GitHub Action framework that uses Claude to automatically analyze, sco
 ### Step 2: Create the Workflow Files
 
 Copy the workflow YAML from [Workflow Files](#workflow-files) section into:
-- `.github/workflows/prism-auto-triage.yml` (required)
+- `.github/workflows/forge-auto-triage.yml` (required)
 - `.github/workflows/auto-build-on-ready.yml` (optional)
 
 ### Step 3: Create Required Labels
 
 Create these labels in your repository (**Settings** > **Labels**):
 
+**Bucket Labels:**
 | Label | Hex Color | Description |
 |-------|-----------|-------------|
-| `priority: critical` | `#b60205` | BBP 120+ - Do immediately |
-| `priority: high` | `#d93f0b` | BBP 90-119 - Do soon |
-| `priority: medium` | `#fbca04` | BBP 60-89 - Normal priority |
-| `priority: low` | `#0e8a16` | BBP <60 - When time permits |
+| `🥇 Focus (1 Max)` | `#ff0000` | 🥇 GOLD - Ship This Week |
+| `🥈 Next Up (3 Max)` | `#bfd4f2` | 🥈 SILVER - Next in queue |
+| `🥉 Someday (Unlimited)` | `#e99695` | 🥉 BRONZE - Backlog (default) |
+
+**Story Point Labels:**
+| Label | Hex Color |
+|-------|-----------|
+| `SP: 1` | `#c5def5` |
+| `SP: 2` | `#c5def5` |
+| `SP: 3` | `#c5def5` |
+| `SP: 5` | `#c5def5` |
+| `SP: 8` | `#c5def5` |
+
+**Workflow Labels:**
+| Label | Hex Color | Description |
+|-------|-----------|-------------|
 | `needs-review` | `#5319e7` | Awaiting human review |
 | `ready-for-dev` | `#0075ca` | Approved for development |
-| `Good Agentic Build` | `#1d76db` | High feasibility (70%+) |
-| `skip-prism` | `#cccccc` | Skip PRISM analysis |
+| `Good Agentic Build` | `#1d76db` | Automation Candidate = Y |
+| `skip-forge` | `#cccccc` | Skip FORGE analysis |
 
 **Quick CLI label creation:**
 ```bash
-gh label create "priority: critical" --color "b60205" --description "BBP 120+"
-gh label create "priority: high" --color "d93f0b" --description "BBP 90-119"
-gh label create "priority: medium" --color "fbca04" --description "BBP 60-89"
-gh label create "priority: low" --color "0e8a16" --description "BBP <60"
+# Bucket labels
+gh label create "🥇 Focus (1 Max)" --color "ff0000" --description "GOLD - Ship This Week"
+gh label create "🥈 Next Up (3 Max)" --color "bfd4f2" --description "SILVER - Next in queue"
+gh label create "🥉 Someday (Unlimited)" --color "e99695" --description "BRONZE - Backlog"
+
+# Story point labels
+gh label create "SP: 1" --color "c5def5" --description "Trivial (<1 hour)"
+gh label create "SP: 2" --color "c5def5" --description "Small (1-2 hours)"
+gh label create "SP: 3" --color "c5def5" --description "Medium (half day)"
+gh label create "SP: 5" --color "c5def5" --description "Large (full day)"
+gh label create "SP: 8" --color "c5def5" --description "XL (multiple days)"
+
+# Workflow labels
 gh label create "needs-review" --color "5319e7" --description "Awaiting human review"
 gh label create "ready-for-dev" --color "0075ca" --description "Approved for development"
-gh label create "Good Agentic Build" --color "1d76db" --description "High feasibility (70%+)"
-gh label create "skip-prism" --color "cccccc" --description "Skip PRISM analysis"
+gh label create "Good Agentic Build" --color "1d76db" --description "Automation Candidate = Y"
+gh label create "skip-forge" --color "cccccc" --description "Skip FORGE analysis"
 ```
 
 ### Step 4: Test
 
 1. Create a new issue with a clear feature request
-2. Wait 2-3 minutes for PRISM to analyze
-3. Check for the PRISM Analysis comment and applied labels
+2. Wait 2-3 minutes for FORGE to analyze
+3. Check for the FORGE Analysis comment and applied labels
 
 ---
 
-## BBP Scoring System
+## Scoring System
 
-### Formula
+FORGE v2.0 uses a simplified bucket-based system with a **forcing function**:
+
+> **Work ONLY on 🥇 or 🥈 features. Everything else waits.**
+
+### The Three Buckets
 
 ```
-BBP = (Story Points x 10) + (Impact x 5) + Feasibility Bonus
+🥇 GOLD (Ship This Week)   🥈 SILVER (Next Up)       🥉 BRONZE (Someday/Maybe)
+────────────────────────   ───────────────────       ─────────────────────────
+MAX: 1 feature             MAX: 3 features           UNLIMITED backlog
+Must ship by Friday        Priority ranked 1-3       New ideas go here (default)
 ```
+
+| Bucket | Max Items | Purpose |
+|--------|-----------|---------|
+| 🥇 GOLD | 1 | Current sprint focus |
+| 🥈 SILVER | 3 (ranked) | Next up queue |
+| 🥉 BRONZE | Unlimited | Idea backlog |
 
 ### Story Points (1-8)
 
-| Points | Scope | Time Estimate |
-|--------|-------|---------------|
+Modified Fibonacci scale based on effort:
+
+| SP | Effort | Time Estimate |
+|----|--------|---------------|
 | 1 | Trivial | < 1 hour |
 | 2 | Small | 1-2 hours |
 | 3 | Medium | Half day |
 | 5 | Large | Full day |
 | 8 | XL | Multiple days |
 
-### Impact (1-10)
+**If SP > 5:** Consider breaking into smaller issues.
 
-**For User-Facing Work** ("How much will users love this?"):
-- 9-10: Core features, major wow moments
-- 7-8: Noticeable delight, visible improvements
-- 5-6: Nice to have, some users appreciate
-- 3-4: Minor polish, few will notice
-- 1-2: Tiny tweaks
+### Automation Candidate (Y/N)
 
-**For Developer Work** ("How much will this speed up development?"):
-- 9-10: Saves 30+ min/day, critical automation
-- 7-8: Saves 10-30 min/day, workflow improvements
-- 5-6: Occasional time saver
-- 3-4: Minor convenience
-- 1-2: Marginal improvement
+Replaces the old feasibility percentage:
 
-### Feasibility Bonus
+| Value | Criteria |
+|-------|----------|
+| **Y** | Clear requirements, follows existing patterns, pure code changes |
+| **N** | Requires Unity scene work, creative decisions, external setup |
 
-| Range | Bonus | Meaning |
-|-------|-------|---------|
-| 90-100% | +20 | Fully automatable, clear spec, proven patterns |
-| 70-89% | +10 | Mostly automatable, may need minor clarification |
-| <70% | +0 | Needs significant human decisions |
+Issues with `Good Agentic Build` label (Automation Candidate = Y) can be auto-implemented.
 
-### Priority Thresholds
+### The Forcing Function
 
-| BBP Range | Priority | Action |
-|-----------|----------|--------|
-| 120+ | Critical | Do immediately |
-| 90-119 | High | Do this sprint |
-| 60-89 | Medium | Normal backlog |
-| <60 | Low | When time permits |
+**Monday-Friday:** Work ONLY on 🥇 or 🥈 features.
+
+**Saturday:** Wildcard day - can work on 🥉 or fun projects.
+
+**Sunday:** Weekly planning and bucket review.
 
 ---
 
@@ -173,7 +198,7 @@ BBP = (Story Points x 10) + (Impact x 5) + Feasibility Bonus
          │
          ▼
 ┌─────────────────┐
-│  needs-review   │◄──── Applied by PRISM (always)
+│  needs-review   │◄──── Applied by FORGE (always)
 └────────┬────────┘
          │
          ▼
@@ -214,32 +239,32 @@ gh issue edit [NUMBER] --remove-label "needs-review" --add-label "ready-for-dev"
 # Reject an issue
 gh issue close [NUMBER] --comment "Closing: [reason]"
 
-# Skip PRISM for an issue
-gh issue edit [NUMBER] --add-label "skip-prism"
+# Skip FORGE for an issue
+gh issue edit [NUMBER] --add-label "skip-forge"
 ```
 
 ---
 
 ## Workflow Files
 
-### prism-auto-triage.yml (Required)
+### forge-auto-triage.yml (Required)
 
-Copy this to `.github/workflows/prism-auto-triage.yml`:
+Copy this to `.github/workflows/forge-auto-triage.yml`:
 
 ```yaml
-name: PRISM Auto-Triage
+name: FORGE Auto-Triage
 
 on:
   issues:
     types: [opened]
 
 jobs:
-  prism-triage:
-    # Skip if issue already has BBP table, is from a bot, or has skip-prism label
+  forge-triage:
+    # Skip if issue already analyzed, is from a bot, or has skip-forge label
     if: |
-      !contains(github.event.issue.body, '| **BBP**') &&
+      !contains(github.event.issue.body, '## FORGE Analysis') &&
       !contains(github.event.issue.user.login, '[bot]') &&
-      !contains(github.event.issue.labels.*.name, 'skip-prism')
+      !contains(github.event.issue.labels.*.name, 'skip-forge')
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -251,12 +276,12 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Run PRISM Analysis
+      - name: Run FORGE Analysis
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
-            You are PRISM (Priority Rating, Issue Spec & Management) - an expert technical analyst.
+            You are FORGE (Focus, Order, Rating, Generation, Execution) - an expert technical analyst who forges implementation-ready specs from raw ideas.
 
             ## Issue to Analyze
             - **Title**: ${{ github.event.issue.title }}
@@ -266,7 +291,7 @@ jobs:
             ${{ github.event.issue.body }}
             ```
 
-            ## Your Task: Full PRISM Analysis
+            ## Your Task: Full FORGE Analysis
 
             ### Step 1: Research (REQUIRED)
             Before scoring, search the codebase for related patterns:
@@ -274,12 +299,7 @@ jobs:
             - Use Grep to find relevant methods or patterns
             - Identify existing implementations to follow
 
-            ### Step 2: Calculate BBP Score
-
-            **Formula**:
-            ```
-            BBP = (Story Points x 10) + (Impact x 5) + Feasibility Bonus
-            ```
+            ### Step 2: Estimate Story Points
 
             **Story Points (1-8)**:
             - 1 = Trivial (<1 hour)
@@ -288,16 +308,15 @@ jobs:
             - 5 = Large (full day)
             - 8 = XL (multiple days)
 
-            **Impact (1-10)**:
-            - User items: "How much will users love this?"
-            - Dev items: "How much will this speed up development?"
+            If SP > 5, suggest breaking into smaller issues.
 
-            **Agentic Feasibility (0-100%)**:
-            - 90%+: Pure code, clear spec, existing patterns -> Bonus +20
-            - 70-89%: Mostly code, may need some manual work -> Bonus +10
-            - <70%: Complex work, external deps -> Bonus +0
+            ### Step 3: Determine Automation Candidate
 
-            ### Step 3: Generate Implementation Spec
+            **Automation Candidate (Y/N)**:
+            - Y = Clear requirements, follows existing patterns, pure code changes
+            - N = Requires Unity scene work, creative decisions, external setup
+
+            ### Step 4: Generate Implementation Spec
 
             Create a comprehensive spec including:
             1. Summary (1-2 sentences)
@@ -307,32 +326,27 @@ jobs:
             5. Success criteria
             6. Copy-paste resume prompt
 
-            ### Step 4: Apply Labels
+            ### Step 5: Apply Labels
 
             Use `gh issue edit` to add labels:
-            - `priority: critical` if BBP >= 120
-            - `priority: high` if BBP 90-119
-            - `priority: medium` if BBP 60-89
-            - `priority: low` if BBP < 60
-            - `Good Agentic Build` if feasibility >= 70%
+            - `🥉 Someday (Unlimited)` (ALL new issues start in BRONZE)
+            - `SP: X` where X is the story point estimate
+            - `Good Agentic Build` if Automation Candidate = Y
             - `needs-review` (ALWAYS - human must approve before dev starts)
 
-            ### Step 5: Post Comment
+            ### Step 6: Post Comment with Forcing Function
 
             Use `gh issue comment` with this format:
 
             ```markdown
-            ## PRISM Analysis
+            ## FORGE Analysis
 
-            | Metric | Score | Reason |
+            | Metric | Value | Reason |
             |--------|-------|--------|
-            | Category | [user/dev]-focused | [why] |
-            | Story Points | X | [scope] |
-            | Impact | X/10 | [value delivered] |
-            | Agentic Feasibility | X% | [factors] |
-            | **BBP** | **X** | (SPx10)+(Impactx5)+Bonus |
+            | Story Points | SP: X | [scope reasoning] |
+            | Automation Candidate | Y/N | [why] |
+            | Bucket | 🥉 BRONZE | New issues start here |
 
-            **Priority**: [Critical/High/Medium/Low]
             **Branch**: `feat/[name]-issue-${{ github.event.issue.number }}`
 
             ---
@@ -386,7 +400,14 @@ jobs:
 
             ---
 
-            *Auto-generated by PRISM. Human review required before development.*
+            ## 🔥 Forcing Function
+
+            **Should this be promoted?**
+            - Reply `promote to gold` → Make it your 🥇 Ship This Week
+            - Reply `promote to silver` → Add to 🥈 Next Up queue
+            - Reply `keep in bronze` → Leave for Sunday review
+
+            *Auto-generated by FORGE. Human review required before development.*
             *Remove `needs-review` and add `ready-for-dev` to approve.*
             ```
 
@@ -394,6 +415,7 @@ jobs:
 
             - ALWAYS search the codebase before scoring (use Glob/Grep)
             - ALWAYS add `needs-review` label - only humans approve work
+            - ALL new issues default to 🥉 BRONZE bucket
             - If issue is unclear, add clarifying questions in the comment
 
           # Allow the workflow to add labels and comments
@@ -442,7 +464,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issueNumber,
-                body: `## Auto-Build Skipped\n\nThis issue has \`ready-for-dev\` but NOT \`Good Agentic Build\` label.\n\n**Reason**: Low agentic feasibility (<70%) - requires manual guidance.\n\n**To start manually**: \`@claude Resume issue #${issueNumber}\`\n\n---\n*Auto-build requires both \`ready-for-dev\` AND \`Good Agentic Build\` labels.*`
+                body: `## Auto-Build Skipped\n\nThis issue has \`ready-for-dev\` but NOT \`Good Agentic Build\` label.\n\n**Reason**: Automation Candidate = N - requires manual guidance.\n\n**To start manually**: \`@claude Resume issue #${issueNumber}\`\n\n---\n*Auto-build requires both \`ready-for-dev\` AND \`Good Agentic Build\` labels.*`
               });
               return { proceed: false };
             }
@@ -474,8 +496,8 @@ jobs:
 
             ## Instructions
 
-            1. **Read the PRISM spec** from the issue comments (look for "## PRISM Analysis")
-            2. **Follow the implementation plan** from the PRISM spec
+            1. **Read the FORGE spec** from the issue comments (look for "## FORGE Analysis")
+            2. **Follow the implementation plan** from the FORGE spec
             3. **Create a feature branch**: Use the branch name from the spec
             4. **Implement the feature** following the phased plan
             5. **Create a PR** with proper description and link to issue
@@ -502,7 +524,7 @@ jobs:
 
 ### Project-Specific Prompts
 
-Add project context to the PRISM prompt for better analysis:
+Add project context to the FORGE prompt for better analysis:
 
 **For Unity/VRChat projects**, add to the prompt:
 ```yaml
@@ -533,16 +555,15 @@ Add skill detection rules to route issues to appropriate agents:
 | `*` | `/general` | Default |
 ```
 
-### Custom Labels
+### Custom Bucket Names
 
-Replace priority labels with your team's conventions:
+Replace bucket labels with your team's conventions:
 
 ```yaml
-# Instead of priority: critical/high/medium/low
-- `P0` if BBP >= 120
-- `P1` if BBP 90-119
-- `P2` if BBP 60-89
-- `P3` if BBP < 60
+# Instead of emoji buckets
+- `P0 - Focus` instead of `🥇 Focus (1 Max)`
+- `P1 - Next Up` instead of `🥈 Next Up (3 Max)`
+- `P2 - Backlog` instead of `🥉 Someday (Unlimited)`
 ```
 
 ### Assignee Configuration
@@ -556,13 +577,13 @@ gh issue edit ${{ github.event.issue.number }} --add-assignee "your-username"
 
 ## Troubleshooting
 
-### PRISM Does Not Trigger
+### FORGE Does Not Trigger
 
 **Check**:
 1. Is the workflow file in `.github/workflows/`?
-2. Does the issue already have a BBP table? (skipped to prevent duplicates)
+2. Does the issue already have a FORGE Analysis comment? (skipped to prevent duplicates)
 3. Is the issue from a bot? (skipped by default)
-4. Does the issue have `skip-prism` label?
+4. Does the issue have `skip-forge` label?
 
 **Debug**: Check Actions tab for workflow run logs.
 
@@ -593,7 +614,8 @@ gh issue edit ${{ github.event.issue.number }} --add-assignee "your-username"
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 1.0.0 | February 2026 | Initial release |
+| 2.0.0 | February 2026 | Rebranded from PRISM to FORGE. Replaced BBP scoring with bucket system (🥇/🥈/🥉). Added forcing function. |
+| 1.0.0 | January 2026 | Initial release as PRISM |
 
 ---
 
