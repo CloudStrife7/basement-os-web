@@ -10,7 +10,7 @@
     "Idle": 741,
     "Meow": 531,
     "Stretch": 478,
-    "SitIdle": 719,
+    "SitIdle": 720,
     "CleanFace": 421,
     "Sleep": 163,
     "SlowWalk": 777,
@@ -29,5 +29,5 @@
   "total_stuck_events": 0,
   "favorite_room": "Theater + Arcade",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-19T03:38:39.870Z"
+  "last_updated": "2026-02-19T03:39:15.073Z"
 }
