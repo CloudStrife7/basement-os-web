@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-19T07:30:52Z",
+  "generated_at": "2026-02-20T01:06:05Z",
   "focus": "assigned",
   "description": "Issues assigned to CloudStrife7 - What I am currently working on",
   "assignee": "CloudStrife7",
@@ -263,44 +263,6 @@
         {
           "name": "priority: critical",
           "color": "b60205"
-        },
-        {
-          "name": "player-focused",
-          "color": "2ea44f"
-        },
-        {
-          "name": "needs-review",
-          "color": "FBCA04"
-        },
-        {
-          "name": "unity-required",
-          "color": "5319E7"
-        }
-      ]
-    },
-    {
-      "number": 365,
-      "title": "fix: Game Room & Theatre ProTV speakers at max volume with 2D audio bleed",
-      "state": "open",
-      "created_at": "2026-02-03T11:59:34Z",
-      "updated_at": "2026-02-03T12:01:24Z",
-      "milestone": null,
-      "labels": [
-        {
-          "name": "bug",
-          "color": "d73a4a"
-        },
-        {
-          "name": "priority: high",
-          "color": "d93f0b"
-        },
-        {
-          "name": "needs-testing",
-          "color": "fef2c0"
-        },
-        {
-          "name": "Good Agentic Build",
-          "color": "1d76db"
         },
         {
           "name": "player-focused",
