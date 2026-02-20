@@ -22,7 +22,7 @@ const isMilestone = entry.data.type === 'milestone';
   <div class="devlog-date">{formattedDate}</div>
   <h3 class={`devlog-title ${isMilestone ? 'milestone' : ''}`}>
     {isMilestone && <span class="milestone-badge">★</span>}
-    {entry.data.title}
+    <a href={`/devlog/${entry.slug}/`}>{entry.data.title}</a>
   </h3>
   <div class="devlog-content">
     <Content />
