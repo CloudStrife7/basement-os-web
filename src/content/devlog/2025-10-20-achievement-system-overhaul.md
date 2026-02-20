@@ -10,3 +10,5 @@ Finally finished the Xbox 360-style achievement system! 19 achievements worth 42
 Using VRChat's [PlayerData API](https://docs.vrchat.com/docs/player-persistence) for persistence. This was tricky because you can't use fancy C# features in UdonSharp - no `List<T>`, no Dictionary, no LINQ. Everything's done with arrays and careful indexing.
 
 The FIFO queue for notifications took a few iterations. Originally had a priority system but it felt weird when achievements popped up out of order. The chronological approach matches the "basement live feed" vibe I was going for.
+
+[See all 19 achievements and how to earn them →](/achievements)

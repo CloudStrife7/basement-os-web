@@ -10,6 +10,6 @@ This is a big one. I've been working with <span class="term" tabindex="0">Claude
 
 **The Solution:** <span class="term" tabindex="0">Unity MCP<span class="tooltip">Model Context Protocol - a way for AI agents to communicate with Unity Editor directly</span></span> gave Claude hands. Now it does the full loop: write script → trigger compilation → check errors → attach to GameObjects → enter Play mode → verify. Zero human intervention.
 
-**The Learning:** This taught me that real automation isn't about speed - it's about eliminating the feedback loop. I went from "human as button-clicker" to "human as architect." That's the leadership transfer I'm after. As [HumanLayer puts it](https://www.humanlayer.dev/blog/writing-a-good-claude-md), good AI tooling is about leveraging stateless functions correctly.
+**The Learning:** This taught me that real automation isn't about speed - it's about eliminating the feedback loop. I went from "human as button-clicker" to "human as architect."
 
-**Why It Matters:** This pattern applies beyond VRChat. Any runtime environment (web apps, mobile, game engines) needs autonomous test → fix → verify loops. Companies pay for people who build these internal tools.
+**Why It Matters:** This pattern applies beyond VRChat. Any runtime environment (web apps, mobile, game engines) needs autonomous test → fix → verify loops.

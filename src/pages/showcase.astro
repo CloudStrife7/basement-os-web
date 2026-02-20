@@ -57,8 +57,8 @@ import TerminalShell from '../components/TerminalShell.astro';
             <p class="screenshot-caption">OS VERSION 2</p>
           </div>
           <div class="crt-screen screenshot-compact">
-            <a href="https://i.imgur.com/N8da6pU.jpeg" target="_blank">
-              <img src="https://i.imgur.com/N8da6pU.jpeg" alt="The Gaming Area" loading="lazy" />
+            <a href="/images/world/gaming-area.jpeg" target="_blank">
+              <img src="/images/world/gaming-area.jpeg" alt="The Gaming Area" loading="lazy" />
             </a>
             <p class="screenshot-caption">THE GAMING AREA</p>
           </div>
@@ -69,14 +69,14 @@ import TerminalShell from '../components/TerminalShell.astro';
             <p class="screenshot-caption">BASEMENT VIEW</p>
           </div>
           <div class="crt-screen screenshot-compact">
-            <a href="https://i.imgur.com/Kpu5VSp.png" target="_blank">
-              <img src="https://i.imgur.com/Kpu5VSp.png" alt="Achievement Notification" loading="lazy" />
+            <a href="/images/world/achievements.png" target="_blank">
+              <img src="/images/world/achievements.png" alt="Achievement Notification" loading="lazy" />
             </a>
-            <p class="screenshot-caption">NOTIFICATIONS</p>
+            <p class="screenshot-caption">ACHIEVEMENTS</p>
           </div>
           <div class="crt-screen screenshot-compact">
-            <a href="https://i.imgur.com/BOlvKfD.jpeg" target="_blank">
-              <img src="https://i.imgur.com/BOlvKfD.jpeg" alt="Arcade and Theater" loading="lazy" />
+            <a href="/images/world/arcade-theater.jpeg" target="_blank">
+              <img src="/images/world/arcade-theater.jpeg" alt="Arcade and Theater" loading="lazy" />
             </a>
             <p class="screenshot-caption">ARCADE & THEATER</p>
           </div>
@@ -591,8 +591,13 @@ document.addEventListener("astro:page-load", function() {
 
     /** @param {string} dateString */
     function formatDate(dateString) {
+        // Guard against undefined/null/empty - new Date(undefined) doesn't throw,
+        // it returns Invalid Date which toLocaleDateString renders as "Invalid Date"
+        if (!dateString) return '--';
         try {
             const date = new Date(dateString);
+            // Check for Invalid Date (NaN check)
+            if (isNaN(date.getTime())) return '--';
             return date.toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'short',
