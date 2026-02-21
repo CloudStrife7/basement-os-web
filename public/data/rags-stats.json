@@ -22,12 +22,12 @@
     "Main Room": 154,
     "Theater + Arcade": 258,
     "Hot Tub": 175,
-    "Other": 85
+    "Other": 86
   },
   "session_count": 134,
   "total_jumps": 1065,
   "total_stuck_events": 0,
   "favorite_room": "Theater + Arcade",
   "favorite_state": "Walk",
-  "last_updated": "2026-02-21T17:47:39.385Z"
+  "last_updated": "2026-02-21T17:47:49.402Z"
 }
