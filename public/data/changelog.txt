@@ -1,12 +1,16 @@
 What's new in the basement:
+  2/21
+  - Snake game speed and scoring adjusted to be more accurate
+  - Hung up Basement Bash Poster - w Snake High Score Battle!
+      Join in the fun on Mar 14‚ 2026 at 7˸30 PM 
 
-Added on 2/9/26:
-- Added Rags the NPC Cat + behavior analytics tracking dashboard RAGS.EXE
-- Added Read/Unread Tracking with Player Persistence to Terminal Tales
+2/19
+Furniture Updated
+Fixed Basement-wide audio issues audio is now spatial per room
 
-Previous updates:
+
+2/05
 - Beat your best Snake run? It'll be here next time you are
 - The Nokia keeps track of the top 5 Snake scores
-- SCORES app added to the terminal - see where you stand on the leaderboards
-- Regulars might notice something different in STATS
-- The RSS ticker has a few more things to say now
+- SCORES app added to the terminal - see where you stand on the leaderboards
+
