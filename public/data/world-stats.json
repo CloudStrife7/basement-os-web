@@ -40,9 +40,9 @@
     }
   },
   "tales": {
-    "total_reads": 2,
+    "total_reads": 3,
     "story_reads": {
-      "APIECE": 1,
+      "APIECE": 2,
       "BRITANNIA": 0,
       "BRUCEJUICE": 0,
       "CHIPS": 0,
@@ -91,5 +91,5 @@
       "EGG4": 0
     }
   },
-  "last_updated": "2026-02-24T19:30:36.419Z"
+  "last_updated": "2026-02-24T19:30:56.437Z"
 }
