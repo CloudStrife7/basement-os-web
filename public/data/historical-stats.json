@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-02-28T08:00:29.636Z",
+  "updated_at": "2026-02-28T09:00:29.639Z",
   "description": "Historical stats from Grafana via n8n. Auto-updated every 30 minutes.",
   "visits": [
     {
@@ -44,7 +44,7 @@
     },
     {
       "date": "2026-02-28",
-      "value": 2031
+      "value": 2032
     }
   ],
   "favorites": [
