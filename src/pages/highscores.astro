@@ -1,0 +1,306 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TerminalShell from '../components/TerminalShell.astro';
+---
+
+<BaseLayout title="HIGH SCORES - BASEMENT OS">
+  <TerminalShell activeSection="highscores">
+    <div class="content-section active">
+      <h2 class="section-header">C:\BASEMENT\HIGHSCORES.EXE</h2>
+
+      <!-- Snake Leaderboard -->
+      <div class="info-card">
+        <h3>[ Snake Leaderboard ]</h3>
+        <p class="leaderboard-desc">Global high scores from the Snake arcade cabinet in Lower Level 2.0</p>
+
+        <div class="leaderboard-container">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th class="col-rank">#</th>
+                <th class="col-name">PLAYER</th>
+                <th class="col-score">SCORE</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+              <tr class="loading-row">
+                <td colspan="3">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="leaderboard-caption" id="leaderboard-caption">Fetching leaderboard data...</p>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- How to Play -->
+      <div class="info-card">
+        <h3>[ How to Play ]</h3>
+        <div class="how-to-play">
+          <p>1. Visit <a href="https://vrchat.com/home/world/wrld_7302897c-be0f-4037-ac67-76f0ea065c2b" target="_blank" rel="noopener">Lower Level 2.0</a> in VRChat</p>
+          <p>2. Find the arcade cabinet near the gaming area</p>
+          <p>3. Play Snake and beat the high score!</p>
+          <p>4. Top 10 scores trigger a Discord notification</p>
+        </div>
+      </div>
+
+      <div class="separator">────────────────────────────────────────────────────────────────────</div>
+
+      <!-- Footer with refresh button -->
+      <div class="stats-footer">
+        <span class="stats-updated" id="last-updated">Last Updated: Loading...</span>
+        <button class="cta-button-small" id="refresh-btn">Refresh</button>
+      </div>
+
+    </div>
+  </TerminalShell>
+</BaseLayout>
+
+<style>
+  .leaderboard-desc {
+    color: var(--text-secondary);
+    font-size: 0.85em;
+    margin-bottom: 15px;
+  }
+
+  .leaderboard-container {
+    overflow-x: auto;
+  }
+
+  .leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+  }
+
+  .leaderboard-table th,
+  .leaderboard-table td {
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .leaderboard-table th {
+    color: var(--accent-primary);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+  }
+
+  .leaderboard-table tbody tr:hover {
+    background: var(--bg-secondary);
+  }
+
+  .col-rank {
+    width: 60px;
+    text-align: center;
+  }
+
+  .col-name {
+    min-width: 150px;
+  }
+
+  .col-score {
+    width: 120px;
+    text-align: right;
+  }
+
+  .leaderboard-table td.col-rank {
+    text-align: center;
+    color: var(--text-dim);
+  }
+
+  .leaderboard-table td.col-score {
+    text-align: right;
+    color: var(--accent-secondary);
+    font-weight: bold;
+  }
+
+  /* Rank badges for top 3 */
+  .rank-1 { color: #FFD700 !important; } /* Gold */
+  .rank-2 { color: #C0C0C0 !important; } /* Silver */
+  .rank-3 { color: #CD7F32 !important; } /* Bronze */
+
+  .loading-row td {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 30px;
+  }
+
+  .empty-row td {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 30px;
+    font-style: italic;
+  }
+
+  .leaderboard-caption {
+    text-align: center;
+    font-size: 0.75em;
+    color: var(--text-dim);
+    margin-top: 15px;
+  }
+
+  .how-to-play {
+    line-height: 1.8;
+  }
+
+  .how-to-play p {
+    margin: 5px 0;
+    color: var(--text-secondary);
+  }
+
+  .how-to-play a {
+    color: var(--accent-link);
+    text-decoration: none;
+  }
+
+  .how-to-play a:hover {
+    text-decoration: underline;
+  }
+
+  /* Stats footer */
+  .stats-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .stats-updated {
+    color: var(--text-dim);
+    font-size: 0.85em;
+  }
+
+  .cta-button-small {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    border: 1px solid var(--accent-primary);
+    padding: 8px 16px;
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .cta-button-small:hover {
+    background: transparent;
+    color: var(--accent-primary);
+  }
+
+  .cta-button-small:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .leaderboard-table th,
+    .leaderboard-table td {
+      padding: 8px 10px;
+    }
+
+    .col-rank {
+      width: 40px;
+    }
+
+    .col-score {
+      width: 80px;
+    }
+
+    .stats-footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<script>
+  const LEADERBOARD_API = 'https://ll2-leaderboard.cloudflare-landscape202.workers.dev/leaderboard';
+
+  function formatNumber(num: number): string {
+    return new Intl.NumberFormat().format(num);
+  }
+
+  function updateElement(id: string, value: string) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+  }
+
+  async function fetchLeaderboard() {
+    const refreshBtn = document.getElementById('refresh-btn') as HTMLButtonElement;
+    if (refreshBtn) refreshBtn.disabled = true;
+
+    const tbody = document.getElementById('leaderboard-body');
+    if (!tbody) return;
+
+    try {
+      const response = await fetch(LEADERBOARD_API);
+      if (!response.ok) throw new Error('Failed to fetch leaderboard');
+
+      const data = await response.json();
+      const entries = data.entries || [];
+
+      if (entries.length === 0) {
+        tbody.innerHTML = `
+          <tr class="empty-row">
+            <td colspan="3">No scores yet - be the first!</td>
+          </tr>
+        `;
+        updateElement('leaderboard-caption', 'Play Snake in Lower Level 2.0 to get on the board!');
+      } else {
+        tbody.innerHTML = entries.map((entry: any, index: number) => {
+          const rank = index + 1;
+          const rankClass = rank <= 3 ? `rank-${rank}` : '';
+          return `
+            <tr>
+              <td class="col-rank ${rankClass}">${rank}</td>
+              <td class="col-name">${escapeHtml(entry.name)}</td>
+              <td class="col-score">${formatNumber(entry.score)}</td>
+            </tr>
+          `;
+        }).join('');
+
+        updateElement('leaderboard-caption', `${data.total || entries.length} total scores recorded`);
+      }
+
+      // Update timestamp
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      updateElement('last-updated', `Last Updated: ${timeStr}`);
+
+    } catch (e) {
+      console.error('Error fetching leaderboard:', e);
+      tbody.innerHTML = `
+        <tr class="empty-row">
+          <td colspan="3">Failed to load leaderboard</td>
+        </tr>
+      `;
+      updateElement('leaderboard-caption', 'Error fetching data - try refreshing');
+    } finally {
+      if (refreshBtn) refreshBtn.disabled = false;
+    }
+  }
+
+  function escapeHtml(text: string): string {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // Initialize on page load
+  document.addEventListener('astro:page-load', () => {
+    fetchLeaderboard();
+
+    const refreshBtn = document.getElementById('refresh-btn');
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', fetchLeaderboard);
+    }
+  });
+</script>
