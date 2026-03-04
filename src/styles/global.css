@@ -367,8 +367,8 @@
     --search-highlight: #34d399;
 }
 
-/* NEON NOIR (Hot pink on black - bold streetwear/gaming aesthetic) */
-[data-theme="neon-noir"] {
+/* MCON (Hot pink on black - inspired by ohsnap MCON controller) */
+[data-theme="mcon"] {
     --bg-primary: #080808;
     --bg-secondary: #121212;
     --bg-terminal: #080808;
