@@ -367,26 +367,26 @@
     --search-highlight: #34d399;
 }
 
-/* MCON (Hot pink on white - inspired by ohsnap MCON controller) */
+/* MCON (Hot pink on soft gray - inspired by ohsnap MCON controller) */
 [data-theme="mcon"] {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f5f5f5;
-    --bg-terminal: #ffffff;
-    --text-primary: #000000;
-    --text-secondary: #333333;
-    --text-dim: #666666;
+    --bg-primary: #e8e8e8;
+    --bg-secondary: #dedede;
+    --bg-terminal: #f0f0f0;
+    --text-primary: #1a1a1a;
+    --text-secondary: #404040;
+    --text-dim: #707070;
     --accent-primary: #F81B79;
     --accent-secondary: #ff4da6;
     --accent-alert: #ff6b35;
     --accent-error: #ff2d2d;
     --accent-link: #F81B79;
     --accent-milestone: #F81B79;
-    --border-color: #e0e0e0;
+    --border-color: #c0c0c0;
     --scanline-color: rgba(248, 27, 121, 0.02);
     --cursor-color: #F81B79;
     --selection-bg: #F81B79;
     --selection-text: #ffffff;
-    --tooltip-bg: #f0f0f0;
+    --tooltip-bg: #d5d5d5;
     --search-highlight: #ff4da6;
 }
 
