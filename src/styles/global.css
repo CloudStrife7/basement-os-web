@@ -367,6 +367,29 @@
     --search-highlight: #34d399;
 }
 
+/* MCON (Hot pink on black - inspired by ohsnap MCON controller) */
+[data-theme="mcon"] {
+    --bg-primary: #080808;
+    --bg-secondary: #121212;
+    --bg-terminal: #080808;
+    --text-primary: #f0f0f0;
+    --text-secondary: #c0c0c0;
+    --text-dim: #707070;
+    --accent-primary: #ff0080;
+    --accent-secondary: #ff4da6;
+    --accent-alert: #ff6b35;
+    --accent-error: #ff2d2d;
+    --accent-link: #ff0080;
+    --accent-milestone: #ff0080;
+    --border-color: #2a2a2a;
+    --scanline-color: rgba(255, 0, 128, 0.02);
+    --cursor-color: #ff0080;
+    --selection-bg: #ff0080;
+    --selection-text: #080808;
+    --tooltip-bg: #161616;
+    --search-highlight: #ff4da6;
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    BASE STYLES
 ═══════════════════════════════════════════════════════════════════ */
