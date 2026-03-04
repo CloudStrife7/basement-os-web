@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=VT323&family=Tahoma:wght@400;700&display=swap');
 
 /* Orbitron font for BasementOS theme */
 @font-face {
@@ -388,6 +388,31 @@
     --selection-text: #080808;
     --tooltip-bg: #161616;
     --search-highlight: #ff4da6;
+}
+
+/* WINDOWS XP (Classic Luna blue theme) */
+[data-theme="windows-xp"] {
+    --bg-primary: #ECE9D8;
+    --bg-secondary: #D6D2C2;
+    --bg-terminal: #FFFFFF;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --text-dim: #808080;
+    --accent-primary: #0054E3;
+    --accent-secondary: #316AC5;
+    --accent-alert: #FFC90E;
+    --accent-error: #E81123;
+    --accent-link: #0066CC;
+    --accent-milestone: #3C8A2E;
+    --border-color: #0054E3;
+    --scanline-color: rgba(0, 84, 227, 0.02);
+    --cursor-color: #000000;
+    --selection-bg: #316AC5;
+    --selection-text: #FFFFFF;
+    --tooltip-bg: #FFFFE1;
+    --search-highlight: #FFC90E;
+    --font-mono: 'Tahoma', 'Segoe UI', 'Trebuchet MS', sans-serif;
+    --font-display: 'Tahoma', 'Segoe UI', 'Trebuchet MS', sans-serif;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -2084,6 +2109,222 @@ body::before {
         linear-gradient(0deg, transparent 24%, rgba(16, 185, 129, 0.03) 25%, rgba(16, 185, 129, 0.03) 26%, transparent 27%, transparent 74%, rgba(16, 185, 129, 0.03) 75%, rgba(16, 185, 129, 0.03) 76%, transparent 77%, transparent),
         linear-gradient(90deg, transparent 24%, rgba(16, 185, 129, 0.03) 25%, rgba(16, 185, 129, 0.03) 26%, transparent 27%, transparent 74%, rgba(16, 185, 129, 0.03) 75%, rgba(16, 185, 129, 0.03) 76%, transparent 77%, transparent);
     background-size: 50px 50px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   WINDOWS XP THEME OVERRIDES
+   Classic Luna blue styling with square window controls
+═══════════════════════════════════════════════════════════════════ */
+
+/* XP: Bliss-inspired green gradient background */
+[data-theme="windows-xp"] body {
+    background: linear-gradient(180deg, #245EDC 0%, #3C8CF5 15%, #7EC8E3 30%, #58B947 45%, #7CCC6C 60%, #58B947 80%, #3A8A2E 100%);
+    background-attachment: fixed;
+}
+
+/* XP: Remove the grid overlay */
+[data-theme="windows-xp"] body::before {
+    background-image: none;
+}
+
+/* XP: Terminal looks like a classic Windows XP window */
+[data-theme="windows-xp"] .terminal {
+    border: 2px solid #0054E3;
+    border-radius: 8px 8px 4px 4px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+/* XP: Remove CRT scanline effect */
+[data-theme="windows-xp"] .terminal::before {
+    display: none;
+}
+
+/* XP: Blue Luna title bar gradient */
+[data-theme="windows-xp"] .terminal-header {
+    background: linear-gradient(180deg, #0997FF 0%, #0053E0 8%, #0050DB 20%, #0663E9 30%, #1980F5 50%, #0663E9 70%, #0050DB 80%, #0044C0 100%);
+    border-bottom: 1px solid #003399;
+    border-radius: 6px 6px 0 0;
+    padding: 4px 6px;
+}
+
+/* XP: White bold title text like real XP title bars */
+[data-theme="windows-xp"] .terminal-title {
+    color: #FFFFFF;
+    font-family: 'Tahoma', 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* XP: Window control buttons - square XP style */
+[data-theme="windows-xp"] .window-controls {
+    order: 1;
+    gap: 2px;
+}
+
+[data-theme="windows-xp"] .window-btn {
+    width: 21px;
+    height: 21px;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* XP: Minimize button - blue gradient with underscore icon */
+[data-theme="windows-xp"] .btn-minimize {
+    background: linear-gradient(180deg, #3C8CF5 0%, #2663DE 50%, #1A4AB8 100%);
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="windows-xp"] .btn-minimize::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    width: 8px;
+    height: 2px;
+    background: #FFFFFF;
+}
+
+[data-theme="windows-xp"] .btn-minimize:hover {
+    background: linear-gradient(180deg, #5DA4F7 0%, #4080E8 50%, #2E5EC8 100%);
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4);
+    transform: none;
+}
+
+/* XP: Maximize button - blue gradient with square icon */
+[data-theme="windows-xp"] .btn-maximize {
+    background: linear-gradient(180deg, #3C8CF5 0%, #2663DE 50%, #1A4AB8 100%);
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="windows-xp"] .btn-maximize::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #FFFFFF;
+    border-top-width: 3px;
+    background: transparent;
+}
+
+[data-theme="windows-xp"] .btn-maximize:hover {
+    background: linear-gradient(180deg, #5DA4F7 0%, #4080E8 50%, #2E5EC8 100%);
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* XP: Close button - red gradient with X icon */
+[data-theme="windows-xp"] .btn-close {
+    background: linear-gradient(180deg, #E8744A 0%, #D1432A 50%, #B91D09 100%);
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="windows-xp"] .btn-close::before {
+    content: '×';
+    position: absolute;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="windows-xp"] .btn-close:hover {
+    background: linear-gradient(180deg, #F09070 0%, #E05A3E 50%, #CC3318 100%);
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4);
+    transform: none;
+}
+
+/* XP: Footer styled like XP status bar */
+[data-theme="windows-xp"] .terminal-footer {
+    background: #ECE9D8;
+    border-top: 2px solid #ACA899;
+    color: #000000;
+}
+
+/* XP: Theme selector styling */
+[data-theme="windows-xp"] .theme-selector label {
+    color: #FFFFFF;
+}
+
+[data-theme="windows-xp"] .theme-selector select {
+    background: #FFFFFF;
+    color: #000000;
+    border: 1px solid #7F9DB9;
+    border-radius: 2px;
+    font-family: 'Tahoma', 'Segoe UI', sans-serif;
+}
+
+/* XP: Mode selector styling */
+[data-theme="windows-xp"] .mode-selector label {
+    color: #FFFFFF;
+}
+
+[data-theme="windows-xp"] .mode-selector select {
+    background: #FFFFFF;
+    color: #000000;
+    border: 1px solid #7F9DB9;
+    border-radius: 2px;
+    font-family: 'Tahoma', 'Segoe UI', sans-serif;
+}
+
+/* XP: Scrollbar styling */
+[data-theme="windows-xp"] ::-webkit-scrollbar {
+    width: 17px;
+}
+
+[data-theme="windows-xp"] ::-webkit-scrollbar-track {
+    background: #F1EFE2;
+    border-left: 1px solid #ACA899;
+}
+
+[data-theme="windows-xp"] ::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #C7CBB8 0%, #D7DAC7 40%, #C7CBB8 100%);
+    border: 1px solid #9C9A8E;
+    border-radius: 0;
+}
+
+/* XP: Links styled like classic XP hyperlinks */
+[data-theme="windows-xp"] a {
+    text-decoration: underline;
+}
+
+/* XP: Section headers */
+[data-theme="windows-xp"] .section-header {
+    font-family: 'Tahoma', 'Segoe UI', sans-serif;
+}
+
+/* XP: Navigation buttons - styled like XP toolbar buttons */
+[data-theme="windows-xp"] .nav-btn {
+    border-radius: 3px;
+    font-family: 'Tahoma', 'Segoe UI', sans-serif;
+}
+
+[data-theme="windows-xp"] .nav-btn:hover {
+    background: rgba(49, 106, 197, 0.2);
+    border-color: #316AC5;
+}
+
+[data-theme="windows-xp"] .nav-btn.active {
+    background: #316AC5;
+    color: #FFFFFF;
+}
+
+/* XP: Status bar */
+[data-theme="windows-xp"] .status-bar {
+    background: #ECE9D8;
+    border-top: 2px solid #ACA899;
+    font-family: 'Tahoma', 'Segoe UI', sans-serif;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
