@@ -1,0 +1,1026 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="PORK-OS v1.0 — Reimagine the Porkbun Pig" description="Pork-OS: A retro operating system reimagining of the Porkbun pig mascot. Built for the Porkbun Creative Competition 2026.">
+  <div class="pork-os-wrapper" id="pork-os">
+    <!-- BOOT SCREEN -->
+    <div class="boot-screen" id="boot-screen">
+      <div class="boot-content">
+        <pre class="boot-ascii pig-glow" id="boot-pig" aria-label="ASCII art of the Porkbun pig mascot booting up">
+        ⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀
+    ⢀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⡀
+   ⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦
+  ⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷
+ ⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠁          ⠈⠙⢿⣿⣿⣿⣿⣿⣿⣿
+ ⣿⣿⣿⣿⣿⣿⣿⠟⠁     ⣠⣤⣤⡀     ⠈⠻⣿⣿⣿⣿⣿⣿⣿
+⢸⣿⣿⣿⣿⣿⣿⠃     ⢀⣾⣿⣿⣿⣷⡀     ⠘⣿⣿⣿⣿⣿⣿⡇
+⢸⣿⣿⣿⣿⣿⡏      ⣼⣿⣿⣿⣿⣿⣧      ⢹⣿⣿⣿⣿⣿⡇
+ ⣿⣿⣿⣿⣿⡇      ⣿⣿⣿⣿⣿⣿⣿      ⢸⣿⣿⣿⣿⣿
+ ⣿⣿⣿⣿⣿⣿⡀     ⠸⣿⣿⣿⣿⣿⠇     ⢀⣿⣿⣿⣿⣿⣿
+  ⣿⣿⣿⣿⣿⣿⣄      ⠙⠿⠿⠟⠁      ⣠⣿⣿⣿⣿⣿⣿
+   ⢿⣿⣿⣿⣿⣿⣷⣄            ⣠⣾⣿⣿⣿⣿⣿⡿
+    ⠻⣿⣿⣿⣿⣿⣿⣿⣶⣄⣀    ⣀⣠⣶⣿⣿⣿⣿⣿⣿⣿⠟
+      ⠙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋
+         ⠉⠛⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠛⠉
+              ⠈⠉⠉⠉⠉⠉⠁</pre>
+        <div class="boot-text" id="boot-text">
+          <p class="boot-line" data-delay="400">PORK-OS BIOS v1.0</p>
+          <p class="boot-line" data-delay="800">Copyright (c) 2026 Porkbun LLC</p>
+          <p class="boot-line" data-delay="1200">&nbsp;</p>
+          <p class="boot-line" data-delay="1600">Detecting hardware...</p>
+          <p class="boot-line" data-delay="2000">  Snout Interface Controller .... OK</p>
+          <p class="boot-line" data-delay="2200">  Curly Tail Bus Adapter ....... OK</p>
+          <p class="boot-line" data-delay="2400">  Oink Sound Card .............. OK</p>
+          <p class="boot-line" data-delay="2600">  Mud Cooling System ........... OK</p>
+          <p class="boot-line" data-delay="2800">  Truffle Storage Drive ........ OK</p>
+          <p class="boot-line" data-delay="3200">&nbsp;</p>
+          <p class="boot-line" data-delay="3600">Loading PORK-OS kernel...</p>
+          <p class="boot-line" data-delay="4200">Mounting /dev/trough .......... OK</p>
+          <p class="boot-line" data-delay="4600">Starting oink daemon .......... OK</p>
+          <p class="boot-line" data-delay="5000">Initializing domain registry ... OK</p>
+          <p class="boot-line blink-line" data-delay="5600">SYSTEM READY. Press any key or wait...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN TERMINAL -->
+    <div class="pork-terminal" id="main-terminal" style="display:none;">
+      <div class="terminal-chrome">
+        <div class="chrome-bar">
+          <div class="chrome-dots">
+            <span class="dot dot-close" id="pork-reboot" title="Reboot"></span>
+            <span class="dot dot-min"></span>
+            <span class="dot dot-max"></span>
+          </div>
+          <div class="chrome-title">PORK-OS v1.0 &mdash; Terminal</div>
+          <div class="chrome-right">
+            <a href="/" class="back-link" title="Back to Basement OS">[BASEMENT OS]</a>
+          </div>
+        </div>
+
+        <div class="terminal-body" id="terminal-body">
+          <!-- WELCOME HEADER -->
+          <div class="welcome-section">
+            <pre class="pig-ascii-main" aria-label="Porkbun pig mascot ASCII art">
+    ╭──────────────────────────────────────────────────────╮
+    │                                                      │
+    │            ██████╗  ██████╗ ██████╗ ██╗  ██╗         │
+    │            ██╔══██╗██╔═══██╗██╔══██╗██║ ██╔╝         │
+    │            ██████╔╝██║   ██║██████╔╝█████╔╝          │
+    │            ██╔═══╝ ██║   ██║██╔══██╗██╔═██╗          │
+    │            ██║     ╚██████╔╝██║  ██║██║  ██╗         │
+    │            ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝         │
+    │                    ═══ O S ═══                        │
+    │                                                      │
+    ╰──────────────────────────────────────────────────────╯</pre>
+            <div class="tagline">The Operating System That Really Brings Home the Bacon</div>
+            <div class="separator">═══════════════════════════════════════════════════════════════</div>
+          </div>
+
+          <!-- MASCOT SHOWCASE -->
+          <div class="info-card">
+            <h3>[ SYSTEM.PIG — Meet Your Mascot ]</h3>
+            <div class="mascot-display">
+              <pre class="pig-art" aria-label="Detailed ASCII art of the Porkbun pig mascot with a domain name tag">
+                       ╱ ╲   ╱ ╲
+                      │ ● │ │ ● │
+                       ╲ ╱   ╲ ╱
+                    ╭──────────────╮
+                    │  ◉        ◉  │
+                    │              │
+                    │    ╭────╮    │
+                    │    │ .. │    │
+                    │    ╰────╯    │
+                    │     ╲──╱     │
+                    │    ◠    ◠    │
+                    ╰──────┬───────╯
+                           │
+                    ╭──────┴───────╮
+                    │  ♥ PORKBUN ♥ │
+                    │  .com  $10/yr │
+                    ╰──────────────╯</pre>
+              <div class="mascot-info">
+                <p class="system-msg">PORK-OS mascot loaded from <span class="highlight">/usr/local/pig</span></p>
+                <p class="system-msg">Species: <span class="highlight">Sus domesticus (Internet Edition)</span></p>
+                <p class="system-msg">Occupation: <span class="highlight">Domain Name Registrar & Good Vibes Officer</span></p>
+                <p class="system-msg">Special Ability: <span class="highlight">Making domains affordable since 2014</span></p>
+                <p class="system-msg">Favorite Food: <span class="highlight">Fresh HTML with a side of CSS</span></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="separator">────────────────────────────────────────────────────────────────</div>
+
+          <!-- PIG REIMAGINED GALLERY -->
+          <div class="info-card">
+            <h3>[ GALLERY.EXE — The Pig Reimagined ]</h3>
+            <div class="pig-gallery">
+
+              <div class="gallery-item">
+                <div class="gallery-frame">
+                  <pre class="mini-pig" aria-label="Cyberpunk pig with VR headset">
+   ╭─────────╮
+   │ ╔══╗╔══╗│
+   │ ║▓▓║║▓▓║│  CYBER-PIG
+   │ ╚══╝╚══╝│  v2.077
+   │  ╭────╮ │
+   │  │ oo │ │  "Your domain.
+   │  ╰────╯ │   Your rules."
+   │  ╱    ╲ │
+   ╰─────────╯</pre>
+                </div>
+                <span class="gallery-label">CYBERPUNK</span>
+              </div>
+
+              <div class="gallery-item">
+                <div class="gallery-frame">
+                  <pre class="mini-pig" aria-label="Space pig astronaut">
+      ╭───╮
+    ╭─┤   ├─╮
+   ╭┤ │◉ ◉│ ├╮  ASTRO-PIG
+   │╰─┤   ├─╯│  Moon Mission
+   │  │ oo │  │
+   │  │╲──╱│  │  "One small oink
+   ╰──┤   ├──╯   for pigkind."
+      ╰───╯</pre>
+                </div>
+                <span class="gallery-label">ASTRONAUT</span>
+              </div>
+
+              <div class="gallery-item">
+                <div class="gallery-frame">
+                  <pre class="mini-pig" aria-label="Wizard pig with magic hat">
+      ╱╲
+     ╱★★╲
+    ╱ ★★ ╲
+   ╱______╲
+   │ ◉  ◉ │    WIZARD-PIG
+   │ ╭──╮ │    Level 99
+   │ │..│ │
+   │ ╰──╯ │    "I put a spell
+   │ ╲──╱ │     on your DNS."
+   ╰───────╯</pre>
+                </div>
+                <span class="gallery-label">WIZARD</span>
+              </div>
+
+              <div class="gallery-item">
+                <div class="gallery-frame">
+                  <pre class="mini-pig" aria-label="8-bit retro pixel pig">
+   ▄▄▄▄▄▄▄▄▄
+   █ ▀▄   ▄▀█
+   █  █▀▄▀█ █  PIXEL-PIG
+   █ ▄█▀▀▀█▄█  8-BIT EDITION
+   █ ██ ▀ ██ █
+   █  █▄▄▄█  █  "INSERT DOMAIN
+   █   ▀▀▀   █   TO CONTINUE"
+   ▀▀▀▀▀▀▀▀▀▀</pre>
+                </div>
+                <span class="gallery-label">PIXEL ART</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="separator">────────────────────────────────────────────────────────────────</div>
+
+          <!-- INTERACTIVE TERMINAL -->
+          <div class="info-card">
+            <h3>[ TERMINAL.EXE — Interactive Oink Shell ]</h3>
+            <div class="interactive-terminal" id="interactive-terminal">
+              <div class="term-output" id="term-output">
+                <p>PORK-OS Interactive Shell v1.0</p>
+                <p>Type <span class="cmd-highlight">HELP</span> for available commands.</p>
+                <p>&nbsp;</p>
+              </div>
+              <div class="term-input-row">
+                <span class="prompt-text">C:\PORK&gt;</span>
+                <input type="text" class="term-input" id="term-input" autocomplete="off" spellcheck="false" aria-label="Terminal command input" />
+              </div>
+            </div>
+          </div>
+
+          <div class="separator">────────────────────────────────────────────────────────────────</div>
+
+          <!-- ABOUT / MANIFESTO -->
+          <div class="info-card">
+            <h3>[ README.TXT — The Pork-OS Manifesto ]</h3>
+            <div class="manifesto">
+              <p>In the beginning, there was the internet. And it was formless, and void of affordable domain names.</p>
+              <p>Then came <span class="highlight">Porkbun</span> — a scrappy little registrar with a pig mascot and a mission: make the web accessible, affordable, and actually fun.</p>
+              <p>The Porkbun Pig isn't just a logo. It's a statement. It says: <em>"We don't take ourselves too seriously, but we take YOUR website very seriously."</em> In a world of corporate registrars with forgettable branding, Porkbun chose a pig. A delightful, snout-forward, unapologetically charming pig.</p>
+              <p><strong>PORK-OS</strong> reimagines that pig as the heart of a retro operating system — a world where every boot sequence oinks, every file path leads to something delicious, and your domain name is just a <span class="cmd-highlight">REGISTER.EXE</span> away.</p>
+              <p>Because the internet should feel like home. And home should have a pig in it.</p>
+              <div class="manifesto-sig">
+                <span class="separator-sm">───────────────────</span>
+                <p>Built with love, pig puns, and too much coffee.</p>
+                <p>A <a href="https://basementos.com" class="pork-link">Basement OS</a> production for the <span class="highlight">Porkbun Creative Competition 2026</span>.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="separator">────────────────────────────────────────────────────────────────</div>
+
+          <!-- SYSTEM INFO -->
+          <div class="info-card">
+            <h3>[ SYSINFO.EXE ]</h3>
+            <div class="sysinfo">
+              <div class="sysinfo-row"><span class="sysinfo-label">OS</span><span class="sysinfo-value">PORK-OS v1.0 (Snout Edition)</span></div>
+              <div class="sysinfo-row"><span class="sysinfo-label">KERNEL</span><span class="sysinfo-value">PigLinux 6.2.6-porkbun</span></div>
+              <div class="sysinfo-row"><span class="sysinfo-label">CPU</span><span class="sysinfo-value">OinkCore i9-BACON @ 4.20 GHz</span></div>
+              <div class="sysinfo-row"><span class="sysinfo-label">RAM</span><span class="sysinfo-value">16 GB TROUGH-5 DDR5</span></div>
+              <div class="sysinfo-row"><span class="sysinfo-label">GPU</span><span class="sysinfo-value">PigForce RTX SNOUT Ti</span></div>
+              <div class="sysinfo-row"><span class="sysinfo-label">STORAGE</span><span class="sysinfo-value">1 TB Truffle NVMe SSD</span></div>
+              <div class="sysinfo-row"><span class="sysinfo-label">NETWORK</span><span class="sysinfo-value">Porkbun Fiber — 1 Gbps (oinks/sec)</span></div>
+              <div class="sysinfo-row"><span class="sysinfo-label">UPTIME</span><span class="sysinfo-value" id="pork-uptime">Calculating...</span></div>
+              <div class="sysinfo-row"><span class="sysinfo-label">DOMAINS</span><span class="sysinfo-value">∞ (at unbeatable prices)</span></div>
+            </div>
+          </div>
+
+          <div class="separator">────────────────────────────────────────────────────────────────</div>
+
+          <!-- CTA -->
+          <div class="cta-section">
+            <p class="cta-text">Ready to register your own domain?</p>
+            <a href="https://porkbun.com" class="pork-cta" target="_blank" rel="noopener">
+              <span class="cta-icon">🐷</span>
+              <span>VISIT PORKBUN.COM</span>
+            </a>
+            <p class="cta-sub">Domains so cheap, they're practically sow-stealing.</p>
+            <div class="separator-sm" style="margin-top:24px;">───────────────────</div>
+            <a href="/" class="back-to-basement">&larr; RETURN TO BASEMENT OS</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* ═══════════════════════════════════════════════
+     PORK-OS — Self-contained theme
+     Pig-pink retro terminal aesthetic
+  ═══════════════════════════════════════════════ */
+
+  :root {
+    --pork-bg: #0a0808;
+    --pork-bg-secondary: #140e0e;
+    --pork-pink: #ff6b9d;
+    --pork-pink-dim: #cc5580;
+    --pork-pink-glow: rgba(255, 107, 157, 0.4);
+    --pork-hot: #ff3e8a;
+    --pork-coral: #ff8fab;
+    --pork-gold: #ffd700;
+    --pork-text: #f0e0e4;
+    --pork-text-dim: #9a8088;
+    --pork-border: #3a2028;
+    --pork-font: 'JetBrains Mono', 'VT323', 'Courier New', monospace;
+  }
+
+  .pork-os-wrapper {
+    min-height: 100vh;
+    background: var(--pork-bg);
+    color: var(--pork-text);
+    font-family: var(--pork-font);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ─── BOOT SCREEN ─── */
+  .boot-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .boot-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.15) 2px,
+      rgba(0, 0, 0, 0.15) 4px
+    );
+    animation: scanline-drift 8s linear infinite;
+  }
+
+  @keyframes scanline-drift {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
+  }
+
+  .boot-content {
+    text-align: center;
+    z-index: 1;
+    position: relative;
+    max-width: 700px;
+    padding: 20px;
+  }
+
+  .boot-ascii {
+    color: var(--pork-pink);
+    font-size: 0.5em;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: boot-pig-in 1s ease-out 0.2s forwards;
+  }
+
+  @keyframes boot-pig-in {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .pig-glow {
+    text-shadow:
+      0 0 5px var(--pork-pink-glow),
+      0 0 15px var(--pork-pink-glow),
+      0 0 30px rgba(255, 107, 157, 0.15);
+  }
+
+  .boot-text {
+    text-align: left;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .boot-line {
+    color: var(--pork-coral);
+    font-size: 0.85em;
+    margin: 2px 0;
+    opacity: 0;
+    animation: boot-line-in 0.3s ease forwards;
+    text-shadow: 0 0 3px var(--pork-pink-glow);
+  }
+
+  .blink-line {
+    color: var(--pork-gold);
+  }
+
+  @keyframes boot-line-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .boot-line.visible.blink-line {
+    animation: boot-line-in 0.3s ease forwards, blink 1s step-end infinite 0.3s;
+  }
+
+  /* ─── TERMINAL CHROME ─── */
+  .pork-terminal {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    animation: terminal-in 0.6s ease;
+  }
+
+  @keyframes terminal-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .terminal-chrome {
+    border: 1px solid var(--pork-border);
+    background: var(--pork-bg);
+    box-shadow:
+      0 0 40px rgba(255, 107, 157, 0.08),
+      inset 0 0 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+  }
+
+  .terminal-chrome::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.06) 2px,
+      rgba(0, 0, 0, 0.06) 4px
+    );
+    animation: scanline-drift 8s linear infinite;
+  }
+
+  .chrome-bar {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background: var(--pork-bg-secondary);
+    border-bottom: 1px solid var(--pork-border);
+  }
+
+  .chrome-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .dot:hover { opacity: 0.7; }
+  .dot-close { background: #ff5f56; }
+  .dot-min { background: #ffbd2e; }
+  .dot-max { background: #27c93f; }
+
+  .chrome-title {
+    flex: 1;
+    text-align: center;
+    color: var(--pork-pink);
+    font-weight: bold;
+    font-size: 0.85em;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px var(--pork-pink-glow);
+  }
+
+  .chrome-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .back-link {
+    color: var(--pork-text-dim);
+    text-decoration: none;
+    font-size: 0.7em;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover {
+    color: var(--pork-pink);
+  }
+
+  .terminal-body {
+    padding: 30px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── WELCOME ─── */
+  .welcome-section {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .pig-ascii-main {
+    color: var(--pork-pink);
+    font-size: 0.65em;
+    line-height: 1.15;
+    display: inline-block;
+    text-shadow: 0 0 5px var(--pork-pink-glow);
+  }
+
+  .tagline {
+    color: var(--pork-coral);
+    font-size: 0.9em;
+    margin-top: 10px;
+    font-style: italic;
+    text-shadow: 0 0 5px var(--pork-pink-glow);
+  }
+
+  /* ─── SHARED ─── */
+  .separator {
+    color: var(--pork-border);
+    text-align: center;
+    margin: 25px 0;
+    font-size: 0.8em;
+    overflow: hidden;
+  }
+
+  .separator-sm {
+    color: var(--pork-border);
+    display: block;
+    text-align: center;
+  }
+
+  .info-card {
+    margin: 20px 0;
+  }
+
+  .info-card h3 {
+    color: var(--pork-pink);
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    text-shadow: 0 0 5px var(--pork-pink-glow);
+  }
+
+  .highlight {
+    color: var(--pork-pink);
+    font-weight: bold;
+  }
+
+  .cmd-highlight {
+    color: var(--pork-gold);
+    font-weight: bold;
+  }
+
+  /* ─── MASCOT ─── */
+  .mascot-display {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .pig-art {
+    color: var(--pork-pink);
+    font-size: 0.75em;
+    line-height: 1.2;
+    flex-shrink: 0;
+    text-shadow: 0 0 5px var(--pork-pink-glow);
+  }
+
+  .mascot-info {
+    flex: 1;
+    min-width: 250px;
+  }
+
+  .system-msg {
+    color: var(--pork-text-dim);
+    font-size: 0.85em;
+    margin: 4px 0;
+  }
+
+  /* ─── GALLERY ─── */
+  .pig-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .gallery-item {
+    text-align: center;
+  }
+
+  .gallery-frame {
+    background: rgba(255, 107, 157, 0.03);
+    border: 1px solid var(--pork-border);
+    padding: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .gallery-frame:hover {
+    border-color: var(--pork-pink-dim);
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.1);
+  }
+
+  .mini-pig {
+    color: var(--pork-pink);
+    font-size: 0.65em;
+    line-height: 1.2;
+    text-shadow: 0 0 3px var(--pork-pink-glow);
+  }
+
+  .gallery-label {
+    display: block;
+    color: var(--pork-coral);
+    font-size: 0.7em;
+    margin-top: 8px;
+    letter-spacing: 2px;
+  }
+
+  /* ─── INTERACTIVE TERMINAL ─── */
+  .interactive-terminal {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--pork-border);
+    padding: 15px;
+    max-height: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .term-output {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    max-height: 220px;
+  }
+
+  .term-output p {
+    margin: 1px 0;
+    font-size: 0.85em;
+    color: var(--pork-coral);
+  }
+
+  .term-input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid var(--pork-border);
+    padding-top: 10px;
+  }
+
+  .prompt-text {
+    color: var(--pork-pink);
+    font-weight: bold;
+    white-space: nowrap;
+    text-shadow: 0 0 3px var(--pork-pink-glow);
+  }
+
+  .term-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--pork-text);
+    font-family: var(--pork-font);
+    font-size: 0.85em;
+    outline: none;
+    caret-color: var(--pork-pink);
+  }
+
+  /* ─── MANIFESTO ─── */
+  .manifesto {
+    color: var(--pork-text);
+    font-size: 0.85em;
+  }
+
+  .manifesto p {
+    margin: 12px 0;
+    line-height: 1.7;
+  }
+
+  .manifesto em {
+    color: var(--pork-coral);
+  }
+
+  .manifesto strong {
+    color: var(--pork-pink);
+  }
+
+  .manifesto-sig {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .manifesto-sig p {
+    color: var(--pork-text-dim);
+    font-size: 0.9em;
+  }
+
+  .pork-link {
+    color: var(--pork-pink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--pork-border);
+    transition: border-color 0.2s;
+  }
+
+  .pork-link:hover {
+    border-color: var(--pork-pink);
+  }
+
+  /* ─── SYSINFO ─── */
+  .sysinfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .sysinfo-row {
+    display: flex;
+    gap: 10px;
+    font-size: 0.85em;
+  }
+
+  .sysinfo-label {
+    color: var(--pork-pink);
+    min-width: 100px;
+    font-weight: bold;
+  }
+
+  .sysinfo-value {
+    color: var(--pork-text);
+  }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    text-align: center;
+    padding: 30px 0 20px;
+  }
+
+  .cta-text {
+    color: var(--pork-text);
+    font-size: 1em;
+    margin-bottom: 20px;
+  }
+
+  .pork-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--pork-pink);
+    color: #000;
+    padding: 14px 28px;
+    font-family: var(--pork-font);
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid var(--pork-pink);
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+  }
+
+  .pork-cta:hover {
+    background: transparent;
+    color: var(--pork-pink);
+    box-shadow: 0 0 25px var(--pork-pink-glow);
+  }
+
+  .cta-icon {
+    font-size: 1.2em;
+  }
+
+  .cta-sub {
+    color: var(--pork-text-dim);
+    font-size: 0.8em;
+    margin-top: 12px;
+    font-style: italic;
+  }
+
+  .back-to-basement {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--pork-text-dim);
+    text-decoration: none;
+    font-size: 0.8em;
+    transition: color 0.2s;
+  }
+
+  .back-to-basement:hover {
+    color: var(--pork-pink);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 700px) {
+    .terminal-body { padding: 15px; }
+    .pig-ascii-main { font-size: 0.4em; }
+    .pig-art { font-size: 0.55em; }
+    .mini-pig { font-size: 0.5em; }
+    .pig-gallery { grid-template-columns: repeat(2, 1fr); }
+    .mascot-display { flex-direction: column; }
+    .boot-ascii { font-size: 0.35em; }
+    .chrome-title { font-size: 0.7em; }
+  }
+
+  @media (max-width: 500px) {
+    .pig-gallery { grid-template-columns: 1fr; }
+    .pig-ascii-main { font-size: 0.3em; }
+  }
+
+  /* ─── REDUCED MOTION ─── */
+  @media (prefers-reduced-motion: reduce) {
+    .boot-screen::before { animation: none; }
+    .terminal-chrome::before { animation: none; }
+    .boot-ascii { animation: none; opacity: 1; }
+    .boot-line { animation: none; opacity: 1; }
+    .pork-terminal { animation: none; }
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    // ─── BOOT SEQUENCE ───
+    const bootScreen = document.getElementById('boot-screen');
+    const mainTerminal = document.getElementById('main-terminal');
+    const bootLines = document.querySelectorAll('.boot-line');
+
+    if (!bootScreen || !mainTerminal) return;
+
+    // Animate boot lines
+    bootLines.forEach((line) => {
+      const el = line as HTMLElement;
+      const delay = parseInt(el.dataset.delay || '0', 10);
+      setTimeout(() => {
+        el.style.animationDelay = '0s';
+        el.classList.add('visible');
+        el.style.opacity = '1';
+      }, delay);
+    });
+
+    // Skip boot on click/keypress
+    let booted = false;
+    function finishBoot() {
+      if (booted) return;
+      booted = true;
+      bootScreen.style.display = 'none';
+      mainTerminal.style.display = 'block';
+      const input = document.getElementById('term-input') as HTMLInputElement | null;
+      if (input) input.focus();
+    }
+
+    const autoBootDelay = setTimeout(finishBoot, 7000);
+
+    function skipBoot() {
+      clearTimeout(autoBootDelay);
+      finishBoot();
+    }
+
+    bootScreen.addEventListener('click', skipBoot);
+    document.addEventListener('keydown', function bootKey(e: KeyboardEvent) {
+      if (!booted) {
+        skipBoot();
+        document.removeEventListener('keydown', bootKey);
+      }
+    });
+
+    // ─── REBOOT BUTTON ───
+    const rebootBtn = document.getElementById('pork-reboot');
+    if (rebootBtn) {
+      rebootBtn.addEventListener('click', () => {
+        booted = false;
+        mainTerminal.style.display = 'none';
+        bootScreen.style.display = 'flex';
+        bootLines.forEach((line) => {
+          (line as HTMLElement).style.opacity = '0';
+          line.classList.remove('visible');
+        });
+        // Re-trigger boot
+        bootLines.forEach((line) => {
+          const el = line as HTMLElement;
+          const delay = parseInt(el.dataset.delay || '0', 10);
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.classList.add('visible');
+          }, delay);
+        });
+        setTimeout(finishBoot, 7000);
+      });
+    }
+
+    // ─── UPTIME COUNTER ───
+    const bootTime = Date.now();
+    const uptimeEl = document.getElementById('pork-uptime');
+    if (uptimeEl) {
+      setInterval(() => {
+        const elapsed = Math.floor((Date.now() - bootTime) / 1000);
+        const mins = Math.floor(elapsed / 60);
+        const secs = elapsed % 60;
+        uptimeEl.textContent = `${mins}m ${secs}s (and counting)`;
+      }, 1000);
+    }
+
+    // ─── INTERACTIVE TERMINAL ───
+    const termInput = document.getElementById('term-input') as HTMLInputElement | null;
+    const termOutput = document.getElementById('term-output');
+
+    if (!termInput || !termOutput) return;
+
+    const pigFacts = [
+      "Pigs are among the smartest domesticated animals — smarter than dogs!",
+      "A group of pigs is called a 'sounder'. A sounder investment? Porkbun domains.",
+      "Pigs can run up to 11 mph. That's faster than some DNS propagation.",
+      "Baby pigs are called piglets. Baby domains are called 'just registered on Porkbun'.",
+      "Pigs have excellent long-term memory. They never forget a good domain deal.",
+      "Pigs communicate with over 20 different vocalizations. Porkbun communicates with great customer service.",
+      "Pigs don't sweat — they cool off in mud. Porkbun keeps their cool with low prices.",
+      "The oldest known pig lived to be 24 years old. Your Porkbun domain can last even longer!",
+    ];
+
+    const oinks = [
+      "OINK! 🐷",
+      "Oink oink oink! (Translation: Great domain choice!)",
+      "*happy pig noises*",
+      "OINK OINK! (That means 'hello' in pig.)",
+      "~oink~ Did someone say cheap domains?",
+      "*snort* *oink* *snort snort*",
+    ];
+
+    const commands: Record<string, () => string> = {
+      'HELP': () => [
+        'Available commands:',
+        '  HELP      — Show this list',
+        '  OINK      — Make pig sounds',
+        '  FACT      — Random pig fact',
+        '  DOMAINS   — Check domain prices',
+        '  REGISTER  — Register a domain',
+        '  WHOAMI    — System identity',
+        '  WEATHER   — Current barnyard weather',
+        '  CLEAR     — Clear terminal',
+        '  ABOUT     — About PORK-OS',
+        '  CREDITS   — Competition credits',
+      ].join('\n'),
+
+      'OINK': () => oinks[Math.floor(Math.random() * oinks.length)],
+
+      'FACT': () => '🐷 ' + pigFacts[Math.floor(Math.random() * pigFacts.length)],
+
+      'DOMAINS': () => [
+        '╭─────────────────────────────────────╮',
+        '│  PORKBUN DOMAIN PRICES              │',
+        '│─────────────────────────────────────│',
+        '│  .com     $10.28/yr  ★ Popular      │',
+        '│  .dev     $12.28/yr  ★ For devs     │',
+        '│  .io      $33.28/yr  ★ Startups     │',
+        '│  .pig     PRICELESS  ★ If only...   │',
+        '│─────────────────────────────────────│',
+        '│  Visit porkbun.com for all TLDs!    │',
+        '╰─────────────────────────────────────╯',
+      ].join('\n'),
+
+      'REGISTER': () => [
+        'REGISTER.EXE — Domain Registration Wizard',
+        '',
+        'Step 1: Think of a great name',
+        'Step 2: Go to porkbun.com',
+        'Step 3: Pay less than anywhere else',
+        'Step 4: Profit! 🐷',
+        '',
+        'It\'s really that simple.',
+      ].join('\n'),
+
+      'WHOAMI': () => [
+        'User: pork-os-user',
+        'Role: Domain Enthusiast',
+        'Shell: /bin/oink',
+        'Home: /home/barn',
+        'Registrar: Porkbun (obviously)',
+      ].join('\n'),
+
+      'WEATHER': () => {
+        const conditions = ['Sunny with a chance of bacon', 'Partly cloudy with light oinking', 'Mud bath weather — perfect!', 'Clear skies over the domain barn', 'Warm and cozy — great day to register a .com'];
+        return '🌤️ Barnyard Weather Report: ' + conditions[Math.floor(Math.random() * conditions.length)];
+      },
+
+      'ABOUT': () => [
+        'PORK-OS v1.0 — "Snout Edition"',
+        '',
+        'A creative reimagining of the Porkbun pig mascot',
+        'as a retro operating system interface.',
+        '',
+        'Built for the Porkbun Creative Competition 2026.',
+        'Powered by Basement OS (basementos.com).',
+        '',
+        'All original work. Made with love and pig puns.',
+      ].join('\n'),
+
+      'CREDITS': () => [
+        '╭─────────────────────────────────────╮',
+        '│        PORK-OS CREDITS              │',
+        '│─────────────────────────────────────│',
+        '│  Concept & Code .. CloudStrife7     │',
+        '│  Platform ........ Basement OS      │',
+        '│  Inspiration ..... Porkbun LLC      │',
+        '│  Framework ....... Astro            │',
+        '│  Pig Puns ........ Unlimited        │',
+        '│  Entry ........... Porkbun Creative │',
+        '│                    Competition 2026 │',
+        '╰─────────────────────────────────────╯',
+      ].join('\n'),
+    };
+
+    function addOutput(text: string) {
+      const lines = text.split('\n');
+      for (const line of lines) {
+        const p = document.createElement('p');
+        p.textContent = line || '\u00A0';
+        termOutput.appendChild(p);
+      }
+      termOutput.scrollTop = termOutput.scrollHeight;
+    }
+
+    termInput.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key !== 'Enter') return;
+      const raw = termInput.value.trim();
+      if (!raw) return;
+
+      // Echo command
+      addOutput(`C:\\PORK> ${raw}`);
+      termInput.value = '';
+
+      const cmd = raw.toUpperCase();
+
+      if (cmd === 'CLEAR') {
+        termOutput.innerHTML = '<p>Terminal cleared.</p><p>&nbsp;</p>';
+        return;
+      }
+
+      if (commands[cmd]) {
+        addOutput(commands[cmd]());
+      } else {
+        addOutput(`'${raw}' is not recognized as a PORK-OS command.`);
+        addOutput('Type HELP for available commands.');
+      }
+      addOutput('');
+    });
+  });
+</script>
