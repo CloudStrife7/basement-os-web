@@ -1,103 +1,16 @@
-═════════════════════════════════════════════
-        LOWER LEVEL 2.0 - CHANGELOG
-═════════════════════════════════════════════
+What's new in the basement:
+  2/21
+  - Snake game speed and scoring adjusted to be more accurate
+  - Hung up Basement Bash Poster - w Snake High Score Battle!
+      Join in the fun on Mar 14‚ 2026 at 7˸30 PM 
 
-VERSION 1.5.1 - DT_REMOTECONTENT V2 ENHANCEMENTS (2026-01-01)
-─────────────────────────────────────────────
-✨ New Feature
-   • DT_RemoteContent v2 enhancements +
-     workflow fix
+2/19
+Furniture Updated
+Fixed Basement-wide audio issues audio is now spatial per room
 
-─────────────────────────────────────────────
 
-VERSION 1.5.2 - ISSUE #153 REMOTE (2025-12-31)
-─────────────────────────────────────────────
-✨ New Feature
-   • Issue #153 remote content wiring + URL
-     migration + ROADMAP tab
+2/05
+- Beat your best Snake run? It'll be here next time you are
+- The Nokia keeps track of the top 5 Snake scores
+- SCORES app added to the terminal - see where you stand on the leaderboards
 
-─────────────────────────────────────────────
-
-VERSION 1.5.2 - MERGE BRANCH 'FEAT/ROADMAP-SYNC-WORKFLOW' (2025-12-29)
-─────────────────────────────────────────────
-🔧 Updates
-   • Merge branch
-     'feat/roadmap-sync-workflow' into
-     Restructure
-   • Merge pull request #149 from
-     CloudStrife7/feat/roadmap-sync-workflow
-
-✨ New Feature
-   • add milestone and label colors to
-     roadmap JSON
-   • add GitHub Action to sync roadmap to
-     website
-
-🐛 Bug Fixes
-   • improve roadmap sync with pagination,
-     error handling, and scheduling
-   • use curl instead of gh CLI for API calls
-   • use ROADMAP_SYNC_PAT for both repos
-   • checkout current repo first for
-     GITHUB_TOKEN context
-   • use WEB_REPO_PAT for issue access
-     permissions
-
-─────────────────────────────────────────────
-
-VERSION 1.5.2 - MENU SYSTEM (2025-12-26)
-─────────────────────────────────────────────
-🔧 Updates
-   • feat(BasementOS): Add MUSIC.EXE settings
-     menu with mute toggle
-   • fix(BasementOS): Fix terminal UI
-     alignment and padding issues
-   • style(BasementOS): Unify terminal UI
-     with box borders and emerald palette
-   • feat(TerminalTales): Add loading screen
-     animation + story file cleanup
-   • feat(TerminalTales): Add all story
-     Markdown files + fix [D] navigation
-   • refactor(TerminalTales): Style guide
-     compliance + Markdown support
-   • chore(BasementOS): Add editor utilities,
-     music.exe assets, and session docs
-   • fix(BasementOS): Remove WEATHER from
-     Shell menu and update Screen display
-   • style(BasementOS): Unify terminal colors
-     to #10B981 and add AM/PM clock
-   • fix(BasementOS): Add Settings app and
-     fix changelog auto-update
-   • Merge branch 'Restructure' into
-     claude/issue-134-basement-os-v2-enhancements-NFrOX
-   • docs(BasementOS): Add ProTV integration
-     expert skill and reference guide
-   • fix(BasementOS): UdonSharp compliance
-     validation per Claude.MD
-   • fix(BasementOS): Complete DT_App_Music
-     event-driven ProTV integration
-   • feat(BasementOS): Implement Issue #134
-     v2 enhancements
-   • docs(specs): Update Issue #134 specs per
-     user feedback
-   • docs(specs): Add Issue #134 BasementOS
-     v2 enhancement specifications
-   • fix(BasementOS): Complete autonomous
-     music.exe setup wiring
-
-─────────────────────────────────────────────
-
-VERSION 1.5.2 - DOCS(BASEMENTOS): ADD DT_APP_MUSIC (2025-12-17)
-─────────────────────────────────────────────
-🔧 Updates
-   • docs(BasementOS): Add DT_App_Music setup
-     guide and changelog
-
-─────────────────────────────────────────────
-
-═════════════════════════════════════════════
-Showing 5 recent versions | Full: github.com/CloudStrife7/LL2PCVR
-═════════════════════════════════════════════
-[Arrow ←] back to menu | [Space] exit
-
-C:\BASEMENT> _

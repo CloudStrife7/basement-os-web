@@ -1,0 +1,95 @@
+{
+  "sessions": {
+    "total": 273,
+    "ended": 4
+  },
+  "achievements": {
+    "total_unlocks": 338,
+    "counts": {
+      "basement_first_visit_achievement": 105,
+      "basement_regular_visitor_achievement": 4,
+      "basement_shag_squad_achievement": 5,
+      "basement_basement_dweller_achievement": 0,
+      "basement_retro_regular_achievement": 1,
+      "basement_hottub_hero_achievement": 1,
+      "basement_century_club_achievement": 0,
+      "basement_lower_legend_achievement": 0,
+      "basement_quick_visit_earned": 40,
+      "basement_hangout_earned": 8,
+      "basement_party_time_earned": 4,
+      "basement_2_legit_2_quit_earned": 3,
+      "basement_marathon_earned": 0,
+      "basement_ff_first_game": 0,
+      "basement_ff_survey_says": 0,
+      "basement_ff_perfect_round": 0,
+      "basement_ff_champion": 0,
+      "basement_snake_first_game_earned": 0,
+      "basement_snake_10_food_earned": 0,
+      "basement_snake_25_food_earned": 0,
+      "basement_snake_score_50_earned": 0,
+      "basement_snake_score_100_earned": 0,
+      "basement_snake_score_200_earned": 0,
+      "basement_snake_10_games_earned": 0,
+      "basement_snake_nokia_earned": 0,
+      "basement_heavy_rain_earned": 1,
+      "basement_night_owl_earned": 50,
+      "basement_early_bird_earned": 50,
+      "basement_weekend_warrior_earned": 65,
+      "basement_streak_master_earned": 0,
+      "basement_party_animal_earned": 1
+    }
+  },
+  "tales": {
+    "total_reads": 3,
+    "story_reads": {
+      "APIECE": 2,
+      "BRITANNIA": 0,
+      "BRUCEJUICE": 0,
+      "CHIPS": 0,
+      "COLDCUP": 0,
+      "DISTRACTION": 0,
+      "HEATNET": 0,
+      "IDIOT": 0,
+      "LOSTFEST": 0,
+      "MCGILLICUDDY": 0,
+      "OAKENFOLD": 0,
+      "PICTOCHAT": 0,
+      "PINGU": 0,
+      "ROBODAD": 0,
+      "SNACKSAUSAGE": 0,
+      "STARRYNIGHT": 1,
+      "MYST": 0
+    }
+  },
+  "apps": {
+    "total_opens": 360,
+    "app_opens": {
+      "Dashboard": 0,
+      "Weather": 0,
+      "Settings": 0,
+      "Games": 31,
+      "HighScores": 15,
+      "Music": 21,
+      "Stats": 197,
+      "CatStats": 0,
+      "Changelog": 0,
+      "GitHub": 33,
+      "Support": 7,
+      "Analytics": 0,
+      "Keypad": 27,
+      "Tales": 29
+    }
+  },
+  "keypad": {
+    "total_attempts": 35,
+    "successes": 4,
+    "failed_attempts": 31,
+    "codes_discovered": {
+      "EGG1": 0,
+      "EGG2": 0,
+      "EGG3": 4,
+      "EGG4": 0
+    }
+  },
+  "last_updated": "2026-03-05T07:07:07.285Z"
+}
