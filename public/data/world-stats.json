@@ -4,7 +4,7 @@
     "ended": 4
   },
   "achievements": {
-    "total_unlocks": 339,
+    "total_unlocks": 340,
     "counts": {
       "basement_first_visit_achievement": 105,
       "basement_regular_visitor_achievement": 4,
@@ -33,7 +33,7 @@
       "basement_snake_nokia_earned": 0,
       "basement_heavy_rain_earned": 1,
       "basement_night_owl_earned": 51,
-      "basement_early_bird_earned": 50,
+      "basement_early_bird_earned": 51,
       "basement_weekend_warrior_earned": 65,
       "basement_streak_master_earned": 0,
       "basement_party_animal_earned": 1
@@ -91,5 +91,5 @@
       "EGG4": 0
     }
   },
-  "last_updated": "2026-03-06T00:37:06.967Z"
+  "last_updated": "2026-03-06T00:37:16.618Z"
 }
