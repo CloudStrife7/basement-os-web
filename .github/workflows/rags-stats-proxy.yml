@@ -14,15 +14,18 @@
 name: Rags Stats Proxy
 
 on:
-  schedule:
-    # Run every 5 minutes
-    - cron: '*/5 * * * *'
-  workflow_dispatch: # Allow manual trigger
-  # Also trigger after other workflows to keep repo active
-  workflow_run:
-    workflows: ["Deploy to GitHub Pages", "Update Weather Data"]
-    types: [completed]
-    branches: [main]
+  # PAUSED: Cloudflare Worker API is broken, keeping static data until fixed
+  # See: sessions/2026-03-18-stats-and-git-conflicts.md
+  #
+  # schedule:
+  #   # Run every 5 minutes
+  #   - cron: '*/5 * * * *'
+  # workflow_run:
+  #   workflows: ["Deploy to GitHub Pages", "Update Weather Data"]
+  #   types: [completed]
+  #   branches: [main]
+  #
+  workflow_dispatch: # Manual trigger only - use when API is fixed
 
 permissions:
   contents: write

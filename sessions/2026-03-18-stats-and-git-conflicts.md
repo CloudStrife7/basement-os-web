@@ -48,6 +48,21 @@ async function fetchCatStats() {
 - The `/rags/stats` endpoint is failing server-side
 - Check Cloudflare dashboard logs for the worker
 
+### Additional Issue Found: rags-stats-proxy Workflow
+
+The GitHub Action `.github/workflows/rags-stats-proxy.yml` was overwriting good data with error responses:
+- Runs every 5 minutes
+- Fetches from Cloudflare API
+- When API returns `{"error": "..."}`, it's valid JSON and passed validation
+- This overwrote the good local JSON file
+
+**Fix applied:** Updated workflow to:
+1. Check for `.error` field before saving
+2. Validate `session_count` exists (required field)
+3. Only copy to public/data if response is valid stats
+
+**Data restored:** Retrieved good data from commit `e5328f07d` (2026-02-26)
+
 ---
 
 ## Issue 2: VRChat World Stats Stale
@@ -116,18 +131,19 @@ Claude AI sessions are committing dist/ as part of feature development.
 - Is rebuilt fresh by GitHub Actions for deployment
 - Causes massive merge conflicts
 
-### Solution
-Add `dist/` to `.gitignore` and remove it from git tracking:
+### Solution (APPLIED)
+Added `dist/` to `.gitignore` and removed from git tracking:
 ```bash
 echo "dist/" >> .gitignore
 git rm -r --cached dist/
 git commit -m "chore: stop tracking dist/ build artifacts"
 ```
 
-This will:
-- Stop future dist conflicts
-- Not affect deployment (GitHub Actions builds fresh)
-- Reduce repo size
+Result:
+- 224 files removed from tracking
+- 53,921 lines deleted from repo
+- Future pulls/rebases will no longer conflict on build output
+- Deployment unaffected (GitHub Actions builds fresh)
 
 ---
 
@@ -149,12 +165,66 @@ runLoginSequence('both');
 
 ```
 cccd903b0 fix: Add local JSON fallback for cat stats and disable mode selection dialog
+d67f0fbf6 chore: stop tracking dist/ build artifacts (224 files, -53,921 lines)
+f7ea6afe0 fix: Prevent rags-stats-proxy from committing error responses
 ```
 
 ---
 
-## Outstanding Items
+## Action Items (TODO)
 
-1. **Fix Cloudflare Worker** - `/rags/stats` endpoint returning error
-2. **Check n8n workflows** - VRChat stats workflow may be stopped
-3. **Consider removing dist/ from git** - Would eliminate future conflicts
+### 1. Fix Cloudflare Worker - Cat Stats API
+**Priority:** High
+**Status:** Broken since at least 2026-02-26
+
+The `/rags/stats` endpoint on your Cloudflare Worker is returning an error.
+
+**Steps:**
+1. Go to Cloudflare Dashboard → Workers & Pages
+2. Find `rags-analytics` worker (domain: `cloudflare-landscape202.workers.dev`)
+3. Check the Logs/Analytics for errors
+4. Debug why `/rags/stats` returns `{"error": "Failed to fetch stats"}`
+5. The `/world/stats` endpoint on the same worker works fine, so compare them
+
+**When fixed:**
+- Uncomment the schedule in `.github/workflows/rags-stats-proxy.yml`
+- Or manually trigger the workflow to test
+
+---
+
+### 2. Fix n8n Workflow - VRChat World Stats
+**Priority:** Medium
+**Status:** Stale since 2026-03-03 (15 days)
+
+The `public/data/vrchat-world.json` file hasn't been updated.
+
+**Steps:**
+1. Open your n8n instance
+2. Find the VRChat stats workflow
+3. Check if it's active/scheduled
+4. Check execution history for errors
+5. Re-enable or fix as needed
+
+---
+
+### 3. Re-enable Rags Stats Proxy (After #1 is fixed)
+**Priority:** Low (blocked by #1)
+
+The GitHub Action that fetches cat stats is paused.
+
+**When ready:**
+1. Edit `.github/workflows/rags-stats-proxy.yml`
+2. Uncomment the `schedule` and `workflow_run` triggers
+3. Commit and push
+4. Verify fresh data flows through
+
+---
+
+## Completed Items
+
+- [x] Added local JSON fallback for cat stats
+- [x] Disabled mode selection dialog (defaults to "both")
+- [x] Removed dist/ from git tracking (fixes merge conflicts)
+- [x] Fixed rags-stats-proxy to not commit error responses
+- [x] Restored good cat stats data from 2026-02-26
+- [x] Paused rags-stats-proxy workflow until API is fixed
