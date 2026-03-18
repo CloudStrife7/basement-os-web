@@ -1,25 +1,36 @@
 # Session: Stats Page Fixes and Git Conflict Investigation
 
 **Date:** 2026-03-18
-**Issues Addressed:**
-1. Cat stats not showing on /stats/ page
-2. Visit/level stats not updating
-3. Massive git conflicts when updating the website
+**Duration:** ~1 hour
+**Assisted by:** Claude Opus 4.5
 
 ---
 
-## Issue 1: Cat Stats Not Displaying
+## Summary
 
-### Root Cause
-The `fetchCatStats()` function in `src/pages/stats.astro` only fetched from the API endpoint with no fallback:
-- API: `https://rags-analytics.cloudflare-landscape202.workers.dev/rags/stats`
-- This API is currently returning `{"error": "Failed to fetch stats"}`
+This session addressed multiple issues with the basementos.com website:
+1. **Cat stats not displaying** - API broken, added local JSON fallback
+2. **Massive git merge conflicts** - Removed dist/ folder from git tracking
+3. **Mode selection dialog** - Disabled, now defaults to "both" view
+4. **Automated workflow overwriting data** - Fixed validation, paused until API works
 
-A local JSON file exists at `public/data/rags-stats.json` (updated by n8n) but was not being used.
+**Result:** Website now displays cat stats (static from Feb 26), no more merge conflicts, and clear action items for future fixes.
 
-### Fix Applied
-Modified `src/pages/stats.astro` to:
-1. Added constant: `LOCAL_CAT_STATS_URL = '/data/rags-stats.json'`
+---
+
+## Issues Addressed
+
+### Issue 1: Cat Stats Not Displaying
+
+**Symptom:** Cat telemetry section on /stats/ showed "--" for all values.
+
+**Root Cause:**
+- The `fetchCatStats()` function only fetched from the Cloudflare Worker API
+- API endpoint `https://rags-analytics.cloudflare-landscape202.workers.dev/rags/stats` is returning `{"error": "Failed to fetch stats"}`
+- No fallback to local JSON file existed
+
+**Fix Applied:**
+1. Added `LOCAL_CAT_STATS_URL = '/data/rags-stats.json'` constant
 2. Created `fetchLocalCatStats()` function
 3. Updated `fetchCatStats()` to try API first, fall back to local JSON
 
@@ -43,114 +54,74 @@ async function fetchCatStats() {
 }
 ```
 
-### Remaining Work
-- The Cloudflare Worker at `rags-analytics.cloudflare-landscape202.workers.dev` needs debugging
-- The `/rags/stats` endpoint is failing server-side
-- Check Cloudflare dashboard logs for the worker
-
-### Additional Issue Found: rags-stats-proxy Workflow
-
-The GitHub Action `.github/workflows/rags-stats-proxy.yml` was overwriting good data with error responses:
-- Runs every 5 minutes
-- Fetches from Cloudflare API
-- When API returns `{"error": "..."}`, it's valid JSON and passed validation
-- This overwrote the good local JSON file
-
-**Fix applied:** Updated workflow to:
-1. Check for `.error` field before saving
-2. Validate `session_count` exists (required field)
-3. Only copy to public/data if response is valid stats
-
-**Data restored:** Retrieved good data from commit `e5328f07d` (2026-02-26)
+**File:** `src/pages/stats.astro` (lines 392-421)
 
 ---
 
-## Issue 2: VRChat World Stats Stale
+### Issue 2: rags-stats-proxy Workflow Overwriting Good Data
 
-### Finding
-- Local file `public/data/vrchat-world.json` last updated: 2026-03-03 (15 days stale)
-- This is updated by an n8n workflow that appears to have stopped
+**Symptom:** Even with local fallback, cat stats still showed errors.
 
-### Action Required
-- Check n8n instance for the VRChat stats workflow
-- Verify it's scheduled and running
+**Root Cause:**
+- GitHub Action `.github/workflows/rags-stats-proxy.yml` runs every 5 minutes
+- Fetches from broken Cloudflare API
+- API returns `{"error": "Failed to fetch stats"}` which is valid JSON
+- Workflow validated JSON but not the content, so it committed the error response
+- This overwrote the good data in `public/data/rags-stats.json`
+
+**Fix Applied:**
+1. Updated workflow to check for `.error` field before saving
+2. Added validation that `session_count` exists (required field)
+3. Only copies to public/data if response contains valid stats
+4. Restored good data from commit `e5328f07d` (2026-02-26)
+5. Paused the workflow (manual trigger only) until API is fixed
+
+**File:** `.github/workflows/rags-stats-proxy.yml`
 
 ---
 
-## Issue 3: Git Conflicts (570+ commits divergence)
+### Issue 3: Massive Git Merge Conflicts (570+ commits)
 
-### Investigation Findings
+**Symptom:** Every pull/rebase resulted in hundreds of file conflicts in the dist/ folder.
 
-#### What the automated commits actually do:
-1. **Weather Bot** (GitHub Actions - `.github/workflows/weather-update.yml`)
-   - Runs hourly on cron: `0 * * * *`
-   - Updates `public/data/weather.json` only
-   - Commits with message: `weather: {temp} {condition}`
-   - Author: `Weather Bot <action@github.com>`
+**Investigation:**
+- Checked what automated commits actually change:
+  - Weather Bot → only `public/data/weather.json`
+  - World Stats (n8n) → only `public/data/world-stats.json`
+  - Roadmap Sync (n8n) → only `public/data/roadmap*.json`
+- **None of these touch dist/**
 
-2. **World Stats** (n8n workflow)
-   - Updates `public/data/world-stats.json`
-   - Commits with message: `Update world stats: {timestamp}`
-   - Author: `CloudStrife7`
+**Root Cause:**
+- The `dist/` folder (Astro build output) was tracked in git
+- Claude AI sessions were committing dist/ during feature development
+- Astro generates hashed filenames (e.g., `BLBAHujv.js`) that change every build
+- Local builds differ from remote builds → every file conflicts
 
-3. **Roadmap Sync** (n8n workflow)
-   - Updates `public/data/roadmap*.json`
-   - Commits with message: `chore: sync roadmap data from GitHub Issues`
+**Key Finding:**
+- GitHub Actions deployment (`deploy.yml`) runs `npm run build` fresh
+- It does NOT use the committed dist/ folder
+- The dist/ was tracked for no benefit, causing all the pain
 
-**These automated commits do NOT touch the dist/ folder.**
-
-#### What the dist/ folder is:
-- **Build output** from Astro (`npm run build`)
-- Contains compiled HTML, CSS, JS with hashed filenames (e.g., `BLBAHujv.js`)
-- **IS tracked in git** (not in .gitignore)
-
-#### How deployment works:
-From `.github/workflows/deploy.yml`:
-- Triggered on push to main (except data file changes)
-- Runs `npm ci` then `npm run build` fresh on GitHub Actions
-- Uploads `./dist` artifact to GitHub Pages
-- **Does NOT use the committed dist/ folder** - builds fresh every time
-
-#### Why dist/ is being committed:
-Looking at commit history:
-```
-0a32f9ab4 chore: update build artifacts and package-lock after Pork-OS addition
-Author: Claude <noreply@anthropic.com>
-```
-Claude AI sessions are committing dist/ as part of feature development.
-
-#### Why conflicts happen:
-1. Remote has dist/ from the latest feature builds (committed by Claude)
-2. Local machine has different dist/ from local `npm run build`
-3. Astro generates new hashed filenames on every build
-4. When pulling/rebasing: hundreds of HTML/CSS/JS files conflict
-
-### Root Cause
-**The dist/ folder should NOT be tracked in git.** It's build output that:
-- Changes on every build
-- Is rebuilt fresh by GitHub Actions for deployment
-- Causes massive merge conflicts
-
-### Solution (APPLIED)
-Added `dist/` to `.gitignore` and removed from git tracking:
+**Fix Applied:**
 ```bash
 echo "dist/" >> .gitignore
 git rm -r --cached dist/
-git commit -m "chore: stop tracking dist/ build artifacts"
 ```
 
-Result:
+**Result:**
 - 224 files removed from tracking
 - 53,921 lines deleted from repo
-- Future pulls/rebases will no longer conflict on build output
-- Deployment unaffected (GitHub Actions builds fresh)
+- Future pulls will not conflict on build output
+- Deployment continues to work (builds fresh)
+
+**File:** `.gitignore`
 
 ---
 
-## Issue 4: Mode Selection Dialog Disabled
+### Issue 4: Mode Selection Dialog Disabled
 
-### Change Made
-In `src/components/TerminalShell.astro`, commented out the mode selection dialog and defaulted to "both" view:
+**Change Made:**
+In `src/components/TerminalShell.astro`, commented out the mode selection dialog code and defaulted to "both" view:
 
 ```javascript
 // Boot sequence complete
@@ -159,15 +130,39 @@ setAudienceMode('both');
 runLoginSequence('both');
 ```
 
+**File:** `src/components/TerminalShell.astro` (lines 477-498)
+
+---
+
+### Issue 5: VRChat World Stats Stale
+
+**Finding:**
+- `public/data/vrchat-world.json` last updated: 2026-03-03 (15 days stale)
+- n8n workflow that updates this has stopped
+
+**Status:** Not fixed this session - requires n8n investigation
+
 ---
 
 ## Commits Made This Session
 
-```
-cccd903b0 fix: Add local JSON fallback for cat stats and disable mode selection dialog
-d67f0fbf6 chore: stop tracking dist/ build artifacts (224 files, -53,921 lines)
-f7ea6afe0 fix: Prevent rags-stats-proxy from committing error responses
-```
+| Commit | Description |
+|--------|-------------|
+| `cccd903b0` | fix: Add local JSON fallback for cat stats and disable mode selection dialog |
+| `d67f0fbf6` | chore: stop tracking dist/ build artifacts (224 files, -53,921 lines) |
+| `f7ea6afe0` | fix: Prevent rags-stats-proxy from committing error responses |
+| `67bcf015e` | chore: Pause rags-stats-proxy workflow until API is fixed |
+| `40c6975af` | docs: Add notice that cat stats are paused with link to session doc |
+
+---
+
+## Files Modified
+
+- `src/pages/stats.astro` - Added local fallback for cat stats, added "Data paused" notice
+- `src/components/TerminalShell.astro` - Disabled mode selection dialog
+- `.gitignore` - Added `dist/`
+- `.github/workflows/rags-stats-proxy.yml` - Fixed validation, paused schedule
+- `public/data/rags-stats.json` - Restored good data from Feb 26
 
 ---
 
@@ -220,11 +215,31 @@ The GitHub Action that fetches cat stats is paused.
 
 ---
 
+### 4. Remove "Data paused" Notice (After #1 and #3 are fixed)
+**Priority:** Low (blocked by #1 and #3)
+
+Once cat stats are flowing again:
+1. Edit `src/pages/stats.astro`
+2. Remove the HTML comment and the "Data paused" caption
+3. Commit and push
+
+---
+
 ## Completed Items
 
-- [x] Added local JSON fallback for cat stats
-- [x] Disabled mode selection dialog (defaults to "both")
-- [x] Removed dist/ from git tracking (fixes merge conflicts)
-- [x] Fixed rags-stats-proxy to not commit error responses
+- [x] Added local JSON fallback for cat stats (`src/pages/stats.astro`)
+- [x] Disabled mode selection dialog, defaults to "both" (`src/components/TerminalShell.astro`)
+- [x] Removed dist/ from git tracking, added to .gitignore (fixes merge conflicts)
+- [x] Fixed rags-stats-proxy workflow to not commit error responses
 - [x] Restored good cat stats data from 2026-02-26
 - [x] Paused rags-stats-proxy workflow until API is fixed
+- [x] Added visible "Data paused" notice on stats page with link to this document
+
+---
+
+## Lessons Learned
+
+1. **Don't track build output in git** - The dist/ folder should have been in .gitignore from the start
+2. **Validate API response content, not just format** - The workflow checked for valid JSON but not for error responses
+3. **Automated workflows need error handling** - A failing upstream API shouldn't corrupt local data
+4. **Always have fallbacks** - The cat stats should have had a local fallback from the beginning
