@@ -313,6 +313,7 @@ import TerminalShell from '../components/TerminalShell.astro';
   const CAT_STATS_API = 'https://rags-analytics.cloudflare-landscape202.workers.dev/rags/stats';
   const HISTORICAL_STATS_URL = '/data/historical-stats.json';
   const LOCAL_VRCHAT_STATS_URL = '/data/vrchat-world.json';
+  const LOCAL_CAT_STATS_URL = '/data/rags-stats.json';
 
   // =========================================================================
   // CHART INSTANCES (for cleanup on theme change)
@@ -388,11 +389,31 @@ import TerminalShell from '../components/TerminalShell.astro';
     }
   }
 
+  /** Fetch from local cat stats JSON file (n8n-updated) */
+  async function fetchLocalCatStats() {
+    const response = await fetch(LOCAL_CAT_STATS_URL);
+    if (!response.ok) throw new Error('Local cat stats fetch failed');
+    const data = await response.json();
+    if (data && data.session_count > 0) {
+      console.log('Using local n8n-updated cat stats');
+      return data;
+    }
+    throw new Error('Local cat stats data is placeholder');
+  }
+
+  /** Fetch cat stats with fallback: API -> local JSON */
   async function fetchCatStats() {
+    // Try API first (most up-to-date)
     try {
       const response = await fetch(CAT_STATS_API);
       if (!response.ok) throw new Error('Failed to fetch cat stats');
       return await response.json();
+    } catch (e) {
+      console.log('Cat stats API unavailable, trying local JSON');
+    }
+    // Fall back to local JSON
+    try {
+      return await fetchLocalCatStats();
     } catch (e) {
       console.error('Cat stats fetch failed:', e);
       return null;

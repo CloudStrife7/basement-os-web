@@ -474,23 +474,28 @@ const { activeSection = 'home' } = Astro.props;
                   : 500;
               setTimeout(runBootSequence, nextDelay);
           } else {
-              // Boot sequence complete - check if mode selection is needed
-              const hasSelectedMode = sessionStorage.getItem('basement-os-mode-selected');
+              // Boot sequence complete
+              // COMMENTED OUT: Mode selection dialog - now defaulting to "both" view
+              // const hasSelectedMode = sessionStorage.getItem('basement-os-mode-selected');
+              //
+              // if (!hasSelectedMode) {
+              //     // Request mode selection overlay
+              //     window.dispatchEvent(new Event('basement-os-request-mode-selection'));
+              //
+              //     // Wait for mode selection to complete, then run login sequence
+              //     window.addEventListener('basement-os-mode-ready', (e: Event) => {
+              //         const customEvent = e as CustomEvent;
+              //         const mode = customEvent.detail?.mode || getSavedMode();
+              //         runLoginSequence(mode);
+              //     }, { once: true });
+              // } else {
+              //     // Mode already selected - skip to finish
+              //     finishBoot();
+              // }
 
-              if (!hasSelectedMode) {
-                  // Request mode selection overlay
-                  window.dispatchEvent(new Event('basement-os-request-mode-selection'));
-
-                  // Wait for mode selection to complete, then run login sequence
-                  window.addEventListener('basement-os-mode-ready', (e: Event) => {
-                      const customEvent = e as CustomEvent;
-                      const mode = customEvent.detail?.mode || getSavedMode();
-                      runLoginSequence(mode);
-                  }, { once: true });
-              } else {
-                  // Mode already selected - skip to finish
-                  finishBoot();
-              }
+              // Default to "both" mode and run login sequence directly
+              setAudienceMode('both');
+              runLoginSequence('both');
           }
       }
 
