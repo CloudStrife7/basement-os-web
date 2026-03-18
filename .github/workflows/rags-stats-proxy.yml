@@ -37,15 +37,24 @@ jobs:
       - name: Fetch Rags stats from Cloudflare Worker
         run: |
           mkdir -p public/data
-          curl -s "https://rags-analytics.cloudflare-landscape202.workers.dev/rags/stats" > public/data/rags-stats.json
+          curl -s "https://rags-analytics.cloudflare-landscape202.workers.dev/rags/stats" > /tmp/rags-stats.json
 
-          # Validate JSON
-          if jq empty public/data/rags-stats.json 2>/dev/null; then
-            echo "Valid JSON received"
-            cat public/data/rags-stats.json
+          # Validate JSON and check for error response
+          if jq empty /tmp/rags-stats.json 2>/dev/null; then
+            # Check if response is an error
+            if jq -e '.error' /tmp/rags-stats.json >/dev/null 2>&1; then
+              echo "API returned error response, keeping previous version"
+              cat /tmp/rags-stats.json
+            elif jq -e '.session_count' /tmp/rags-stats.json >/dev/null 2>&1; then
+              echo "Valid stats received"
+              cp /tmp/rags-stats.json public/data/rags-stats.json
+              cat public/data/rags-stats.json
+            else
+              echo "Response missing expected fields, keeping previous version"
+              cat /tmp/rags-stats.json
+            fi
           else
             echo "Invalid JSON, keeping previous version"
-            git checkout public/data/rags-stats.json 2>/dev/null || echo "{}" > public/data/rags-stats.json
           fi
 
       - name: Commit and push if changed
