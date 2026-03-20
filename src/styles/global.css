@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=VT323&display=swap');
 
 /* Orbitron font for BasementOS theme */
 @font-face {
@@ -413,6 +413,31 @@
     --search-highlight: #FFC90E;
     --font-mono: 'Tahoma', 'Segoe UI', 'Trebuchet MS', sans-serif;
     --font-display: 'Tahoma', 'Segoe UI', 'Trebuchet MS', sans-serif;
+}
+
+/* HUNTER (Tactical Industrialism - Storm/Amber/Cardinal palette) */
+[data-theme="hunter"] {
+    --bg-primary: #131411;
+    --bg-secondary: #1b1c19;
+    --bg-terminal: #0d0f0c;
+    --text-primary: #e4e2de;
+    --text-secondary: #b7cda9;
+    --text-dim: #444840;
+    --accent-primary: #4C6043;
+    --accent-secondary: #F59E01;
+    --accent-alert: #ffc072;
+    --accent-error: #6D0827;
+    --accent-link: #b7cda9;
+    --accent-milestone: #F59E01;
+    --border-color: #444840;
+    --scanline-color: rgba(76, 96, 67, 0.03);
+    --cursor-color: #b7cda9;
+    --selection-bg: rgba(76, 96, 67, 0.4);
+    --selection-text: #e4e2de;
+    --tooltip-bg: #1f201d;
+    --search-highlight: #F59E01;
+    --font-mono: 'Plus Jakarta Sans', 'JetBrains Mono', 'Courier New', monospace;
+    --font-display: 'Plus Jakarta Sans', 'VT323', monospace;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -2325,6 +2350,264 @@ body::before {
     background: #ECE9D8;
     border-top: 2px solid #ACA899;
     font-family: 'Tahoma', 'Segoe UI', sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HUNTER THEME OVERRIDES
+   Tactical Industrialism — Storm/Amber/Cardinal palette
+═══════════════════════════════════════════════════════════════════ */
+
+/* Terminal title — Plus Jakarta Sans, heavy, left-anchored */
+[data-theme="hunter"] .terminal-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #b7cda9;
+}
+
+/* Terminal container — tonal layering, sharp corners */
+[data-theme="hunter"] .terminal {
+    border: none;
+    box-shadow: 0 24px 40px rgba(228, 226, 222, 0.06);
+    border-radius: 0;
+    background: #131411;
+}
+
+/* Header — surface_container_low on surface */
+[data-theme="hunter"] .terminal-header {
+    background: #1b1c19;
+    border-bottom: none;
+    box-shadow: 0 2px 0 #0d0f0c;
+}
+
+/* Nav buttons — sharp tactical, amber on active */
+[data-theme="hunter"] .nav-btn {
+    background: transparent;
+    border: none;
+    border-radius: 0.125rem;
+    color: #444840;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    transition: all 0.15s ease;
+}
+
+[data-theme="hunter"] .nav-btn:hover {
+    background: rgba(76, 96, 67, 0.15);
+    color: #b7cda9;
+}
+
+[data-theme="hunter"] .nav-btn.active {
+    background: #F59E01;
+    color: #131411;
+    box-shadow: none;
+}
+
+[data-theme="hunter"] .nav-btn .type {
+    color: #4C6043;
+}
+
+/* Section headers — left-heavy, component-label style */
+[data-theme="hunter"] .section-header,
+[data-theme="hunter"] .routing-header {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #b7cda9;
+    border-bottom: none;
+    background: #1b1c19;
+    padding-left: 0;
+}
+
+/* Mission statement / info boxes — tonal zone, left accent bar */
+[data-theme="hunter"] .mission-statement {
+    background: #1f201d;
+    border: none;
+    border-left: 3px solid #4C6043;
+    border-radius: 0;
+    box-shadow: inset 0 0 0 1px rgba(68, 72, 64, 0.15);
+}
+
+/* Cards — surface_container, no dividers */
+[data-theme="hunter"] .card,
+[data-theme="hunter"] .skill-card {
+    background: #1f201d;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 24px 40px rgba(228, 226, 222, 0.06);
+    transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+
+[data-theme="hunter"] .card:hover,
+[data-theme="hunter"] .skill-card:hover {
+    background: #343532;
+    box-shadow: 0 32px 48px rgba(228, 226, 222, 0.08);
+}
+
+/* Nav routing boxes */
+[data-theme="hunter"] .nav-routing {
+    background: #1b1c19;
+    border: none;
+    border-radius: 0;
+}
+
+/* Routing items */
+[data-theme="hunter"] .routing-item {
+    background: #1f201d;
+    border: none;
+    border-radius: 0;
+    transition: all 0.15s ease;
+}
+
+[data-theme="hunter"] .routing-item:hover {
+    background: #343532;
+    box-shadow: 0 24px 40px rgba(228, 226, 222, 0.06);
+}
+
+[data-theme="hunter"] .routing-item .item-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    color: #b7cda9;
+    letter-spacing: -0.01em;
+}
+
+/* Status bar */
+[data-theme="hunter"] .status-bar {
+    background: #1b1c19;
+    border-top: none;
+    box-shadow: 0 -2px 0 #0d0f0c;
+}
+
+/* Prompt */
+[data-theme="hunter"] .prompt {
+    color: #4C6043;
+    font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Links */
+[data-theme="hunter"] a.link,
+[data-theme="hunter"] .link {
+    color: #b7cda9;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.15s ease;
+}
+
+[data-theme="hunter"] a.link:hover,
+[data-theme="hunter"] .link:hover {
+    color: #F59E01;
+    border-bottom-color: #F59E01;
+}
+
+/* Devlog entries */
+[data-theme="hunter"] .devlog-entry {
+    background: #1f201d;
+    border: none;
+    border-left: 3px solid #4C6043;
+    border-radius: 0;
+    box-shadow: 0 24px 40px rgba(228, 226, 222, 0.04);
+}
+
+[data-theme="hunter"] .devlog-entry:hover {
+    background: #343532;
+    border-left-color: #F59E01;
+}
+
+/* TOC headers */
+[data-theme="hunter"] .devlog-toc h3,
+[data-theme="hunter"] .toc-year-header {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #b7cda9;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+}
+
+/* Theme selector */
+[data-theme="hunter"] .theme-selector select {
+    background: #1f201d;
+    border: 1px solid rgba(68, 72, 64, 0.4);
+    color: #b7cda9;
+    border-radius: 0.125rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+[data-theme="hunter"] .theme-selector select:focus {
+    outline: 2px solid #4C6043;
+    box-shadow: none;
+}
+
+/* AI disclosure */
+[data-theme="hunter"] .ai-disclosure {
+    background: #1f201d;
+    border: none;
+    border-left: 3px solid #6D0827;
+}
+
+[data-theme="hunter"] .ai-disclosure-header {
+    color: #ffb2bc;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+}
+
+/* Primary CTA button — Hero gradient per spec */
+[data-theme="hunter"] .btn-primary,
+[data-theme="hunter"] button[type="submit"] {
+    background: linear-gradient(135deg, #4C6043 0%, rgba(183, 205, 169, 0.15) 100%);
+    color: #e4e2de;
+    border: none;
+    border-radius: 0.125rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+/* Amber secondary button */
+[data-theme="hunter"] .btn-secondary {
+    background: #F59E01;
+    color: #131411;
+    border: none;
+    border-radius: 0.125rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+}
+
+/* Cardinal error/critical states */
+[data-theme="hunter"] .error,
+[data-theme="hunter"] .critical {
+    color: #ffb2bc;
+    border-left-color: #6D0827;
+}
+
+/* HUD floating elements — glassmorphism */
+[data-theme="hunter"] .modal,
+[data-theme="hunter"] .popover,
+[data-theme="hunter"] .tooltip {
+    background: rgba(40, 42, 37, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(68, 72, 64, 0.15);
+    border-radius: 0;
+    box-shadow: 0 24px 40px rgba(228, 226, 222, 0.06);
+}
+
+/* CRT scanline tint — Storm green */
+[data-theme="hunter"] .terminal::before {
+    background: repeating-linear-gradient(0deg,
+        rgba(76, 96, 67, 0.02),
+        rgba(76, 96, 67, 0.02) 1px,
+        transparent 1px,
+        transparent 2px);
+}
+
+/* Footer */
+[data-theme="hunter"] .terminal-footer {
+    background: #1b1c19;
+    border-top: none;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
