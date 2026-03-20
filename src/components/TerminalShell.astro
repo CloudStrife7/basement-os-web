@@ -1,27 +1,14 @@
 ---
 interface Props {
-  activeSection?: 'home' | 'story' | 'devlog' | 'skills' | 'support' | 'achievements' | 'roadmap' | 'bifrost' | 'stats' | 'highscores' | 'tour';
-  heroSlides?: string[];
+  activeSection?: 'home' | 'story' | 'devlog' | 'skills' | 'support' | 'achievements' | 'roadmap' | 'bifrost' | 'stats' | 'highscores';
 }
 
 import ModeSelection from './ModeSelection.astro';
 
-const { activeSection = 'home', heroSlides } = Astro.props;
+const { activeSection = 'home' } = Astro.props;
 ---
 
-<div class={`terminal-wrapper${heroSlides && heroSlides.length > 0 ? ' has-hero' : ''}`}>
-
-  {heroSlides && heroSlides.length > 0 && (
-    <div class="hero-slideshow" id="hero-slideshow" aria-hidden="true">
-      {heroSlides.map((src, i) => (
-        <div
-          class={`hero-slide${i === 0 ? ' active' : ''}`}
-          style={`background-image: url('${src}')`}
-        />
-      ))}
-    </div>
-  )}
-
+<div class="terminal-wrapper">
   <div class="terminal">
     <!-- Header -->
     <div class="terminal-header">
@@ -80,9 +67,6 @@ const { activeSection = 'home', heroSlides } = Astro.props;
       </a>
       <a href="/achievements" class={`nav-btn ${activeSection === 'achievements' ? 'active' : ''}`}>
         <span class="type">&lt;360&gt;</span> ACHIEVEMENTS
-      </a>
-      <a href="/tour" class={`nav-btn ${activeSection === 'tour' ? 'active' : ''}`}>
-        <span class="type">&lt;OPS&gt;</span> TOUR
       </a>
       <a href="/roadmap" id="roadmap-link" class={`nav-btn ${activeSection === 'roadmap' ? 'active' : ''}`}>
         <span class="type">&lt;MAP&gt;</span> ROADMAP
@@ -1147,24 +1131,5 @@ const { activeSection = 'home', heroSlides } = Astro.props;
                   updateDisplay(parseInt(cached, 10));
               }
           });
-  });
-
-  // HERO SLIDESHOW — cycles tour photos behind the terminal on pages that provide them
-  document.addEventListener('astro:page-load', () => {
-    const slideshow = document.getElementById('hero-slideshow');
-    if (!slideshow) return;
-
-    const slides = /** @type {NodeListOf<HTMLElement>} */ (slideshow.querySelectorAll('.hero-slide'));
-    if (slides.length <= 1) return;
-
-    let current = 0;
-
-    function nextSlide() {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-    }
-
-    setInterval(nextSlide, 5000);
   });
 </script>
