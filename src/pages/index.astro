@@ -1,10 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TerminalShell from '../components/TerminalShell.astro';
+
+// Tour photos — stored in the repo at public/images/tour/
+// Add more missions here as they're photographed. These cycle as a
+// hero background on the home page (replace with real filenames after upload).
+const heroSlides = [
+  '/images/tour/sky-carps-star-wars-2025/cover.jpg',
+  '/images/tour/sky-carps-star-wars-2025/01.jpg',
+  '/images/tour/sky-carps-star-wars-2025/02.jpg',
+];
 ---
 
 <BaseLayout title="BASEMENT OS">
-  <TerminalShell activeSection="home">
+  <TerminalShell activeSection="home" heroSlides={heroSlides}>
     <div class="content-section active">
       <h2 class="section-header">C:\BASEMENT\HOME.TXT</h2>
 
