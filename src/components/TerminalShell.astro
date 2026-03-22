@@ -872,8 +872,10 @@ const { activeSection = 'home' } = Astro.props;
         if (!demoContainer) return;
 
         demoContainer.classList.remove('crt-active');
+        document.documentElement.classList.remove('crt-active');
         if (mode === 'css') {
           demoContainer.classList.add('crt-active');
+          document.documentElement.classList.add('crt-active');
         }
 
         saveCRTMode(mode);
@@ -903,6 +905,7 @@ const { activeSection = 'home' } = Astro.props;
       window.addEventListener('basement-os-terminal-closing', () => {
         const demoContainer = document.getElementById('terminal-demo');
         if (demoContainer) demoContainer.classList.remove('crt-active');
+        document.documentElement.classList.remove('crt-active');
       });
 
       // =========================================================================

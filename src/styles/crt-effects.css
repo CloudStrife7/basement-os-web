@@ -182,6 +182,55 @@
 }
 
 /* ==========================================================================
+   CRT Effects — Full-Page Phosphor Overlay (gated on html.crt-active)
+   ========================================================================== */
+
+/* --- Phosphor RGB Shadow Mask --- */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url('/images/crt_shadow_mask_6x2.png');
+  background-repeat: repeat;
+  background-size: 4px 4px;
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+html.crt-active body::after {
+  opacity: 0.35;
+}
+
+/* --- Full-Page Scanline Layer --- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.03) 0px,
+    rgba(0, 0, 0, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+html.crt-active body::before {
+  opacity: 1;
+}
+
+/* ==========================================================================
    Accessibility: Reduced Motion
    ========================================================================== */
 
@@ -202,5 +251,11 @@
   .shutdown-msg-1,
   .shutdown-msg-2 {
     animation: none;
+  }
+
+  /* Disable full-page overlay transitions */
+  body::after,
+  body::before {
+    transition: none;
   }
 }
