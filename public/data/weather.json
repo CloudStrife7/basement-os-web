@@ -1,8 +1,8 @@
 {
-  "temperature": "67°F",
-  "condition": "Partly cloudy",
+  "temperature": "56°F",
+  "condition": "Thundery outbreaks possible",
   "location": "Fond du Lac, WI",
-  "timestamp": "2026-04-14 03:16:44",
-  "last_updated": 1776136604.170993,
+  "timestamp": "2026-04-14 06:02:54",
+  "last_updated": 1776146574.869209,
   "status": "online"
 }
