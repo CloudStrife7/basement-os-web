@@ -1,8 +1,8 @@
 {
   "temperature": "52°F",
-  "condition": "Clear",
+  "condition": "Mist",
   "location": "Fond du Lac, WI",
-  "timestamp": "2026-05-24 10:37:57",
-  "last_updated": 1779619077.660443,
+  "timestamp": "2026-05-24 11:32:59",
+  "last_updated": 1779622379.324257,
   "status": "online"
 }
