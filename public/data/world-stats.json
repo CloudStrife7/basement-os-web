@@ -40,7 +40,7 @@
     }
   },
   "tales": {
-    "total_reads": 6,
+    "total_reads": 7,
     "story_reads": {
       "APIECE": 3,
       "BRITANNIA": 0,
@@ -53,7 +53,7 @@
       "LOSTFEST": 0,
       "MCGILLICUDDY": 0,
       "OAKENFOLD": 0,
-      "PICTOCHAT": 0,
+      "PICTOCHAT": 1,
       "PINGU": 0,
       "ROBODAD": 0,
       "SNACKSAUSAGE": 1,
@@ -91,5 +91,5 @@
       "EGG4": 0
     }
   },
-  "last_updated": "2026-08-07T16:31:26.636Z"
+  "last_updated": "2026-08-07T16:32:48.869Z"
 }
