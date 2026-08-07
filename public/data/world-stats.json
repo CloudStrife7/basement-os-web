@@ -40,7 +40,7 @@
     }
   },
   "tales": {
-    "total_reads": 5,
+    "total_reads": 6,
     "story_reads": {
       "APIECE": 3,
       "BRITANNIA": 0,
@@ -56,7 +56,7 @@
       "PICTOCHAT": 0,
       "PINGU": 0,
       "ROBODAD": 0,
-      "SNACKSAUSAGE": 0,
+      "SNACKSAUSAGE": 1,
       "STARRYNIGHT": 1,
       "MYST": 0
     }
@@ -91,5 +91,5 @@
       "EGG4": 0
     }
   },
-  "last_updated": "2026-08-07T16:28:17.773Z"
+  "last_updated": "2026-08-07T16:31:16.796Z"
 }
