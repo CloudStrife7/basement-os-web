@@ -1,8 +1,8 @@
 {
-  "temperature": "69°F",
-  "condition": "Patchy rain nearby",
+  "temperature": "73°F",
+  "condition": "Overcast",
   "location": "Fond du Lac, WI",
-  "timestamp": "2026-08-15 14:26:42",
-  "last_updated": 1786804002.429407,
+  "timestamp": "2026-08-15 15:24:32",
+  "last_updated": 1786807472.780529,
   "status": "online"
 }
