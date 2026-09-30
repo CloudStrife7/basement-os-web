@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TerminalShell from '../components/TerminalShell.astro';
+
+const repo = 'https://github.com/CloudStrife7/basement-os-toolkit';
+---
+
+<BaseLayout title="BASEMENT OS | Tools">
+  <TerminalShell activeSection="tools">
+    <div class="content-section active">
+      <h2 class="section-header">C:\BASEMENT\TOOLS.EXE</h2>
+
+      <div class="mission-statement">
+        <h3>Free tools and lessons from real projects</h3>
+        <p>Each kit solves one problem and runs on its own. You do not need the source of the game or world it came from. Take one kit, use it in your project.</p>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card featured">
+          <h3>[ Sprite Pipeline ]</h3>
+          <p>An AI draws a 4-pose sheet on green. One command turns it into transparent game frames: one scale, feet on one line, one palette.</p>
+          <p class="mt-1">
+            <a href={`${repo}/tree/main/kits/sprite-pipeline`} class="link" target="_blank" rel="noopener">Open the kit</a>
+          </p>
+          <p class="text-dim mt-1">From The Relic Hunters. Needs Python and an image model. The tool is free.</p>
+        </div>
+
+        <div class="info-card">
+          <h3>[ Local Character LoRA ]</h3>
+          <p>Teach a model your characters on your own PC, for free.</p>
+          <p class="text-dim mt-1">Coming next.</p>
+        </div>
+
+        <div class="info-card">
+          <h3>[ Photo to In-Game Model ]</h3>
+          <p>Reference photo, to ChatGPT for the texture, to a model in the game with Claude Code. This is how VR Cantina was made. Visit it in VR and see the result.</p>
+          <p class="text-dim mt-1">Coming soon.</p>
+        </div>
+
+        <div class="info-card">
+          <h3>[ All Kits on GitHub ]</h3>
+          <p>
+            <a href={repo} class="link" target="_blank" rel="noopener">basement-os-toolkit</a>
+          </p>
+          <p class="text-dim mt-1">Free to use. MIT license.</p>
+        </div>
+      </div>
+    </div>
+  </TerminalShell>
+</BaseLayout>
